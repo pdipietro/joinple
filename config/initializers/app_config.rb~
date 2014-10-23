@@ -1,0 +1,12 @@
+require 'ostruct'
+require 'yaml'
+
+config = YAML.load_file (
+		File.join(Rails.root,'config', 'app_config.yml')) ||  {}
+
+puts config
+puts "===="
+puts config[Rails.env] || {}
+puts "==="
+AppConfig = OpenStruct.new(config[Rails.env] || {})
+

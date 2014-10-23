@@ -1,0 +1,6 @@
+one:
+  first_name: "ari"
+  email: ari@fullstack.io
+two:
+  first_name: 'nate'
+  email: nate@fullstack.io

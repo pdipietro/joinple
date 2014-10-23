@@ -1,0 +1,118 @@
+
+    angular.module('Gsn',
+    [
+        'ngAnimate',
+        'ui.router',
+        'templates',
+        'ngResource'/*
+    ]).config(function($stateProvider,
+    $urlRouterProvider,
+    $locationProvider,
+    $resource){
+        */
+    ])
+    .factory("Language",
+    ($resource){
+        return$resource("api/language/:id",
+        {
+            id: "@id"
+        },
+        {
+            update: {
+                method: "PUT"
+            }
+        })
+    });
+
+    /*
+    .config(function($stateProvider,
+    $urlRouterProvider,
+    $locationProvider){
+        // RouteandStates
+        $stateProvider.state('home',
+        {
+            url: '/',
+            templateUrl: 'home.html',
+            controller: 'HomeCtrl'
+        })
+        //parentforthebelowchildstates
+        .state('dashboard',
+        {
+            abstract: true,
+            url: '/dashboard',
+            templateUrl: 'dashboard/layout.html'
+        })
+        //thedefaultroutewhensomeonehitsdashboard
+        .state('dashboard.one',
+        {
+            url: '',
+            templateUrl: 'dashboard/one.html'
+        })
+        //thisis/dashboard/two
+        .state('dashboard.two',
+        {
+            url: '/two',
+            templateUrl: 'dashboard/two.html'
+        })
+        //thisis/dashboard/three
+        .state('dashboard.three',
+        {
+            url: '/three',
+            templateUrl: 'dashboard/three.html'
+        })
+        //parentforthebelowchildstates
+        .state('language',
+        {
+            url: '/language',
+            templateUrl: 'language/layout.html'
+        })
+        //thedefaultroutewhensomeonehitsdashboard
+        .state('language.index',
+        {
+            url: '/index',
+            templateUrl: 'language/index.html'
+        })
+        //thisis/dashboard/two
+        .state('language.view',
+        {
+            url: '/view',
+            templateUrl: 'language/view.html'
+        })
+        //thisis/dashboard/three
+        .state('language.edit',
+        {
+            url: '/edit',
+            templateUrl: 'language/edit.html'
+        })
+
+
+        .when('/language',
+        {
+            templateUrl: 'language/page.html',
+            controller: 'LanguageCtrl'
+        }).when('/pippo',
+        {
+            templateUrl: 'pippo/page.html',
+            controller: 'PippoCtrl'
+        })
+        */
+   /*     ;
+
+        defaultfallbackroute$urlRouterProvider.otherwise('/');
+        enableHTML5ModeforSEO$locationProvider.html5Mode(true);
+    });*/
+    /*
+    angular.module('Gsn').factory('Entry',
+      function($resource){
+          return$resource('/api/language/: id');
+      });
+    angular.module('Gsn',[]).factory("Language",
+    ($resource)->$resource("api/language/:id",
+    {
+        id: "@id"
+    },
+    {
+        update: {
+            method: "PUT"
+        }
+    })*/

@@ -1,0 +1,27 @@
+<h1 class="GSN_form_h1">Listing <span class="GSN_form_h1_class_name"><%= @languages[0].class.name.underscore.humanize.pluralize %></span></h1>
+
+<table>
+  <thead>
+    <tr>
+			<th class="GSN_field_header">Code</th>
+			<th class="GSN_field_header">Name</th>
+			<th class="GSN_command_header" colspan="3">Commands</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @languages.each do |language| %>
+      <tr>
+				<td class="GSN_field_content"><%= language.code %></td>
+				<td class="GSN_field_content"><%= language.name %></td>
+        <td class="GSN_command"><%= link_to 'Show', language %></td>
+        <td class="GSN_command"><%= link_to 'Edit', edit_language_path(language) %></td>
+        <td class="GSN_command"><%= link_to 'Destroy', language, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<div class="GSN_link_to GSN_link_to_new"><%= link_to 'New Identity provider', new_language_path %><div>

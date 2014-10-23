@@ -1,0 +1,14 @@
+<p id="notice" class="GSN_show_notice"><%= notice %></p>
+
+		<p class="GSN_field">
+			<span class="GSN_field_name">Code: </span>
+			<span class="GSN_field_text"><%= @language.code %></span>
+		</p>
+
+		<p class="GSN_field">
+			<span class="GSN_field_name">Name: </span>
+			<span class="GSN_field_text"><%= @language.name %></span>
+		</p>
+
+<div class="GSN_link_to GSN_link_to_edit"><%= link_to 'Edit', edit_language_path(@language) %></div> |
+<div class="GSN_link_to GSN_link_back"><%= link_to 'Back', languages_path %></div>
