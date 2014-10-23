@@ -1,9 +1,0 @@
-<h1>The Language Page!</h1>
-<ul>
-		<li><hr />
-			scope$
-		</li>		
-    <li ng-repeat="language in languages.data">
-        {{language.code}} - {{language.name}}
-    </li>
-</ul>
