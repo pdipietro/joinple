@@ -16,3 +16,7 @@
 
 # Ignore Neo4j directory
 /neo4j
+
+# Ignore .yml
+/config/*.yml
+
