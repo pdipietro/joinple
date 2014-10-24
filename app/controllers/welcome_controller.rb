@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
-  before_filter :authenticate_user_identity!, except: [:index]
+  before_filter :authenticate_user!, except: [:index]
   layout  :choose_layout
 
   def index

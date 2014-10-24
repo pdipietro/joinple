@@ -1,141 +1,66 @@
 class User
   include Neo4j::ActiveNode
+    #
+    # Neo4j.rb needs to have property definitions before any validations. So, the property block needs to come before
+    # loading your devise modules.
+    #
+    # If you add another devise module (such as :lockable, :confirmable, or :token_authenticatable), be sure to
+    # uncomment the property definitions for those modules. Otherwise, the unused property definitions can be deleted.
+    #
 
-	include CreatedAtUpdatedAt
-	include Uuid
+     property :name, :type =>   String
+     property :token, :type => String
+     index :token
+     index :name
 
-	#	include GroupManagement
+     property :created_at, :type => DateTime
+     property :updated_at, :type => DateTime
 
-		property	:first_name, type: String
-		property	:last_name,	type: String
-		property	:nickname,	type: String
-		property	:email,	type: String
+     ## Database authenticatable
+     property :email, :type => String, :null => false, :default => ""
+     index :email
 
+     property :encrypted_password
 
-#    property :email, :type => String, :null => false, :default => ""
-#    index :email
+     ## If you include devise modules, uncomment the properties below.
 
-	#		has_one		:out, :country
-
-	#		has_many	:out, :identity, model_class: Identity
-	#		has_many	:out, :language, model_class: Language
-
-	#		has_many	:out, :follows
-
-	#		has_many	:out, :owns, type: :owns, model_class: false
-	#		has_many	:out, :likes, type: :likes, model_class: false
-
-	#		has_many	:in,	:groups,	origin: :group, model_class: Group
-	#		has_many	:in,	:social_network, model_class: SocialNetwork
-
-		def full_name
-			first_name & " " & last_name
-		end
-
-    has_many :out, :owns,	origin: :share,  model_class: Share
-    has_many :out, :user_identities, type: 'has_identity',  model_class: UserIdentity
-
-  #  has_many :out,  :identities, type: "has_identity"
-
- #   	validates	:nickname,   :format => /[-a-zA-Z]{3,30}/
- #   	validates	:email,       :format => /the email pattern/
-
-  def self.create_with_omniauth(info)
-    create(first_name: info['first_name'])
-    if info['last_name'].nil?
-      create(last_name: info['name'])
-    else
-      create(last_name: info['last_name'])
-    end
-    create(nickname: info['nickname'])
-    create(first_name: info['name'])
-  end
-
-  def self.find_or_create(first_name, last_name, nickname)
-    unless u = User.find_or_create(first_name, last_name, nickname)
-      u = User.create(:first_name => first_name, :last_name => last_name, :nickname => nickname)
-    end
-    puts "New user: #{u.inspect}"
-    u
-  end
-
-  def self.pop
-    u1=User.new
-    u1.nickname="mr"
-    u1.save
-
-    u2=User.new
-    u2.nickname="Gi"
-    u2.save
-
-    u3=User.new
-    u3.nickname="Cdp"
-    u3.save
-
-    u4=User.new
-    u4.nickname="PDP"
-    u4.save
+     ## Rememberable
+     property :remember_created_at, :type => DateTime
+     index :remember_token
 
 
+     ## Recoverable
+     property :reset_password_token
+     index :reset_password_token
+     property :reset_password_sent_at, :type =>   DateTime
 
+     ## Trackable
+     property :sign_in_count, :type => Integer, :default => 0
+     property :current_sign_in_at, :type => DateTime
+     property :last_sign_in_at, :type => DateTime
+     property :current_sign_in_ip, :type =>  String
+     property :last_sign_in_ip, :type => String
 
+     ## Confirmable
+     # property :confirmation_token
+     # index :confirmation_token
+     # property :confirmed_at, :type => DateTime
+     # property :confirmation_sent_at, :type => DateTime
 
-    i1=UserIdentity.new
-    i1.nickname="NBA"
-    i1.email="nicola@nicola.it"
-    i1.password="12345678"
-    i1.save
+     ## Lockable
+     #  property :failed_attempts, :type => Integer, :default => 0
+     # property :locked_at, :type => DateTime
+     #  property :unlock_token, :type => String,
+     # index :unlock_token
 
-    puts i1
+      ## Token authenticatable
+      # property :authentication_token, :type => String, :null => true, :index => :exact
 
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable,
+         :omniauthable
 
-    i2=UserIdentity.new
-    i2.nickname="Gig"
-    i2.email="Gi@gi.it"
-    i2.password="12345678"
-    i2.save
-
-    puts i2
-
-    i3=UserIdentity.new
-    i3.nickname="PDP"
-    i3.email="pdp@pdp.it"
-    i3.password="12345678"
-    i3.save
-
-    puts i3
-
-    f1=Provider.new
-    f1.name="facebook"
-    f1.description="facebook authentication"
-    f1.save
-
-    puts f1
-
-    f2=Provider.new
-    f2.name="normal"
-    f2.description="basic authentication (userid/password/email)"
-    f2.save
-
-    puts f2
-
-    f3=Provider.new
-    f3.name="google"
-    f3.description="google authentication"
-    f3.save
-
-    puts f3
-
-    i1.provider = f3
-    i2.provider = f1
-    i3.provider = f2
-
-    u1.user_identities << i1
-    u2.user_identities << i2
-    u3.user_identities << i3
-
-
-
-
-  end
+  has_many  :out, :authorizations, :dependent => :destroy
 end
