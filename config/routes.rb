@@ -15,6 +15,8 @@ Rails.application.routes.draw do
         get  '/api/current_identity' => 'user_identities/sessions#show_current_user_identity', as: 'show_current_user_identity'
         get  '/api/current_user' => 'users/sessions#show_current_user', as: 'show_current_user'
         post '/api/check/is_identity' => 'user_identities/user_identities#is_user_identity', as: 'is_user_identity'
+        get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
+
     end
 
 		scope '/api' do

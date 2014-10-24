@@ -9,6 +9,7 @@ class User
 		property	:first_name, type: String
 		property	:last_name,	type: String
 		property	:nickname,	type: String
+		property	:email,	type: String
 
 
 #    property :email, :type => String, :null => false, :default => ""

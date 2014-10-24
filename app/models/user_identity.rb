@@ -4,21 +4,22 @@ class UserIdentity
 	include CreatedAtUpdatedAt
 	include Uuid
 
-		property	:first_name, type: String
-		property	:last_name,	type: String
-		property	:nickname,	type: String
-		property	:email,	type: String
+		property	:name
+		property	:first_name
+		property	:last_name
+		property	:nickname
+		property	:email
+		property	:image
 
-		def full_name
-			first_name & " " & last_name
-		end
+#		def full_name
+#			first_name & " " & last_name
+#		end
 
 #    has_one :in,	 :users, origin: :identities
 #    has_one :out,	 :providers, type: "is_provided_by"
 
     has_one :in, :user, origin: :user_identities
 #    has_one :out, :provider, type: 'is_provided_by'
-    has_one :out, :provider, type: 'is_provided_by'
 
     #
     # Neo4j.rb needs to have property definitions before any validations. So, the property block needs to come before
@@ -27,6 +28,9 @@ class UserIdentity
     # If you add another devise module (such as :lockable, :confirmable, or :token_authenticatable), be sure to
     # uncomment the property definitions for those modules. Otherwise, the unused property definitions can be deleted.
     #
+
+     property :provider, type: String
+		 property :uid, type: String
 
      property :username, :type =>   String
      property :token, :type => String
@@ -79,6 +83,62 @@ class UserIdentity
          :lockable, :omniauthable # :confirmable,
 
 	# validates	:nickname,   :format => /[-a-zA-Z]{3,30}/
+
+  def persisted?
+    !!@persisted
+  end
+
+  def persisted
+    @persisted = true
+  end
+
+  def persisted= bool
+    @persisted = !!bool
+  end
+
+	def self.from_omniauth(auth)
+
+	  if email = auth.info.email.nil?
+	    email = Devise.friendly_token[0,5] + "@" + Devise.friendly_token[0,5] + "." + Devise.friendly_token[0,3]
+	  end
+
+	  puts "provider: #{auth.provider} - uid: #{auth.uid} - email: #{email}"
+	  identity = UserIdentity.find_by(provider: auth.provider, uid: auth.uid)
+	  puts "identity has been found: #{identity.class} - #{identity}"
+    unless identity
+      identity = UserIdentity.create(provider: auth.provider, uid: auth.uid, email: email, password: Devise.friendly_token[0,20])
+      puts "identity should have been created: #{identity.class} - #{identity.inspect}"
+      identity.persisted
+    else
+      identity.persisted= false
+    end
+
+    identity.email = email
+
+    identity.name = auth.info.name   # assuming the user model has a name
+    identity.first_name = auth.info.first_name # assuming the user model has an first_name
+    identity.last_name = auth.info.last_name # assuming the user model has an last_name
+    identity.nickname = auth.info.nickname # assuming the user model has an nickname
+    identity.image = auth.info.image # assuming the user model has an image
+
+    identity.save
+    identity.errors.each do |k,v|
+      puts "Error: #{k} #{v}"
+    end
+
+    identity
+  end
+
+  def self.new_with_session(params, session)
+    puts "UserIdentity.new_with_session - params: #{params}"
+    provider = params[:provider]
+    super.tap do |identity|
+      if data = session["devise.#{provider}_data"] && session["devise.#{provider}_data"]["extra"]["raw_info"]
+        identity.email = data["email"] if identity.email.blank?
+      end
+    end
+  end
+
 
   def self.find_by_provider_and_email(provider, email)
    r=UserIdentity.as(:user_identity).where(:email => email).provider(:provider).where(:name => provider).query.return(:user_identity,:provider)

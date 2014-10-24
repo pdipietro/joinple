@@ -25,11 +25,23 @@ class UserIdentities::OmniauthCallbacksController < Devise::OmniauthCallbacksCon
 	      else
 	          puts a
 	      end
-	   end
+	    end
   end
 
 	def set_auth provider
 
+	  @user_identity = UserIdentity.from_omniauth(request.env["omniauth.auth"])
+
+	  if @user_identity.persisted?
+      sign_in_and_redirect @user_Identity, :event => :authentication #this will throw if @user_identity is not activated
+      set_flash_message(:notice, :success, :kind => "#{provider}") if is_navigational_format?
+    else
+      session["devise.#{provider}_data"] = request.env["omniauth.auth"]
+      redirect_to new_user_registration_url
+    end
+  end
+
+=begin
 	  puts self.class.name
 	  puts self.class
 
@@ -55,7 +67,7 @@ class UserIdentities::OmniauthCallbacksController < Devise::OmniauthCallbacksCon
     nickname = auth_hash['info']['nickname']
     name = auth_hash['info']['name']
 		email = auth_hash['info']['email']
-    uuid = auth_hash['uid']
+    uid = auth_hash['uid']
 	  puts "uuid: #{uuid}"
 	  # check existence of User-->UserIdentity-->Provider
 		user_identity_provider = UserIdentity.find_full_identity(provider, email)
@@ -115,6 +127,8 @@ class UserIdentities::OmniauthCallbacksController < Devise::OmniauthCallbacksCon
 		else
 		  redirect_to :new_user_registration
 		end
+	end
+=end
 =begin
 			current_identity
     	  puts "21: no current identity"
@@ -165,6 +179,6 @@ class UserIdentities::OmniauthCallbacksController < Devise::OmniauthCallbacksCon
 			end
 		end
 =end
-	end
+
 
 end

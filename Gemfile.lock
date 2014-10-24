@@ -12,14 +12,13 @@ GIT
 
 GIT
   remote: https://github.com/neo4jrb/neo4j.git
-  revision: d12e73ee0b06185cdacefd23c414e11c31167c8c
-  branch: queryproxy_return
+  revision: 0e8d3f281e642831a17defb4997bb418b2ba22be
   specs:
-    neo4j (3.0.1)
+    neo4j (3.0.2)
       active_attr (~> 0.8)
       activemodel (~> 4)
       activesupport (~> 4)
-      neo4j-core (~> 3.0.0)
+      neo4j-core (~> 3.0.2)
       orm_adapter (~> 0.5.0)
       railties (~> 4)
 
@@ -62,7 +61,7 @@ GEM
       tilt
     angularjs-rails (1.3.0)
     arel (5.0.1.20140414130214)
-    bcrypt (3.1.7)
+    bcrypt (3.1.9)
     bcrypt-ruby (3.1.5)
       bcrypt (>= 3.1.3)
     bootstrap-sass (3.2.0.2)
@@ -172,7 +171,7 @@ GEM
     multi_json (1.10.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
-    neo4j-core (3.0.1)
+    neo4j-core (3.0.2)
       activesupport
       faraday (~> 0.9.0)
       faraday_middleware (~> 0.9.1)
