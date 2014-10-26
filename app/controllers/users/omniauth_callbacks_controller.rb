@@ -27,7 +27,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
           user = User.create({
             name:auth_hash['info']['name'],
             password:Devise.friendly_token[0,8],
-            email:"#{UUIDTools::UUID.random_create}@nil.com}"
+            email:"#{UUIDTools::UUID.random_create}@nil.com"
           })
         end
       else
@@ -49,7 +49,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if user
       sign_in_and_redirect user, :event => :authentication
     else
-        redirect_to :new_user_registration
+      redirect_to :new_user_registration
     end
 	end
 

@@ -1,11 +1,31 @@
 angular
-  .module('Gsn',
+  .module('aGsn',
     [
         'ngAnimate',
+        'ngRoute',
         'ui.router',
         'templates',
-        'ngResource'
+        'ngResource',
+        'aGsn.controllers',
+        'aGsn.services'
     ])
+
+    .config(function($routeProvider) {
+      $routeProvider.when('/', {
+        templateUrl: '/templates/dashboard.html',
+        controller: 'HomeController'
+//        resolve: {
+//          session: function(SessionService) {
+//            return SessionService.getCurrentUser();
+//          }
+//        }
+      })
+      .otherwise({
+        redirectTo: '/'
+      });
+});
+
+/*    })
 
     .config(function($stateProvider,
       $urlRouterProvider,
@@ -15,8 +35,8 @@ angular
         $stateProvider.state('home',
         {
             url: '/',
-            templateUrl: 'home.html',
-            controller: 'HomeCtrl'
+            templateUrl: 'dashboard.html',
+            controller: 'HomeController'
         })
         //parent for the below child states
         .state('dashboard',
@@ -67,12 +87,12 @@ angular
               url: '/edit',
               templateUrl: 'language/edit.html'
           })
-      ;
 
+      ;
         // default fallback route
         $urlRouterProvider.otherwise('/');
         // enable HTML5 Mode for SEO
         $locationProvider.html5Mode(true);
+*/
 
-});
 

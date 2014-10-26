@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
-#  devise_for :users
-
+    get '/dashboard' => 'welcome#dashboard'
     root :to => "welcome#index"
 
     match '/auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
@@ -15,14 +14,13 @@ Rails.application.routes.draw do
 #      get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
     end
 
-		scope '/api' do
+#		scope '/api' do
+#	  	resources :languages
+#		end
+
+		namespace :api do
 	  	resources :languages
+	  	resources :shares
 		end
-
-    get '/dashboard' => 'welcome#dashboard'
-    get 'secrets/show'
-
-		get "*path.html" => "application#index", :layout => 0
-    get '*path' => 'application#index'
 
 end

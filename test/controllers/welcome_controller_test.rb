@@ -14,7 +14,7 @@ class WelcomeControllerTest < ActionController::TestCase
       sign_in @user
       get :dashboard
       assert_template :dashboard
-      assert_template layout: "layout_angular"
+      assert_template layout: "layouts/angular"
     end
 
     test "should redirect from dashboard view to index without a user" do

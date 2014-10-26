@@ -1,4 +1,4 @@
-angular.module('Gsn')
+angular.module('aGsn.controllers')
     .controller('LanguageCtrl', function ($scope) {
         $scope;
     })
