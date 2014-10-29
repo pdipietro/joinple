@@ -239,7 +239,7 @@ unless Rails.env.production?
       :fields => [:first_name, :last_name, :nickname, :email],
       :uid_field => :email
   end
-  config.omniauth :facebook, AppConfig.facebook['key'], AppConfig.facebook['secret']
+#  config.omniauth :facebook, AppConfig.facebook['key'], AppConfig.facebook['secret']
 #  config.omniauth :linkedin, AppConfig.linkedin['key'], AppConfig.linkedin['secret']
 #  config.omniauth :github,   AppConfig.github['key'],   AppConfig.github['secret'], scope = AppConfig.github['scope']
 #  config.omniauth :gplus,    AppConfig.gplus['key'],    AppConfig.gplus['secret'], scope = AppConfig.gplus['scope']

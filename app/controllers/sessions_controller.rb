@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-
+=begin
   def create
     auth = auth_hash
     unless @auth = Identity.find_with_omniauth(auth)
@@ -45,5 +45,5 @@ class SessionsController < ApplicationController
     def uuauth_hash
       request.env['omniauth.auth']
     end
-
+=end
 end
