@@ -66,5 +66,5 @@ class User
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable
 
-  has_many  :out, :authorizations, type: :is_autorized_by ,:dependent => :destroy
+  has_many  :out, :authorizations, type: :is_autorized_by, :dependent => :destroy
 end

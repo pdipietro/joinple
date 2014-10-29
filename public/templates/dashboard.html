@@ -1,5 +1,27 @@
+<!--
 <h2>Dashboard page (dashboard.html)</h2>
 <h3>Dashboard welcome back {{ user.name }}</h3>
 
 Diucan
 <%= link_to "Log out", destroy_user_session_path, method: :delete  %>
+-->
+<div>
+  <ul>
+    <li ng-repeat="article in articles | orderBy:publishedDate:false">
+      <div class="article-listing">
+        <div class="large-11 small-11 columns">
+          <h2>
+            <a
+              href="{{ article.link }}"
+              title="{{ article.title }}">
+              {{ article.title }}
+            </a>
+          </h2>
+          <p>
+            {{ article.publishedDate | date:'M/d/yy h:mm:ss a' }}
+          </p>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>

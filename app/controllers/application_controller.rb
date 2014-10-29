@@ -1,13 +1,13 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :null_session # was :exception
+  protect_from_forgery with: :exception # was :null_session # was :exception
 
-  after_filter  :set_csrf_cookie_for_ng
+  after_filter :set_csrf_cookie_for_ng
 
-	def index
-    render layout: layout_name
-	end
+#	def index
+#    render layout: layout_name
+#	end
 
 	private
 
@@ -19,6 +19,7 @@ class ApplicationController < ActionController::Base
 	      super || form_authenticity_token == request.headers['HTTP_X_XSRF_TOKEN']
 	  end
 
+=begin
 		def layout_name
 				if params[:layout] == 0
 				    false
@@ -33,7 +34,6 @@ class ApplicationController < ActionController::Base
 
     def current_user
       @current_user ||= User.find_by(uuid: session[:user_uuid])
-
     end
 
     def current_identity
@@ -53,4 +53,6 @@ class ApplicationController < ActionController::Base
       @current_identity = identity
       session[:identity_uuid] = identity.nil? ? nil : identity.uuid
     end
+=end
 end
+

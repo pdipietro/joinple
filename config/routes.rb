@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
     get '/dashboard' => 'welcome#dashboard'
-    root :to => "welcome#index"
+    root :to => 'welcome#index'
 
 #    match '/auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
 

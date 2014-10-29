@@ -1,11 +1,11 @@
 angular
   .module('aGsn',
     [
-        'ngAnimate',
+    //    'ngAnimate',
         'ngRoute',
-        'ui.router',
-        'templates',
-        'ngResource',
+    //    'ui.router',
+    //    'templates',
+    //    'ngResource',
         'aGsn.controllers',
         'aGsn.services'
     ])
@@ -13,12 +13,13 @@ angular
     .config(function($routeProvider) {
       $routeProvider.when('/', {
         templateUrl: '/templates/dashboard.html',
-        controller: 'HomeController',
-        resolve: {
-          session: function(SessionService) {
-            return SessionService.getCurrentUser();
-          }
-        }
+        controller: 'HomeController'
+//        controller: 'HomeController',
+//        resolve: {
+//          session: function(SessionService) {
+//            return SessionService.getCurrentUser();
+//          }
+//        }
       })
       .otherwise({
         redirectTo: '/'
