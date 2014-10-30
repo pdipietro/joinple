@@ -67,4 +67,7 @@ class User
          :omniauthable
 
   has_many  :out, :authorizations, type: :is_autorized_by, :dependent => :destroy
+  has_many  :out, :shares, type: :shares
+  has_many  :in, :users, from: :shares
+
 end

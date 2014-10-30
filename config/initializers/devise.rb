@@ -234,11 +234,11 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   #### config.omniauth :twitter, AppConfig.twitter['clientId'], AppConfig.twitter['clientSecret']
-  unless Rails.env.production?
-    config.omniauth :developer,
-      :fields => [:first_name, :last_name, :nickname, :email],
-      :uid_field => :email
-  end
+#  unless Rails.env.production?
+#    config.omniauth :developer,
+#      :fields => [:first_name, :last_name, :nickname, :email],
+#      :uid_field => :email
+#  end
 #  config.omniauth :facebook, AppConfig.facebook['key'], AppConfig.facebook['secret']
 #  config.omniauth :linkedin, AppConfig.linkedin['key'], AppConfig.linkedin['secret']
 #  config.omniauth :github,   AppConfig.github['key'],   AppConfig.github['secret'], scope = AppConfig.github['scope']

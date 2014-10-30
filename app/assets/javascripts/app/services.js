@@ -23,6 +23,10 @@ angular.module('aGsn.services',[])
     return service;
   })
 
+  .factory('Share',function($resource) {
+
+  })
+
   .factory('SessionService',function($http,$q) {
     var service = {
       getCurrentUser: function() {

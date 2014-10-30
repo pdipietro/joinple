@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :shares
+
     get '/dashboard' => 'welcome#dashboard'
     root :to => 'welcome#index'
 
