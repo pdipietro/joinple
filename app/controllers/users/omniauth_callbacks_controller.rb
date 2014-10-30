@@ -4,11 +4,11 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     set_auth 'developer'
   end
 
-       def twitter
+  def twitter
     set_auth 'twitter'
   end
 
-       def facebook
+  def facebook
     set_auth 'facebook'
   end
 
@@ -34,6 +34,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         end
       else
         user = current_user
+
 			end
 
       ## Finally, create an authorization for the current user
@@ -49,11 +50,12 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         name: name,
         url: "http://#{provider}.com/#{name}"
       })
+    end
 
-      if user
-        sign_in_and_redirect user, :event => :authentication
-      else
-        redirect_to :new_user_registration
-      end
+    if user
+      sign_in_and_redirect user, :event => :authentication
+    else
+      redirect_to :new_user_registration
+    end
 	end
 end

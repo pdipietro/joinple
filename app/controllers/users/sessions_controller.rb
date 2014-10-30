@@ -19,11 +19,16 @@ class Users::SessionsController < Devise::SessionsController
           }
   end
 
-  private
-
-  def reject_if_not_authorized_request!
-    warden.authenticate!(
-      scope: resource_name, 
-      recall: "#{controller_path}#failure")
+  def destroy_user_session
+    self.current_user = nil
+    redirect_to root_url, notice: "Signed out!"
   end
+
+    private
+
+    def reject_if_not_authorized_request!
+      warden.authenticate!(
+        scope: resource_name,
+        recall: "#{controller_path}#failure")
+    end
 end
