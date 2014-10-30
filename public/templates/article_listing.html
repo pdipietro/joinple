@@ -1,0 +1,21 @@
+<div class="article-listing">
+  <div class="large-10 small-10 columns">
+    <h2><a href="{{ ngModel.link }}" title="{{ ngModel.title }}">{{ ngModel.title }}</a></h2>
+    <p>{{ ngModel.publishedDate | toDate |date:'M/d/yy h:mm:ss a' }}</p>
+  </div>
+  <div class="small-2 large-2 columns">
+
+    <div data-ng-hide="showShareBox">
+      <a ng-click="showShareBox=!showShareBox">Share with a friend</a>
+    </div>
+
+    <div data-ng-show="showShareBox">
+      <form name="shareForm">
+        <label>Share with a friend</label>
+        <input type="text" placeholder="email or username" ng-model="newShare.recipient" is-user-or-email="">
+        <input type="button" class="btn" value="Cancel" data-ng-click="showShareBox = !showShareBox">
+        <input type="submit" class="btn" ng-click="showShareBox=!showShareBox;share()" ng-disabled="shareForm.$invalid" value="Share">
+      </form>
+    </div>
+  </div>
+</div>

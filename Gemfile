@@ -78,6 +78,8 @@ gem 'bower-rails'
 gem 'angularjs-rails'
 gem 'angular-rails-templates'
 gem 'ngmin-rails'
+gem 'zurb-foundation'
+
 
 
 

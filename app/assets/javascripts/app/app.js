@@ -1,19 +1,20 @@
 angular
   .module('aGsn',
     [
-    //    'ngAnimate',
+        'ngAnimate',
         'ngRoute',
     //    'ui.router',
     //    'templates',
     //    'ngResource',
         'aGsn.controllers',
-        'aGsn.services'
+        'aGsn.services',
+    //    'aGsn.directives',
+  //      'aGsn.filters'
     ])
 
     .config(function($routeProvider) {
       $routeProvider.when('/', {
         templateUrl: '/templates/dashboard.html',
-//        controller: 'HomeController'
         controller: 'HomeController',
         resolve: {
           session: function(SessionService) {
@@ -24,7 +25,7 @@ angular
       .otherwise({
         redirectTo: '/'
       });
-    })
+    });
 
     ;
 

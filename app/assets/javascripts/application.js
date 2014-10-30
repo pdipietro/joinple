@@ -21,3 +21,7 @@
 //= require_tree .
 //= require_tree ../templates
 
+//= require foundation
+$(function(){
+  $(document).foundation();
+});

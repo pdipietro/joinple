@@ -7,13 +7,12 @@
     <title><%= content_for?(:title) ? yield(:title) : "aGsn" %></title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag 'application', :media => 'all' %>
-    <%= javascript_include_tag "vendor/custom.modernizr" %>
   </head>
   <body>
   	<div class="container">
   		<p class="notice"><%= notice %></p>
   		<p class="alert"><%= alert %></p>
-  		<h1>Angular controller</h1>
+  		<h1>Application controller</h1>
   		<div data-ng-view></div>
   	</div>
 
