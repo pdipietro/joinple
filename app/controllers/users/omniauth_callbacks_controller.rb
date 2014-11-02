@@ -38,7 +38,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 			end
 
       ## Finally, create an authorization for the current user
-      unless auth = user.authorizations.find_by(provider:provider)
+      unless auth = user.authorizations.find_by(provider:provider, uid:uid)
         auth = Authorization.create(provider:provider, uid:uid)
         user.authorizations << auth
       end

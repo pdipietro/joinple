@@ -1,4 +1,4 @@
-angular.module('aGsn.directives', [])
+angular.module('aGsn.directive', [])
 // Our is-user-or-email validation
 .directive('isUserOrEmail', function($http, $timeout, $filter, $q) {
   // we're checking using the api `is_user` if the user

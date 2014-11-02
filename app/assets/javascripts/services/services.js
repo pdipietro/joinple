@@ -1,4 +1,4 @@
-angular.module('aGsn.services', ['ngResource'])
+angular.module('aGsn.service', ['ngResource'])
   .factory('ArticleService',function($http, $q) {
     var service = {
       getLatestFeed: function() {

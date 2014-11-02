@@ -1,15 +1,35 @@
+'use strict';
+
+/**
+ * @ngdoc overview
+ * @name aGsn
+ * @description
+ * # aGsn
+ *
+ * Main module of the application.
+ */
+
+angular.module('aGsn.controller',[]);
+angular.module('aGsn.service',[]);
+angular.module('aGsn.filter',[]);
+angular.module('aGsn.directive',[]);
+
 angular
   .module('aGsn',
     [
         'ngAnimate',
         'ngRoute',
+//        'ngCookies',
+        'ngResource',
+//        'ngSanitize',
+//        'ngTouch',
+        'aGsn.controller',
+        'aGsn.service',
+        'aGsn.directive',
+        'aGsn.filter'
     //    'ui.router',
     //    'templates',
     //    'ngResource',
-        'aGsn.controllers',
-        'aGsn.services',
-    //    'aGsn.directives',
-  //      'aGsn.filters'
     ])
 
     .config(function($routeProvider) {
@@ -22,12 +42,22 @@ angular
           }
         }
       })
+      .when('/main', {
+        templateUrl: 'views/main.html',
+        controller: 'MainController'
+      })
+      .when('/about', {
+        templateUrl: 'views/about.html',
+        controller: 'AboutController'
+      })
       .otherwise({
         redirectTo: '/'
       });
     });
 
     ;
+
+
 
 /*    })
 
