@@ -4,6 +4,8 @@
 
 class User
   include Neo4j::ActiveNode
+    acts_as_token_authenticatable
+
     #
     # Neo4j.rb needs to have property definitions before any validations. So, the property block needs to come before
     # loading your devise modules.
@@ -32,7 +34,6 @@ class User
      property :remember_created_at, :type => DateTime
      index :remember_token
 
-
      ## Recoverable
      property :reset_password_token
      index :reset_password_token
@@ -42,7 +43,7 @@ class User
      property :sign_in_count, :type => Integer, :default => 0
      property :current_sign_in_at, :type => DateTime
      property :last_sign_in_at, :type => DateTime
-     property :current_sign_in_ip, :type =>  String
+     property :current_sign_in_ip, :type => String
      property :last_sign_in_ip, :type => String
 
      ## Confirmable
@@ -57,8 +58,8 @@ class User
      #  property :unlock_token, :type => String,
      # index :unlock_token
 
-      ## Token authenticatable
-      # property :authentication_token, :type => String, :null => true, :index => :exact
+     ## Token authenticatable
+     property :authentication_token, :type => String, :null => true, :index => :exact
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -70,4 +71,10 @@ class User
   has_many  :out, :shares, type: :shares
   has_many  :in, :users, from: :shares
 
+end
+
+class SpecialUser < User
+end
+
+class Admin < SpecialUser
 end
