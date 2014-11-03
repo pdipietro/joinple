@@ -1,4 +1,4 @@
-// Generated on 2014-10-29 using generator-angular 0.9.8
+// Generated on 2014-11-03 using generator-angular 0.9.8
 'use strict';
 
 // # Globbing
@@ -397,6 +397,7 @@ module.exports = function (grunt) {
       'clean:server',
       'wiredep',
       'concurrent:server',
+      'configureProxies',
       'autoprefixer',
       'connect:livereload',
       'watch'
@@ -410,6 +411,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test', [
     'clean:server',
+    'configureProxies',
     'concurrent:test',
     'autoprefixer',
     'connect:test',
@@ -438,4 +440,6 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
+
+  grunt.loadNpmTasks('grunt-contrib-compass');
 };

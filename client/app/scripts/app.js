@@ -1,15 +1,15 @@
-//'use strict';
+'use strict';
 
 /**
  * @ngdoc overview
- * @name gsnApp
+ * @name aGsnApp
  * @description
- * # gsnApp
+ * # aGsnApp
  *
  * Main module of the application.
  */
 angular
-  .module('gsnApp', [
+  .module('aGsnApp', [
     'ngAnimate',
     'ngCookies',
     'ngResource',
