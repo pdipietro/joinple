@@ -1,11 +1,12 @@
 class Users::UsersController < Devise::SessionsController
+  protect_from_forgery with: :exception, except: [:is_user]
   respond_to :json
 
   def is_user
-    reject_if_not_authorized_request!
+    authenticate_user!
     render status: 200,
         json: {
-          success: !User.find_by_name(params[:name]).blank?
+          success: !User.find_by(name: params[:name]).blank?
         }
   end
     private

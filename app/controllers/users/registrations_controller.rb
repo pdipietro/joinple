@@ -7,7 +7,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     #try to save them
     if resource.save
       sign_in resource
-      render status: 200
+      render status: 200,
       json: {
         success: true,
         info: "Registered",
@@ -18,7 +18,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       }
     else
       #otherwise fail
-      render status :unprocessable_entity,
+      render status: :unprocessable_entity,
         json: {
           success: false,
           info: resource.errors,

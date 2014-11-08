@@ -12,15 +12,23 @@ GIT
 
 GIT
   remote: https://github.com/neo4jrb/neo4j.git
-  revision: dbefb7bc471efb27549f277d4359d7b1b0971879
+  revision: a0f049f85464bc6650f31275e9554541115d96d1
   specs:
-    neo4j (3.0.2)
+    neo4j (3.0.3)
       active_attr (~> 0.8)
       activemodel (~> 4)
       activesupport (~> 4)
-      neo4j-core (~> 3.0.2)
+      neo4j-core (~> 3.0.5)
       orm_adapter (~> 0.5.0)
       railties (~> 4)
+
+PATH
+  remote: simple_token_authentication
+  specs:
+    simple_token_authentication (1.6.0)
+      actionmailer (>= 3.2.6, < 5)
+      actionpack (>= 3.2.6, < 5)
+      devise (~> 3.2)
 
 GEM
   remote: http://rubygems.org/
@@ -283,10 +291,6 @@ GEM
       multi_json (~> 1.0)
       rubyzip (~> 1.0)
       websocket (~> 1.0)
-    simple_token_authentication (1.6.0)
-      actionmailer (>= 3.2.6, < 5)
-      actionpack (>= 3.2.6, < 5)
-      devise (~> 3.2)
     slop (3.6.0)
     spork (1.0.0rc4)
     spork-rails (4.0.0)
@@ -372,7 +376,7 @@ DEPENDENCIES
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   selenium-webdriver
-  simple_token_authentication
+  simple_token_authentication!
   spork-rails
   spring
   therubyracer
