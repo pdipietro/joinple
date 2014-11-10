@@ -7,7 +7,7 @@
  * # AboutCtrl
  * Controller of the gsnApp
  */
-angular.module('gsnApp')
+angular.module('aGsn.controller')
   .controller('AboutCtrl', function ($scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',

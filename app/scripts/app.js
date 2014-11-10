@@ -8,8 +8,13 @@
  *
  * Main module of the application.
  */
+angular.module('aGsn.controller',[]);
+angular.module('aGsn.service',[]);
+angular.module('aGsn.filter',[]);
+angular.module('aGsn.directive',[]);
+
 angular
-  .module('gsnApp', [
+  .module('aGsn', [
     'ngAnimate',
     'ngAria',
     'ngCookies',
@@ -17,7 +22,11 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'aGsn.controller',
+    'aGsn.service',
+    'aGsn.directive',
+    'aGsn.filter'
   ])
   .config(function ($routeProvider) {
     $routeProvider

@@ -7,7 +7,7 @@
  * # MainCtrl
  * Controller of the gsnApp
  */
-angular.module('gsnApp')
+angular.module('aGsn.controller')
   .controller('MainCtrl', function ($scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
