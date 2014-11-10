@@ -1,4 +1,4 @@
-// Generated on 2014-11-03 using generator-angular 0.9.8
+// Generated on 2014-11-10 using generator-angular 0.10.0
 'use strict';
 
 // # Globbing
@@ -42,12 +42,12 @@ module.exports = function (grunt) {
       },
       jsTest: {
         files: ['test/spec/{,*/}*.js'],
-        tasks: ['newer:jshint:test'] //, 'karma']
+        tasks: ['newer:jshint:test', 'karma']
       },
-//      compass: {
-//        files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
-//        tasks: ['compass:server', 'autoprefixer']
-//      },
+      compass: {
+        files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
+        tasks: ['compass:server', 'autoprefixer']
+      },
       gruntfile: {
         files: ['Gruntfile.js']
       },
@@ -138,7 +138,7 @@ module.exports = function (grunt) {
           src: [
             '.tmp',
             '<%= yeoman.dist %>/{,*/}*',
-            '!<%= yeoman.dist %>/.git*'
+            '!<%= yeoman.dist %>/.git{,*/}*'
           ]
         }]
       },
@@ -173,7 +173,7 @@ module.exports = function (grunt) {
     },
 
     // Compiles Sass to CSS and generates necessary files if requested
- /*   compass: {
+    compass: {
       options: {
         sassDir: '<%= yeoman.app %>/styles',
         cssDir: '.tmp/styles',
@@ -200,7 +200,7 @@ module.exports = function (grunt) {
         }
       }
     },
-*/
+
     // Renames files for browser caching purposes
     filerev: {
       dist: {
@@ -341,7 +341,7 @@ module.exports = function (grunt) {
             '*.html',
             'views/{,*/}*.html',
             'images/{,*/}*.{webp}',
-            'fonts/*'
+            'fonts/{,*/}*.*'
           ]
         }, {
           expand: true,
@@ -366,30 +366,26 @@ module.exports = function (grunt) {
     // Run some tasks in parallel to speed up the build process
     concurrent: {
       server: [
-//        'compass:server'
+        'compass:server'
       ],
       test: [
-//        'compass'
+        'compass'
       ],
       dist: [
-//        'compass:dist',
+        'compass:dist',
         'imagemin',
         'svgmin'
       ]
     },
 
     // Test settings
-/*    karma: {
+    karma: {
       unit: {
         configFile: 'test/karma.conf.js',
-        runnerPort: 9999,
-        singleRun: true,
-        browsers: ['PhantomJS'],
-        logLevel: 'ERROR',
-        autowatch: true
+        singleRun: true
       }
-    }*/
-});
+    }
+  });
 
 
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
@@ -401,7 +397,6 @@ module.exports = function (grunt) {
       'clean:server',
       'wiredep',
       'concurrent:server',
-      'configureProxies',
       'autoprefixer',
       'connect:livereload',
       'watch'
@@ -415,11 +410,10 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test', [
     'clean:server',
-    'configureProxies',
     'concurrent:test',
     'autoprefixer',
     'connect:test',
-  //  'karma'
+    'karma'
   ]);
 
   grunt.registerTask('build', [
@@ -444,8 +438,4 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
-
- // grunt.loadNpmTasks('grunt-contrib-compass');
-//  grunt.loadNpmTasks('grunt-karma');
-
 };

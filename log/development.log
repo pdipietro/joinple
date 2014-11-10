@@ -56727,3 +56727,53 @@ ActionController::RoutingError (No route matches [GET] "/scripts/services/token_
   /home/pdipietro/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
 
 
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-10 11:30:55 +0100
+
+ActionController::RoutingError (undefined method `acts_as_authentication_handler_for' for ApplicationController:Class):
+  app/controllers/application_controller.rb:2:in `<class:ApplicationController>'
+  app/controllers/application_controller.rb:1:in `<top (required)>'
+  app/controllers/welcome_controller.rb:1:in `<top (required)>'
+
+
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-10 11:30:55 +0100
+
+ActionController::RoutingError (undefined method `acts_as_authentication_handler_for' for ApplicationController:Class):
+  app/controllers/application_controller.rb:2:in `<class:ApplicationController>'
+  app/controllers/application_controller.rb:1:in `<top (required)>'
+  app/controllers/welcome_controller.rb:1:in `<top (required)>'
+
+
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-10 11:30:56 +0100
+
+ActionController::RoutingError (undefined method `acts_as_authentication_handler_for' for ApplicationController:Class):
+  app/controllers/application_controller.rb:2:in `<class:ApplicationController>'
+  app/controllers/application_controller.rb:1:in `<top (required)>'
+  app/controllers/welcome_controller.rb:1:in `<top (required)>'
+
+
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-10 17:08:50 +0100
+
+ActionController::RoutingError (undefined method `acts_as_authentication_handler_for' for ApplicationController:Class):
+  app/controllers/application_controller.rb:2:in `<class:ApplicationController>'
+  app/controllers/application_controller.rb:1:in `<top (required)>'
+  app/controllers/welcome_controller.rb:1:in `<top (required)>'
+
+
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-10 17:08:52 +0100
+
+ActionController::RoutingError (undefined method `acts_as_authentication_handler_for' for ApplicationController:Class):
+  app/controllers/application_controller.rb:2:in `<class:ApplicationController>'
+  app/controllers/application_controller.rb:1:in `<top (required)>'
+  app/controllers/welcome_controller.rb:1:in `<top (required)>'
+
+

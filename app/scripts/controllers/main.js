@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name aGsnApp.controller:MainCtrl
+ * @name gsnApp.controller:MainCtrl
  * @description
  * # MainCtrl
- * Controller of the aGsnApp
+ * Controller of the gsnApp
  */
-angular.module('aGsn.controller')
+angular.module('gsnApp')
   .controller('MainCtrl', function ($scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',

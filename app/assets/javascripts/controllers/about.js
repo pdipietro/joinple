@@ -1,17 +1,17 @@
-//'use strict';
+'use strict';
 
 /**
  * @ngdoc function
- * @name aGsn.controller:AboutCtrl
+ * @name gsnApp.controller:AboutCtrl
  * @description
  * # AboutCtrl
- * Controller of the aGsn
+ * Controller of the gsnApp
  */
 angular.module('aGsn.controller')
-  .controller('AboutController', function ($scope) {
+  .controller('AboutCtrl', function ($scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
+      'AngularJS'
+//      'Karma'
     ];
   });

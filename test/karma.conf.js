@@ -1,6 +1,6 @@
 // Karma configuration
 // http://karma-runner.github.io/0.12/config/configuration-file.html
-// Generated on 2014-11-03 using
+// Generated on 2014-11-10 using
 // generator-karma 0.8.3
 
 module.exports = function(config) {
@@ -21,13 +21,15 @@ module.exports = function(config) {
       'bower_components/angular/angular.js',
       'bower_components/angular-mocks/angular-mocks.js',
       'bower_components/angular-animate/angular-animate.js',
+      'bower_components/angular-aria/angular-aria.js',
       'bower_components/angular-cookies/angular-cookies.js',
+      'bower_components/angular-messages/angular-messages.js',
       'bower_components/angular-resource/angular-resource.js',
       'bower_components/angular-route/angular-route.js',
       'bower_components/angular-sanitize/angular-sanitize.js',
       'bower_components/angular-touch/angular-touch.js',
       'app/scripts/**/*.js',
-    //  'test/mock/**/*.js',
+      'test/mock/**/*.js',
       'test/spec/**/*.js'
     ],
 
@@ -66,10 +68,10 @@ module.exports = function(config) {
     logLevel: config.LOG_INFO,
 
     // Uncomment the following lines if you are using grunt's server to run the tests
-    proxies: {
-     '/': 'http://localhost:9000/'
-    },
+    // proxies: {
+    //   '/': 'http://localhost:9000/'
+    // },
     // URL root prevent conflicts with the site root
-    urlRoot: '_karma_'
+    // urlRoot: '_karma_'
   });
 };
