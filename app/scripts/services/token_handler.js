@@ -35,7 +35,7 @@ angular.module('aGsn.service')
        }
        return wrappedResource;
      }
-    };
+    }
 
     getCurrentUser: function() {
       var d = $q.defer();
@@ -47,10 +47,10 @@ angular.module('aGsn.service')
           method: 'POST'
         }).then(function(data) {
           d.resolve(data.data);
-        });
+        })
       }
       return d.promise;
-    }
+    };
 
     return tokenHandler;
 });

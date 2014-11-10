@@ -42,7 +42,7 @@ module.exports = function (grunt) {
       },
       jsTest: {
         files: ['test/spec/{,*/}*.js'],
-        tasks: ['newer:jshint:test', 'karma']
+        tasks: ['newer:jshint:test'] //, 'karma']
       },
       compass: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
@@ -379,13 +379,17 @@ module.exports = function (grunt) {
     },
 
     // Test settings
-    karma: {
+/*    karma: {
       unit: {
         configFile: 'test/karma.conf.js',
-        singleRun: true
+        runnerPort: 9999,
+        singleRun: true,
+        browsers: ['PhantomJS'],
+        logLevel: 'ERROR',
+        autowatch: true
       }
-    }
-  });
+    }*/
+});
 
 
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
@@ -415,7 +419,7 @@ module.exports = function (grunt) {
     'concurrent:test',
     'autoprefixer',
     'connect:test',
-    'karma'
+  //  'karma'
   ]);
 
   grunt.registerTask('build', [
@@ -442,4 +446,6 @@ module.exports = function (grunt) {
   ]);
 
   grunt.loadNpmTasks('grunt-contrib-compass');
+//  grunt.loadNpmTasks('grunt-karma');
+
 };
