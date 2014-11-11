@@ -28,6 +28,7 @@ gem 'omniauth-linkedin'
 gem 'omniauth-gplus'
 gem 'uuidtools'
 gem 'github_api'
+gem 'rails-i18n', '~> 4.0.3'
 # gem 'neo4jrb-paperclip', :require => "neo4jrb_paperclip"
 gem "rmagick4j"
 # gem "carrierwave-neo4j", :require => "carrierwave/neo4j"
