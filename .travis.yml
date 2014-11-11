@@ -15,4 +15,5 @@ before_script:
   - 'npm install -g bower grunt-cli'
   - 'bower install'
   - gem install rake
-  - bundle exec rake
+  - bundle install
+  - bundle update
