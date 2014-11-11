@@ -21,11 +21,6 @@ Rails.application.routes.draw do
         }
 	  end
 
-#		namespace :api do
-#	  	resources :languages
-#	  	resources :shares
-#		end
-
     get '/dashboard' => 'welcome#dashboard'
     root :to => 'welcome#index'
 
