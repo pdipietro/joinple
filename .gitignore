@@ -1,5 +1,18 @@
 node_modules
 dist
+tmp
 .tmp
 .sass-cache
 bower_components
+
+# Ignore bundler config.
+/.bundle
+
+# Ignore the Neo4j database.
+/neo4j
+
+# Ignore all logfiles and tempfiles.
+/log/*.log
+/tmp
+
+/app_config.yml
