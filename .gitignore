@@ -12,7 +12,9 @@ bower_components
 /neo4j
 
 # Ignore all logfiles and tempfiles.
+
 /log/*.log
 /tmp
-
-/app_config.yml
+/config/app_config.yml
+/simple_token_authentication
+/dist
