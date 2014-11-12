@@ -52,6 +52,10 @@ angular
       });
   })
 
+  .config(function ($locationProvider) {
+    $locationProvider.html5Mode().enabled;
+  })
+
   .config(function ($httpProvider) {
     var interceptor = ['$rootScope', '$location', '$q',
       function($scope, $location, $q) {
@@ -61,7 +65,7 @@ angular
             var d = $q.defer();
             $scope.$broadcast('event:unauthorized');
             return d.promise;
-          };
+          }
           return $q.reject(resp);
         };
      return function(promise) {

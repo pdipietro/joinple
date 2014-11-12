@@ -1,6 +1,7 @@
 language:
   - node_js
   - ruby
+  - compass
 rvm:
   - 1.25.28
 ruby:
@@ -12,8 +13,9 @@ env:
 node_js:
   - '0.10'
 before_script:
-  - 'npm install -g bower grunt-cli'
-  - 'bower install'
+  - npm install bower grunt-cli --save-dev
+  - npm install grunt-contrib-compass --save-dev
+  - bower install
   - gem install rake
   - gem install rails-i18n
   - gem install lumberjack -v '1.0.9'

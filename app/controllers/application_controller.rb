@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
-  acts_as_authentication_handler_for Admin, fallback_to_devise: false
-  acts_as_authentication_handler_for SpecialUser, fallback_to_devise: false
-  acts_as_authentication_handler_for User
+  acts_as_token_authentication_handler_for Admin, fallback_to_devise: false
+  acts_as_token_authentication_handler_for SpecialUser, fallback_to_devise: false
+  acts_as_token_authentication_handler_for User
   protect_from_forgery with: :null_session
   before_filter :set_cors_headers
   before_filter :cors_preflight

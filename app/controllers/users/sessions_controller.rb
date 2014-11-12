@@ -35,6 +35,7 @@ class Users::SessionsController < Devise::SessionsController
             info: "",
             data: {}
           }
+    end
   end
 
   def show_current_user
@@ -67,6 +68,7 @@ class Users::SessionsController < Devise::SessionsController
     def reject_if_not_authorized_request!
       warden.authenticate!(
         scope: resource_name,
-        recall: "#{controller_path}#failure")
+        recall: "#{controller_path}#failure"
+      )
     end
 end

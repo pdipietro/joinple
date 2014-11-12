@@ -9,6 +9,8 @@
 
 module.exports = function (grunt) {
 
+  grunt.loadNpmTasks('grunt-connect-proxy');
+
   // Load grunt tasks automatically
   require('load-grunt-tasks')(grunt);
 
@@ -71,7 +73,30 @@ module.exports = function (grunt) {
         hostname: 'localhost',
         livereload: 35729
       },
+      proxies: [
+        {
+          context: '/api',
+          host: 'localhost',
+          port: 3000
+        }
+      ],
       livereload: {
+        options: {
+          open: true,
+          middleware: function (connect) {
+            return [
+              connect.static('.tmp'),
+              connect().use(
+                '/bower_components',
+                connect.static('./bower_components')
+              ),
+              connect.static(appConfig.app),
+              require('grunt-connect-proxy/lib/utils').proxyRequest
+            ];
+          }
+        }
+      },
+      slivereload: {
         options: {
           open: true,
           middleware: function (connect) {
@@ -398,6 +423,7 @@ module.exports = function (grunt) {
       'wiredep',
       'concurrent:server',
       'autoprefixer',
+      'configureProxies:server',
       'connect:livereload',
       'watch'
     ]);
@@ -438,4 +464,5 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
+
 };

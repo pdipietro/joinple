@@ -41,6 +41,7 @@ gem "rmagick4j"
 group :development, :test do
   gem 'minitest'
   gem 'rspec-rails'
+#  gem 'guard', '~> 2.8'
   gem 'guard-rspec'
   gem 'spork-rails'
   gem 'guard-spork'

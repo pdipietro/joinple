@@ -58,6 +58,8 @@ class User
      # index :unlock_token
 
      ## Token authenticatable
+     acts_as_token_authenticatable
+
      property :authentication_token, :type => String, :null => true
      index :authentication_token
 
@@ -66,8 +68,6 @@ class User
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable
-
-  acts_as_token_authenticatable
 
   has_many  :out, :authorizations, type: :is_autorized_by, :dependent => :destroy
   has_many  :out, :shares, type: :shares
