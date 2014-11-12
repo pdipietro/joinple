@@ -17,5 +17,6 @@ before_script:
   - gem install rake
   - gem install rails-i18n
   - gem install lumberjack -v '1.0.9'
+  - gem install ngmin-rails -v '0.4.0'
   - bundle install
   - bundle update
