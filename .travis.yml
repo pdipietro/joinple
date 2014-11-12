@@ -15,5 +15,6 @@ before_script:
   - 'npm install -g bower grunt-cli'
   - 'bower install'
   - gem install rake
+  - gem install rails-i18n
   - bundle install
   - bundle update
