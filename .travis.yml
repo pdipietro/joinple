@@ -16,5 +16,6 @@ before_script:
   - 'bower install'
   - gem install rake
   - gem install rails-i18n
+  - gem install lumberjack -v '1.0.9'
   - bundle install
   - bundle update
