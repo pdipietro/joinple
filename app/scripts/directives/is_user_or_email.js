@@ -8,7 +8,7 @@ angular.module('aGsn.directive')
       var d = $q.defer();
       if (input) {
         $http({
-          url: '/check/is_user',
+          url: '/api/check/is_user',
           method: 'POST',
           params: {
             auth_token: tokenHandler.get()
@@ -38,7 +38,7 @@ angular.module('aGsn.directive')
       // If it is a user, then our field will be valid, if it is not
       // check the input for an email
       scope.$watch(attrs.ngModel, function(v) {
-        if (checking) clearTimeout(checking);
+        if (checking) { clearTimeout(checking); }
         var value = scope.ngModel.$viewValue;
         checking = $timeout(function() {
           isUser(value).then(function(data) {

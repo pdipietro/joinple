@@ -34,8 +34,6 @@ angular.module('aGsn.controller')
           $scope.ngModel = data;
           $scope.user.errors = data.info;
         }
-//        tokenHandler.set( data.auth_token );
-//        $location.path('/');
       }).error(function(msg) {
         $scope.user.errors = 'Something is wrong with the service. Please try again';
       });

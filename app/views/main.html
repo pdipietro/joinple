@@ -6,6 +6,17 @@
   </p>
   <p><a class="btn btn-lg btn-success" ng-href="#">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
 </div>
+<div class="row">
+  <div ng-repeat="article in articles | orderBy:publishedDate:false">
+    <div class="article-listing-element row">
+      <div class="span9">
+        <h2><a href="{{ article.link }}" title="{{ article.title }}">{{ article.title }}</a></h2>
+        <p>{{ article.publishedDate | date:'d/m/yy h:mm:ss a' }}</p>
+      </div>
+      <div class="span2"><a share ng-model="article">Share</a></div>
+    </div>
+  </div>
+</div>
 
 <div class="row marketing">
   <h4>HTML5 Boilerplate</h4>

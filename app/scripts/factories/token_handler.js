@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('aGsn.service')
+angular.module('aGsn.factory')
   .factory('tokenHandler', function($rootScope, $http, $q, $location) {
     var token = null,
         currentUser;

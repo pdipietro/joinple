@@ -1,4 +1,6 @@
-angular.module('aGsn.service', ['ngResource'])
+'use strict';
+
+angular.module('aGsn.factory')
   .factory('ArticleService',function($http, $q) {
     var service = {
       getLatestFeed: function() {
@@ -11,10 +13,11 @@ angular.module('aGsn.service', ['ngResource'])
         ).then(function(data, status) {
           // HuffPost data comes back as
           // data.data.responseData.feed.entries
-          if (data.status === 200)
+          if (data.status === 200) {
             d.resolve(data.data.responseData.feed.entries);
-          else
+          } else {
             d.reject(data);
+          }
         });
 
         return d.promise;
@@ -23,6 +26,8 @@ angular.module('aGsn.service', ['ngResource'])
 
   return service;
 })
+
+/*
 .factory('Share', function($resource) {
   var service = $resource('/shares/:id.json',
       { id: '@id' },
@@ -31,7 +36,7 @@ angular.module('aGsn.service', ['ngResource'])
 
   return service;
 })
-.factory("SessionService", function($http, $q) {
+.factory('SessionService', function($http, $q) {
   var service;
   return service = {
     getCurrentUser: function() {
@@ -49,4 +54,6 @@ angular.module('aGsn.service', ['ngResource'])
     }
   };
 });
+*/
+
 ;

@@ -9,9 +9,10 @@
  * Main module of the application.
  */
 angular.module('aGsn.controller',[]);
-angular.module('aGsn.service',[]);
+//angular.module('aGsn.service',[]);
 angular.module('aGsn.filter',[]);
 angular.module('aGsn.directive',[]);
+angular.module('aGsn.factory',[]);
 
 angular
   .module('aGsn', [
@@ -24,9 +25,10 @@ angular
     'ngSanitize',
     'ngTouch',
     'aGsn.controller',
-    'aGsn.service',
+//    'aGsn.service',
     'aGsn.directive',
-    'aGsn.filter'
+    'aGsn.filter',
+    'aGsn.factory'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -53,7 +55,7 @@ angular
   })
 
   .config(function ($locationProvider) {
-    $locationProvider.html5Mode().enabled;
+    return $locationProvider.html5Mode().enabled;
   })
 
   .config(function ($httpProvider) {
