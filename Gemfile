@@ -32,6 +32,7 @@ gem 'rails-i18n', '~> 4.0.3'
 # gem 'neo4jrb-paperclip', :require => "neo4jrb_paperclip"
 gem "rmagick4j"
 # gem "carrierwave-neo4j", :require => "carrierwave/neo4j"
+gem 'compass'
 
 # gem 'neography'
 # gem 'neo4j-will_paginate', path: 'vendor/gems/neo4j-will_paginate-0.2.1-java'
@@ -54,6 +55,7 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'database_cleaner', '0.7.0'
   gem 'growl', '1.0.3'
+
 
 	# instructs rails c to use pry instead of the standard interface
 	#	gem 'pry-rails'
