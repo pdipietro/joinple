@@ -33,6 +33,7 @@ gem 'rails-i18n', '~> 4.0.3'
 gem "rmagick4j"
 # gem "carrierwave-neo4j", :require => "carrierwave/neo4j"
 gem 'compass'
+gem 'addressable'
 
 # gem 'neography'
 # gem 'neo4j-will_paginate', path: 'vendor/gems/neo4j-will_paginate-0.2.1-java'

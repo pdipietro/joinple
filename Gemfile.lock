@@ -21,7 +21,7 @@ GIT
 
 GIT
   remote: https://github.com/neo4jrb/neo4j.git
-  revision: f882389328bc45ea900bd7d61aa10a3f2d1dd181
+  revision: f598387d5b2de5ea3261d8ed177a21429724be72
   specs:
     neo4j (3.0.3)
       active_attr (~> 0.8)
@@ -349,6 +349,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  addressable
   angular-rails-templates
   angularjs-rails
   bcrypt
