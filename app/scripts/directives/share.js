@@ -17,7 +17,7 @@ angular.module('aGsn.directive')
         //our share function will take an article and use our share service,
         // which is a $resource, and call save on the current User
         scope.share = function() {
-          scope.newShare = {recipient = ''};
+          scope.newShare = {recipient: ''};
           var share = new ShareService({
             url: scope.ngModel.url,
             from_user: tokenHandler.getCurrentUser().id,

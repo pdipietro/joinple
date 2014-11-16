@@ -1,9 +1,14 @@
 class Users::SessionsController < Devise::SessionsController
   skip_before_filter :verify_authenticity_token
-  before_filter :authenticate_user!, except: [:create]
+  before_filter :authenticate_user!, except: [:create, :destroy]
   respond_to :json
+ # protect_from_forgery with: :exception
+
+  puts "fuck off "
 
   def create
+
+    puts "ccc"
     resource = User.find_for_database_authentication(email: params[:user][:email])
     return failure unless resource
     return failure unless resource.valid_password?(params[:user][:password])
@@ -18,12 +23,22 @@ class Users::SessionsController < Devise::SessionsController
           }
   end
 
+  def failure
+    warden.custom_failure!
+    render status: 200,
+          json: {
+            success: false,
+            info: 'Login failed',
+            data: {}
+          }
+  end
+
   def get_current_user
     if user_signed_in?
       render status: 200,
           json: {
             success: true,
-            info: "Current user",
+            info: 'Current user',
             data: {
               token: current_user.authentication_token,
               email: current_user.email
@@ -32,7 +47,7 @@ class Users::SessionsController < Devise::SessionsController
       render status: 401,
           json: {
             success: true,
-            info: "",
+            info: '',
             data: {}
           }
     end
@@ -43,24 +58,25 @@ class Users::SessionsController < Devise::SessionsController
     render status: 200,
           json: {
             success: true,
-            info: "Current user",
+            info: 'Current user',
             user: current_user
           }
   end
 
-  def failure
-    warden.custom_failure!
+  def destroy
     render status: 200,
           json: {
-            success: false,
-            info: "Login failed",
-            data: {}
+            success: true,
+            info: "Logged out",
+            data: {
+              auth_token: nil
+            }
           }
   end
 
 #  def destroy_user_session
 #    self.current_user = nil
-#    redirect_to root_url, notice: "Signed out!"
+#    redirect_to root_url, notice: 'Signed out!'
 #  end
 
     private
@@ -68,7 +84,8 @@ class Users::SessionsController < Devise::SessionsController
     def reject_if_not_authorized_request!
       warden.authenticate!(
         scope: resource_name,
-        recall: "#{controller_path}#failure"
+        recall: '#{controller_path}#failure'
       )
     end
+
 end

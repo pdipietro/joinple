@@ -1,7 +1,9 @@
 class Users::RegistrationsController < Devise::RegistrationsController
+  protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format.json? }
   respond_to :json
 
-  def create
+  def registration # wasz create
+
     # create the user
     build_resource(sign_up_params)
     #try to save them
