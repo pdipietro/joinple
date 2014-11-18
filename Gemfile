@@ -12,12 +12,7 @@ gem 'therubyracer'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'bcrypt'
-gem 'bootstrap-sass'
-#gem 'neo4j',  :git => 'https://github.com/andreasronge/neo4j.git'
-#gem 'neo4j', :git => 'https://github.com/neo4jrb/neo4j.git', branch: 'queryproxy_return'
 gem 'neo4j', :git => 'https://github.com/neo4jrb/neo4j.git'
-#gem 'neo4j-core', :git => 'https://github.com/andreasronge/neo4j-core.git'
-#gem 'neo4j-core', '3.0.0.alpha.19'
 gem 'devise'
 gem 'devise-neo4j',  :git => 'git://github.com/andreasronge/devise-neo4j.git'
 gem 'omniauth'
@@ -73,12 +68,14 @@ platforms :jruby do
 end
 
 gem 'jquery-minicolors-rails'
-
+gem 'bootstrap-sass'
+gem 'turbolinks'
+gem 'foundation-rails'
 gem 'bower-rails'
-gem 'angularjs-rails'
-gem 'angular-rails-templates'
+#gem 'angularjs-rails'
+#gem 'angular-rails-templates'
 gem 'ngmin-rails'
-gem 'zurb-foundation'
+#gem 'zurb-foundation'
 
 
 

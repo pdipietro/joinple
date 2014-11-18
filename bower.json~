@@ -1,8 +1,4 @@
 { "name": "aGsn",
-    "dependencies": {
-			"bootstrap-sass-official": "latest",
-			"foundation": "~5.1.0"
-    },
   "lib": {
     "name": "bower-rails generated lib assets",
     "dependencies": {

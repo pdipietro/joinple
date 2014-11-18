@@ -17,5 +17,6 @@
 //= require_tree .
 //= require_tree ../templates
 //= require foundation
+//= require modernizr
 
 $(function(){ $(document).foundation(); });
