@@ -19,10 +19,10 @@ class Users::SessionsController < Devise::SessionsController
           }
   end
 
-  def destroy_user_session
-    self.current_user = nil
-    redirect_to root_url, notice: "Signed out!"
-  end
+#  def destroy_user_session
+#    self.current_user = nil
+#    redirect_to root_url, notice: "Signed out!"
+#  end
 
     private
 

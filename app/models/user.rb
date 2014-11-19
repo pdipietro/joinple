@@ -32,7 +32,6 @@ class User
      property :remember_created_at, :type => DateTime
      index :remember_token
 
-
      ## Recoverable
      property :reset_password_token
      index :reset_password_token
@@ -57,17 +56,26 @@ class User
      #  property :unlock_token, :type => String,
      # index :unlock_token
 
-      ## Token authenticatable
-      # property :authentication_token, :type => String, :null => true, :index => :exact
+     ## Token authenticatable
+     # property :authentication_token, :type => String, :null => true, :index => :exact
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable
+         #, :token_authenticatable
 
   has_many  :out, :authorizations, type: :is_autorized_by, :dependent => :destroy
   has_many  :out, :shares, type: :shares
   has_many  :in, :users, from: :shares
+
+  # User application attributes
+
+  has_many  :out, :users, type: :likes, model_class: false
+  has_many  :out, :users, type: :follows, model_class: false
+  has_many  :out, :users, type: :owns, model_class: false
+
+  has_many  :in, :users, origin: :follows
 
 end
