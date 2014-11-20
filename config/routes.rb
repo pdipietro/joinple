@@ -1,14 +1,12 @@
 Rails.application.routes.draw do
 
+  get 'static_pages/home'
 
-    devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  get 'static_pages/help'
 
-    devise_scope :user do
-      get  '/api/current_user' => 'users/sessions#show_current_user', as: 'show_current_user'
-      post '/api/check/is_user' => 'users/users#is_user', as: 'is_user'
-#get 'sign_in' => 'devise/sessions#new'#, :as => :new_user_session
-	    get 'sign_out' => 'devise/sessions#destroy'#, :as => :destroy_user_session
-	  end
+  resources :posts
+
+  resources :users
 
     resources :users
   	resources :languages
