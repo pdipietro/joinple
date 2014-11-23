@@ -37,8 +37,8 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
-  config.active_support.test_order = :random
 
-  config.neo4j.session_type = :server_db
-  config.neo4j.session_path = 'http://localhost:7484'
+  # compliancy with Rails 5 standard
+  config.active_support.test_order = :sorted
+
 end
