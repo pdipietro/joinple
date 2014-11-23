@@ -1,18 +1,17 @@
 Rails.application.routes.draw do
 
-  get 'static_pages/home'
+  root                  'static_pages#home'
+  get   'about'     =>    'static_pages#about'
+  get   'help'      =>    'static_pages#help'
+  get   'contact'   =>    'static_pages#contact'
 
-  get 'static_pages/help'
+  get   'login'     =>    'static_pages#home'
 
   resources :posts
-
   resources :users
 
-    resources :users
-  	resources :languages
-    resources :posts
+ 	resources :languages
 
-    get '/dashboard' => 'welcome#dashboard'
-    root :to => 'welcome#index'
+  get '/dashboard' => 'welcome#dashboard'
 
 end

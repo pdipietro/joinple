@@ -8,6 +8,8 @@ require "rails"
 	action_controller
   action_mailer
   sprockets
+  active_result
+  test_unit
 ).each do |framework|
   begin
     require "#{framework}/railtie"
@@ -19,7 +21,9 @@ end
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 # Bundler.require(*Rails.groups)
-Bundler.require(:default, Rails.env)
+#Bundler.require(:default, Rails.env)
+Bundler.require(*Rails.groups)
+
 
 module Gsn
   class Application < Rails::Application
@@ -30,10 +34,19 @@ module Gsn
     # Enable Neo4j generators, e.g:  rails generate model Admin --parent User
     config.generators do |g|
       g.orm             :neo4j
-      g.test_framework  :rspec, fixture: false
+      g.test_framework  :test_unit, fixture: true
+   #   g.template_engine :haml
     end
 
-    config.neo4j.storage_path = "/home/pdipietro/gsn/neo4j/data/graph.db"
+    if Rails.env.development?
+				config.neo4j.session_type = :server_db
+				config.neo4j.session_path = 'http://localhost:7474'
+#      config.neo4j.storage_path = "/home/pdipietro/gsn/neo4j/data/graph.db"
+    else 
+				config.neo4j.session_type = :server_db
+				config.neo4j.session_path = 'http://localhost:7484'
+#      config.neo4j.storage_path = "/home/pdipietro/gsn/neo4j-test/data/graph.db"
+    end 
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
@@ -48,5 +61,6 @@ module Gsn
 
     config.assets.paths << Rails.root.join("lib","assets","bower_components","bootstrap-sass-official", "assets", "stylesheets")
     config.assets.paths << Rails.root.join("lib","assets","bower_components","bootstrap-sass-official", "assets","fonts")
+
   end
 end

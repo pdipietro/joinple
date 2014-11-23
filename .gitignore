@@ -9,7 +9,8 @@ bower_components
 /.bundle
 
 # Ignore the Neo4j database.
-/neo4j
+/db/neo4j
+
 
 # Ignore all logfiles and tempfiles.
 
@@ -18,3 +19,8 @@ bower_components
 /config/*.yml
 /simple_token_authentication
 /dist
+
+# Ignore all 'sve' file
+/test-save 
+/spec-save
+/bower_components-save
