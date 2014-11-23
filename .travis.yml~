@@ -1,13 +1,16 @@
 language:
 - ruby
+- compass
 ruby:
 - 2.1.5
 rails:
-- 4.2.0.beta4
+- 4.1.5
 env:
 - DB=neo4j
 before_script:
 - gem install rake
 - gem install rails-i18n
+- gem install lumberjack -v '1.0.9'
+- gem install ngmin-rails -v '0.4.0'
 - bundle install
 - bundle update
