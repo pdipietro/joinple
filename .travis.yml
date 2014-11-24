@@ -1,6 +1,5 @@
-language:
-- ruby
-ruby:
+language: ruby
+rvm:
 - 2.1.5
 rails:
 - 4.2.0.beta4
