@@ -39,6 +39,7 @@ Rails.application.configure do
 
 
   # compliancy with Rails 5 standard
-  config.active_support.test_order = :sorted
+  config.active_support.test_order = :random
 
+  config.neo4j.session_path = 'http://localhost:7484'
 end

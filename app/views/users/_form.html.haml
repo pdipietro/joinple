@@ -8,12 +8,20 @@
         - @user.errors.full_messages.each do |message|
           %li= message
   .field
-    = f.label :nickname, f.text_field :nickname
+    = f.label :nickname 
+    %br/
+    = f.text_field :nickname
   .field
-    = f.label :first_name, f.text_field :first_name
+    = f.label :first_name 
+    %br/
+    = f.text_field :first_name
   .field
-    = f.label :last_name, f.text_field :last_name
+    = f.label :last_name 
+    %br/
+    = f.text_field :last_name
   .field
-    = f.label :email, f.text_field :email
+    = f.label :email 
+    %br/
+    = f.text_field :email
   .actions
     = f.submit

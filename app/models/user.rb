@@ -7,10 +7,20 @@ class User
   include Uuid
   include CreatedAtUpdatedAt
 
-  property :nickname,    :type =>   String, constraint: :unique
-  property :first_name,  :type =>   String, presence: true
-  property :last_name,   :type =>   String, presence: true
-  property :email,       :type =>   String, constraint: :unique
+  property :nickname,    :type =>   String
+  property :first_name,  :type =>   String
+  property :last_name,   :type =>   String
+  property :email,       :type =>   String
+
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+
+  validates   :nickname, :presence => true
+  validates_uniqueness_of :nickname, case_sensitive:false
+  validates   :first_name, :presence => true
+  validates   :last_name, :presence => true
+  validates   :email, presence: true, format: { with: VALID_EMAIL_REGEX }
+  validates_uniqueness_of :email, case_sensitive:false
+
 
   # User application rels
 
