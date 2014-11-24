@@ -6,5 +6,5 @@
   This is the home page for the aGsn: a <i>Generic Social Network</i>.
   </h2>
 
-  <%= link_to "Sign up now!", '#', class: "btn btn-lg btn-primary" %>
-</div>
+  <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+/div>

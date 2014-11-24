@@ -1,17 +1,21 @@
 %h1 Listing users
-
 %table
-  %tr
-    %th
-    %th
-    %th
-
-  - @users.each do |user|
+  %thead
     %tr
-      %td= link_to 'Show', user
-      %td= link_to 'Edit', edit_user_path(user)
-      %td= link_to 'Destroy', user, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
+      %th Nickname
+      %th First name
+      %th Last name
+      %th email
+      %th{:colspan => "3"}
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= user.nickname
+        %td= user.first_name
+        %td= user.last_name
+        %td= user.email
+        %td= link_to 'Show', user
+        %td= link_to 'Edit', edit_user_path(user)
+        %td= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }
+%br/
 = link_to 'New User', new_user_path
