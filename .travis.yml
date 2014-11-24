@@ -1,12 +1,14 @@
 language: ruby
 rvm:
-- 2.1.5
+	- 2.1.5
 rails:
-- 4.2.0.beta4
+	- 4.2.0.beta4
+jdk:
+  - oraclejdk7
 env:
-- DB=neo4j
+	- DB=neo4j
 before_script:
-- gem install rake
-- gem install rails-i18n
-- bundle install
-- bundle update
+	- gem install rake
+	- gem install rails-i18n
+	- bundle install --no-deployment
+	- bundle update
