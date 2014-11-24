@@ -9,7 +9,8 @@ env:
   - DB=neo4j
 before_script:
   - gem install rake
+  - gem install rails-i18n
   - bundle install --no-deployment
   - bundle update
   - rake neo4j:install[community-2.1.5]
-	- rake neo4j:start[community-2.1.5]
+  - rake neo4j:start[community-2.1.5]
