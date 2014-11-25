@@ -6,11 +6,17 @@ class User
   include Neo4j::ActiveNode
   include Uuid
   include CreatedAtUpdatedAt
+  include SecurePassword
+  before_save :set_first_name
+  before_save :set_last_name
 
   property :nickname,    :type =>   String
   property :first_name,  :type =>   String
   property :last_name,   :type =>   String
   property :email,       :type =>   String
+
+  has_secure_password
+  property :password_digest
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
@@ -20,6 +26,7 @@ class User
   validates   :last_name, :presence => true
   validates   :email, presence: true, format: { with: VALID_EMAIL_REGEX }
   validates_uniqueness_of :email, case_sensitive:false
+  validates   :password, length: { minimum: 6 }
 
 
   # User application rels
@@ -29,5 +36,15 @@ class User
   has_many  :out, :users, type: :owns, model_class: false
 
   has_many  :in, :users, origin: :follows
+
+  private
+
+    def set_first_name
+      self.first_name = self.first_name.titleize if self.first_name
+    end
+
+   def set_last_name
+      self.last_name = self.last_name.titleize if self.last_name
+    end
 
 end

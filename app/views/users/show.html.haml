@@ -1,5 +1,11 @@
-%p#notice= notice
-
+- provide(:title, full_name(@user))
+%div.row
+  %aside.col-md-4
+    %section.user_info
+      %h1
+        = gravatar_for @user
+        = full_name(@user)
+-# %p#notice= notice
 
 = link_to 'Edit', edit_user_path(@user)
 \|

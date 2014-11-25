@@ -9,7 +9,7 @@ Neo4j::Session.current._query('MATCH (n) OPTIONAL MATCH (n)-[r]-() DELETE n,r')
 
 class ActiveSupport::TestCase
 # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
-  #fixtures :all
+# fixtures :all
   include ApplicationHelper
   
 # Returns true if a test user is logged in.

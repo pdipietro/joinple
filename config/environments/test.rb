@@ -38,8 +38,8 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
 
-  # compliancy with Rails 5 standard
-  config.active_support.test_order = :random
+  # compliancy with Rails 5 standard 
+  config.active_support.test_order = :sorted # [:sorted, :random]
 
   config.neo4j.session_path = 'http://localhost:7484'
 end
