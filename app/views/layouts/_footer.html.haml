@@ -1,9 +1,12 @@
 %footer.footer
   %small
-    The little footer
+    The footer
   %nav
     %ul
       %li= link_to "About",   about_path
       %li= link_to "Contact", contact_path
       %li
         %a{:href => "#"} News
+  %b
+    - current_user
+    - logged_in?

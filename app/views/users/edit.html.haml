@@ -25,6 +25,15 @@
     = f.label :email 
     %br/
     = f.text_field :email
+  .field
+    = f.label :password 
+    (if empty it doesn't change)
+    %br/
+    = f.text_field :password
+  .field
+    = f.label :password_confirmation 
+    %br/
+    = f.text_field :password_confirmation
   .actions
     = f.submit
 
