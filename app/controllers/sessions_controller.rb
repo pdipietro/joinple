@@ -12,8 +12,7 @@ class SessionsController < ApplicationController
         log_in user
         remember user
         params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-        redirect_to user
-#        redirect_back_or user
+        redirect_back_or user
 #      else
 #        message  = "Account not activated. "
 #        message += "Check your email for the activation link."

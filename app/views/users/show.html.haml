@@ -1,12 +1,7 @@
-- provide(:title, full_name(@user))
+- provide(:title, @user.full_name)
 %div.row
   %aside.col-md-4
     %section.user_info
       %h1
         = gravatar_for @user
-        = full_name(@user)
--# %p#notice= notice
-
-= link_to 'Edit', edit_user_path(@user)
-\|
-= link_to 'Back', users_path
+        = @user.full_name

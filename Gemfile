@@ -39,6 +39,7 @@ group :production do
 end
 
 gem "neo4j", "~> 3.0.0"
+gem "neo4j-will_paginate_redux"
 
 #gem "haml"
 gem "haml-rails"
