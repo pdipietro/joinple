@@ -3,7 +3,7 @@ require 'test_helper'
 class UsersEditTest < ActionDispatch::IntegrationTest
 
   def setup
-    @user = User.new(first_name: "John", last_name: "Doe", nickname: "jdo", email: "user@example.com",
+    @user = User.new( first_name: "John", last_name: "Doe", nickname: "jdo", email: "user@example.com",
               password: "password", password_confirmation: "password")
   end
 
@@ -11,7 +11,9 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     log_in_as(@user)
     get edit_user_path(@user)
     assert_template 'users/edit'
-    patch user_path(@user), user: { name:  "",
+    patch user_path(@user), user: { first_name:  "",
+                                    last_name: "",
+                                    nickname: "",
                                     email: "foo@invalid",
                                     password:              "foo",
                                     password_confirmation: "bar" }
@@ -22,16 +24,22 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     log_in_as(@user)
     get edit_user_path(@user)
     assert_template 'users/edit'
-    name  = "Foo Bar"
+    first_name  = "Foo"
+    last_name = "Bar"
+    nickname = "fob"
     email = "foo@bar.com"
-    patch user_path(@user), user: { name:  name,
+    patch user_path(@user), user: { first_name:  first_name,
+                                    last_name: last_name,
+                                    nick_name: nick_name,
                                     email: email,
                                     password:              "",
                                     password_confirmation: "" }
     assert_not flash.empty?
     assert_redirected_to @user
     @user.reload
-    assert_equal @user.name,  name
+    assert_equal @user.first_name,  first_name
+    assert_equal @user.last_name,  last_name
+    assert_equal @user.nickname,  nickname
     assert_equal @user.email, email
   end
 
@@ -39,16 +47,22 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     get edit_user_path(@user)
     log_in_as(@user)
     assert_redirected_to edit_user_path(@user)
-    name  = "Foo Bar"
+    first_name  = "Foo"
+    last_name = "Bar"
+    nickname = "fob"
     email = "foo@bar.com"
-    patch user_path(@user), user: { name:  name,
+    patch user_path(@user), user: { first_name:  first_name,
+                                    last_name: last_name,
+                                    nick_name: nick_name,
                                     email: email,
                                     password:              "foobar",
                                     password_confirmation: "foobar" }
     assert_not flash.empty?
     assert_redirected_to @user
     @user.reload
-    assert_equal @user.name,  name
+    assert_equal @user.first_name,  first_name
+    assert_equal @user.last_name,  last_name
+    assert_equal @user.nickname,  nickname
     assert_equal @user.email, email
   end
 

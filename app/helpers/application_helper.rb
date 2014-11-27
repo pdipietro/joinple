@@ -10,4 +10,9 @@ module ApplicationHelper
     end
   end
 
+  # Returns a random token.
+  def new_token
+    SecureRandom.urlsafe_base64
+  end
+
 end

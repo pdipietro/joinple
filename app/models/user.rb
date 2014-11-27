@@ -9,10 +9,19 @@ class User
   include SecurePassword
 
   attr_accessor :remember_token
-  property :remember_digest,  :type =>  String
+  attr_accessor :activation_token
+
+  property :remember_digest,   :type =>  String
+  property :activation_digest, :type =>  String
+  property :activated,         :type =>  Boolean, default: false
+  property :activated_at,      :type =>  DateTime
+  property :admin,             :type =>  Boolean, default: false
  
-  before_save :set_first_name
-  before_save :set_last_name
+#  before_update :check_default
+  before_create :check_default
+  before_save :check_default
+#  before_save :set_last_name
+  before_create :create_activation_digest
 
   property :nickname,    :type =>   String
   property :first_name,  :type =>   String
@@ -42,21 +51,10 @@ class User
   has_many  :in, :users, origin: :follows
 
  
-  def User.digest(string)
-    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
-                                                  BCrypt::Engine.cost
-    BCrypt::Password.create(string, cost: cost)
-  end
-
-  # Returns a random token.
-  def User.new_token
-    SecureRandom.urlsafe_base64
-  end
-
   # Remembers a user in the database for use in persistent sessions.
   def remember
-    self.remember_token = User.new_token
-    update_attribute(:remember_digest, User.digest(remember_token))
+    self.remember_token = new_token
+    update_attribute(:remember_digest, digest(remember_token))
   end
 
   # Forgets a user.
@@ -65,29 +63,57 @@ class User
   end
 
   # Returns true if the given token matches the digest.
-  def authenticated?(remember_token)
-    return false if remember_digest.nil?
-    BCrypt::Password.new(remember_digest).is_password?(remember_token)
+  def authenticated?(attribute, token)
+    digest = send("#{attribute}_digest")
+    return false if digest.nil?
+    BCrypt::Password.new(digest).is_password?(token)
   end
 
-  def activated?
-    true
-  end
-  
   def full_name
     "#{first_name} #{last_name}"
   end
 
+  def check_default
+    self.nickname = self.nickname.downcase.gsub(/\s+/, "") if self.nickname
+    self.first_name = self.first_name.downcase.titleize.strip.split.join(" ") if self.first_name
+    self.last_name = self.last_name.downcase.titleize.strip.split.join(" ") if self.last_name
+    self.admin = false if self.admin.nil?
+    self.email = self.email.downcase    
+  end
 
+  # Returns a random token.
+  def new_token
+    SecureRandom.urlsafe_base64
+  end
+
+  # Activates an account.
+  def activate
+    update_attribute(:activated,    true)
+    update_attribute(:activated_at, Time.zone.now)
+  end
+
+  # Sends activation email.
+  def send_activation_email
+    UserMailer.account_activation(self).deliver_now
+  end
 
   private
 
-    def set_first_name
-      self.first_name = self.first_name.titleize if self.first_name
-    end
+  #   def set_last_name
+  #      self.last_name = self.last_name.titleize if self.last_name
+  #   end
+     
+     def create_activation_digest
+        self.activation_token  = new_token
+        self.activation_digest = digest(self.activation_token)
+     end
 
-   def set_last_name
-      self.last_name = self.last_name.titleize if self.last_name
-    end
+     def digest(string)
+       cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
+                                                    BCrypt::Engine.cost
+       BCrypt::Password.create(string, cost: cost)
+     end
+
+
 
 end

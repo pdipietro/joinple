@@ -2,13 +2,16 @@ class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :update]
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
-  before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_user,       only: [:show, :edit, :update]
+#  before_action :check_default,  only: [:create, :update]
 
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+     @users = User.all
+  #  @users = User.as(:t).where('true = true').paginate(:page => params[:page], :per_page => 20)
   #  @users = User.as(:t).where('true = true WITH t ORDER BY t.first_name, t.last_name desc').paginate(:page => params[:page], :per_page => 20)
+  #  @users = User.all.paginate(page: params[:page])
   end
 
   # GET /users/1
@@ -28,44 +31,50 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
+    puts "userparams: #{user_params} §§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§"
     @user = User.new(user_params)
 
-    respond_to do |format|
+   # respond_to do |format|
       if @user.save
-        log_in @user
-        flash[:success] = "Welcome to the Gsn!"
-        format.html { redirect_to @user }
-        format.json { render :show, status: :created, location: @user }
+    #    log_in @user
+    #    flash[:success] = "Welcome to the Gsn!"
+    #    redirect_to @user
+    #    format.json { render :show, status: :created, location: @user }
+        @user.send_activation_email
+        flash[:info] = "Please check your email to activate your account."
+        redirect_to root_url
       else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        render :new
+       # format.json { render json: @user.errors, status: :unprocessable_entity }
       end
-    end
+    #end
   end
 
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    respond_to do |format|
+   # respond_to do |format|
+   #   @user.check_default
+   #   puts "User params: #{user_params} +++++++++++++++++++++++++++++++++++++++++++++++++++++"
       if @user.update(user_params)
         flash[:success] = "Profile updated"
-        format.html { redirect_to @user }
-        format.json { render :show, status: :ok, location: @user }
+        redirect_to @user
+   #    format.json { render :show, status: :ok, location: @user }
       else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        render :edit
+   #    format.json { render json: @user.errors, status: :unprocessable_entity }
       end
-    end
+   # end
   end
 
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
     @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    #respond_to do |format|
+      redirect_to users_url, notice: 'User was successfully destroyed.'
+    #  format.json { head :no_content }
+    #end
   end
 
   private
@@ -98,9 +107,13 @@ class UsersController < ApplicationController
     end
 
     def admin_user
-      # no admin user at the moment
       # deleting a user is not allowed
-      redirect_to(root_url) # unless current_user.admin?
+      redirect_to(root_url) unless current_user.admin?
     end
+
+  #  def check_default
+  #    @user.check_default
+  #    puts "CheckDefault done! #{@user.activation_token} - #{@user.last_name} --------------------------------------------------------------"
+  #  end
 
 end

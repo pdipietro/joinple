@@ -15,10 +15,10 @@ module SessionsHelper
   # Returns the current logged-in user (if any).
   def current_user
     if (user_id = session[:user_id])
-      @current_user ||= User.find_by(uuid: user_id)
+      @current_user ||= User.find(user_id)
     elsif (user_id = cookies.permanent.signed[:user_id])
-      user = User.find_by(uuid: user_id)
-      if user && user.authenticated?(cookies[:remember_token])
+      user = User.find(user_id)
+      if user && user.authenticated?(:remember, cookies[:remember_token])
         log_in user
         @current_user = user
       end
@@ -59,6 +59,5 @@ module SessionsHelper
   def store_location
     session[:forwarding_url] = request.url if request.get?
   end
-
 
 end
