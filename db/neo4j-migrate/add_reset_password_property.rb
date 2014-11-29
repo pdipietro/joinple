@@ -4,7 +4,9 @@ class AddResetPasswordProperty < Neo4j::Migration
   end
 
   def migrate
+  end
 
+  def setup
   end
 
 end
