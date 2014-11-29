@@ -1,0 +1,2 @@
+module PasswordRestetsHelper
+end
