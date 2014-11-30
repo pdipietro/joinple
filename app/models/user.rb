@@ -49,7 +49,7 @@ class User
 
   has_many  :out, :users, type: :likes, model_class: false
   has_many  :out, :users, type: :follows, model_class: false
-  has_many  :out, :users, type: :owns, model_class: false
+  has_many  :out, :owns, type: :owns, model_class: false
 
   has_many  :in, :users, origin: :follows
 

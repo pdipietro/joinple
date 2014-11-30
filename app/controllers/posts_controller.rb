@@ -7,9 +7,14 @@ class PostsController < ApplicationController
     @posts = Post.all
   end
 
+  def self.find user
+    @posts = Post.all.is_owned_by.match_to(user)
+  end
+
   # GET /posts/1
   # GET /posts/1.json
   def show
+    @posts = Post.all.is_owned_by.match_to(user)
   end
 
   # GET /posts/new
@@ -69,6 +74,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params[:post]
+      params.require(:post).permit(:content, :user)
     end
 end
