@@ -1,0 +1,11 @@
+%h1 Posts
+- @posts.each do |post|
+  %ol
+    %h3 
+      =post.title
+    %p 
+      = post.content
+    %p
+      %small
+        = post.created_at
+    %hr

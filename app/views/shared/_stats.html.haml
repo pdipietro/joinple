@@ -1,0 +1,11 @@
+- @user ||= current_user
+.stats
+  %a{:href => follows_user_path(@user)}
+    %strong#following.stat
+      = @user.follows.count
+    following
+  %a{:href => is_followed_by_user_path(@user)}
+    %strong#followers.stat
+    - u = User.follows.query_as(:o).where("o:User { }")
+    = @user.follows.count
+    followers

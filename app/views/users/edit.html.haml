@@ -1,40 +1,34 @@
 %h1 Editing user
 
 = form_for(@user) do |f|
-  - if @user.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(@user.errors.count, "error")
-        prohibited this user from being saved:
-      %ul
-        - @user.errors.full_messages.each do |message|
-          %li= message
-  .field
-    = f.label :nickname 
-    %br/
-    = f.text_field :nickname
-  .field
-    = f.label :first_name 
-    %br/
-    = f.text_field :first_name
-  .field
-    = f.label :last_name 
-    %br/
-    = f.text_field :last_name
-  .field
-    = f.label :email 
-    %br/
-    = f.text_field :email
-  .field
-    = f.label :password 
-    (if empty it doesn't change)
-    %br/
-    = f.text_field :password
-  .field
-    = f.label :password_confirmation 
-    %br/
-    = f.text_field :password_confirmation
-  .actions
-    = f.submit
+  = render 'shared/error_messages', object: f.object
+  .row
+    .field
+      = f.label :nickname 
+      %br/
+      = f.text_field :nickname
+    .field
+      = f.label :first_name 
+      %br/
+      = f.text_field :first_name
+    .field
+      = f.label :last_name 
+      %br/
+      = f.text_field :last_name
+    .field
+      = f.label :email 
+      %br/
+      = f.text_field :email
+    .field
+      = f.label :password 
+      (if empty it doesn't change)
+      %br/
+      = f.text_field :password
+    .field
+      = f.label :password_confirmation 
+      %br/
+      = f.text_field :password_confirmation
+    .actions
+      = f.submit
 
 = link_to 'Back', users_path

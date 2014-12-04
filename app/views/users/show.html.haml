@@ -1,14 +1,26 @@
 - provide(:title, @user.full_name)
-.row
-  %aside.col-md-4
-    %section.user_info
-      %h1
-        = gravatar_for @user
-        = @user.full_name
-      %h3
-        = "( #{@user.nickname})"
-  .col-md-8
-    - posts = Post.find_by @user
-    - posts.each do |post|
-      %ol
-        = render @post
+%aside.col-md-4
+  %section.user_info= render 'shared/user_info', object: @user
+  - if logged_in?
+    %ul.nav.nav-list
+      =#%section.user_info= render 'shared/user_info', object: @user
+      %section.stats= render 'shared/stats'
+      %section.preferites= render 'shared/preferites'
+      %section.groups= render 'shared/groups'
+      %section.workgroups= render 'shared/workgroups'
+      %section.networks= render 'shared/networks'
+      %section.workrooms= render 'shared/workrooms'
+      =#  %section.posts= render 'shared/posts'
+      %section.chats= render 'shared/chats'
+      %section.likes= render 'shared/likes'
+      %section.images= render 'shared/images'
+      =# %section.post_form= render 'shared/post_form'
+
+      \.col-md-8
+      \  %h3 Post Feed
+      \  = render 'shared/feed'
+
+
+.col-md-8
+  - @posts = @user.owns.query_as(:o).where("o:Post").pluck(:o)
+  = render 'shared/posts', object: @posts

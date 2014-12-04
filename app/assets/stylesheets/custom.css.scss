@@ -6,9 +6,13 @@ $gray_darker: #222;
 $gray_dark: #555;
 $gray_light: #777;
 $gray_lighter: #ccc;
+$red: #f00;
+$blue: #00f;
 $white: #fff;
 
-html {
+$button_primary_color: #428bca;
+
+html {  
   overflow-y: scroll;
 }
 
@@ -45,12 +49,22 @@ h1 {
 }
 
 h2 {
+  font-size: 2em;  /* was 1.2*/
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: normal;
+  color: $gray_dark;
+}
+
+h3 {
   font-size: 1.2em;
   letter-spacing: -1px;
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
-  color: $gray-light;
+  color: $gray_dark;
+  text-align: left;
 }
 
 p {
@@ -155,6 +169,44 @@ aside {
   margin-top: 15px;
 }
 
+.stats {
+  overflow: auto;
+  margin-top: 0;
+  padding: 0;
+  a {
+    float: left;
+    padding: 0 10px;
+    border-left: 1px solid $gray-lighter;
+    color: gray;
+    &:first-child {
+      padding-left: 0;
+      border: 0;
+    }
+    &:hover {
+      text-decoration: none;
+      color: blue;
+    }
+  }
+  strong {
+    display: block;
+  }
+}
+
+.user_avatars {
+  overflow: auto;
+  margin-top: 10px;
+  .gravatar {
+    margin: 1px 1px;
+  }
+  a {
+    padding: 0;
+  }
+}
+
+.users.follow {
+  padding: 0;
+}
+
 /* forms */
 
 input, textarea, select, .uneditable-input {
@@ -256,4 +308,12 @@ span.picture {
   input {
     border: 0;
   }
+}
+
+
+li.nav-header > span {
+  background-color: $button_primary_color;
+  color: $white;
+  font-weight: bold;
+
 }
