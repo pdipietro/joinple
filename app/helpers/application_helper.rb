@@ -15,4 +15,9 @@ module ApplicationHelper
     SecureRandom.urlsafe_base64
   end
 
+  def get_social_name
+      sn = request.domain.split(".").first
+      sn
+  end
+
 end

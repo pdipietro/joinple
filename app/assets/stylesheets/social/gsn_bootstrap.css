@@ -1,0 +1,22 @@
+/* set the header color line */ 
+li.nav-header > span {
+  color: white;
+  background-color: darkblue;
+
+}
+
+header.navbar.navbar-fixed-top.navbar-inverse {
+  background-color: darkblue;
+  color: white;
+} 
+
+h1 {
+}
+
+h2 {
+  color: $gray_dark;
+}
+
+h3 {
+  color: $gray_dark;
+}

@@ -1,0 +1,15 @@
+
+/* set the header color line */ 
+li.nav-header > span {
+  color: white;
+  background-color: darkred;
+}
+
+/* set the header color line */
+ 
+header.navbar.navbar-fixed-top.navbar-inverse {
+  background-color: darkred;
+  color: white;
+} 
+
+

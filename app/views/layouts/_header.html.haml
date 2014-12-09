@@ -1,15 +1,27 @@
 %header.navbar.navbar-fixed-top.navbar-inverse
   .container
-    = link_to "sample app", root_path, id: "logo"
     %nav
+      %ul.nav.navbar-nav.pull-left
+        %li.social_icon
+          = image_tag 'icon/social/48x48/chat.png', size: '48x48', alt: 'Home'
+          = image_tag 'icon/social/home/Home_256_256_32.png', size: '48x48', alt: 'Home'
+          = image_tag 'icon/social/32x32/calendar-group.bmp', size: '32x32', alt: 'Home'
+        %li.social_icon
+          = link_to get_social_name.humanize, root_path, id: "logo"
       %ul.nav.navbar-nav.pull-right
         %li
           = link_to root_path do
-            = image_tag 'icon/social/24x24/home.png', size: '24x24', alt: 'Home'
+            =# image_tag 'icon/social/24x24/home.png', size: '24x24', alt: 'Home'
+            =# image_tag 'icon/social/home/Home_256_256_32.png', size: '16x16', alt: 'Home'
+            = image_tag 'icon/social/home/Home_256_256_32.png', size: '24x24', alt: 'Home'
+            =# image_tag 'icon/social/home/Home_256_256_32.png', size: '28x28', alt: 'Home'
+            =# image_tag 'icon/social/home/Home_256_256_32.png', size: '48x48', alt: 'Home'
         - if logged_in?
           %li
             = link_to users_path, title: "Users", rel: 'tooltip' do
               = image_tag 'icon/social/24x24/profile.png', size: '24x24', alt: 'Users'
+              = image_tag 'icon/social/32x32/calendar-group.bmp', size: '32x32', alt: 'Home'
+              = image_tag 'icon/social/48x48/chat.png', size: '24x24', alt: 'Home'
           %li.dropdown
             %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
               = image_tag 'icon/social/24x24/add.png', size: '24x24', alt: 'Add'

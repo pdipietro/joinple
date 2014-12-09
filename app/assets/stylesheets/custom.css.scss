@@ -1,23 +1,13 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-$black: #000;
-$gray_darker: #222;
-$gray_dark: #555;
-$gray_light: #777;
-$gray_lighter: #ccc;
-$red: #f00;
-$blue: #00f;
-$white: #fff;
-
-$button_primary_color: #428bca;
-
 html {  
   overflow-y: scroll;
 }
 
 body {
   padding-top: 60px;
+  color: white;
 }
 
 section {
@@ -82,8 +72,8 @@ p {
   color: white;
   text-transform: uppercase;
   letter-spacing: -1px;
-  padding-top: 9px;
   font-weight: bold;
+  vertical-align: middle;
   &:hover {
     color: white;
     text-decoration: none;
@@ -312,8 +302,20 @@ span.picture {
 
 
 li.nav-header > span {
-  background-color: $button_primary_color;
-  color: $white;
+  background-color: darkyellow;
+  color: white;
   font-weight: bold;
+}
 
+li.social_icon {
+  position: relative;
+  vertical-align: middle !important;
+  img {
+    margin: 3px !important;
+    border: 0px !important;
+  }
+}
+
+.navbar-inverse .navbar-nav > li > a {
+color: white;
 }
