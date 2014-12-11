@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  before_action :check_social_network
+
   def new
   end
 
@@ -10,7 +12,6 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       if user.activated?
          log_in user
-#        remember user
          params[:session][:remember_me] == '1' ? remember(user) : forget(user)
          redirect_back_or user
       else

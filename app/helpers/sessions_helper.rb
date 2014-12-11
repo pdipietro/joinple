@@ -1,8 +1,10 @@
 module SessionsHelper
+  include ApplicationHelper
 
  # Logs in the given user.
   def log_in(user)
-    session[:user_id] = user.id
+     session[:social_network_name] = compute_social_name
+     session[:user_id] = user.id
   end
 
   # Remembers a user in a persistent session.
@@ -58,6 +60,27 @@ module SessionsHelper
   # Stores the URL trying to be accessed.
   def store_location
     session[:forwarding_url] = request.url if request.get?
+  end
+
+  # check if the social network is changed
+  def check_social_network
+    puts "check_social_network - logged_in? = #{logged_in?}"
+    if logged_in?
+      actual = compute_social_name
+      puts "compute_social_name (actual): #{actual}, session[:social_network_name] (old): #{session[:social_network_name]}"
+      if session[:social_network_name] != actual
+          log_out 
+          flash[:warning] = "Please, you need to login when changing social network."
+          redirect_to login_path
+      end
+    end
+  end
+
+  def get_social_name
+    sn = session[:social_network_name]
+    sn = compute_social_name if sn.nil?
+    puts "sn: #{sn} in get_social_name"
+    sn
   end
 
 end

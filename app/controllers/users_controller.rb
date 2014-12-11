@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :check_social_network
   before_action :logged_in_user, only: [:index, :edit, :update]
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy

@@ -15,8 +15,13 @@ module ApplicationHelper
     SecureRandom.urlsafe_base64
   end
 
-  def get_social_name
+  def compute_social_name
       sn = request.domain.split(".").first
+      if (sn == "ssdcafe")
+        u = root_url
+        sn = u[u.rindex("//")+2..-1].split("ssdcafe").first[0..-2]
+        puts "url split: #{sn}"
+      end 
       sn
   end
 
