@@ -6,8 +6,12 @@ html {
 }
 
 body {
-  padding-top: 60px;
-  color: white;
+  padding-top: 60px;    
+
+/*  removed by pdp 2004/12/12
+
+  padding-top: 60px;    
+  color: white; */
 }
 
 section {
@@ -300,6 +304,7 @@ span.picture {
   }
 }
 
+/*  removed by pdp 2004/12/12
 
 li.nav-header > span {
   background-color: darkyellow;
@@ -318,4 +323,15 @@ li.social_icon {
 
 .navbar-inverse .navbar-nav > li > a {
 color: white;
+}
+
+
+*/
+
+.glyphicons.x15 {
+  font-size: 36px;
+}
+
+a.navbar-brand.logo {
+  padding: 4px;
 }

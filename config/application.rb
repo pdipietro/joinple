@@ -16,6 +16,9 @@ Bundler.require(*Rails.groups)
 
 module Gsn
   class Application < Rails::Application
+
+    config.assets.paths << "#{Rails.root}/app/assets/fonts"
+    config.assets.paths << "#{Rails.root}/app/assets/images"
     
     config.generators do |g|
       g.orm             :neo4j

@@ -1,47 +1,143 @@
-%header.navbar.navbar-fixed-top.navbar-inverse
+%header.navbar.navbar-default.navbar-fixed-top{ :role => "navigation" }
   .container
-    %nav
-      %ul.nav.navbar-nav.pull-left
-        %li.social_icon
-          = image_tag 'icon/social/home-nor.png', size: '48x48', alt: 'Home'
-        %li.social_icon
-          = link_to get_social_name.humanize, root_path, id: "logo"
-      %ul.nav.navbar-nav.pull-right
-        %li
+    .snavbar-header
+      %button.navbar-toggle.collapsed{ :type => "button", "data-toggle" => "collapse",  "data-target" => "#bs-example-navbar-collapse-1" }
+        %span.sr-only  Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand.logo{ :href => "#{root_path}" }
+        %img.banner.logo{ :src => "#{image_url('work_logo.png')}", :height => "46px" }
+      %a.navbar-brand{ :href => "#{root_path}" }
+        = "#{get_social_name.humanize}"
+      .btn-group{ :role => "toolbar" }
+      - unless logged_in?
+        %button.btn{ :type => "button" }
           = link_to root_path do
-            %div.icon24.home{:alt => 'Home'}
-            %div.icon24.add.disabled{:alt => 'Add'}
-            %div.icon24.add{:alt => 'Add'}
-        - unless logged_in?
-          %li
-            = link_to "Log in", login_path
-        - else
-          %li
-            = link_to users_path do
-              %div.icon24.users{:alt => 'Users'}
-              %div.icon24.chatadd{:alt => 'Add chat'}
-          %li.dropdown
-            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-              %div
-                .icon24.add{:alt => 'Add'}
-                .icon24.caret{:alt => 'Add'}
-            %ul.dropdown-menu
-              %li= link_to "New group", root_path
-              %li= link_to "Add chat", root_path
-              -# %div.icon24.chatadd{:alt => 'Add chat'}
-              %li= link_to "New workgroup", root_path
-              %li.divider
-              %li= link_to "Load an image", root_path
-          %li
-            = link_to current_user do
-              = gravatar_for current_user, size: 24
-          %li.dropdown
-            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-              = current_user.nickname
-              %b.caret
-            %ul.dropdown-menu
-              %li= link_to "Profile", current_user
-              %li= link_to "Settings", edit_user_path(current_user)
-          %li
-            = link_to logout_path, method: "delete" do
-              %div.icon24.exit{:alt => 'Log out'}
+            %span.glyphicons.glyphicons-home
+            Home
+        .btn-group{ :role => "toolbar" }
+          %button.btn.btn-default{ :type => "button" }
+            = link_to login_path do
+              %span.glyphicons.glyphicons-log-in
+              Log in
+      - else
+        #bs-example-navbar-collapse-1.collapse.navbar-collapse
+          .btn-toolbar{ :role => "toolbar" }
+            .btn-group{ :role => "group" }
+              %button.btn{ :type => "button" }
+                = link_to current_user do
+                  %span.glyphicons.glyphicons-home
+                  My home
+            .btn-group{ :role => "group" }
+              %button.btn{ :type => "button" }
+                = link_to users_path do
+                  %span.glyphicons.glyphicons-user
+                  Users
+            .btn-group{ :role => "group" }
+              %button.btn{ "aria-expanded" => "false", "data-toggle" => "dropdown", :type => "button" }
+                %span.glyphicons.glyphicons-plus.pull-top.light
+                Create new
+              %button.btn.btn-danger.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :type => "button"}
+                %span.caret
+                %span.sr-only 
+              %ul.dropdown-menu{:role => "menu"}
+                %li
+                  = link_to root_path do
+                    %span.glyphicons.glyphicons-group
+                    Group
+                %li
+                  = link_to root_path do
+                    %span.glyphicons.glyphicons-chat
+                    Chat
+                %li.divider
+                %li
+                  = link_to root_path do
+                    %span.glyphicons.glyphicons-picture
+                    Image
+            .btn-group{ :role => "group" }
+              %button.btn.btn{ "aria-expanded" => "false", "data-toggle" => "dropdown", :type => "button" }
+                = gravatar_for current_user, size: 18
+                = current_user.nickname
+              %button.btn.btn-danger.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :type => "button"}
+                %span.caret
+                %span.sr-only 
+              %ul.dropdown-menu
+                %li
+                  = link_to current_user do
+                    %span.glyphicons.glyphicons-user
+                    = 'Profile'
+                %li
+                  = link_to edit_user_path(current_user) do
+                    %span.glyphicons.glyphicons-show-thumbnails-with-lines
+                    = 'Settings'
+            .btn-group{ :role => "group" }
+              %button.btn.btn{ :type => "button" }
+                = link_to logout_path, method: "delete" do
+                  %span.glyphicons.glyphicons-exit
+                  = 'Log out'
+
+
+
+//          .form.navbar-form.navbar-left{:role => "search"}
+//           .form-group
+//              %input.form-control{:placeholder => "Search", :type => "text"}
+//            %button.btn.btn-default{:type => "submit"} Submit
+//            -#  %ul.nav.navbar-nav.navbar-right
+
+//          .btn-group{ :role => "toolbar" }
+//              %button
+//                %a.dropdown-toggle.btn.btn-lg.btn-success{"aria-expanded" => "false", "data-toggle" => //"dropdown", :href => "#{current_user}", :role => "button"}
+//                  = gravatar_for current_user, size: 24
+
+//        = link_to get_social_name.humanize, root_path, id: "#{get_social_name}_logo.png", size: "48x48"
+
+//        %img{ :src => "#{image-url(get_social_name}_logo.png)}" }
+
+
+
+//      %nav
+//      %ul.nav.navbar-nav.pull-left
+//        %li.social_icon
+//          = image_tag 'icon/social/home-nor.png', size: '48x48', alt: 'Home'
+//        %li.social_icon
+//          = link_to get_social_name.humanize, root_path, id: "logo"
+//      %ul.nav.navbar-nav.pull-right
+//        %li
+//          = link_to root_path do
+//            %div.icon24.home{:alt => 'Home'}
+//            %div.icon24.add.disabled{:alt => 'Add'}
+//            %div.icon24.add{:alt => 'Add'}
+//        - unless logged_in?
+//          %li
+//            = link_to "Log in", login_path
+//        - else
+//          %li
+//            = link_to users_path do
+//              %div.icon24.users{:alt => 'Users'}
+//              %div.icon24.chatadd{:alt => 'Add chat'}
+//          %li.dropdown
+//            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+//              %div
+//                .icon24.add{:alt => 'Add'}
+//                .icon24.caret{:alt => 'Add'}
+//            %ul.dropdown-menu
+//              %li= link_to "New group", root_path
+//              %li= link_to "Add chat", root_path
+//              -# %div.icon24.chatadd{:alt => 'Add chat'}
+//              %li= link_to "New workgroup", root_path
+//              %li.divider
+//              %li= link_to "Load an image", root_path
+//          %li
+//            = link_to current_user do
+//              = gravatar_for current_user, size: 24
+//          %li.dropdown
+//            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+//              = current_user.nickname
+//              %b.caret
+//            %ul.dropdown-menu
+//              %li= link_to "Profile", current_user
+//              %li= link_to "Settings", edit_user_path(current_user)
+//          %li
+//            = link_to logout_path, method: "delete" do
+//              %div.icon24.exit{:alt => 'Log out'}
