@@ -13,6 +13,7 @@
     = csrf_meta_tags
     = render 'layouts/shim'
   %body{:sn => "#{get_social_name}"}
+    
     = render 'layouts/header'
     .container
       - flash.each do |message_type, message|

@@ -22,7 +22,7 @@ module ApplicationHelper
         sn = u[u.rindex("//")+2..-1].split("ssdcafe").first[0..-2]
         puts "url split: #{sn}"
       end 
-      sn
+      sn == "lavoro" ? "work" : sn
   end
 
 end

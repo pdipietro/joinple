@@ -1,22 +1,10 @@
-/* set the header color line */ 
-li.nav-header > span {
-  color: white;
-  background-color: darkblue;
-
-}
-
-header.navbar.navbar-fixed-top.navbar-inverse {
-  background-color: darkblue;
-  color: white;
-} 
-
-h1 {
-}
-
-h2 {
-  color: $gray_dark;
-}
-
-h3 {
-  color: $gray_dark;
-}
+/* color of menu item while hovered */
+ 
+.glyphicons:hover,
+.dropdown-menu > li a:hover,
+.dropdown-menu > li > a:hover,
+.navbar-nav > li > a:hover,
+.navbar-nav > open > a:hover,
+.navbar-brand {
+  color: darkgreen !important;
+ }
