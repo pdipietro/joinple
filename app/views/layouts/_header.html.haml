@@ -7,14 +7,15 @@
         %span.icon-bar
         %span.icon-bar
       %a.navbar-brand.logo{ :href => "#{root_path}" }
-        %img.banner.logo{ :src => "#{image_url('work_logo.png')}", :height => "46px" }
+        - sn = "#{get_social_name}_logo.png"
+        %img.banner.logo{ :src => "#{image_url(sn)}", :height => "46px" }
       %a.navbar-brand{ :href => "#{root_path}" }
         = "#{get_social_name.humanize}"
       .btn-group{ :role => "toolbar" }
       - unless logged_in?
         %button.btn{ :type => "button" }
           = link_to root_path do
-            %span.glyphicons.glyphicons-home
+            %span.glyphicons.icon-home
             Home
         .btn-group{ :role => "toolbar" }
           %button.btn.btn-default{ :type => "button" }
@@ -27,7 +28,7 @@
             .btn-group{ :role => "group" }
               %button.btn{ :type => "button" }
                 = link_to current_user do
-                  %span.glyphicons.glyphicons-home
+                  %span.glyphicons.icon-home
                   My home
             .btn-group{ :role => "group" }
               %button.btn{ :type => "button" }
@@ -63,6 +64,39 @@
                 %span.caret
                 %span.sr-only 
               %ul.dropdown-menu
+                %li
+                  = link_to root_path do
+                    %span.glyphicons.glyphicons-group
+                    My preferites
+                %li
+                  = link_to root_path do
+                    %span.glyphicons.glyphicons-chat
+                    My groups
+                %li
+                  = link_to root_path do
+                    %span.glyphicons.glyphicons-picture
+                    my workgroups
+                %li
+                  = link_to root_path do
+                    %span.glyphicons.glyphicons-picture
+                    my networks
+                %li
+                  = link_to root_path do
+                    %span.glyphicons.glyphicons-chat
+                    my chats
+                %li
+                  = link_to root_path do
+                    %span.glyphicons.glyphicons-picture
+                    my posts
+                %li
+                  = link_to root_path do
+                    %span.glyphicons.glyphicons-picture
+                    My likes
+                %li
+                  = link_to root_path do
+                    %span.glyphicons.glyphicons-picture
+                    My images
+                %li.divider
                 %li
                   = link_to current_user do
                     %span.glyphicons.glyphicons-user

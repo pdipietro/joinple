@@ -1,14 +1,22 @@
-%li.nav-header
-  %span
-    My preferites
-    %span.pull-right{"data-toggle" => "collapse", "data-target" => ".row_preferite"} X
-  %ul#test.nav.nav-list.collapse.in
-    %li
-      %span.glyphicons.glyphicons-tag
-        %a{:href => "/account/", :title => "Edit user accounts"} preferred 1
-    %li
-      %span.glyphicons.glyphicons-tags 
-        %a{:href => "/account/", :title => "Edit user accounts"} preferred 2
-    %li
-      %span.glyphicons.glyphicons-star-half
-        %a{:href => "/account/", :title => "Edit user accounts"} preferred 3
+.section
+  .ul.list-group.title
+    %li.list-group-item
+      Preferites
+      %span.caret
+    %span{ :id => "myspan", "aria-labelled-by" => "dropdownSharedGroups", :display => "block"} 
+      %li.list-group-item
+        %a{ :role => "menuitem", :href => "/ticket_list.cfm" }
+          %span.glyphicons.glyphicons-tag
+          Preferred 1
+      %li.list-group-item
+        %a{ :role => "menuitem", :href => "/ticket_list.cfm" }
+          %span.glyphicons.glyphicons-tag
+          Preferred  2
+      %li.list-group-item
+        %a{ :role => "menuitem", :href => "/ticket_list.cfm" }
+          %span.glyphicons.glyphicons-tag
+          Preferred  3
+      %li.list-group-item
+        %a{ :role => "menuitem", :href => "/ticket_list.cfm" }
+          %span.glyphicons.glyphicons-tag
+          Preferred  4

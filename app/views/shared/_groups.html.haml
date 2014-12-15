@@ -1,23 +1,30 @@
-%li.nav-header
-  %span
-    My groups
-    %span.pull-right{"data-toggle" => "collapse", "data-target" => ".row_test"} X
-  %ul#test.nav.nav-list.collapse.in
-    %li
-      %span 
-        %a{:href => "/ticket_list.cfm", :title => "Show list of tickets"} My administrated groups
-    %li
-      %span 
-        %a{:href => "/account/", :title => "Edit user accounts"} Join an existing group
-    %li
-      %span 
-        %a{:href => "/account/", :title => "Edit user accounts"} group 1
-    %li
-      %span 
-        %a{:href => "/account/", :title => "Edit user accounts"} group 2
-    %li
-      %span 
-        %a{:href => "/account/", :title => "Edit user accounts"} group 3
-    %li
-      %span 
-        %a{:href => "/account/", :title => "Edit user accounts"} group 4
+.section
+  .ul.list-group.title
+    %li.list-group-item
+      My groups
+      %span.caret
+    %span{ :id => "myspan", "aria-labelled-by" => "dropdownSharedGroups", :display => "block"} 
+      %li.list-group-item
+        %a{ :role => "menuitem", :href => "/ticket_list.cfm" }
+          %span.glyphicons.glyphicons-tag
+          My administrated groups
+      %li.list-group-item
+        %a{ :role => "menuitem", :href => "/ticket_list.cfm" }
+          %span.glyphicons.glyphicons-tag
+          Join an existing group
+      %li.list-group-item
+        %a{ :role => "menuitem", :href => "/ticket_list.cfm" }
+          %span.glyphicons.glyphicons-tag
+          group 1
+      %li.list-group-item
+        %a{ :role => "menuitem", :href => "/ticket_list.cfm" }
+          %span.glyphicons.glyphicons-tag
+          group 2
+      %li.list-group-item
+        %a{ :role => "menuitem", :href => "/ticket_list.cfm" }
+          %span.glyphicons.glyphicons-tag
+          group 3
+      %li.list-group-item
+        %a{ :role => "menuitem", :href => "/ticket_list.cfm" }
+          %span.glyphicons.glyphicons-tag
+          group 4

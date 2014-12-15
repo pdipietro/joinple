@@ -22,3 +22,4 @@ Rails.application.config.assets.precompile += %w( ./../fonts/glyphicons-halfling
 Rails.application.config.assets.precompile += %w( ./../fonts/glyphicons-halfling.woff2 )
 Rails.application.config.assets.precompile += %w( glyphicons.css )
 Rails.application.config.assets.precompile += %w( glyphicons-bootstrap.css )
+Rails.application.config.assets.precompile += %w( fontastic.css )

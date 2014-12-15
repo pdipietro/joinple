@@ -1,9 +1,16 @@
 - @user ||= current_user
 .stats
-  %a{:href => follows_user_path(@user)}
-    %strong#following.stat
-      = "#{pluralize(@user.follows.count,'following')}"
-  %a{:href => is_followed_by_user_path(@user)}
-    %strong#followers.stat
+  %ul.nav.nav-pills{ :role => "tablist" }
+    %li{ :role => "presentation" }
+      %a{:href => follows_user_path(@user)}
+        - followings = @user.follows.count
+        = followings == 1 ? 'following' : 'following'.pluralize
+        %span.badge
+          = followings
+    %li{ :role => "presentation" }
+      %a{:href => is_followed_by_user_path(@user)}
+        - followers = @user.follows.count + 2
+        = followers == 1 ? 'follower' : 'follower'.pluralize
+        %span.badge
+          = followers
       - u = User.follows.query_as(:o).where("o:User { }")
-      = "#{pluralize(@user.follows.count,'follower')}"
