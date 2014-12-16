@@ -24,6 +24,8 @@ module Gsn
       g.orm             :neo4j
  #     g.test_framework  :test_unit, fixture: true
  #     g.template_engine :haml
+      g.stylesheets      false
+      g.javascripts      false
  
     end
 

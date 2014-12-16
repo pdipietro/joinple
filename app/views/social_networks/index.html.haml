@@ -1,0 +1,23 @@
+%h1 Listing social_networks
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Description
+      %th
+      %th
+      %th
+      
+  %tbody
+    - @social_networks.each do |social_network|
+      %tr
+        %td= social_network.name
+        %td= social_network.description
+        %td= link_to 'Show', social_network
+        %td= link_to 'Edit', edit_social_network_path(social_network)
+        %td= link_to 'Destroy', social_network, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Social network', new_social_network_path

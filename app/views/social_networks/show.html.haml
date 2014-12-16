@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @social_network.name
+%p
+  %b Description:
+  = @social_network.description
+
+= link_to 'Edit', edit_social_network_path(@social_network)
+\|
+= link_to 'Back', social_networks_path

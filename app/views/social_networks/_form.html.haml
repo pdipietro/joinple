@@ -1,0 +1,16 @@
+= form_for @social_network do |f|
+  - if @social_network.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@social_network.errors.count, "error")} prohibited this social_network from being saved:"
+      %ul
+        - @social_network.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :description
+    = f.text_field :description
+  .actions
+    = f.submit 'Save'
