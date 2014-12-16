@@ -8,3 +8,22 @@
 .navbar-brand {
   color: blue !important;
  }
+
+ /* color for headers of aside columns */
+
+ul.list-group.title > li.list-group-item:first-child {
+  background-color: #f8f8f8;
+  color: blue;
+
+}
+
+ul.list-group.title > li:not(first-child) {
+  border-left: 0px;
+  border-right: 0px;
+  border: 0px;
+  padding: 0px 8px;
+}
+
+span.transparent {
+  color: transparent;
+}

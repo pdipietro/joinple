@@ -1,17 +1,17 @@
-%li.nav-header
-  %span
-    My Images
-    %span.pull-right{"data-toggle" => "collapse", "data-target" => ".row_image"} X
-  %ul#test.nav.nav-list.collapse.in
-    %li
-      %span 
-        %a{:href => "/ticket_list.cfm", :title => "Show list of tickets"} My images
-    %li
-      %span 
-        %a{:href => "/account/", :title => "Edit user accounts"} image 1
-    %li
-      %span 
-        %a{:href => "/account/", :title => "Edit user accounts"} image 2
-    %li
-      %span 
-        %a{:href => "/account/", :title => "Edit user accounts"} image 3
+.section
+  %ul.list-group.title
+    %li.list-group-item
+      %span.glyphicons.icon-picture
+      Images
+    %li.list-group-item
+      %a{ :role => "menuitem", :href => "/ticket_list.cfm" }
+        %span.glyphicons.icon-dot.transparent
+        show all
+    %li.list-group-item
+      %a{ :role => "menuitem", :href => "/ticket_list.cfm" }
+        %span.glyphicons.glyphicons-tag
+        Image 1
+    %li.list-group-item
+      %a{ :role => "menuitem", :href => "/ticket_list.cfm" }
+        %span.glyphicons.glyphicons-tag
+        Image 2

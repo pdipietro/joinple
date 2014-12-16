@@ -1,14 +1,17 @@
-%li.nav-header
-  %span
-    My likes (uncertain)
-    %span.pull-right{"data-toggle" => "collapse", "data-target" => ".row_like"} X
-  %ul#test.nav.nav-list.collapse.in
-    %li
-      %span 
-        %a{:href => "/account/", :title => "Edit user accounts"} like 1
-    %li
-      %span 
-        %a{:href => "/account/", :title => "Edit user accounts"} like 2
-    %li
-      %span 
-        %a{:href => "/account/", :title => "Edit user accounts"} like 3
+.section
+  %ul.list-group.title
+    %li.list-group-item
+      %span.glyphicons.icon-like-2
+      Likes
+    %li.list-group-item
+      %a{ :role => "menuitem", :href => "/ticket_list.cfm" }
+        %span.glyphicons.icon-dot.transparent
+        Like 1
+    %li.list-group-item
+      %a{ :role => "menuitem", :href => "/ticket_list.cfm" }
+        %span.glyphicons.glyphicons-tag
+        Like 2
+    %li.list-group-item
+      %a{ :role => "menuitem", :href => "/ticket_list.cfm" }
+        %span.glyphicons.glyphicons-tag
+        Like 3

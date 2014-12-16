@@ -1,9 +1,8 @@
 .section
-  .ul.list-group.title
+  %ul.list-group.title
     %li.list-group-item
-      My groups
-      %span.caret
-    %span{ :id => "myspan", "aria-labelled-by" => "dropdownSharedGroups", :display => "block"} 
+      %span.glyphicons.icon-group
+      Groups
       %li.list-group-item
         %a{ :role => "menuitem", :href => "/ticket_list.cfm" }
           %span.glyphicons.glyphicons-tag
@@ -28,3 +27,5 @@
         %a{ :role => "menuitem", :href => "/ticket_list.cfm" }
           %span.glyphicons.glyphicons-tag
           group 4
+
+

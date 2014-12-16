@@ -2,25 +2,14 @@
   - provide(:title, @user.full_name)
   %aside.col-md-3
     %section.user_info= render 'shared/user_info', object: @user
-    =#%ul.nav.nav-list
-    =#%section.user_info= render 'shared/user_info', object: @user
     = render 'shared/stats'
-    =# render 'shared/aside_menu'
     %section#myworkroom= render 'shared/preferites'
+    %section#mydiscussion= render 'shared/discussions'
     %section#mygroups= render 'shared/groups'
-    = render 'shared/workgroups'
-    = render 'shared/networks'
-    %section.workrooms= render 'shared/workrooms'
-    =#  %section.posts= render 'shared/posts'
-    %section.chats= render 'shared/chats'
-    %section.likes= render 'shared/likes'
-    %section.images= render 'shared/images'
-    =# %section.post_form= render 'shared/post_form'
-
-    \.col-md-8
-    \  %h3 Post Feed
-    \  = render 'shared/feed'
-
+    %section#mycommunities= render 'shared/communities'
+    %section#mychats= render 'shared/chats'
+    %section#mylikes= render 'shared/likes'
+    %section#myimages= render 'shared/images'
 
   .col-md-9
     - @posts = @user.owns.query_as(:o).where("o:Post").pluck(:o)
