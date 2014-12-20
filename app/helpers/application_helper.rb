@@ -1,5 +1,7 @@
 module ApplicationHelper
 
+  ALLOWED_DOMAIN_SERVER = ["ssdcafe","test"]
+
   # Returns the full title on a per-page basis.
   def full_title(page_title = '')
     base_title = "a Generic Social Network"
@@ -16,13 +18,19 @@ module ApplicationHelper
   end
 
   def compute_social_name
-      sn = request.domain.split(".").first
-      if (sn == "ssdcafe")
-        u = root_url
-        sn = u[u.rindex("//")+2..-1].split("ssdcafe").first[0..-2]
-        puts "url split: #{sn}"
+      sn = request.domain.split(".").first.downcase
+      if ALLOWED_DOMAIN_SERVER.include? sn
+        u = root_url.downcase
+        sn = u[u.rindex("//")+2..-1].split(sn).first[0..-2]
+        puts "url split: #{sn}, root_url: #{u}"
       end 
+      sn = sn.start_with? "test." ? sn.split(".")[1] : sn 
       sn == "lavoro" ? "work" : sn
+  end
+
+  # admin services are reserved to admin users only
+  def check_admin_user
+    redirect_to(root_url) unless current_user.admin?
   end
 
 end
