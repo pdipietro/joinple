@@ -24,6 +24,9 @@ class LanguagesController < ApplicationController
   # POST /languages
   # POST /languages.json
   def create
+    puts "__________________ params ____________________"
+    puts params
+    puts language_params
     @language = Language.new(language_params)
 
     respond_to do |format|
@@ -69,6 +72,6 @@ class LanguagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def language_params
-      params.require(:language).permit(:name, :description)
+      params.require(:language).permit(:code, :description)
     end
 end

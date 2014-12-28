@@ -1,0 +1,6 @@
+= link_to likes_user_path(:ouuid => post.uuid)  do
+  %span.glyphicons.icon-like-1
+  - likes = post.likes_to.count
+  - if likes > 0
+    %span.badge
+      = likes

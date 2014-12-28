@@ -21,3 +21,8 @@
 
 en:
   hello: "Hello world"
+  date:
+    formats:
+      default: "%Y-%m-%d"
+      short: "%b %d"
+      long: "%B %d, %Y"

@@ -1,11 +1,5 @@
 Rails.application.routes.draw do
 
-
- 
-  resources :social_networks
-
-  resources :languages
-
   root                     'static_pages#home'
   get    'about'     =>    'static_pages#about'
   get    'help'      =>    'static_pages#help'
@@ -21,37 +15,22 @@ Rails.application.routes.draw do
 
 
 #  resources :account_activations, only: [:edit]
-  resources :password_resets,     only: [:new, :create, :edit, :update]
+  resources :password_resets, only: [:new, :create, :edit, :update]
 
   resources :users do
     member do
-      get :following, :followers, :follows, :is_followed_by
+      get :following, :followers, :likes, :preferes,  :follows, :is_followed_by #, :likes_to, :is_prefered_by
     end
   end
 
   resources :users
-  resources :posts #,               only: [:create, :destroy]
 
+# administrative resources
 
+  resources :posts, constraints: AuthConstraint.new     #,               only: [:create, :destroy]
+  resources :social_networks, constraints: AuthConstraint.new
+  resources :languages, constraints: AuthConstraint.new
+  resources :groups, constraints: AuthConstraint.new
+  resources :likes, constraints: AuthConstraint.new, only: [:add, :remove]
 
-
-
-
-=begin
-  root                    'static_pages#home'
-  get   'about'     =>    'static_pages#about'
-  get   'help'      =>    'static_pages#help'
-  get   'contact'   =>    'static_pages#contact'
-
-  get   'login'     =>    'sessions#new'
-  post  'login'     =>    'sessions#create'
-  get   'signup'    =>    'users#new'
-  delete 'logout'   =>    'sessions#destroy'
-
-  resources :account_activations, only: [:edit]
-  resources :users
-
-
-  resources :password_resets,     only: [:new, :create, :edit, :update]
-=end
 end

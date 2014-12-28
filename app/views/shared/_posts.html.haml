@@ -1,11 +1,15 @@
-%h1 Posts
+%h1 Discussions
+%h3 Start a new discussion
+= form_for Post.new do |f|
+  = render 'shared/error_messages', object: f.object
+  .hidden_field{:is_owned_by => @user.id}
+  .field
+    = f.label :title
+    = f.text_field :title
+  .field
+    = f.label :content
+    = f.text_area :content
+  .actions
+    = f.submit 'Publish'
 - @posts.each do |post|
-  %ol
-    %h3 
-      =post.title
-    %p 
-      = post.content
-    %p
-      %small
-        = post.created_at
-    %hr
+  = render partial:'shared/post', object: post

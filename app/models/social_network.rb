@@ -1,6 +1,13 @@
 class SocialNetwork 
   include Neo4j::ActiveNode
-  property :name, type: String
-  property :description, type: String
+  include Uuid
+  include CreatedAtUpdatedAt
+  include IsOwnedBy
+  include Name
+  include Description
+
+  property  :goals,  :type =>   String
+
+  has_many  :out, :speaks, type: :speaks
 
 end

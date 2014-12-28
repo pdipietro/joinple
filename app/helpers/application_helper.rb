@@ -22,15 +22,22 @@ module ApplicationHelper
       if ALLOWED_DOMAIN_SERVER.include? sn
         u = root_url.downcase
         sn = u[u.rindex("//")+2..-1].split(sn).first[0..-2]
-        puts "url split: #{sn}, root_url: #{u}"
+        #puts "url split: #{sn}, root_url: #{u}"
       end 
-      sn = sn.start_with? "test." ? sn.split(".")[1] : sn 
+       #puts "sn pre #{sn}"
+      sn = sn.start_with?("test.") ? sn.split(".")[1] : sn 
+       #puts "sn post #{sn}"
       sn == "lavoro" ? "work" : sn
   end
 
   # admin services are reserved to admin users only
   def check_admin_user
     redirect_to(root_url) unless current_user.admin?
+  end
+
+  # admin services are reserved to admin users only
+  def current_user
+    session.current_user
   end
 
 end

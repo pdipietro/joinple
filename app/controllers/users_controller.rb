@@ -19,6 +19,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
+    render 'user_posts'
   end
 
   # GET /users/new
@@ -79,6 +80,22 @@ class UsersController < ApplicationController
     #end
   end
 
+  # likes /user/object
+  def likes
+    ouuid = params[:ouuid]
+    puts "object #{ouuid}"
+     #like = User.find(params[:id]).as(:u).where("(u)-[r:likes]->(o { uuid : #{ouuid} })")
+     #like = User.as(:u).where("(u:User { uuid : current_user })-[r:likes]->(o { uuid : #{ouuid} })").pluck(:o)
+     like = User.as(:u).likes(:o).where("u.uuid = '#{current_user.uuid}' AND o.uuid = '#{ouuid}'").pluck(:o)
+    if like.count == 0
+        current_user.likes << params[:object]
+    else
+        puts "should delete! ...."
+        like = User.as(:u).likes(:o).where("u.uuid = '#{current_user.uuid}' AND o.uuid = '#{ouuid}'")..delete(:r)
+        puts "deleted #{like}"
+    end
+  end
+
   private
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -99,8 +116,8 @@ class UsersController < ApplicationController
       redirect_to(root_url) unless current_user?(@user)
     end
 
-    def admin_user
-      # deleting a user is not allowed
+    # admin services are reserved to admin users only
+    def check_admin_user
       redirect_to(root_url) unless current_user.admin?
     end
 

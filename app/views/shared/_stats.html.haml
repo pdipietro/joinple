@@ -9,8 +9,7 @@
           = followings
     %li{ :role => "presentation" }
       %a{:href => is_followed_by_user_path(@user)}
-        - followers = @user.follows.count + 2
+        - followers = @user.is_followed_by.count
         = followers == 1 ? 'follower' : 'follower'.pluralize
         %span.badge
           = followers
-      - u = User.follows.query_as(:o).where("o:User { }")

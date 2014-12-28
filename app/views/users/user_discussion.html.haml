@@ -1,0 +1,6 @@
+- if logged_in?
+  = render 'shared/left_menu'
+
+  .col-md-9#main
+    - @posts = @user.owns.query_as(:o).where("o:Post").order("o.created_at desc").pluck(:o)
+    = render 'shared/posts', object: @posts

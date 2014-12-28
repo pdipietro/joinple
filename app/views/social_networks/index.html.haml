@@ -1,10 +1,12 @@
-%h1 Listing social_networks
+%h1 Listing social networks
 
 %table
   %thead
     %tr
       %th Name
       %th Description
+      %th Languages
+      %th Goals
       %th
       %th
       %th
@@ -14,6 +16,8 @@
       %tr
         %td= social_network.name
         %td= social_network.description
+        %td= social_network.speaks
+        %td= social_network.goals
         %td= link_to 'Show', social_network
         %td= link_to 'Edit', edit_social_network_path(social_network)
         %td= link_to 'Destroy', social_network, :method => :delete, :data => { :confirm => 'Are you sure?' }

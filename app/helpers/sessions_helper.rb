@@ -5,6 +5,7 @@ module SessionsHelper
   def log_in(user)
      session[:social_network_name] = compute_social_name
      session[:user_id] = user.id
+     session[:admin] = user.admin
   end
 
   # Remembers a user in a persistent session.
@@ -18,6 +19,7 @@ module SessionsHelper
   def current_user
     if (user_id = session[:user_id])
       @current_user ||= User.find(user_id)
+      puts "current_user-1: #{@current_user.id}"
     elsif (user_id = cookies.permanent.signed[:user_id])
       user = User.find(user_id)
       if user && user.authenticated?(:remember, cookies[:remember_token])
@@ -26,7 +28,9 @@ module SessionsHelper
       else
         @current_user = nil
       end
+      puts "current_user-2: #{@current_user.id}"
     end
+   @current_user
   end
 
   # Returns true if the user is logged in, false otherwise.
@@ -38,6 +42,7 @@ module SessionsHelper
   def log_out
     forget(current_user)
     session.delete(:user_id)
+    session.delete(:admin)
     @current_user = nil
   end
 
@@ -64,12 +69,23 @@ module SessionsHelper
     session[:forwarding_url] = request.url if request.get?
   end
 
+  # Stores the latest URL requested
+  def store_latest_url
+    session[:latest_url] = request.url if request.get?
+    puts "session[:latest_url]: #{session[:latest_url]} @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+
+  end
+
+  # Redirect to latest url
+  def redirect_back
+    redirect_to session[:latest_url]
+  end
+
   # check if the social network is changed
   def check_social_network
     puts "check_social_network - logged_in? = #{logged_in?}"
     if logged_in?
       actual = compute_social_name
-      puts "compute_social_name (actual): #{actual}, session[:social_network_name] (old): #{session[:social_network_name]}"
       if session[:social_network_name] != actual
           log_out 
           flash[:warning] = "Please, you need to login when changing social network."
@@ -81,8 +97,11 @@ module SessionsHelper
   def get_social_name
     sn = session[:social_network_name]
     sn = compute_social_name if sn.nil?
-    puts "sn: #{sn} in get_social_name"
     sn
+  end
+
+  def is_admin?
+    !!session[:admin]
   end
 
 end

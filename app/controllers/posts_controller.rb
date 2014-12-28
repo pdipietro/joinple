@@ -2,6 +2,8 @@ class PostsController < ApplicationController
   before_action :check_social_network
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_user, only: [:create, :destroy]
+  before_action :store_latest_url, only: [:create, :edit, :update]
+
 
   def create
   end
@@ -12,22 +14,27 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    notice "Posts.index"
+  #  @users = User.as(:t).where('true = true WITH t ORDER BY t.first_name, t.last_name desc')
+    @posts = Post.all.order(created_at:  :desc)
   end
 
   def self.find user
-    @posts = Post.all.is_owned_by.match_to(user)
+    notice "Posts.self.find user"
+    @posts = Post.as(:u).all.is_owned_by.match_to(user).order(u.created_at:  :desc)
   end
 
   # GET /posts/1
   # GET /posts/1.json
-  def show
-    @posts = Post.all.is_owned_by.match_to(user)
+  def show user
+    notice "Posts.show user"
+    @posts = Post.as(:u).all.is_owned_by.match_to(user).order(u.created_at:  :desc)
   end
 
   # GET /posts/new
   def new
     @post = Post.new
+    @user = current_user
   end
 
   # GET /posts/1/edit
@@ -37,12 +44,15 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(post_params)
-
+    @post = Post.new(post_params, is_owned_by: current_user)
+     puts "session[:latest_url] in post.create: #{session[:latest_url]} §§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§"
     respond_to do |format|
       if @post.save
+        @post.is_owned_by = current_user.uuid
+  
+        format.html { redirect_to session[:latest_url], notice = 'Post was successfully created.' }
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
-        format.json { render :show, status: :created, location: @post }
+        format.json { render :show, status: :created, location: @post, user: @post.is_owned_by }
       else
         format.html { render :new }
         format.json { render json: @post.errors, status: :unprocessable_entity }
@@ -74,6 +84,11 @@ class PostsController < ApplicationController
     end
   end
 
+  def get_current_user
+     current_user
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
@@ -82,6 +97,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:content, :user)
+      params.require(:post).permit(:content, :title, :is_owned_by, :user)
     end
 end
