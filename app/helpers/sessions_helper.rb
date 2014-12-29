@@ -48,9 +48,13 @@ module SessionsHelper
 
   # Forgets a persistent session.
   def forget(user)
-    user.forget
-    cookies.delete(:user_id)
-    cookies.delete(:remember_token)
+    begin
+      rescue
+        user.forget
+      ensure
+      cookies.delete(:user_id)
+      cookies.delete(:remember_token)
+    end
   end
 
   # Returns true if the given user is the current user.
@@ -91,7 +95,18 @@ module SessionsHelper
           flash[:warning] = "Please, you need to login when changing social network."
           redirect_to login_path
       end
+      true
     end
+=begin
+    puts "check_social_network 22222222 - logged_in? = #{logged_in?}"
+    if logged_in? && session[:social_network_name] = compute_social_name
+       true
+    else
+       log_out 
+       flash[:warning] = "Please, you need to login when changing social network."
+       redirect_to login_path
+    end
+=end
   end
 
   def get_social_name

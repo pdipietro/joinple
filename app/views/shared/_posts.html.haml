@@ -2,7 +2,6 @@
 %h3 Start a new discussion
 = form_for Post.new do |f|
   = render 'shared/error_messages', object: f.object
-  .hidden_field{:is_owned_by => @user.id}
   .field
     = f.label :title
     = f.text_field :title

@@ -2,7 +2,8 @@ source 'https://rubygems.org'
 
 ruby '2.1.5'
 
-gem 'rails',                   '4.2.0.rc1'
+#gem 'rails',                   '4.2.0.rc1'
+gem 'rails',                   '~>  4.2.0'
 gem 'bcrypt',                  '3.1.7'
 gem 'faker',                   '1.4.2'
 gem 'carrierwave',             '0.10.0'
@@ -40,7 +41,8 @@ group :production do
   gem 'unicorn',        '4.8.3'
 end
 
-gem "neo4j", "~> 3.0.0"
+#gem "neo4j", "~> 3.0.0"
+gem "neo4j", "~> 4.0.0.rc.1"
 #gem 'neo4j-will_paginate', github: 'neo4jrb/neo4j-will_paginate', branch: 'master'
 #gem "neo4j-will_paginate_redux"
 

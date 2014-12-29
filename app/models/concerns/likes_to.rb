@@ -3,7 +3,7 @@ module LikesTo
   include SessionsHelper
 
   included do 
-    has_many  :in,  :likes_to, model_class: User, origin: :likes
+    has_many  :in,  :likes_to, rel_class: Likes
   end
 
 end

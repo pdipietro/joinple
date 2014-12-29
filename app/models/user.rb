@@ -49,9 +49,11 @@ class User
 
   # User application rels
 
-  has_many  :out, :likes, type: :likes, model_class: false
+#  has_many  :out, :likes, type: :likes, model_class: false
+  has_many  :out, :likes, rel_class: Likes
   has_many  :out, :follows, type: :follows, model_class: false
-  has_many  :out, :owns, type: :owns, model_class: false
+#  has_many  :out, :owns, type: :owns, model_class: false
+  has_many  :out, :owns, rel_class: Owns
   has_many  :out, :preferes, type: :preferes, model_class: false
 
 

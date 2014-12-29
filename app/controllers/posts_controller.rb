@@ -44,11 +44,12 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(post_params, is_owned_by: current_user)
+    #@post = Post.new(post_params, is_owned_by: current_user)
+    @post = Post.new(post_params)
      puts "session[:latest_url] in post.create: #{session[:latest_url]} §§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§"
     respond_to do |format|
       if @post.save
-        @post.is_owned_by = current_user.uuid
+         rel = Owns.create(from_node: current_user, to_node: @post)
   
         format.html { redirect_to session[:latest_url], notice = 'Post was successfully created.' }
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
@@ -87,7 +88,6 @@ class PostsController < ApplicationController
   def get_current_user
      current_user
   end
-
 
   private
     # Use callbacks to share common setup or constraints between actions.

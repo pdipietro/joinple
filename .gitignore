@@ -11,7 +11,8 @@ bower_components
 
 # Ignore the Neo4j database.
 /db/neo4j
-
+/db/neo4j-2.1.5
+/db/neo4j-2.2.0-M02
 
 # Ignore all logfiles and tempfiles.
 
@@ -21,7 +22,7 @@ bower_components
 /simple_token_authentication
 /dist
 
-# Ignore all 'sve' file
+# Ignore all 'save' file
 /test-save 
 /spec-save
 /bower_components-save

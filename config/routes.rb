@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 #  get    'password_resets/edit'
 
 
-#  resources :account_activations, only: [:edit]
+  resources :account_activations, only: [:edit]
   resources :password_resets, only: [:new, :create, :edit, :update]
 
   resources :users do
@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   resources :social_networks, constraints: AuthConstraint.new
   resources :languages, constraints: AuthConstraint.new
   resources :groups, constraints: AuthConstraint.new
-  resources :likes, constraints: AuthConstraint.new, only: [:add, :remove]
+
+  post      'likes/:id/:class/:rel_type'   =>    'likes#edit', constraints: AuthConstraint.new, :as => :onerel
 
 end

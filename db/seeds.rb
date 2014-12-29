@@ -29,15 +29,20 @@ end
 
 users = User.order(:created_at).take(6)
 5.times do
-  content = Faker::Lorem.sentence(5)
+  content = Faker::Lorem.sentence(25)
   title = Faker::Lorem.words(4).join(" ")
   users.each  do |user| 
      p = Post.create!( 
         title: Faker::Lorem.words(4).join(" "), 
-        content: Faker::Lorem.sentence(5), 
+        content: Faker::Lorem.sentence(25), 
         is_owned_by: user
      ) 
      puts "User: #{user}"
      puts "Post: #{p}"
   end
 end
+
+# define languages
+p = Language.create!( code: "it-it", description: "Italiano (Italia)" )
+p = Language.create!( code: "en-us", description: "English (United States)" )
+  
