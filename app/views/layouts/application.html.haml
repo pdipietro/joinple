@@ -19,6 +19,7 @@
       - flash.each do |message_type, message|
         %div{:class => "alert alert-#{message_type}"}= message
       = yield
-    -#.container
-      = render 'layouts/footer'
-      = debug(params) if Rails.env.development?
+    = if Rails.env.development?
+      .container
+        =# render 'layouts/footer'
+        = debug(params) if Rails.env.development?
