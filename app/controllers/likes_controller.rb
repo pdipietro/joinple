@@ -8,21 +8,23 @@ class LikesController < ApplicationController
      @class = params[:class]
      @rel_type = params[:rel_type].downcase
      puts "******** 0) ID: #{@id} - class: #{@class}"
-     dest = Neo4j::Session.query("match (dest:#{@class} { uuid : '#{@id}' }) return dest").first[0]
-     puts "******** 1) ID: #{@id}, dest: #{dest}, dest.class: #{dest.class}"
-    # dest = current_user.likes.first_rel_to(dest)
-    # puts "******** 2) ID: #{@id}, dest: #{dest}"
+     @dest = Neo4j::Session.query("match (dest:#{@class} { uuid : '#{@id}' }) return dest").first[0]
+     puts "******** 1) ID: #{@id}, dest: #{@dest}, dest.class: #{@dest.class}"
  
      like = Neo4j::Session.query("match (u:User { uuid : '#{current_user.uuid}' })-[rel:#{@rel_type}]->(dest:#{@class} { uuid : '#{@id}' }) return rel")
-    # like = Likes.where(from_node: current_user, to_node: dest)
      puts "like: #{like}"
     if like.count == 0
        base = Object.const_get("#{@rel_type.capitalize}::#{@rel_type.capitalize}")
-       rel = base.create(from_node: current_user, to_node: dest)
+       rel = base.create(from_node: current_user, to_node: @dest)
     else
        like = Neo4j::Session.query("match (u:User { uuid : '#{current_user.uuid}' })-[rel:#{@rel_type}]->(dest:#{@class} { uuid : '#{@id}' }) delete rel")
     end
-    head :ok
+    
+    @a = ["##{@dest.uuid}",@dest]
+    @a
+    @dest
+    respond_to do |format|
+        format.js
+    end
   end
-
 end

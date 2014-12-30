@@ -10,5 +10,6 @@
     = f.text_area :content
   .actions
     = f.submit 'Publish'
-- @posts.each do |post|
-  = render partial:'shared/post', object: post
+#posts_grid
+  - @posts.each do |post|
+    = render partial:'shared/post', object: post
