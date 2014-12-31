@@ -4,27 +4,30 @@ class Group
 
   include Uuid
   include CreatedAtUpdatedAt
-  include Content
 
   include IsOwnedBy
-  include IsFollowedBy
-  include LikesTo
 
-  property  :title,  :type =>   String, presence: true
+  property  :title,        :type =>   String, presence: true
+  property  :description,  :type =>   String
+  property  :is_open,      :type =>   Boolean, default: false
+  property  :is_private,   :type =>   Boolean, default: false
 
-  has_many  :out, :child, type: :has_post, model_class: Post
-  has_one   :in,  :parent, type: :has_post, model_class: Post
+  has_many  :in,  :has_discussion, rel_class: BelongsTo  # Post
+  has_many  :in,  :has_member, rel_class: MemberOf      # User
+  has_many  :in,  :is_administered_by, model_class: User, origin: :is_admin
+  has_many  :in,  :is_followed_by, rel_class: Follows    # User
+  has_many  :in,  :likes_to, rel_class: Likes            # :any
+  has_one   :out, :belongs_to, rel_class: BelongsTo      # belongs to Group | SocialNetwork
 
+  validates   :title, length: { minimum: 6 }
+  validates   :description, length: { minimum: 3 }
 
-  def self.find_by user
-      PostsController.find user
-  end  
+#  def self.find_by user
+#      PostsController.find user
+#  end  
 
-  def check_current_user
-      is_owned_by = PostsController.get_current_user if is_owned_by.nil?
-  end
-
-  property :title, type: String
-  property :description, type: String
+#  def check_current_user
+#      is_owned_by = PostsController.get_current_user if is_owned_by.nil?
+#  end
 
 end

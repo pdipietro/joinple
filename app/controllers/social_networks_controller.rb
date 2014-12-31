@@ -4,7 +4,10 @@ class SocialNetworksController < ApplicationController
   # GET /social_networks
   # GET /social_networks.json
   def index
-    @social_networks = SocialNetwork.all
+    @social_networks = SocialNetwork.all.order(created_at:  :desc)
+    respond_to do |format|
+        format.js
+    end
   end
 
   # GET /social_networks/1

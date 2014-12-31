@@ -7,8 +7,6 @@ class User
   include Uuid
   include CreatedAtUpdatedAt
   include SecurePassword
-  include LikesTo
-  include IsFollowedBy
 
   attr_accessor :remember_token
   attr_accessor :activation_token
@@ -49,13 +47,12 @@ class User
 
   # User application rels
 
-#  has_many  :out, :likes, type: :likes, model_class: false
-  has_many  :out, :likes, rel_class: Likes
-  has_many  :out, :follows, type: :follows, model_class: false
-#  has_many  :out, :owns, type: :owns, model_class: false
-  has_many  :out, :owns, rel_class: Owns
-  has_many  :out, :preferes, type: :preferes, model_class: false
-
+  has_many  :out, :likes, rel_class: Likes              # :any
+  has_many  :out, :follows, rel_class: Follows          # :any
+  has_many  :in,  :is_followed_by, rel_class: Follows   # User
+  has_many  :in,  :use_language, rel_class: Speaks      # Language
+  has_many  :out, :owns, rel_class: Owns                # :any
+  has_many  :out, :is_member_of, rel_class: MemberOf    # Group
 
   # Remembers a user in the database for use in persistent sessions.
   def remember
@@ -136,7 +133,5 @@ class User
                                                     BCrypt::Engine.cost
        BCrypt::Password.create(string, cost: cost)
      end
-
-
 
 end

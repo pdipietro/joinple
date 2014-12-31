@@ -1,0 +1,20 @@
+.row.nomargin.col-sm-6.col-md-4{ :id => "#{user.uuid}" }
+  .thumbnail
+    .container-fluid.nopadding
+      .user-owner
+        = link_to user_path(user.uuid), :remote => :true do
+          = gravatar_for user, size: 128
+      .user
+        = "#{user.full_name}"
+      .post-title
+        =# user.title
+      .post-content
+        =# user.content
+      .post-glyps
+        = link_to onerel_path(user,'User','likes'), :method => :user, :remote => :true do
+          %span.glyphicons.icon-like-1
+          - likes = user.query_as(:p).match("(p)<-[r:likes]-(u:User)").pluck(:u).count
+          - if likes > 0
+            %span.badge
+              = likes
+        -#  Like

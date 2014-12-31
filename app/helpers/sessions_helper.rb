@@ -64,7 +64,7 @@ module SessionsHelper
   
    # Redirects to stored location (or to the default).
   def redirect_back_or(default)
-    redirect_to(session[:forwarding_url] || default)
+    redirect_to(session[:forwarding_url] || default, format: :js)
     session.delete(:forwarding_url)
   end
 
@@ -74,16 +74,15 @@ module SessionsHelper
   end
 
   # Stores the latest URL requested
-  def store_latest_url
-    session[:latest_url] = request.url if request.get?
-    puts "session[:latest_url]: #{session[:latest_url]} @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-
-  end
+#  def store_latest_url
+#    session[:latest_url] = request.url # if request.get?
+#    puts "session[:latest_url]: #{session[:latest_url]} @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+#  end
 
   # Redirect to latest url
-  def redirect_back
-    redirect_to session[:latest_url]
-  end
+#  def redirect_back
+#    redirect_to session[:latest_url]
+#  end
 
   # check if the social network is changed
   def check_social_network

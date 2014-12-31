@@ -2,14 +2,20 @@
 .stats
   %ul.nav.nav-pills{ :role => "tablist" }
     %li{ :role => "presentation" }
-      %a{:href => follows_user_path(@user)}
-        - followings = @user.follows.count
-        = followings == 1 ? 'following' : 'following'.pluralize
+      %a{:href => follows_user_path(@user.uuid)}
+        -# followings_number = followings_count(@user.uuid)
+        -# followings_number = @user.is_following.User.count
+        - followings_number = @user.rels(dir: :outgoing, type: :follows, label: :User).count
+        - puts "followings: #{followings_number}"
+        = followings_number == 1 ? 'following' : 'following'.pluralize
         %span.badge
-          = followings
+          = followings_number
     %li{ :role => "presentation" }
-      %a{:href => is_followed_by_user_path(@user)}
-        - followers = @user.is_followed_by.count
-        = followers == 1 ? 'follower' : 'follower'.pluralize
+      %a{:href => is_followed_by_user_path(@user.uuid)}
+        -# followers_number = followers_count(@user.uuid)
+        -# followers_number = @user.is_followed_by.User.count
+        - followers_number = @user.rels(dir: :incoming, type: :follows, label: :User).count
+        - puts "followers: #{followers_number}"
+        = followers_number == 1 ? 'follower' : 'follower'.pluralize
         %span.badge
-          = followers
+          = followers_number

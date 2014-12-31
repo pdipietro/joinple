@@ -1,31 +1,20 @@
-.section
-  %ul.list-group.title
-    %li.list-group-item
-      %span.glyphicons.icon-group
-      Groups
-      %li.list-group-item
-        %a{ :role => "menuitem", :href => "/ticket_list.cfm" }
-          %span.glyphicons.glyphicons-tag
-          My administrated groups
-      %li.list-group-item
-        %a{ :role => "menuitem", :href => "/ticket_list.cfm" }
-          %span.glyphicons.glyphicons-tag
-          Join an existing group
-      %li.list-group-item
-        %a{ :role => "menuitem", :href => "/ticket_list.cfm" }
-          %span.glyphicons.glyphicons-tag
-          group 1
-      %li.list-group-item
-        %a{ :role => "menuitem", :href => "/ticket_list.cfm" }
-          %span.glyphicons.glyphicons-tag
-          group 2
-      %li.list-group-item
-        %a{ :role => "menuitem", :href => "/ticket_list.cfm" }
-          %span.glyphicons.glyphicons-tag
-          group 3
-      %li.list-group-item
-        %a{ :role => "menuitem", :href => "/ticket_list.cfm" }
-          %span.glyphicons.glyphicons-tag
-          group 4
-
-
+%h1 Groups
+%h3 Create a new Group
+= form_for Group.new do |f|
+  = render 'shared/error_messages', object: f.object
+  .field
+    = f.label :title
+    = f.text_field :title
+  .field
+    = f.label :description
+    = f.text_area :description
+  .field
+    = f.label :is_open 
+    = f.check_box :is_open
+  .field
+    = f.label :is_private
+    = f.check_box :is_private
+  .actions
+    = f.submit 'Create'
+- @groups.each do |group|
+  = render partial:'shared/group', object: group

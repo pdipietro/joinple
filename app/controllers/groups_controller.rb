@@ -1,15 +1,26 @@
 class GroupsController < ApplicationController
+  before_action :check_social_network
   before_action :set_group, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in_user, only: [:create, :destroy]
 
   # GET /groups
   # GET /groups.json
   def index
-    @groups = Group.all
+    @groups = Group.all.order(created_at:  :desc)
+
+    respond_to do |format|
+        format.js
+    end
   end
 
   # GET /groups/1
   # GET /groups/1.json
   def show
+    @groups = Group.find(@id)
+
+    respond_to do |format|
+        format.js
+    end
   end
 
   # GET /groups/new
@@ -26,10 +37,12 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
 
+    rel = Owns.create(from_node: current_user, to_node: @group) if @group.save
+    
     respond_to do |format|
       if @group.save
-        format.html { redirect_to @group, notice: 'Group was successfully created.' }
-        format.json { render :show, status: :created, location: @group }
+        format.html { redirect_to(request.env["HTTP_REFERER"]) }
+        format.json { render :show, status: :created, location: @group, user: @group.is_owned_by }
       else
         format.html { render :new }
         format.json { render json: @group.errors, status: :unprocessable_entity }
@@ -69,6 +82,6 @@ class GroupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def group_params
-      params.require(:group).permit(:title, :description)
+      params.require(:group).permit(:title, :description, :is_open, :is_private)
     end
 end

@@ -27,9 +27,10 @@ Rails.application.routes.draw do
 
 # administrative resources
 
-  resources :posts, constraints: AuthConstraint.new     #,               only: [:create, :destroy]
-  resources :social_networks, constraints: AuthConstraint.new
   resources :languages, constraints: AuthConstraint.new
+  resources :social_networks, constraints: AuthConstraint.new
+
+  resources :posts, constraints: AuthConstraint.new     #,               only: [:create, :destroy]
   resources :groups, constraints: AuthConstraint.new
 
   post      'likes/:id/:class/:rel_type'   =>    'likes#edit', constraints: AuthConstraint.new, :as => :onerel

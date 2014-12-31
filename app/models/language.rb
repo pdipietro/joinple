@@ -16,11 +16,7 @@ class Language
   before_create :check_default
   before_save :check_default
 
-
-  has_many  :in, :is_used_by, type: :speaks, model_class: false
-#  has_many  :in, :speaks, origin: :speaks
-#  has_many  :out, :is_used_by, type: :speaks, model_class: false
-#  has_many  :in, :is_used_by, origin: :speaks
+  has_many  :out, :is_spoken_by, rel_class: Speaks
 
   def check_default
     self.code = self.code.downcase    

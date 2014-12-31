@@ -1,0 +1,4 @@
+%h1 Users
+#users_grid
+  - @users.each do |user|
+    = render partial:'shared/user', object: user

@@ -31,22 +31,22 @@
                 = likes
           -#  Like
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          = link_to root_path do
+          = link_to root_path, :remote => :true do
             %span.glyphicons.icon-comment-3
-            - comments = post.child.count
+            - comments = 17 #post.child.count
             - if comments > 0
               %span.badge
                 = comments
           -#  Comment
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          = link_to root_path do
+          = link_to root_path, :remote => :true do
             %span.glyphicons.icon-share-outline
           -#  Share
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          = link_to root_path do
+          = link_to root_path, :remote => :true do
             %span.glyphicons.icon-reply
           -#  Reply
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          = link_to root_path do
+          -#= link_to root_path, :remote => :true do
             %span.glyphicons.icon-star-4
           -#  Preferite

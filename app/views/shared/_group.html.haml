@@ -1,0 +1,38 @@
+.row.nomargin{ :id => "#{group.uuid}" }
+  .thumbnail
+    .container-fluid.nopadding
+      -# owner = post.is_owned_by
+      - owner = group.query_as(:p).match("(p)<-[r:owns]-(u:User)").pluck(:u).first
+      = puts "Owner: #{owner} --------------------------------------------------------"
+      %aside.col-xs-1.nomargin
+        .post-owner
+          = gravatar_for owner, size: 32
+          = link_to root_path do
+            %span.glyphicons.icon-triangle-up
+          = rand(0...1000)
+          %br
+          = link_to root_path do
+            %span.glyphicons.icon-triangle-down
+      .col-xs-9
+        .post-header
+          = " - by #{owner.full_name} - #{group.created_at.strftime('%F at %H:%M')}"
+        .post-title
+          = group.title
+        .post-content
+          = group.description
+        .post-glyps
+          = link_to onerel_path(group,'Group','likes'), :method => :post, :remote => :true do
+            %span.glyphicons.icon-like-1
+            - likes = group.query_as(:p).match("(p)<-[r:likes]-(u:User)").pluck(:u).count
+            - if likes > 0
+              %span.badge
+                = likes
+          -#  Like
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          = link_to root_path do
+            %span.glyphicons.icon-share-outline
+          -#  Join
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          = link_to root_path do
+            %span.glyphicons.icon-star-4
+          -#  Preferite

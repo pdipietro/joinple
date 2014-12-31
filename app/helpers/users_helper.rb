@@ -39,5 +39,22 @@ module UsersHelper
     true
   end
 
+  def followers(uuid)
+     Neo4j::Session.query("match (follower:User)-[r:follows]->(:User { uuid : '#{uuid}'}) return follower")
+  end
+
+  def followings(uuid)
+     Neo4j::Session.query("match (following:User)<-[r:follows]-(:User { uuid : '#{uuid}'}) return following")
+  end
+
+  def followers_count(uuid)
+     x = Neo4j::Session.query("match (follower:User)-[r:follows]->(:User { uuid : '#{uuid}'}), count(follower) as c return c")
+     z=x.next
+   end
+
+  def followings_count(uuid)
+     x = Neo4j::Session.query("match (following:User)<-[r:follows]-(:User { uuid : '#{uuid}'}), count(following) as c return c")
+     z=x.next
+  end
 
 end

@@ -13,12 +13,16 @@ class UsersController < ApplicationController
   #  @users = User.as(:t).where('true = true').paginate(:page => params[:page], :per_page => 20)
   #  @users = User.as(:t).where('true = true WITH t ORDER BY t.first_name, t.last_name desc').paginate(:page => params[:page], :per_page => 20)
   #  @users = User.all.paginate(page: params[:page])
+     respond_to do |format|
+         format.js
+     end
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
+    @posts = Post.all.order(created_at:  :desc)
     render 'user_posts'
   end
 
