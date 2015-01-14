@@ -1,0 +1,5 @@
+%li
+  = link_to session_switch_path(social_network.name.downcase), :method => :post, :remote => :true do
+    %span.glyphicons.icon-log-in
+    = social_network.name.downcase
+  

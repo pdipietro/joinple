@@ -1,6 +1,6 @@
 module ApplicationHelper
 
-  ALLOWED_DOMAIN_SERVER = ["ssdcafe","test"]
+  ALLOWED_DOMAIN_SERVER = ["ssdcafe","test","crowdupcafe"]
 
   # Returns the full title on a per-page basis.
   def full_title(page_title = '')
@@ -22,11 +22,12 @@ module ApplicationHelper
       if ALLOWED_DOMAIN_SERVER.include? sn
         u = root_url.downcase
         sn = u[u.rindex("//")+2..-1].split(sn).first[0..-2]
-        #puts "url split: #{sn}, root_url: #{u}"
+        puts "url split: #{sn}, root_url: #{u}"
       end 
-       #puts "sn pre #{sn}"
-      sn = sn.start_with?("test.") ? sn.split(".")[1] : sn 
-       #puts "sn post #{sn}"
+       puts "sn pre #{sn}"
+       sn = sn.start_with?("test.") ? sn.split(".")[1] : sn 
+       sn = sn.start_with?("dev.") ? sn.split(".")[1] : sn 
+       puts "sn post #{sn}"
       sn == "lavoro" ? "work" : sn
   end
 

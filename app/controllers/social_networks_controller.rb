@@ -23,7 +23,7 @@ class SocialNetworksController < ApplicationController
       respond_to do |format|
         format.js
     end
-end
+  end
 
   # GET /social_networks/1/edit
   def edit

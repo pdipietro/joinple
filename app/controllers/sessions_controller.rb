@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  before_action :check_social_network
+  before_action :check_social_network, only: [:new, :create]
   #render_to :js
 
   def new
@@ -38,4 +38,24 @@ class SessionsController < ApplicationController
     redirect_to root_url
   end
 
+  def switch
+     sn = params[:sn].downcase         
+     oldsn = get_social_name
+     puts "Params: #{sn}, old: #{oldsn} *******************************************************************************************"
+     unless sn == compute_social_name
+       session[:social_network_name] = sn
+       base = ENV['RAILS_ENV']
+       case base
+          when "test"
+            puts 'redirect_to "http://test.#{sn}.crowdupcafe.com"'
+            redirect_to "http://test.#{sn}.crowdupcafe.com"
+          when "development"
+            puts 'redirect_to "http://dev.#{sn}.crowdupcafe.com"'
+            redirect_to "http://dev.#{sn}.crowdupcafe.com"
+          else
+            puts 'redirect_to "http://#{sn}.crowdupcafe.com"'
+            redirect_to "http://#{sn}.crowdupcafe.com"
+       end
+     end
+  end
 end
