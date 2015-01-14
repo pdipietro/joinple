@@ -1,6 +1,8 @@
 class SocialNetworksController < ApplicationController
   before_action :set_social_network, only: [:show, :edit, :update, :destroy]
 
+  respond_to :js
+
   # GET /social_networks
   # GET /social_networks.json
   def index
@@ -18,7 +20,10 @@ class SocialNetworksController < ApplicationController
   # GET /social_networks/new
   def new
     @social_network = SocialNetwork.new
-  end
+      respond_to do |format|
+        format.js
+    end
+end
 
   # GET /social_networks/1/edit
   def edit
@@ -31,6 +36,8 @@ class SocialNetworksController < ApplicationController
 
     respond_to do |format|
       if @social_network.save
+        rel = Owns.create(from_node: current_user, to_node: @social_network) 
+        format.js   { render partial: "insert", object: @social_network, notice: 'Language was successfully created.' }
         format.html { redirect_to @social_network, notice: 'Social network was successfully created.' }
         format.json { render :show, status: :created, location: @social_network }
       else
@@ -72,6 +79,6 @@ class SocialNetworksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def social_network_params
-      params.require(:social_network).permit(:name, :description)
+      params.require(:social_network).permit(:name, :description, :goals)
     end
 end

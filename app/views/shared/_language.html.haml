@@ -1,0 +1,21 @@
+.row.nomargin{ :id => "#{language.uuid}" }
+  .thumbnail
+    .container-fluid.nopadding
+      - owner = language.query_as(:p).match("(p)<-[r:owns]-(u:User)").pluck(:u).first
+      %aside.col-xs-1.nomargin
+        .post-owner
+          - unless owner.nil?
+            = gravatar_for owner, size: 32
+            = link_to root_path do
+              %span.glyphicons.icon-triangle-up
+            = rand(0...1000)
+            %br
+            = link_to root_path do
+              %span.glyphicons.icon-triangle-down
+      .col-xs-9
+        .post-header
+          = " - by #{owner.full_name unless owner.nil?} - #{language.created_at.strftime('%F at %H:%M')}"
+        .post-title
+          = language.code
+        .post-content
+          = language.description

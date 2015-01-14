@@ -1,22 +1,13 @@
-= form_for @social_network do |f|
-  - if @social_network.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@social_network.errors.count, "error")} prohibited this social_network from being saved:"
-      %ul
-        - @social_network.errors.full_messages.each do |msg|
-          %li= msg
-
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :description
-    = f.text_field :description
-  .field
-    = f.label :speaks
-    = f.text_field :speaks
-  .field
-    = f.label :goals
-    = f.text_field :goals
-  .actions
-    = f.submit 'Save'
+.panel.panel-default
+  .panel-heading
+    .panel-title
+      New social network
+  .panel-body
+    = bootstrap_form_for(social_network, :remote => :true ) do |f|
+      = f.text_field :name, :prepend => :name, :placeholder => "Enter the name of the new social network", :hide_label => :true
+      = f.text_field :description, :prepend => :description, :placeholder => "Enter a short description of the social network", :hide_label => :true
+      = f.text_field :goals, :prepend => :goals, :placeholder => "Describe the goals of the social network", :hide_label => :true
+      = f.text_field :use_language, :prepend => "languages", :placeholder => "Select the languages used by the social network", :hide_label => :true
+      %button.btn.btn-default.btn-sm{ :type => "submit", :name => "commit", :hide_label => :true }
+        %span.glyphicon.icon-diff-added
+        Add

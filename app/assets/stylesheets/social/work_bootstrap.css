@@ -5,7 +5,8 @@
 .dropdown-menu > li > a:hover,
 .navbar-nav > li > a:hover,
 .navbar-nav > open > a:hover,
-.navbar-brand {
+.navbar-brand > a:hover,
+button.btn:hover  {
   color: blue !important;
  }
 

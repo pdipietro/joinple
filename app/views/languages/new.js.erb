@@ -1,0 +1,2 @@
+$("#main_center").html("<%= escape_javascript(render 'new', locals: { @language => @language} ) %>" );
+$("#main_content").html("<%= escape_javascript(render 'index', locals: { @languages => @languages } ) %>" );

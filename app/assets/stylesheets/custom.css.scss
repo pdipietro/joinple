@@ -6,8 +6,6 @@ html {
 }
 
 body {
-  padding-top: 60px;    
-
 /*  removed by pdp 2004/12/12
 
   padding-top: 60px;    
@@ -19,7 +17,7 @@ section {
 }
 
 textarea {
-  resize: vertical;
+  resize: vertical; 
 }
 
 .center {
@@ -214,6 +212,9 @@ input {
   height: auto !important;
 }
 
+.input-group-addon {
+  padding: 0 5px !important;
+}
 #error_explanation {
   color: red;
   background-color: transparent !important;
@@ -345,3 +346,47 @@ a.navbar-brand.logo {
   padding-left: 0;
   padding-right: 0;
 }
+
+.adjust-checkbox {
+  top: 14px;
+  left: 4px;
+  background-color: transparent;
+}
+
+input.disabled {
+  cursor: inherit !important;
+  background-color: transparent;
+
+}
+
+.gb_o {
+  display: inline-block;
+  spadding: 10px !important;
+  border: 0px !important;
+  
+}
+
+.gb_i {
+  position: relative;
+  width: 250px;
+  
+}
+
+/*
+
+ul.dropdown-menu.gb_i {
+  right: auto;
+  left: 0;
+}
+
+li.gb_o,
+li.gb_o > a,
+li.gb_o > a > span.glyphicons  {
+  padding: 3px 3px !important;
+}
+
+li.gb_o > a > span.glyphicons {
+  margin-right: 0em !important;
+}
+
+*/

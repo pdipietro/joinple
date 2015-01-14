@@ -21,9 +21,15 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @user = User.find(params[:id])
+    puts "after: #{params} (format: #{request.xhr?})"
+
     @posts = Post.all.order(created_at:  :desc)
-    render 'user_posts'
+    @user = User.find(params[:id])
+#    render js: show
+    respond_to do |format|
+        format.js 
+#        format.html
+    end
   end
 
   # GET /users/new
@@ -49,9 +55,9 @@ class UsersController < ApplicationController
     #    format.json { render :show, status: :created, location: @user }
         @user.send_activation_email
         flash[:info] = "Please check your email to activate your account."
-        redirect_to root_url
+        redirect_to root_url, format: :js
       else
-        render :new
+        render :new, format: :js
        # format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     #end
@@ -65,10 +71,10 @@ class UsersController < ApplicationController
    #   puts "User params: #{user_params} +++++++++++++++++++++++++++++++++++++++++++++++++++++"
       if @user.update(user_params)
         flash[:success] = "Profile updated"
-        redirect_to @user
+        redirect_to @user, format:  :js
    #    format.json { render :show, status: :ok, location: @user }
       else
-        render :edit
+        render :edit, format: :js
    #    format.json { render json: @user.errors, status: :unprocessable_entity }
       end
    # end
@@ -79,7 +85,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     #respond_to do |format|
-      redirect_to users_url, notice: 'User was successfully destroyed.'
+      redirect_to users_url, format: :js, notice: 'User was successfully destroyed.'
     #  format.json { head :no_content }
     #end
   end

@@ -1,0 +1,7 @@
+- if logged_in?
+  %h1 Discussions
+  #main_content
+    %h1
+    - puts "Count: #{@posts.count}"
+    - @posts.each do |post|
+      = render partial: 'shared/post', object: post

@@ -1,1 +1,3 @@
-$("#mainContent").html("<%= escape_javascript(render partial: 'shared/social_networks', locals: { social_networks: @social_networks} ) %>" );
+$("#main_header").html("<%= escape_javascript(render 'header', locals: { social_networks: @social_networks} ) %>" );
+$('<%= escape_javascript( if is_admin? then "#main_add" else "#nil" end ) %>').html("<%= escape_javascript(render partial: 'form', locals: { social_network: SocialNetwork.new } ) %>" );
+$("#main_content").html("<%= escape_javascript(render partial: 'index', locals: { social_networks: @social_networks} ) %>" );

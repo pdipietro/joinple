@@ -1,4 +1,5 @@
-.row.nomargin{ :id => "#{post.uuid}" }
+= puts "Post: #{post}"
+.row.nomargin{ :id => post.uuid }
   .thumbnail
     .container-fluid.nopadding
       -# owner = post.is_owned_by
@@ -33,7 +34,7 @@
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           = link_to root_path, :remote => :true do
             %span.glyphicons.icon-comment-3
-            - comments = 17 #post.child.count
+            - comments = 17 #@post.child.count
             - if comments > 0
               %span.badge
                 = comments

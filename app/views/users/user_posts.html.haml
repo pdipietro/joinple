@@ -1,8 +1,0 @@
-- if logged_in?
-  = render 'shared/left_menu'
-  .col-md-9
-    #mainHeader
-    #mainContent
-      -# @posts = @user.owns.query_as(:o).where("o:Post").order("o.created_at desc").pluck(:o)
-      - @posts = @user.query_as(:o).match("(u)-[r:owns]->(p:Post)").order("p.created_at desc").pluck(:p)
-      = render partial: 'shared/posts', object: @posts

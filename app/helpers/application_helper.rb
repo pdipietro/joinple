@@ -32,7 +32,7 @@ module ApplicationHelper
 
   # admin services are reserved to admin users only
   def check_admin_user
-    redirect_to(root_url) unless current_user.admin?
+    redirect_to(root_url, format: :js) unless current_user.admin?
   end
 
   # admin services are reserved to admin users only

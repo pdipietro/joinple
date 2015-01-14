@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   helper :all
-  protect_from_forgery with: :exception
+  #protect_from_forgery with: :exception
   include SessionsHelper
 
   private
@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
       unless logged_in?
         store_location
         flash[:danger] = "Please log in."
-        redirect_to login_url
+        redirect_to login_url, format: :js
       end
     end
 

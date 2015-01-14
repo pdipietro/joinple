@@ -1,0 +1,16 @@
+$("#main_header").html("<%= escape_javascript(render 'header', locals: { languages: @languages} ) %>" );
+$('<%= escape_javascript( if is_admin? then "#main_add" else "#nil" end ) %>').html("<%= escape_javascript(render partial: 'form', locals: { language: Language.new } ) %>" );
+$("#main_content").html("<%= escape_javascript(render partial: 'show', collection: @languages ) %>" );
+
+
+
+-# %button.btn.btn-danger.btn-sm{ :type => "submit", :name => "commit", :method => :delete, :hide_label => :true }
+      %span.glyphicon.icon-delete-garbage-streamline
+      Delete
+
+
+%div
+  pluto
+  - bootstrap_form_for(@language, :remote => :true ) do |f|
+    %b pippo
+    = f.text_field :description, :prepend => :code, :hide_label => :true

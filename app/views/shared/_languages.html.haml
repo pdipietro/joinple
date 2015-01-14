@@ -1,15 +1,15 @@
-%h1 Discussions
-%h3 Start a new discussion
+%h1 Languages
+%h3 Create a new language
 = form_for Post.new do |f|
   = render 'shared/error_messages', object: f.object
   .field
-    = f.label :title
-    = f.text_field :title
+    = f.label :code
+    = f.text_field :code
   .field
-    = f.label :content
-    = f.text_area :content
+    = f.label :description
+    = f.text_field :description
   .actions
     = f.submit 'Publish'
-#posts_grid
-  - @posts.each do |post|
-    = render partial:'shared/post', object: post
+#languages_grid
+  - @languages.each do |language|
+    = render partial:'shared/language', object: language

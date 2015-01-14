@@ -9,6 +9,6 @@ class SocialNetwork
   property  :goals,  :type =>   String
 
   has_many  :in, :use_language, rel_class: Speaks
-  has_many  :in, :belongs_to, rel_class: BelongsTo
+  #has_many  :in, :belongs_to, rel_class: BelongsTo
 
 end

@@ -1,10 +1,14 @@
 class LanguagesController < ApplicationController
   before_action :set_language, only: [:show, :edit, :update, :destroy]
 
+  respond_to :js
+
   # GET /languages
   # GET /languages.json
   def index
-    @languages = Language.all
+    @languages = Language.all.order(code: :asc)
+    @language = Language.new
+
     respond_to do |format|
         format.js
     end
@@ -13,11 +17,17 @@ class LanguagesController < ApplicationController
   # GET /languages/1
   # GET /languages/1.json
   def show
+  #  respond_to do |format|
+  #      format.js
+  #  end
   end
 
   # GET /languages/new
   def new
     @language = Language.new
+    respond_to do |format|
+        format.js
+    end
   end
 
   # GET /languages/1/edit
@@ -27,16 +37,16 @@ class LanguagesController < ApplicationController
   # POST /languages
   # POST /languages.json
   def create
-    puts "__________________ params ____________________"
-    puts params
-    puts language_params
     @language = Language.new(language_params)
-
+    
     respond_to do |format|
       if @language.save
-        format.html { redirect_to @language, notice: 'Language was successfully created.' }
-        format.json { render :show, status: :created, location: @language }
+         rel = Owns.create(from_node: current_user, to_node: @language)   
+         format.js   { render partial: "insert", object: @language, notice: 'Language was successfully created.' }
+      #  format.html { redirect_to @language, notice: 'Language was successfully created.' }
+      #  format.json { render :show, status: :created, location: @language }
       else
+        format.js   { render :new }
         format.html { render :new }
         format.json { render json: @language.errors, status: :unprocessable_entity }
       end

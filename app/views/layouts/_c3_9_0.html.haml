@@ -1,0 +1,8 @@
+%aside#main_left.col-xs-3
+  - if logged_in?
+    = render partial: 'shared/left_menu', object: current_user
+#main_center.col-xs-9
+  #main_header
+  #main_add
+  #main_content
+%aside#main_right.col-xs-1

@@ -1,15 +1,8 @@
-%h1 Discussions
-%h3 Start a new discussion
-= form_for Post.new do |f|
-  = render 'shared/error_messages', object: f.object
-  .field
-    = f.label :title
-    = f.text_field :title
-  .field
-    = f.label :content
-    = f.text_area :content
-  .actions
-    = f.submit 'Publish'
-#posts_grid
-  - @posts.each do |post|
-    = render partial:'shared/post', object: post
+- if logged_in?
+  -#posts = PostsController.index
+  - posts = @user.query_as(:o).match("(u)-[r:owns]->(p:Post)").order("p.created_at desc").pluck(:p)
+  = "Posts: #{posts}"
+  = "Count: #{posts.count}"
+  - posts.each do |post|
+    = "Post: #{post}"
+    = render 'shared/post', object: post

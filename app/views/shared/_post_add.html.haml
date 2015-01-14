@@ -1,0 +1,11 @@
+%h3 Start a new discussion
+= form_for(Post.new, :remote => :true) do |f|
+  = render 'shared/error_messages', object: f.object
+  .field
+    = f.label :title
+    = f.text_field :title
+  .field
+    = f.label :content
+    = f.text_area :content
+  .actions
+    = f.submit 'Publish'

@@ -1,11 +1,9 @@
 - if logged_in?
-  - provide(:title, @user.full_name)
-  %aside.col-md-3
-    %section.user_info= render 'shared/user_info', object: @user
-    = render 'shared/stats'
-    %section#mypreferred= render 'shared/menu_preferites'
-    %section#mydiscussion= render 'shared/menu_discussions'
-    %section#mygroups= render 'shared/menu_groups'
-    %section#mychats= render 'shared/menu_chats'
-    %section#myimages= render 'shared/menu_images'
+  %section.user_info= render partial: 'shared/user_info', object: @user
+  = render partial: 'shared/stats'
+  %section#mypreferred= render partial: 'shared/menu_preferites'
+  %section#mydiscussion= render partial: 'shared/menu_discussions'
+  %section#mygroups= render partial: 'shared/menu_groups'
+  %section#mychats= render partial: 'shared/menu_chats'
+  %section#myimages= render partial: 'shared/menu_images'
 

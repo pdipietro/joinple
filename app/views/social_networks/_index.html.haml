@@ -1,0 +1,4 @@
+- if logged_in?
+  %h4 Social networks
+  - social_networks.each do |social_network|
+    = render partial: 'show', object: social_network,  locals: { social_network: social_network }
