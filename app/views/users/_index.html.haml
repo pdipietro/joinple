@@ -1,3 +1,4 @@
 - if logged_in?
-  - @users.each do |user|
-    = render partial: 'show', object: user
+  %h4 Users
+  - users.each do |user|
+    = render partial: 'show', object: user,  locals: { user: user }

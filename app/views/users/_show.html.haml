@@ -1,9 +1,9 @@
-.row.nomargin.col-sm-6.col-md-4{ :id => "#{user.uuid}" }
+.row.nomargin.col-xs-3.col-md-4{ :id => "#{user.uuid}" }
   .thumbnail
     .container-fluid.nopadding
       .user-owner
-        = link_to user_path(user.uuid), :remote => :true do
-          = gravatar_for user, size: 128
+        = gravatar_for user, size: 128
+      %br
       .user
         = "#{user.full_name}"
       .post-title

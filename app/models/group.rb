@@ -7,7 +7,7 @@ class Group
 
   include IsOwnedBy
 
-  property  :title,        :type =>   String, presence: true
+  property  :name,         :type =>   String, presence: true
   property  :description,  :type =>   String
   property  :is_open,      :type =>   Boolean, default: false
   property  :is_private,   :type =>   Boolean, default: false
@@ -19,7 +19,7 @@ class Group
   has_many  :in,  :likes_to, rel_class: Likes            # :any
   has_one   :out, :belongs_to, rel_class: BelongsTo      # belongs to Group | SocialNetwork
 
-  validates   :title, length: { minimum: 6 }
+  validates   :name, length: { minimum: 6 }
   validates   :description, length: { minimum: 3 }
 
 #  def self.find_by user

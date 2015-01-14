@@ -7,6 +7,7 @@ class GroupsController < ApplicationController
   # GET /groups.json
   def index
     @groups = Group.all.order(created_at:  :desc)
+    puts "Groups: #{@groups.count} - #{@groups}"
 
     respond_to do |format|
         format.js
@@ -26,6 +27,9 @@ class GroupsController < ApplicationController
   # GET /groups/new
   def new
     @group = Group.new
+    respond_to do |format|
+        format.js
+    end
   end
 
   # GET /groups/1/edit
@@ -37,10 +41,10 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
 
-    rel = Owns.create(from_node: current_user, to_node: @group) if @group.save
-    
     respond_to do |format|
       if @group.save
+        rel = Owns.create(from_node: current_user, to_node: @group)
+        format.js   { render partial: "insert", object: @group, notice: 'Group was successfully created.' }
         format.html { redirect_to(request.env["HTTP_REFERER"]) }
         format.json { render :show, status: :created, location: @group, user: @group.is_owned_by }
       else
@@ -82,6 +86,6 @@ class GroupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def group_params
-      params.require(:group).permit(:title, :description, :is_open, :is_private)
+      params.require(:group).permit(:name, :description, :is_open, :is_private)
     end
 end

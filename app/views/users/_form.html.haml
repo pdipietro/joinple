@@ -1,34 +1,9 @@
-%h1 User
 .panel.panel-default
   .panel-heading
     .panel-title
-      %h4 New User
+      Users
   .panel-body
-    = form_for(@user, :remote => :true ) do |f|
-      = render 'shared/error_messages', object: f.object
-      .field
-        = f.label :nickname
-        = f.text_field :nickname, :placeholder => "Enter your nickname'"
-      .field
-        = f.label :first_name
-        = f.text_field :first_name, :placeholder => "Enter your first name"
-      .field
-        = f.label :last_name, :placeholder => "Enter your last name" 
-        = f.text_field :last_name
-      .field
-        = f.label :email, :placeholder => "Enter your email address" 
-        = f.text_field :email
-      .field
-        = f.label :password, :placeholder => "Enter your password"
-        = f.text_field :password
-      .field
-        = f.label :password_confirmation
-        = f.text_field :password_confirmation, :placeholder => "Repeat your password"
-      .input-group.input-group-sm
-        %span#sizing-addon1.input-group-addon
-          = f.label :nickname 
-          %input.form_control{ :type => :text, :id => :nickname, :placeholder => "Enter your nickname", "aria-describedby" => "sizing-addon1" }
-      .btn.btn-default.btn-sm{ "type" => "submit"}
-        %span.glyphicon.glyphicon-plus
-          = f.submit "Add"
-      %br
+    = bootstrap_form_for(social_network, :remote => :true ) do |f|
+      = f.text_field :first_name, :prepend => :first_name, :disabled => :disabled
+      = f.text_field :last_name, :prepend => :last_name, :disabled => :disabled
+      = f.text_field :nickname, :prepend => :nickname, :disabled => :disabled
