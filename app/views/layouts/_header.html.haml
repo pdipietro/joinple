@@ -15,24 +15,24 @@
           %span.caret
         %ul.dropdown-menu{ :role => "menu"}
           %li
-            = link_to new_group_path, :remote => :true do
+            = link_to privacy_path, :remote => :true do
               %span.glyphicons.icon-group
               Privacy
           %li
-            = link_to root_path, :remote => :true do
+            = link_to contacts_path, :remote => :true do
               %span.glyphicons.icon-chat-bubble-two
               Contacts
           %li
-            = link_to root_path, :remote => :true do
+            = link_to terms_path, :remote => :true do
               %span.glyphicons.icon-chat-bubble-two
               Terms & Conditions
           %li.divider
           %li
-            = link_to root_path, :remote => :true do
+            = link_to help_path, :remote => :true do
               %span.glyphicons.icon-picture
               Help
           %li
-            = link_to new_group_path, :remote => :true do
+            = link_to about_path, :remote => :true do
               %span.glyphicons.icon-group
               About
       - unless logged_in?
@@ -90,7 +90,7 @@
               %span.caret
             %ul.dropdown-menu{ :role => "menu" }
               -#%li
-                = link_to root_path, :remote => :true do
+                = link_to dummy_path, :remote => :true do
                   %span.glyphicons.icon-network
                   My community
               %li
@@ -98,7 +98,7 @@
                   %span.glyphicons.icon-comment-discussion
                   My discussions
               %li
-                = link_to root_path, :remote => :true do
+                = link_to dummy_path, :remote => :true do
                   %span.glyphicons.icon-star-4
                   My preferites
               %li
@@ -106,19 +106,19 @@
                   %span.glyphicons.icon-group
                   My groups
               %li
-                = link_to root_path, :remote => :true do
+                = link_to dummy_path, :remote => :true do
                   %span.glyphicons.icon-chat-bubble-two
                   My chats
               -#%li
-                = link_to root_path, :remote => :true do
+                = link_to dummy_path, :remote => :true do
                   %span.glyphicons.icon-smiley-frown
                   My posts
               %li
-                = link_to root_path, :remote => :true do
+                = link_to dummy_path, :remote => :true do
                   %span.glyphicons.icon-like-2
                   My likes
               %li
-                = link_to root_path, :remote => :true do
+                = link_to dummy_path, :remote => :true do
                   %span.glyphicons.icon-picture
                   My images
               %li.divider
@@ -151,7 +151,7 @@
                     %span.glyphicons.icon-language
                     Languages
                 %li
-                  = link_to root_path, :remote => :true  do
+                  = link_to dummy_path, :remote => :true  do
                     %span.glyphicons.glyphicons-address-book
                     Administrators
                 %li.divider

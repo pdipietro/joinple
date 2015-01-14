@@ -22,4 +22,10 @@ class LikesController < ApplicationController
         format.js
     end
   end
+
+  def dummy
+    respond_to do |format|
+        format.js
+    end
+  end
 end

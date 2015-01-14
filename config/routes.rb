@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
 
-  root                     'static_pages#home' #, defaults: { :format => "js"}, :remote => :true
+  root                     'static_pages#home'#, defaults: { :format => "js"}, :remote => :true
   get    'about'     =>    'static_pages#about', defaults: { :format => "js"}, :remote => :true
+  get    'contacts'  =>    'static_pages#contacts', defaults: { :format => "js"}, :remote => :true
   get    'help'      =>    'static_pages#help', defaults: { :format => "js"}, :remote => :true
-  get    'contact'   =>    'static_pages#contact', defaults: { :format => "js"}, :remote => :true
+  get    'privacy'   =>    'static_pages#privacy', defaults: { :format => "js"}, :remote => :true
+  get    'terms'     =>    'static_pages#terms', defaults: { :format => "js"}, :remote => :true
 
   get    'login'     =>    'sessions#new', defaults: { :format => "js"}, :remote => :true
   post   'login'     =>    'sessions#create', defaults: { :format => "js"}, :remote => :true
@@ -13,7 +15,6 @@ Rails.application.routes.draw do
 
 #  get    'password_resets/new'
 #  get    'password_resets/edit'
-
 
   resources :account_activations, only: [:edit], defaults: { :format => "js"}, :remote => :true
   resources :password_resets, only: [:new, :create, :edit, :update], defaults: { :format => "js"}, :remote => :true
@@ -37,5 +38,9 @@ Rails.application.routes.draw do
   resources :groups, constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
 
   post      'likes/:id/:class/:rel_type'   =>    'likes#edit', constraints: AuthConstraint.new, :as => :onerel
+  get       'likes'                        =>    'likes#dummy', constraints: AuthConstraint.new, :as => :dummy
+
+
+
 
 end

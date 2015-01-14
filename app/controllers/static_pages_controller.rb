@@ -1,28 +1,21 @@
 class StaticPagesController < ApplicationController
-  respond_to :js
 
-  def home
-   respond_to do |format|
-     format.js
-     format.html 
-   end
+  def about
+  end
+
+  def contacts
   end
 
   def help
-   respond_to do |format|
-     format.js 
-   end
   end
 
-  def about
-   respond_to do |format|
-     format.js 
-   end
+  def home
   end
 
-  def contact
-   respond_to do |format|
-     format.js 
-   end
+  def privacy
   end
+
+  def terms
+  end
+
 end

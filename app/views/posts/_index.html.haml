@@ -1,3 +1,4 @@
 - if logged_in?
-  - @posts.each do |post|
-    = render partial: 'show', object: post
+  %h4 Discussions
+  - posts.each do |post|
+    = render partial: "show", object: post,  locals: { post: post }

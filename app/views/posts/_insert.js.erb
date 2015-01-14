@@ -1,1 +1,1 @@
-$("#main_content").children().before("<%= escape_javascript(render 'show', locals: { show: @post} ) %>" );
+$("#main_content").children().before("<%= escape_javascript(render partial: 'show', locals: { post: @post} ) %>" );

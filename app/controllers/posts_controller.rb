@@ -7,7 +7,7 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
   #  @users = User.as(:t).where('true = true WITH t ORDER BY t.first_name, t.last_name desc')
-    @posts = Post.all.order(name: :asc)
+    @posts = Post.all.order(created_at: :desc)
 
     respond_to do |format|
         format.js

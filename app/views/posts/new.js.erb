@@ -1,2 +1,2 @@
-$("#main_center").html("<%= escape_javascript(render 'new' ) %>" );
-$("#main_content").html("<%= escape_javascript(render 'index', locals: { languages: @social_networks} ) %>" );
+$("#main_center").html("<%= escape_javascript(render 'new', locals: { post: @post} ) %>" );
+$("#main_content").html("<%= escape_javascript(render 'index', locals: { posts: @posts } ) %>" );
