@@ -341,14 +341,14 @@ a.navbar-brand.logo {
   margin-bottom: 3px !important;
 }
 
-.row.nomargin {
+.srow.nomargin {
   margin-left: 0;
   margin-right: 0;
 }
 
-.container-fluid.nopadding {
-  padding-left: 0;
-  padding-right: 0;
+
+.margin-right {
+  margin-right: 15px !important;     
 }
 
 .adjust-checkbox {
@@ -363,6 +363,8 @@ input.disabled {
 
 }
 
+/*
+
 .gb_o {
   display: inline-block;
   spadding: 10px !important;
@@ -375,6 +377,8 @@ input.disabled {
   width: 250px;
   
 }
+
+*/
 
 /*
 

@@ -1,4 +1,5 @@
 - if logged_in?
   %h4 Groups
   - groups.each do |group|
-    = render partial: "show", locals: { group: group }
+    .row.nomargin{ :id => "#{group.uuid}" }
+      = render partial: "show", locals: { group: group }

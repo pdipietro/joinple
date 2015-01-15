@@ -1,52 +1,51 @@
-.row.nomargin{ :id => post.uuid }
-  .thumbnail
-    .container-fluid.nopadding
-      -# owner = post.is_owned_by
-      - owner = post.query_as(:p).match("(p)<-[r:owns]-(u:User)").pluck(:u).first
-      = puts "Owner: #{owner} --------------------------------------------------------"
-      %aside.col-xs-1.nomargin
-        .post-owner
-          = gravatar_for owner, size: 32
-          = link_to root_path do
-            %span.glyphicons.icon-triangle-up
-          = rand(0...1000)
-          %br
-          = link_to root_path do
-            %span.glyphicons.icon-triangle-down
-      .col-xs-11
-        .post-header
-          = " - by #{owner.full_name} - #{post.created_at.strftime('%F at %H:%M')}"
-        .post-title
-          = post.title
-        .post-content
-          = post.content
-        .post-glyps
-          =#render 'users/likes', object: post
-          =#link_to "", {:controller => "likes", :action => "set", "id" => post.uuid }, {:method => :post} do
-          = link_to onerel_path(post,'Post','likes'), :method => :post, :remote => :true do
-            %span.glyphicons.icon-like-1
-            - likes = post.query_as(:p).match("(p)<-[r:likes]-(u:User)").pluck(:u).count
-            - if likes > 0
-              %span.badge
-                = likes
-          -#  Like
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          = link_to root_path, :remote => :true do
-            %span.glyphicons.icon-comment-3
-            - comments = 17 #@post.child.count
-            - if comments > 0
-              %span.badge
-                = comments
-          -#  Comment
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          = link_to root_path, :remote => :true do
-            %span.glyphicons.icon-share-outline
-          -#  Share
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          = link_to root_path, :remote => :true do
-            %span.glyphicons.icon-reply
-          -#  Reply
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          -#= link_to root_path, :remote => :true do
-            %span.glyphicons.icon-star-4
-          -#  Preferite
+.thumbnail
+  .container-fluid.nopadding
+    -# owner = post.is_owned_by
+    - owner = post.query_as(:p).match("(p)<-[r:owns]-(u:User)").pluck(:u).first
+    = puts "Owner: #{owner} --------------------------------------------------------"
+    %aside.col-xs-1.nomargin
+      .post-owner
+        = gravatar_for owner, size: 32
+        = link_to root_path do
+          %span.glyphicons.icon-triangle-up
+        = rand(0...1000)
+        %br
+        = link_to root_path do
+          %span.glyphicons.icon-triangle-down
+    .col-xs-11
+      .post-header
+        = " - by #{owner.full_name} - #{post.created_at.strftime('%F at %H:%M')}"
+      .post-title
+        = post.title
+      .post-content
+        = post.content
+      .post-glyps
+        =#render 'users/likes', object: post
+        =#link_to "", {:controller => "likes", :action => "set", "id" => post.uuid }, {:method => :post} do
+        = link_to onerel_path(post,'Post','likes'), :method => :post, :remote => :true do
+          %span.glyphicons.icon-like-1
+          - likes = post.query_as(:p).match("(p)<-[r:likes]-(u:User)").pluck(:u).count
+          - if likes > 0
+            %span.badge
+              = likes
+        -#  Like
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        = link_to root_path, :remote => :true do
+          %span.glyphicons.icon-comment-3
+          - comments = 17 #@post.child.count
+          - if comments > 0
+            %span.badge
+              = comments
+        -#  Comment
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        = link_to root_path, :remote => :true do
+          %span.glyphicons.icon-share-outline
+        -#  Share
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        = link_to root_path, :remote => :true do
+          %span.glyphicons.icon-reply
+        -#  Reply
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        -#= link_to root_path, :remote => :true do
+          %span.glyphicons.icon-star-4
+        -#  Preferite

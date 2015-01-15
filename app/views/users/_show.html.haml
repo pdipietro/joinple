@@ -1,20 +1,18 @@
-.row.nomargin.col-xs-3.col-md-4{ :id => "#{user.uuid}" }
-  .thumbnail
-    .container-fluid.nopadding
-      .user-owner
-        = gravatar_for user, size: 128
-      %br
-      .user
+.thumbnail.margin-right
+  .container-fluid
+    .column
+      .row
+        .user-owner
+          = gravatar_for user, size: 128
+      .row
         = "#{user.full_name}"
-      .post-title
-        =# user.title
-      .post-content
-        =# user.content
-      .post-glyps
-        = link_to onerel_path(user,'User','likes'), :method => :user, :remote => :true do
-          %span.glyphicons.icon-like-1
-          - likes = user.query_as(:p).match("(p)<-[r:likes]-(u:User)").pluck(:u).count
-          - if likes > 0
+      .row
+        = "(#{user.nickname})"
+        .post-glyps
+          = link_to onerel_path(user,'User','likes'), :method => :post, :remote => :true do
+            %span.glyphicons.icon-like-1
+            - likes = user.query_as(:p).match("(p)<-[r:likes]-(u:User)").pluck(:u).count
             %span.badge
               = likes
-        -#  Like
+      .row
+        = render partial: 'shared/stats', locals: { user: user, current: :false }

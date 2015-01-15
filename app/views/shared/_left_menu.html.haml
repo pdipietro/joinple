@@ -1,9 +1,10 @@
 - if logged_in?
-  %section.user_info= render partial: 'shared/user_info', object: @user
-  = render partial: 'shared/stats'
-  %section#mypreferred= render partial: 'shared/menu_preferites'
-  %section#mydiscussion= render partial: 'shared/menu_discussions'
-  %section#mygroups= render partial: 'shared/menu_groups'
-  %section#mychats= render partial: 'shared/menu_chats'
-  %section#myimages= render partial: 'shared/menu_images'
+  - user = current_user
+  %section.user_info= render partial: 'shared/user_info', locals: { user: user }
+  %section#mystats= render partial: 'shared/stats', locals: { user: user, current: user }
+  %section#mypreferred= render partial: 'shared/menu_preferites', locals: { user: user }
+  %section#mydiscussion= render partial: 'shared/menu_discussions', locals: { user: user }
+  %section#mygroups= render partial: 'shared/menu_groups', locals: { user: user }
+  %section#mychats= render partial: 'shared/menu_chats', locals: { user: user }
+  %section#myimages= render partial: 'shared/menu_images', locals: { user: user }
 

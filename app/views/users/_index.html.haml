@@ -1,4 +1,7 @@
 - if logged_in?
   %h4 Users
+  - current = current_user
   - users.each do |user|
-    = render partial: 'show', object: user,  locals: { user: user }
+    - unless user == current
+      .row.col-xs-3.col-md-4{ :id => "#{user.uuid}" }
+        = render partial: 'show', object: user,  locals: { user: user, current: current }

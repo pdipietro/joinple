@@ -10,22 +10,24 @@ class LikesController < ApplicationController
      @dest = Neo4j::Session.query("match (dest:#{@class} { uuid : '#{@id}' }) return dest").first[0]
  
      like = Neo4j::Session.query("match (u:User { uuid : '#{current_user.uuid}' })-[rel:#{@rel_type}]->(dest:#{@class} { uuid : '#{@id}' }) return rel")
-    if like.count == 0
-       base = Object.const_get("#{@rel_type.capitalize}::#{@rel_type.capitalize}")
-       rel = base.create(from_node: current_user, to_node: @dest)
-    else
-       like = Neo4j::Session.query("match (u:User { uuid : '#{current_user.uuid}' })-[rel:#{@rel_type}]->(dest:#{@class} { uuid : '#{@id}' }) delete rel")
-    end
+     if like.count == 0
+        base = Object.const_get("#{@rel_type.capitalize}::#{@rel_type.capitalize}")
+        rel = base.create(from_node: current_user, to_node: @dest)
+     else
+        like = Neo4j::Session.query("match (u:User { uuid : '#{current_user.uuid}' })-[rel:#{@rel_type}]->(dest:#{@class} { uuid : '#{@id}' }) delete rel")
+     end
     
-    @dest
-    respond_to do |format|
-        format.js
-    end
+     partial_name = "user_#{@rel_type}_#{@class.downcase}.js.erb"
+
+     @dest
+     respond_to do |format|
+         format.js { render :action => partial_name, object: @dest, locals: { subject: @class} }
+     end
   end
 
   def dummy
     respond_to do |format|
-        format.js
+        format.js 
     end
   end
 end
