@@ -10,7 +10,7 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w( social/gsn_bootstrap.css )
 Rails.application.config.assets.precompile += %w( social/trace_bootstrap.css )
 Rails.application.config.assets.precompile += %w( social/work_bootstrap.css )
-#Rails.application.config.assets.precompile += %w( social/icon_rollover.css.scss )
+
 Rails.application.config.assets.precompile += %w( ./../fonts/glyphicons-regular.eot )
 Rails.application.config.assets.precompile += %w( ./../fonts/glyphicons-regular.svg )
 Rails.application.config.assets.precompile += %w( ./../fonts/glyphicons-regular.ttf )
@@ -23,3 +23,4 @@ Rails.application.config.assets.precompile += %w( ./../fonts/glyphicons-halfling
 Rails.application.config.assets.precompile += %w( glyphicons.css )
 Rails.application.config.assets.precompile += %w( glyphicons-bootstrap.css )
 Rails.application.config.assets.precompile += %w( fontastic.css )
+Rails.application.config.assets.precompile += %w( bootstrap-multiselect.css )

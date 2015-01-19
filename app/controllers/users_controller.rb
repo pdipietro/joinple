@@ -34,6 +34,7 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
+    puts "ready to call new.js.erb"
     @user = User.new
   end
 
@@ -57,6 +58,7 @@ class UsersController < ApplicationController
         flash[:info] = "Please check your email to activate your account."
         redirect_to root_url, format: :js
       else
+   puts "-------------------------------- user create error: #{@user.errors}"
         render :new, format: :js
        # format.json { render json: @user.errors, status: :unprocessable_entity }
       end

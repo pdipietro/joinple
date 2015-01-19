@@ -41,4 +41,13 @@ module ApplicationHelper
     session.current_user
   end
 
+  # capitalize the first word and any first word after a '.' 
+  def humanize_word(name)
+      name.split('.').map(&:strip).map(&:capitalize).join('. ')
+  end
+
+  # capitalize the first word and any first word after a '.' and add a final '.'
+  def humanize_sentence(sentence)
+      sentence.split('.').map(&:strip).map(&:capitalize).join('. ') + '.'
+  end
 end

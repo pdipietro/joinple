@@ -2,4 +2,4 @@
   %h4 Discussions
   - posts.each do |post|
     .row.nomargin{ :id => post.uuid }
-      = render partial: "show", object: post,  locals: { post: post }
+      = render partial: "show",  locals: { post: post }

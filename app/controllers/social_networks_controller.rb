@@ -7,6 +7,7 @@ class SocialNetworksController < ApplicationController
   # GET /social_networks.json
   def index
     @social_networks = SocialNetwork.all.order(created_at:  :desc)
+ 
     respond_to do |format|
         format.js
     end
@@ -37,10 +38,12 @@ class SocialNetworksController < ApplicationController
     respond_to do |format|
       if @social_network.save
         rel = Owns.create(from_node: current_user, to_node: @social_network) 
-        format.js   { render partial: "insert", object: @social_network, notice: 'Language was successfully created.' }
+
+        format.js   { render partial: "insert", object: @social_network, notice: 'Social network was successfully created.' }
         format.html { redirect_to @social_network, notice: 'Social network was successfully created.' }
         format.json { render :show, status: :created, location: @social_network }
       else
+        format.js { render js: @social_network.errors, status: :unprocessable_entity }
         format.html { render :new }
         format.json { render json: @social_network.errors, status: :unprocessable_entity }
       end
@@ -79,6 +82,6 @@ class SocialNetworksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def social_network_params
-      params.require(:social_network).permit(:name, :description, :goals)
+      params.require(:social_network).permit(:name, :description, :goal)
     end
 end

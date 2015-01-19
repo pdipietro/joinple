@@ -1,1 +1,2 @@
+$('<%= escape_javascript( if is_admin? then "#main_add" else "#nil" end ) %>').html("<%= escape_javascript(render partial: 'form', locals: { post: Post.new } ) %>" );
 $("#main_content").children().before("<%= escape_javascript(render partial: 'show', locals: { post: @post} ) %>" );

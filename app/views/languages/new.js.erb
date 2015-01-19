@@ -1,2 +1,1 @@
-$("#main_center").html("<%= escape_javascript(render 'new', locals: { @language => @language} ) %>" );
-$("#main_content").html("<%= escape_javascript(render 'index', locals: { @languages => @languages } ) %>" );
+$('<%= escape_javascript( if is_admin? then "#main_add" else "#nil" end ) %>').html("<%= escape_javascript(render partial: 'form', locals: { language: @language } ) %>" );

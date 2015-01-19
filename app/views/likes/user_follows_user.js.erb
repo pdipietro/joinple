@@ -1,2 +1,7 @@
+console.log ($("#main_left").hasClass("col-xs-3") == false)
+if ($("#main_left").hasClass("col-xs-3") == false) {
+  $("#page").html("<%= escape_javascript( render partial: 'layouts/c3_9_0' ) %>" );
+}
 $("#<%= escape_javascript(@dest.uuid) %>").html("<%= escape_javascript(render partial: 'users/show', locals: { user: @dest } ) %>" );
 $("#mystats").html("<%= escape_javascript(render partial: 'shared/stats', locals: { user: current_user } ) %>" );
+

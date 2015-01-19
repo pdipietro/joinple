@@ -1,2 +1,2 @@
-$("#page").html("<%= escape_javascript(render 'layouts/c1_10_1' ) %>" );
-$("#main_content").html("<%= escape_javascript(render 'new', locals: { @user => @user }) %>" );
+$("#page").html("<%= escape_javascript(render partial: 'layouts/c1_10_1' ) %>" );
+$("#main_add").html("<%= escape_javascript(render partial: 'form', locals: { user: @user } ) %>" );

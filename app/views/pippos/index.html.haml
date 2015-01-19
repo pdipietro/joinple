@@ -1,0 +1,21 @@
+%h1 Listing pippos
+
+%table
+  %thead
+    %tr
+      %th Pluto
+      %th
+      %th
+      %th
+      
+  %tbody
+    - @pippos.each do |pippo|
+      %tr
+        %td= pippo.pluto
+        %td= link_to 'Show', pippo
+        %td= link_to 'Edit', edit_pippo_path(pippo)
+        %td= link_to 'Destroy', pippo, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Pippo', new_pippo_path

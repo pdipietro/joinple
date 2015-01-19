@@ -1,5 +1,6 @@
 %h1
-  = gravatar_for @user
-  = @user.full_name
-%h3
-  = " (#{@user.nickname})"
+  = user.full_name
+= gravatar_for user
+= render partial: 'shared/stats', locals: { user: user }
+-#%h3
+  = " (#{user.nickname})"

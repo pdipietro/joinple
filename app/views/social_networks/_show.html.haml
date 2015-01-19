@@ -1,6 +1,12 @@
-= bootstrap_form_for(social_network, :remote => :true ) do |f|
-  .disabled
-    = f.text_field :name, :prepend => :name, :placeholder => "Enter the name of the new social network", :hide_label => :true, :disabled => :disabled
-    = f.text_field :description, :prepend => :description, :placeholder => "Enter a short description of the social network", :hide_label => :true, :disabled => :disabled
-    = f.text_field :goals, :prepend => :goals, :placeholder => "Describe the goals of the social network", :hide_label => :true, :disabled => :disabled
-    -# f.text_field :use_language, :prepend => "Use languages", :placeholder => "Select the languages used by the social network", :hide_label => :true, :disabled => :disabled
+.thumbnail
+  .container-fluid.nopadding
+    .col-xs-2
+      .post-header
+      .post-title.left
+        = social_network.name
+    .col-xs-10
+      .post-content
+        = social_network.description
+        %br
+        %br
+        = social_network.goal

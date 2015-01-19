@@ -2,7 +2,6 @@
   .container-fluid.nopadding
     -# owner = post.is_owned_by
     - owner = post.query_as(:p).match("(p)<-[r:owns]-(u:User)").pluck(:u).first
-    = puts "Owner: #{owner} --------------------------------------------------------"
     %aside.col-xs-1.nomargin
       .post-owner
         = gravatar_for owner, size: 32
@@ -14,7 +13,7 @@
           %span.glyphicons.icon-triangle-down
     .col-xs-11
       .post-header
-        = " - by #{owner.full_name} - #{post.created_at.strftime('%F at %H:%M')}"
+        = "by #{owner.full_name} - #{post.created_at.strftime('%F at %H:%M')}"
       .post-title
         = post.title
       .post-content
@@ -30,7 +29,7 @@
               = likes
         -#  Like
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        = link_to root_path, :remote => :true do
+        = link_to dummy_path, :remote => :true do
           %span.glyphicons.icon-comment-3
           - comments = 17 #@post.child.count
           - if comments > 0
@@ -38,14 +37,15 @@
               = comments
         -#  Comment
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        = link_to root_path, :remote => :true do
+        = link_to dummy_path, :remote => :true do
           %span.glyphicons.icon-share-outline
         -#  Share
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        = link_to root_path, :remote => :true do
+        = link_to dummy_path, :remote => :true do
           %span.glyphicons.icon-reply
         -#  Reply
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        -#= link_to root_path, :remote => :true do
+        -#= link_to dummy_path, :remote => :true do
           %span.glyphicons.icon-star-4
         -#  Preferite
+      .response  

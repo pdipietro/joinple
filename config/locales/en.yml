@@ -26,3 +26,23 @@ en:
       default: "%Y-%m-%d"
       short: "%b %d"
       long: "%B %d, %Y"
+  neo4j:
+    errors:
+      models:
+        language:
+          attributes:
+            code:
+              taken: "Language code already used"
+              placeholder: "Enter the language code in the form 'xx' or 'xx-yy'"
+            description:
+              taken: "Language description already used"
+              placeholder: "Enter the language description"
+        user:
+          attributes:
+            nickname:
+              label: "nickname"
+              taken: "Nickname not available: it must be unique in the system"
+            first_name:
+              label: "first name"
+            last_name:
+              label: "last name"

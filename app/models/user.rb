@@ -40,7 +40,8 @@ class User
   validates_uniqueness_of :nickname, case_sensitive:false
   validates   :first_name, :presence => true
   validates   :last_name, :presence => true
-  validates   :email, presence: true, format: { with: VALID_EMAIL_REGEX }
+  validates   :email, presence: true
+  validates   :email, format: { with: VALID_EMAIL_REGEX }
   validates_uniqueness_of :email, case_sensitive:false
   validates   :password, length: { minimum: 6 }, allow_blank: true
 

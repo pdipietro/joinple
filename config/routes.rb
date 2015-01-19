@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :pippos
+
   root                     'static_pages#home'#, defaults: { :format => "js"}, :remote => :true
   get    'about'     =>    'static_pages#about', defaults: { :format => "js"}, :remote => :true
   get    'contacts'  =>    'static_pages#contacts', defaults: { :format => "js"}, :remote => :true

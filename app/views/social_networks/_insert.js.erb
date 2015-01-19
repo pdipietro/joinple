@@ -1,1 +1,1 @@
-$("#main_content").children().before("<%= escape_javascript(render 'show', locals: { show: @social_network} ) %>" );
+$("#main_content_title").children().before("<%= escape_javascript(render partial: 'show', locals: { social_network: @social_network} ) %>" );

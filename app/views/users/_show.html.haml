@@ -5,9 +5,10 @@
         .user-owner
           = gravatar_for user, size: 128
       .row
-        = "#{user.full_name}"
+        = "#{user.first_name}"
+        = "#{user.last_name}"
       .row
-        = "(#{user.nickname})"
+        -#= "(#{user.nickname})"
         .post-glyps
           = link_to onerel_path(user,'User','likes'), :method => :post, :remote => :true do
             %span.glyphicons.icon-like-1

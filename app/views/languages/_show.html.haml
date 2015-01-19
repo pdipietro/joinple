@@ -1,3 +1,16 @@
-= bootstrap_form_for(language, :remote => :true ) do |f|
-  .disabled
-    = f.text_field :description, :prepend => language.code, :hide_label => :true, :disabled => :disabled
+- if language.errors.count == 0
+  %div{ :id => language.uuid }
+    .thumbnail
+      .container-fluid.nopadding
+        .col-xs-2
+          .post-title.left
+            = language.code
+        .col-xs-9
+          .post-content
+            = language.description
+        .col-xs-1
+          .command-button
+            = link_to edit_language_path(language), :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Modify the element" do
+              %span.glyphicon.icon-edit-modify-streamline
+            = link_to language, :method => :delete, :data => { :confirm => 'Are you sure?' }, :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Delete the element" do
+              %span.glyphicon.icon-delete-garbage-streamline

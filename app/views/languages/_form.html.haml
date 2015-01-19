@@ -1,11 +1,14 @@
 .panel.panel-default
   .panel-heading
     .panel-title
-      New language
+      - if defined?(title)
+        = title
+        .button.close{:type => "button", "data-dismiss" => "alert", "aria-label" => "Close" }
+      - else
+        New Language
   .panel-body
     = bootstrap_form_for(language, :remote => :true ) do |f|
-      = f.text_field :code, :prepend => :code, :placeholder => "Enter the language code in the form 'xx' or 'xx-yy'", :hide_label => :true
+      = f.text_field :code, :prepend => :code, :placeholder => "2 chars language code (ISO 639-1), plus an optional hyphen and 2 chars country code", :hide_label => :true
       = f.text_field :description, :prepend => :description, :placeholder => "Enter the language description", :hide_label => :true
-      %button.btn.btn-default.btn-sm{ :type => "submit", :name => "commit", :hide_label => :true }
-        %span.glyphicon.icon-diff-added
-        Add
+      %button.icon_only{ :type => "submit", :name => "commit", :hide_label => :true, :title => "Save the element" } 
+        %span.glyphicon.glyphicon-save

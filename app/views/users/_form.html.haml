@@ -1,9 +1,16 @@
 .panel.panel-default
   .panel-heading
+    Sign up
     .panel-title
-      Users
   .panel-body
-    = bootstrap_form_for(social_network, :remote => :true ) do |f|
-      = f.text_field :first_name, :prepend => :first_name, :disabled => :disabled
-      = f.text_field :last_name, :prepend => :last_name, :disabled => :disabled
-      = f.text_field :nickname, :prepend => :nickname, :disabled => :disabled
+    = bootstrap_form_for(user, :remote => :true ) do |f|
+      -#= render 'shared/error_messages', object: f
+      = f.text_field :nickname, :prepend => :nickname, :placeholder => "Enter your nickname", :hide_label => :true
+      = f.text_field :first_name, :prepend => :first_name, :placeholder => "Enter your first name", :hide_label => :true
+      = f.text_field :last_name, :prepend => :last_name, :placeholder => "Enter your last name", :hide_label => :true
+      = f.text_field :email, :prepend => :email, :placeholder => "Enter your email address", :hide_label => :true
+      = f.text_field :password, :prepend => :password, :placeholder => "Enter your password", :hide_label => :true
+      = f.text_field :password_confirmation, :prepend => :password_confirmation, :placeholder => "Confirm your password", :hide_label => :true
+      %button.btn.btn-default.btn-sm{ :type => "submit", :name => "commit", :hide_label => :true }
+        %span.glyphicon.icon-diff-added
+        Create my account

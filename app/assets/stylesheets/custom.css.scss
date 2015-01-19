@@ -133,10 +133,6 @@ aside {
   section {
     padding: 10px 0;
     margin-top: 20px;
-    &:first-child {
-      border: 0;
-      padding-top: 0;
-    }
     span {
       display: block;
       margin-bottom: 3px;
@@ -159,29 +155,6 @@ aside {
 
 .gravatar_edit {
   margin-top: 15px;
-}
-
-.stats {
-  overflow: auto;
-  margin-top: 0;
-  padding: 0;
-  a {
-    float: left;
-    padding: 0 10px;
-    border-left: 1px solid $gray-lighter;
-    color: gray;
-    &:first-child {
-      padding-left: 0;
-      border: 0;
-    }
-    &:hover {
-      text-decoration: none;
-      color: blue;
-    }
-  }
-  strong {
-    display: block;
-  }
 }
 
 .user_avatars {
@@ -398,3 +371,32 @@ li.gb_o > a > span.glyphicons {
 }
 
 */
+
+
+* [disabled = "disabled"],
+input.disabled {
+  cursor: inherit !important;
+  background-color: transparent;
+}
+
+.command-button {
+  min-width: 40px;
+}
+
+
+.icon-x-circle {
+  color: red !important;
+}
+
+button.icon_only {
+  border: none;
+  padding: none !important;
+  margin: none;
+  width: auto;
+  height: auto;
+  background-color: transparent;
+}
+
+button.icon_only:focus {
+  &:li {}
+}

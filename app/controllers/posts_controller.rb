@@ -40,15 +40,18 @@ class PostsController < ApplicationController
   def create
 
     @post = Post.new(post_params)
-    rel = Owns.create(from_node: current_user, to_node: @post) if @post.save
     
     respond_to do |format|
       if @post.save
+        rel = Owns.create(from_node: current_user, to_node: @post)
+
+        format.js   { render partial: "insert", object: @post, notice: 'Language was successfully created.' }
         format.html { redirect_to(request.env["HTTP_REFERER"]) }
         format.json { render :show, status: :created, location: @post, user: @post.is_owned_by }
       else
         format.html { render :new }
         format.json { render json: @post.errors, status: :unprocessable_entity }
+        format.js { render :new }
       end
     end
   end

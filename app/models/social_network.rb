@@ -6,9 +6,20 @@ class SocialNetwork
   include Name
   include Description
 
-  property  :goals,  :type =>   String
+  property  :goal,  :type =>   String
 
-  has_many  :in, :use_language, rel_class: Speaks
-  #has_many  :in, :belongs_to, rel_class: BelongsTo
+  validates   :name, :presence => true, length: { minimum: 3 }
+  validates_uniqueness_of :name, case_sensitive: false
+  validates   :description, length: { minimum: 4 } #, allow_blank: true
+  validates   :goal, length: { minimum: 4 } #, allow_blank: true
+
+  before_create :check_default
+  before_save :check_default
+
+  def check_default
+    self.name = humanize_word(self.name) if self.name    
+    self.description = humanize_sentence(self.description) if self.description
+    self.goal = humanize_word(self.goal) if self.goal    
+  end
 
 end

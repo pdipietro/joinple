@@ -1,4 +1,4 @@
 - if logged_in?
-  %h4 Languages
+  .h4 Languages
   - languages.each do |language|
-    = render partial: "show", object: language,  locals: { language: language }
+    = render partial: "show", locals: { language: language }

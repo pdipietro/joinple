@@ -1,7 +1,6 @@
 - if logged_in?
   - user = current_user
-  %section.user_info= render partial: 'shared/user_info', locals: { user: user }
-  %section#mystats= render partial: 'shared/stats', locals: { user: user, current: user }
+  %section#user_info= render partial: 'shared/user_info', locals: { user: user }
   %section#mypreferred= render partial: 'shared/menu_preferites', locals: { user: user }
   %section#mydiscussion= render partial: 'shared/menu_discussions', locals: { user: user }
   %section#mygroups= render partial: 'shared/menu_groups', locals: { user: user }

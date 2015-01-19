@@ -1,2 +1,2 @@
-$("#main_center").html("<%= escape_javascript(render 'new', locals: { @group => @group} ) %>" );
-$("#main_content").html("<%= escape_javascript(render 'index', locals: { @groups => @groups } ) %>" );
+$("#main_center").html("<%= escape_javascript(render partial: 'new', locals: { group: Group.new} ) %>" );
+$("#main_content").html("<%= escape_javascript(render partial: 'index', locals: { groups: @groups } ) %>" );

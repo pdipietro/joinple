@@ -4,6 +4,6 @@ class Speaks
 
   from_class  :any
   to_class    Language
-  type 'is_spoken_by'
+  type 'speaks'
 
 end

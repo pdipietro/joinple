@@ -6,6 +6,8 @@
 .navbar-nav > li > a:hover,
 .navbar-nav > open > a:hover,
 .navbar-brand > a:hover,
+.command-button > a:hover,
+.icon_only:hover,
 button.btn:hover  {
   color: red !important;
 }
