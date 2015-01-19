@@ -7,10 +7,12 @@
             = language.code
         .col-xs-9
           .post-content
-            = language.description
+            = language.description 
         .col-xs-1
-          .command-button
-            = link_to edit_language_path(language), :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Modify the element" do
-              %span.glyphicon.icon-edit-modify-streamline
-            = link_to language, :method => :delete, :data => { :confirm => 'Are you sure?' }, :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Delete the element" do
-              %span.glyphicon.icon-delete-garbage-streamline
+          -# if owner_uuid == current_user_uuid or sys_admin
+          - if can_modify?(language)
+            .command-button
+              = link_to edit_language_path(language), :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Modify the element" do
+                %span.glyphicon.icon-edit-modify-streamline
+              = link_to language, :method => :delete, :data => { :confirm => 'Are you sure?' }, :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Delete the element" do
+                %span.glyphicon.icon-delete-garbage-streamline

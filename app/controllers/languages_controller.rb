@@ -8,7 +8,9 @@ class LanguagesController < ApplicationController
   def index
     @languages = Language.all.order(code: :asc)
 
-#    @languages = Neo4j::Session.query("match (language:Language)<-[owns:owns]-(owner:User)").pluck(:language, owner)
+#    @languages = Neo4j::Session.query("match (language:Language)<-[owns:owns]-(owner:User) return language,owner.uuid as owner_uuid")
+
+puts "Languages: #{@languages.first}"
   end
 
   # GET /languages/1

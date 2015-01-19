@@ -110,4 +110,34 @@ module SessionsHelper
     !!session[:admin]
   end
 
+  def current_group
+    session[:current_group]
+  end
+
+  def is_group_admin?
+    !!session[:current_group_admin]
+  end
+
+  def current_group_uuid?
+    current_group.nil? ? nil : current_group.uuid
+  end
+
+  def can_modify?(object)
+      if is_admin?
+          puts "Can Modify? #{object.class.name.singularize}-#{object.uuid} because IS SYS ADMIN!!!"
+          true
+      elsif is_group_admin?
+          puts "Can Modify? #{object.class.name.singularize}-#{object.uuid} because IS GROUP ADMIN!!!"
+          true
+      elsif is_owner?(current_user,object)
+          puts "Can Modify? #{object.class.name.singularize}-#{object.uuid} because IS OWNER!!!"
+          true
+      elsif is_group_owner?(current_group,object)
+          puts "Can Modify? #{object.class.name.singularize}-#{object.uuid} because IS GROUP OWNER!!!"
+          true
+      else
+          false
+      end
+  end
+
 end

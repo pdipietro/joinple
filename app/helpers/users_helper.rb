@@ -57,4 +57,27 @@ module UsersHelper
      z=x.next
   end
 
+  def is_owner?(owner,object)
+     unless owner.nil?
+       x = Neo4j::Session.query("match (object:#{object.class.name.singularize} { uuid : '#{object.uuid}'})<-[owns:owns]-(owner:User { uuid : '#{owner.uuid}'}) return count(owner) as c")
+puts x.next
+       z=x.first[:c]
+       z == 1
+     else
+       false
+     end
+   end
+
+  def is_group_owner?(owner,object)
+     unless owner.nil?
+        x = Neo4j::Session.query("match (object:#{object.class.name.singularize} { uuid : '#{object.uuid}'})<-[owns:owns]-(owner:User { uuid : '#{owner.uuid}'}) return count(owner) as c")
+puts x.next
+        z=x.first[:c]
+        z == 1
+      else
+        false
+      end
+   end
+
+
 end
