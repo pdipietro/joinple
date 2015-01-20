@@ -9,7 +9,6 @@
           .post-content
             = language.description 
         .col-xs-1
-          -# if owner_uuid == current_user_uuid or sys_admin
           - if can_modify?(language)
             .command-button
               = link_to edit_language_path(language), :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Modify the element" do

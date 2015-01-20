@@ -40,7 +40,6 @@ puts "Languages: #{@languages.first}"
          format.html { redirect_to @language, notice: 'Language was successfully created.' }
          format.json { render :show, status: :created, location: @language }
       else
-   puts "+++++++++++++++++++++++ language create error: #{@language.errors}"
         format.js   { render :new, object: @language }
         format.html { render :new }
         format.json { render json: @language.errors, status: :unprocessable_entity }

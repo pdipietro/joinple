@@ -1,14 +1,16 @@
 .panel.panel-default
   .panel-heading
     .panel-title
-      New group
-      - nul = ""
+      - if defined?(title)
+        = title
+        .button.close{:type => "button", "data-dismiss" => "alert", "aria-label" => "Close" }
+      - else
+        New Group
   .panel-body
     = bootstrap_form_for(group, :remote => :true ) do |f|
       = f.text_field :name, :prepend => :name, :placeholder => "Enter the group name ", :hide_label => :true
       = f.text_field :description, :prepend => :description, :placeholder => "Enter the group description", :hide_label => :true
-      = f.text_field :name, :class => "disabled", :disabled => "disabled", :append => f.check_box( :is_open, :label => "", :class => "adjust-checkbox"), :placeholder => "Specify if this group must be open", :hide_label => :true
-      = f.text_field :name, :class => "disabled", :disabled => "disabled", :append => f.check_box( :is_private, :label => "", :class => "adjust-checkbox"), :placeholder => "Specify if this group must be private", :hide_label => :true
-      %button.btn.btn-default.btn-sm{ :type => "submit", :name => "commit", :hide_label => :true }
-        %span.glyphicon.icon-diff-added
-        Add
+      = f.text_field :name, :class => "disabled", :disabled => "disabled", :append => f.check_box( :is_open, :label => "", :class => "adjust-checkbox-right"), :placeholder => "Specify if this group must be open", :hide_label => :true
+      = f.text_field :name, :class => "disabled", :disabled => "disabled", :append => f.check_box( :is_private, :label => "", :class => "adjust-checkbox-right"), :placeholder => "Specify if this group must be private", :hide_label => :true
+      %button.icon_only{ :type => "submit", :name => "commit", :hide_label => :true, :title => "Save the element" } 
+        %span.glyphicon.glyphicon-save

@@ -1,0 +1,2 @@
+$('<%= escape_javascript( if is_admin? then "#main_add" else "#nil" end ) %>').html("<%= escape_javascript(render partial: 'form', locals: { group: Group.new } ) %>" );
+$("#<%= escape_javascript(@group.uuid) %>").html("<%= escape_javascript(render partial: 'show', locals: { group: @group } ) %>" );

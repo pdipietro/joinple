@@ -1,2 +1,1 @@
-$("#main_center").html("<%= escape_javascript(render partial: 'new', locals: { group: Group.new} ) %>" );
-$("#main_content").html("<%= escape_javascript(render partial: 'index', locals: { groups: @groups } ) %>" );
+$('<%= escape_javascript( if is_admin? then "#main_add" else "#nil" end ) %>').html("<%= escape_javascript(render partial: 'form', locals: { group: @group } ) %>" );

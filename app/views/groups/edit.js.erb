@@ -1,0 +1,1 @@
+$('#<%= escape_javascript(@group.uuid) %>').html("<%= escape_javascript(render partial: 'form', locals: { group: @group, title: "Edit group" } ) %>" );
