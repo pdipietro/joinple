@@ -5,6 +5,7 @@ tmp
 .sass-cache
 bower_components
 /vendor/fontastic
+/vendor/font-awesome-4.2.0
 
 # Ignore bundler config.
 /.bundle
