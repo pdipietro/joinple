@@ -17,10 +17,18 @@ Rails.application.config.assets.precompile += %w( ./../fonts/glyphicons-regular.
 Rails.application.config.assets.precompile += %w( ./../fonts/glyphicons-regular.woff )
 Rails.application.config.assets.precompile += %w( ./../fonts/glyphicons-regular.woff2 )
 
+Rails.application.config.assets.precompile += %w( ./../fonts/FontAwesome.otf )
+Rails.application.config.assets.precompile += %w( ./../fonts/fontawesome-webfont.eot )
+Rails.application.config.assets.precompile += %w( ./../fonts/fontawesome-webfont.svg )
+Rails.application.config.assets.precompile += %w( ./../fonts/fontawesome-webfont.ttf )
+Rails.application.config.assets.precompile += %w( ./../fonts/fontawesome-webfont.woff )
+
 Rails.application.config.assets.precompile += %w( ./../fonts/glyphicons-halfling.ttf )
 Rails.application.config.assets.precompile += %w( ./../fonts/glyphicons-halfling.woff )
 Rails.application.config.assets.precompile += %w( ./../fonts/glyphicons-halfling.woff2 )
+
 Rails.application.config.assets.precompile += %w( glyphicons.css )
 Rails.application.config.assets.precompile += %w( glyphicons-bootstrap.css )
 Rails.application.config.assets.precompile += %w( fontastic.css )
 Rails.application.config.assets.precompile += %w( bootstrap-multiselect.css )
+Rails.application.config.assets.precompile += %w( font-awesome.min.css )

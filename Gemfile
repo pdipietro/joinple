@@ -55,6 +55,7 @@ gem "pry-rails"
 gem 'jquery-turbolinks'
 gem 'responders', '~> 2.0'
 gem 'bootstrap_form'
+gem 'font-awesome-sass'
 
 #gem 'activerecord'
 

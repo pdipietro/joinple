@@ -66,3 +66,73 @@ hr {
     margin-right: -21px;
 }
 
+.nav > li > a {
+  padding-right: 0 !important;
+}
+
+li span.caret {
+  margin-left: -5px;
+}
+
+img.gravatar,
+img.avatar {
+  margin-right: 0;
+  margin-left:0;
+  position: relative;
+  top: 7px;
+  left: 9px;
+}
+
+#user_info {
+  position: relative;
+  margin-bottom: 20px;
+  background: #f8f8f8;
+
+  &:after {
+    padding: 20px;
+    }
+
+  * img.gravatar
+    {
+  position: relative;
+    top: 0;
+    left: 0;
+    }
+
+  h1
+    {
+  position: relative;
+    top: 4px;
+    }
+}
+
+#user_info .list-group .list-group-item {
+  left: 2px;
+  position: relative;
+  margin-left: 4px;
+  border: none;
+  padding-left: 30px;
+  smargin-bottom: 10px;
+  background: transparent;
+  padding-top: 0;
+  padding-bottom: 0;
+  font-size: 80%
+}
+
+/*
+#user_info {
+  margin-bottom: 20px;
+}
+
+#user_info:after {
+  padding: 20px;
+}
+
+#user_info {
+  background: #f8f8f8;
+}
+*/
+
+section.no-overflow-x {
+  overflow-x: hidden !important;
+}

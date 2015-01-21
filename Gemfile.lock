@@ -107,6 +107,8 @@ GEM
     fog-softlayer (0.3.26)
       fog-core
       fog-json
+    font-awesome-sass (4.2.2)
+      sass (~> 3.2)
     formatador (0.2.5)
     globalid (0.3.0)
       activesupport (>= 4.1.0)
@@ -326,6 +328,7 @@ DEPENDENCIES
   coffee-rails (= 4.0.1)
   faker (= 1.4.2)
   fog (= 1.23.0)
+  font-awesome-sass
   guard-minitest (= 2.3.1)
   haml-rails
   jbuilder (= 2.2.3)
