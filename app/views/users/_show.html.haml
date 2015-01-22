@@ -3,7 +3,7 @@
     .column
       .row
         .user-owner
-          = gravatar_for user, size: 128
+          = gravatar_for user
       .row
         = "#{user.first_name}"
         = "#{user.last_name}"
@@ -15,5 +15,5 @@
             - likes = user.query_as(:p).match("(p)<-[r:likes]-(u:User)").pluck(:u).count
             %span.badge
               = likes
-      .row
+      -#.row
         = render partial: 'shared/stats', locals: { user: user, current: :false }

@@ -1,7 +1,7 @@
 %h1= user.full_name
-.col-xs-3
+.col-xs-6
   = gravatar_for user
-.col-xs-9
+.col-xs-6
   .list-group
     .list-group-item
       %a{:href => is_followed_by_user_path(user.uuid)}

@@ -30,4 +30,11 @@ class LikesController < ApplicationController
         format.js 
     end
   end
+
+  def search
+    results = []
+    respond_to do |format|
+        format.js { render :action => 'search', locals: { results: results} }
+    end
+  end
 end

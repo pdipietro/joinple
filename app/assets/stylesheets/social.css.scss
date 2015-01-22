@@ -83,56 +83,88 @@ img.avatar {
   left: 9px;
 }
 
+section.no-overflow-x {
+  overflow-x: hidden !important;
+}
+
 #user_info {
+  background: #f8f8f8;
+  margin-bottom: 20px;
+
+  h1 {
+    top: 3px;
+    left: 3px;
+    text-align: center;
+    position: relative;
+  }
+
+  &:after {
+    padding: 20px;
+    }
+  
+  div {
+      padding: 0;
+      border: none !important;
+      background: transparent !important;
+      .col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6,
+      .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12
+      {
+        .list-group,
+        .list-group .list-group-item {
+          font-size: 90%;
+          margin: 0;
+        }
+      }
+  }
+}
+
+/*
+#huser_info {
   position: relative;
   margin-bottom: 20px;
   background: #f8f8f8;
+  padding-left: 0;
+  padding-right: 0;
 
   &:after {
     padding: 20px;
     }
 
-  * img.gravatar
-    {
-  position: relative;
+  * img.gravatar     {
+    position: relative;
     top: 0;
     left: 0;
     }
 
-  h1
-    {
-  position: relative;
+  h1 {
+    position: relative;
     top: 4px;
     }
-}
 
-#user_info .list-group .list-group-item {
-  left: 2px;
-  position: relative;
-  margin-left: 4px;
-  border: none;
-  padding-left: 30px;
-  smargin-bottom: 10px;
-  background: transparent;
-  padding-top: 0;
-  padding-bottom: 0;
-  font-size: 80%
-}
+  .list-group, 
+  .list-group-item,
+  .col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6,
+  .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12
+   {
+    left: 5px;
+    position: relative;
+    smargin-left: 4px;
+    border: none;
+    padding-left: 0;
+    padding-right: 0;
+    background: transparent;
+    padding-top: 0;
+    padding-bottom: 0;
+    font-size: 90%
+  }
 
-/*
-#user_info {
-  margin-bottom: 20px;
-}
+  .list-group, 
+  .list-group-item
+  {
+    margin-left: -4px;
+    margin-top: 2px;
+    left: -4px;
 
-#user_info:after {
-  padding: 20px;
-}
-
-#user_info {
-  background: #f8f8f8;
+  }
 }
 */
-
-section.no-overflow-x {
-  overflow-x: hidden !important;
-}

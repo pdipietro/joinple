@@ -41,6 +41,7 @@ Rails.application.routes.draw do
 
   post      'likes/:id/:class/:rel_type'   =>    'likes#edit', constraints: AuthConstraint.new, :as => :onerel
   get       'likes'                        =>    'likes#dummy', constraints: AuthConstraint.new, :as => :dummy
+  post      'search'                       =>    'likes#search', constraints: AuthConstraint.new, :as => :search
 
 
 
