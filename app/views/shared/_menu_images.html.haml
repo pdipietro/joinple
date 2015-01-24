@@ -1,8 +1,11 @@
 .section
   %ul.list-group.title
     %li.list-group-item
-      %span.glyphicons.icon-picture
-      Images
+      = link_to dummy_path, :remote => :true do
+        %span.glyphicons.icon-picture
+        Pictures
+      = link_to dummy_path, :remote => :true do
+        %span.caret.to-right
     %li.list-group-item
       = link_to dummy_path, :remote => :true do
         %span.glyphicons.icon-diff-added

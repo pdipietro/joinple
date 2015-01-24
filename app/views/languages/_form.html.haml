@@ -8,7 +8,7 @@
         New Language
   .panel-body
     = bootstrap_form_for(language, :remote => :true ) do |f|
-      = f.text_field :code, :prepend => :code, :placeholder => "2 chars language code (ISO 639-1), plus an optional hyphen and 2 chars country code", :hide_label => :true
-      = f.text_field :description, :prepend => :description, :placeholder => "Enter the language description", :hide_label => :true
+      = f.text_field :code, :prepend => :code, :placeholder => "2 chars language code (ISO 639-1), plus an optional hyphen and 2 chars country code", :hide_label => :true, :text => "language code"
+      = f.text_field :description, :prepend => :description, :placeholder => "Enter the language description", :hide_label => :true, :text => "language description"
       %button.icon_only{ :type => "submit", :name => "commit", :hide_label => :true, :title => "Save the element" } 
         %span.glyphicon.glyphicon-save

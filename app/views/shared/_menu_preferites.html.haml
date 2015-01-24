@@ -1,8 +1,11 @@
 .section
   %ul.list-group.title
     %li.list-group-item
-      %span.glyphicons.icon-like-2
-      Preferites
+      = link_to dummy_path, :remote => :true do
+        %span.glyphicons.icon-like-2
+        Preferites
+      = link_to dummy_path, :remote => :true do
+        %span.caret.to-right
     %li.list-group-item
       = link_to dummy_path, :remote => :true do
         %span.glyphicons.icon-dot.transparent

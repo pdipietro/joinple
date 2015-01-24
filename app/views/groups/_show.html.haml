@@ -2,9 +2,7 @@
   %div{ :id => group.uuid }
     .thumbnail
       .container-fluid.nopadding
-        -# owner = post.is_owned_by
         - owner = group.query_as(:p).match("(p)<-[r:owns]-(u:User)").pluck(:u).first
-        = puts "Owner: #{owner} --------------------------------------------------------"
         %aside.col-xs-1.nomargin
           .post-owner
             = gravatar_for owner, size: 32

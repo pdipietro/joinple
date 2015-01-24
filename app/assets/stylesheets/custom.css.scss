@@ -1,22 +1,22 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-html {  
+zhtml {  
   overflow-y: scroll;
 }
 
-body {
+zbody {
 }
 
-section {
+zsection {
   overflow: auto;
 }
 
-textarea {
+ztextarea {
   resize: vertical; 
 }
 
-.center {
+.zcenter {
   text-align: center;
   h1 {
     margin-bottom: 10px;
@@ -25,18 +25,18 @@ textarea {
 
 /* typography */
 
-h1, h2, h3, h4, h5, h6 {
+zh1, zh2, zh3, zh4, zh5, zh6 {
   line-height: 1;
 }
 
-h1 {
+zh1 {
   font-size: 3em;
   letter-spacing: -2px;
   margin-bottom: 30px;
   text-align: center;
 }
 
-h2 {
+zh2 {
   font-size: 2em;  /* was 1.2*/
   letter-spacing: -1px;
   margin-bottom: 30px;
@@ -45,7 +45,7 @@ h2 {
   color: $gray_dark;
 }
 
-h3 {
+zh3 {
   font-size: 1.2em;
   letter-spacing: -1px;
   margin-bottom: 30px;
@@ -55,7 +55,7 @@ h3 {
   text-align: left;
 }
 
-p {
+zp {
   font-size: 1.1em;
   line-height: 1.7em;
 }
@@ -80,7 +80,7 @@ p {
 
 /* footer */
 
-footer {
+zfooter {
   margin-top: 45px;
   padding-top: 5px;
   border-top: 1px solid $gray-lighter;
@@ -104,7 +104,7 @@ footer {
   }
 }
 
-@mixin box_sizing {
+@mixin zbox_sizing {
   -moz-box-sizing:    border-box;
   -webkit-box-sizing: border-box;
   box-sizing:         border-box;
@@ -117,12 +117,12 @@ footer {
   float: left;
   width: 100%;
   margin-top: 45px;
-  @include box_sizing;
+  @include zbox_sizing;
 }
 
 /* sidebar */
 
-aside {
+zaside {
   section.user_info {
     margin-top: 20px;
   }
@@ -144,16 +144,16 @@ aside {
   }
 }
 
-.gravatar {
+.zgravatar {
   float: left;
   margin-right: 10px;
 }
 
-.gravatar_edit {
+.zgravatar_edit {
   margin-top: 15px;
 }
 
-.user_avatars {
+.zuser_avatars {
   overflow: auto;
   margin-top: 10px;
   .gravatar {
@@ -164,27 +164,25 @@ aside {
   }
 }
 
-.users.follow {
+.zusers.follow {
   padding: 0;
 }
 
 /* forms */
 
-input, textarea, select, .uneditable-input {
+zinput, ztextarea, zselect, .zuneditable-input {
   border: 1px solid #bbb;
   width: 100%;
   margin-bottom: 15px;
-  @include box_sizing;
+  @include zbox_sizing;
 }
 
-input {
+zinput {
   height: auto !important;
 }
 
-.input-group-addon {
-  padding: 0 5px !important;
-}
-#error_explanation {
+
+#zerror_explanation {
   color: red;
   background-color: transparent !important;
   border: none !important;
@@ -194,14 +192,14 @@ input {
   }
 }
 
-.field_with_errors {
+.zfield_with_errors {
   @extend .has-error;
   .form-control {
     color: $state-danger-text;
   }
 }
 
-.checkbox {
+.zcheckbox {
   margin-top: -10px;
   margin-bottom: 10px;
   span {
@@ -210,14 +208,14 @@ input {
   }
 }
 
-#session_remember_me {
+#zsession_remember_me {
   width: auto;
   margin-left: 0;
 }
 
 /* Users index */
 
-.users {
+.zusers {
   list-style: none;
   margin: 0;
   li {
@@ -229,7 +227,7 @@ input {
 
 /* posts */
 
-.posts {
+.zposts {
   list-style: none;
   padding: 0;
   li {
@@ -260,50 +258,50 @@ input {
   }
 }
 
-aside {
+zaside {
   textarea {
     height: 100px;
     margin-bottom: 5px;
   }
 }
 
-span.picture {
+zspan.picture {
   margin-top: 10px;
   input {
     border: 0;
   }
 }
 
-.glyphicons.x15 {
+.zglyphicons.x15 {
   font-size: 36px;
 }
 
-a.navbar-brand.logo {
+za.navbar-brand.logo {
   padding-top: 4px;
 }
 
-.navbar-default {
+z.navbar-default {
   margin-bottom: 3px !important;
 }
 
 
-.margin-right {
+z.margin-right {
   margin-right: 15px !important;     
 }
 
-.adjust-checkbox {
+z.adjust-checkbox {
   top: 14px;
   left: 4px;
   background-color: transparent;
 }
 
-.adjust-checkbox-right {
+z.adjust-checkbox-right {
   top: 14px;
   left:20px;
   background-color: transparent;
 }
 
-input.disabled {
+zinput.disabled {
   cursor: inherit !important;
   background-color: transparent;
 
@@ -312,22 +310,22 @@ input.disabled {
 
 
 
-* [disabled = "disabled"],
-input.disabled {
+z* [disabled = "disabled"],
+zinput.disabled {
   cursor: inherit !important;
   background-color: transparent;
 }
 
-.command-button {
+z.command-button {
   min-width: 40px;
 }
 
 
-.icon-x-circle {
+z.icon-x-circle {
   color: red !important;
 }
 
-button.icon_only {
+zbutton.icon_only {
   border: none;
   padding: none !important;
   margin: none;
@@ -336,6 +334,196 @@ button.icon_only {
   background-color: transparent;
 }
 
-button.icon_only:focus {
+zbutton.icon_only:focus {
   &:li {}
 }
+
+/* *********************************************************** */
+
+zaside section {
+  padding: 0;
+  margin-top: 0;
+}
+
+.zborder-top {
+    border-top: 1px solid #bbbbbb;
+    padding-top: 6px;
+}
+
+.zborder-bottom {
+    border-bottom: 1px solid #bbbbbb;
+}
+.zborder-right {
+    border-right: 1px solid #bbbbbb;
+}
+
+.zborder-left {
+    border-left: 1px solid #bbbbbb;
+}
+
+zhr {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-image: none;
+    border-style: solid none none;
+    border-width: 1px 0 0;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.zpost-title {
+  font-weight: bolder;
+  font-size: 120%;
+  text-align: center;
+}
+
+.zpost_content {
+  font-size: 80%;
+  text-align: justify;
+}
+
+.zpost-header{
+  font-size: 75%;
+}
+
+.zpost-glyphs {
+  padding-top: 12px;
+
+}
+
+.zpost-owner {
+  align: center;
+  text-align: center;
+}
+
+.zmain_left *, .zmain_center *, .zmain_right * {
+      overflow-y: auto; 
+}
+
+.znav-sidebar {
+    margin-bottom: 20px;
+    margin-left: -20px;
+    margin-right: -21px;
+}
+
+.znav > li > a {
+  padding-right: 0 !important;
+}
+
+zli span.caret {
+  margin-left: -5px;
+}
+
+zimg.gravatar,
+zimg.avatar {
+  margin-right: 0;
+  margin-left:0;
+  position: relative;
+  top: 7px;
+  left: 9px;
+}
+
+zsection.no-overflow-x {
+  overflow-x: hidden !important;
+}
+
+#main_add, #main_header, #main_content {
+  clear: both;
+}
+
+#zmain_header {
+  Spadding: 0, inherit;
+  div {
+       padding: 0, inherit;
+      .col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6,
+      .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12
+      {
+       padding: 0;
+       margin: 0;
+      }
+    }
+}
+
+#zuser_info {
+  background: #f8f8f8;
+  margin-bottom: 20px;
+
+  h1 {
+    top: 3px;
+    left: 3px;
+    text-align: center;
+    position: relative;
+  }
+
+  &:after {
+    padding: 20px;
+    }
+  
+  div {
+      padding: 0;
+      border: none !important;
+      background: transparent !important;
+      .col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6,
+      .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12
+      {
+        .list-group,
+        .list-group .list-group-item {
+          font-size: 90%;
+          margin: 0;
+        }
+      }
+  }
+}
+
+/*
+#huser_info {
+  position: relative;
+  margin-bottom: 20px;
+  background: #f8f8f8;
+  padding-left: 0;
+  padding-right: 0;
+
+  &:after {
+    padding: 20px;
+    }
+
+  * img.gravatar     {
+    position: relative;
+    top: 0;
+    left: 0;
+    }
+
+  h1 {
+    position: relative;
+    top: 4px;
+    }
+
+  .list-group, 
+  .list-group-item,
+  .col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6,
+  .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12
+   {
+    left: 5px;
+    position: relative;
+    smargin-left: 4px;
+    border: none;
+    padding-left: 0;
+    padding-right: 0;
+    background: transparent;
+    padding-top: 0;
+    padding-bottom: 0;
+    font-size: 90%
+  }
+
+  .list-group, 
+  .list-group-item
+  {
+    margin-left: -4px;
+    margin-top: 2px;
+    left: -4px;
+
+  }
+}
+*/

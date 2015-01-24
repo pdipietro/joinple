@@ -5,4 +5,7 @@
     This is the home page for the aGsn: a 
     %i Generic Social Network
     \.
-  = link_to "Sign up now!",  signup_path, :remote => :true, class: "btn btn-lg btn-primary"
+  = link_to signup_path, :remote => :true do
+    %button.btn.btn-default.btn-lg
+      Sign up now!
+ 

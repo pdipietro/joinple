@@ -1,11 +1,14 @@
 .panel.panel-default
   .panel-heading
     .panel-title
-      New discussion
+      - if defined?(title)
+        = title
+        .button.close{:type => "button", "data-dismiss" => "alert", "aria-label" => "Close" }
+      - else
+        New discussion
   .panel-body
     = bootstrap_form_for(post, :remote => :true ) do |f|
-      = f.text_field :title, :prepend => :title, :placeholder => "Enter the title for the new discussion", :hide_label => :true
-      = f.text_field :content, :prepend => :content, :placeholder => "Enter the content", :hide_label => :true
-      %button.btn.btn-default.btn-sm{ :type => "submit", :name => "commit", :hide_label => :true }
-        %span.glyphicon.icon-diff-added
-        Add    
+      = f.text_field :title, :prepend => :title, :placeholder => "Enter the title for the new discussion", :hide_label => :true, :text => "discussion title"
+      = f.text_field :content, :prepend => :content, :placeholder => "Enter the content", :hide_label => :true, :text => "discussion content"
+      %button.icon_only{ :type => "submit", :name => "commit", :hide_label => :true, :title => "Save the element" } 
+        %span.glyphicon.glyphicon-save

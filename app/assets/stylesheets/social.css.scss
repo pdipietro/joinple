@@ -1,170 +1,30 @@
-aside section {
-  padding: 0;
-  margin-top: 0;
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.input-group-addon {
+  padding-bottom: 4px;
 }
 
-.border-top {
-    border-top: 1px solid #bbbbbb;
-    padding-top: 6px;
+.checkbox {
+  margin: auto;
+  top: 4px;
+  left: 4px;
 }
 
-.border-bottom {
-    border-bottom: 1px solid #bbbbbb;
-}
-.border-right {
-    border-right: 1px solid #bbbbbb;
+.to-right {
+  clear: both;
+  float: right;
 }
 
-.border-left {
-    border-left: 1px solid #bbbbbb;
+span.caret.to-right {
+  margin-top: 6px;
 }
 
-hr {
-    -moz-border-bottom-colors: none;
-    -moz-border-left-colors: none;
-    -moz-border-right-colors: none;
-    -moz-border-top-colors: none;
-    border-image: none;
-    border-style: solid none none;
-    border-width: 1px 0 0;
-    margin-bottom: 10px;
-    margin-top: 10px;
-}
-
-.post-title {
-  font-weight: bolder;
-  font-size: 120%;
-  text-align: center;
-}
-
-.post_content {
-  font-size: 80%;
-  text-align: justify;
-}
-
-.post-header{
-  font-size: 75%;
-}
-
-.post-glyphs {
-  padding-top: 12px;
-
-}
-
-.post-owner {
-  align: center;
-  text-align: center;
-}
-
-.main_left *, .main_center *, .main_right * {
-      overflow-y: auto; 
-}
-
-.nav-sidebar {
-    margin-bottom: 20px;
-    margin-left: -20px;
-    margin-right: -21px;
-}
-
-.nav > li > a {
-  padding-right: 0 !important;
-}
-
-li span.caret {
-  margin-left: -5px;
-}
-
-img.gravatar,
-img.avatar {
+.myself img.gravatar,
+.myself img.avatar {
   margin-right: 0;
   margin-left:0;
   position: relative;
   top: 7px;
   left: 9px;
 }
-
-section.no-overflow-x {
-  overflow-x: hidden !important;
-}
-
-#user_info {
-  background: #f8f8f8;
-  margin-bottom: 20px;
-
-  h1 {
-    top: 3px;
-    left: 3px;
-    text-align: center;
-    position: relative;
-  }
-
-  &:after {
-    padding: 20px;
-    }
-  
-  div {
-      padding: 0;
-      border: none !important;
-      background: transparent !important;
-      .col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6,
-      .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12
-      {
-        .list-group,
-        .list-group .list-group-item {
-          font-size: 90%;
-          margin: 0;
-        }
-      }
-  }
-}
-
-/*
-#huser_info {
-  position: relative;
-  margin-bottom: 20px;
-  background: #f8f8f8;
-  padding-left: 0;
-  padding-right: 0;
-
-  &:after {
-    padding: 20px;
-    }
-
-  * img.gravatar     {
-    position: relative;
-    top: 0;
-    left: 0;
-    }
-
-  h1 {
-    position: relative;
-    top: 4px;
-    }
-
-  .list-group, 
-  .list-group-item,
-  .col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6,
-  .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12
-   {
-    left: 5px;
-    position: relative;
-    smargin-left: 4px;
-    border: none;
-    padding-left: 0;
-    padding-right: 0;
-    background: transparent;
-    padding-top: 0;
-    padding-bottom: 0;
-    font-size: 90%
-  }
-
-  .list-group, 
-  .list-group-item
-  {
-    margin-left: -4px;
-    margin-top: 2px;
-    left: -4px;
-
-  }
-}
-*/

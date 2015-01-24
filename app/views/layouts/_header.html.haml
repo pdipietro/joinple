@@ -1,146 +1,145 @@
-.navbar.navbar-default{ :role => "navigation" }
+.navbar.navbar-default.navbar-fixed-top{ :role => "navigation" }
   .container
-    #navbar-header
-      %button.navbar-toggle.collapsed{ :type => "button", "data-toggle" => "collapse",  "data-target" => "#bs-example-navbar-collapse-1" }
-        %span.sr-only  Toggle navigation
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
-      %a.navbar-brand.logo{ :href => "#{root_path}" }
-        - sn = "#{get_social_name}_logo.png"
-        %img.banner.logo{ :src => "#{image_url(sn)}", :height => "46px" }
-      .dropdown.navbar-brand
-        %a.dropdown-toggle{ :href => "#", "aria-expanded" => "false", "data-toggle" => "dropdown", :type => "button", :title => "About #{get_social_name.humanize}"} 
-          = "#{get_social_name.humanize}"
-          %span.caret
-        %ul.dropdown-menu{ :role => "menu"}
-          %li
-            = link_to privacy_path, :remote => :true do
-              %span.glyphicons.icon-group
-              Privacy
-          %li
-            = link_to contacts_path, :remote => :true do
-              %span.glyphicons.icon-chat-bubble-two
-              Contacts
-          %li
-            = link_to terms_path, :remote => :true do
-              %span.glyphicons.icon-chat-bubble-two
-              Terms & Conditions
-          %li.divider
-          %li
-            = link_to help_path, :remote => :true do
-              %span.glyphicons.icon-picture
-              Help
-          %li
-            = link_to about_path, :remote => :true do
-              %span.glyphicons.icon-group
-              About
-      - unless logged_in?
-        %ul.nav.navbar-nav.navbar-left
-          %li
-            = link_to root_path, :remote => :true, :title => "Home" do
-              -#%span.glyphicons.icon-home
-              %span.fa-stack.fa-lg
-                %i.fa.fa-square-o.fa-stack-2x
-                %i.fa.fa-stack-1x.icon-home
-              -#Home
-          %li
-            = link_to login_path, :remote => :true, :title => "Log in" do
-              -#%span.glyphicons.icon-log-in
-              %span.fa-stack.fa-lg
-                %i.fa.fa-square-o.fa-stack-2x
-                %i.fa.fa-stack-1x.icon-log-in
-                -#Log in
-      - else
-        %ul.nav.navbar-nav.navbar-right
-          %li.dropdown
-            %a.dropdown-toggle{ :href => "#", "aria-expanded" => "false", "data-toggle" => "dropdown", :type => "button", :title => "Social networks"}
-              -#%span.glyphicons.icon-comment-discussion.x15
-              %span.fa-stack.fa-lg
-                %i.fa.fa-square-o.fa-stack-2x
-                %i.fa.fa-stack-1x.icon-comment-discussion
-              -#Social
-              %span.caret
-            %ul.dropdown-menu{ :role => "menu" }
-              - @social_networks = SocialNetwork.all.order(created_at: :desc)
-              - @social_networks.each do |social_network| 
-                = render partial: 'layouts/social_network', locals: { social_network: social_network }
-          %li
-            = link_to users_path, :remote => :true, :title => "People" do
-              -#%span.glyphicons.icon-users-outline
-              %span.fa-stack.fa-lg
-                %i.fa.fa-square-o.fa-stack-2x
-                %i.fa.fa-stack-1x.icon-users-outline
-              -#People
-          %li
-            = link_to current_user, :remote => :true, :title => "My home" do
-              -#%span.glyphicons.icon-home
-              %span.fa-stack.fa-lg
-                %i.fa.fa-square-o.fa-stack-2x
-                %i.fa.fa-stack-1x.icon-home
-              -#My home
-          %li.dropdown
-            %a.dropdown-toggle{ :href => "#", "aria-expanded" => "false", "data-toggle" => "dropdown", :type => "button", :title => "Myself"}
-              %span.fa-stack.fa-lg
-                %i.fa.fa-square-o.fa-stack-2x
-                = gravatar_for current_user, size: 18
-                -#= current_user.nickname
-              %span.caret
-            %ul.dropdown-menu{ :role => "menu" }
-              %li
-                = link_to posts_path, :remote => :true do
-                  %span.glyphicons.icon-comment-discussion
-                  My discussions
-              %li
-                = link_to groups_path, :remote => :true do
-                  %span.glyphicons.icon-star-4
-                  My workrooms
-              %li.divider
-              %li
-                = link_to groups_path, :remote => :true do
-                  %span.glyphicons.icon-group
-                  Setting
-              %li.divider
-              %li
-                = link_to edit_user_path(current_user), :remote => :true do
-                  %span.glyphicons.icon-settings-streamline
-                  Change profile
-              %li
-                = link_to current_user, :remote => :true do
-                  %span.glyphicons.glyphicons-user
-                  Change password
-              %li.divider
-              %li
-                = link_to current_user, :remote => :true do
-                  %span.glyphicons.icon-progress-3
-                  Everythings
+    %button.navbar-toggle.collapsed{ :type => "button", "data-toggle" => "collapse",  "data-target" => "#bs-example-navbar-collapse-1" }
+      %span.sr-only  Toggle navigation
+      %span.icon-bar
+      %span.icon-bar
+      %span.icon-bar
+    %a.navbar-brand.logo{ :href => "#{root_path}" }
+      - sn = "#{get_social_name}_logo.png"
+      %img.banner.logo{ :src => "#{image_url(sn)}", :height => "46px" }
+    .dropdown.navbar-brand
+      %a.dropdown-toggle{ :href => "#", "aria-expanded" => "false", "data-toggle" => "dropdown", :type => "button", :title => "About #{get_social_name.humanize}"} 
+        = "#{get_social_name.humanize}"
+        %span.caret
+      %ul.dropdown-menu{ :role => "menu"}
+        %li
+          = link_to privacy_path, :remote => :true do
+            %span.glyphicons.icon-group
+            Privacy
+        %li
+          = link_to contacts_path, :remote => :true do
+            %span.glyphicons.icon-chat-bubble-two
+            Contacts
+        %li
+          = link_to terms_path, :remote => :true do
+            %span.glyphicons.icon-chat-bubble-two
+            Terms & Conditions
+        %li.divider
+        %li
+          = link_to help_path, :remote => :true do
+            %span.glyphicons.icon-picture
+            Help
+        %li
+          = link_to about_path, :remote => :true do
+            %span.glyphicons.icon-group
+            About
+    - unless logged_in?
+      %ul.nav.navbar-nav.navbar-left
+        %li
+          = link_to root_path, :remote => :true, :title => "Home" do
+            -#%span.glyphicons.icon-home
+            %span.fa-stack.fa-lg
+              %i.fa.fa-square-o.fa-stack-2x
+              %i.fa.fa-stack-1x.icon-home
+            -#Home
+        %li
+          = link_to login_path, :remote => :true, :title => "Log in" do
+            -#%span.glyphicons.icon-log-in
+            %span.fa-stack.fa-lg
+              %i.fa.fa-square-o.fa-stack-2x
+              %i.fa.fa-stack-1x.icon-log-in
+              -#Log in
+    - else
+      %ul.nav.navbar-nav.navbar-right
+        %li.dropdown
+          %a.dropdown-toggle{ :href => "#", "aria-expanded" => "false", "data-toggle" => "dropdown", :type => "button", :title => "Social networks"}
+            -#%span.glyphicons.icon-comment-discussion.x15
+            %span.fa-stack.fa-lg
+              %i.fa.fa-square-o.fa-stack-2x
+              %i.fa.fa-stack-1x.icon-comment-discussion
+            -#Social
+            %span.caret
+          %ul.dropdown-menu{ :role => "menu" }
+            - @social_networks = SocialNetwork.all.order(created_at: :desc)
+            - @social_networks.each do |social_network| 
+              = render partial: 'layouts/social_network', locals: { social_network: social_network }
+        %li
+          = link_to users_path, :remote => :true, :title => "People" do
+            -#%span.glyphicons.icon-users-outline
+            %span.fa-stack.fa-lg
+              %i.fa.fa-square-o.fa-stack-2x
+              %i.fa.fa-stack-1x.icon-users-outline
+            -#People
+        %li
+          = link_to current_user, :remote => :true, :title => "My home" do
+            -#%span.glyphicons.icon-home
+            %span.fa-stack.fa-lg
+              %i.fa.fa-square-o.fa-stack-2x
+              %i.fa.fa-stack-1x.icon-home
+            -#My home
+        %li.dropdown
+          %a.dropdown-toggle{ :href => "#", "aria-expanded" => "false", "data-toggle" => "dropdown", :type => "button", :title => "Myself"}
+            %span.fa-stack.fa-lg.myself
+              %i.fa.fa-square-o.fa-stack-2x
+              = gravatar_for current_user, size: 18
+              -#= current_user.nickname
+            %span.caret
+          %ul.dropdown-menu{ :role => "menu" }
             %li
-              = link_to logout_path, method: "delete", :title => "Log out" do
-                -#%span.glyphicons.icon-log-out
-                %span.fa-stack.fa-lg
-                  %i.fa.fa-square-o.fa-stack-2x
-                  %i.fa.fa-stack-1x.icon-log-out
-                  -#= 'Log out'
-          - if is_admin?
-            %li.dropdown
-              %a.dropdown-toggle{ :href => "#", "aria-expanded" => "false", "data-toggle" => "dropdown", :type => "button", :title => "Admin"} 
-                -#%span.glyphicons.icon-smiley-frown
-                %span.fa-stack.fa-lg
-                  %i.fa.fa-square-o.fa-stack-2x
-                  %i.fa.fa-stack-1x.fa-key
-                  -#Administration
-                %span.caret
-              %ul.dropdown-menu{ :role => "menu"}
-                %li
-                  = link_to languages_path, :remote => :true  do
-                    %span.glyphicons.icon-language
-                    Languages
-                %li
-                  = link_to dummy_path, :remote => :true  do
-                    %span.glyphicons.glyphicons-address-book
-                    Administrators
-                %li.divider
-                %li
-                  = link_to social_networks_path, :remote => :true  do
-                    %span.glyphicons.icon-smiley-frown
-                    Social networks
+              = link_to posts_path, :remote => :true do
+                %span.glyphicons.icon-comment-discussion
+                My discussions
+            %li
+              = link_to groups_path, :remote => :true do
+                %span.glyphicons.icon-star-4
+                My workrooms
+            %li.divider
+            %li
+              = link_to groups_path, :remote => :true do
+                %span.glyphicons.icon-group
+                Setting
+            %li.divider
+            %li
+              = link_to edit_user_path(current_user), :remote => :true do
+                %span.glyphicons.icon-settings-streamline
+                Change profile
+            %li
+              = link_to current_user, :remote => :true do
+                %span.glyphicons.glyphicons-user
+                Change password
+            %li.divider
+            %li
+              = link_to current_user, :remote => :true do
+                %span.glyphicons.icon-progress-3
+                Everythings
+          %li
+            = link_to logout_path, method: "delete", :title => "Log out" do
+              -#%span.glyphicons.icon-log-out
+              %span.fa-stack.fa-lg
+                %i.fa.fa-square-o.fa-stack-2x
+                %i.fa.fa-stack-1x.icon-log-out
+                -#= 'Log out'
+        - if is_admin?
+          %li.dropdown
+            %a.dropdown-toggle{ :href => "#", "aria-expanded" => "false", "data-toggle" => "dropdown", :type => "button", :title => "Admin"} 
+              -#%span.glyphicons.icon-smiley-frown
+              %span.fa-stack.fa-lg
+                %i.fa.fa-square-o.fa-stack-2x
+                %i.fa.fa-stack-1x.fa-key
+                -#Administration
+              %span.caret
+            %ul.dropdown-menu{ :role => "menu"}
+              %li
+                = link_to languages_path, :remote => :true  do
+                  %span.glyphicons.icon-language
+                  Languages
+              %li
+                = link_to dummy_path, :remote => :true  do
+                  %span.glyphicons.glyphicons-address-book
+                  Administrators
+              %li.divider
+              %li
+                = link_to social_networks_path, :remote => :true  do
+                  %span.glyphicons.icon-smiley-frown
+                  Social networks

@@ -3,6 +3,8 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_user, only: [:index, :create, :destroy]
 
+  respond_to :js
+
   # GET /posts
   # GET /posts.json
   def index
@@ -38,20 +40,19 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-
     @post = Post.new(post_params)
     
     respond_to do |format|
       if @post.save
         rel = Owns.create(from_node: current_user, to_node: @post)
 
-        format.js   { render partial: "insert", object: @post, notice: 'Language was successfully created.' }
+        format.js   { render partial: "enqueue", object: @post, notice: 'Post was successfully created.' }
         format.html { redirect_to(request.env["HTTP_REFERER"]) }
         format.json { render :show, status: :created, location: @post, user: @post.is_owned_by }
       else
+        format.js   { render :new, object: @post }
         format.html { render :new }
         format.json { render json: @post.errors, status: :unprocessable_entity }
-        format.js { render :new }
       end
     end
   end
@@ -61,9 +62,11 @@ class PostsController < ApplicationController
   def update
     respond_to do |format|
       if @post.update(post_params)
+        format.js   { render partial: "replace", object: @post, notice: 'Post was successfully created.' }
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
       else
+        format.js   { render :edit, object: @post }
         format.html { render :edit }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
@@ -73,8 +76,10 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
+    dest = @post.uuid
     @post.destroy
     respond_to do |format|
+      format.js   { render partial: "shared/remove", locals: { dest: dest } }
       format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
       format.json { head :no_content }
     end

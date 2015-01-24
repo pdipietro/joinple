@@ -1,6 +1,6 @@
 - if logged_in?
   - user = current_user
-  %section#user_info.no-overflow-x= render partial: 'shared/user_info', locals: { user: user }
+  %section#user_info= render partial: 'shared/user_info', locals: { user: user }
   %section#myworkroom= render partial: 'shared/menu_workrooms', locals: { user: user }
   %section#mygroups= render partial: 'shared/menu_groups', locals: { user: user }
   %section#mydiscussions= render partial: 'shared/menu_discussions', locals: { user: user }

@@ -1,16 +1,15 @@
 .section
   %ul.list-group.title
     %li.list-group-item
-      %span.glyphicons.icon-star-4
-      Messages
+      = link_to dummy_path, :remote => :true do
+        %span.glyphicons.icon-star-4
+        Messages
+      = link_to dummy_path, :remote => :true do
+        %span.caret.to-right
     %li.list-group-item
       = link_to dummy_path, :remote => :true do
         %span.glyphicons.glyphicons-tag
         Invitation
-        %i.fa.fa-shield
-        %span.fa-stack.fa-lg
-          %i.fa.fa-square-o.fa-stack-2x
-          %i.fa.fa-twitter.fa-stack-1x
     %li.list-group-item
       = link_to dummy_path, :remote => :true do
         %span.glyphicons.icon-diff-added

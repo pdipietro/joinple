@@ -1,5 +1,5 @@
 /* color of menu item while hovered */
- 
+
 .glyphicons:hover,
 .dropdown-menu > li a:hover,
 .dropdown-menu > li > a:hover,
@@ -8,19 +8,25 @@
 .navbar-brand > a:hover,
 .command-button > a:hover,
 .icon_only:hover,
-button.btn:hover  {
+button.btn:hover,
+a:hover  {
   color: blue !important;
  }
 
- /* color for headers of aside columns */
-
-ul.list-group.title > li.list-group-item:first-child {
-  background-color: #f8f8f8;
-  color: blue;
-
+a, a:active, a:visited {
+  color: #333 !important;
 }
 
-ul.list-group.title > li:not(first-child) {
+ /* color for headers of aside columns */
+
+ul.list-group.title > li.list-group-item:first-child,
+ul.list-group.title > li.list-group-item:first-child > a {
+  background-color: #f8f8f8;
+  color: blue;
+}
+
+
+ul.list-group > li:not(first-child) {
   border-left: 0px;
   border-right: 0px;
   border: 0px;
