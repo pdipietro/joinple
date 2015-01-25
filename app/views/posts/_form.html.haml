@@ -6,7 +6,10 @@
         .button.close{:type => "button", "data-dismiss" => "alert", "aria-label" => "Close" }
       - else
         New discussion
-  .panel-body
+      %a.toggle{ :type => "toggle", "data-target" => "#posts_form", "data-toggle" => "collapse"}
+        %span.caret.to-right
+
+  #posts_form.panel-body.collapse
     = bootstrap_form_for(post, :remote => :true ) do |f|
       = f.text_field :title, :prepend => :title, :placeholder => "Enter the title for the new discussion", :hide_label => :true, :text => "discussion title"
       = f.text_field :content, :prepend => :content, :placeholder => "Enter the content", :hide_label => :true, :text => "discussion content"

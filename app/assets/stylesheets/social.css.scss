@@ -28,3 +28,41 @@ span.caret.to-right {
   top: 7px;
   left: 9px;
 }
+
+aside {
+  background-color: transparent !important;
+}
+
+span.transparent,
+span.transparent:hover {
+  color: transparent !important;
+}
+
+ul.list-group > li:not(first-child),
+ul.list-group {
+  border-left: 0px;
+  border-right: 0px;
+  border: 0px;
+  padding: 0px 8px;
+}
+
+ul.invisible {
+  
+}
+
+.nav-sidebar > li > a {
+  padding-right: 0 !important;
+  padding-left: 10px !important;
+}
+
+.nav-sidebar > li > a > img.gravatar {
+  display: inline-block;
+}
+
+#page > div {
+  padding-top: 20px;
+}
+
+.search {
+  display: inline;
+}

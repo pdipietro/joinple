@@ -12,19 +12,21 @@
     .panel-body
       .btn-toolbar{ :role => "toolbar" }
         .btn-group{ :role => "group" }
-          %button.btn.btn-default{ :type => "button" }
-            %span.glyphicon.glyphicon-wrench
-          %button.btn.btn-default{ :type => "button" }
-            %span.glyphicon.glyphicon-asterisk
-          %button.btn.btn-default{ :type => "button" }
-            %span.glyphicon.glyphicon-euro
+          %button.btn.btn-default{ :type => "button", :title => "My groups" }
+            %span.glyphicon.icon-group
+          %button.btn.btn-default{ :type => "button", :title => "Groups I administer" }
+            %span.glyphicon.icon.group
+          %button.btn.btn-default{ :type => "button", :title => "Pending invitations" }
+            %span.glyphicon.icon.group
         .btn-group{ :role => "group" }
-          %button.btn.btn-default{ :type => "button" }
-            %span.glyphicon.glyphicon-cloud
-          %button.btn.btn-default{ :type => "button" }
-            %span.glyphicon.glyphicon-film
-          %button.btn.btn-default{ :type => "button" }
-            %span.glyphicon.glyphicon-glass
+          %button.btn.btn-default{ :type => "button", :title => "My contact's groups" }
+            %span.glyphicon.icon.group
+          %button.btn.btn-default{ :type => "button", :title => "Most active groups" }
+            %span.glyphicon.icon-group
+          %button.btn.btn-default{ :type => "button", :title => "Recently created groups" }
+            %span.glyphicon.icon.group
+          %button.btn.btn-default{ :type => "button", :title => "All groups" }
+            %span.glyphicon.icon.group
         .btn-group{ :role => "group" }
           %span.input-group-btn.search{ :type => "button" }
             = f.text_field :name, :prepend => "Search", :placeholder => "Enter the text to search", :hide_label => :true, :title => "Text to search"

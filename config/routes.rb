@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :images
+
   resources :pippos
 
   root                     'static_pages#home'#, defaults: { :format => "js"}, :remote => :true

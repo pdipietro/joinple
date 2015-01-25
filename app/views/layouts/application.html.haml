@@ -4,11 +4,13 @@
     %title= compute_social_name.capitalize
     = stylesheet_link_tag    'fontastic', media: 'all', 'data-turbolinks-track' => true
     = stylesheet_link_tag    'font-awesome.min', media: 'all', 'data-turbolinks-track' => true
-    -#= stylesheet_link_tag    '//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css', media: 'all', 'data-turbolinks-track' => true
     = stylesheet_link_tag    'glyphicons', media: 'all', 'data-turbolinks-track' => true
     = stylesheet_link_tag    'glyphicons-bootstrap', media: 'all', 'data-turbolinks-track' => true
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-    = stylesheet_link_tag    "social/#{get_social_name == "lavoro" ? "work" : get_social_name}_bootstrap", media: 'all', 'data-turbolinks-track' => true
+    = stylesheet_link_tag    'dashboard', media: 'all', 'data-turbolinks-track' => true
+    = stylesheet_link_tag    "social/#{get_social_name}_bootstrap", media: 'all', 'data-turbolinks-track' => true
+    = stylesheet_link_tag    "social/common_patch", media: 'all', 'data-turbolinks-track' => true
+
     = javascript_include_tag 'application', media: 'all', 'data-turbolinks-track' => true
     -#%meta{ :name => "viewport", :content => "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"}    
     %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1"}    
@@ -17,11 +19,9 @@
   %body{:sn => "#{get_social_name}"}
     = render 'layouts/header'
     -#.container
-    #page
+    #page.container-fluid
       - flash.each do |message_type, message|
         %div{:class => "alert alert-#{message_type}"}= message
       = yield
-    -#.container
-    .div
-      =# render 'layouts/footer'
-      = debug(params) if Rails.env.development?
+      .row.container-fluid
+        = debug(params) if Rails.env.development?

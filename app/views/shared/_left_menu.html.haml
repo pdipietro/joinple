@@ -1,9 +1,10 @@
 - if logged_in?
   - user = current_user
-  %section#user_info= render partial: 'shared/user_info', locals: { user: user }
-  %section#myworkroom= render partial: 'shared/menu_workrooms', locals: { user: user }
-  %section#mygroups= render partial: 'shared/menu_groups', locals: { user: user }
-  %section#mydiscussions= render partial: 'shared/menu_discussions', locals: { user: user }
-  %section#myMessages= render partial: 'shared/menu_messages', locals: { user: user }
-  %section#myimages= render partial: 'shared/menu_images', locals: { user: user }
-  %section#mypreferites= render partial: 'shared/menu_preferites', locals: { user: user }
+  %ul#user_info.list-group.title.nav-sidebar= render partial: 'shared/user_info', locals: { user: user }
+  = render partial: 'shared/menu_workrooms', locals: { user: user }
+  %ul#mymessages.list-group.title.nav-sidebar= render partial: 'shared/menu_messages', locals: { user: user }
+  %ul#mygroups.list-group.title.nav-sidebar= render partial: 'shared/menu_groups', locals: { user: user }
+  %ul#mydiscussions.list-group.title.nav-sidebar= render partial: 'shared/menu_discussions', locals: { user: user }
+  %ul#mypages.list-group.title.nav-sidebar= render partial: 'shared/menu_pages', locals: { user: user }
+  %ul#myimages.list-group.title.nav-sidebar= render partial: 'shared/menu_images', locals: { user: user }
+  -#%ul#mypreferites.list-group.title.nav-sidebar= render partial: 'shared/menu_preferites', locals: { user: user }
