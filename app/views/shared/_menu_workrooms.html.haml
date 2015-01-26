@@ -1,27 +1,19 @@
-%ul.list-group.title.nav-sidebar
-  = link_to dummy_path :remote => :true do
-    %span.glyphicons.icon-star-two
+%li.list-group-item
+  = link_to posts_path, :remote => :true do
+    %span.glyphicons.icon-comment-discussion
     Workrooms
-  %a.toggle{ :type => "toggle", "data-target" => "#myworkroom", "data-toggle" => "collapse"}
-    %span.caret.to-right
-%ul#myworkroom.list-group.nav-sidebar.collapse.in
-  %li.list-group-item
-    = link_to dummy_path, :remote => :true do
-      %span.glyphicons.icon-crop-streamline
-      Detail workroom
-  %li.list-group-item
-    = link_to dummy_path, :remote => :true do
-      %span.glyphicons.icon-crop-streamline
-      Detail workroom
-  %li.list-group-item
-    = link_to dummy_path, :remote => :true do
-      %span.glyphicons.icon-crop-streamline
-      Detail workroom
-  %li.list-group-item
-    = link_to dummy_path, :remote => :true do
-      %span.glyphicons.icon-crop-streamline
-      Detail workroom
-  %li.list-group-item
-    = link_to dummy_path, :remote => :true do
-      %span.glyphicons.icon-crop-streamline
-      Detail workroom
+%li.list-group-item
+  = link_to dummy_path, :remote => :true do
+    Detail workroom
+%li.list-group-item
+  = link_to dummy_path, :remote => :true do
+    Detail workroom
+%li.list-group-item
+  = link_to dummy_path, :remote => :true do
+    Detail workroom
+%li.list-group-item
+  = link_to dummy_path, :remote => :true do
+    Detail workroom
+%li.list-group-item
+  = link_to dummy_path, :remote => :true do
+    Detail workroom

@@ -1,7 +1,7 @@
 - if logged_in?
   - user = current_user
   %ul#user_info.list-group.title.nav-sidebar= render partial: 'shared/user_info', locals: { user: user }
-  = render partial: 'shared/menu_workrooms', locals: { user: user }
+  %ul#myworkrooms.list-group.title.nav-sidebar= render partial: 'shared/menu_workrooms', locals: { user: user }
   %ul#mymessages.list-group.title.nav-sidebar= render partial: 'shared/menu_messages', locals: { user: user }
   %ul#mygroups.list-group.title.nav-sidebar= render partial: 'shared/menu_groups', locals: { user: user }
   %ul#mydiscussions.list-group.title.nav-sidebar= render partial: 'shared/menu_discussions', locals: { user: user }

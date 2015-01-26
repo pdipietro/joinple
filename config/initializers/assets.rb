@@ -10,7 +10,6 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w( social/gsn_bootstrap.css )
 Rails.application.config.assets.precompile += %w( social/trace_bootstrap.css )
 Rails.application.config.assets.precompile += %w( social/work_bootstrap.css )
-Rails.application.config.assets.precompile += %w( social/common_patch.css )
 
 Rails.application.config.assets.precompile += %w( ./../fonts/glyphicons-regular.eot )
 Rails.application.config.assets.precompile += %w( ./../fonts/glyphicons-regular.svg )

@@ -1,9 +1,14 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+body {
+  font-size: 12px;
+}
+
 .input-group-addon {
   padding-bottom: 4px;
 }
+
 
 .checkbox {
   margin: auto;
@@ -18,6 +23,10 @@
 
 span.caret.to-right {
   margin-top: 6px;
+}
+
+#main_left, #main_center, #main {
+  padding-top: 10px !important;
 }
 
 .myself img.gravatar,
@@ -36,19 +45,19 @@ aside {
 span.transparent,
 span.transparent:hover {
   color: transparent !important;
+  background-color: transparent !important;
 }
+
 
 ul.list-group > li:not(first-child),
 ul.list-group {
   border-left: 0px;
   border-right: 0px;
   border: 0px;
-  padding: 0px 8px;
+  spadding: 0px 8px;
+  padding: 0px inherit;
 }
-
-ul.invisible {
-  
-}
+/*
 
 .nav-sidebar > li > a {
   padding-right: 0 !important;
@@ -58,11 +67,11 @@ ul.invisible {
 .nav-sidebar > li > a > img.gravatar {
   display: inline-block;
 }
-
-#page > div {
-  padding-top: 20px;
-}
-
+*/
 .search {
   display: inline;
+}
+
+.navbar-brand {
+  padding: 4px 15px !important;
 }

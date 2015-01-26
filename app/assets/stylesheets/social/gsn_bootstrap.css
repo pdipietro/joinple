@@ -24,6 +24,6 @@ ul.list-group.title > li.list-group-item:first-child > a,
 ul.list-group.title a span {
   background-color: #f8f8f8;
   color: green;
-  margin-bottom: 0 > a;
+  margin-bottom: 0;
 }
 

@@ -4,7 +4,7 @@
 
 /* Move down content because we have a fixed navbar that is 50px tall */
 body {
-  padding-top: 50px;
+  padding-top: 61px;
 }
 
 
@@ -36,12 +36,12 @@ body {
 @media (min-width: 768px) {
   .sidebar {
     position: fixed;
-    top: 51px;
+    top: 62px;
     bottom: 0;
     left: 0;
     z-index: 1000;
     display: block;
-    padding: 20px;
+    spadding: 20px;
     overflow-x: hidden;
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
     background-color: #f5f5f5;
@@ -55,7 +55,7 @@ body {
   margin-bottom: 20px;
   margin-left: -20px;
 }
-.nav-sidebar > li > a {
+.jetta.nav-sidebar > li > a {
   padding-right: 20px;
   padding-left: 20px;
 }
