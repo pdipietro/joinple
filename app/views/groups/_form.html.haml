@@ -1,14 +1,13 @@
 .panel.panel-default
   .panel-heading
-    .panel-title
-      - if defined?(title)
-        = title
-        .button.close{:type => "button", "data-dismiss" => "alert", "aria-label" => "Close" }
-      - else
-        New Group
-      %a.toggle{ :type => "toggle", "data-target" => "#groups_form", "data-toggle" => "collapse"}
-        %span.caret.to-right
-
+    %a.toggle{ :type => "toggle", "data-target" => "#groups_form", "data-toggle" => "collapse"}
+      .panel-title
+        - if defined?(title)
+          = title
+          .button.close{:type => "button", "data-dismiss" => "alert", "aria-label" => "Close" }
+        - else
+          New Group
+          %span.caret.to-right
   #groups_form.panel-body.collapse
     = bootstrap_form_for(group, :remote => :true ) do |f|
       = f.text_field :name, :prepend => :name, :placeholder => "Enter the group name ", :hide_label => :true

@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   before_action :check_social_network, only: [:new, :create]
+
   #render_to :js
 
   def new
@@ -11,6 +12,7 @@ class SessionsController < ApplicationController
   def create
     puts "Params: #{params}"
     puts "Session: #{:email}"
+    puts "AAAAAAAAAAAAAAAAAAARGGGGGHHH ________________________________"
     user = User.find_by(email: params[:session][:email])
     if user.nil? then
       user = User.find_by(nickname: params[:session][:email])
@@ -39,23 +41,16 @@ class SessionsController < ApplicationController
   end
 
   def switch
-     sn = params[:sn].downcase         
-     oldsn = get_social_name
+     sn = params[:sn]         
+     oldsn = current_social_name
      puts "Params: #{sn}, old: #{oldsn} *******************************************************************************************"
      unless sn == compute_social_name
-       session[:social_network_name] = sn
-       base = ENV['RAILS_ENV']
-       case base
-          when "test"
-            puts 'redirect_to "http://test.#{sn}.crowdupcafe.com"'
-            redirect_to "http://test.#{sn}.crowdupcafe.com"
-          when "development"
-            puts 'redirect_to "http://dev.#{sn}.crowdupcafe.com"'
-            redirect_to "http://dev.#{sn}.crowdupcafe.com"
-          else
-            puts 'redirect_to "http://#{sn}.crowdupcafe.com"'
-            redirect_to "http://#{sn}.crowdupcafe.com"
+       new_sn = SocialNetwork.find_by(:name => humanize_word(sn) )
+       unless new_sn.nil?
+         set_current_social_network(new_sn)
+         redirect_to root_path        
        end
      end
   end
+
 end

@@ -33,7 +33,9 @@ class GroupsController < ApplicationController
 
     respond_to do |format|
       if @group.save
+        puts "CurrentSocialNetwork: #{current_social_network}"
         rel = Owns.create(from_node: current_user, to_node: @group)
+        rel = TakesPlaceIn.create(from_node: @group, to_node: current_social_network)
         format.js   { render partial: "enqueue", object: @group, notice: 'Group was successfully created.' }
         format.html { redirect_to(request.env["HTTP_REFERER"]) }
         format.json { render :show, status: :created, location: @group }

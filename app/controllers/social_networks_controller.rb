@@ -7,10 +7,6 @@ class SocialNetworksController < ApplicationController
   # GET /social_networks.json
   def index
     @social_networks = SocialNetwork.all.order(created_at:  :desc)
- 
-    respond_to do |format|
-        format.js
-    end
   end
 
   # GET /social_networks/1
@@ -21,9 +17,6 @@ class SocialNetworksController < ApplicationController
   # GET /social_networks/new
   def new
     @social_network = SocialNetwork.new
-      respond_to do |format|
-        format.js
-    end
   end
 
   # GET /social_networks/1/edit
@@ -39,11 +32,11 @@ class SocialNetworksController < ApplicationController
       if @social_network.save
         rel = Owns.create(from_node: current_user, to_node: @social_network) 
 
-        format.js   { render partial: "insert", object: @social_network, notice: 'Social network was successfully created.' }
+        format.js   { render partial: "enqueue", object: @social_network, notice: 'Social network was successfully created.' }
         format.html { redirect_to @social_network, notice: 'Social network was successfully created.' }
         format.json { render :show, status: :created, location: @social_network }
       else
-        format.js { render js: @social_network.errors, status: :unprocessable_entity }
+        format.js   { render :new, object: @social_network }
         format.html { render :new }
         format.json { render json: @social_network.errors, status: :unprocessable_entity }
       end
@@ -55,9 +48,11 @@ class SocialNetworksController < ApplicationController
   def update
     respond_to do |format|
       if @social_network.update(social_network_params)
+        format.js   { render partial: "replace", object: @social_network, notice: 'Language was successfully updated.' }
         format.html { redirect_to @social_network, notice: 'Social network was successfully updated.' }
         format.json { render :show, status: :ok, location: @social_network }
       else
+        format.js   { render :edit, object: @social_network }
         format.html { render :edit }
         format.json { render json: @social_network.errors, status: :unprocessable_entity }
       end
@@ -67,8 +62,10 @@ class SocialNetworksController < ApplicationController
   # DELETE /social_networks/1
   # DELETE /social_networks/1.json
   def destroy
+    dest = @social_network.uuid
     @social_network.destroy
     respond_to do |format|
+      format.js   { render partial: "shared/remove", locals: { dest: dest } }
       format.html { redirect_to social_networks_url, notice: 'Social network was successfully destroyed.' }
       format.json { head :no_content }
     end

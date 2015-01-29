@@ -1,16 +1,17 @@
 .panel.panel-default
   .panel-heading
-    .panel-title
-      - if defined?(title)
-        = title
-        .button.close{:type => "button", "data-dismiss" => "alert", "aria-label" => "Close" }
-      - else
-        New Language
-      %a.toggle{ :type => "toggle", "data-target" => "#languages_form", "data-toggle" => "collapse"}
+    %a.toggle{ :type => "toggle", "data-target" => "#languages_form", "data-toggle" => "collapse"}
+      .panel-title
+        - if defined?(title)
+          = title
+          .button.close{:type => "button", "data-dismiss" => "alert", "aria-label" => "Close" }
+        - else
+          New Language
+          -#%a.toggle{ :type => "toggle", "data-target" => "#languages_form", "data-toggle" => "collapse"}
         %span.caret.to-right
-  #languages_form.panel-body.collapse
+  #languages_form.panel-body{ :class => language.errors.count == 0 ? 'collapse' : '' }
     = bootstrap_form_for(language, :remote => :true ) do |f|
       = f.text_field :code, :prepend => :code, :placeholder => "2 chars language code (ISO 639-1), plus an optional hyphen and 2 chars country code", :hide_label => :true, :text => "language code"
       = f.text_field :description, :prepend => :description, :placeholder => "Enter the language description", :hide_label => :true, :text => "language description"
       %button.icon_only{ :type => "submit", :name => "commit", :hide_label => :true, :title => "Save the element" } 
-        %span.glyphicon.glyphicon-save
+        %span.glyphicon.glyphicon-sav

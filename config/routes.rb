@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   post   'switch/:sn' =>   'sessions#switch', defaults: { :format => "js"}, :remote => :true, as: :session_switch
 
 #  get    'password_resets/new'
-#  get    'password_resets/edit'
+#  get    'password_resets/edit.
 
   resources :account_activations, only: [:edit], defaults: { :format => "js"}, :remote => :true
   resources :password_resets, only: [:new, :create, :edit, :update], defaults: { :format => "js"}, :remote => :true

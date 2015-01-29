@@ -1,12 +1,21 @@
-.thumbnail
-  .container-fluid.nopadding
-    .col-xs-2
-      .post-header
-      .post-title.left
-        = social_network.name
-    .col-xs-10
-      .post-content
-        = social_network.description
-        %br
-        %br
-        = social_network.goal
+- if social_network.errors.count == 0
+  %div{ :id => social_network.uuid }
+    .thumbnail
+      .container-fluid.nopadding
+        .col-xs-2
+          .post-header
+          .post-title.left
+            = social_network.name
+        .col-xs-9
+          .post-content
+            = social_network.description
+            %br
+            %br
+            = social_network.goal
+        .col-xs-1
+          - if can_modify?(social_network)
+            .command-button
+              = link_to edit_social_network_path(social_network), :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Modify the element" do
+                %span.glyphicon.icon-edit-modify-streamline
+              = link_to social_network, :method => :delete, :data => { :confirm => 'Are you sure?' }, :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Delete the element" do
+                %span.glyphicon.icon-delete-garbage-streamline

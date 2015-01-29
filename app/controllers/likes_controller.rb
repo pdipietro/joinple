@@ -37,4 +37,18 @@ class LikesController < ApplicationController
         format.js { render :action => 'search', locals: { results: results} }
     end
   end
+
+  def load_social_network(sn)
+     puts "============= RECEIVED SN = #{sn}"
+     base = ENV['RAILS_ENV']
+    # sn.downcase!
+     dest = "http://dest.#{sn}.crowdupcafe.com"
+         puts "Dest1: #{dest}"
+     #   render 'layouts/redirect', object: dest, format: :js
+        redirect_to "http://twitter.com/home"
+#        redirect_to "http://dest.work.crowdupcafe.com"
+    # redirect_to "http://dev.#{sn}.crowdupcafe.com"
+     #switch_path("#{sn}")
+   end
+
 end

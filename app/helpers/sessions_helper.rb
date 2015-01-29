@@ -3,9 +3,9 @@ module SessionsHelper
 
  # Logs in the given user.
   def log_in(user)
-     session[:social_network_name] = compute_social_name
      session[:user_id] = user.id
      session[:admin] = user.admin
+     # set_current_social_network (load_social_network_from_url)
   end
 
   # Remembers a user in a persistent session.
@@ -13,6 +13,31 @@ module SessionsHelper
     user.remember
     cookies.permanent.signed[:user_id] = user.id
     cookies.permanent[:remember_token] = user.remember_token
+  end
+
+  # Return the current Social Network
+  def current_social_network
+    @current_social_network
+  end
+
+  def current_group?
+    @current_group
+  end
+
+  def current_group_name?
+    @current_group.nil? ? "" : @current_group.name
+  end
+
+  def reset_current_group
+    @current_group = nil
+  end
+
+  def set_current_group(group)
+    @current_group = group
+  end
+
+  def current_social_network_name?
+    @current_social_network.nil? ? "" : @current_social_network.name
   end
 
   # Returns the current logged-in user (if any).
@@ -30,6 +55,7 @@ module SessionsHelper
       end
       puts "current_user-2: #{@current_user.id}"
     end
+#  puts "current_user-3: #{@current_user.id}"
    @current_user
   end
 
@@ -43,6 +69,8 @@ module SessionsHelper
     forget(current_user)
     session.delete(:user_id)
     session.delete(:admin)
+    @current_social_network = nil
+    @current_group = nil
     @current_user = nil
   end
 
@@ -74,44 +102,29 @@ module SessionsHelper
     session[:forwarding_url] = request.url if request.get?
   end
 
-  # Stores the latest URL requested
-#  def store_latest_url
-#    session[:latest_url] = request.url # if request.get?
-#    puts "session[:latest_url]: #{session[:latest_url]} @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-#  end
+  # check if the social network is changed
+  def check_social_network
+    puts "-------------- check_social_network is #{!@current_social_network.nil? }"
+    !@current_social_network.nil? 
+  end
 
-  # Redirect to latest url
-#  def redirect_back
-#    redirect_to session[:latest_url]
-#  end
-
+=begin
   # check if the social network is changed
   def check_social_network
     puts "check_social_network - logged_in? = #{logged_in?}"
     if logged_in?
-      actual = compute_social_name
-      if session[:social_network_name] != actual
-         session[:social_network_name] = actual
-        #  log_out 
-        #  flash[:warning] = "Please, you need to login when changing social network."
-          redirect_to user_path
+      new_social_name = compute_social_name
+      unless new_social_name = current_social_name
+         set_current_social_network
+         redirect_to root_path
       end
-      true
     end
+    true
   end
-
-  def get_social_name
-    sn = session[:social_network_name]
-    sn = compute_social_name if sn.nil?
-    sn
-  end
+=end
 
   def is_admin?
     !!session[:admin]
-  end
-
-  def current_group
-    session[:current_group]
   end
 
   def is_group_admin?
@@ -139,5 +152,21 @@ module SessionsHelper
           false
       end
   end
+
+  private
+
+    def set_current_social_network (sn)
+      if sn.nil?
+        log_out
+      else 
+        @current_social_network = sn
+
+        reset_current_group
+
+        puts "CurrentSocialNetworkName: #{@current_social_network.name}"
+        puts "CurrentGroup            : #{@urrent_group.name unless @current_group.nil?}"
+      end
+    end
+
 
 end

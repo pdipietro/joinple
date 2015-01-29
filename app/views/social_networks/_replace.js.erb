@@ -1,0 +1,2 @@
+$('<%= escape_javascript( if is_admin? then "#main_add" else "#nil" end ) %>').html("<%= escape_javascript(render partial: 'form', locals: { social_network: SocialNetwork.new } ) %>" );
+$("#<%= escape_javascript(@social_network.uuid) %>").html("<%= escape_javascript(render partial: 'show', locals: { social_network: @social_network } ) %>" );

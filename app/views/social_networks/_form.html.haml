@@ -1,12 +1,17 @@
 .panel.panel-default
   .panel-heading
-    .panel-title
-      New social network
-  .panel-body
+    %a.toggle{ :type => "toggle", "data-target" => "#social_network_form", "data-toggle" => "collapse"}
+      .panel-title
+        - if defined?(title)
+          = title
+          .button.close{:type => "button", "data-dismiss" => "alert", "aria-label" => "Close" }
+        - else
+          New social network
+        %span.caret.to-right
+  #social_network_form.panel-body{ :class => social_network.errors.count == 0 ? 'collapse' : '' }
     = bootstrap_form_for(social_network, :remote => :true ) do |f|
-      = f.text_field :name, :prepend => :name, :placeholder => "Enter the name of the new social network", :hide_label => :true
-      = f.text_field :description, :prepend => :description, :placeholder => "Enter a short description of the social network", :hide_label => :true
-      = f.text_field :goal, :prepend => :goal, :placeholder => "Describe the goals of the social network", :hide_label => :true
-      %button.btn.btn-default.btn-sm{ :type => "submit", :name => "commit", :hide_label => :true }
-        %span.glyphicon.icon-diff-added
-        Add
+      = f.text_field :name, :prepend => :name, :placeholder => "Enter the name of the new social network", :hide_label => :true, :text => "Social network name"
+      = f.text_field :description, :prepend => :description, :placeholder => "Enter a short description of the social network", :hide_label => :true, :text => "Social network description"
+      = f.text_field :goal, :prepend => :goal, :placeholder => "Describe the goals of the social network", :hide_label => :true, :text => "Social network goals"
+      %button.icon_only{ :type => "submit", :name => "commit", :hide_label => :true, :title => "Save the element" } 
+        %span.glyphicon.glyphicon-save

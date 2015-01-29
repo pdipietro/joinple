@@ -1,13 +1,13 @@
 .panel.panel-default
   .panel-heading
-    .panel-title
-      - if defined?(title)
-        = title
-        .button.close{:type => "button", "data-dismiss" => "alert", "aria-label" => "Close" }
-      - else
-        New discussion
-      %a.toggle{ :type => "toggle", "data-target" => "#posts_form", "data-toggle" => "collapse"}
-        %span.caret.to-right
+    %a.toggle{ :type => "toggle", "data-target" => "#posts_form", "data-toggle" => "collapse"}
+      .panel-title
+        - if defined?(title)
+          = title
+          .button.close{:type => "button", "data-dismiss" => "alert", "aria-label" => "Close" }
+        - else
+          New discussion
+          %span.caret.to-right
 
   #posts_form.panel-body.collapse
     = bootstrap_form_for(post, :remote => :true ) do |f|

@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   #protect_from_forgery with: :exception
   include SessionsHelper
 
+  helper_method :load_social_network
+
   private
 
     # Confirms a logged-in user.

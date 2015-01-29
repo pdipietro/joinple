@@ -10,7 +10,6 @@ class LanguagesController < ApplicationController
 
 #    @languages = Neo4j::Session.query("match (language:Language)<-[owns:owns]-(owner:User) return language,owner.uuid as owner_uuid")
 
-puts "Languages: #{@languages.first}"
   end
 
   # GET /languages/1
@@ -52,7 +51,7 @@ puts "Languages: #{@languages.first}"
   def update
     respond_to do |format|
       if @language.update(language_params)
-        format.js   { render partial: "replace", object: @language, notice: 'Language was successfully created.' }
+        format.js   { render partial: "replace", object: @language, notice: 'Language was successfully updated.' }
         format.html { redirect_to @language, notice: 'Language was successfully updated.' }
         format.json { render :show, status: :ok, location: @language }
       else

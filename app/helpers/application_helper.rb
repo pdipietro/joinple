@@ -17,7 +17,12 @@ module ApplicationHelper
     SecureRandom.urlsafe_base64
   end
 
-  def compute_social_name
+  def calculate_full_path (sn)
+    "http://#{sn.name.downcase}.crowdupcafe.com"
+  end
+
+  def load_social_network_from_url
+      puts "************************* START OF def load_social_network_from_url"
       sn = request.domain.split(".").first.downcase
       if ALLOWED_DOMAIN_SERVER.include? sn
         u = root_url.downcase
@@ -28,7 +33,10 @@ module ApplicationHelper
        sn = sn.start_with?("test.") ? sn.split(".")[1] : sn 
        sn = sn.start_with?("dev.") ? sn.split(".")[1] : sn 
        puts "sn post #{sn}"
-      sn == "lavoro" ? "work" : sn
+       sn = humanize_word(sn)
+       sn = SocialNetwork.find_by( :name => sn )
+       puts "sn: #{sn} - sn.nil?: #{sn.nil?}"
+       sn
   end
 
   # admin services are reserved to admin users only
@@ -50,4 +58,6 @@ module ApplicationHelper
   def humanize_sentence(sentence)
       sentence.split('.').map(&:strip).map(&:capitalize).join('. ') + '.'
   end
+
+
 end
