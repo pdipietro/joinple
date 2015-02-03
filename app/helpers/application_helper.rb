@@ -34,9 +34,8 @@ module ApplicationHelper
        sn = sn.start_with?("dev.") ? sn.split(".")[1] : sn 
        puts "sn post #{sn}"
        sn = humanize_word(sn)
-       sn = SocialNetwork.find_by( :name => sn )
-       puts "sn: #{sn} - sn.nil?: #{sn.nil?}"
-       sn
+       set_current_social_network ( SocialNetwork.find_by( :name => sn ))
+       current_social_network
   end
 
   # admin services are reserved to admin users only

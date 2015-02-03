@@ -34,8 +34,10 @@ class GroupsController < ApplicationController
     respond_to do |format|
       if @group.save
         puts "CurrentSocialNetwork: #{current_social_network}"
+        puts "current_user is a: #{current_user.class}"
+        puts "current_social_network is a: #{current_social_network.class}"
         rel = Owns.create(from_node: current_user, to_node: @group)
-        rel = TakesPlaceIn.create(from_node: @group, to_node: current_social_network)
+        rel = BelongsTo.create(from_node: @group, to_node: current_social_network)
         format.js   { render partial: "enqueue", object: @group, notice: 'Group was successfully created.' }
         format.html { redirect_to(request.env["HTTP_REFERER"]) }
         format.json { render :show, status: :created, location: @group }
@@ -83,6 +85,6 @@ class GroupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def group_params
-      params.require(:group).permit(:name, :description, :is_open, :is_private)
+      params.require(:group).permit(:name, :description, :is_open, :is_private, :image, :icon, :color)
     end
 end

@@ -12,12 +12,8 @@ class StaticPagesController < ApplicationController
 
   def home
     sn = load_social_network_from_url
-    puts "SN at home:#{sn} - sn.nil?: #{sn.nil?} "
-    unless sn.nil?
-      puts "CI DEVO PASSARE se sn.nil? = false"
-      set_current_social_network (sn)   
-      puts "FATTO: set_current_social_network (sn) da dentro def home"
-    else
+    puts "SN at home: #{sn.name} - sn.nil?: #{sn.nil?} "
+    if sn.nil?
       render file: "#{Rails.root}/public/404.html", layout: false, status: 404
       false
     end

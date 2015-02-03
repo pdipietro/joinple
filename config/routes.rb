@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   post   'login'     =>    'sessions#create', defaults: { :format => "js"}, :remote => :true
   get    'signup'    =>    'users#new', defaults: { :format => "js"}, :remote => :true
   delete 'logout'    =>    'sessions#destroy', defaults: { :format => "js"}, :remote => :true
-  post   'switch/:sn' =>   'sessions#switch', defaults: { :format => "js"}, :remote => :true, as: :session_switch
+# unused?  post   'switch/:sn' =>   'sessions#switch', defaults: { :format => "js"}, :remote => :true, as: :session_switch
 
 #  get    'password_resets/new'
 #  get    'password_resets/edit.

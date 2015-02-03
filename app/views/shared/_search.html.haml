@@ -1,3 +1,5 @@
+= render partial: 'shared/debug'
+- puts render partial: 'shared/debug'
 - search = Group.new
 - object = ["all", "discussions", "groups", "people"]
 = bootstrap_form_for(search, :remote => :true, layout: :inline ) do |f|

@@ -9,8 +9,12 @@ class Group
 
   property  :name,         :type =>   String, presence: true
   property  :description,  :type =>   String
+  property  :image,        :type =>   String
+  property  :icon,         :type =>   String  
+  property  :color,        :type =>   String
   property  :is_open,      :type =>   Boolean, default: false
   property  :is_private,   :type =>   Boolean, default: false
+
 
   has_many  :in,  :has_discussion, rel_class: TakesPlaceIn  # Post
   has_many  :in,  :has_member, rel_class: MemberOf       # User
@@ -20,8 +24,13 @@ class Group
   has_one   :out, :belongs_to, rel_class: BelongsTo      # belongs to SocialNetwork
 #  has_one   :out, :has_icon, rel_class: IconOf           # Icon
 
+  VALID_RGBA_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+
   validates   :name, length: { minimum: 6 }
   validates   :description, length: { minimum: 3 }
+  #validates   :image, length: { minimum: 6 }
+  #validates   :icon, length: { minimum: 6 }
+  #validates   :color, format: { with: VALID_RGBA_REGEX }
 
 #  def self.find_by user
 #      PostsController.find user
@@ -32,3 +41,4 @@ class Group
 #  end
 
 end
+

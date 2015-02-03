@@ -57,6 +57,7 @@ gem 'responders', '~> 2.0'
 gem 'bootstrap_form'
 gem 'font-awesome-sass'
 gem 'rack-cors', :require => 'rack/cors'
+#gem "neo4jrb-paperclip", github: 'subvertallchris/neo4jrb-paperclip', require: "neo4jrb_paperclip"
 
 #gem 'activerecord'
 

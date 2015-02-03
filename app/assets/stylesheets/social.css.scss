@@ -75,3 +75,79 @@ ul.list-group {
 .navbar-brand {
   padding: 4px 15px !important;
 }
+
+.icon-composed {
+  top: -10px;
+  left: -10px;
+}
+
+.icon-hover {
+  top: 25px;
+  left: 25px;
+  position: relative;
+}
+
+span.centered {
+  position: relative;
+  left: -15px;
+
+}
+
+.img-header {
+  display: block;
+  width: 863px;
+  max-width: 100%;
+  height: auto;
+  max-height: 200px; 
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.img-owner {
+  max-width: 200%;
+  width: 2000%;
+  display: block;
+  height: auto;
+  margin-left: -30px;
+  margin-right: auto;
+}
+
+
+.img-owner1 {
+  max-width: 100%;
+  display: block;
+  height: auto;
+}
+
+.image-72 {
+  border-right: 3px;
+  padding-right: 0px;
+  margin-left: -15px;
+  margin-right: 3px;
+  padding-left: 0;
+  max-width: 72px;
+}
+
+.v-glyps {
+  padding-right: 0px;
+  padding-left: 10px;
+}
+
+.post-header {
+  font-weight:  700;
+}
+
+.command-button {
+  padding-right: 0;
+  padding-left: 30px;
+}
+
+.fa-stacked {
+    left: -10px;
+    position: relative;
+    top: 8px;
+    }
+
+.shared_debug {
+  font-size: 70%;
+}

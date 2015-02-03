@@ -1,3 +1,5 @@
+= render partial: 'shared/debug'
+- puts render partial: 'shared/debug'
 %nav.navbar-default.navbar-fixed-top{ :role => "navigation" }
   .container-fluid
     .navbar-header
@@ -13,7 +15,6 @@
         %a.dropdown-toggle{ :href => "#", "aria-expanded" => "false", "data-toggle" => "dropdown", :type => "button", :title => "About #{current_social_network_name?}"} 
           = "#{current_social_network_name?}"
           %span.caret
-        = "admin: #{is_admin?} - group: #{current_group_name?} - group admin: #{is_group_admin?}"
         %ul.dropdown-menu{ :role => "menu"}
           %li
             = link_to privacy_path, :remote => :true do

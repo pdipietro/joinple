@@ -5,7 +5,8 @@ module SessionsHelper
   def log_in(user)
      session[:user_id] = user.id
      session[:admin] = user.admin
-     # set_current_social_network (load_social_network_from_url)
+     load_social_network_from_url
+     puts "log_in(#{user.nickname}) in social network #{current_social_network_name?} done."
   end
 
   # Remembers a user in a persistent session.
@@ -66,10 +67,11 @@ module SessionsHelper
 
   # Logs out the current user.
   def log_out
+    puts "Doing logout çççççççççççççççççççççççççççççççççççççççççççççççççççççççççççççççç"
     forget(current_user)
     session.delete(:user_id)
     session.delete(:admin)
-    @current_social_network = nil
+  #  @current_social_network = nil
     @current_group = nil
     @current_user = nil
   end
@@ -92,7 +94,7 @@ module SessionsHelper
   
    # Redirects to stored location (or to the default).
   def redirect_back_or(default)
-    puts " ---------------------------------------------------------- redirect_back_or: (format: #{request.xhr?}) #{session[:forwarding_url] || default}"
+    puts " ------------------------ redirect_back_or: (format: #{request.xhr?}) #{session[:forwarding_url] || default}"
     redirect_to(session[:forwarding_url] || default, format: :js)
     session.delete(:forwarding_url)
   end
@@ -104,7 +106,7 @@ module SessionsHelper
 
   # check if the social network is changed
   def check_social_network
-    puts "-------------- check_social_network is #{!@current_social_network.nil? }"
+    puts "-------------- social network is #{!@current_social_network.nil? } - name: #{current_social_network_name?}"
     !@current_social_network.nil? 
   end
 
@@ -157,14 +159,15 @@ module SessionsHelper
 
     def set_current_social_network (sn)
       if sn.nil?
+        puts "sn is nil => faccio il logout"
         log_out
       else 
         @current_social_network = sn
 
         reset_current_group
 
-        puts "CurrentSocialNetworkName: #{@current_social_network.name}"
-        puts "CurrentGroup            : #{@urrent_group.name unless @current_group.nil?}"
+        puts "CurrentSocialNetworkName: #{current_social_network_name?}"
+        puts "CurrentGroup            : #{current_group_name?}"
       end
     end
 
