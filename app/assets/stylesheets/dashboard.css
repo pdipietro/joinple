@@ -55,6 +55,13 @@ body {
   margin-bottom: 20px;
   margin-left: -20px;
 }
+
+/* Sidebar navigation */
+.nav-right-sidebar {
+  margin-right: 0px; /* 20px padding + 1px border */
+  margin-bottom: 20px;
+  margin-left: 0px;
+}
 .jetta.nav-sidebar > li > a {
   padding-right: 20px;
   padding-left: 20px;

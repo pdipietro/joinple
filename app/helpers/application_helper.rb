@@ -22,18 +22,15 @@ module ApplicationHelper
   end
 
   def load_social_network_from_url
-      puts "************************* START OF def load_social_network_from_url"
       sn = request.domain.split(".").first.downcase
       if ALLOWED_DOMAIN_SERVER.include? sn
         u = root_url.downcase
         sn = u[u.rindex("//")+2..-1].split(sn).first[0..-2]
-        puts "url split: #{sn}, root_url: #{u}"
       end 
-       puts "sn pre #{sn}"
        sn = sn.start_with?("test.") ? sn.split(".")[1] : sn 
        sn = sn.start_with?("dev.") ? sn.split(".")[1] : sn 
-       puts "sn post #{sn}"
        sn = humanize_word(sn)
+       tmp = SocialNetwork.find_by( :name => sn )
        set_current_social_network ( SocialNetwork.find_by( :name => sn ))
        current_social_network
   end
@@ -57,6 +54,5 @@ module ApplicationHelper
   def humanize_sentence(sentence)
       sentence.split('.').map(&:strip).map(&:capitalize).join('. ') + '.'
   end
-
 
 end

@@ -5,8 +5,7 @@ module SessionsHelper
   def log_in(user)
      session[:user_id] = user.id
      session[:admin] = user.admin
-     load_social_network_from_url
-     puts "log_in(#{user.nickname}) in social network #{current_social_network_name?} done."
+     check_social_network
   end
 
   # Remembers a user in a persistent session.
@@ -18,34 +17,43 @@ module SessionsHelper
 
   # Return the current Social Network
   def current_social_network
-    @current_social_network
-  end
-
-  def current_group?
-    @current_group
-  end
-
-  def current_group_name?
-    @current_group.nil? ? "" : @current_group.name
-  end
-
-  def reset_current_group
-    @current_group = nil
-  end
-
-  def set_current_group(group)
-    @current_group = group
+     session[:social_network]
   end
 
   def current_social_network_name?
-    @current_social_network.nil? ? "" : @current_social_network.name
+     if session[:social_network].nil? 
+        puts "session[:social_network][:name]   mancante!!!!!!!!!!!!!!"
+        "aaa"
+     else
+        #puts "social_network #{session[:social_network][:name]} (#{session[:social_network].class})"
+        session[:social_network][:name]
+     end
+  end
+
+  def current_social_network_uuid?
+    session[:social_network][:uuid]
+  end
+
+  def current_group
+    session[:group]
+  end
+
+  def current_group_name?
+    session[:group].nil? ? " " : session[:group][:name]
+  end
+
+  def reset_current_group
+    session[:group] = nil
+  end
+
+  def set_current_group(group)
+    session[:group] = group
   end
 
   # Returns the current logged-in user (if any).
   def current_user
     if (user_id = session[:user_id])
       @current_user ||= User.find(user_id)
-      puts "current_user-1: #{@current_user.id}"
     elsif (user_id = cookies.permanent.signed[:user_id])
       user = User.find(user_id)
       if user && user.authenticated?(:remember, cookies[:remember_token])
@@ -56,7 +64,6 @@ module SessionsHelper
       end
       puts "current_user-2: #{@current_user.id}"
     end
-#  puts "current_user-3: #{@current_user.id}"
    @current_user
   end
 
@@ -67,12 +74,13 @@ module SessionsHelper
 
   # Logs out the current user.
   def log_out
-    puts "Doing logout çççççççççççççççççççççççççççççççççççççççççççççççççççççççççççççççç"
     forget(current_user)
     session.delete(:user_id)
     session.delete(:admin)
-  #  @current_social_network = nil
-    @current_group = nil
+  # session[:social_network] = nil
+    session.delete(:group) unless session[:group].nil?
+
+    session.delete(:social_network) unless session[:social_network].nil?
     @current_user = nil
   end
 
@@ -94,7 +102,6 @@ module SessionsHelper
   
    # Redirects to stored location (or to the default).
   def redirect_back_or(default)
-    puts " ------------------------ redirect_back_or: (format: #{request.xhr?}) #{session[:forwarding_url] || default}"
     redirect_to(session[:forwarding_url] || default, format: :js)
     session.delete(:forwarding_url)
   end
@@ -106,24 +113,15 @@ module SessionsHelper
 
   # check if the social network is changed
   def check_social_network
-    puts "-------------- social network is #{!@current_social_network.nil? } - name: #{current_social_network_name?}"
-    !@current_social_network.nil? 
-  end
-
-=begin
-  # check if the social network is changed
-  def check_social_network
-    puts "check_social_network - logged_in? = #{logged_in?}"
-    if logged_in?
-      new_social_name = compute_social_name
-      unless new_social_name = current_social_name
-         set_current_social_network
-         redirect_to root_path
-      end
+    unless session[:social_network].class.name == "SocialNetwork" 
+       load_social_network_from_url
+       if session[:social_network].nil? 
+          redirect_to root_url
+       end
     end
-    true
+
+    !session[:social_network].nil? 
   end
-=end
 
   def is_admin?
     !!session[:admin]
@@ -162,14 +160,10 @@ module SessionsHelper
         puts "sn is nil => faccio il logout"
         log_out
       else 
-        @current_social_network = sn
+        session[:social_network] = sn
 
         reset_current_group
-
-        puts "CurrentSocialNetworkName: #{current_social_network_name?}"
-        puts "CurrentGroup            : #{current_group_name?}"
       end
     end
-
 
 end

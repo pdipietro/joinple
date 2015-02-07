@@ -11,9 +11,7 @@ class StaticPagesController < ApplicationController
   end
 
   def home
-    sn = load_social_network_from_url
-    puts "SN at home: #{sn.name} - sn.nil?: #{sn.nil?} "
-    if sn.nil?
+    if load_social_network_from_url.nil?
       render file: "#{Rails.root}/public/404.html", layout: false, status: 404
       false
     end

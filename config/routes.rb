@@ -39,9 +39,11 @@ Rails.application.routes.draw do
   resources :posts, constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true     #,               only: [:create, :destroy]
   resources :groups, constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
 
-  post      'likes/:id/:class/:rel_type'   =>    'likes#edit', constraints: AuthConstraint.new, :as => :onerel
-  get       'likes'                        =>    'likes#dummy', constraints: AuthConstraint.new, :as => :dummy
-  post      'search'                       =>    'likes#search', constraints: AuthConstraint.new, :as => :search
+  #post       'groups/list/:filter(/:subject)' =>   'groups#list', constraints: AuthConstraint.new, :as => :group_list, defaults: { :format => "js"}, :remote => :true
+  post       '/groups/list/:filter(/:limit(/:subject))'  =>   'groups#list', constraints: AuthConstraint.new, :as => :group_list, defaults: { :format => "js"}, :remote => :true
+  post      'likes/:id/:class/:rel_type'    =>    'likes#edit', constraints: AuthConstraint.new, :as => :onerel
+  get       'likes'                         =>    'likes#dummy', constraints: AuthConstraint.new, :as => :dummy
+  post      'search'                        =>    'likes#search', constraints: AuthConstraint.new, :as => :search
 
 
 

@@ -1,14 +1,48 @@
 class GroupsController < ApplicationController
+
+  include GroupsHelper
+
   before_action :check_social_network
   before_action :set_group, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_user, only: [:create, :destroy]
 
   respond_to :js
 
+=begin
+  
+  # GET /groups/list/:filter(/:limit(/:subject))
+  def right_list
+    @groups = []
+    @title = []
+
+    SECONDARY_SUBSET.each do |subset|
+      @groups << get_subset(subset,SECONDARY_ITEMS_PER_PAGE )
+      @title << get_title(subset)
+    end
+  end
+=end
+
+  # GET /groups/list/:filter(/:limit(/:subject))
+  def list
+    @title = []
+
+    query_string = prepare_query(params[:filter])
+
+    [query_string].each do |subset|
+      @groups << get_subset(subset, BASIC_ITEMS_PER_PAGE )
+      @title[0] = get_title(subset)
+    end
+ 
+    #render partial: 'list', object: @groups, locals: { title: derived_title(filter) }
+  end
+
   # GET /groups
   # GET /groups.json
   def index
-    @groups = Group.all.order(created_at:  :desc)
+    #@groups = Group.all.order(created_at:  :desc)
+
+    @groups = get_subset(BASIC_SUBSET[0], BASIC_ITEMS_PER_PAGE)
+    @title = get_title(BASIC_SUBSET[0])
   end
 
   # GET /groups/1
@@ -33,9 +67,6 @@ class GroupsController < ApplicationController
 
     respond_to do |format|
       if @group.save
-        puts "CurrentSocialNetwork: #{current_social_network}"
-        puts "current_user is a: #{current_user.class}"
-        puts "current_social_network is a: #{current_social_network.class}"
         rel = Owns.create(from_node: current_user, to_node: @group)
         rel = BelongsTo.create(from_node: @group, to_node: current_social_network)
         format.js   { render partial: "enqueue", object: @group, notice: 'Group was successfully created.' }

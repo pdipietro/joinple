@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :check_social_network
+  before_action :check_social_network, only: [:show]
   before_action :logged_in_user, only: [:index, :edit, :update, :show]
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
@@ -21,11 +21,10 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    puts "after: #{params} (format: #{request.xhr?})"
-
+    puts "UsersController.show start"
+    puts "session: #{session.id}, sn: #{current_social_network_name?}, user: #{current_user.nickname unless current_user.nil?}, admin: #{is_admin?} - group: #{current_group_name?} - group admin: #{is_group_admin?}"
     @posts = Post.all.order(created_at:  :desc)
     @user = User.find(params[:id])
-#    render js: show
     respond_to do |format|
         format.js 
 #        format.html
