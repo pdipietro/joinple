@@ -1,12 +1,12 @@
 - if logged_in?
-  - gr = get_subset(subset)
+  - groups = get_subset(1,secondary_items_per_page,subset)
   %ul.list-group.title.nav-right-sidebar{ :id => "#{subset}" }
     %li.list-group-item
       = link_to groups_path, :remote => :true do
         %span.fa
           %i.fa.fa-icon{ :class => "#{icon}" }
         = "#{title}"
-    - gr.each do |group|
+    - groups.each do |group|
       %li.list-group-item
         = link_to dummy_path, :remote => :true do
           = group.name

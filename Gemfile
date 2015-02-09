@@ -44,7 +44,7 @@ end
 #gem "neo4j", "~> 3.0.0"
 gem "neo4j", "~> 4.0.0.rc.1"
 #gem 'neo4j-will_paginate', github: 'neo4jrb/neo4j-will_paginate', branch: 'master'
-#gem "neo4j-will_paginate_redux"
+gem "neo4j-will_paginate_redux"
 
 #gem "haml"
 gem "haml-rails"

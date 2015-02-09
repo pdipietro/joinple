@@ -26,23 +26,24 @@ class GroupsController < ApplicationController
   def list
     @title = []
 
-    query_string = prepare_query(params[:filter])
+    filter = params[:filter]
+    puts params[:from_page].class
+    first_page = params[:from_page].nil? ? 1 : params[:from_page]
 
-    [query_string].each do |subset|
-      @groups << get_subset(subset, BASIC_ITEMS_PER_PAGE )
-      @title[0] = get_title(subset)
-    end
+     @groups = get_subset(first_page,SECONDARY_ITEMS_PER_PAGE,filter)
  
-    #render partial: 'list', object: @groups, locals: { title: derived_title(filter) }
+    render 'list', locals: { groups: @groups, subset: filter, title: get_title(filter), icon: get_icon(filter)}
   end
 
   # GET /groups
   # GET /groups.json
   def index
     #@groups = Group.all.order(created_at:  :desc)
+    filter = "iparticipate"
 
-    @groups = get_subset(BASIC_SUBSET[0], BASIC_ITEMS_PER_PAGE)
-    @title = get_title(BASIC_SUBSET[0])
+    @groups = get_subset(1,BASIC_ITEMS_PER_PAGE,filter)
+
+    render 'index', locals: { groups: @groups, subset: filter, title: get_title(filter), icon: get_icon(filter)}
   end
 
   # GET /groups/1

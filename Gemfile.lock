@@ -202,6 +202,10 @@ GEM
       net-http-persistent
       os
       zip
+    neo4j-will_paginate_redux (0.3.4)
+      activesupport (~> 4.0)
+      neo4j (> 3.0.2)
+      will_paginate (~> 3.0)
     net-http-persistent (2.9.4)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
@@ -344,6 +348,7 @@ DEPENDENCIES
   mini_magick (= 3.8.0)
   minitest-reporters (= 1.0.5)
   neo4j (~> 4.0.0.rc.1)
+  neo4j-will_paginate_redux
   pg (= 0.17.1)
   pry-rails
   rack-cors

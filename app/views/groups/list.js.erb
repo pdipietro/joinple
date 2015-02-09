@@ -1,1 +1,1 @@
-$("#main_content").html("<%= escape_javascript(render partial: 'index', locals: { groups: @groups, title: @title} ) %>" );
+$("#main_content").html("<%= escape_javascript(render partial: 'index', locals: { groups: @groups, subset: subset, title: title, icon: icon } ) %>" );
