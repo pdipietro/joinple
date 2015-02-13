@@ -5,6 +5,19 @@ class PostsController < ApplicationController
 
   respond_to :js
 
+  #helper_method  :get_post_subset
+
+ # GET /posts/list/:filter(/:limit(/:subject))
+  def list
+    filter = params[:filter]
+    puts params[:from_page].class
+    first_page = params[:from_page].nil? ? 1 : params[:from_page]
+
+    @posts = get_post_subset(first_page,SECONDARY_ITEMS_PER_PAGE,filter)
+ 
+    render 'list', locals: { posts: @posts, subset: filter, title: get_title(filter), icon: get_icon(filter)}
+  end
+
   # GET /posts
   # GET /posts.json
   def index
@@ -15,19 +28,7 @@ class PostsController < ApplicationController
         format.js
     end
   end
-=begin
-  def self.find user
-    notice "Posts.self.find user"
-    @posts = Post.as(:u).all.is_owned_by.match_to(user).order(u.created_at:  :desc)
-  end
 
-  # GET /posts/1
-  # GET /posts/1.json
-  def show user
-    notice "Posts.show user"
-    @posts = Post.as(:u).all.is_owned_by.match_to(user).order(u.created_at:  :desc)
-  end
-=end
   # GET /posts/new
   def new
     @post = Post.new
@@ -41,10 +42,20 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(post_params)
+
+    puts "- Current_group: #{current_group}"
+
+    current_owner = post_params[:master_post]
+    puts "1) Current_owner: #{current_owner}"
+    current_owner = current_group if current_owner.nil?
+    puts "2) Current_owner: #{current_owner}"
+    current_owner = current_social_network if current_owner.nil?
+    puts "3) Current_owner: #{current_owner}"
     
     respond_to do |format|
       if @post.save
         rel = Owns.create(from_node: current_user, to_node: @post)
+        rel = BelongsTo.create(from_node: @post, to_node: current_owner)
 
         format.js   { render partial: "enqueue", object: @post, notice: 'Post was successfully created.' }
         format.html { redirect_to(request.env["HTTP_REFERER"]) }
@@ -88,6 +99,18 @@ class PostsController < ApplicationController
   def get_current_user
      current_user
   end
+
+  # GET /posts/list/:filter(/:limit(/:subject))
+  def get_post_subset(actual_page, items_per_page, filter)
+    puts "INTO  - (postsController) get_subset"
+    query_string = prepare_query(filter)
+
+    puts "post - get subset - query string: #{query_string}"
+    post = Post.as(:posts).query.match(query_string).proxy_as(Post, :posts).paginate(:page => actual_page, :per_page => items_per_page, return: :posts, order: "posts.created_at desc")
+    puts "get_subset count: #{post.count} - class: #{post.class.name} - #{post}"
+    post
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

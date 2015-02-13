@@ -151,3 +151,20 @@ span.centered {
 .shared_debug {
   font-size: 70%;
 }
+
+
+.group-header {
+  position: relative;
+  padding-left: 5px;
+  top: -55px;
+  margin-bottom: -55px;
+  span.group-title {
+    font-size: 300%;
+  }
+  span.group-description {
+    font-size: 200%;
+    text-align: top;
+  }
+}
+
+

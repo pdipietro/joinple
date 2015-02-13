@@ -1,2 +1,4 @@
-$('<%= escape_javascript( if is_admin? then "#main_add" else "#nil" end ) %>').html("<%= escape_javascript(render partial: 'form', locals: { group: Group.new  } ) %>" );
-$("#main_content *:eq(0)").after("<%= escape_javascript(render partial: 'show', locals: { group: @group } ) %>" );
+$("#main_add").html("<%= escape_javascript(render partial: 'form', locals: { group: Group.new  } ) %>" );
+$("#main_content *:eq(0)").after("<%= escape_javascript(render partial: 'show_list', locals: { group: @group } ) %>" );
+$("#main_rcontent").html("<%= escape_javascript(render partial: 'rindex' ) %>" );
+$("#user_info").html("<%= escape_javascript(render partial: 'shared/user_info', locals: { user: current_user } ) %>" );

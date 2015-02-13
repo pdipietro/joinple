@@ -1,37 +1,33 @@
 - if group.errors.count == 0
   %div{ :id => group.uuid }
-    - owner = group.query_as(:p).match("(p)<-[r:owns]-(u:User)").pluck(:u).first
-    .thumbnail
+    - rels = count_relationships(group)
+    .thumbnail{ :style => "background-color: #{group.background_color}; color: #{group.text_color};" }  
       .container-fluid.nopadding
-        -#.col-xs-2.col-sm-2.col-md-2.image-72
+        .col-xs-2.col-sm-2.col-md-2.image-72
           %img.img-owner1{ :src => "http://cdn001.crowdupcafe.com/public/72x72-3.jpg" }
         .col-xs-1.col-sm-1.col-md-1.v-glyps
-          = link_to onerel_path(group,'Group','likes'), :method => :post, :remote => :true do
+          = link_to onerel_path(group,'Group','likes'), :method => :post, :remote => :true, :test => "Likes" do
             %span.glyphicons.icon-like-1
             = likes = group.query_as(:p).match("(p)<-[r:likes]-(u:User)").pluck(:u).count
           -#  Like
           %br
           -#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          = link_to root_path do
-            %span.glyphicons.icon-share-outline
-            12543
-          -#  Join
+          -#= link_to root_path do
+          %span.glyphicons.icon-share-outline
+          12
+          -#  members
           %br
           -#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          = link_to root_path do
-            %span.glyphicons.icon-star-4
-            3295
-          -#  Preferite
+          -#= link_to root_path do
+          %span.glyphicons.icon-star-4
+          32
+          -#  friend members
           %br
-          = link_to root_path do
-            %span.glyphicons.icon-star-4
-            3295
-          -#  Preferite
+          -#= link_to root_path do
+          %span.glyphicons.icon-star-4
+          45
+          -#  discussions
           %br
-          = link_to root_path do
-            %span.glyphicons.icon-star-4
-            3295
-          -#  Preferite
         .col-xs-9.col-sm-9.col-md-9
           .post-header
             = group.name

@@ -42,6 +42,10 @@ module SessionsHelper
     session[:group].nil? ? " " : session[:group][:name]
   end
 
+  def current_group_uuid?
+    session[:group][:uuid]
+  end
+
   def reset_current_group
     session[:group] = nil
   end
@@ -152,6 +156,21 @@ module SessionsHelper
           false
       end
   end
+
+  def count_relationships (obj)
+#    rel = Neo4j::Session.query("match (user:User {uuid : '#{self.uuid}'})-[owns]->(x) return 'out' as dir, type(owns), labels(x),count(*) union match (user:User {uuid : '#{self.uuid}'})<-[owns]-(x) return 'in' as dir, type(owns), labels(x),count(*)")
+    rel = Neo4j::Session.query("match (item:#{obj.class.name} {uuid : '#{obj.uuid}'})-[rel]->(x) return 'out' as dir, type(rel) as rel, labels(x) as label,count(*) as count union match (item:#{obj.class.name} {uuid : '#{obj.uuid}'})<-[rel]-(x) return 'in' as dir, type(rel) as rel, labels(x) as label, count(*) as count ")
+    puts "rel: #{rel} - x2: #{rel.class.name} - x3: #{rel.count} "#- x4: #{x4} - x5: #{x5}, #{x5.class.name}"
+
+    hash = Hash.new
+    rel.each do |row|
+      hash ["#{row[0]}-#{row[1]}-#{row[2][0]}"] = row[3]
+    end
+
+    puts "hash: #{hash}"
+    hash
+  end
+
 
   private
 

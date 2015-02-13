@@ -8,29 +8,18 @@ class GroupsController < ApplicationController
 
   respond_to :js
 
-=begin
-  
-  # GET /groups/list/:filter(/:limit(/:subject))
-  def right_list
-    @groups = []
-    @title = []
-
-    SECONDARY_SUBSET.each do |subset|
-      @groups << get_subset(subset,SECONDARY_ITEMS_PER_PAGE )
-      @title << get_title(subset)
-    end
-  end
-=end
+  helper_method  :secondary_items_per_page, :get_group_subset, :get_posts_subset
+ 
 
   # GET /groups/list/:filter(/:limit(/:subject))
   def list
-    @title = []
+    reset_current_group  
 
     filter = params[:filter]
     puts params[:from_page].class
     first_page = params[:from_page].nil? ? 1 : params[:from_page]
 
-     @groups = get_subset(first_page,SECONDARY_ITEMS_PER_PAGE,filter)
+    @groups = get_group_subset(first_page,SECONDARY_ITEMS_PER_PAGE,filter)
  
     render 'list', locals: { groups: @groups, subset: filter, title: get_title(filter), icon: get_icon(filter)}
   end
@@ -38,10 +27,10 @@ class GroupsController < ApplicationController
   # GET /groups
   # GET /groups.json
   def index
-    #@groups = Group.all.order(created_at:  :desc)
-    filter = "iparticipate"
+    reset_current_group  
 
-    @groups = get_subset(1,BASIC_ITEMS_PER_PAGE,filter)
+    filter = "iparticipate"
+    @groups = get_group_subset(1,BASIC_ITEMS_PER_PAGE,filter)
 
     render 'index', locals: { groups: @groups, subset: filter, title: get_title(filter), icon: get_icon(filter)}
   end
@@ -49,7 +38,19 @@ class GroupsController < ApplicationController
   # GET /groups/1
   # GET /groups/1.json
   def show
-#    @groups = Group.find(@id)
+    id = params[:id]
+    @group = Group.find(id)
+    set_current_group(@group)  
+
+    query_string = "(posts)-[r:belongs_to]->(group:Group { uuid : '#{current_group_uuid?}'} ) "
+    puts "- Current_group: #{current_group}"
+
+    @posts = Post.as(:posts).query.match(query_string).proxy_as(Post, :posts).paginate(:page => 1, :per_page => BASIC_ITEMS_PER_PAGE, return: :posts, order: "posts.created_at desc")
+
+          #get_post_subset(1,BASIC_ITEMS_PER_PAGE,"")
+
+    puts ("@group : #{@group}")
+    render 'show', locals: { group: @group, posts: @posts }
   end
 
   # GET /groups/new
@@ -109,6 +110,34 @@ class GroupsController < ApplicationController
     end
   end
 
+  ################################ HELPERS METHODS ##########################
+
+  def secondary_items_per_page
+    SECONDARY_ITEMS_PER_PAGE
+  end
+
+  # GET /groups/list/:filter(/:limit(/:subject))
+  def get_group_subset(actual_page, items_per_page, filter)
+    puts "INTO  - (GroupsController) get_subset"
+    query_string = prepare_query(filter)
+
+    puts "group - get subset - query string: #{query_string}"
+    grp = Group.as(:groups).query.match(query_string).proxy_as(Group, :groups).paginate(:page => actual_page, :per_page => items_per_page, return: :groups, order: "groups.created_at desc")
+    puts "get_subset count: #{grp.count} - class: #{grp.class.name} - #{grp}"
+    grp
+  end
+
+  # GET /posts/list/:filter(/:limit(/:subject))
+  def get_post_subset (actual_page, items_per_page, filter)
+    puts "INTO  - (postsController) get_subset"
+    query_string = prepare_post_query(filter)
+
+    puts "post - get subset - query string: #{query_string}"
+    post = Post.as(:posts).query.match(query_string).proxy_as(Post, :posts).paginate(:page => actual_page, :per_page => items_per_page, return: :posts, order: "posts.created_at desc")
+    puts "get_subset count: #{post.count} - class: #{post.class.name} - #{post}"
+    post
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_group
@@ -117,6 +146,6 @@ class GroupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def group_params
-      params.require(:group).permit(:name, :description, :is_open, :is_private, :image, :icon, :color)
+      params.require(:group).permit(:name, :description, :is_open, :is_private, :image, :icon, :background_color, :text_color)
     end
 end

@@ -10,13 +10,21 @@
         - else
           New Group
   .panel-body{ :id => "gf#{group.uuid}", :class => group.errors.count == 0 && t ? 'collapse' : '' } 
+    - puts group.attributes
+
+    - if group.background_color == "#000000" and group.text_color == "#000000" 
+      - group.background_color = "#ffffff"
+      - group.text_color = "#333333"
     = bootstrap_form_for(group, :remote => :true ) do |f|
       = f.text_field :name, :prepend => :name, :placeholder => "Enter the group name ", :hide_label => :true
       = f.text_field :description, :prepend => :description, :placeholder => "Enter the group description", :hide_label => :true
       -#= f.text_field :image, :prepend => :image, :placeholder => "Enter the image url", :hide_label => :true
       -#= f.text_field :icon, :prepend => :icon, :placeholder => "Enter the icon url", :hide_label => :true
-      = f.text_field :color, :prepend => :color, :placeholder => "Enter the color as (R,G,B,A)", :hide_label => :true
       = f.text_field :name, :class => "disabled", :disabled => "disabled", :append => f.check_box( :is_open, :label => "", :class => "adjust-checkbox-right"), :placeholder => "Specify if this group must be open", :hide_label => :true
       = f.text_field :name, :class => "disabled", :disabled => "disabled", :append => f.check_box( :is_private, :label => "", :class => "adjust-checkbox-right"), :placeholder => "Specify if this group must be private", :hide_label => :true
+      = f.color_field :background_color, :prepend => "background color", :placeholder => "Enter the background color", :hide_label => :true
+      = f.color_field :text_color, :prepend => "text color", :placeholder => "Enter the text color", :hide_label => :true
+      -#= f.file_field :image, :prepend => :image, :placeholder => "Enter the group image url", :hide_label => :true
+      -#= f.file_field :icon, :prepend => :icon, :placeholder => "Enter the icon url", :hide_label => :true
       %button.icon_only{ :type => "submit", :name => "commit", :hide_label => :true, :title => "Save the element" } 
         %span.glyphicon.glyphicon-save

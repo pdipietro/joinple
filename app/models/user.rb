@@ -118,12 +118,23 @@ class User
     reset_sent_at < 2.hours.ago
   end
 
+=begin
+  def count_relationships 
+    rel = Neo4j::Session.query("match (item:#{self.class.name} {uuid : '#{self.uuid}'})-[rel]->(x) return 'out' as dir, type(rel) as rel, labels(x) as label,count(*) as count union match (item:#{self.class.name} {uuid : '#{self.uuid}'})<-[rel]-(x) return 'in' as dir, type(rel) as rel, labels(x) as label, count(*) as count ")
+    puts "rel: #{rel} - x2: #{rel.class.name} - x3: #{rel.count} "#- x4: #{x4} - x5: #{x5}, #{x5.class.name}"
+
+    hash = Hash.new
+    rel.each do |row|
+      hash ["#{row[0]}-#{row[1]}-#{row[2][0]}"] = row[3]
+    end
+
+    puts "hash: #{hash}"
+    hash
+  end
+=end
+
   private
 
-  #   def set_last_name
-  #      self.last_name = self.last_name.titleize if self.last_name
-  #   end
-     
      def create_activation_digest
         self.activation_token  = new_token
         self.activation_digest = digest(self.activation_token)

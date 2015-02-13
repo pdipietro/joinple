@@ -1,5 +1,12 @@
 - search = "AA"
--#%img.img-header{ :src => "http://cdn001.crowdupcafe.com/public/863x200.jpg" }
+
+%img.img-header{ :src => "http://cdn001.crowdupcafe.com/public/863x200-transparent.svg", :style => "background-color: #{group.background_color}; color: #{group.text_color};" }  
+.group-header{ :style => "background-color: #{group.background_color}; color: #{group.text_color};" }
+  %span.group-title
+    = group.name
+  %span.group-description
+    = group.description
+
 = bootstrap_form_for(search, :remote => :true, layout: :inline ) do |f|
   .panel.panel-default
     .panel-body
@@ -25,7 +32,7 @@
               %span.fa-lg
                 %i.fa.fa-icon.glyphicon.glyphicon-search
         .btn-group{ :role => "group" }
-          %button.btn.btn-default{ :type => "button", :title => "My groups" }
+          %button.btn.btn-default{ :type => "button", :title => "My discussions" }
             %span.fa-lg
               %i.fa.fa-icon.icon-list-1
 = render partial: 'shared/debug'

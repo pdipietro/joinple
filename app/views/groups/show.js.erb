@@ -1,0 +1,4 @@
+$("#main_header").html("<%= escape_javascript(render partial: 'single_group_search', locals: { group: @group } ) %>" );
+$("#main_add").html("<%= escape_javascript(render partial: 'posts/form', locals: { post: Post.new } ) %>" );
+$("#main_content").html("<%= escape_javascript(render partial: 'posts/fetch', locals: { posts: @posts } ) %>" );
+$("#main_rcontent").html("<%= escape_javascript(render partial: 'posts/rindex', locals: { posts: @posts } ) %>" );

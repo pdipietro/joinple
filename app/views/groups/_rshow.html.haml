@@ -1,9 +1,8 @@
 - if group.errors.count == 0
   %div{ :id => group.uuid }
-    -# owner = group.query_as(:p).match("(p)<-[r:owns]-(u:User)").pluck(:u).first
     .thumbnail
       .container-fluid.nopadding
-        %img.img-owner1{ :src => "http://cdn001.crowdupcafe.com/public/72x72-3.jpg" }
+        -#%img.img-owner1{ :src => "http://cdn001.crowdupcafe.com/public/72x72-3.jpg" }
         .post-header
           = group.name
         %br

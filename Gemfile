@@ -42,7 +42,7 @@ group :production do
 end
 
 #gem "neo4j", "~> 3.0.0"
-gem "neo4j", "~> 4.0.0.rc.1"
+gem "neo4j", "~> 4.0"
 #gem 'neo4j-will_paginate', github: 'neo4jrb/neo4j-will_paginate', branch: 'master'
 gem "neo4j-will_paginate_redux"
 
@@ -57,6 +57,8 @@ gem 'responders', '~> 2.0'
 gem 'bootstrap_form'
 gem 'font-awesome-sass'
 gem 'rack-cors', :require => 'rack/cors'
+gem 'bootstrap_colorpicker_rails'
+
 #gem "neo4jrb-paperclip", github: 'subvertallchris/neo4jrb-paperclip', require: "neo4jrb_paperclip"
 
 #gem 'activerecord'

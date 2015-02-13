@@ -11,7 +11,8 @@ class Group
   property  :description,  :type =>   String
   property  :image,        :type =>   String
   property  :icon,         :type =>   String  
-  property  :color,        :type =>   String
+  property  :background_color, :type =>   String, default: "inherit"
+  property  :text_color,   :type =>   String, default: "inherit"
   property  :is_open,      :type =>   Boolean, default: false
   property  :is_private,   :type =>   Boolean, default: false
 
