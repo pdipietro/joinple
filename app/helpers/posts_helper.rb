@@ -16,4 +16,8 @@ module PostsHelper
       ""
     end
 
+    def load_owner()
+
+    end
+
 end

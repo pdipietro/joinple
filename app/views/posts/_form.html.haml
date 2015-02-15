@@ -1,3 +1,4 @@
+- puts "PORCA PUTTANAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA #{current_owner.class.name}:#{current_owner.uuid}"
 .panel.panel-default
   .panel-heading
     %a.toggle{ :type => "toggle", "data-target" => "#posts_form", "data-toggle" => "collapse"}
@@ -8,10 +9,10 @@
         - else
           New discussion
           %span.caret.to-right
-
   #posts_form.panel-body.collapse
     = bootstrap_form_for(post, :remote => :true ) do |f|
       = f.text_field :title, :prepend => :title, :placeholder => "Enter the title for the new discussion", :hide_label => :true, :text => "discussion title"
-      = f.text_field :content, :prepend => :content, :placeholder => "Enter the content", :hide_label => :true, :text => "discussion content"
-      %button.icon_only{ :type => "submit", :name => "commit", :hide_label => :true, :title => "Save the element" } 
+      = f.text_area :content, :prepend => :content, :placeholder => "Enter the content", :hide_label => :true, :text => "discussion content"
+      = f.text_field :is_owned_by, :type => :hidden, :value => "#{current_owner.class.name}:#{current_owner.uuid}", :hide_label => :true
+      %button.icon_only{ :type => "submit", :name => "commit", :hide_label => :true, :title => "Save the element" }
         %span.glyphicon.glyphicon-save

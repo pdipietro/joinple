@@ -50,7 +50,7 @@ class GroupsController < ApplicationController
           #get_post_subset(1,BASIC_ITEMS_PER_PAGE,"")
 
     puts ("@group : #{@group}")
-    render 'show', locals: { group: @group, posts: @posts }
+    render 'show', locals: { posts: @posts, current_owner: @group  } 
   end
 
   # GET /groups/new

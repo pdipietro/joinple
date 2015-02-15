@@ -41,27 +41,27 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
+    puts "post_params[:is_owned_by]: #{post_params[:is_owned_by]}"
+    is_owned_by = post_params[:is_owned_by].split(":")
+    @current_owner_class = is_owned_by[0]
+    @current_owner_uuid = is_owned_by[1]
+    params[:post].delete("is_owned_by")
     @post = Post.new(post_params)
 
-    puts "- Current_group: #{current_group}"
+    @current_owner = Neo4j::Session.query("match (dest:#{@current_owner_class} { uuid : '#{@current_owner_uuid}' }) return dest").first[0]
 
-    current_owner = post_params[:master_post]
-    puts "1) Current_owner: #{current_owner}"
-    current_owner = current_group if current_owner.nil?
-    puts "2) Current_owner: #{current_owner}"
-    current_owner = current_social_network if current_owner.nil?
-    puts "3) Current_owner: #{current_owner}"
-    
+    puts "Owner class is: #{@current_owner.class.name}, #{@current_owner}"
+
     respond_to do |format|
       if @post.save
         rel = Owns.create(from_node: current_user, to_node: @post)
-        rel = BelongsTo.create(from_node: @post, to_node: current_owner)
+        rel = PostBelongsTo.create(from_node: @post, to_node: @current_owner)
 
-        format.js   { render partial: "enqueue", object: @post, notice: 'Post was successfully created.' }
+        format.js   { render partial: "enqueue", object: @post, locals: { :current_owner => @current_owner }, notice: 'Post was successfully created.' }
         format.html { redirect_to(request.env["HTTP_REFERER"]) }
         format.json { render :show, status: :created, location: @post, user: @post.is_owned_by }
       else
-        format.js   { render :new, object: @post }
+        format.js   { render :new, object: @post, locals: { :current_owner => @current_owner } }
         format.html { render :new }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end

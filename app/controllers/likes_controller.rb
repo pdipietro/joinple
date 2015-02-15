@@ -38,7 +38,7 @@ class LikesController < ApplicationController
     end
   end
 
-  def load_social_network(sn)
+  def BUTTALOVIA_load_social_network(sn)
      puts "============= RECEIVED SN = #{sn}"
      base = ENV['RAILS_ENV']
     # sn.downcase!

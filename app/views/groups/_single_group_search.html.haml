@@ -1,12 +1,20 @@
 - search = "AA"
 
-%img.img-header{ :src => "http://cdn001.crowdupcafe.com/public/863x200-transparent.svg", :style => "background-color: #{group.background_color}; color: #{group.text_color};" }  
 .group-header{ :style => "background-color: #{group.background_color}; color: #{group.text_color};" }
+  %img.img-header{ :src => "http://cdn001.crowdupcafe.com/public/863x200-transparent.svg" }  
   %span.group-title
     = group.name
   %span.group-description
     = group.description
-
+  %span.members
+    - members = group.query_as(:g).match("(g)<-[r:is_member_of|owns]-(u:User)").pluck(:u).count
+    = "#{pluralize(members, "member")}"
+  %span.join-the-group
+    - is_member = group.query_as(:g).match("(g)<-[r:is_member_of|owns]-(u:User { uuid: '#{current_user.uuid}' })").pluck(:u).count
+    -#.post-glyps
+    = link_to onerel_path(group,'Group','has_member'), :method => :post, :remote => :true do
+      = is_member == 1 ? "abandone the group" : "join the group"
+      -#  Join / Unjoin
 = bootstrap_form_for(search, :remote => :true, layout: :inline ) do |f|
   .panel.panel-default
     .panel-body

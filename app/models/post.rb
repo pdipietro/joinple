@@ -14,7 +14,7 @@ class Post
   has_many  :in,  :is_followed_by, rel_class: Follows          # User
   has_many  :in,  :is_preferred_by, rel_class: Preferes
 
-  has_one   :out, :belongs_to, rel_class: BelongsTo   # belongs to Post | Group | SocialNetwork
+  has_one   :out, :belongs_to, rel_class: PostBelongsTo   # belongs to Post | Group | SocialNetwork
 
 
   def self.find_by user

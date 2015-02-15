@@ -175,6 +175,7 @@ module SessionsHelper
   private
 
     def set_current_social_network (sn)
+      puts "HERE INTO set_current_social_network !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
       if sn.nil?
         puts "sn is nil => faccio il logout"
         log_out
