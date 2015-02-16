@@ -5,6 +5,10 @@ body {
   font-size: 12px;
 }
 
+#main_center {
+  padding-top: 61px;
+}
+
 .input-group-addon {
   padding-bottom: 4px;
 }
@@ -25,17 +29,18 @@ span.caret.to-right {
   margin-top: 6px;
 }
 
-#main_left, #main_center, #main, #main_right {
+#main_left, #smain_center, #main, #main_right {
   padding-top: 10px !important;
 }
 
+.myself,
 .myself img.gravatar,
 .myself img.avatar {
   margin-right: 0;
   margin-left:0;
   position: relative;
-  top: 5px;
-  left: 7px;
+  top: 3px;
+  left: 4px;
 }
 
 aside {

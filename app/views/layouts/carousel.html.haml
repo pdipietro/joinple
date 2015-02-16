@@ -15,28 +15,10 @@
     %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1"}    
     = csrf_meta_tags
     = render 'layouts/shim'
-    = puts "=================>>>> HERE IS APPLICATION LAYOUT"
+    = puts "=================>>>> HERE IS CAROUSEL LAYOUT"
     %body{:sn => "#{current_social_network_name?}"}
-      #header
-        %nav.navbar-default.navbar-fixed-top{ :role => "navigation" }
-          = render 'layouts/header'
-      #page.container-fluid
-        %aside#main_left.col-xs-2.col-sm-2.col-md-2.sidebar
-          - if logged_in?
-            = render partial: 'shared/left_menu'
-        #main_center.col-xs-8.col-xs-offset-2.col-sm-8.col-sm-offset-2.col-md-8.col-md-offset-2
-          #main_header
-          #main_add
-          #main_content
-            = yield
-          #debug
-            = debug(params) if Rails.env.development?
-        %aside#main_right.col-xs-2.col-xs-offset-10.col-sm-2.col-sm-offset-10.col-md-2.col-md-offset-10.sidebar
-          #main_rheader
-          #main_rcontent
-      -#    
-        - flash.each do |message_type, message|
-          %div{:class => "alert alert-#{message_type}"}= message
-        = yield
-        .row.container-fluid
-          = debug(params) if Rails.env.development?
+    #header
+      %nav.navbar-inverse.navbar-fixed-top{ :role => "navigation" }
+        = render 'layouts/header', params: { inverse: :true }
+    #page
+      = yield
