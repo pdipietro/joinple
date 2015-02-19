@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :tags
+
   root                     'static_pages#carousel'#, defaults: { :format => "js"}, :remote => :true
   get    'home'      =>    'static_pages#home'#, defaults: { :format => "js"}, :remote => :true
   get    'about'     =>    'static_pages#about', defaults: { :format => "js"}, :remote => :true

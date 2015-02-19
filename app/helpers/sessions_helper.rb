@@ -43,7 +43,7 @@ module SessionsHelper
   end
 
   def current_group_uuid?
-    session[:group][:uuid]
+    session[:group].nil? ? " " : session[:group][:uuid]
   end
 
   def reset_current_group
@@ -135,9 +135,10 @@ module SessionsHelper
     !!session[:current_group_admin]
   end
 
-  def current_group_uuid?
-    current_group.nil? ? nil : current_group.uuid
-  end
+ # def current_group_uuid?
+ #   puts "CurrentGroup: #{current_group}"
+ #   current_group.nil? ? nil : current_group.uuid
+ # end
 
   def can_modify?(object)
       if is_admin?

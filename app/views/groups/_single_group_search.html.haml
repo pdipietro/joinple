@@ -1,46 +1,48 @@
 - search = "AA"
-
 .group-header{ :style => "background-color: #{group.background_color}; color: #{group.text_color};" }
-  %img.img-header{ :src => "http://cdn001.crowdupcafe.com/public/863x200-transparent.svg" }  
-  %span.group-title
-    = group.name
-  %span.group-description
-    = group.description
-  %span.members
-    - members = group.query_as(:g).match("(g)<-[r:is_member_of|owns]-(u:User)").pluck(:u).count
-    = "#{pluralize(members, "member")}"
-  %span.join-the-group
-    - is_member = group.query_as(:g).match("(g)<-[r:is_member_of|owns]-(u:User { uuid: '#{current_user.uuid}' })").pluck(:u).count
-    -#.post-glyps
-    = link_to onerel_path(group,'Group','has_member'), :method => :post, :remote => :true do
-      = is_member == 1 ? "abandone the group" : "join the group"
-      -#  Join / Unjoin
-= bootstrap_form_for(search, :remote => :true, layout: :inline ) do |f|
-  .panel.panel-default
-    .panel-body
-      .btn-toolbar{ :role => "toolbar" }
-        .btn-group{ :role => "group" }
-          %button.btn.btn-default{ :type => "button", :title => "My groups" }
-            = link_to group_list_path('iparticipate'), :method => :post, :remote => :true do
-              %span.fa-lg
-                %i.fa.fa-icon.icon-torsos-all-female
-          %button.btn.btn-default{ :type => "button", :title => "Groups I administer" }
-            = link_to group_list_path('iadminister'), :method => :post, :remote => :true do
-              %span.fa-lg
-                %i.fa.fa-icon.icon-tools
-          %button.btn.btn-default{ :type => "button", :title => "Pending invitations" }
-            = link_to group_list_path('pendinginvitation'), :method => :post, :remote => :true do
-              %span.fa-lg
-                %i.fa.fa-icon.icon-pin
-              -#%i.fa.fa-icon.icon-pin.fa-stacked
-        .btn-group{ :role => "group" }
-          %span.input-group-btn.search.fa-lg{ :type => "button" }
-            = f.text_field :name, :prepend => "Search", :placeholder => "Enter the text to search", :hide_label => :true, :title => "Text to search"
-            %button.btn.btn-default{ :type => "button" }
-              %span.fa-lg
-                %i.fa.fa-icon.glyphicon.glyphicon-search
-        .btn-group{ :role => "group" }
-          %button.btn.btn-default{ :type => "button", :title => "My discussions" }
-            %span.fa-lg
-              %i.fa.fa-icon.icon-list-1
-= render partial: 'shared/debug'
+  %img.img-header.group{ :src => "http://cdn001.crowdupcafe.com/public/863x200-transparent.svg" }  
+  .container-fluid.nopadding
+    %aside.col-xs-10
+      .group-header.left
+        .group-title
+          = group.name
+        .group-description
+          - if group.description.length > 150
+            %div{ :name => "moreorless", :class => "collapse in" } 
+              = "#{group.description[0..150]}"
+              %a.toggle{ :type => "toggle", "data-target" => "div[name=moreorless]", "data-toggle" => "collapse"}
+                .more
+                  more 
+                  %span
+                    %i.fa.glyphicons.glyphicons-more
+            %div{ :name => "moreorless", :class => "collapse" } 
+              = group.description
+              %a.toggle{ :type => "toggle", "data-target" => "div[name=moreorless]", "data-toggle" => "collapse"}
+                .more
+                  %span
+                    %i.fa.glyphicons.glyphicons-more
+                  less 
+          - else
+            = group.description
+    .col-xs-2
+      .group-header.right
+        .to-right
+          = group.is_private ? "private group" : "public group"
+        .to-right
+          = group.is_open ? "open group" : "closed group"
+        .to-right
+          - members = group.query_as(:g).match("(g)<-[r:is_member_of|owns]-(u:User)").pluck(:u).count
+          = "#{pluralize(members, "member")}"
+        - is_admin = group.query_as(:g).match("(g)<-[r:owns]-(u:User { uuid: '#{current_user.uuid}' })").pluck(:u).count
+        .to-right
+          - if is_admin == 1 
+            = "administrator"
+          - else
+            - is_member = group.query_as(:g).match("(g)<-[r:is_member_of]-(u:User { uuid: '#{current_user.uuid}' })").pluck(:u).count
+            - txt = is_member == 1 ? "abandone the group" : "join the group"
+            = link_to onerel_path(group,'Group','has_member'), :method => :post, :remote => :true, :title => txt do
+              - if is_member == 1 
+                %i.fa.fa-icon.icon-log-out.fa-2x
+              - else
+                %i.fa.fa-icon.icon-log-in.fa-2x
+= render partial: 'posts/search' 

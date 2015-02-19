@@ -13,4 +13,5 @@
  *= require_directory .
  *= require_self
  *= require_directory ./../fonts
+ *= require bootstrap3-switch
  */

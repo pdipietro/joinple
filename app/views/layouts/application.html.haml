@@ -16,6 +16,10 @@
     = csrf_meta_tags
     = render 'layouts/shim'
     = puts "=================>>>> HERE IS APPLICATION LAYOUT"
+    :javascript
+      $(function() {
+        $('input:checkbox').bootstrapSwitch();
+      });
     %body{:sn => "#{current_social_network_name?}"}
       #header
         %nav.navbar-default.navbar-fixed-top{ :role => "navigation" }

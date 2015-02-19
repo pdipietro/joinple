@@ -22,7 +22,9 @@ class Group
   has_many  :in,  :is_administered_by, model_class: User, origin: :is_admin
   has_many  :in,  :is_followed_by, rel_class: Follows    # User
   has_many  :in,  :likes_to, rel_class: Likes            # :any
+  has_many  :out, :has_tag, rel_class: HasTag            # :tag
   has_one   :out, :belongs_to, rel_class: BelongsTo      # belongs to SocialNetwork
+
 #  has_one   :out, :has_icon, rel_class: IconOf           # Icon
 
   VALID_RGBA_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
