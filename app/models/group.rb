@@ -1,6 +1,7 @@
 class Group 
   include Neo4j::ActiveNode
   #include ApplicationHelper
+  include Neo4jrb::Paperclip
 
   include Uuid
   include CreatedAtUpdatedAt
@@ -26,6 +27,9 @@ class Group
   has_one   :out, :belongs_to, rel_class: BelongsTo      # belongs to SocialNetwork
 
 #  has_one   :out, :has_icon, rel_class: IconOf           # Icon
+
+  has_neo4jrb_attached_file :cover
+  validates_attachment_content_type :cover, content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 
   VALID_RGBA_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 

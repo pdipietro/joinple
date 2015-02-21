@@ -4,14 +4,29 @@
 
 body {
   font-size: 12px;
+  border: 1px;
+
+  background-attachment: fixed;
+  background-clip: border-box, border-box;
+  background-color: rgba(16, 16, 16, 1);
+  background-image: url("http://cdn001.crowdupcafe.com/public/body-texture.png"), none;
+  background-origin: padding-box, padding-box;
+  background-position: left top;
+  background-repeat: repeat;
+  background-size: auto auto;
+  
 }
 
-#main_center {
+#page {
   padding-top: 61px;
 }
 
 .input-group-addon {
   padding-bottom: 4px;
+}
+
+#header {
+  background-color: rgba(128,128,128, 1);
 }
 
 .navbar-header {
@@ -35,12 +50,8 @@ span.caret.to-right {
 
 #main_left, #main_center, #main, #main_right {
   padding-top: 10px !important;
+  z-index: 0;
 }
-
-page {
-  padding-top: 61px;
-}
-
 
 .myself,
 .myself img.gravatar,
@@ -168,10 +179,6 @@ span.centered {
 
 
 .group-header {
-  sposition: relative;
-  spadding-left: 5px;
-  stop: -55px;
-  smargin-bottom: -55px;
   .group-title {
     font-size: 300%;
   }
@@ -189,13 +196,13 @@ span.centered {
     bottom: 0;
     position: absolute;
     left: 0;
-  }
+}
 
 .group-header.right {
     bottom: 0;
     position: absolute;
     right: 0;
-  }
+}
 
 .noborder {
   border: 0;

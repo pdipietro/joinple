@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/subvertallchris/neo4jrb-paperclip.git
+  revision: e70f1f9ea9433a9d103420bdfbdb639197e719a0
+  specs:
+    neo4jrb-paperclip (0.0.3)
+      neo4j (> 3.0.0.alpha.8)
+      paperclip (~> 4.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -53,7 +61,7 @@ GEM
       will_paginate
     bootstrap_colorpicker_rails (1.0.2)
       railties (>= 3.0)
-    bootstrap_form (2.2.0)
+    bootstrap_form (2.3.0)
     builder (3.2.2)
     byebug (3.4.0)
       columnize (~> 0.8)
@@ -66,6 +74,10 @@ GEM
       mime-types (>= 1.16)
     celluloid (0.16.0)
       timers (~> 4.0.0)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.5)
+      climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -73,7 +85,7 @@ GEM
     coffee-script (2.3.0)
       coffee-script-source
       execjs
-    coffee-script-source (1.9.0)
+    coffee-script-source (1.9.1)
     columnize (0.9.0)
     debug_inspector (0.0.2)
     debugger-linecache (1.2.0)
@@ -98,7 +110,7 @@ GEM
       fog-core (~> 1.22)
       fog-json
       inflecto (~> 0.0.2)
-    fog-core (1.28.0)
+    fog-core (1.29.0)
       builder
       excon (~> 0.38)
       formatador (~> 0.2)
@@ -115,7 +127,7 @@ GEM
     formatador (0.2.5)
     globalid (0.3.3)
       activesupport (>= 4.1.0)
-    guard (2.12.1)
+    guard (2.12.2)
       formatador (>= 0.2.4)
       listen (~> 2.7)
       lumberjack (~> 1.0)
@@ -215,11 +227,16 @@ GEM
     net-ssh (2.9.2)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
-    notiffany (0.0.5)
+    notiffany (0.0.6)
       nenv (~> 0.1)
       shellany (~> 0.0)
     orm_adapter (0.5.0)
     os (0.9.6)
+    paperclip (4.2.1)
+      activemodel (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.5.3)
+      mime-types
     pg (0.17.1)
     pry (0.10.1)
       coderay (~> 1.1.0)
@@ -354,6 +371,7 @@ DEPENDENCIES
   minitest-reporters (= 1.0.5)
   neo4j (~> 4.0)
   neo4j-will_paginate_redux
+  neo4jrb-paperclip!
   pg (= 0.17.1)
   pry-rails
   rack-cors

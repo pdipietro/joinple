@@ -7,9 +7,12 @@ Rails.application.config.assets.version = '1.0'
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
 
-Rails.application.config.assets.precompile += %w( social/gsn_bootstrap.css )
-Rails.application.config.assets.precompile += %w( social/trace_bootstrap.css )
-Rails.application.config.assets.precompile += %w( social/work_bootstrap.css )
+#Rails.application.config.assets.precompile += %w( social/gsn_bootstrap.css )
+#Rails.application.config.assets.precompile += %w( social/trace_bootstrap.css )
+#Rails.application.config.assets.precompile += %w( social/work_bootstrap.css )
+#Rails.application.config.assets.precompile += %w( social/syplaces_bootstrap.css )
+
+Rails.application.config.assets.precompile += %w( social/*_bootstrap.css )
 
 Rails.application.config.assets.precompile += %w( ./../fonts/glyphicons-regular.eot )
 Rails.application.config.assets.precompile += %w( ./../fonts/glyphicons-regular.svg )

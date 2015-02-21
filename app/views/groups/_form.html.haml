@@ -53,6 +53,8 @@
           = f.color_field :background_color, :prepend => "background color", :placeholder => "Enter the background color", :hide_label => :true, layout: :horizontal,control_col: "col-sm-5 noborder", label_col: "col-sm-2", :class => "left-align" 
           = f.color_field :text_color, :prepend => "text color", :placeholder => "Enter the text color", :hide_label => :true, layout: :horizontal, control_col: "col-sm-5 noborder", label_col: "col-sm-2 noborder", :class => "left-align" 
 
+        = f.file_field :cover, :prepend => "cover image", :placeholder => "Enter the group cover image url", :hide_label => :true
+
         -#= f.file_field :image, :prepend => :image, :placeholder => "Enter the group image url", :hide_label => :true
         -#= f.file_field :icon, :prepend => :icon, :placeholder => "Enter the icon url", :hide_label => :true
         .form-group     
