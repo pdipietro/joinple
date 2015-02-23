@@ -178,13 +178,21 @@ span.centered {
   max-width: 72px;
 }
 
-.v-glyps {
-  padding-right: 0px;
-  padding-left: 10px;
+.v-glyphs {
+  padding-top: 5px;
+  padding-right: 5px;
+  padding-left: 5px;
 }
 
 .post-header {
   font-weight:  700;
+  font-size: 80%;
+}
+
+.post-title {
+  font-weight: bold;
+  font-size: 120%;
+
 }
 
 .command-button {
