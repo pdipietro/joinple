@@ -7,7 +7,7 @@
     = stylesheet_link_tag    'glyphicons', media: 'all', 'data-turbolinks-track' => true
     = stylesheet_link_tag    'glyphicons-bootstrap', media: 'all', 'data-turbolinks-track' => true
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-    = stylesheet_link_tag    'dashboard', media: 'all', 'data-turbolinks-track' => true
+    -#= stylesheet_link_tag    'dashboard', media: 'all', 'data-turbolinks-track' => true
     = stylesheet_link_tag    "social/#{current_social_network_name?.downcase}_bootstrap", media: 'all', 'data-turbolinks-track' => true
 
     = javascript_include_tag 'application', media: 'all', 'data-turbolinks-track' => true
@@ -20,5 +20,5 @@
     #header
       %nav.navbar-inverse.navbar-fixed-top{ :role => "navigation" }
         = render 'layouts/header', params: { inverse: :true }
-    #page
+    #page.container-fluid
       = yield

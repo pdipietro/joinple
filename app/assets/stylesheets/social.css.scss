@@ -2,9 +2,27 @@
 @import "bootstrap";
 @import "bootstrap3-switch";
 
+/*
+@media (min-width: 1280px) {
+  .container {
+    swidth: 1280px;
+   }
+  #page {
+    smax-width: 1280px;
+   }
+}
+*/
 body {
   font-size: 12px;
-  border: 1px;
+  sborder: 1px;
+
+  background-color: antiquewhite;
+  
+}
+
+#page {
+  sx-max-width: 1280px;
+  padding-top: 64px;
 
   background-attachment: fixed;
   background-clip: border-box, border-box;
@@ -14,11 +32,11 @@ body {
   background-position: left top;
   background-repeat: repeat;
   background-size: auto auto;
-  
+
 }
 
-#page {
-  padding-top: 61px;
+.thumbnail {
+  border: 0;
 }
 
 .input-group-addon {
@@ -49,7 +67,7 @@ span.caret.to-right {
 }
 
 #main_left, #main_center, #main, #main_right {
-  padding-top: 10px !important;
+  spadding-top: 10px !important;
   z-index: 0;
 }
 
@@ -79,9 +97,16 @@ ul.list-group {
   border-left: 0px;
   border-right: 0px;
   border: 0px;
-  spadding: 0px 8px;
   padding: 0px inherit;
 }
+ul.list-group > li:first-child {
+  padding-top:  10px;
+  padding-bottom:  10px
+}
+ul.list-group > li:last-child {
+  padding-bottom:  10px
+}
+
 /*
 
 .nav-sidebar > li > a {
@@ -165,6 +190,7 @@ span.centered {
 .command-button {
   padding-right: 0;
   padding-left: 30px;
+
 }
 
 .fa-stacked {

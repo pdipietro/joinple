@@ -21,7 +21,7 @@ a, a:active, a:visited {
 
 ul.list-group.title > li.list-group-item:first-child,
 ul.list-group.title > li.list-group-item:first-child > a {
-  background-color: #f8f8f8;
+  background-color: darkseagreen;
   color: red;
 }
 

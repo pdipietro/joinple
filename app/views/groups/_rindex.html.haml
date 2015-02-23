@@ -1,4 +1,4 @@
 - if logged_in?
-  %ul#hotgroups.list-group.title.nav-right-sidebar= render partial: 'right_menu', locals: { groups: @groups, subset: "hot", title: "Hot groups",  icon: "icon-flame" }
-  %ul#freshgroups.list-group.title.nav-right-sidebar= render partial: 'right_menu', locals: { groups: @groups, subset: "fresh", title: "Fresh groups",  icon: "icon-clock" }
-  %ul#mycontactsgroups.list-group.title.nav-right-sidebar= render partial: 'right_menu', locals: { groups: @groups, subset: "mycontacts", title: "My contact's groups", icon: "icon-heart" }
+  %ul#hotgroups.list-group.title.nav-sidebar= render partial: 'right_menu', locals: { groups: @groups, subset: "hot", title: "Hot groups",  icon: "icon-flame" }
+  %ul#freshgroups.list-group.title.nav-sidebar= render partial: 'right_menu', locals: { groups: @groups, subset: "fresh", title: "Fresh groups",  icon: "icon-clock" }
+  %ul#mycontactsgroups.list-group.title.nav-sidebar= render partial: 'right_menu', locals: { groups: @groups, subset: "mycontacts", title: "My contact's groups", icon: "icon-heart" }

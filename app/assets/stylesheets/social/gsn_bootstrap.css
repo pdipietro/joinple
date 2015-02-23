@@ -20,10 +20,8 @@ a, a:active, a:visited {
  /* color for headers of aside columns */
 
 ul.list-group.title > li.list-group-item:first-child,
-ul.list-group.title > li.list-group-item:first-child > a,
-ul.list-group.title a span {
-  background-color: #f8f8f8;
-  color: green;
+ul.list-group.title > li.list-group-item:first-child > a {
+  background-color: goldenrod;
   margin-bottom: 0;
 }
 

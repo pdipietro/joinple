@@ -113,7 +113,7 @@ zfooter {
 
 /* miscellaneous */
 
-.debug_dump {
+.zdebug_dump {
   clear: both;
   float: left;
   width: 100%;

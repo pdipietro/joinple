@@ -1,4 +1,4 @@
 $("#main_header").html("<%= escape_javascript(render partial: 'search', locals: { groups: @groups} ) %>" );
 $('#main_add').html("<%= escape_javascript(render partial: 'form', locals: { group: Group.new } ) %>" );
 $("#main_content").html("<%= escape_javascript(render partial: 'index', locals: { groups: @groups, subset: subset, title: title, icon: icon } ) %>" );
-$("#main_rcontent").html("<%= escape_javascript(render partial: 'rindex', locals: { groups: @groups } ) %>" );
+$("#main_right").html("<%= escape_javascript(render partial: 'rindex', locals: { groups: @groups } ) %>" );

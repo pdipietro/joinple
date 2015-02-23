@@ -2,7 +2,8 @@
   %div{ :id => post.uuid }
     - owner = post.query_as(:p).match("(p)<-[r:owns]-(u:User)").pluck(:u).first
     .thumbnail
-      .container-fluid.nopadding
+      .container
+        -#-fluid.nopadding
         .col-xs-2.col-sm-2.col-md-2.image-72
           .img-owner1= gravatar_for owner, size: 72
           -# = link_to root_path do
@@ -32,7 +33,7 @@
             %span.glyphicons.icon-star-4
             29
           -#  Share
-        .col-xs-9.col-sm-9.col-md-9
+        .col-xs-8.col-sm-8.col-md-8
           .post-header
             = "by #{owner.full_name} - #{post.created_at.strftime('%F at %H:%M')}"
           .post-title

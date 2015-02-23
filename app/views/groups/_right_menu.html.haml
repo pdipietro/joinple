@@ -1,13 +1,13 @@
 - if logged_in?
   = puts "ready to call get_group_subset ... : - self = #{self.class}" 
   - grps = get_group_subset(1,7,subset)
-  %ul.list-group.title.nav-right-sidebar{ :id => "#{subset}" }
+  -#%ul.list-group.title.nav-right-sidebar{ :id => "#{subset}" }
+  %li.list-group-item
+    = link_to groups_path, :remote => :true do
+      %span.fa
+        %i.fa.fa-icon{ :class => "#{icon}" }
+      = "#{title}"
+  - grps.each do |group|
     %li.list-group-item
-      = link_to groups_path, :remote => :true do
-        %span.fa
-          %i.fa.fa-icon{ :class => "#{icon}" }
-        = "#{title}"
-    - grps.each do |group|
-      %li.list-group-item
-        = link_to group_path(:id => group.uuid), :remote => :true do
-          = group.name
+      = link_to group_path(:id => group.uuid), :remote => :true do
+        = group.name
