@@ -62,6 +62,8 @@ gem 'bootstrap-switch-rails', '~> 3.0.0'
 
 gem "neo4jrb-paperclip", github: 'subvertallchris/neo4jrb-paperclip', require: "neo4jrb_paperclip"
 
+#gem 'masonry-rails'
+
 #gem 'activerecord'
 
 

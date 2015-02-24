@@ -9,8 +9,8 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = stylesheet_link_tag    'dashboard', media: 'all', 'data-turbolinks-track' => true
     = stylesheet_link_tag    "social/#{current_social_network_name?.downcase}_bootstrap", media: 'all', 'data-turbolinks-track' => true
-
     = javascript_include_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'salvattore', media: 'all', 'data-turbolinks-track' => true
     -#%meta{ :name => "viewport", :content => "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"}    
     %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1"}    
     = csrf_meta_tags
