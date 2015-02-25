@@ -163,8 +163,9 @@ span.centered {
 }
 
 
-.img-owner1 {
-  max-width: 100%;
+.img-owner1,
+.img-responsive {
+  max-width: 100% !important;
   display: block;
   height: auto;
 }
