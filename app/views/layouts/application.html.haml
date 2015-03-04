@@ -21,21 +21,7 @@
         $('input:checkbox').bootstrapSwitch();
       });
     %body{:sn => "#{current_social_network_name?}"}
-      .container-fluid
-        #header
-          %nav.navbar-default.navbar-fixed-top{ :role => "navigation" }
-            = render 'layouts/header'
-        #page.container-fluid
-          = render partial: 'layouts/c3_9_0'
-        -#  
-          %aside#main_left.col-xs-2.col-sm-2.col-md-2.sidebar
-            - if logged_in?
-              = render partial: 'shared/left_menu'
-          #main_center.col-xs-8.col-sm-8.col-md-8
-            #main_header
-            #main_add
-            #main_content
-              = yield
-          %aside#main_right.col-xs-2.col-sm-2.col-md-2.sidebar
-            #main_rheader
-            #main_rcontent
+      #header
+        = render 'layouts/header'
+      #page.container-fluid
+        = render partial: 'layouts/c3_9_0'

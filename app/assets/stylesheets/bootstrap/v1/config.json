@@ -134,7 +134,7 @@
     "@container-sm": "@container-tablet",
     "@container-desktop": "(800px + @grid-gutter-width)",
     "@container-md": "@container-desktop",
-    "@container-large-desktop": "(12800px + @grid-gutter-width)",
+    "@container-large-desktop": "(1280px + @grid-gutter-width)",
     "@container-lg": "@container-large-desktop",
     "@navbar-height": "50px",
     "@navbar-margin-bottom": "@line-height-computed",
@@ -145,10 +145,10 @@
     "@navbar-default-color": "#fff",
     "@navbar-default-bg": "rgb(98,184,183)",
     "@navbar-default-border": "darken(@navbar-default-bg, 6.5%)",
-    "@navbar-default-link-color": "#777",
-    "@navbar-default-link-hover-color": "#333",
+    "@navbar-default-link-color": "#fff",
+    "@navbar-default-link-hover-color": "#777",
     "@navbar-default-link-hover-bg": "transparent",
-    "@navbar-default-link-active-color": "#555",
+    "@navbar-default-link-active-color": "#fff",
     "@navbar-default-link-active-bg": "darken(@navbar-default-bg, 6.5%)",
     "@navbar-default-link-disabled-color": "#ccc",
     "@navbar-default-link-disabled-bg": "transparent",
@@ -307,7 +307,7 @@
     "@panel-footer-bg": "#f5f5f5",
     "@panel-default-text": "@gray-dark",
     "@panel-default-border": "#ddd",
-    "@panel-default-heading-bg": "#f5f5f5",
+    "@panel-default-heading-bg": "rgb(220,20,60)",
     "@panel-primary-text": "#fff",
     "@panel-primary-border": "@brand-primary",
     "@panel-primary-heading-bg": "@brand-primary",
@@ -324,7 +324,7 @@
     "@panel-danger-border": "@state-danger-border",
     "@panel-danger-heading-bg": "@state-danger-bg",
     "@thumbnail-padding": "4px",
-    "@thumbnail-bg": "@body-bg",
+    "@thumbnail-bg": "rgb(220,20,60)",
     "@thumbnail-border": "#ddd",
     "@thumbnail-border-radius": "@border-radius-base",
     "@thumbnail-caption-color": "@text-color",
@@ -425,5 +425,5 @@
     "scrollspy.js",
     "transition.js"
   ],
-  "customizerUrl": "http://getbootstrap.com/customize/?id=4436e667ea7302f26039"
+  "customizerUrl": "http://getbootstrap.com/customize/?id=1034f0c0c9cfc66fbd53"
 }

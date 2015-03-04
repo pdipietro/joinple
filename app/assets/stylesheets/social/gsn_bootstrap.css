@@ -21,10 +21,6 @@ a:hover  {
 
 ul.list-group.title > li.list-group-item:first-child,
 ul.list-group.title > li.list-group-item:first-child > a {
-  background-color: goldenrod;
+  background-color: rgb(220,20,60);
   margin-bottom: 0;
-}
-
-#header {
-  background-color: #f8f8f8;
 }

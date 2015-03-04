@@ -5,8 +5,8 @@
  */
 
 /*!
- * Generated using the Bootstrap Customizer (http://getbootstrap.com/customize/?id=4436e667ea7302f26039)
- * Config saved to config.json and https://gist.github.com/4436e667ea7302f26039
+ * Generated using the Bootstrap Customizer (http://getbootstrap.com/customize/?id=1034f0c0c9cfc66fbd53)
+ * Config saved to config.json and https://gist.github.com/1034f0c0c9cfc66fbd53
  */
 .btn-default,
 .btn-primary,
@@ -419,12 +419,12 @@
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 .panel-default > .panel-heading {
-  background-image: -webkit-linear-gradient(top, #f5f5f5 0%, #e8e8e8 100%);
-  background-image: -o-linear-gradient(top, #f5f5f5 0%, #e8e8e8 100%);
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#f5f5f5), to(#e8e8e8));
-  background-image: linear-gradient(to bottom, #f5f5f5 0%, #e8e8e8 100%);
+  background-image: -webkit-linear-gradient(top, #dc143c 0%, #c51236 100%);
+  background-image: -o-linear-gradient(top, #dc143c 0%, #c51236 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#dc143c), to(#c51236));
+  background-image: linear-gradient(to bottom, #dc143c 0%, #c51236 100%);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff5f5f5', endColorstr='#ffe8e8e8', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffdc143c', endColorstr='#ffc51236', GradientType=0);
 }
 .panel-primary > .panel-heading {
   background-image: -webkit-linear-gradient(top, #337ab7 0%, #2e6da4 100%);

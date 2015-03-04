@@ -2,23 +2,8 @@
 /*@import "bootstrap";*/
 @import "bootstrap3-switch";
 
-body {
- 
-}
-
 #page {
-  sx-max-width: 1280px;
-  padding-top: 52px;
-/*
-  background-attachment: fixed;
-  background-clip: border-box, border-box;
-  background-color: rgba(16, 16, 16, 1);
-  background-image: url("http://cdn001.crowdupcafe.com/public/body-texture.png"), none;
-  background-origin: padding-box, padding-box;
-  background-position: left top;
-  background-repeat: repeat;
-  background-size: auto auto;
-*/
+  margin-top: 54px !important;
 }
 
 .thumbnail {
@@ -29,12 +14,20 @@ body {
   padding-bottom: 4px;
 }
 
-#header {
-  background-color: rgba(98,184,183, 1);
+#header > nav {
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .navbar-header {
+  background-color: rgb(0,0,220) !important;
   z-index: 1000;
+}
+
+.container-fluid > .navbar-header {
+  padding-left: 0;
+  padding-right:0;
+
 }
 
 .checkbox {
@@ -53,7 +46,6 @@ span.caret.to-right {
 }
 
 #main_left, #main_center, #main, #main_right {
-  spadding-top: 10px !important;
   z-index: 0;
 }
 
@@ -77,6 +69,11 @@ span.transparent:hover {
   background-color: transparent !important;
 }
 
+ul.nav.navbar-nav > li {
+  border-right: 1px white !important;
+  padding: 0 25px;
+}
+
 
 ul.list-group > li:not(first-child),
 ul.list-group {
@@ -93,23 +90,8 @@ ul.list-group > li:last-child {
   padding-bottom:  10px
 }
 
-/*
-
-.nav-sidebar > li > a {
-  padding-right: 0 !important;
-  padding-left: 10px !important;
-}
-
-.nav-sidebar > li > a > img.gravatar {
-  display: inline-block;
-}
-*/
 .search {
   display: inline;
-}
-
-.navbar-brand {
-  padding: 4px 15px !important;
 }
 
 .icon-composed {

@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
       unless logged_in?
         store_location
         flash[:danger] = "Please log in."
-        redirect_to login_url, format: :js
+        redirect_to login_url, format: :js, layout: 'application'
       end
     end
 
