@@ -1,30 +1,14 @@
-%aside#main_left.col-xs-2.col-sm-2.col-md-2.sidebar
+%aside#main_left.col-xs-8.sidebar
   - if logged_in?
     = render partial: 'shared/left_menu'
-#main_center.col-xs-8.col-sm-8.col-md-8
+#main_center.col-xs-32
   #main_header
   #main_add
   #main_content
-%aside#main_right.col-xs-2.col-sm-2.col-md-2.sidebar
+%aside#main_right.col-xs-8
   -#main_rheader
   -#main_rcontent
 -#if Rails.env.development?
   #debug.container
     .col-xs-12
       = debug(params)
-
--#
-  %aside#main_left.col-xs-2.col-sm-2.col-md-2.sidebar
-    - if logged_in?
-      = render partial: 'shared/left_menu'
-  #main_center.col-xs-8.col-xs-offset-2.col-sm-8.col-sm-offset-2.col-md-8.col-md-offset-2
-    #main_header
-    #main_add
-    #main_content
-  %aside#main_right.col-xs-2.col-xs-offset-10.col-sm-2.col-sm-offset-10.col-md-2.col-md-offset-10.sidebar
-    #main_rheader
-    #main_rcontent
-  -if Rails.env.development?
-    #debug.container
-      .col-xs-12
-        = debug(params)

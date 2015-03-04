@@ -32,6 +32,7 @@ module ApplicationHelper
        sn = humanize_word(sn)
        tmp = SocialNetwork.find_by( :name => sn )
        set_current_social_network ( SocialNetwork.find_by( :name => sn ))
+       puts "current_social_network: #{current_social_network}"
        current_social_network
   end
 

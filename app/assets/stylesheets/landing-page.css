@@ -1,0 +1,206 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "bootstrap3-switch";
+
+/*
+@media (min-width: 1280px) {
+  .container {
+    swidth: 1280px;
+   }
+  #page {
+    smax-width: 1280px;
+   }
+}
+*/
+body {
+  font-size: 12px;
+
+}
+
+#page {
+  padding-top: 64px;
+
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.no-padding {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+#header {
+/*  background-color: rgba(128,128,128, 1);*/
+}
+
+.navbar-header {
+  z-index: 1000;
+}
+
+.to-right {
+  clear: both;
+  float: right;
+}
+
+.top-banner {
+  padding: 0;
+}
+
+.top-banner > img {
+  position: relative;
+  padding-top: 62px;
+  height: 400px;
+  width: auto; 
+}
+
+img.central-logo {
+   width: 240px; 
+   height: 180px;
+}
+
+.central-logo:after {
+  clear: both;
+}
+
+.intro {
+  position: absolute;
+  top: 90px;
+
+  text-align: -webkit-center;;   
+}
+
+
+.clear {
+  clear: both;
+  padding-top: 50px;
+}
+
+.intro:after {
+  clear: both;
+}
+
+img.social-network {
+  padding: 0 !important;
+  max-width: 100%;
+  height: auto;
+}
+
+.signup-btn {
+  background-color: transparent;
+
+}
+
+.hoverable {
+  z-index: 100;
+}
+
+.hoverable:hover {
+  z-index: -1;
+/*
+  -webkit-transform: translate(0px, 100%);
+  -moz-transform: translate(0px, 100%);
+  -o-transform: translate(0px, 100%);
+  -ms-transform: translate(0px, 100%);
+  transform: translate(0px, 100%);
+*/
+} 
+
+.view-more {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  text-transform: uppercase;
+  padding: 20px 0 0 20px;
+  /* background-color: pink; */
+}
+
+.social-network.name {
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.social-network.description {
+  font-size: 14px;
+  
+}
+
+.social-network.connect-btn {
+  margin-top: 30%;
+}
+
+/* ****************************     SALVATTORE     ******************************* */
+
+/* These are the classes that are going to be applied: */
+
+#grid {
+ margin: 0 auto;
+ padding: 0;
+ border: 0;
+}
+
+@media screen and (max-width: 320px)
+{
+    #grid[data-columns]::before
+    {
+        content: '1 .column.size-xs';
+    }
+}
+
+
+@media screen and (min-width: 321px) and (max-width: 450px)
+{
+    #grid[data-columns]::before
+    {
+        content: '2 .column.size-s';
+    }
+}
+ 
+@media screen and (min-width: 451px) and (max-width: 800px)
+{
+    #grid[data-columns]::before
+    {
+        content: '3 .column.size-m';
+    }
+}
+ 
+@media screen and (min-width: 800px) and (max-width: 1280px)
+{
+    #grid[data-columns]::before
+    {
+        content: '4 .column.size-l';
+    }
+}
+ 
+@media screen and (min-width: 1281px) and (max-width:1920px)
+{
+    #grid[data-columns]::before
+    {
+        content: '5 .column.size-xl';
+    }
+}
+ 
+@media screen and (min-width: 1920px)
+{
+    #grid[data-columns]::before
+    {
+        content: '6 .column.size-xxl';
+    }
+}
+
+.column   { float: left; }
+
+.size-xxl { width: 100%; }
+.size-xl  { width: 50%; }
+.size-l   { width: 33.333%; }
+.size-m   { width: 25%; }
+.size-s   { width: 20%; }
+.size-xs  { width: 16.667%; }
+
+.social-network-item {
+}
+

@@ -1,5 +1,5 @@
--#%nav.navbar-default.navbar-fixed-top{ :role => "navigation" }
 .container-fluid
+  - csnn = "gsn"
   .navbar-header
     %button.navbar-toggle.collapsed{ :type => "button", "data-toggle" => "collapse",  "data-target" => "#navbar" }
       %span.sr-only  Toggle navigation
@@ -7,11 +7,11 @@
       %span.icon-bar
       %span.icon-bar
     %a.navbar-brand.logo{ :href => "#{root_path}" }
-      - sn = "#{current_social_network_name?.downcase}_logo.png"
-      %img.banner.logo{ :src => "#{image_url(sn)}", :height => "46px" }
+      - sn = "#{csnn.downcase}_logo.png"
+      -#%img.banner.logo{ :src => "#{image_url(sn)}", :height => "46px" }
     .dropdown.navbar-brand
-      %a.dropdown-toggle{ :href => "#", "aria-expanded" => "false", "data-toggle" => "dropdown", :type => "button", :title => "About #{current_social_network_name?}"} 
-        = "#{current_social_network_name?}"
+      %a.dropdown-toggle{ :href => "#", "aria-expanded" => "false", "data-toggle" => "dropdown", :type => "button", :title => "About #{csnn}"} 
+        = "#{csnn}"
         %span.caret
       %ul.dropdown-menu{ :role => "menu"}
         %li
@@ -35,6 +35,10 @@
           = link_to about_path, :remote => :true do
             %span.glyphicons.icon-group
             About
+        %li
+          = link_to landing_pages_path, :remote => :true  do
+            %span.glyphicons.icon-smiley-frown
+            Landing page
     - unless logged_in?
       %ul.nav.navbar-nav.navbar-left
         %li
@@ -58,9 +62,14 @@
               %i.fa.fa-square-o.fa-stack-2x
               %i.fa.glyphicons.icon-user-add.myself
               -#Sign up
-  - if logged_in?
-    #navbar.navbar-collapse.collapse
-      %ul.nav.navbar-nav.navbar-right
+  #navbar.navbar-collapse.collapse
+    %ul.nav.navbar-nav.navbar-right
+      %li.active
+        %a{ :href => "#"}
+          = "Link"
+          %span.sr-only
+            = "(current)"
+      - if logged_in?
         %li.dropdown
           %a.dropdown-toggle{ :href => "#", "aria-expanded" => "false", "data-toggle" => "dropdown", :type => "button", :title => "Social networks"}
             -#%span.glyphicons.icon-comment-discussion.x15
@@ -145,6 +154,15 @@
               %span.caret
             %ul.dropdown-menu{ :role => "menu"}
               %li
+                = link_to landing_pages_path, :remote => :true  do
+                  %span.glyphicons.icon-smiley-frown
+                  Landing page
+              %li
+                = link_to social_networks_path, :remote => :true  do
+                  %span.glyphicons.icon-smiley-frown
+                  Social networks
+              %li.divider
+              %li
                 = link_to languages_path, :remote => :true  do
                   %span.glyphicons.icon-language
                   Languages
@@ -152,8 +170,3 @@
                 = link_to dummy_path, :remote => :true  do
                   %span.glyphicons.glyphicons-address-book
                   Administrators
-              %li.divider
-              %li
-                = link_to social_networks_path, :remote => :true  do
-                  %span.glyphicons.icon-smiley-frown
-                  Social networks

@@ -4,7 +4,7 @@
     .thumbnail{ :style => "background-color: #{group.background_color}; color: #{group.text_color};" }  
       .container-fluid.nopadding
         .col-xs-2.col-sm-2.col-md-2.image-72
-          %img.img-owner1{ :src => "http://cdn001.crowdupcafe.com/public/72x72-3.jpg" }
+          = image_tag group.cover.url(:thumb)
         .col-xs-1.col-sm-1.col-md-1.v-glyps
           = link_to onerel_path(group,'Group','likes'), :method => :post, :remote => :true, :test => "Likes" do
             %span.glyphicons.icon-like-1
@@ -40,4 +40,3 @@
               %span.glyphicon.icon-edit-modify-streamline
             = link_to group, :method => :delete, :data => { :confirm => 'Are you sure?' }, :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Delete the element" do
               %span.glyphicon.icon-delete-garbage-streamline
-

@@ -13,6 +13,8 @@ Rails.application.config.assets.version = '1.0'
 #Rails.application.config.assets.precompile += %w( social/syplaces_bootstrap.css )
 
 Rails.application.config.assets.precompile += %w( salvattore.js )
+Rails.application.config.assets.precompile += %w( bootstrap.js )
+Rails.application.config.assets.precompile += %w( bootstrap.min.js )
 
 Rails.application.config.assets.precompile += %w( social/*_bootstrap.css )
 
@@ -40,4 +42,5 @@ Rails.application.config.assets.precompile += %w( bootstrap-multiselect.css )
 Rails.application.config.assets.precompile += %w( font-awesome.min.css )
 
 Rails.application.config.assets.precompile += %w( dashboard.css )
+Rails.application.config.assets.precompile += %w( landing-page.css )
 #Rails.application.config.assets.precompile += %w( bootstrap3-switch.css )

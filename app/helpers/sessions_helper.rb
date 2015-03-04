@@ -182,7 +182,8 @@ module SessionsHelper
         log_out
       else 
         session[:social_network] = sn
-
+        puts "sn: #{current_social_network}"
+        puts "sn.name: #{current_social_network_name?}"
         reset_current_group
       end
     end

@@ -61,6 +61,7 @@ gem 'bootstrap_colorpicker_rails'
 gem 'bootstrap-switch-rails', '~> 3.0.0'
 
 gem "neo4jrb-paperclip", github: 'subvertallchris/neo4jrb-paperclip', require: "neo4jrb_paperclip"
+gem "rmagick"
 
 #gem 'masonry-rails'
 
@@ -87,6 +88,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
+M04d21d31
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development

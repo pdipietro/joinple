@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
 
-  resources :tags
 
-  root                     'static_pages#carousel'#, defaults: { :format => "js"}, :remote => :true
+  root                     'landing_pages#home'#, defaults: { :format => "js"}, :remote => :true
   get    'home'      =>    'static_pages#home'#, defaults: { :format => "js"}, :remote => :true
   get    'about'     =>    'static_pages#about', defaults: { :format => "js"}, :remote => :true
   get    'contacts'  =>    'static_pages#contacts', defaults: { :format => "js"}, :remote => :true
@@ -32,20 +31,20 @@ Rails.application.routes.draw do
 
 # administrative resources
 
-
-
   resources :languages, constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
   resources :social_networks, constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
 
   resources :posts, constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true     #,               only: [:create, :destroy]
   resources :groups, defaults: { :format => "js"}, :remote => :true
 
+  resources :landing_pages, constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
+  resources :images, defaults: { :format => "js"}, :remote => :true
+  resources :tags, defaults: { :format => "js"}, :remote => :true
+
+
   post      '/groups/list/:filter(/:limit(/:subject))'  =>   'groups#list', :as => :group_list, defaults: { :format => "js"}, :remote => :true
   post      'likes/:id/:class/:rel_type'    =>    'likes#edit', constraints: AuthConstraint.new, :as => :onerel
   get       'likes'                         =>    'likes#dummy', constraints: AuthConstraint.new, :as => :dummy
   post      'search'                        =>    'likes#search', constraints: AuthConstraint.new, :as => :search
-
-
-
 
 end
