@@ -70,8 +70,11 @@ span.transparent:hover {
 }
 
 ul.nav.navbar-nav > li {
-  border-right: 1px white !important;
+  border-left: 1px white solid !important;
   padding: 0 25px;
+}
+ul.nav.navbar-nav > li:last-child {
+  border-right: 1px white solid !important;
 }
 
 
