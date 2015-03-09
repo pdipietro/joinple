@@ -26,8 +26,8 @@ class Group
   has_many  :out, :has_tag, rel_class: HasTag            # :tag
   has_one   :out, :belongs_to, rel_class: BelongsTo      # belongs to SocialNetwork
 
-#  has_one   :out, :has_icon, rel_class: IconOf           # Icon
-
+  has_one   :out, :cover, rel_class: HasImage            # Icon
+=begin
   has_neo4jrb_attached_file :cover,
     :path => ":rails_root/public/system/:attachment/:id/:basename_:style.:extension",
     :url => "/system/:attachment/:id/:basename_:style.:extension",
@@ -35,7 +35,7 @@ class Group
               :convert_options => {"thumb" => "-set colorspace sRGB -strip", "icon"=>"-set colorspace sRGB -strip", "profile"=>"-set colorspace sRGB -strip"}
               validates_attachment_content_type :cover, content_type: ['image/jpg', 'image/jpeg', 'image/png', 'image/gif']
               validates_attachment_size :cover, :less_than_or_equal_to => 4.megabytes 
-
+=end
 =begin
   has_neo4jrb_attached_file :cover,
   :path => ":rails_root/public/system/:attachment/:id/:basename_:style.:extension",

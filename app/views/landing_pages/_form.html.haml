@@ -1,12 +1,13 @@
 - if landing_page.errors.count == 0
   %div{ :id => landing_page.uuid }
     = bootstrap_form_for(landing_page, :remote => :true ) do |f|
-      - puts f.methods
       = f.text_area :description, :prepend => :description, :placeholder => "Enter the group description", :hide_label => :true
-      = f.file_field :header, :prepend => "header image", :placeholder => "Enter the cover image url", :hide_label => :true
-      = f.file_field :logo, :prepend => "logo image", :placeholder => "Enter the logo image url", :hide_label => :true
-      = image_tag landing_page.header.url(:l) 
-      = image_tag landing_page.logo.url(:xl) 
+      -#= f.file_field :header, :prepend => "header image", :placeholder => "Enter the cover image url", :hide_label => :true
+      -#= f.file_field :logo, :prepend => "logo image", :placeholder => "Enter the logo image url", :hide_label => :true
+      -#= image_tag landing_page.header.url(:l) 
+      -#= image_tag landing_page.logo.attachment.url(:logo) 
+      = f.fields_for (:logo) do |g|
+        = g.file_field :attachment, :prepend => "logo image", :placeholder => "Enter the logo image url", :hide_label => :true
       .form-group     
-        %button.icon_only{ :type => "submit", :name => "commit", :hide_label => :true, :title => "Save the element"  } 
+        %button.icon_only{ :type => "submit", :remote => :true, :name => "commit", :hide_label => :true, :title => "Save the element"  } 
           %span.glyphicon.glyphicon-save

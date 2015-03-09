@@ -1,0 +1,4 @@
+- if logged_in?
+  %h4.thumbnail Tests
+  - tests.each do |test|
+    = render partial: 'show', locals: { test: test }

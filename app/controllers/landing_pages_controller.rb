@@ -1,7 +1,6 @@
 class LandingPagesController < ApplicationController
  
   before_action :check_social_network
-  before_action :set_group, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_user, only: [:create, :destroy]
 
   before_action :set_landing_page, only: [:show, :edit, :update, :destroy]
@@ -59,7 +58,7 @@ class LandingPagesController < ApplicationController
 #       @landing_page = LandingPage.new
 #       x = @landing_page.save
 #    end
-    render 'index', layout: "application", format: :js
+    render layout: "application", format: :js, locals: { landing_page: @landing_page }
     #layout "application"
   end
 
@@ -93,7 +92,7 @@ class LandingPagesController < ApplicationController
   def update
     respond_to do |format|
       if @landing_page.update(landing_page_params)
-        format.js   { render partial: "index", object: @landing_page, notice: 'Landing page was successfully updated.' }
+        redirect_to root_path #format.js   { render partial: "index", object: @landing_page, notice: 'Landing page was successfully updated.' }
       else
         format.js   { render :edit, object: @landing_page }
       end
@@ -109,6 +108,7 @@ class LandingPagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def landing_page_params
-      params[:landing_page, :description, :layout, :logo]
+      params.require(:landing_page).permit(:description, :header, :logo, logo_attributes: [:attachment])
     end
 end
+

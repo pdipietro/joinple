@@ -1,0 +1,19 @@
+%h1 Listing media_managers
+
+%table
+  %thead
+    %tr
+      %th
+      %th
+      %th
+      
+  %tbody
+    - @media_managers.each do |media_manager|
+      %tr
+        %td= link_to 'Show', media_manager
+        %td= link_to 'Edit', edit_media_manager_path(media_manager)
+        %td= link_to 'Destroy', media_manager, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Media manager', new_media_manager_path

@@ -4,7 +4,7 @@
     .thumbnail{ :style => "background-color: #{group.background_color}; color: #{group.text_color};" }  
       .container-fluid.nopadding
         .col-xs-2.col-sm-2.col-md-2.image-72
-          = image_tag group.cover.url(:thumb)
+          = image_tag group.cover.attachment.url(:thumb)
         .col-xs-1.col-sm-1.col-md-1.v-glyps
           = link_to onerel_path(group,'Group','likes'), :method => :post, :remote => :true, :test => "Likes" do
             %span.glyphicons.icon-like-1

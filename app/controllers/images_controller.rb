@@ -1,4 +1,5 @@
 class ImagesController < ApplicationController
+  before_action :check_social_network, only: [:show, :index]
   before_action :set_image, only: [:show, :edit, :update, :destroy]
 
   # GET /images
@@ -69,6 +70,6 @@ class ImagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def image_params
-      params[:image]
+      params.require(:image).permit(:class_name, :type_name, :attachment)
     end
 end

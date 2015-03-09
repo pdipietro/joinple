@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
 
+
+  resources :media_managers
+
   root                     'landing_pages#home'#, defaults: { :format => "js"}, :remote => :true
   get    'home'      =>    'static_pages#home'#, defaults: { :format => "js"}, :remote => :true
   get    'about'     =>    'static_pages#about', defaults: { :format => "js"}, :remote => :true
@@ -38,8 +41,10 @@ Rails.application.routes.draw do
   resources :groups, defaults: { :format => "js"}, :remote => :true
 
   resources :landing_pages, constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
-  resources :images, defaults: { :format => "js"}, :remote => :true
+ # resources :images, defaults: { :format => "js"}, :remote => :true
   resources :tags, defaults: { :format => "js"}, :remote => :true
+  resources :tests, constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
+  resources :images, constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
 
 
   post      '/groups/list/:filter(/:limit(/:subject))'  =>   'groups#list', :as => :group_list, defaults: { :format => "js"}, :remote => :true

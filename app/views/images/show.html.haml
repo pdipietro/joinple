@@ -1,5 +1,14 @@
 %p#notice= notice
 
+%p
+  %b Class name:
+  = @image.class_name
+%p
+  %b Type name:
+  = @image.type_name
+%p
+  %b Attachment:
+  = @image.attachment
 
 = link_to 'Edit', edit_image_path(@image)
 \|
