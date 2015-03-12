@@ -2,14 +2,15 @@
 %html
   %head
     = puts " ******************************************* #{current_social_network_name?}"
-    %title= current_social_network_name?.capitalize
+    - csnn= current_social_network_name?.nil? ? "GSN" : current_social_network_name?.capitalize
+    %title= csnn
     = stylesheet_link_tag    'fontastic', media: 'all', 'data-turbolinks-track' => true
     = stylesheet_link_tag    'font-awesome.min', media: 'all', 'data-turbolinks-track' => true
     = stylesheet_link_tag    'glyphicons', media: 'all', 'data-turbolinks-track' => true
     = stylesheet_link_tag    'glyphicons-bootstrap', media: 'all', 'data-turbolinks-track' => true
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = stylesheet_link_tag    'dashboard', media: 'all', 'data-turbolinks-track' => true
-    = stylesheet_link_tag    "social/#{current_social_network_name?.downcase}_bootstrap", media: 'all', 'data-turbolinks-track' => true
+    = stylesheet_link_tag    "social/#{csnn.downcase}_bootstrap", media: 'all', 'data-turbolinks-track' => true
  
     = javascript_include_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'salvattore', media: 'all', 'data-turbolinks-track' => true

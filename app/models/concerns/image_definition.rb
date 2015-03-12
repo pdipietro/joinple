@@ -4,8 +4,8 @@ module ImageDefinition
 
   included do
     has_neo4jrb_attached_file :attachment, 
-            :path => ":rails_root/public/system/#{@field_name}/:id/:basename_:style.:extension",
-            :url => "/system/#{@field_name}/:id/:basename_:style.:extension",
+            :path => ":rails_root/public/system/#{@class_name}/#{@field_name}/:id/:basename_:style.:extension",
+            :url => "/system/#{@class_name}/#{@field_name}/:id/:basename_:style.:extension",
             :styles => @styles,
             :convert_options => @options
     validates_attachment_content_type :attachment, content_type: ['image/jpg', 'image/jpeg', 'image/png', 'image/gif']

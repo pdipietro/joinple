@@ -1,10 +1,17 @@
-= form_for @media_manager do |f|
-  - if @media_manager.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@media_manager.errors.count, "error")} prohibited this media_manager from being saved:"
-      %ul
-        - @media_manager.errors.full_messages.each do |msg|
-          %li= msg
+.panel.panel-default
+  .panel-heading
+    - t = !defined?(title)
+    %a.toggle{ :type => "toggle", "data-target" => "#m#m{media_manager.uuid}", "data-toggle" => "collapse"}
+      %span.caret.to-right
+      .panel-title
+        - if defined?(title)
+          = title
+          .button.close{:type => "button", "data-dismiss" => "alert", "aria-label" => "Close" }
+        - else
+          New Language
+  .panel-body{ :id => "mm#{media_manager.uuid}", :class => media_manager.errors.count == 0 && t ? 'collapse in' : 'collapse' }
+    = bootstrap_form_for(media_manager, :remote => :true ) do |f|
+      = "Empty form: not needed"
 
-  .actions
-    = f.submit 'Save'
+      -#= f.text_field :code, :prepend => :code, :placeholder => "2 chars language code (ISO 639-1), plus an optional hyphen and 2 chars country code", :hide_label => :true, :text => "language code"
+      -#= f.text_field :description, :prepend => :description, :placeholder => "Enter the language description", :hide_label => :true, :text => "language description"

@@ -1,4 +1,7 @@
 
+$navbar-default-bg: rgba(77,171,170,1);
+$navbar-default-bg-a: rgba(77,171,170,0.25);
+
 #page {
   margin-top: 54px !important;
 }
@@ -229,4 +232,17 @@ span.centered {
 
 .div200 {
   max-height: 200px;
+}
+
+li.header {
+  text-align: center;
+  font-weight: bold;
+  background-color: $navbar-default-bg;
+}
+
+li.header ~ li,
+li.header ~ li.divider {
+
+  background-color: $navbar-default-bg-a;
+
 }

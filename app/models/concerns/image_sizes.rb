@@ -26,28 +26,36 @@ module ImageSizes
     CLASSES = {
         :User           => {
                              :avatar        => [:original, :btn, :thumb, :icon, :profile], 
-                             :currentAvatar => [:original, :btn, :thumb, :icon, :profile], 
-                             :image         => [:original, :preview]
+                             :image         => [:original, :thumb, :preview]
                            },            
         :Group          => {
                              :logo          => [:original, :btn, :thumb, :icon, :profile], 
                              :header        => [:original, :btn, :thumb, :icon, :profile]
                            },
         :Post           => {
-                             :header        => [:original, :banner, :preview]
+                             :header        => [:original, :thumb, :banner, :preview]
                            },
         :Discussion     => {
                              :logo          => [:original, :btn, :thumb, :icon, :profile], 
-                             :header        => [:original, :banner, :preview]
+                             :header        => [:original, :thumb, :banner, :preview]
                            },
         :SocialNetwork  => {
                              :logo          => [:original, :logo, :btn, :icon]    
                            },
         :LandingPage    => {
-                             :header        => [:xsmall, :small, :medium, :large, :xlarge, :xxlarge],        
-                             :logo          => [:original, :logo]      
+                             :header        => [:xsmall, :small, :medium, :large, :xlarge, :xxlarge, :thumb],        
+                             :logo          => [:original, :thumb, :logo]      
                            }
         }
+
+    ENABLED_TO_MODIFY = {
+        :User           => [ :owner, :superUser ],            
+        :Group          => [ :owner, :admin, :superUser ],
+        :Post           => [ :owner, :superUser ],
+        :Discussion     => [ :owner, :admin, :superUser ],
+        :SocialNetwork  => [ :owner, :admin, :superUser ],
+        :LandingPage    => [ :superUser ]
+    }
 
     CONVERT_OPTIONS = {
           :std              => '-set colorspace sRGB -strip',
@@ -72,7 +80,17 @@ module ImageSizes
       c
     end
 
-  end
+    def images (class_name)
+      c = Hash.new
 
+      CLASSES[class_name].each do |cas|
+        cls.each do |fld|
+          c[fld] = has_one :out, "#{cls.to_s}_#{fld.to_s}", rel_class: HasImage
+        end
+      end
+      c
+    end
+
+  end
 
 end

@@ -111,13 +111,11 @@
                   Everythings
               %li
                 = link_to logout_path, method: "delete", :title => "Log out" do
-                  -#%span.glyphicons.icon-log-out
-                    %i.fa.icon-log-out
-                    -#= 'Log out'
+                  %i.fa.icon-log-out
+                    = 'Log out'
               - if is_admin?
                 %li.divider
-                %li
-                  -#{ :style => { text-align:center; font-weight: bold; } }
+                %li.header
                   Administration
                 %li
                   = link_to landing_pages_path, :remote => :true  do
@@ -140,3 +138,7 @@
                   = link_to tests_path  do
                     %span.glyphicons.glyphicons-address-book
                     Test
+                -#%li
+                  = link_to image_list_path  do
+                    %span.glyphicons.glyphicons-address-book
+                    Media Manager

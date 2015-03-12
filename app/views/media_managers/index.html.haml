@@ -3,6 +3,8 @@
 %table
   %thead
     %tr
+      %th name
+      %th image
       %th
       %th
       %th
@@ -10,6 +12,8 @@
   %tbody
     - @media_managers.each do |media_manager|
       %tr
+        %td media_manager.name
+        %td media_manager
         %td= link_to 'Show', media_manager
         %td= link_to 'Edit', edit_media_manager_path(media_manager)
         %td= link_to 'Destroy', media_manager, :method => :delete, :data => { :confirm => 'Are you sure?' }
