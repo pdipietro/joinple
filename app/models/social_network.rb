@@ -1,6 +1,6 @@
 class SocialNetwork 
   include Neo4j::ActiveNode
-  include Neo4jrb::Paperclip
+#  include Neo4jrb::Paperclip
   include Uuid
   include CreatedAtUpdatedAt
   include IsOwnedBy
@@ -17,6 +17,7 @@ class SocialNetwork
   before_create :check_default
   before_save :check_default
 
+=begin
   #has_many    out, :banners, :has_image 
   has_neo4jrb_attached_file :banner,
     :path => ":rails_root/public/system/:attachment/:id/:basename_:style.:extension",
@@ -33,7 +34,7 @@ class SocialNetwork
     :retina   => '-set colorspace sRGB -strip -sharpen 0x0.5'
   }
   validates_attachment_content_type :banner, content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"]
-
+=end
   def check_default
     self.name = humanize_word(self.name) if self.name    
     self.description = humanize_sentence(self.description) if self.description

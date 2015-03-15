@@ -1,15 +1,16 @@
 !!!
 %html
   %head
+    - csnn = current_social_network_name?.nil? ? "Gsn" : current_social_network_name?
     = puts " ******************************************* #{current_social_network_name?}"
-    %title= current_social_network_name?.capitalize
+    %title= csnn.capitalize
     = stylesheet_link_tag    'fontastic', media: 'all', 'data-turbolinks-track' => true
     = stylesheet_link_tag    'font-awesome.min', media: 'all', 'data-turbolinks-track' => true
     = stylesheet_link_tag    'glyphicons', media: 'all', 'data-turbolinks-track' => true
     = stylesheet_link_tag    'glyphicons-bootstrap', media: 'all', 'data-turbolinks-track' => true
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = stylesheet_link_tag    'dashboard', media: 'all', 'data-turbolinks-track' => true
-    = stylesheet_link_tag    "social/#{current_social_network_name?.downcase}_bootstrap", media: 'all', 'data-turbolinks-track' => true
+    = stylesheet_link_tag    "social/#{csnn.downcase}_bootstrap", media: 'all', 'data-turbolinks-track' => true
  
     = javascript_include_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'salvattore', media: 'all', 'data-turbolinks-track' => true
@@ -22,8 +23,9 @@
       $(function() {
         $('input:checkbox').bootstrapSwitch();
       });
-    %body{:sn => "#{current_social_network_name?}"}
+    %body{:sn => "#{csnn}"}
       #header
         = render 'layouts/header'
       #page.container-fluid
         = render partial: 'layouts/c3_9_0'
+        -#= yield

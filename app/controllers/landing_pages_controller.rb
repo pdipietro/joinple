@@ -90,11 +90,12 @@ class LandingPagesController < ApplicationController
   # PATCH/PUT /landing_pages/1
   # PATCH/PUT /landing_pages/1.json
   def update
+
     respond_to do |format|
       if @landing_page.update(landing_page_params)
-        redirect_to root_path #format.js   { render partial: "index", object: @landing_page, notice: 'Landing page was successfully updated.' }
+        format.js  { redirect_to root_path } #format.js   { render partial: "index", object: @landing_page, notice: 'Landing page was successfully updated.' }
       else
-        format.js   { render :edit, object: @landing_page }
+        format.js  { render :edit, object: @landing_page }
       end
     end
   end
@@ -108,7 +109,7 @@ class LandingPagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def landing_page_params
-      params.require(:landing_page).permit(:description, :header, :logo, logo_attributes: [:attachment])
+      params.require(:landing_page).permit(:description, :logo, :logo_cache, :header, :header_cache)
     end
 end
 

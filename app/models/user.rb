@@ -4,7 +4,7 @@
 
 class User
   include Neo4j::ActiveNode
-  include Neo4jrb::Paperclip
+#  include Neo4jrb::Paperclip
   include Uuid
   include CreatedAtUpdatedAt
   include SecurePassword
@@ -56,6 +56,7 @@ class User
   has_many  :out, :owns, rel_class: Owns                # :any
   has_many  :out, :is_member_of, rel_class: MemberOf    # Group
 
+=begin
   has_neo4jrb_attached_file :avatar,
     :path => ":rails_root/public/system/:attachment/:id/:basename_:style.:extension",
     :url => "/system/:attachment/:id/:basename_:style.:extension",
@@ -71,7 +72,7 @@ class User
     :retina   => '-set colorspace sRGB -strip -sharpen 0x0.5'
   }
   validates_attachment_content_type :avatar, content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"]
-
+=end
 
   # Remembers a user in the database for use in persistent sessions.
   def remember

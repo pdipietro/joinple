@@ -13,6 +13,7 @@ class GroupsController < ApplicationController
 
   # GET /groups/list/:filter(/:limit(/:subject))
   def list
+    puts ("----- Groups Controller: List -----------------------------------------------------------")
     reset_current_group  
 
     filter = params[:filter]
@@ -27,6 +28,7 @@ class GroupsController < ApplicationController
   # GET /groups
   # GET /groups.json
   def index
+    puts ("----- Groups Controller: Index -----------------------------------------------------------")
     reset_current_group  
 
     filter = "iparticipate"
@@ -38,6 +40,7 @@ class GroupsController < ApplicationController
   # GET /groups/1
   # GET /groups/1.json
   def show
+    puts ("----- Groups Controller: Show -----------------------------------------------------------")
     id = params[:id]
     @group = Group.find(id)
     set_current_group(@group)  
@@ -55,22 +58,29 @@ class GroupsController < ApplicationController
 
   # GET /groups/new
   def new
+    puts ("----- Groups Controller: new -----------------------------------------------------------")
     @group = Group.new
   end
 
   # GET /groups/1/edit
+    puts ("----- Groups Controller: Edit -----------------------------------------------------------")
   def edit
   end
 
   # POST /groups
   # POST /groups.json
   def create
-    @group = Group.new(group_params)
+     puts ("----- Groups Controller: Create -----------------------------------------------------------")
+   @group = Group.new(group_params)
 
     respond_to do |format|
+        puts ("1) @group.logo:  <#{@group.logo.url}><#{@group.logo.current_path}><#{@group.logo.identifier}>")
+        puts ("1) @group.header:  <#{@group.header.url}><#{@group.header.current_path}><#{@group.header.identifier}>")
       if @group.save
         rel = Owns.create(from_node: current_user, to_node: @group)
         rel = BelongsTo.create(from_node: @group, to_node: current_social_network)
+        puts ("2) @group.logo:  <#{@group.logo.url}><#{@group.logo.current_path}><#{@group.logo.identifier}>")
+        puts ("2) @group.header:  <#{@group.header.url}><#{@group.header.current_path}><#{@group.header.identifier}>")
         format.js   { render partial: "enqueue", object: @group, notice: 'Group was successfully created.' }
         format.html { redirect_to(request.env["HTTP_REFERER"]) }
         format.json { render :show, status: :created, location: @group }
@@ -85,6 +95,7 @@ class GroupsController < ApplicationController
   # PATCH/PUT /groups/1
   # PATCH/PUT /groups/1.json
   def update
+    puts ("----- Groups Controller: update -----------------------------------------------------------")
     respond_to do |format|
       if @group.update(group_params)
         format.js   { render partial: "replace", object: @group, notice: 'Group was successfully created.' }
@@ -146,6 +157,7 @@ class GroupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def group_params
-      params.require(:group).permit(:name, :description, :is_open, :is_private, :image, :icon, :background_color, :text_color, :cover)
+      params.require(:group).permit(:name, :description, :is_open, :is_private, :background_color, :text_color,
+        :logo, :header, :logo_cache, :header_cache)
     end
 end

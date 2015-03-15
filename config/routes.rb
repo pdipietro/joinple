@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
 
 
+  resources :articles
+
   resources :media_managers
 
   root                     'landing_pages#home'#, defaults: { :format => "js"}, :remote => :true

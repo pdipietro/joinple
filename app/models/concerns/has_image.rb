@@ -3,15 +3,15 @@ module HasImage
 
     module ClassMethods
 
-      def has_many_images(field_name)
+      def has_images(field_name)
          @field_name = Image.new(field.name, self.name) 
          has_many  :out, field_name, rel_class: HasImage
       end
 
-      def has_one_image(field_name)
-         @field_name = Image.new(field.name, self.name) 
- 
-         has_one :out, field_name, rel_class: HasImage
+      def has_image(field_name,class_name)
+
+         set property: field_name, type: String
+         mount_uploader :field_name, ImageUploader, CLASSES[class_name][field_name]
       end
 
     end

@@ -60,7 +60,10 @@ gem 'rack-cors', :require => 'rack/cors'
 gem 'bootstrap_colorpicker_rails'
 gem 'bootstrap-switch-rails', '~> 3.0.0'
 
-gem "neo4jrb-paperclip", github: 'subvertallchris/neo4jrb-paperclip', require: "neo4jrb_paperclip"
+#gem "neo4jrb-paperclip", github: 'subvertallchris/neo4jrb-paperclip', require: "neo4jrb_paperclip"
+gem 'remotipart'
+gem 'carrierwave-neo4j', require: 'carrierwave/neo4j'
+gem 'carrierwave-ftp', :require => 'carrierwave/storage/ftp/all' # both FTP/SFTP
 gem "rmagick"
 
 #gem 'masonry-rails'

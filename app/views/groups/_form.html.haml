@@ -31,7 +31,7 @@
       - group.background_color = "#ffffff"
       - group.text_color = "#333333"
     %div  
-      = bootstrap_form_for(group, :remote => :true ) do |f|
+      = bootstrap_form_for(group, :remote => :true, :html => {:multipart => true} ) do |f|
         = f.text_field :name, :prepend => :name, :placeholder => "Enter the group name ", :hide_label => :true
         = f.text_area :description, :prepend => :description, :placeholder => "Enter the group description", :hide_label => :true
 
@@ -48,9 +48,10 @@
           = f.color_field :background_color, :prepend => "background color", :placeholder => "Enter the background color", :hide_label => :true, layout: :horizontal,control_col: "col-sm-5 noborder", label_col: "col-sm-2", :class => "left-align" 
           = f.color_field :text_color, :prepend => "text color", :placeholder => "Enter the text color", :hide_label => :true, layout: :horizontal, control_col: "col-sm-5 noborder", label_col: "col-sm-2 noborder", :class => "left-align" 
 
-        = f.file_field :cover.attachment, :prepend => "cover image", :placeholder => "Enter the group cover image url", :hide_label => :true
-
-        = puts ("f.class: #{f.class}")
+        .form-group
+          = image_tag(group.header) if (group.header?)
+          = f.file_field :header, :multiple => :true, :prepend => "cover image", :placeholder => "Enter the group cover image url", :hide_label => :true
+          = f.hidden_field :header_cache
 
         .form-group     
           %button.icon_only{ :type => "submit", :name => "commit", :hide_label => :true, :title => "Save the element"  } 
