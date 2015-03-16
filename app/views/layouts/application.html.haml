@@ -1,9 +1,9 @@
 !!!
 %html
   %head
+    - csnn = current_social_network_name?.nil? ? "Gsn" : current_social_network_name?
     = puts " ******************************************* #{current_social_network_name?}"
-    - csnn= current_social_network_name?.nil? ? "GSN" : current_social_network_name?.capitalize
-    %title= csnn
+    %title= csnn.capitalize
     = stylesheet_link_tag    'fontastic', media: 'all', 'data-turbolinks-track' => true
     = stylesheet_link_tag    'font-awesome.min', media: 'all', 'data-turbolinks-track' => true
     = stylesheet_link_tag    'glyphicons', media: 'all', 'data-turbolinks-track' => true
@@ -23,8 +23,9 @@
       $(function() {
         $('input:checkbox').bootstrapSwitch();
       });
-    %body{:sn => "#{current_social_network_name?}"}
+    %body{:sn => "#{csnn}"}
       #header
         = render 'layouts/header'
       #page.container-fluid
         = render partial: 'layouts/c3_9_0'
+        -#= yield

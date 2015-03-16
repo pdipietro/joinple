@@ -6,13 +6,13 @@
       - banner = banners[rand(1..banners_count)]
       - column-size = 6
       -#= image_tag landing_page.banner.url
-    -#= image_tag landing_page.header.url(:header_l)
-    .container.intro
+    = image_tag landing_page.header.url(:large)
+    .scontainer-fluid.intro
       .row
-        .col-md-8.col-md-offset-2
-          -#%img.central-logo= image_tag landing_page.logo.attachment.url(:logo)
+        .col-xs-32.col-xs-offset-8
+          .central-logo= image_tag landing_page.logo.url(:logo)
           .h4.intro-text
-            = "Ja tago zepto jam, vol us afro senobjekta. Aŭ tial estro li, nun land minca alikvante ek. Eko ts postparto anstataŭa, iometo ipsilono monatonomo jh avo, sep ajna arki trans ik. Kuo nulo jokto salutfrazo id, sor iz kunmetita antaŭparto. So sin laŭ poŭpo dividostreko, dum ve orda."
+            = landing_page.description
           %span.signup-btn
             = link_to signup_path, :remote => :true, :title => "Sign up" do
               .btn.btn-primary.btn-lg

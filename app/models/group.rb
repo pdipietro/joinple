@@ -1,7 +1,5 @@
 class Group 
   include Neo4j::ActiveNode
-  #include ApplicationHelper
-  include Neo4jrb::Paperclip
 
   include Uuid
   include CreatedAtUpdatedAt
@@ -10,13 +8,15 @@ class Group
 
   property  :name,         :type =>   String, presence: true
   property  :description,  :type =>   String
-  property  :image,        :type =>   String
-  property  :icon,         :type =>   String  
   property  :background_color, :type =>   String, default: "inherit"
   property  :text_color,   :type =>   String, default: "inherit"
   property  :is_open,      :type =>   Boolean, default: false
   property  :is_private,   :type =>   Boolean, default: false
 
+  property  :logo,              type: String
+  mount_uploader :logo,         GroupLogoUploader 
+  property  :header,            type: String
+  mount_uploader :header,       GroupHeaderUploader 
 
   has_many  :in,  :has_discussion, rel_class: TakesPlaceIn  # Post
   has_many  :in,  :has_member, rel_class: MemberOf       # User
@@ -26,7 +26,11 @@ class Group
   has_many  :out, :has_tag, rel_class: HasTag            # :tag
   has_one   :out, :belongs_to, rel_class: BelongsTo      # belongs to SocialNetwork
 
-  has_one   :out, :cover, rel_class: HasImage            # Icon
+#  has_many  :out, :covers, rel_class: HasImage            # Icon
+#  has_one   :out, :logo,   rel_class: HasImage            # Icon
+
+#  property  :covers, type: String
+#  mount_uploaders :covers, CoverUploader
 =begin
   has_neo4jrb_attached_file :cover,
     :path => ":rails_root/public/system/:attachment/:id/:basename_:style.:extension",
