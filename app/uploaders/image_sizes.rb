@@ -14,9 +14,9 @@ class ImageSizes
 
           :xxlarge     => ['[5120, 1600]',  :jpg, :quality => 70],              # landing page header
           :xlarge      => ['[2560, 800]',   :jpg, :quality => 70],              # landing page header
-          :large       => ['[1280, 400]',   :jpg, :quality => 70],              # landing page header
-          :medium      => ['[640, 200]',    :jpg, :quality => 70],              # landing page header
-          :small       => ['[320, 100]',    :jpg, :quality => 70],              # landing page header
+          :large       => ['[1600, 400]',   :jpg, :quality => 70],              # landing page header
+          :medium      => ['[1280, 400]',   :jpg, :quality => 70],              # landing page header
+          :small       => ['[640, 200]',    :jpg, :quality => 70],              # landing page header
           :xsmall      => ['[320, 100]',    :jpg, :quality => 70],              # landing page header
 
           :retina      => ['[1200, -1]',    :jpg, :quality => 30]               # resize for retina display
