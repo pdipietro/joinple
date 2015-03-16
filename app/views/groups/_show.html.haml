@@ -3,7 +3,7 @@
     - owner = group.query_as(:p).match("(p)<-[r:owns]-(u:User)").pluck(:u).first
     .thumbnail
       .container-fluid.nopadding
-        -#.col-xs-2.col-sm-2.col-md-2.image-72
+        .col-xs-2.col-sm-2.col-md-2.image-72
           %img.img-owner1{ :src => "http://cdn001.crowdupcafe.com/public/72x72-3.jpg" }
         .col-xs-1.col-sm-1.col-md-1.v-glyps
           = link_to onerel_path(group,'Group','likes'), :method => :post, :remote => :true do
@@ -32,7 +32,7 @@
             %span.glyphicons.icon-star-4
             3295
           -#  Preferite
-        .col-xs-9.col-sm-9.col-md-9
+        .col-xs-8.col-sm-8.col-md-8
           .post-header
             = group.name
           %br

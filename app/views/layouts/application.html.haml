@@ -1,42 +1,30 @@
 !!!
 %html
   %head
-    %title= current_social_network_name?.capitalize
+    = puts " ******************************************* #{current_social_network_name?}"
+    - csnn= current_social_network_name?.nil? ? "GSN" : current_social_network_name?.capitalize
+    %title= csnn
     = stylesheet_link_tag    'fontastic', media: 'all', 'data-turbolinks-track' => true
     = stylesheet_link_tag    'font-awesome.min', media: 'all', 'data-turbolinks-track' => true
     = stylesheet_link_tag    'glyphicons', media: 'all', 'data-turbolinks-track' => true
     = stylesheet_link_tag    'glyphicons-bootstrap', media: 'all', 'data-turbolinks-track' => true
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = stylesheet_link_tag    'dashboard', media: 'all', 'data-turbolinks-track' => true
-    = stylesheet_link_tag    "social/#{current_social_network_name?.downcase}_bootstrap", media: 'all', 'data-turbolinks-track' => true
-
+    = stylesheet_link_tag    "social/#{csnn.downcase}_bootstrap", media: 'all', 'data-turbolinks-track' => true
+ 
     = javascript_include_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'salvattore', media: 'all', 'data-turbolinks-track' => true
     -#%meta{ :name => "viewport", :content => "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"}    
     %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1"}    
     = csrf_meta_tags
     = render 'layouts/shim'
-  %body{:sn => "#{current_social_network_name?}"}
-    #header= render 'layouts/header'
-    -#.container
-    #page.container-fluid
-      %aside#main_left.col-xs-2.col-sm-2.col-md-2.sidebar
-        - if logged_in?
-          = render partial: 'shared/left_menu'
-      #main_center.col-xs-8.col-xs-offset-2.col-sm-8.col-sm-offset-2.col-md-8.col-md-offset-2
-        #main_header
-        #main_add
-        #main_content
-          = yield
-        #debug
-          = debug(params) if Rails.env.development?
-      %aside#main_right.col-xs-2.col-xs-offset-10.col-sm-2.col-sm-offset-10.col-md-2.col-md-offset-10.sidebar
-        #main_rheader
-        #main_rcontent
--#    
-
-
-      - flash.each do |message_type, message|
-        %div{:class => "alert alert-#{message_type}"}= message
-      = yield
-      .row.container-fluid
-        = debug(params) if Rails.env.development?
+    = puts "=================>>>> HERE IS APPLICATION LAYOUT"
+    :javascript
+      $(function() {
+        $('input:checkbox').bootstrapSwitch();
+      });
+    %body{:sn => "#{current_social_network_name?}"}
+      #header
+        = render 'layouts/header'
+      #page.container-fluid
+        = render partial: 'layouts/c3_9_0'

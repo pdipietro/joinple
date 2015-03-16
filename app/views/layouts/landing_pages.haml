@@ -1,0 +1,26 @@
+!!!
+%html
+  %head
+    -#%title= current_social_network_name?.capitalize
+    = stylesheet_link_tag    'fontastic', media: 'all', 'data-turbolinks-track' => true
+    = stylesheet_link_tag    'font-awesome.min', media: 'all', 'data-turbolinks-track' => true
+    = stylesheet_link_tag    'glyphicons', media: 'all', 'data-turbolinks-track' => true
+    = stylesheet_link_tag    'glyphicons-bootstrap', media: 'all', 'data-turbolinks-track' => true
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    -#= stylesheet_link_tag    'dashboard', media: 'all', 'data-turbolinks-track' => true
+    -#= stylesheet_link_tag    "social/#{current_social_network_name?.downcase}_bootstrap", media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'salvattore', media: 'all', 'data-turbolinks-track' => true
+    = stylesheet_link_tag    'landing-page', media: 'all', 'data-turbolinks-track' => true
+
+    -#%meta{ :name => "viewport", :content => "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"}    
+    %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1"}    
+    = csrf_meta_tags
+    = render 'layouts/shim'
+    = puts "=================>>>> Here is 'landing_pages' layout"
+    -#%body{:sn => "#{current_social_network_name?}"}
+    %body
+      #header
+        = render 'layouts/header', params: { inverse: :true }
+      #page.container-fluid
+        = yield

@@ -10,12 +10,12 @@ gem 'carrierwave',             '0.10.0'
 gem 'mini_magick',             '3.8.0'
 gem 'fog',                     '1.23.0'
 gem 'will_paginate',           '3.0.7'
-gem 'bootstrap-will_paginate', '0.0.10'
-gem 'bootstrap-sass',          '3.2.0.0'
-gem 'sass-rails',              '~>  5.0.0.beta1'
+gem 'bootstrap-will_paginate'
+gem 'bootstrap-sass'
+gem 'sass-rails'
 gem 'uglifier',                '2.5.3'
-gem 'coffee-rails',            '4.0.1'
-gem 'jquery-rails',            '4.0.0'
+gem 'coffee-rails'
+gem 'jquery-rails'
 gem 'turbolinks',              '2.3.0'
 gem 'jbuilder',                '2.2.3'
 gem 'sdoc',                    '0.4.0', group: :doc
@@ -58,8 +58,12 @@ gem 'bootstrap_form'
 gem 'font-awesome-sass'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'bootstrap_colorpicker_rails'
+gem 'bootstrap-switch-rails', '~> 3.0.0'
 
-#gem "neo4jrb-paperclip", github: 'subvertallchris/neo4jrb-paperclip', require: "neo4jrb_paperclip"
+gem "neo4jrb-paperclip", github: 'subvertallchris/neo4jrb-paperclip', require: "neo4jrb_paperclip"
+gem "rmagick"
+
+#gem 'masonry-rails'
 
 #gem 'activerecord'
 
@@ -84,6 +88,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
+M04d21d31
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development

@@ -1,1 +1,1 @@
-$('<%= escape_javascript( if is_admin? then "#main_add" else "#nil" end ) %>').html("<%= escape_javascript(render partial: 'form', locals: { post: @post } ) %>" );
+$("#main_add").html("<%= escape_javascript(render partial: 'form', locals: { post: @post, current_owner: current_owner, indent: :false } ) %>" );

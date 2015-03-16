@@ -1,5 +1,9 @@
 /* color of menu item while hovered */
 
+a, a:active, a:visited {
+  color: #333 !important;
+}
+
 .glyphicons:hover,
 .dropdown-menu > li a:hover,
 .dropdown-menu > li > a:hover,
@@ -13,17 +17,10 @@ a:hover  {
   color: green !important;
  }
 
-a, a:active, a:visited {
-  color: #333 !important;
-}
-
- /* color for headers of aside columns */
+/* color for headers of aside columns */
 
 ul.list-group.title > li.list-group-item:first-child,
-ul.list-group.title > li.list-group-item:first-child > a,
-ul.list-group.title a span {
-  background-color: #f8f8f8;
-  color: green;
+ul.list-group.title > li.list-group-item:first-child > a {
+  background-color: rgb(220,20,60);
   margin-bottom: 0;
 }
-

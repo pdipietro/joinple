@@ -7,9 +7,16 @@ Rails.application.config.assets.version = '1.0'
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
 
-Rails.application.config.assets.precompile += %w( social/gsn_bootstrap.css )
-Rails.application.config.assets.precompile += %w( social/trace_bootstrap.css )
-Rails.application.config.assets.precompile += %w( social/work_bootstrap.css )
+#Rails.application.config.assets.precompile += %w( social/gsn_bootstrap.css )
+#Rails.application.config.assets.precompile += %w( social/trace_bootstrap.css )
+#Rails.application.config.assets.precompile += %w( social/work_bootstrap.css )
+#Rails.application.config.assets.precompile += %w( social/syplaces_bootstrap.css )
+
+Rails.application.config.assets.precompile += %w( salvattore.js )
+Rails.application.config.assets.precompile += %w( bootstrap.js )
+Rails.application.config.assets.precompile += %w( bootstrap.min.js )
+
+Rails.application.config.assets.precompile += %w( social/*_bootstrap.css )
 
 Rails.application.config.assets.precompile += %w( ./../fonts/glyphicons-regular.eot )
 Rails.application.config.assets.precompile += %w( ./../fonts/glyphicons-regular.svg )
@@ -27,6 +34,7 @@ Rails.application.config.assets.precompile += %w( ./../fonts/glyphicons-halfling
 Rails.application.config.assets.precompile += %w( ./../fonts/glyphicons-halfling.woff )
 Rails.application.config.assets.precompile += %w( ./../fonts/glyphicons-halfling.woff2 )
 
+Rails.application.config.assets.precompile += %w( salvattore.css )
 Rails.application.config.assets.precompile += %w( glyphicons.css )
 Rails.application.config.assets.precompile += %w( glyphicons-bootstrap.css )
 Rails.application.config.assets.precompile += %w( fontastic.css )
@@ -34,3 +42,5 @@ Rails.application.config.assets.precompile += %w( bootstrap-multiselect.css )
 Rails.application.config.assets.precompile += %w( font-awesome.min.css )
 
 Rails.application.config.assets.precompile += %w( dashboard.css )
+Rails.application.config.assets.precompile += %w( landing-page.css )
+#Rails.application.config.assets.precompile += %w( bootstrap3-switch.css )

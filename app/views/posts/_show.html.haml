@@ -1,59 +1,42 @@
 - if post.errors.count == 0
-  %div{ :id => post.uuid }
-    .thumbnail
-      .container-fluid.nopadding
-        - owner = post.query_as(:p).match("(p)<-[r:owns]-(u:User)").pluck(:u).first
-        %aside.col-xs-1.nomargin
-          .post-owner
-            = gravatar_for owner, size: 32
-            = link_to root_path do
-              %span.glyphicons.icon-triangle-up
-            = rand(0...1000)
-            %br
-            = link_to root_path do
-              %span.glyphicons.icon-triangle-down
-        .col-xs-10
-          .post-header
-            = "by #{owner.full_name} - #{post.created_at.strftime('%F at %H:%M')}"
-          .post-title
-            = post.title
-          .post-content
-            = post.content
-          .post-glyps
-            =#render 'users/likes', object: post
-            =#link_to "", {:controller => "likes", :action => "set", "id" => post.uuid }, {:method => :post} do
-            = link_to onerel_path(post,'Post','likes'), :method => :post, :remote => :true do
-              %span.glyphicons.icon-like-1
-              - likes = post.query_as(:p).match("(p)<-[r:likes]-(u:User)").pluck(:u).count
-              - if likes > 0
-                %span.badge
-                  = likes
-            -#  Like
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            = link_to dummy_path, :remote => :true do
-              %span.glyphicons.icon-comment-3
-              - comments = 17 #@post.child.count
-              - if comments > 0
-                %span.badge
-                  = comments
-            -#  Comment
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            = link_to dummy_path, :remote => :true do
-              %span.glyphicons.icon-share-outline
-            -#  Share
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            = link_to dummy_path, :remote => :true do
-              %span.glyphicons.icon-reply
-            -#  Reply
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            -#= link_to dummy_path, :remote => :true do
-              %span.glyphicons.icon-star-4
-            -#  Preferite
-        .col-xs-1
-          - if can_modify?(post)
-            .command-button
-              = link_to edit_post_path(post), :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Modify the element" do
-                %span.glyphicon.icon-edit-modify-streamline
-              = link_to post, :method => :delete, :data => { :confirm => 'Are you sure?' }, :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Delete the element" do
-                %span.glyphicon.icon-delete-garbage-streamline
-        .response  
+  - owner = post.query_as(:p).match("(p)<-[r:owns]-(u:User)").pluck(:u).first
+  .item{ :id => post.uuid }
+    .xs-3.noborder
+      .img-owner1= gravatar_for owner, size: 72
+      -# = link_to root_path do
+          %span.glyphicons.icon-triangle-up
+        = rand(0...1000)
+        %br
+        = link_to root_path do
+          %span.glyphicons.icon-triangle-down
+      - if can_modify?(post)
+        %span.v-glyphs
+          = link_to edit_post_path(post), :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Modify the element" do
+            %span.glyphicon.icon-edit-modify-streamline
+          = link_to post, :method => :delete, :data => { :confirm => 'Are you sure?' }, :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Delete the element" do
+            %span.glyphicon.icon-delete-garbage-streamline
+    .xs-9
+      .post-header
+        = "by #{owner.full_name} - #{post.created_at.strftime('%F at %H:%M')}"
+      .post-title
+        = link_to root_path, :method => :post, :remote => :true, :title => "participate" do
+          = post.title
+      .post-content
+        = post.content
+      -#.v-glyphs
+      = link_to onerel_path(post,'Post','likes'), :method => :post, :remote => :true, :title => "like" do
+        %span.glyphicons.icon-like-1
+      = likes = post.query_as(:p).match("(p)<-[r:likes]-(u:User)").pluck(:u).count
+      Like -
+      = link_to root_path, :method => :post, :remote => :true, :title => "share" do
+        %span.glyphicons.icon-share-outline
+      95
+      Share -
+      = link_to root_path, :method => :post, :remote => :true, :title => "reply" do
+        %span.glyphicons.icon-reply
+      35
+      Replies -
+      = link_to root_path, :method => :post, :remote => :true, :title => "preferite" do
+        %span.glyphicons.icon-star-4
+      29
+      Preferite

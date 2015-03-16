@@ -1,14 +1,23 @@
-@import "bootstrap-sprockets";
-@import "bootstrap";
 
-body {
-  font-size: 12px;
+$navbar-default-bg: rgba(77,171,170,1);
+$navbar-default-bg-a: rgba(77,171,170,0.25);
+
+#page {
+  margin-top: 54px !important;
+}
+
+.thumbnail {
+  border: 0;
 }
 
 .input-group-addon {
   padding-bottom: 4px;
 }
 
+.navbar-header {
+  background-color: rgb(0,0,220) !important;
+  z-index: 1000;
+}
 
 .checkbox {
   margin: auto;
@@ -26,16 +35,17 @@ span.caret.to-right {
 }
 
 #main_left, #main_center, #main, #main_right {
-  padding-top: 10px !important;
+  z-index: 0;
 }
 
+.myself,
 .myself img.gravatar,
 .myself img.avatar {
   margin-right: 0;
   margin-left:0;
   position: relative;
-  top: 5px;
-  left: 7px;
+  top: 3px;
+  left: 4px;
 }
 
 aside {
@@ -48,32 +58,32 @@ span.transparent:hover {
   background-color: transparent !important;
 }
 
+ul.nav.navbar-nav > li {
+  border-left: 1px white solid !important;
+  padding: 0 25px;
+}
+ul.nav.navbar-nav > li:last-child {
+  border-right: 1px white solid !important;
+}
+
 
 ul.list-group > li:not(first-child),
 ul.list-group {
   border-left: 0px;
   border-right: 0px;
   border: 0px;
-  spadding: 0px 8px;
   padding: 0px inherit;
 }
-/*
-
-.nav-sidebar > li > a {
-  padding-right: 0 !important;
-  padding-left: 10px !important;
+ul.list-group > li:first-child {
+  padding-top:  10px;
+  padding-bottom:  10px
+}
+ul.list-group > li:last-child {
+  padding-bottom:  10px
 }
 
-.nav-sidebar > li > a > img.gravatar {
-  display: inline-block;
-}
-*/
 .search {
   display: inline;
-}
-
-.navbar-brand {
-  padding: 4px 15px !important;
 }
 
 .icon-composed {
@@ -113,8 +123,9 @@ span.centered {
 }
 
 
-.img-owner1 {
-  max-width: 100%;
+.img-owner1,
+.img-responsive {
+  max-width: 100% !important;
   display: block;
   height: auto;
 }
@@ -128,18 +139,27 @@ span.centered {
   max-width: 72px;
 }
 
-.v-glyps {
-  padding-right: 0px;
-  padding-left: 10px;
+.v-glyphs {
+  padding-top: 5px;
+  padding-right: 5px;
+  padding-left: 5px;
 }
 
 .post-header {
   font-weight:  700;
+  font-size: 80%;
+}
+
+.post-title {
+  font-weight: bold;
+  font-size: 120%;
+
 }
 
 .command-button {
   padding-right: 0;
   padding-left: 30px;
+
 }
 
 .fa-stacked {
@@ -154,17 +174,75 @@ span.centered {
 
 
 .group-header {
-  position: relative;
-  padding-left: 5px;
-  top: -55px;
-  margin-bottom: -55px;
-  span.group-title {
+  .group-title {
     font-size: 300%;
   }
-  span.group-description {
-    font-size: 200%;
+  .group-description {
+    font-size: 150%;
     text-align: top;
   }
 }
 
+.more {
+  font-size: 80%;
+}
 
+.group-header.left  {
+    bottom: 0;
+    position: absolute;
+    left: 0;
+}
+
+.group-header.right {
+    bottom: 0;
+    position: absolute;
+    right: 0;
+}
+
+.noborder {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.checkbox {
+  display: inline-block;
+  sleft: -25px; 
+}
+
+.checkbox > label  {
+  padding-left: 0;
+  margin-left: 0;
+  top: 0;
+  left: 0;
+  font-size: 0;
+}
+
+.bootstrap-switch {
+  min-width: 150px !important;
+}
+
+.bootstrap-switch-container > label {
+  text-align: center !important;
+}
+
+.px5 {
+  min-height: 5px;
+}
+
+.div200 {
+  max-height: 200px;
+}
+
+li.header {
+  text-align: center;
+  font-weight: bold;
+  background-color: $navbar-default-bg;
+}
+
+li.header ~ li,
+li.header ~ li.divider {
+
+  background-color: $navbar-default-bg-a;
+
+}

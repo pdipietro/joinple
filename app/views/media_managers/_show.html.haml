@@ -1,0 +1,17 @@
+- if media_manager.errors.count == 0
+  %div{ :id => media_manager.uuid }
+    .thumbnail
+      .container-fluid.nopadding
+        .col-xs-2.col-sm-2.col-md-2
+          .post-title.left
+            = language.code
+        .col-xs-9.col-sm-9.col-md-9
+          .post-content
+            = language.description 
+        .col-xs-1.col-sm-1.col-md-1
+          - if can_modify?(language)
+            .command-button
+              = link_to edit_language_path(language), :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Modify the element" do
+                %span.glyphicon.icon-edit-modify-streamline
+              = link_to language, :method => :delete, :data => { :confirm => 'Are you sure?' }, :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Delete the element" do
+                %span.glyphicon.icon-delete-garbage-streamline

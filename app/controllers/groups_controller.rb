@@ -88,11 +88,11 @@ class GroupsController < ApplicationController
     respond_to do |format|
       if @group.update(group_params)
         format.js   { render partial: "replace", object: @group, notice: 'Group was successfully created.' }
-        format.html { redirect_to @group, notice: 'Group was successfully updated.' }
+        format.html { render partial: "replace", object: @group, notice: 'Group was successfully created.' }
         format.json { render :show, status: :ok, location: @group }
       else
         format.js   { render :edit, object: @group }
-        format.html { render :edit }
+        format.html { render :edit, object: @group  }
         format.json { render json: @group.errors, status: :unprocessable_entity }
       end
     end
@@ -146,6 +146,6 @@ class GroupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def group_params
-      params.require(:group).permit(:name, :description, :is_open, :is_private, :image, :icon, :background_color, :text_color)
+      params.require(:group).permit(:name, :description, :is_open, :is_private, :image, :icon, :background_color, :text_color, :cover)
     end
 end
