@@ -9,9 +9,17 @@
           New social network
         %span.caret.to-right
   #social_network_form.panel-body{ :class => social_network.errors.count == 0 ? 'collapse in' : 'collapse' }
-    = bootstrap_form_for(social_network, :remote => :true ) do |f|
+    = bootstrap_form_for(social_network, :remote => :true, :html => {:multipart => true} ) do |f|
       = f.text_field :name, :prepend => :name, :placeholder => "Enter the name of the new social network", :hide_label => :true, :text => "Social network name"
       = f.text_field :description, :prepend => :description, :placeholder => "Enter a short description of the social network", :hide_label => :true, :text => "Social network description"
       = f.text_field :goal, :prepend => :goal, :placeholder => "Describe the goals of the social network", :hide_label => :true, :text => "Social network goals"
+      .form-group
+        = f.color_field :background_color, :prepend => "background color", :placeholder => "Enter the standard background color", :hide_label => :true, layout: :horizontal,control_col: "col-sm-5 noborder", label_col: "col-sm-2", :class => "left-align" 
+        = f.color_field :text_color, :prepend => "text color", :placeholder => "Enter the standard text color", :hide_label => :true, layout: :horizontal, control_col: "col-sm-5 noborder", label_col: "col-sm-2 noborder", :class => "left-align" 
+      .form-group
+        = f.text_field :logo, :prepend => "logo image", :placeholder => "Enter the logo image url", :hide_label => :true, :disabled => :true
+        = f.file_field :logo, :prepend => "logo image", :placeholder => "Enter the logo image url", :hide_label => :true
+        = image_tag social_network.logo.url(:logo) 
+        = f.hidden_field :logo_cache
       %button.icon_only{ :type => "submit", :name => "commit", :hide_label => :true, :title => "Save the element" } 
         %span.glyphicon.glyphicon-save

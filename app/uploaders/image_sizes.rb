@@ -9,8 +9,9 @@ class ImageSizes
           :profile     => ['[200, 200]',    :jpg, :quality => 70],              # generic profile (user, post, group, etc)
           :original    => ['[250, 0]',      :jpg, :quality => 70],              # original image resized
           :banner      => ['[854, 200]',    :jpg, :quality => 70],              # banner for generic profile
-          :preview     => ['[400, 200]',    :jpg, :quality => 70],              # preview for post
           :logo        => ['[200, 150]',    :jpg, :quality => 70],              # social network logo on a generic page
+          :preview     => ['[400, 200]',    :jpg, :quality => 70],              # preview for post
+          :cover       => ['[400, 300]',    :jpg, :quality => 70],              # social network logo on a generic page
 
           :xxlarge     => ['[5120, 1600]',  :jpg, :quality => 70],              # landing page header
           :xlarge      => ['[2560, 800]',   :jpg, :quality => 70],              # landing page header
@@ -43,7 +44,7 @@ class ImageSizes
                              :header        => [:banner, :preview]
                            },
         :SocialNetwork  => {
-                             :logo          => [:logo, :btn, :icon]    
+                             :logo          => [:logo, :btn, :icon, :cover]    
                            },
         :LandingPage    => {
                              :header        => [:xsmall, :small, :medium, :large, :xlarge, :xxlarge],        

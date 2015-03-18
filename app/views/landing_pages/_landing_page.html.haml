@@ -1,7 +1,7 @@
 #image.container-fluid.top-banner
-  - social_network = ["trace","work"]
   #banner
     - landing_page = LandingPage.first
+    - social_networks = SocialNetwork.all
     -# banners_count = landing_page.banners.count
       - banner = banners[rand(1..banners_count)]
       - column-size = 6
@@ -19,9 +19,10 @@
                 = "Sign Up"
   #social_network_introduction 
   #grid{ "data-columns" => "" }
-    - social_network.each do | sn |
-      .social-network-item
-        %img.img-responsive.hoverable{ :alt => "#{sn}", :src => "http://cdn001.crowdupcafe.com/social/landing-page/#{sn}/cover-72dpi.jpg"}
+    - social_networks.each do | sn |
+      .social-network-item.hoverable{ :style => "background-color: #{sn.background_color}; color: #{sn.text_color};" } 
+        = image_tag sn.logo.url(:cover)
+        -#{ :alt => "#{sn}"}
         .view-more
           -#%img.img-responsive{ :alt => "", :src => "http://cdn001.crowdupcafe.com/public/400x300.svg"}
           .social-network-name
@@ -32,8 +33,8 @@
             = link_to signup_path, :remote => :true, :title => "go deeper" do
               .btn.btn-primary.btn-lg
                 = "Go deeper"
-        -#%a.toggle{ :type => "toggle", "data-target" => "div[name=cover-#{sn}]", "data-toggle" => "collapse"}
-          .collapse.in{ :name => "cover-#{sn}"}
+        %a.toggle{ :type => "toggle", "data-target" => "div[name=cover-#{sn}]", "data-toggle" => "collapse"}
+          .collapse.in{ :name => "cover-#{sn}", :style => "background-color: #{sn.background_color}; color: #{sn.text_color};" }
             %img.img-responsive{  :name => "cover-#{sn}", :alt => "", :src => "http://cdn001.crowdupcafe.com/social/landing-page/#{sn}/cover-72dpi.jpg"}
           .collapse{ :name => "cover-#{sn}"}
             .social-network-name

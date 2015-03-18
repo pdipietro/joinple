@@ -2,6 +2,10 @@
 %html
   %head
     -#%title= current_social_network_name?.capitalize
+    :javascript
+      document.cookie='width='+screen.width;
+      document.cookie='height='+screen.height;
+      document.cookie='pixelRatio='+("devicePixelRatio" in window ? devicePixelRatio : "1");
     = stylesheet_link_tag    'fontastic', media: 'all', 'data-turbolinks-track' => true
     = stylesheet_link_tag    'font-awesome.min', media: 'all', 'data-turbolinks-track' => true
     = stylesheet_link_tag    'glyphicons', media: 'all', 'data-turbolinks-track' => true
@@ -21,6 +25,6 @@
     -#%body{:sn => "#{current_social_network_name?}"}
     %body
       #header
-        = render 'layouts/header', params: { inverse: :true }
+        = render 'layouts/header'
       #page.container-fluid
-        = yield
+        = render 'landing_page'

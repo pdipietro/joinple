@@ -13,8 +13,8 @@ class GroupHeaderUploader < CarrierWave::Uploader::Base
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    puts "store_dir: 'uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}'"
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    k = ImageSizes::DESTINATION
+    eval(k)
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
@@ -35,8 +35,11 @@ class GroupHeaderUploader < CarrierWave::Uploader::Base
   # Create different versions of your uploaded files:
    
   ImageSizes::CLASSES[:Group][:header].each do |f|
+   k = "process :resize_to_fill => #{ImageSizes::SIZES[f][0]}"
+    puts "#{k}"
     version f do
-      process :resize_to_fit => ImageSizes::SIZES[f][0]
+      eval(k)
+      #process :convert => ("-resize #{ImageSizes::SIZES[f][0]}")
     end
   end
  

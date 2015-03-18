@@ -1,8 +1,16 @@
 module SessionsHelper
   include ApplicationHelper
 
+ # get screen geometry from cookies
+  def set_screen_geometry
+     session[:width] = cookies[:width]
+     session[:height] = cookies[:height]
+     session[:pixelRatio] = cookies[:pixelRatio]
+  end
+
  # Logs in the given user.
   def log_in(user)
+     set_screen_geometry
      session[:user_id] = user.id
      session[:admin] = user.admin
      check_social_network
@@ -117,6 +125,8 @@ module SessionsHelper
 
   # check if the social network is changed
   def check_social_network
+    puts "----------- get_screen_geometry in check social network "
+    set_screen_geometry
     unless session[:social_network].class.name == "SocialNetwork" 
        load_social_network_from_url
        if session[:social_network].nil? 

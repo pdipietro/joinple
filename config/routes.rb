@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   root                     'landing_pages#home'#, defaults: { :format => "js"}, :remote => :true
-  get    'home'      =>    'static_pages#home'#, defaults: { :format => "js"}, :remote => :true
+  get    'home'      =>    'landing_pages#home', defaults: { :format => "js"}, :remote => :true
   get    'about'     =>    'static_pages#about', defaults: { :format => "js"}, :remote => :true
   get    'contacts'  =>    'static_pages#contacts', defaults: { :format => "js"}, :remote => :true
   get    'help'      =>    'static_pages#help', defaults: { :format => "js"}, :remote => :true
@@ -48,6 +48,7 @@ Rails.application.routes.draw do
   post      'likes/:id/:class/:rel_type'    =>    'likes#edit', constraints: AuthConstraint.new, :as => :onerel
   get       'likes'                         =>    'likes#dummy', constraints: AuthConstraint.new, :as => :dummy
   post      'search'                        =>    'likes#search', constraints: AuthConstraint.new, :as => :search
-  get       '/media_managers/list/       '  =>    'media_managers#list', :as => :image_list #, defaults: { :format => "js"}, :remote => :true
+  get       '/media_managers/list/'         =>    'media_managers#list', :as => :image_list #, defaults: { :format => "js"}, :remote => :true
+
 
 end

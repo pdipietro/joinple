@@ -26,40 +26,6 @@ class Group
   has_many  :out, :has_tag, rel_class: HasTag            # :tag
   has_one   :out, :belongs_to, rel_class: BelongsTo      # belongs to SocialNetwork
 
-#  has_many  :out, :covers, rel_class: HasImage            # Icon
-#  has_one   :out, :logo,   rel_class: HasImage            # Icon
-
-#  property  :covers, type: String
-#  mount_uploaders :covers, CoverUploader
-=begin
-  has_neo4jrb_attached_file :cover,
-    :path => ":rails_root/public/system/:attachment/:id/:basename_:style.:extension",
-    :url => "/system/:attachment/:id/:basename_:style.:extension",
-    :styles => {:thumb => ["96x96#", :jpg, {:quality => 70}], :icon => ["128x128#", :jpg, {:quality => 70}], :profile => ["200x200#", :jpg, {:quality => 70}] },
-              :convert_options => {"thumb" => "-set colorspace sRGB -strip", "icon"=>"-set colorspace sRGB -strip", "profile"=>"-set colorspace sRGB -strip"}
-              validates_attachment_content_type :cover, content_type: ['image/jpg', 'image/jpeg', 'image/png', 'image/gif']
-              validates_attachment_size :cover, :less_than_or_equal_to => 4.megabytes 
-=end
-=begin
-  has_neo4jrb_attached_file :cover,
-  :path => ":rails_root/public/system/:attachment/:id/:basename_:style.:extension",
-  :url => "/system/:attachment/:id/:basename_:style.:extension",
-  :styles => {
-    :thumb    => ['126x126#',  :jpg, :quality => 70],
-    :preview  => ['480x480#',  :jpg, :quality => 70],
-    :normal   => ['823x250>',  :jpg, :quality => 70],
-    :large    => ['600>',      :jpg, :quality => 70],
-    :retina   => ['1200>',     :jpg, :quality => 30]
-  },
-  :convert_options => {
-    :thumb    => '-set colorspace sRGB -strip',
-    :preview  => '-set colorspace sRGB -strip',
-    :normal   => '-set colorspace sRGB -strip',
-    :large    => '-set colorspace sRGB -strip',
-    :retina   => '-set colorspace sRGB -strip -sharpen 0x0.5'
-  }
-  validates_attachment_content_type :cover, content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"]
-=end
 
   VALID_RGBA_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 

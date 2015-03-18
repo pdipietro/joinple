@@ -13,7 +13,7 @@
         = image_tag landing_page.logo.url(:logo) 
         = f.hidden_field :logo_cache
       .form-group
-        = f.text_field :header, :prepend => "header image", :placeholder => "Enter the header image url", :hide_label => :true
+        = f.text_field :header, :prepend => "header image", :placeholder => "Enter the header image url", :hide_label => :true, :disabled => :true
         = f.file_field :header, :prepend => "header image", :placeholder => "Enter the header image url", :hide_label => :true
         = image_tag landing_page.header.url(:medium) 
         = f.hidden_field :header_cache

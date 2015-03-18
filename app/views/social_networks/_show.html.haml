@@ -1,18 +1,19 @@
 - if social_network.errors.count == 0
   %div{ :id => social_network.uuid }
-    .thumbnail
+    .thumbnail{ :style => "background-color: #{social_network.background_color}; color: #{social_network.text_color};" }  
       .container-fluid.nopadding
-        .col-xs-2
+        .col-xs-4
           .post-header
+            = image_tag social_network.logo.url(:logo)
           .post-title.left
             = social_network.name
-        .col-xs-9
+        .col-xs-10
           .post-content
             = social_network.description
             %br
             %br
             = social_network.goal
-        .col-xs-1
+        .col-xs-2
           - if can_modify?(social_network)
             .command-button
               = link_to edit_social_network_path(social_network), :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Modify the element" do

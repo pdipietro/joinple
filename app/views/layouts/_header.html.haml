@@ -43,9 +43,12 @@
               Landing page
     #navbar.navbar-collapse.collapse
       %ul.nav.navbar-nav.navbar-right
+        - if Rails.env.development?
+          %li
+            = "(width: #{session[:width]}, height: #{session[:height]}, pixel ratio: #{session[:pixelRatio]})"
         - unless logged_in?
           %li
-            = link_to root_path, :remote => :true, :title => "Home" do
+            = link_to root_path, :title => "Home" do
               %i.fa.icon-home
               -#Home
           %li

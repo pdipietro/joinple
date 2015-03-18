@@ -6,10 +6,20 @@
 }
 
 #banner > img, 
-#central-logo > img {
+#central-logo > img,
+.social-network-item > img {
   max-width: 100% !important;
   display: block;
   height: auto;
+
+}
+
+#banner > img {
+  min-height: 400px;
+}
+
+.social-network-item > img {
+  padding: 0 !important;
 }
 
 .no-padding {
@@ -33,8 +43,8 @@
 
 .top-banner > img {
   position: relative;
-  padding-top: 52px;
-  height: 400px;
+  padding-top: 46px;
+  height: 600px;
   width: auto; 
 }
 
@@ -69,12 +79,6 @@ img.central-logo {
   clear: both;
 }
 
-img.social-network {
-  padding: 0 !important;
-  max-width: 100%;
-  height: auto;
-}
-
 .signup-btn {
   background-color: transparent;
 
@@ -86,13 +90,12 @@ img.social-network {
 
 .hoverable:hover {
   z-index: -1;
-/*
+
   -webkit-transform: translate(0px, 100%);
   -moz-transform: translate(0px, 100%);
   -o-transform: translate(0px, 100%);
   -ms-transform: translate(0px, 100%);
   transform: translate(0px, 100%);
-*/
 } 
 
 .view-more {
@@ -134,7 +137,7 @@ img.social-network {
  border: 0;
 }
 
-@media screen and (max-width: 320px)
+@media screen and (max-width: 360px)
 {
     #grid[data-columns]::before
     {
@@ -143,7 +146,7 @@ img.social-network {
 }
 
 
-@media screen and (min-width: 321px) and (max-width: 450px)
+@media screen and (min-width: 361px) and (max-width: 640px)
 {
     #grid[data-columns]::before
     {
@@ -159,7 +162,7 @@ img.social-network {
     }
 }
  
-@media screen and (min-width: 800px) and (max-width: 1280px)
+@media screen and (min-width: 800px) and (max-width: 1600px)
 {
     #grid[data-columns]::before
     {
@@ -167,7 +170,7 @@ img.social-network {
     }
 }
  
-@media screen and (min-width: 1281px) and (max-width:1920px)
+@media screen and (min-width: 1601px) and (max-width:1920px)
 {
     #grid[data-columns]::before
     {
@@ -175,7 +178,7 @@ img.social-network {
     }
 }
  
-@media screen and (min-width: 1920px)
+@media screen and (min-width: 1921px)
 {
     #grid[data-columns]::before
     {
@@ -185,12 +188,12 @@ img.social-network {
 
 .column   { float: left; }
 
-.size-xxl { width: 100%; }
-.size-xl  { width: 50%; }
-.size-l   { width: 33.333%; }
-.size-m   { width: 25%; }
-.size-s   { width: 20%; }
-.size-xs  { width: 16.667%; }
+.size-xs   { width: 100%; }
+.size-s    { width: 50%; }
+.size-m    { width: 33.333%; }
+.size-l    { width: 25%; }
+.size-xl   { width: 20%; }
+.size-xxl  { width: 16.667%; }
 
 .social-network-item {
 }

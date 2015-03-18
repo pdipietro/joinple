@@ -2,10 +2,13 @@ class LandingPagesController < ApplicationController
  
   before_action :check_social_network
   before_action :logged_in_user, only: [:create, :destroy]
-
+  after_action :set_screen_geometry, only: [:index, :landing_page, :home]
   before_action :set_landing_page, only: [:show, :edit, :update, :destroy]
 
-  respond_to :js, except: [:landing_page, :home]
+  respond_to :js #, except: [:home]
+
+  include SessionsHelper
+  helper_method :get_screen_geometry
 
   def about
   end
@@ -17,12 +20,25 @@ class LandingPagesController < ApplicationController
   end
 
   def home
+    puts params
+    screen_geometry= params
     puts "Home-Logged in? : #{logged_in?}"
     if load_social_network_from_url.nil?
       render file: "#{Rails.root}/public/404.html", layout: false, status: 404
       false
     end
 
+    if session[:height].to_s.length < 2
+      layout='dummy'
+      page='home'
+    else
+      layout='landing_page'   
+      page='landing_page'
+     end 
+    respond_to do |format|
+      format.html {render layout: layout }
+      format.js {render layout: layout }
+    end
   end
 
   def privacy
@@ -31,19 +47,17 @@ class LandingPagesController < ApplicationController
   def terms
   end
 
+  # POST /landing_page
   def landing_page
-    puts "Carousel-Logged in? : #{logged_in?}"
-    r='home'
-    l="landing_pages"  
+    puts params
+    screen_geometry= params
+    r='landing_page'
+    l="landing_page"  
     if logged_in?
       r="home"
       l="application"
-#    elsif current_social_network_name?.downcase == "gsn"
-#      r='pre_carousel'
-#      l="pre_carousel"  
     end
     render r, layout: l
-
   end
 
 
@@ -53,13 +67,7 @@ class LandingPagesController < ApplicationController
     @landing_page = LandingPage.first
     puts "SONO DENTRO LANDING_PAGE - INDEX"
     puts "@landing_page.uuid #{@landing_page}"
-#    puts "@Landing: #{@landing_page}"
-#    if @landing_page.nil?
-#       @landing_page = LandingPage.new
-#       x = @landing_page.save
-#    end
     render layout: "application", format: :js, locals: { landing_page: @landing_page }
-    #layout "application"
   end
 
   # GET /landing_pages/1
@@ -110,6 +118,18 @@ class LandingPagesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def landing_page_params
       params.require(:landing_page).permit(:description, :logo, :logo_cache, :header, :header_cache)
+    end
+
+    def get_request_cookie
+      set_screen_geometry
+      puts "request cookies:"
+      @width = cookies[:width]
+      @height = cookies[:height]
+      @pixelRatio = cookies[:pixelRatio]
+      puts "@width: #{@width}"
+      puts "@height: #{@height}"
+      puts "@pixelRatio: #{@pixelRatio}"
+
     end
 end
 
