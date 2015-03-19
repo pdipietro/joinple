@@ -182,7 +182,6 @@ module SessionsHelper
     hash
   end
 
-
   private
 
     def set_current_social_network (sn)

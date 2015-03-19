@@ -65,6 +65,7 @@ gem 'remotipart'
 gem 'carrierwave-neo4j', require: 'carrierwave/neo4j'
 gem 'carrierwave-ftp', :require => 'carrierwave/storage/ftp/all' # both FTP/SFTP
 gem "rmagick"
+gem "inline_svg"
 
 #gem 'browser'
 

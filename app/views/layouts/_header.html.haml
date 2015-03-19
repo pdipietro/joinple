@@ -6,14 +6,10 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      %a.navbar-brand.logo{ :href => "#{root_path}" }
-        -#%img.banner.logo{ :src => "#{image_url(sn)}", :height => "46px" }
+      %a.navbar-brand.logo{ :href => "#{home_path}" }
+        = inline_svg "svg/join_crowds_logo.svg", class: ""
       .dropdown.navbar-brand
         %a.dropdown-toggle{ :href => "#", "aria-expanded" => "false", "data-toggle" => "dropdown", :type => "button", :title => "About the 'Super Social Network'"} 
-          = "Super Social Network"
-          %span.caret
-        -#%a.dropdown-toggle{ "data-target" => "#", "aria-expanded" => "false", "data-toggle" => "dropdown", :role => "button", :title => "About the 'Super Social Network'"} 
-          = "Super Social Network"
           %span.caret
         %ul.dropdown-menu{ :role => "menu"}
           %li
@@ -37,10 +33,6 @@
             = link_to about_path, :remote => :true do
               %span.glyphicons.icon-group
               About
-          %li
-            = link_to landing_pages_path, :remote => :true  do
-              %span.glyphicons.icon-smiley-frown
-              Landing page
     #navbar.navbar-collapse.collapse
       %ul.nav.navbar-nav.navbar-right
         - if Rails.env.development?

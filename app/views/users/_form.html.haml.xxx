@@ -1,9 +1,0 @@
-.panel.panel-default
-  .panel-heading
-    .panel-title
-      Users
-  .panel-body
-    = bootstrap_form_for(user, :remote => :true ) do |f|
-      = f.text_field :first_name, :prepend => :first_name, :disabled => :disabled
-      = f.text_field :last_name, :prepend => :last_name, :disabled => :disabled
-      = f.text_field :nickname, :prepend => :nickname, :disabled => :disabled

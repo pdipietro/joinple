@@ -2,8 +2,10 @@
 $navbar-default-bg: rgba(77,171,170,1);
 $navbar-default-bg-a: rgba(77,171,170,0.25);
 
+/* #page margin top must be equal to header.height + 10 px */
+
 #page {
-  margin-top: 46px !important;
+  margin-top: 56px !important;
 }
 
 .thumbnail {
@@ -15,8 +17,12 @@ $navbar-default-bg-a: rgba(77,171,170,0.25);
 }
 
 .navbar-header {
-  background-color: rgb(0,0,220) !important;
+  /*background-color: rgb(0,0,220) !important;*/
   z-index: 1000;
+}
+
+a.navbar-brand.logo  {
+  padding-top: 7.1565px;
 }
 
 .checkbox {
