@@ -27,10 +27,11 @@ class ImageSizes
         :Article        => {
                              :logo          => [:banner, :preview, :btn, :thumb, :icon, :profile, :logo, :xsmall, :small, :medium, :large, :xlarge, :xxlarge]
                            },
-        :User           => {
-                             :avatar        => [:btn, :thumb, :icon, :profile], 
-                             :currentAvatar => [:btn, :thumb, :icon, :profile], 
-                             :image         => [:preview]
+        :UserProfile    => {
+                             :photo         => [:btn, :thumb, :icon, :profile] 
+                           },            
+        :Image          => {
+                             :image         => [:preview, :profile, :cover, :banner]
                            },            
         :Group          => {
                              :logo          => [:btn, :thumb, :icon, :profile], 

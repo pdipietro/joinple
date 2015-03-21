@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class UserAvatarLogoUploader < CarrierWave::Uploader::Base
+class UserProfilePhotoUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   include CarrierWave::RMagick
@@ -34,7 +34,7 @@ class UserAvatarLogoUploader < CarrierWave::Uploader::Base
   # end
 
   # Create different versions of your uploaded files:
-  ImageSizes::CLASSES[:User][:avatar].each do |f|
+  ImageSizes::CLASSES[:UserProfile][:photo].each do |f|
     k = "process :resize_to_fill => #{ImageSizes::SIZES[f][0]}"
     puts "#{k}"
     version f do

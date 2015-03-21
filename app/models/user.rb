@@ -46,8 +46,7 @@ class User
   validates_uniqueness_of :email, case_sensitive:false
   validates   :password, length: { minimum: 6 }, allow_blank: true
 
-
-  # User application rels
+   # User application rels
 
   has_many  :out, :likes, rel_class: Likes              # :any
   has_many  :out, :follows, rel_class: Follows          # :any
@@ -55,24 +54,8 @@ class User
   has_many  :in,  :use_language, rel_class: Speaks      # Language
   has_many  :out, :owns, rel_class: Owns                # :any
   has_many  :out, :is_member_of, rel_class: MemberOf    # Group
-
-=begin
-  has_neo4jrb_attached_file :avatar,
-    :path => ":rails_root/public/system/:attachment/:id/:basename_:style.:extension",
-    :url => "/system/:attachment/:id/:basename_:style.:extension",
-    :styles => {
-      :thumb    => ['126x126#',  :jpg, :quality => 70],
-      :preview  => ['480x480#',  :jpg, :quality => 70],
-      :retina   => ['126>',      :jpg, :quality => 30]
-  },
-  :convert_options => {
-    :thumb    => '-set colorspace sRGB -strip',
-    :preview  => '-set colorspace sRGB -strip',
-    :large    => '-set colorspace sRGB -strip',
-    :retina   => '-set colorspace sRGB -strip -sharpen 0x0.5'
-  }
-  validates_attachment_content_type :avatar, content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"]
-=end
+  has_one   :out, :has_profile, rel_class: HasProfile   # Profile
+  has_many  :out, :has_image, rel_class: HasImage       # Images
 
   # Remembers a user in the database for use in persistent sessions.
   def remember

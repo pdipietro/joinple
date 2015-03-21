@@ -8,7 +8,7 @@
       -#= image_tag landing_page.header.url(:l) 
       -#= image_tag landing_page.logo.attachment.url(:logo) 
       .form-group
-        = f.text_field :logo, :prepend => "logo image", :placeholder => "Enter the logo image url", :hide_label => :true
+        = f.text_field :logo, :prepend => "logo image", :placeholder => "Enter the logo image url", :hide_label => :true, :disabled => :true
         = f.file_field :logo, :prepend => "logo image", :placeholder => "Enter the logo image url", :hide_label => :true
         = image_tag landing_page.logo.url(:logo) 
         = f.hidden_field :logo_cache

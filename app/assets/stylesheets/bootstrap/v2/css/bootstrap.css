@@ -5,8 +5,8 @@
  */
 
 /*!
- * Generated using the Bootstrap Customizer (http://getbootstrap.com/customize/?id=41928f51c4c7959bd2a8)
- * Config saved to config.json and https://gist.github.com/41928f51c4c7959bd2a8
+ * Generated using the Bootstrap Customizer (http://getbootstrap.com/customize/?id=0abb4e7ec52222700df9)
+ * Config saved to config.json and https://gist.github.com/0abb4e7ec52222700df9
  */
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 html {
@@ -6143,7 +6143,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
-  color: #777777;
+  color: #333342;
   background-color: transparent;
 }
 .navbar-default .navbar-nav > .active > a,
@@ -6184,7 +6184,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
   .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
   .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
-    color: #777777;
+    color: #333342;
     background-color: transparent;
   }
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
@@ -6204,14 +6204,14 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   color: #ffffff;
 }
 .navbar-default .navbar-link:hover {
-  color: #777777;
+  color: #333342;
 }
 .navbar-default .btn-link {
   color: #ffffff;
 }
 .navbar-default .btn-link:hover,
 .navbar-default .btn-link:focus {
-  color: #777777;
+  color: #333342;
 }
 .navbar-default .btn-link[disabled]:hover,
 fieldset[disabled] .navbar-default .btn-link:hover,

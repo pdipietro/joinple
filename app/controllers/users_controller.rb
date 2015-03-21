@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     @posts = Post.all.order(created_at:  :desc)
     @user = User.find(params[:id])
     respond_to do |format|
-        format.js 
+      format.js 
 #        format.html
     end
   end
@@ -44,11 +44,14 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    puts "userparams: #{user_params} §§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§"
     @user = User.new(user_params)
 
-   # respond_to do |format|
+    respond_to do |format|
       if @user.save
+         aProfile = UserProfile.new
+         aProfile.save           
+         rel = HasProfile.create(from_node: @user, to_node: aProfile)
+
     #    log_in @user
     #    flash[:success] = "Welcome to the Gsn!"
     #    redirect_to @user
@@ -57,11 +60,11 @@ class UsersController < ApplicationController
         flash[:info] = "Please check your email to activate your account."
         redirect_to root_url, format: :js
       else
-   puts "-------------------------------- user create error: #{@user.errors}"
-        render :new, format: :js
+       puts "-------------------------------- user create error: #{@user.errors}"
+       render :new, format: :js
        # format.json { render json: @user.errors, status: :unprocessable_entity }
       end
-    #end
+    end
   end
 
   # PATCH/PUT /users/1
@@ -95,7 +98,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:nickname, :first_name, :last_name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:nickname, :first_name, :last_name, :email, :password, :password_confirmation )
     end
 
     # Before filters

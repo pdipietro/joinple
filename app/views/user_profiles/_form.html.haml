@@ -1,0 +1,20 @@
+.panel.panel-default
+  - user_profile = current_user_profile
+  .panel-heading
+    .panel-title
+      Manage your profile 
+  .panel-body
+    = bootstrap_form_for(user_profile, :remote => :true,  :html => {:multipart => true} ) do |f|
+      .landing-page-description
+        = f.text_area :description, :prepend => :description, :placeholder => "Enter the user description", :hide_label => :true
+      .form-group
+        = f.color_field :background_color, :prepend => "background color", :placeholder => "Customize the background color", :hide_label => :true, layout: :horizontal,control_col: "col-sm-5 noborder", label_col: "col-sm-2", :class => "left-align" 
+        = f.color_field :text_color, :prepend => "text color", :placeholder => "Customize the text color", :hide_label => :true, layout: :horizontal, control_col: "col-sm-5 noborder", label_col: "col-sm-2 noborder", :class => "left-align" 
+      .form-group
+        = f.text_field :photo, :prepend => "header image", :placeholder => "Enter the header image url", :hide_label => :true, :disabled => :true
+        = f.file_field :photo, :prepend => "header image", :placeholder => "Enter the header image url", :hide_label => :true
+        = image_tag photo.header.url(:profile) 
+        = f.hidden_field :photo_cache
+      .form-group     
+        %button.icon_only{ :type => "submit", :remote => :true, :name => "commit", :hide_label => :true, :title => "Save the element"  } 
+          %span.glyphicon.glyphicon-save

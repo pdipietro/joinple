@@ -26,23 +26,22 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, defaults: { :format => "js"}, :remote => :true
+  resources :users,               defaults: { :format => "js"}, :remote => :true
 
 # administrative resources
 
-  resources :languages, constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
-  resources :social_networks, constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
+  resources :languages,           constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
+  resources :social_networks,     constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true,  except: [:destroy]
 
-  resources :posts, constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true     #,               only: [:create, :destroy]
-  resources :groups, defaults: { :format => "js"}, :remote => :true
+  resources :posts,               constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true     #, only: [:create, :destroy]
+  resources :groups,              constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
 
-  resources :landing_pages, constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
- # resources :images, defaults: { :format => "js"}, :remote => :true
-  resources :tags, defaults: { :format => "js"}, :remote => :true
-  resources :tests, constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
-  resources :images, constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
-  resources :media_managers, constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
-
+  resources :landing_pages,       constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true,  except: [:destroy]
+  resources :tags,                constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
+  resources :tests,               constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
+  resources :images,              constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
+  resources :media_managers,      constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
+  resources :user_profiles,       constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true,  except: [:index, :destroy]
 
   post      '/groups/list/:filter(/:limit(/:subject))'  =>   'groups#list', :as => :group_list, defaults: { :format => "js"}, :remote => :true
   post      'likes/:id/:class/:rel_type'    =>    'likes#edit', constraints: AuthConstraint.new, :as => :onerel

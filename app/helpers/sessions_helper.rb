@@ -76,7 +76,26 @@ module SessionsHelper
       end
       puts "current_user-2: #{@current_user.id}"
     end
-   @current_user
+    @current_user
+  end
+
+  # Return the current_user profile
+  def current_user_profile
+    cu = current_user
+    puts "current_user: #{cu}"
+    puts "cu.has_profile: #{@cu.has_profile}"
+    if cu.has_profile.nil?
+        puts "here I am"
+       aProfile = UserProfile.new
+       aProfile.save
+       rel = HasProfile.create(from_node: cu, to_node: aProfile)
+       puts ("rel.errors: #{rel.errors}")
+    end
+    puts "Current User HasProfile: #{@current_user.has_profile}"
+    puts "Current User Profile: #{@current_user_profile}"
+    @current_user_profile = cu.has_profile if @current_user_profile.nil?
+    puts "Currernt User Profile: #{@current_user_profile}"
+    @current_user_profile
   end
 
   # Returns true if the user is logged in, false otherwise.
@@ -94,6 +113,7 @@ module SessionsHelper
 
     session.delete(:social_network) unless session[:social_network].nil?
     @current_user = nil
+    @user_profile = nil
   end
 
   # Forgets a persistent session.

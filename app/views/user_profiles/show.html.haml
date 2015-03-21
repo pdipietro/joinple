@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Photo,:
+  = @user_profile.photo,
+%p
+  %b Backgroud color:
+  = @user_profile.backgroud_color
+%p
+  %b Text color:
+  = @user_profile.text_color
+
+= link_to 'Edit', edit_user_profile_path(@user_profile)
+\|
+= link_to 'Back', user_profiles_path

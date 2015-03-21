@@ -2,11 +2,180 @@
 $navbar-default-bg: rgba(77,171,170,1);
 $navbar-default-bg-a: rgba(77,171,170,0.25);
 
+/* icomoon resize and rotate */
+
+i {
+  padding: 0 !important;
+  margin: 0  !important;
+}
+
+i.header {
+  font-size: 1.5em;
+  line-height: 0.75em;
+  vertical-align: -15%;
+}
+
+/* makes the font 33% larger relative to the icon container */
+.im-lg {
+  font-size: 1.33333333em;
+  line-height: 0.75em;
+  vertical-align: -15%;
+}
+.im-14x {
+  font-size: 140%;
+}
+.im-2x {
+  font-size: 200%;
+}
+.im-3x {
+  font-size: 3em;
+}
+.im-4x {
+  font-size: 4em;
+}
+.im-5x {
+  font-size: 5em;
+}
+.im-fw {
+  width: 1.28571429em;
+  text-align: center;
+}
+.im-ul {
+  padding-left: 0;
+  margin-left: 2.14285714em;
+  list-style-type: none;
+}
+.im-ul > li {
+  position: relative;
+}
+.im-li {
+  position: absolute;
+  left: -2.14285714em;
+  width: 2.14285714em;
+  top: 0.14285714em;
+  text-align: center;
+}
+.im-li.im-lg {
+  left: -1.85714286em;
+}
+.im-border {
+  padding: .2em .25em .15em;
+  border: solid 0.08em #eeeeee;
+  border-radius: .1em;
+}
+.pull-right {
+  float: right;
+}
+.pull-left {
+  float: left;
+}
+.fa.pull-left {
+  margin-right: .3em;
+}
+.fa.pull-right {
+  margin-left: .3em;
+}
+.im-spin {
+  -webkit-animation: fa-spin 2s infinite linear;
+  animation: fa-spin 2s infinite linear;
+}
+@-webkit-keyframes fa-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+@keyframes fa-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+.im-rotate-90 {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+  -webkit-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+.im-rotate-180 {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+.im-rotate-270 {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+  -webkit-transform: rotate(270deg);
+  -ms-transform: rotate(270deg);
+  transform: rotate(270deg);
+}
+.im-flip-horizontal {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1);
+  -webkit-transform: scale(-1, 1);
+  -ms-transform: scale(-1, 1);
+  transform: scale(-1, 1);
+}
+.im-flip-vertical {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1);
+  -webkit-transform: scale(1, -1);
+  -ms-transform: scale(1, -1);
+  transform: scale(1, -1);
+}
+:root .im-rotate-90,
+:root .im-rotate-180,
+:root .im-rotate-270,
+:root .im-flip-horizontal,
+:root .im-flip-vertical {
+  filter: none;
+}
+.im-stack {
+  position: relative;
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+  line-height: 2em;
+  vertical-align: middle;
+}
+.im-stack-1x,
+.im-stack-2x {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+.im-stack-1x {
+  line-height: inherit;
+}
+.im-stack-2x {
+  font-size: 2em;
+}
+.im-inverse {
+  color: #ffffff;
+}
+
 /* #page margin top must be equal to header.height + 10 px */
+
+#navbar {
+  max-height: 46px;
+}
 
 #page {
   margin-top: 56px !important;
 }
+
+ul.nav.navbar-nav > li {
+  padding: 0 14px;
+}
+
+/* da rivedere con Davide */
 
 .thumbnail {
   border: 0;
@@ -63,15 +232,6 @@ span.transparent:hover {
   color: transparent !important;
   background-color: transparent !important;
 }
-
-ul.nav.navbar-nav > li {
-  border-left: 1px white solid !important;
-  padding: 0 25px;
-}
-ul.nav.navbar-nav > li:last-child {
-  border-right: 1px white solid !important;
-}
-
 
 ul.list-group > li:not(first-child),
 ul.list-group {
@@ -168,7 +328,7 @@ span.centered {
 
 }
 
-.fa-stacked {
+.im-stacked {
     left: -10px;
     position: relative;
     top: 8px;

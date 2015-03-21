@@ -6,33 +6,8 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      %a.navbar-brand.logo{ :href => "#{home_path}" }
-        = inline_svg "svg/join_crowds_logo.svg", class: ""
-      .dropdown.navbar-brand
-        %a.dropdown-toggle{ :href => "#", "aria-expanded" => "false", "data-toggle" => "dropdown", :type => "button", :title => "About the 'Super Social Network'"} 
-          %span.caret
-        %ul.dropdown-menu{ :role => "menu"}
-          %li
-            = link_to privacy_path, :remote => :true do
-              %span.glyphicons.icon-group
-              Privacy
-          %li
-            = link_to contacts_path, :remote => :true do
-              %span.glyphicons.icon-chat-bubble-two
-              Contacts
-          %li
-            = link_to terms_path, :remote => :true do
-              %span.glyphicons.icon-chat-bubble-two
-              Terms & Conditions
-          %li.divider
-          %li
-            = link_to help_path, :remote => :true do
-              %span.glyphicons.icon-picture
-              Help
-          %li
-            = link_to about_path, :remote => :true do
-              %span.glyphicons.icon-group
-              About
+      .navbar-brand.logo
+        = image_tag "logo_joinple_top_interno.png"
     #navbar.navbar-collapse.collapse
       %ul.nav.navbar-nav.navbar-right
         - if Rails.env.development?
@@ -52,10 +27,15 @@
               %i.fa.glyphicons.icon-user-add.myself
               -#Sign up
         - else
+          %li
+            = link_to root_path, :remote => :true, :title => "Go to SSN" do
+              %i.header.im-home
+          %li
+            = link_to users_path, :remote => :true, :title => "People" do
+              %i.header.im-man-woman
           %li.dropdown
             %a.dropdown-toggle{ :href => "#", :id => "dropdownSocial", "data-toggle" => "dropdown", :type => "button", :title => "Social networks", "aria-expanded" => "false"}
-              %i.fa.icon-comment-discussion
-              -#Social
+              %i.header.im-shuffle
               %span.caret
             %ul.dropdown-menu{ :role => "menu", "aria-labelledby" => "dropdownSocial" }
               - @social_networks = SocialNetwork.all.order(created_at: :desc)
@@ -65,17 +45,47 @@
                     %a{ :href => "#{calculate_full_path(social_network)}" }
                       = social_network.name
           %li
-            = link_to users_path, :remote => :true, :title => "People" do
-              %i.fa.icon-users-outline
-              -#People
+            = link_to root_path, :remote => :true, :title => "Notifications" do
+              %i.header.im-bell
           %li
-            = link_to current_user, :remote => :true, :title => "My home" do
-              %i.fa.icon-home
-              -#My home
-          %li.dropdown
-            %a.dropdown-toggle{ :href => "#", :id => "dropdownUser", "data-toggle" => "dropdown", :type => "button", :title => "Myself", "aria-expanded" => "false"}
-              = current_user.nickname
+            = link_to users_path, :remote => :true, :title => "Messages" do
+              %i.header.im-envelop
+          %li.dropdown.navbar-brand
+            %a.dropdown-toggle{ :href => "#", "aria-expanded" => "false", "data-toggle" => "dropdown", :type => "button", :title => "About the 'Super Social Network'"} 
+              %i.header.im-file-text2
               %span.caret
+            %ul.dropdown-menu{ :role => "menu"}
+              %li
+                = link_to privacy_path, :remote => :true do
+                  %i.header.im-lock
+                  Privacy
+              %li
+                = link_to contacts_path, :remote => :true do
+                  %i.header.im-man-woman
+                  Contacts
+              %li
+                = link_to terms_path, :remote => :true do
+                  %i.header.im-man-woman
+                  Terms & Conditions
+              %li.divider
+              %li
+                = link_to help_path, :remote => :true do
+                  %i.header.im-lifebuoy
+                  Help
+              %li
+                = link_to help_path, :remote => :true do
+                  %i.header.im-man-woman
+                  FAQ
+              %li
+                = link_to about_path, :remote => :true do
+                  %i.header.im-man-woman
+                  About
+          %li.dropdown
+            %a.dropdown-toggle{ :href => "#", :id => "dropdownUser", "data-toggle" => "dropdown", :type => "button", :title => "Myself",  "aria-expanded" => "false"}
+              %span
+                %i.header.im-user-plus
+                = current_user.first_name
+                %span.caret
             %ul.user.dropdown-menu{ :role => "menu", "aria-labelledby" => "dropdownUser" }
               %li
                 = link_to posts_path, :remote => :true do
@@ -92,7 +102,7 @@
                   Setting
               %li.divider
               %li
-                = link_to edit_user_path(current_user), :remote => :true do
+                = link_to edit_user_profile_path(current_user), :remote => :true do
                   %span.glyphicons.icon-settings-streamline
                   Change profile
               %li
