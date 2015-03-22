@@ -7,7 +7,13 @@
         %span.icon-bar
         %span.icon-bar
       .navbar-brand.logo
-        = image_tag "logo_joinple_top_interno.png"
+        - if logged_in?
+          %span
+            = image_tag "joinple_logo.png", size: ("117x29")
+            = "     "
+            = image_tag "joinple_logo1.png"
+        - else
+          = image_tag "joinple_logo1.png"
     #navbar.navbar-collapse.collapse
       %ul.nav.navbar-nav.navbar-right
         - if Rails.env.development?
@@ -16,15 +22,15 @@
         - unless logged_in?
           %li
             = link_to root_path, :title => "Home" do
-              %i.fa.icon-home
+              %i.header.im-home
               -#Home
           %li
             = link_to login_path, :remote => :true, :title => "Log in" do
-              %i.fa.icon-log-in
+              %i.header.im-login_icon-01-01.path1.path2.path3.path4.path5
               -#Log in
           %li
             = link_to signup_path, :remote => :true, :title => "Sign up" do
-              %i.fa.glyphicons.icon-user-add.myself
+              %i.header.im-lsignup_icon-01-01
               -#Sign up
         - else
           %li
@@ -43,6 +49,7 @@
                 - if social_network.name != current_social_network_name?
                   %li
                     %a{ :href => "#{calculate_full_path(social_network)}" }
+                      %i.header-dropdown.im-pallino{ :style => "color: #{social_network.background_color};" }
                       = social_network.name
           %li
             = link_to root_path, :remote => :true, :title => "Notifications" do
@@ -57,93 +64,93 @@
             %ul.dropdown-menu{ :role => "menu"}
               %li
                 = link_to privacy_path, :remote => :true do
-                  %i.header.im-lock
+                  %i.header-dropdown.im-privacy
                   Privacy
               %li
                 = link_to contacts_path, :remote => :true do
-                  %i.header.im-man-woman
+                  %i.header-dropdown.im-contacts
                   Contacts
               %li
                 = link_to terms_path, :remote => :true do
-                  %i.header.im-man-woman
+                  %i.header-dropdown.im-terms
                   Terms & Conditions
               %li.divider
               %li
                 = link_to help_path, :remote => :true do
-                  %i.header.im-lifebuoy
+                  %i.header-dropdown.im-lifebuoy
                   Help
               %li
                 = link_to help_path, :remote => :true do
-                  %i.header.im-man-woman
+                  %i.header-dropdown.im-faq
                   FAQ
               %li
                 = link_to about_path, :remote => :true do
-                  %i.header.im-man-woman
+                  %i.header-dropdown.im-about
                   About
           %li.dropdown
             %a.dropdown-toggle{ :href => "#", :id => "dropdownUser", "data-toggle" => "dropdown", :type => "button", :title => "Myself",  "aria-expanded" => "false"}
               %span
-                %i.header.im-user-plus
+                %i.header-dropdown.im-user-plus
                 = current_user.first_name
                 %span.caret
             %ul.user.dropdown-menu{ :role => "menu", "aria-labelledby" => "dropdownUser" }
               %li
                 = link_to posts_path, :remote => :true do
-                  %span.glyphicons.icon-comment-discussion
+                  %i.header-dropdown.im-about
                   My discussions
               %li
                 = link_to groups_path, :remote => :true do
-                  %span.glyphicons.icon-star-4
+                  %i.header-dropdown.im-about
                   My workrooms
               %li.divider
               %li
                 = link_to groups_path, :remote => :true do
-                  %span.glyphicons.icon-group
+                  %i.header-dropdown.im-about
                   Setting
               %li.divider
               %li
-                = link_to edit_user_profile_path(current_user), :remote => :true do
-                  %span.glyphicons.icon-settings-streamline
+                = link_to user_profiles_path, :remote => :true do
+                  %i.header-dropdown.im-profile_setting
                   Change profile
               %li
                 = link_to current_user, :remote => :true do
-                  %span.glyphicons.glyphicons-user
+                  %i.header-dropdown.im-about
                   Change password
               %li.divider
               %li
                 = link_to current_user, :remote => :true do
-                  %span.glyphicons.icon-progress-3
+                  %i.header-dropdown.im-about
                   Everythings
               %li
                 = link_to logout_path, method: "delete", :title => "Log out" do
-                  %i.fa.icon-log-out
-                    = 'Log out'
+                  %i.header-dropdown.im-about
+                  Log out
               - if is_admin?
                 %li.divider
                 %li.header
                   Administration
                 %li
                   = link_to landing_pages_path, :remote => :true  do
-                    %span.glyphicons.icon-smiley-frown
+                    %i.header-dropdown.im-about
                     Landing page
                 %li
                   = link_to social_networks_path, :remote => :true  do
-                    %span.glyphicons.icon-smiley-frown
+                    %i.header-dropdown.im-about
                     Social networks
                 %li.divider
                 %li
                   = link_to languages_path, :remote => :true  do
-                    %span.glyphicons.icon-language
+                    %i.header-dropdown.im-about
                     Languages
                 %li
                   = link_to dummy_path, :remote => :true  do
-                    %span.glyphicons.glyphicons-address-book
+                    %i.header-dropdown.im-about
                     Administrators
                 %li
                   = link_to tests_path  do
-                    %span.glyphicons.glyphicons-address-book
+                    %i.header-dropdown.im-about
                     Test
                 -#%li
                   = link_to image_list_path  do
-                    %span.glyphicons.glyphicons-address-book
+                    %i.header-dropdown.im-about
                     Media Manager

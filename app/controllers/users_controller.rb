@@ -33,6 +33,7 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
+    layout :landing_page
     puts "ready to call new.js.erb"
     @user = User.new
   end

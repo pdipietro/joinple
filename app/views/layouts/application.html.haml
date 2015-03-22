@@ -8,14 +8,8 @@
       document.cookie='width='+screen.width;
       document.cookie='height='+screen.height;
       document.cookie='pixelRatio='+("devicePixelRatio" in window ? devicePixelRatio : "1");
-    = stylesheet_link_tag    'fontastic', media: 'all', 'data-turbolinks-track' => true
-    = stylesheet_link_tag    'font-awesome.min', media: 'all', 'data-turbolinks-track' => true
-    = stylesheet_link_tag    'glyphicons', media: 'all', 'data-turbolinks-track' => true
-    = stylesheet_link_tag    'glyphicons-bootstrap', media: 'all', 'data-turbolinks-track' => true
     = stylesheet_link_tag    'icomoon', media: 'all', 'data-turbolinks-track' => true
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-    -#= stylesheet_link_tag    'dashboard', media: 'all', 'data-turbolinks-track' => true
-    -#= stylesheet_link_tag    "social/#{csnn.downcase}_bootstrap", media: 'all', 'data-turbolinks-track' => true
  
     = javascript_include_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'salvattore', media: 'all', 'data-turbolinks-track' => true

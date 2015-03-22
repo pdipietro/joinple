@@ -15,6 +15,12 @@ i.header {
   vertical-align: -15%;
 }
 
+i.header-dropdown {
+  font-size: 1em;
+  line-height: 1em;
+  vertical-align: -0%;
+}
+
 /* makes the font 33% larger relative to the icon container */
 .im-lg {
   font-size: 1.33333333em;
@@ -163,16 +169,20 @@ i.header {
 
 /* #page margin top must be equal to header.height + 10 px */
 
-#navbar {
-  max-height: 46px;
+#page {
+  margin-top: 56px;
 }
 
-#page {
-  margin-top: 56px !important;
+.navbar-brand.logo  {
+  padding: 5.5px 0 5.5px 107px ;
 }
 
 ul.nav.navbar-nav > li {
   padding: 0 14px;
+}
+
+.navbar-header {
+  z-index: 1000;
 }
 
 /* da rivedere con Davide */
@@ -183,15 +193,6 @@ ul.nav.navbar-nav > li {
 
 .input-group-addon {
   padding-bottom: 4px;
-}
-
-.navbar-header {
-  /*background-color: rgb(0,0,220) !important;*/
-  z-index: 1000;
-}
-
-a.navbar-brand.logo  {
-  padding-top: 7.1565px;
 }
 
 .checkbox {

@@ -135,6 +135,10 @@ class User
   end
 =end
 
+  def self.profile?(uuid)
+     Neo4j::Session.query("match (profile:UserProfile)<-[r:has_profile]-(:User { uuid : '#{uuid}'}) return profile")
+  end
+
   private
 
      def create_activation_digest

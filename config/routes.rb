@@ -41,13 +41,13 @@ Rails.application.routes.draw do
   resources :tests,               constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
   resources :images,              constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
   resources :media_managers,      constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
-  resources :user_profiles,       constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true,  except: [:index, :destroy]
+  resources :user_profiles,       constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true,  except: [:index, :destroy, :edit]
 
   post      '/groups/list/:filter(/:limit(/:subject))'  =>   'groups#list', :as => :group_list, defaults: { :format => "js"}, :remote => :true
-  post      'likes/:id/:class/:rel_type'    =>    'likes#edit', constraints: AuthConstraint.new, :as => :onerel
-  get       'likes'                         =>    'likes#dummy', constraints: AuthConstraint.new, :as => :dummy
-  post      'search'                        =>    'likes#search', constraints: AuthConstraint.new, :as => :search
-  get       '/media_managers/list/'         =>    'media_managers#list', :as => :image_list #, defaults: { :format => "js"}, :remote => :true
-
+  post      'likes/:id/:class/:rel_type'    =>    'likes#edit',           :as => :onerel, constraints: AuthConstraint.new
+  get       'likes'                         =>    'likes#dummy',          :as => :dummy, constraints: AuthConstraint.new
+  post      'search'                        =>    'likes#search',         :as => :search, constraints: AuthConstraint.new
+  get       '/media_managers/list/'         =>    'media_managers#list',  :as => :image_list #, defaults: { :format => "js"}, :remote => :true
+  get       'user_profiles'                 =>    'user_profiles#edit',    :as => :edit, constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
 
 end

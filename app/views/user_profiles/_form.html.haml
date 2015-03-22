@@ -1,9 +1,9 @@
 .panel.panel-default
-  - user_profile = current_user_profile
   .panel-heading
     .panel-title
       Manage your profile 
   .panel-body
+    = puts "user_profile.photo: #{user_profile.photo[:logo]}"
     = bootstrap_form_for(user_profile, :remote => :true,  :html => {:multipart => true} ) do |f|
       .landing-page-description
         = f.text_area :description, :prepend => :description, :placeholder => "Enter the user description", :hide_label => :true

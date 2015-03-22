@@ -1,6 +1,5 @@
 class UserProfilesController < ApplicationController
-  before_action :set_user_profile, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_user_profile, only: [:show, :edit, :update]
 
   respond_to :js
 
@@ -22,7 +21,6 @@ class UserProfilesController < ApplicationController
 
   # GET /user_profiles/1/edit
   def edit
-    @user_profile = current_user_profile
   end
 
   # POST /user_profiles
@@ -65,10 +63,12 @@ class UserProfilesController < ApplicationController
     end
   end
 
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user_profile
-      @user_profile = UserProfile.find(params[:id])
+      puts "set_user_profile: #{current_user_profile}"
+      @user_profile = current_user_profile
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

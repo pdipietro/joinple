@@ -3,8 +3,6 @@ class SessionsController < ApplicationController
 
   #render_to :js
 
-  layout "application"
-
   def new
     respond_to do |format|
         format.js

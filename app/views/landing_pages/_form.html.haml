@@ -1,4 +1,5 @@
 - if landing_page.errors.count == 0
+  = puts "landing_page: #{landing_page[:logo]}"
   %div{ :id => landing_page.uuid }
     = bootstrap_form_for(landing_page, :remote => :true,  :html => {:multipart => true} ) do |f|
       .landing-page-description

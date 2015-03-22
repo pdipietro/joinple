@@ -1,1 +1,3 @@
-$('#<%= escape_javascript(@social_network.uuid) %>').html("<%= escape_javascript(render partial: 'form') %>" );
+$("#main_header").html("");
+$("#main_add").html("");
+$("#main_content").html("<%= escape_javascript(render partial: 'form', locals: { user_profile: @user_profile} )%>" );
