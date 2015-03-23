@@ -7,13 +7,7 @@
         %span.icon-bar
         %span.icon-bar
       .navbar-brand.logo
-        - if logged_in?
-          %span
-            = image_tag "joinple_logo.png", size: ("117x29")
-            = "     "
-            = image_tag "joinple_logo1.png"
-        - else
-          = image_tag "joinple_logo1.png"
+        = image_tag "joinple_logo.png"
     #navbar.navbar-collapse.collapse
       %ul.nav.navbar-nav.navbar-right
         - if Rails.env.development?
@@ -26,11 +20,11 @@
               -#Home
           %li
             = link_to login_path, :remote => :true, :title => "Log in" do
-              %i.header.im-login_icon-01-01.path1.path2.path3.path4.path5
+              %i.header.im-login-landing
               -#Log in
           %li
             = link_to signup_path, :remote => :true, :title => "Sign up" do
-              %i.header.im-lsignup_icon-01-01
+              %i.header.im-signup-landing
               -#Sign up
         - else
           %li
@@ -38,7 +32,7 @@
               %i.header.im-home
           %li
             = link_to users_path, :remote => :true, :title => "People" do
-              %i.header.im-man-woman
+              %i.header.im-manwoman
           %li.dropdown
             %a.dropdown-toggle{ :href => "#", :id => "dropdownSocial", "data-toggle" => "dropdown", :type => "button", :title => "Social networks", "aria-expanded" => "false"}
               %i.header.im-shuffle
@@ -49,7 +43,7 @@
                 - if social_network.name != current_social_network_name?
                   %li
                     %a{ :href => "#{calculate_full_path(social_network)}" }
-                      %i.header-dropdown.im-pallino{ :style => "color: #{social_network.background_color};" }
+                      %i.header-dropdown.im-dot{ :style => "color: #{social_network.background_color};" }
                       = social_network.name
           %li
             = link_to root_path, :remote => :true, :title => "Notifications" do
@@ -64,7 +58,7 @@
             %ul.dropdown-menu{ :role => "menu"}
               %li
                 = link_to privacy_path, :remote => :true do
-                  %i.header-dropdown.im-privacy
+                  %i.header-dropdown.im-eye
                   Privacy
               %li
                 = link_to contacts_path, :remote => :true do
@@ -72,7 +66,7 @@
                   Contacts
               %li
                 = link_to terms_path, :remote => :true do
-                  %i.header-dropdown.im-terms
+                  %i.header-dropdown.im-terms-conditions
                   Terms & Conditions
               %li.divider
               %li
@@ -85,7 +79,7 @@
                   FAQ
               %li
                 = link_to about_path, :remote => :true do
-                  %i.header-dropdown.im-about
+                  %i.header-dropdown.im-contacts
                   About
           %li.dropdown
             %a.dropdown-toggle{ :href => "#", :id => "dropdownUser", "data-toggle" => "dropdown", :type => "button", :title => "Myself",  "aria-expanded" => "false"}
@@ -110,7 +104,7 @@
               %li.divider
               %li
                 = link_to user_profiles_path, :remote => :true do
-                  %i.header-dropdown.im-profile_setting
+                  %i.header-dropdown.im-profile-setting
                   Change profile
               %li
                 = link_to current_user, :remote => :true do
@@ -131,20 +125,20 @@
                   Administration
                 %li
                   = link_to landing_pages_path, :remote => :true  do
-                    %i.header-dropdown.im-about
+                    %i.header-dropdown.im-landing-page
                     Landing page
                 %li
                   = link_to social_networks_path, :remote => :true  do
-                    %i.header-dropdown.im-about
+                    %i.header-dropdown.im-social-networks
                     Social networks
                 %li.divider
                 %li
                   = link_to languages_path, :remote => :true  do
-                    %i.header-dropdown.im-about
+                    %i.header-dropdown.im-languages
                     Languages
                 %li
                   = link_to dummy_path, :remote => :true  do
-                    %i.header-dropdown.im-about
+                    %i.header-dropdown.im-administrator
                     Administrators
                 %li
                   = link_to tests_path  do

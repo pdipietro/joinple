@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'icomoon';
-	src:url('fonts/icomoon.eot?iu745u');
-	src:url('fonts/icomoon.eot?#iefixiu745u') format('embedded-opentype'),
-		url('fonts/icomoon.woff?iu745u') format('woff'),
-		url('fonts/icomoon.ttf?iu745u') format('truetype'),
-		url('fonts/icomoon.svg?iu745u#icomoon') format('svg');
+	src:url('fonts/icomoon.eot?-4jmn3s');
+	src:url('fonts/icomoon.eot?#iefix-4jmn3s') format('embedded-opentype'),
+		url('fonts/icomoon.woff?-4jmn3s') format('woff'),
+		url('fonts/icomoon.ttf?-4jmn3s') format('truetype'),
+		url('fonts/icomoon.svg?-4jmn3s#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -31,167 +31,76 @@ i, .icomoon-liga {
 	-moz-osx-font-smoothing: grayscale;
 }
 
-.im-about:before {
+.im-followme:before {
 	content: "\e604";
 }
 
-.im-terms:before {
+.im-people-sidebardx:before {
 	content: "\e605";
 }
 
-.im-faq:before {
+.im-trends:before {
 	content: "\e606";
 }
 
-.im-contacts:before {
+.im-ads:before {
 	content: "\e607";
 }
 
-.im-privacy .path1:before {
+.im-administrator:before {
 	content: "\e608";
-	color: rgb(32, 32, 32);
-}
-.im-privacy .path2:before {
-	content: "\e609";
-	margin-left: -1em;
-	color: rgb(32, 32, 32);
-}
-.im-privacy .path3:before {
-	content: "\e60a";
-	margin-left: -1em;
-	color: rgb(240, 239, 239);
-}
-.im-privacy .path4:before {
-	content: "\e60b";
-	margin-left: -1em;
-	color: rgb(32, 32, 32);
-}
-
-.im-profile_setting:before {
-	content: "\e60c";
 }
 
 .im-manwoman:before {
+	content: "\e609";
+}
+
+.im-about:before {
+	content: "\e60a";
+}
+
+.im-administration:before {
+	content: "\e60b";
+}
+
+.im-contacts:before {
+	content: "\e60c";
+}
+
+.im-dot:before {
 	content: "\e60d";
 }
 
-.im-login_icon-01-01 .path1:before {
-	content: "\e60f";
-	color: rgb(161, 34, 73);
-}
-.im-login_icon-01-01 .path2:before {
-	content: "\e610";
-	margin-left: -1em;
-	color: rgb(255, 255, 255);
-}
-.im-login_icon-01-01 .path3:before {
-	content: "\e611";
-	margin-left: -1em;
-	color: rgb(255, 255, 255);
-}
-.im-login_icon-01-01 .path4:before {
-	content: "\e612";
-	margin-left: -1em;
-	color: rgb(255, 255, 255);
-}
-.im-login_icon-01-01 .path5:before {
-	content: "\e613";
-	margin-left: -1em;
-	color: rgb(255, 255, 255);
-}
-.im-login_icon-01-01 .path6:before {
-	content: "\e614";
-	margin-left: -1em;
-	color: rgb(255, 255, 255);
-}
-.im-login_icon-01-01 .path7:before {
-	content: "\e615";
-	margin-left: -1em;
-	color: rgb(255, 255, 255);
-}
-.im-login_icon-01-01 .path8:before {
-	content: "\e616";
-	margin-left: -1em;
-	color: rgb(255, 255, 255);
-}
-.im-login_icon-01-01 .path9:before {
-	content: "\e617";
-	margin-left: -1em;
-	color: rgb(255, 255, 255);
-}
-
-.im-lsignup_icon-01-01 .path1:before {
-	content: "\e618";
-	color: rgb(51, 51, 66);
-}
-.im-lsignup_icon-01-01 .path2:before {
-	content: "\e619";
-	margin-left: -1em;
-	color: rgb(255, 255, 255);
-}
-.im-lsignup_icon-01-01 .path3:before {
-	content: "\e61a";
-	margin-left: -1em;
-	color: rgb(255, 255, 255);
-}
-.im-lsignup_icon-01-01 .path4:before {
-	content: "\e61b";
-	margin-left: -1em;
-	color: rgb(255, 255, 255);
-}
-.im-lsignup_icon-01-01 .path5:before {
-	content: "\e61c";
-	margin-left: -1em;
-	color: rgb(255, 255, 255);
-}
-.im-lsignup_icon-01-01 .path6:before {
-	content: "\e61d";
-	margin-left: -1em;
-	color: rgb(255, 255, 255);
-}
-.im-lsignup_icon-01-01 .path7:before {
-	content: "\e61e";
-	margin-left: -1em;
-	color: rgb(255, 255, 255);
-}
-.im-lsignup_icon-01-01 .path8:before {
-	content: "\e61f";
-	margin-left: -1em;
-	color: rgb(255, 255, 255);
-}
-.im-lsignup_icon-01-01 .path9:before {
-	content: "\e620";
-	margin-left: -1em;
-	color: rgb(255, 255, 255);
-}
-.im-lsignup_icon-01-01 .path10:before {
-	content: "\e621";
-	margin-left: -1em;
-	color: rgb(255, 255, 255);
-}
-
-.im-pallino:before {
+.im-faq:before {
 	content: "\e60e";
 }
 
-.im-givemefive .path1:before {
-	content: "\e600";
-	color: rgb(53, 53, 53);
+.im-landing-page:before {
+	content: "\e60f";
 }
-.im-givemefive .path2:before {
-	content: "\e601";
-	margin-left: -1em;
-	color: rgb(255, 255, 255);
+
+.im-languages:before {
+	content: "\e610";
 }
-.im-givemefive .path3:before {
-	content: "\e602";
-	margin-left: -1em;
-	color: rgb(53, 53, 53);
+
+.im-login-landing:before {
+	content: "\e611";
 }
-.im-givemefive .path4:before {
-	content: "\e603";
-	margin-left: -1em;
-	color: rgb(255, 255, 255);
+
+.im-profile-setting:before {
+	content: "\e612";
+}
+
+.im-signup-landing:before {
+	content: "\e613";
+}
+
+.im-social-networks:before {
+	content: "\e614";
+}
+
+.im-terms-conditions:before {
+	content: "\e615";
 }
 
 .im-message:before {
@@ -294,12 +203,12 @@ i, .icomoon-liga {
 	content: "\e9cd";
 }
 
-.im-bookmark:before {
-	content: "\e9d2";
+.im-eye:before {
+	content: "\e9ce";
 }
 
-.im-man-woman:before {
-	content: "\e9de";
+.im-bookmark:before {
+	content: "\e9d2";
 }
 
 .im-happy:before {
