@@ -21,18 +21,16 @@
           %li
             = link_to login_path, :remote => :true, :title => "Log in" do
               %i.header.im-login-landing
-              -#Log in
           %li
             = link_to signup_path, :remote => :true, :title => "Sign up" do
               %i.header.im-signup-landing
-              -#Sign up
         - else
           %li
             = link_to root_path, :remote => :true, :title => "Go to SSN" do
               %i.header.im-home
           %li
             = link_to users_path, :remote => :true, :title => "People" do
-              %i.header.im-manwoman
+              %i.header.im-people-sidebardx
           %li.dropdown
             %a.dropdown-toggle{ :href => "#", :id => "dropdownSocial", "data-toggle" => "dropdown", :type => "button", :title => "Social networks", "aria-expanded" => "false"}
               %i.header.im-shuffle
@@ -53,7 +51,7 @@
               %i.header.im-envelop
           %li.dropdown.navbar-brand
             %a.dropdown-toggle{ :href => "#", "aria-expanded" => "false", "data-toggle" => "dropdown", :type => "button", :title => "About the 'Super Social Network'"} 
-              %i.header.im-file-text2
+              %i.header.im-terms-conditions2
               %span.caret
             %ul.dropdown-menu{ :role => "menu"}
               %li
@@ -84,7 +82,7 @@
           %li.dropdown
             %a.dropdown-toggle{ :href => "#", :id => "dropdownUser", "data-toggle" => "dropdown", :type => "button", :title => "Myself",  "aria-expanded" => "false"}
               %span
-                %i.header-dropdown.im-user-plus
+                %i.header.im-user-plus
                 = current_user.first_name
                 %span.caret
             %ul.user.dropdown-menu{ :role => "menu", "aria-labelledby" => "dropdownUser" }
@@ -134,7 +132,7 @@
                 %li.divider
                 %li
                   = link_to languages_path, :remote => :true  do
-                    %i.header-dropdown.im-languages
+                    %i.header-dropdown.im-language
                     Languages
                 %li
                   = link_to dummy_path, :remote => :true  do

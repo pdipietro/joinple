@@ -33,8 +33,6 @@ Rails.application.config.assets.precompile += %w( social/*_bootstrap.css )
 #Rails.application.config.assets.precompile += %w( ./../fonts/glyphicons-halfling.woff )
 #Rails.application.config.assets.precompile += %w( ./../fonts/glyphicons-halfling.woff2 )
 
-Rails.application.config.assets.precompile += %w( ./../fonts/roboto/* )
-
 Rails.application.config.assets.precompile += %w( ./../fonts/icomoon.eot )
 Rails.application.config.assets.precompile += %w( ./../fonts/icomoon.ttf )
 Rails.application.config.assets.precompile += %w( ./../fonts/icomoon.woff )

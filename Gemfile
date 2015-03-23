@@ -67,6 +67,7 @@ gem 'carrierwave-ftp', :require => 'carrierwave/storage/ftp/all' # both FTP/SFTP
 gem "rmagick"
 gem "inline_svg"
 
+gem 'google-webfonts-rails'
 #gem 'browser'
 
 #gem 'masonry-rails'

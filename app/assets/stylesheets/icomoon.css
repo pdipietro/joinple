@@ -31,6 +31,17 @@ i, .icomoon-liga {
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.im-terms-conditions2:before {
+	content: "\e602";
+}
+
+.im-logout:before {
+	content: "\e600";
+}
+
+.im-language:before {
+	content: "\e601";
+}
 
 .im-followme:before {
 	content: "\e604";
@@ -78,10 +89,6 @@ i, .icomoon-liga {
 
 .im-landing-page:before {
 	content: "\e60f";
-}
-
-.im-languages:before {
-	content: "\e610";
 }
 
 .im-login-landing:before {
@@ -243,4 +250,3 @@ i, .icomoon-liga {
 .im-new-tab:before {
 	content: "\ea7e";
 }
-

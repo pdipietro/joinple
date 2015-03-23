@@ -126,6 +126,8 @@ GEM
     formatador (0.2.5)
     globalid (0.3.3)
       activesupport (>= 4.1.0)
+    google-webfonts-rails (0.0.4)
+      activesupport (> 3.2.0, < 5.0)
     guard (2.12.5)
       formatador (>= 0.2.4)
       listen (~> 2.7)
@@ -363,6 +365,7 @@ DEPENDENCIES
   faker (= 1.4.2)
   fog (= 1.23.0)
   font-awesome-sass
+  google-webfonts-rails
   guard-minitest (= 2.3.1)
   haml-rails
   inline_svg

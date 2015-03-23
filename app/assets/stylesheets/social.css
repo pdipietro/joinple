@@ -21,6 +21,28 @@ i.header-dropdown {
   vertical-align: -0%;
 }
 
+i.header {
+  font-size: 2.2em;
+  line-height: 0.25em;
+  vertical-align: -90%;
+}
+
+
+i.header.im-login-landing,
+i.header.im-signup-landing {
+  font-size: 3em;
+  line-height: 0.25em;
+  vertical-align: -90%;
+}
+
+i.header.im-login-landing {
+  color: #a12349;
+}
+
+i.header.im-signup-landing {
+  color: #333342;
+}
+
 /* makes the font 33% larger relative to the icon container */
 .im-lg {
   font-size: 1.33333333em;
@@ -174,7 +196,7 @@ i.header-dropdown {
 }
 
 .navbar-brand.logo  {
-  padding: 5.5px 0 5.5px 107px ;
+  padding: 5.5px 0;
 }
 
 ul.nav.navbar-nav > li {
