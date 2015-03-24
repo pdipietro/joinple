@@ -101,7 +101,7 @@
                   Setting
               %li.divider
               %li
-                = link_to user_profiles_path, :remote => :true do
+                = link_to user_profile_path (current_user.uuid), :remote => :true do
                   %i.header-dropdown.im-profile-setting
                   Change profile
               %li

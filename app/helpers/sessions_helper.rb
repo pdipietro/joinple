@@ -13,7 +13,7 @@ module SessionsHelper
      set_screen_geometry
      session[:user_id] = user.id
      session[:admin] = user.admin
-     session[:current_user_profile] = User.profile?(user.id)
+     set_current_user_profile
      check_social_network
   end
 
@@ -80,6 +80,15 @@ module SessionsHelper
   end
 
   # Return the current_user profile
+  def set_current_user_profile
+   #  puts "User profile before: #{session[:current_user_profile]}"
+      session[:current_user_profile] = User.find(session[:user_id]).has_user_profile
+   #  puts "User profile after: #{session[:current_user_profile].class}"
+   #  puts "User profile after: #{session[:current_user_profile]}"
+   #  puts "photo: #{current_user_profile.photo[:btn]}, bg: #{current_user_profile.background_color}, fg: #{current_user_profile.text_color}"
+   end
+
+  # Return the current_user profile
   def current_user_profile
     session[:current_user_profile]
   end
@@ -95,7 +104,7 @@ module SessionsHelper
     session.delete(:user_id)
     session.delete(:admin)
   # session[:social_network] = nil
-    session[:current_user_profile] = nil
+    session.delete[:current_user_profile] unless session[current_user_profile].nil?
     session.delete(:group) unless session[:group].nil?
 
     session.delete(:social_network) unless session[:social_network].nil?
@@ -131,7 +140,6 @@ module SessionsHelper
 
   # check if the social network is changed
   def check_social_network
-    puts "----------- get_screen_geometry in check social network "
     set_screen_geometry
     unless session[:social_network].class.name == "SocialNetwork" 
        load_social_network_from_url
@@ -199,6 +207,10 @@ module SessionsHelper
         session[:social_network] = sn
         puts "sn: #{current_social_network}"
         puts "sn.name: #{current_social_network_name?}"
+     puts "User profile before: #{session[:current_user_profile]}"
+     puts "User profile after: #{session[:current_user_profile].class}"
+     puts "User profile after: #{session[:current_user_profile]}"
+    # puts "1)     photo: #{current_user_profile.photo}, bg: #{current_user_profile.background_color}, fg: #{current_user_profile.text_color}"
         reset_current_group
       end
     end

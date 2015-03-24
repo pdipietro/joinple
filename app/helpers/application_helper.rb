@@ -1,6 +1,6 @@
 module ApplicationHelper
 
-  ALLOWED_DOMAIN_SERVER = ["ssdcafe","test","crowdupcafe"]
+  ALLOWED_DOMAIN_SERVER = ["ssdcafe","test","crowdupcafe","joinple"]
 
   # Returns the full title on a per-page basis.
   def full_title(page_title = '')

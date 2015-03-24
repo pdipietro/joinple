@@ -33,9 +33,9 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
-    layout :landing_page
     puts "ready to call new.js.erb"
     @user = User.new
+    #render layout: "landing_page"
   end
 
   # GET /users/1/edit
@@ -51,7 +51,7 @@ class UsersController < ApplicationController
       if @user.save
          aProfile = UserProfile.new
          aProfile.save           
-         rel = HasProfile.create(from_node: @user, to_node: aProfile)
+         rel = HasUserProfile.create(from_node: @user, to_node: aProfile)
 
     #    log_in @user
     #    flash[:success] = "Welcome to the Gsn!"

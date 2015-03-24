@@ -12,6 +12,8 @@ class UserProfilesController < ApplicationController
   # GET /user_profiles/1
   # GET /user_profiles/1.json
   def show
+    puts "Users.show start"
+    @user_profile = User.find(params[:id]).has_profile
   end
 
   # GET /user_profiles/new
@@ -67,8 +69,7 @@ class UserProfilesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user_profile
-      puts "set_user_profile: #{current_user_profile}"
-      @user_profile = current_user_profile
+      @user_profile = User.find(params[:id]).has_user_profile
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

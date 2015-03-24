@@ -3,7 +3,7 @@
     .panel-title
       Manage your profile 
   .panel-body
-    = puts "user_profile.photo: #{user_profile.photo[:logo]}"
+    = puts user_profile.class.name
     = bootstrap_form_for(user_profile, :remote => :true,  :html => {:multipart => true} ) do |f|
       .landing-page-description
         = f.text_area :description, :prepend => :description, :placeholder => "Enter the user description", :hide_label => :true
@@ -13,7 +13,7 @@
       .form-group
         = f.text_field :photo, :prepend => "header image", :placeholder => "Enter the header image url", :hide_label => :true, :disabled => :true
         = f.file_field :photo, :prepend => "header image", :placeholder => "Enter the header image url", :hide_label => :true
-        = image_tag photo.header.url(:profile) 
+        = image_tag user_profile.photo.url(:profile) 
         = f.hidden_field :photo_cache
       .form-group     
         %button.icon_only{ :type => "submit", :remote => :true, :name => "commit", :hide_label => :true, :title => "Save the element"  } 
