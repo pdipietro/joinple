@@ -63,6 +63,8 @@ module SessionsHelper
     session[:group] = group
   end
 
+  
+
   # Returns the current logged-in user (if any).
   def current_user
     if (user_id = session[:user_id])
@@ -79,13 +81,12 @@ module SessionsHelper
     @current_user
   end
 
-  # Return the current_user profile
+  def current_user_id?
+    session[:user_id]
+  end
+
   def set_current_user_profile
-   #  puts "User profile before: #{session[:current_user_profile]}"
-      session[:current_user_profile] = User.find(session[:user_id]).has_user_profile
-   #  puts "User profile after: #{session[:current_user_profile].class}"
-   #  puts "User profile after: #{session[:current_user_profile]}"
-   #  puts "photo: #{current_user_profile.photo[:btn]}, bg: #{current_user_profile.background_color}, fg: #{current_user_profile.text_color}"
+      session[:current_user_profile] = UserProfile.find_by_user session[:user_id]
    end
 
   # Return the current_user profile
@@ -207,10 +208,11 @@ module SessionsHelper
         session[:social_network] = sn
         puts "sn: #{current_social_network}"
         puts "sn.name: #{current_social_network_name?}"
-     puts "User profile before: #{session[:current_user_profile]}"
-     puts "User profile after: #{session[:current_user_profile].class}"
-     puts "User profile after: #{session[:current_user_profile]}"
-    # puts "1)     photo: #{current_user_profile.photo}, bg: #{current_user_profile.background_color}, fg: #{current_user_profile.text_color}"
+       # unless current_user_profile.nil?
+       #   puts "User profile before: #{current_user_profile}"
+       #   puts "User profile class: #{current_user_profile.class}"
+       #   puts "User profile description: #{current_user_profile.description}"
+       # end
         reset_current_group
       end
     end

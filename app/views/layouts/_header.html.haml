@@ -15,7 +15,7 @@
             = "(width: #{session[:width]}, height: #{session[:height]}, pixel ratio: #{session[:pixelRatio]})"
         - unless logged_in?
           %li
-            = link_to root_path, :title => "Home" do
+            = link_to root_path, :title => "Joinplee home" do
               %i.header.im-home
               -#Home
           %li
@@ -26,7 +26,7 @@
               %i.header.im-signup-landing
         - else
           %li
-            = link_to root_path, :remote => :true, :title => "Go to SSN" do
+            = link_to root_path, :remote => :true, :title => "Go to Joinple" do
               %i.header.im-home
           %li
             = link_to users_path, :remote => :true, :title => "People" do
@@ -82,7 +82,9 @@
           %li.dropdown
             %a.dropdown-toggle{ :href => "#", :id => "dropdownUser", "data-toggle" => "dropdown", :type => "button", :title => "Myself",  "aria-expanded" => "false"}
               %span
-                %i.header.im-user-plus
+                -#%i.header.im-user-plus
+                puts "Current_user_profile: #{current_user_profile}"
+                -#= image_tag current_user_profile.photo.url(:btn)
                 = current_user.first_name
                 %span.caret
             %ul.user.dropdown-menu{ :role => "menu", "aria-labelledby" => "dropdownUser" }
@@ -101,7 +103,8 @@
                   Setting
               %li.divider
               %li
-                = link_to user_profile_path (current_user.uuid), :remote => :true do
+                -#= link_to edit_user_profile_path (current_user.uuid), :remote => :true do
+                = link_to profile_path, :remote => :true do
                   %i.header-dropdown.im-profile-setting
                   Change profile
               %li

@@ -2,10 +2,6 @@ begin
 create constraint on (n:`Group`) assert n.`uuid` is unique;
 create constraint on (n:`HasImage`) assert n.`uuid` is unique;
 create constraint on (n:`Image`) assert n.`uuid` is unique;
-create constraint on (n:`ImgLandingPageHeader`) assert n.`uuid` is unique;
-create constraint on (n:`ImgLandingPageLogo`) assert n.`uuid` is unique;
-create constraint on (n:`ImgLandingPagelogo`) assert n.`uuid` is unique;
-create constraint on (n:`LandingPageHeader`) assert n.`uuid` is unique;
 create constraint on (n:`LandingPage`) assert n.`uuid` is unique;
 create constraint on (n:`Language`) assert n.`uuid` is unique;
 create constraint on (n:`MediaManager`) assert n.`uuid` is unique;
@@ -42,17 +38,17 @@ create (_29:`Language` {`code`:"en-us", `created_at`:1420463037, `description`:"
 create (_30:`Language` {`code`:"es-es", `created_at`:1420465834, `description`:"Español (españa)", `updated_at`:1421657072, `uuid`:"550420dc-1d93-4049-9118-042815063781"})
 
 
-create (_31:`UserProfile` {`created_at`:1420983722, `updated_at`:1421690318, `uuid`:"bc3cb602-323e-4cae-9427-7309417cdb21"})
-create (_32:`UserProfile` {`created_at`:1420983722, `updated_at`:1421690318, `uuid`:"bc3cb602-323e-4cae-7249-7309417cdb21"})
-create (_33:`UserProfile` {`created_at`:1420983722, `updated_at`:1421690318, `uuid`:"bc3cb602-323e-4cae-7429-7309417cdb21"})
-create (_34:`UserProfile` {`created_at`:1420983722, `updated_at`:1421690318, `uuid`:"bc3cb602-323e-4cae-9247-7309417cdb21"})
-create (_35:`UserProfile` {`created_at`:1420983722, `updated_at`:1421690318, `uuid`:"bc3cb602-323e-4cae-9724-7309417cdb21"})
+create (_31:`UserProfile` {`created_at`:1420983722, `updated_at`:1421690318, `uuid`:"bc3cb602-323e-4cae-9427-7309417cdb21", description: "", background_color: "inherit", text_color: "inherit", photo: "" })
+create (_32:`UserProfile` {`created_at`:1420983722, `updated_at`:1421690318, `uuid`:"bc3cb602-323e-4cae-7249-7309417cdb21", description: "", background_color: "inherit", text_color: "inherit", photo: "" })
+create (_33:`UserProfile` {`created_at`:1420983722, `updated_at`:1421690318, `uuid`:"bc3cb602-323e-4cae-7429-7309417cdb21", description: "", background_color: "inherit", text_color: "inherit", photo: "" })
+create (_34:`UserProfile` {`created_at`:1420983722, `updated_at`:1421690318, `uuid`:"bc3cb602-323e-4cae-9247-7309417cdb21", description: "", background_color: "inherit", text_color: "inherit", photo: "" })
+create (_35:`UserProfile` {`created_at`:1420983722, `updated_at`:1421690318, `uuid`:"bc3cb602-323e-4cae-9724-7309417cdb21", description: "", background_color: "inherit", text_color: "inherit", photo: "" })
 
-create (_0-[:`has_user_profile` {`created_at`:1422308305, `updated_at`:1422308305}]->_31)
-create (_1-[:`has_user_profile` {`created_at`:1422308305, `updated_at`:1422308305}]->_32)
-create (_2-[:`has_user_profile` {`created_at`:1422308305, `updated_at`:1422308305}]->_33)
-create (_3-[:`has_user_profile` {`created_at`:1422308305, `updated_at`:1422308305}]->_34)
-create (_4-[:`has_user_profile` {`created_at`:1422308305, `updated_at`:1422308305}]->_35)
+create (_0-[:`has_profile` {`created_at`:1422308305, `updated_at`:1422308305}]->_31)
+create (_1-[:`has_profile` {`created_at`:1422308305, `updated_at`:1422308305}]->_32)
+create (_2-[:`has_profile` {`created_at`:1422308305, `updated_at`:1422308305}]->_33)
+create (_3-[:`has_profile` {`created_at`:1422308305, `updated_at`:1422308305}]->_34)
+create (_4-[:`has_profile` {`created_at`:1422308305, `updated_at`:1422308305}]->_35)
 
 create (_0-[:`owns` {`created_at`:1422308305, `updated_at`:1422308305}]->_20)
 create (_0-[:`likes` {`created_at`:1421889296, `updated_at`:1421889296}]->_1)

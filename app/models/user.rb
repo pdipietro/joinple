@@ -54,7 +54,7 @@ class User
   has_many  :in,  :use_language, rel_class: Speaks      # Language
   has_many  :out, :owns, rel_class: Owns                # :any
   has_many  :out, :is_member_of, rel_class: MemberOf    # Group
-  has_one   :out, :has_user_profile, rel_class: HasUserProfile   # Profile
+  has_one   :out, :has_profile, rel_class: HasUserProfile, model_class: UserProfile  # Profile
   has_many  :out, :has_image, rel_class: HasImage       # Images
 
   # Remembers a user in the database for use in persistent sessions.

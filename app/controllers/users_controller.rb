@@ -52,6 +52,7 @@ class UsersController < ApplicationController
          aProfile = UserProfile.new
          aProfile.save           
          rel = HasUserProfile.create(from_node: @user, to_node: aProfile)
+         #@user.save
 
     #    log_in @user
     #    flash[:success] = "Welcome to the Gsn!"

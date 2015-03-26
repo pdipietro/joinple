@@ -4,6 +4,6 @@ class HasUserProfile
 
   from_class  User
   to_class    UserProfile
-  type 'has_user_profile'
+  type 'has_profile'
 
 end
