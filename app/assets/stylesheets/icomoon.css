@@ -31,88 +31,24 @@ i, .icomoon-liga {
 	-moz-osx-font-smoothing: grayscale;
 }
 
-.im-terms-conditions2:before {
-	content: "\e602";
+.im-followers:before {
+	content: "\e603";
 }
 
-.im-logout:before {
-	content: "\e600";
+.im-following:before {
+	content: "\e610";
 }
 
-.im-language:before {
-	content: "\e601";
+.im-star-half:before {
+	content: "\e616";
 }
 
-.im-followme:before {
-	content: "\e604";
+.im-star-empty:before {
+	content: "\e617";
 }
 
-.im-people-sidebardx:before {
-	content: "\e605";
-}
-
-.im-trends:before {
-	content: "\e606";
-}
-
-.im-ads:before {
-	content: "\e607";
-}
-
-.im-administrator:before {
-	content: "\e608";
-}
-
-.im-manwoman:before {
-	content: "\e609";
-}
-
-.im-about:before {
-	content: "\e60a";
-}
-
-.im-administration:before {
-	content: "\e60b";
-}
-
-.im-contacts:before {
-	content: "\e60c";
-}
-
-.im-dot:before {
-	content: "\e60d";
-}
-
-.im-faq:before {
-	content: "\e60e";
-}
-
-.im-landing-page:before {
-	content: "\e60f";
-}
-
-.im-login-landing:before {
-	content: "\e611";
-}
-
-.im-profile-setting:before {
-	content: "\e612";
-}
-
-.im-signup-landing:before {
-	content: "\e613";
-}
-
-.im-social-networks:before {
-	content: "\e614";
-}
-
-.im-terms-conditions:before {
-	content: "\e615";
-}
-
-.im-message:before {
-	content: "\e622";
+.im-star-full:before {
+	content: "\e618";
 }
 
 .im-home:before {
@@ -250,3 +186,88 @@ i, .icomoon-liga {
 .im-new-tab:before {
 	content: "\ea7e";
 }
+
+.im-terms-conditions2:before {
+	content: "\e602";
+}
+
+.im-logout:before {
+	content: "\e600";
+}
+
+.im-language:before {
+	content: "\e601";
+}
+
+.im-followme:before {
+	content: "\e604";
+}
+
+.im-people-sidebardx:before {
+	content: "\e605";
+}
+
+.im-trends:before {
+	content: "\e606";
+}
+
+.im-ads:before {
+	content: "\e607";
+}
+
+.im-administrator:before {
+	content: "\e608";
+}
+
+.im-manwoman:before {
+	content: "\e609";
+}
+
+.im-about:before {
+	content: "\e60a";
+}
+
+.im-administration:before {
+	content: "\e60b";
+}
+
+.im-contacts:before {
+	content: "\e60c";
+}
+
+.im-dot:before {
+	content: "\e60d";
+}
+
+.im-faq:before {
+	content: "\e60e";
+}
+
+.im-landing-page:before {
+	content: "\e60f";
+}
+
+.im-login-landing:before {
+	content: "\e611";
+}
+
+.im-profile-setting:before {
+	content: "\e612";
+}
+
+.im-signup-landing:before {
+	content: "\e613";
+}
+
+.im-social-networks:before {
+	content: "\e614";
+}
+
+.im-terms-conditions:before {
+	content: "\e615";
+}
+
+.im-message:before {
+	content: "\e622";
+}
+

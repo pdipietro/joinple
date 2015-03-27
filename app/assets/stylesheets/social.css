@@ -205,10 +205,93 @@ ul.nav.navbar-nav > li {
 .navbar-header {
   z-index: 1000;
 }
+/* ************************************************************************************************************************
 
-/* da rivedere con Davide */
+** da rivedere con Davide 
+
+************************************************************************************************************************ */
 
 .form-group {
+  clear: left;
+}
+
+.no-padding {
+  padding: 0;
+}
+
+.no-border {
+  border: 0;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+.nothing{
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+.flush {
+    clear: left;
+}
+
+.nothing-margin-0010{
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+.spacer {
+  height: 4px;
+}
+
+/*.img-owner1,*/
+img.responsive {
+  max-width: 100% !important;
+  display: block;
+  height: auto;
+}
+
+img.responsive.user-photo {
+  vertical-align: top;
+  position: relative;
+  top: 0;
+  z-index: 200;
+}
+
+a.header-user-photo {
+  padding-top: 4px !important;
+  padding-bottom: 0;
+  max-height: 46px !important;
+}
+
+#user_info {
+  min-height: 120px;
+  background-color: #ffffff;
+}
+
+.user-info {
+  text-align: -webkit-center;
+}
+
+.user-info.user-name {
+  font-size: 100%;
+}
+
+.user-info.usernick {
+  font-size: 80%;
+}
+
+.user-star {
+  font-size: 80%;
+}
+
+
+/*
+
+.user-info-right {
   clear: left;
 }
 
@@ -248,7 +331,7 @@ br.header-user-photo {
                 %span.caret
  
 */
-
+/*
 .thumbnail {
   border: 0;
 }
@@ -295,7 +378,7 @@ span.transparent:hover {
   color: transparent !important;
   background-color: transparent !important;
 }
-
+/*
 ul.list-group > li:not(first-child),
 ul.list-group {
   border-left: 0px;
@@ -310,7 +393,8 @@ ul.list-group > li:first-child {
 ul.list-group > li:last-child {
   padding-bottom:  10px
 }
-
+*/
+/*
 .search {
   display: inline;
 }
@@ -351,13 +435,6 @@ span.centered {
   margin-right: auto;
 }
 
-
-.img-owner1,
-.img-responsive {
-  max-width: 100% !important;
-  display: block;
-  height: auto;
-}
 
 .image-72 {
   border-right: 3px;
@@ -475,3 +552,4 @@ li.header ~ li.divider {
   background-color: $navbar-default-bg-a;
 
 }
+*/

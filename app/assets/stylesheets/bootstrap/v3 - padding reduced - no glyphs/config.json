@@ -118,7 +118,7 @@
     "@screen-sm": "640px",
     "@screen-sm-min": "@screen-sm",
     "@screen-tablet": "@screen-sm-min",
-    "@screen-md": "600px",
+    "@screen-md": "800px",
     "@screen-md-min": "@screen-md",
     "@screen-desktop": "@screen-md-min",
     "@screen-lg": "1920px",
@@ -127,9 +127,9 @@
     "@screen-xs-max": "(@screen-sm-min - 1)",
     "@screen-sm-max": "(@screen-md-min - 1)",
     "@screen-md-max": "(@screen-lg-min - 1)",
-    "@grid-columns": "48",
-    "@grid-gutter-width": "10px",
-    "@grid-float-breakpoint": "@screen-sm-min",
+    "@grid-columns": "60",
+    "@grid-gutter-width": "8px",
+    "@grid-float-breakpoint": "@screen-md-min",
     "@grid-float-breakpoint-max": "(@grid-float-breakpoint - 1)",
     "@container-tablet": "(480px + @grid-gutter-width)",
     "@container-sm": "@container-tablet",
@@ -425,5 +425,5 @@
     "scrollspy.js",
     "transition.js"
   ],
-  "customizerUrl": "http://getbootstrap.com/customize/?id=a837c1340fc7c0236bfe"
+  "customizerUrl": "http://getbootstrap.com/customize/?id=eaa5f21f63a6a5b2b0a2"
 }

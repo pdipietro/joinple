@@ -1,42 +1,88 @@
 - rels = count_relationships(user) 
 - user_profile = user.profile?
-%li.list-group-item
-  %b= user.full_name
-%li.list-group-item
-  %a{:href => is_followed_by_user_path(user.uuid)}
-    = image_tag "#{user_profile.photo.url(:icon)}", :name => "user_profile_#{user_profile.uuid}"
-%li.list-group-item
-  %a{:href => is_followed_by_user_path(user.uuid)}
-    -# followers_number = user.rels(dir: :incoming, type: :follows, label: :User).count
-    - followers_number = rels["in-follows-User"]
-    = followers_number == 1 ? 'follower' : 'follower'.pluralize
-  %span.to-right
-    = followers_number
-  - unless current_user?(user)
-    &nbsp;&nbsp;&nbsp
-    = link_to onerel_path(user,'User','follows'), :method => :post, :to_class => :true do
-      %span.glyphicons.icon-pinboard
-      - i_follow = current_user.query_as(:p).match("(p)-[r:follows]->(u:User { uuid : '#{user.uuid}' })").pluck(:u).count
-      = i_follow == 1 ? "unfollow" : "follow" 
-%li.list-group-item
-  %a{:href => follows_user_path(user.uuid)}
-    -# followings_number = user.rels(dir: :outgoing, type: :follows, to_class: :User).count
+- social_network = current_social_network
+.row.nothing{ :style => social_network_color_style }
+  .col-xs-28.nothing
+    = image_tag "#{user_profile.photo.url(:thumb)}", :name => "user_profile_#{user_profile.uuid}", :class => "responsive user-photo"
+  .col-xs-32.nothing
+    .user-info.user-name
+      = user.first_name
+      %br
+      = user.last_name
+      %br
+      %span.user-info.usernick= "@#{user.nickname}"
+      %br
+      %span.user-info.user-star{ :style => "color: yellow;" }
+        - stars((1 + rand(49)) / 10.0).each do |k|
+          %i{ :class => "im-star-#{k}" }
+
+.row.nothing.user-info.user-name{ :style => "color: #{session[:social_network][:background_color]};" } 
+  .col-xs-12.nothing
+    %i.im-followings
+    %i.im-dot
+    %br
     - followings_number = rels["out-follows-User"]
-    = followings_number == 1 ? 'following' : 'following'.pluralize
-  %span.to-right
     = followings_number
-%li.list-group-item
-  %a{:href => dummy_path(user.uuid)}
-    - posts_number = rels["out-owns-Post"]
-    -# posts_number = user.rels(dir: :outgoing, type: :owns, to_class: :Post).count
-    = posts_number == 1 ? 'post' : 'post'.pluralize
-  %span.to-right
-    = posts_number
-%li.list-group-item
-  %a{:href => dummy_path(user.uuid)}
-    -# groups_number = user.rels(dir: :outgoing, type: :owns, to_node: :Group).count
+  .col-xs-12.nothing
+    %i.im-followers
+    %br
+    - followers_number = rels["in-follows-User"]
+    = followers_number
+    = 46532
+  .col-xs-12.nothing
+    %i.im-discussions
+    %i.im-dot
+    %br
+    172
+  .col-xs-12.nothing
+    %i.im-groups
+    %i.im-dot
+    %br
     - groups_number = rels["out-owns-Group"]
-    = groups_number == 1 ? 'group' : 'group'.pluralize
-  %span.to-right
     = groups_number
-  
+    = 1945
+  .col-xs-12.nothing
+    %i.im-Blogs
+    %i.im-dot
+    %br
+    93
+
+  -#
+    %li.list-group-item
+      %a{:href => is_followed_by_user_path(user.uuid)}
+        = image_tag "#{user_profile.photo.url(:thumb)}", :name => "user_profile_#{user_profile.uuid}"
+    %li.list-group-item
+      %a{:href => is_followed_by_user_path(user.uuid)}
+        -# followers_number = user.rels(dir: :incoming, type: :follows, label: :User).count
+        - followers_number = rels["in-follows-User"]
+        = followers_number == 1 ? 'follower' : 'follower'.pluralize
+      %span.to-right
+        = followers_number
+      - unless current_user?(user)
+        &nbsp;&nbsp;&nbsp
+        = link_to onerel_path(user,'User','follows'), :method => :post, :to_class => :true do
+          %span.glyphicons.icon-pinboard
+          - i_follow = current_user.query_as(:p).match("(p)-[r:follows]->(u:User { uuid : '#{user.uuid}' })").pluck(:u).count
+          = i_follow == 1 ? "unfollow" : "follow" 
+    %li.list-group-item
+      %a{:href => follows_user_path(user.uuid)}
+        -# followings_number = user.rels(dir: :outgoing, type: :follows, to_class: :User).count
+        - followings_number = rels["out-follows-User"]
+        = followings_number == 1 ? 'following' : 'following'.pluralize
+      %span.to-right
+        = followings_number
+    %li.list-group-item
+      %a{:href => dummy_path(user.uuid)}
+        - posts_number = rels["out-owns-Post"]
+        -# posts_number = user.rels(dir: :outgoing, type: :owns, to_class: :Post).count
+        = posts_number == 1 ? 'post' : 'post'.pluralize
+      %span.to-right
+        = posts_number
+    %li.list-group-item
+      %a{:href => dummy_path(user.uuid)}
+        -# groups_number = user.rels(dir: :outgoing, type: :owns, to_node: :Group).count
+        - groups_number = rels["out-owns-Group"]
+        = groups_number == 1 ? 'group' : 'group'.pluralize
+      %span.to-right
+        = groups_number
+      

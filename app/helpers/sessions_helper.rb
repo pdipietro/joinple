@@ -29,6 +29,10 @@ module SessionsHelper
      session[:social_network]
   end
 
+  def social_network_color_style
+      "background-color: #{session[:social_network][:background_color]}; color: #{session[:social_network][:text_color]};"
+  end
+
   def current_social_network_name?
      if session[:social_network].nil? 
         puts "session[:social_network][:name]   mancante!!!!!!!!!!!!!!"
@@ -207,6 +211,25 @@ module SessionsHelper
     hash
   end
 
+  def stars value
+    res = Array.new
+    puts "value: #{value}"
+    [1.0,2.0,3.0,4.0,5.0].each do |ind|
+      if ind <= value #or ind == value
+        puts "#{ind} <= #{value}  ==> full"
+        res << "full"
+      elsif ind - 0.5 <= value
+        puts "#{ind - 0.5} <= #{value}  ==> half"
+        res << "half"
+      else
+        puts "#{ind} <=> #{value}  ==> empty"
+        res << "empty"
+      end
+    end
+    res 
+  end
+
+
   private
 
     def set_current_social_network (sn)
@@ -226,5 +249,7 @@ module SessionsHelper
         reset_current_group
       end
     end
+
+
 
 end

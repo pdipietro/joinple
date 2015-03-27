@@ -4,7 +4,7 @@ class ImageSizes
 
     SIZES = {
           :btn         => ['[36, 36]',      :jpg, :quality => 70],              # user_btn
-          :thumb       => ['[96, 96]',      :jpg, :quality => 70],              # generic thumb (user, post, group, etc.)
+          :thumb       => ['[84, 84]',      :jpg, :quality => 70],              # generic thumb (user, post, group, etc.)
           :icon        => ['[128, 128]',    :jpg, :quality => 70],              # user_icon on left column
           :profile     => ['[200, 200]',    :jpg, :quality => 70],              # generic profile (user, post, group, etc)
           :original    => ['[250, 0]',      :jpg, :quality => 70],              # original image resized
