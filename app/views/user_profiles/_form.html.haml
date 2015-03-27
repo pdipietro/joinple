@@ -18,10 +18,6 @@
         = image_tag user_profile.photo.url(:thumb) 
         = image_tag user_profile.photo.url(:btn) 
         = f.hidden_field :photo_cache
-        %br
-        %br
-        %li
-        = current_user_profile
       .form-group     
         %button.icon_only{ :type => "submit", :remote => :true, :name => "commit", :hide_label => :true, :title => "Save the element"  } 
           %span.glyphicon.glyphicon-save

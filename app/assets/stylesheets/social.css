@@ -208,6 +208,47 @@ ul.nav.navbar-nav > li {
 
 /* da rivedere con Davide */
 
+.form-group {
+  clear: left;
+}
+
+a.header-user-photo {
+  padding-top: 4px !important;
+  padding-bottom: 0;
+  max-height: 46px !important;
+}
+
+a.header-user-photo > span img {
+  padding-top: 4px;
+  padding-bottom: 0;
+  vertical-align: top;
+  max-height: 46px;
+}
+
+.header-user-photo > span span {
+  padding-top: 4px;
+  padding-bottom: 0;
+  max-height: 46px;
+}
+
+br.header-user-photo {
+  line-height: 1px;
+}
+/*
+            %a.dropdown-toggle.header_user_photo{ :href => "#", :id => "dropdownUser", "data-toggle" => "dropdown", :type => "button", :title => "Myself",  "aria-expanded" => "false"}
+              %span
+                - unless user_profile.nil?
+                  = image_tag user_profile.photo.url(:btn), :size => ("32x32")
+                - else
+                  %i.header.im-user-plus
+                %span  
+                  = "Wellcome"
+                  %br
+                  = current_user.first_name
+                %span.caret
+ 
+*/
+
 .thumbnail {
   border: 0;
 }

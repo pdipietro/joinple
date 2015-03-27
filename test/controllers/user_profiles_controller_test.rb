@@ -18,7 +18,7 @@ class UserProfilesControllerTest < ActionController::TestCase
 
   test "should create user_profile" do
     assert_difference('UserProfile.count') do
-      post :create, user_profile: { backgroud_color: @user_profile.backgroud_color, photo,: @user_profile.photo,, text_color: @user_profile.text_color }
+      post :create, user_profile: {  }
     end
 
     assert_redirected_to user_profile_path(assigns(:user_profile))
@@ -35,7 +35,7 @@ class UserProfilesControllerTest < ActionController::TestCase
   end
 
   test "should update user_profile" do
-    patch :update, id: @user_profile, user_profile: { backgroud_color: @user_profile.backgroud_color, photo,: @user_profile.photo,, text_color: @user_profile.text_color }
+    patch :update, id: @user_profile, user_profile: {  }
     assert_redirected_to user_profile_path(assigns(:user_profile))
   end
 

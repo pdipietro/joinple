@@ -85,9 +85,19 @@ module SessionsHelper
     session[:user_id]
   end
 
+ def profile? user
+    profile = user.profile?
+
+    puts "user profile: #{profile}"
+    #user_profile = Neo4j::Session.query("match (user:User { uuid : '#{user_id}' })-[has_profile:has_profile]->(profile:UserProfile) return profile").first[0]
+    #puts "self.find_by_user after: #{user_profile.class.name} - #{user_profile}"
+    profile
+  end
+
+
   def set_current_user_profile
-      session[:current_user_profile] = UserProfile.find_by_user session[:user_id]
-   end
+  #  session[:current_user_profile] = UserProfile.find_by_user session[:user_id]
+  end
 
   # Return the current_user profile
   def current_user_profile

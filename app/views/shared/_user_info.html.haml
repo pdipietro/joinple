@@ -1,9 +1,10 @@
 - rels = count_relationships(user) 
+- user_profile = user.profile?
 %li.list-group-item
   %b= user.full_name
 %li.list-group-item
   %a{:href => is_followed_by_user_path(user.uuid)}
-    = gravatar_for user
+    = image_tag "#{user_profile.photo.url(:icon)}", :name => "user_profile_#{user_profile.uuid}"
 %li.list-group-item
   %a{:href => is_followed_by_user_path(user.uuid)}
     -# followers_number = user.rels(dir: :incoming, type: :follows, label: :User).count

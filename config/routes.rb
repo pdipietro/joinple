@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   root                     'landing_pages#home'#, defaults: { :format => "js"}, :remote => :true
   get    'home'      =>    'landing_pages#home', defaults: { :format => "js"}, :remote => :true
   get    'about'     =>    'static_pages#about', defaults: { :format => "js"}, :remote => :true
@@ -13,7 +14,7 @@ Rails.application.routes.draw do
   get    'signup'    =>    'users#new', defaults: { :format => "js"}, :remote => :true
   delete 'logout'    =>    'sessions#destroy', defaults: { :format => "js"}, :remote => :true
 
-  get    'profile'   =>    'user_profiles#edit', defaults: { :format => "js"}, :remote => :true
+  #get    'profile'   =>    'user_profiles#edit', defaults: { :format => "js"}, :remote => :true
 
 # unused?  post   'switch/:sn' =>   'sessions#switch', defaults: { :format => "js"}, :remote => :true, as: :session_switch
 
@@ -44,7 +45,7 @@ Rails.application.routes.draw do
   resources :tests,               constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
   resources :images,              constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
   resources :media_managers,      constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
-  resources :user_profiles,       constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true,  except: [:index, :destroy]
+  resources :user_profiles,       constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
 
   post      '/groups/list/:filter(/:limit(/:subject))'  =>   'groups#list', :as => :group_list, defaults: { :format => "js"}, :remote => :true
   post      'likes/:id/:class/:rel_type'    =>    'likes#edit',           :as => :onerel, constraints: AuthConstraint.new

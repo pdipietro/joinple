@@ -120,6 +120,18 @@ class User
     reset_sent_at < 2.hours.ago
   end
 
+ def profile? 
+    profile = User.has_profile
+
+    puts "user profile: #{profile}"
+    #user_profile = Neo4j::Session.query("match (user:User { uuid : '#{user_id}' })-[has_profile:has_profile]->(profile:UserProfile) return profile").first[0]
+    puts " #{profile.class.name}"
+    profile = has_profile
+    puts " #{profile.class.name}"
+    puts " #{profile.description}"
+    profile
+  end
+
 =begin
   def count_relationships 
     rel = Neo4j::Session.query("match (item:#{self.class.name} {uuid : '#{self.uuid}'})-[rel]->(x) return 'out' as dir, type(rel) as rel, labels(x) as label,count(*) as count union match (item:#{self.class.name} {uuid : '#{self.uuid}'})<-[rel]-(x) return 'in' as dir, type(rel) as rel, labels(x) as label, count(*) as count ")
