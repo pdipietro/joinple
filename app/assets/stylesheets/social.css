@@ -1,7 +1,4 @@
 
-$navbar-default-bg: rgba(77,171,170,1);
-$navbar-default-bg-a: rgba(77,171,170,0.25);
-
 /* icomoon resize and rotate */
 
 i {
@@ -205,6 +202,29 @@ ul.nav.navbar-nav > li {
 .navbar-header {
   z-index: 1000;
 }
+
+/* ************************************* link elements doesn't have underline and a different color ********************* */
+
+a:hover {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+a, a:visited {
+  text-decoration: none;
+}
+
+.panel-heading a,
+ul.list_group > li:first-child > a,
+ul.list_group > li:first-child > a:hover {
+  color: #ffffff !important;
+}
+
+li.list-group-item {
+  border-top: 1px solid #e7e7e7;
+  padding-left: 3px;
+}
+
 /* ************************************************************************************************************************
 
 ** da rivedere con Davide 
@@ -268,8 +288,7 @@ a.header-user-photo {
 }
 
 #user_info {
-  min-height: 120px;
-  background-color: #ffffff;
+  min-height: 124px;
 }
 
 .user-info {
@@ -278,16 +297,68 @@ a.header-user-photo {
 
 .user-info.user-name {
   font-size: 100%;
+  padding-top: 5px;
 }
 
 .user-info.usernick {
   font-size: 80%;
+  padding-bottom: 2px;
 }
 
 .user-star {
   font-size: 80%;
+  text-align: center;
+  text-align: -webkit-center;
 }
 
+.user-info-icons {
+  background-color: #ffffff;
+  color: #333342;
+  text-align: center;
+  text-align: -webkit-center;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+i.user-info-icons {
+  font-size: medium;
+  position: relative;
+  top: 2.5px;
+}
+
+.top-rounded {
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+}
+
+.bottom-rounded {
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.rounded {
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.content-element-title {
+  font-size: 120%;
+  font-weight: bolder;
+  text-align: -webkit-center
+}
+
+.generic-container {
+  max-width: 415px;
+  margin: 4px 2px 4px 2px;
+  margin: 1px;
+  padding: 1px;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
 
 /*
 

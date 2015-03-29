@@ -1,47 +1,48 @@
-- if group.errors.count == 0
-  %div{ :id => group.uuid }
-    - owner = group.query_as(:p).match("(p)<-[r:owns]-(u:User)").pluck(:u).first
-    .thumbnail
-      .container-fluid.nopadding
-        .col-xs-2.col-sm-2.col-md-2.image-72
-          %img.img-owner1{ :src => "http://cdn001.crowdupcafe.com/public/72x72-3.jpg" }
-        .col-xs-1.col-sm-1.col-md-1.v-glyps
-          = link_to onerel_path(group,'Group','likes'), :method => :post, :remote => :true do
-            %span.glyphicons.icon-like-1
-            = likes = group.query_as(:p).match("(p)<-[r:likes]-(u:User)").pluck(:u).count
-          -#  Like
-          %br
-          -#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          = link_to root_path do
-            %span.glyphicons.icon-share-outline
-            12543
-          -#  Join
-          %br
-          -#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          = link_to root_path do
-            %span.glyphicons.icon-star-4
-            3295
-          -#  Preferite
-          %br
-          = link_to root_path do
-            %span.glyphicons.icon-star-4
-            3295
-          -#  Preferite
-          %br
-          = link_to root_path do
-            %span.glyphicons.icon-star-4
-            3295
-          -#  Preferite
-        .col-xs-8.col-sm-8.col-md-8
-          .post-header
-            = group.name
-          %br
-          .post-content
-            = group.description
-        .col-xs-1.col-sm-1.col-md-1.command-button
-          - if can_modify?(group)
-            = link_to edit_group_path(group), :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Modify the element" do
-              %span.glyphicon.icon-edit-modify-streamline
-            = link_to group, :method => :delete, :data => { :confirm => 'Are you sure?' }, :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Delete the element" do
-              %span.glyphicon.icon-delete-garbage-streamline
+%div
+  - if group.errors.count == 0
+    %div{ :id => group.uuid }
+      - owner = group.query_as(:p).match("(p)<-[r:owns]-(u:User)").pluck(:u).first
+      .thumbnail
+        .container-fluid.nopadding
+          .col-xs-2.col-sm-2.col-md-2.image-72
+            %img.img-owner1{ :src => "http://cdn001.crowdupcafe.com/public/72x72-3.jpg" }
+          .col-xs-1.col-sm-1.col-md-1.v-glyps
+            = link_to onerel_path(group,'Group','likes'), :method => :post, :remote => :true do
+              %span.glyphicons.icon-like-1
+              = likes = group.query_as(:p).match("(p)<-[r:likes]-(u:User)").pluck(:u).count
+            -#  Like
+            %br
+            -#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            = link_to root_path do
+              %span.glyphicons.icon-share-outline
+              12543
+            -#  Join
+            %br
+            -#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            = link_to root_path do
+              %span.glyphicons.icon-star-4
+              3295
+            -#  Preferite
+            %br
+            = link_to root_path do
+              %span.glyphicons.icon-star-4
+              3295
+            -#  Preferite
+            %br
+            = link_to root_path do
+              %span.glyphicons.icon-star-4
+              3295
+            -#  Preferite
+          .col-xs-8.col-sm-8.col-md-8
+            .post-header
+              = group.name
+            %br
+            .post-content
+              = group.description
+          .col-xs-1.col-sm-1.col-md-1.command-button
+            - if can_modify?(group)
+              = link_to edit_group_path(group), :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Modify the element" do
+                %span.glyphicon.icon-edit-modify-streamline
+              = link_to group, :method => :delete, :data => { :confirm => 'Are you sure?' }, :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Delete the element" do
+                %span.glyphicon.icon-delete-garbage-streamline
 

@@ -1,6 +1,10 @@
 module SessionsHelper
   include ApplicationHelper
 
+  SUPER_SOCIAL_NETWORK_NAME = ["joinple","gsn"]
+  SUPER_SOCIAL_BACKGROUND_COLOR = "#a12349"
+  SUPER_SOCIAL_COLOR = "#ffffff"  #333342"
+
  # get screen geometry from cookies
   def set_screen_geometry
      session[:width] = cookies[:width]
@@ -31,6 +35,10 @@ module SessionsHelper
 
   def social_network_color_style
       "background-color: #{session[:social_network][:background_color]}; color: #{session[:social_network][:text_color]};"
+  end
+
+  def super_social_network_style
+      "background-color: #{SUPER_SOCIAL_BACKGROUND_COLOR}; color: #{SUPER_SOCIAL_COLOR};"
   end
 
   def current_social_network_name?
@@ -166,6 +174,15 @@ module SessionsHelper
     !session[:social_network].nil? 
   end
 
+  def is_super_social_network?
+    SUPER_SOCIAL_NETWORK_NAME.include? session[:social_network][:name]
+  end
+
+  def is_social_network_customer?
+     is_customer = Neo4j::Session.query("match (u:User { uuid : '#{current_user.uuid}' })-[rel:is_customer]->(dest:SocialNetwork { uuid : '#{session[:social_network][:uuid]}' }) return rel")
+     is_customer.count == 0 ? false : true
+  end
+
   def is_admin?
     !!session[:admin]
   end
@@ -229,6 +246,15 @@ module SessionsHelper
     res 
   end
 
+  def right_menu_icons_number 
+    icon_number = Hash.new
+    icon_number[:groups] = 4
+    icon_number[:posts] = 4
+    icon_number[:discussions] = 4
+    icon_number[:pages] = 4
+    icon_number[:media] = 4
+    icon_number[:blogs] = 4
+  end
 
   private
 

@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'icomoon';
-	src:url('fonts/icomoon.eot?-n1n5pl');
-	src:url('fonts/icomoon.eot?#iefix-n1n5pl') format('embedded-opentype'),
-		url('fonts/icomoon.woff?-n1n5pl') format('woff'),
-		url('fonts/icomoon.ttf?-n1n5pl') format('truetype'),
-		url('fonts/icomoon.svg?-n1n5pl#icomoon') format('svg');
+	src:url('fonts/icomoon.eot?qt7wfq');
+	src:url('fonts/icomoon.eot?#iefixqt7wfq') format('embedded-opentype'),
+		url('fonts/icomoon.woff?qt7wfq') format('woff'),
+		url('fonts/icomoon.ttf?qt7wfq') format('truetype'),
+		url('fonts/icomoon.svg?qt7wfq#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -31,6 +31,10 @@ i, .icomoon-liga {
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.im-groups:before {
+	content: "\e617";
+}
+
 .im-followers:before {
 	content: "\e603";
 }
@@ -39,16 +43,32 @@ i, .icomoon-liga {
 	content: "\e610";
 }
 
-.im-star_half:before {
+.im-ads-01:before {
 	content: "\e616";
 }
 
-.im-star_empty:before {
-	content: "\e617";
+.im-discussions:before {
+	content: "\e618";
 }
 
-.im-star_full:before {
-	content: "\e618";
+.im-blog2:before {
+	content: "\e619";
+}
+
+.im-terms:before {
+	content: "\e61a";
+}
+
+.im-star-full:before {
+	content: "\e61b";
+}
+
+.im-star-empty:before {
+	content: "\e61c";
+}
+
+.im-star-half:before {
+	content: "\e61d";
 }
 
 .im-home:before {

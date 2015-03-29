@@ -3,5 +3,6 @@
     %span.fa-lg
     %i.fa.fa-icon{ :class => icon }
     = title
-  - groups.each do |group|
-    = render partial: "show_list", locals: { group: group }
+  #grid3{ "data-columns" => "" }
+    - groups.each do |group|
+      = render partial: "show_list", locals: { group: group }

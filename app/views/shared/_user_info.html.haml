@@ -1,7 +1,7 @@
 - rels = count_relationships(user) 
 - user_profile = user.profile?
 - social_network = current_social_network
-.row.nothing{ :style => social_network_color_style }
+.row.nothing.top-rounded{ :style => social_network_color_style }
   .col-xs-28.nothing
     = image_tag "#{user_profile.photo.url(:thumb)}", :name => "user_profile_#{user_profile.uuid}", :class => "responsive user-photo"
   .col-xs-32.nothing
@@ -16,34 +16,29 @@
         - stars((1 + rand(49)) / 10.0).each do |k|
           %i{ :class => "im-star-#{k}" }
 
-.row.nothing.user-info.user-name{ :style => "color: #{session[:social_network][:background_color]};" } 
+.row.nothing.user-info-icons
   .col-xs-12.nothing
-    %i.im-followings
-    %i.im-dot
+    %i.user-info-icons.im-following
     %br
     - followings_number = rels["out-follows-User"]
     = followings_number
   .col-xs-12.nothing
-    %i.im-followers
+    %i.user-info-icons.im-followers
     %br
     - followers_number = rels["in-follows-User"]
     = followers_number
     = 46532
   .col-xs-12.nothing
-    %i.im-discussions
-    %i.im-dot
+    %i.user-info-icons.im-discussions
     %br
     172
   .col-xs-12.nothing
-    %i.im-groups
-    %i.im-dot
+    %i.user-info-icons.im-groups
     %br
     - groups_number = rels["out-owns-Group"]
     = groups_number
-    = 1945
   .col-xs-12.nothing
-    %i.im-Blogs
-    %i.im-dot
+    %i.user-info-icons.im-blog2
     %br
     93
 

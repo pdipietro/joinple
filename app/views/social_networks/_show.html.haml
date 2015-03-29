@@ -1,22 +1,13 @@
-- if social_network.errors.count == 0
-  %div{ :id => social_network.uuid }
-    .thumbnail{ :style => "background-color: #{social_network.background_color}; color: #{social_network.text_color};" }  
-      .container-fluid.nopadding
-        .col-xs-4
-          .post-header
-            = image_tag social_network.logo.url(:logo)
-          .post-title.left
-            = social_network.name
-        .col-xs-10
-          .post-content
-            = social_network.description
-            %br
-            %br
-            = social_network.goal
-        .col-xs-2
-          - if can_modify?(social_network)
-            .command-button
-              = link_to edit_social_network_path(social_network), :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Modify the element" do
-                %span.glyphicon.icon-edit-modify-streamline
-              = link_to social_network, :method => :delete, :data => { :confirm => 'Are you sure?' }, :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Delete the element" do
-                %span.glyphicon.icon-delete-garbage-streamline
+%div
+  - if social_network.errors.count == 0
+    .p{ :id => social_network.uuid, :style => "background-color: #{social_network.background_color}; color: #{social_network.text_color};"  }
+      = image_tag social_network.logo.url(:cover), :class => "responsive"
+      .content-element-title= social_network.name
+      = social_network.description
+      -#= social_network.goal
+      -#- if can_modify?(social_network)
+        .command-button
+          = link_to edit_social_network_path(social_network), :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Modify the element" do
+            %i.im-save
+          = link_to social_network, :method => :delete, :data => { :confirm => 'Are you sure?' }, :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Delete the element" do
+            %i.im-bin

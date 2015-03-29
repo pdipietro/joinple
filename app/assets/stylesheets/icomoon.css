@@ -31,6 +31,10 @@ i, .icomoon-liga {
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.im-groups:before {
+	content: "\e617";
+}
+
 .im-followers:before {
 	content: "\e603";
 }
@@ -39,16 +43,32 @@ i, .icomoon-liga {
 	content: "\e610";
 }
 
-.im-star-half:before {
+.im-ads-01:before {
 	content: "\e616";
 }
 
-.im-star-empty:before {
-	content: "\e617";
+.im-discussions:before {
+	content: "\e618";
+}
+
+.im-blog2:before {
+	content: "\e619";
+}
+
+.im-terms:before {
+	content: "\e61a";
 }
 
 .im-star-full:before {
-	content: "\e618";
+	content: "\e61b";
+}
+
+.im-star-empty:before {
+	content: "\e61c";
+}
+
+.im-star-half:before {
+	content: "\e61d";
 }
 
 .im-home:before {

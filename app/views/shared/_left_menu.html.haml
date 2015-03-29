@@ -1,23 +1,22 @@
 - if logged_in?
   - user = current_user
-  -# user_info.nothing{ :style => social_network_color_style }
-    = render partial: 'shared/user_info', locals: { user: user }
-  #user_info.nothing= render partial: 'shared/user_info', locals: { user: user }
+  - social_network = current_social_network
+  - right_menu_icons = right_menu_icons_number
+  #user_info.nothing.rounded= render partial: 'shared/user_info', locals: { user: user, social_network: current_social_network }
   .spacer
-
-
-
--#
-    #myworkrooms.list-group.title.nav-sidebar.nothing-margin-0010= render partial: 'shared/menu_workrooms', locals: { user: user }
+  - if is_super_social_network?
+    #super_social_network.nothing= render partial: 'shared/menu_super_social_network', locals: { user: user, social_network: current_social_network }
     .spacer
-    #mymessages.list-group.title.nav-sidebar.nothing-margin-0010= render partial: 'shared/menu_messages', locals: { user: user }
-    .spacer
-    %ul#mygroups.list-group.title.nav-sidebar.nothing-margin-0010= render partial: 'shared/menu_groups', locals: { user: user }
-    .spacer
-  -#
-    %ul#mydiscussions.list-group.title.nav-sidebar.nothing-margin-0010= render partial: 'shared/menu_discussions', locals: { user: user }
-    .spacer
-    %ul#mypages.list-group.title.nav-sidebar.nothing-margin-0010= render partial: 'shared/menu_pages', locals: { user: user }
-    .spacer
-    %ul#myimages.list-group.title.nav-sidebar.nothing-margin-0010= render partial: 'shared/menu_media_managers', locals: { user: user }
-    -#%ul#mypreferites.list-group.title.nav-sidebar= render partial: 'shared/menu_preferites', locals: { user: user }
+  %ul#myposts.list_group.nothing= render partial: 'shared/menu_posts', locals: { user: user, social_network: current_social_network, right_menu_icons: right_menu_icons }
+  .spacer
+  %ul#myworkrooms.list_group.nothing= render partial: 'shared/menu_workrooms', locals: { user: user, social_network: current_social_network, right_menu_icons: right_menu_icons  }
+  .spacer
+  %ul#mygroups.list_group.nothing= render partial: 'shared/menu_groups', locals: { user: user, social_network: current_social_network, right_menu_icons: right_menu_icons  }
+  .spacer
+  %ul#mydiscussions.list_group.nothing= render partial: 'shared/menu_discussions', locals: { user: user, social_network: current_social_network, right_menu_icons: right_menu_icons  }
+  .spacer
+  %ul#mypages.list_group.nothing= render partial: 'shared/menu_pages', locals: { user: user, social_network: current_social_network, right_menu_icons: right_menu_icons  }
+  .spacer
+  %ul#mymedia.list_group.nothing= render partial: 'shared/menu_media_managers', locals: { user: user, social_network: current_social_network, right_menu_icons: right_menu_icons  }
+  .spacer
+  %ul#myblogs.list_group.nothing= render partial: 'shared/menu_blogs', locals: { user: user, social_network: current_social_network, right_menu_icons: right_menu_icons  }

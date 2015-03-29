@@ -1,0 +1,109 @@
+/* ****************************     SALVATTORE     ******************************* */
+
+.column    { float: left; }
+
+/* grid4: Grid with 2 columns on the main page */
+
+#grid2 {
+ margin: 0 auto;
+ padding: 0;
+ border: 0;
+}
+
+@media screen and (max-width: 360px)
+{    #grid2[data-columns]::before    {        content: '1 .column.size-2-1';    }   }
+
+@media screen and (min-width: 361px) and (max-width: 640px)
+{    #grid2[data-columns]::before    {        content: '2 .column.size-2-2';     }   }
+ 
+@media screen and (min-width: 451px) and (max-width: 800px)
+{    #grid2[data-columns]::before    {        content: '3 .column.size-2-3';     }   }
+ 
+@media screen and (min-width: 800px) and (max-width: 1600px)
+{    #grid2[data-columns]::before    {        content: '4 .column.size-2-4';     }   }
+ 
+@media screen and (min-width: 1601px) and (max-width:1920px)
+{    #grid2[data-columns]::before    {        content: '5 .column.size-2-5';     }   }
+ 
+@media screen and (min-width: 1921px)
+{    #grid2[data-columns]::before    {        content: '6 .column.size-2-6';     }   }
+
+.size-2-1  { width: 100%; }
+.size-2-2  { width: 50%; }
+.size-2-3  { width: 33.333%; }
+.size-2-4  { width: 25%; }
+.size-2-5  { width: 20%; }
+.size-2-6  { width: 16.667%; }
+
+/* ************************************************************************************************** */
+
+/* grid3: Grid with 2 columns on the main page */
+
+#grid3 {
+ margin: 0 auto;
+ padding: 0;
+ border: 0;
+}
+
+@media screen and (max-width: 360px)
+{    #grid3[data-columns]::before    {        content: '1 .column.size-3-1';     }   }
+
+@media screen and (min-width: 361px) and (max-width: 640px)
+{    #grid3[data-columns]::before    {        content: '2 .column.size-3-2';     }   }
+ 
+@media screen and (min-width: 451px) and (max-width: 800px)
+{    #grid3[data-columns]::before    {        content: '3 .column.size-3-3';     }   }
+ 
+@media screen and (min-width: 800px) and (max-width: 1600px)
+{    #grid3[data-columns]::before    {        content: '4 .column.size-3-4';     }   }
+ 
+@media screen and (min-width: 1601px) and (max-width:1920px)
+{    #grid3[data-columns]::before    {        content: '5 .column.size-3-5';     }   }
+ 
+@media screen and (min-width: 1921px)
+{    #grid3[data-columns]::before    {        content: '6 .column.size-3-6';     }   }
+
+.size-3-1  { width: 100%; }
+.size-3-2  { width: 50%; }
+.size-3-3  { width: 33.333%; }
+.size-3-4  { width: 25%; }
+.size-3-5  { width: 20%; }
+.size-3-6  { width: 16.667%; }
+
+/* ************************************************************************************************** */
+
+/* grid4: Grid with 4 columns on the main page */
+
+#grid4 {
+ margin: 0 auto;
+ padding: 0;
+ border: 0;
+}
+
+@media screen and (max-width: 360px)
+{    #grid4[data-columns]::before    {        content: '1 .column.size-4-1';    }   }
+
+@media screen and (min-width: 361px) and (max-width: 640px)
+{    #grid4[data-columns]::before    {        content: '2 .column.size-4-2';     }   }
+ 
+@media screen and (min-width: 451px) and (max-width: 800px)
+{    #grid4[data-columns]::before    {        content: '3 .column.size-4-3';     }   }
+ 
+@media screen and (min-width: 800px) and (max-width: 1600px)
+{    #grid4[data-columns]::before    {        content: '4 .column.size-4-4';     }   }
+ 
+@media screen and (min-width: 1601px) and (max-width:1920px)
+{    #grid4[data-columns]::before    {        content: '5 .column.size-4-5';     }   }
+ 
+@media screen and (min-width: 1921px)
+{    #grid4[data-columns]::before    {        content: '6 .column.size-4-6';     }   }
+
+.size-4-1  { width: 100%; }
+.size-4-2  { width: 50%; }
+.size-4-3  { width: 33.333%; }
+.size-4-4  { width: 25%; }
+.size-4-5  { width: 20%; }
+.size-4-6  { width: 16.667%; }
+
+.social-network-item {
+}

@@ -1,42 +1,22 @@
-- if group.errors.count == 0
-  %div{ :id => group.uuid }
-    - rels = count_relationships(group)
-    .thumbnail{ :style => "background-color: #{group.background_color}; color: #{group.text_color};" }  
-      .container-fluid.nopadding
-        .col-xs-2.col-sm-2.col-md-2.image-72
-          -#= image_tag group.cover.attachment.url(:thumb)
-        .col-xs-1.col-sm-1.col-md-1.v-glyps
-          = link_to onerel_path(group,'Group','likes'), :method => :post, :remote => :true, :test => "Likes" do
-            %span.glyphicons.icon-like-1
-            = likes = group.query_as(:p).match("(p)<-[r:likes]-(u:User)").pluck(:u).count
-          -#  Like
-          %br
-          -#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          -#= link_to root_path do
-          %span.glyphicons.icon-share-outline
-          12
-          -#  members
-          %br
-          -#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          -#= link_to root_path do
-          %span.glyphicons.icon-star-4
-          32
-          -#  friend members
-          %br
-          -#= link_to root_path do
-          %span.glyphicons.icon-star-4
-          45
-          -#  discussions
-          %br
-        .col-xs-8.col-sm-8.col-md-8
-          .post-header
-            = group.name
-          %br
-          .post-content
-            = group.description
-        .col-xs-1.col-sm-1.col-md-1.command-button
+%div
+  - if group.errors.count == 0
+    %div{ :id => group.uuid }
+      - rels = count_relationships(group)
+      .p{ :style => "background-color: #{group.background_color}; color: #{group.text_color};" }  
+        -#.container-fluid.nopadding
+          .col-xs-2.col-sm-2.col-md-2.image-72
+            -#= image_tag group.cover.attachment.url(:thumb)
+          .col-xs-1.col-sm-1.col-md-1.v-glyps
+        = link_to onerel_path(group,'Group','likes'), :method => :post, :remote => :true, :test => "Likes" do
+          = likes = group.query_as(:p).match("(p)<-[r:likes]-(u:User)").pluck(:u).count
+        .post-header
+          = group.name
+        %br
+        .post-content
+          = group.description
+        .command-button
           - if can_modify?(group)
             = link_to edit_group_path(group), :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Modify the element" do
-              %span.glyphicon.icon-edit-modify-streamline
+              %i.im-follow-me
             = link_to group, :method => :delete, :data => { :confirm => 'Are you sure?' }, :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Delete the element" do
-              %span.glyphicon.icon-delete-garbage-streamline
+              %i.im-bin
