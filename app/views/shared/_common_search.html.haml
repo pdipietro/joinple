@@ -1,5 +1,3 @@
-= render partial: 'shared/debug'
-- puts render partial: 'shared/debug'
 - search = Group.new
 - object = ["all", "discussions", "groups", "people"]
 = bootstrap_form_for(search, :remote => :true, layout: :inline ) do |f|
@@ -15,20 +13,20 @@
       .btn-toolbar{ :role => "toolbar" }
         .btn-group{ :role => "group" }
           %button.btn.btn-default{ :type => "button" }
-            %span.glyphicon.glyphicon-wrench
+            %i.im-wrench
           %button.btn.btn-default{ :type => "button" }
-            %span.glyphicon.glyphicon-asterisk
+            %i.im-asterisk
           %button.btn.btn-default{ :type => "button" }
-            %span.glyphicon.glyphicon-euro
+            %i.im-euro
         .btn-group{ :role => "group" }
           %button.btn.btn-default{ :type => "button" }
-            %span.glyphicon.glyphicon-cloud
+            %i.im-cloud
           %button.btn.btn-default{ :type => "button" }
-            %span.glyphicon.glyphicon-film
+            %i.im-film
           %button.btn.btn-default{ :type => "button" }
-            %span.glyphicon.glyphicon-glass
+            %i.im-glass
         .btn-group{ :role => "group" }
           %span.input-group-btn.search{ :type => "button" }
             = f.text_field :name, :prepend => "Search", :placeholder => "Enter the text to search", :hide_label => :true, :title => "Text to search"
             %button.btn.btn-default{ :type => "button" }
-              %span.glyphicon.glyphicon-search
+              %i.im-search

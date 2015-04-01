@@ -1,0 +1,8 @@
+- if logged_in?
+  - csn = session[:social_network]
+  = puts "current_social_network: #{csn}"
+  = puts "current_social_network_logo: #{current_social_network_logo?}, #{current_social_network_uuid?} "
+  .col-xs-12.nothing
+    .social-network-logo{ :style => social_network_color_style }
+      Logo del social network
+      = image_tag csn.logo.url(:logo), :name => "social_network#{current_social_network_uuid?}", :class => "responsive"

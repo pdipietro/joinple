@@ -31,16 +31,20 @@ i, .icomoon-liga {
 	-moz-osx-font-smoothing: grayscale;
 }
 
-.im-groups:before {
-	content: "\e617";
-}
-
-.im-followers:before {
+.im-gender:before {
 	content: "\e603";
 }
 
 .im-following:before {
 	content: "\e610";
+}
+
+.im-followers:before {
+	content: "\e61e";
+}
+
+.im-groups:before {
+	content: "\e617";
 }
 
 .im-ads-01:before {

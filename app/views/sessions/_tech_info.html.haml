@@ -1,0 +1,125 @@
+- if is_admin?
+  #tech-info.panel.panel-default.collapse
+    .panel
+      %a.toggle{ :type => "toggle", "data-target" => "#tech-info", "data-toggle" => "collapse"}
+        .panel-heading{ :style => super_social_network_style }
+          Session
+          %span.caret.to-right
+          .panel-title
+      .panel-body
+        -#.ul
+          JoinPle
+          .li
+            .col-xs-10
+              background-color
+            .col-xs-10
+              = SUPER_SOCIAL_BACKGROUND_COLOR
+          .li
+            .col-xs-10
+              color
+            .col-xs-10
+              = SUPER_SOCIAL_COLOR 
+
+        .ul
+          Session
+          .li
+            .col-xs-20
+              Session
+            .col-xs-40
+              = "#{session} "
+
+        .ul
+          Screen geometry
+          .li
+            .col-xs-20
+              width x height (pixel ratio)
+            .col-xs-40
+              = "#{session[:width]}x#{session[:height]}, (#{session[:pixelRatio]}) "
+
+        .ul
+          Log in
+          .li
+            .col-xs-20
+              user_id
+            .col-xs-40
+              = session[:user_id]
+          .li
+            .col-xs-20
+              admin
+            .col-xs-40
+              = session[:admin]
+
+        .ul
+          Current social network
+          .li
+            .col-xs-20
+              social_network
+            .col-xs-40
+              = session[:social_network]
+          .li
+            .col-xs-20
+              name
+            .col-xs-40
+              = current_social_network_name?
+          .li
+            .col-xs-20
+              uuid
+            .col-xs-40
+              = session[:social_network].uuid
+          .li
+            .col-xs-20
+              logo
+            .col-xs-40
+              = session[:social_network].logo
+          .li
+            .col-xs-20
+              background-color
+            .col-xs-40
+              = session[:social_network].background_color
+          .li
+            .col-xs-20
+              color
+            .col-xs-40
+              = session[:social_network].text_color
+
+      
+        -#.ul
+          Current group
+          .li
+            .col-xs-20
+              group
+            .col-xs-40
+              = current_group
+          .li
+            .col-xs-20
+              name
+            .col-xs-40
+              = current_group_name?
+          .li
+            .col-xs-20
+              uuid
+            .col-xs-40
+              = current_group_uuid?
+          .li
+            .col-xs-20
+              background-color
+            .col-xs-40
+              = " "
+          .li
+            .col-xs-20
+              color
+            .col-xs-40
+              = " "
+
+        .ul
+          Current user
+          .li
+            .col-xs-20
+              id
+            .col-xs-40
+              = current_user_id?
+          .li
+            .col-xs-20
+              profile
+            .col-xs-40
+              = current_user_profile

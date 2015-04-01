@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'icomoon';
-	src:url('fonts/icomoon.eot?qt7wfq');
-	src:url('fonts/icomoon.eot?#iefixqt7wfq') format('embedded-opentype'),
-		url('fonts/icomoon.woff?qt7wfq') format('woff'),
-		url('fonts/icomoon.ttf?qt7wfq') format('truetype'),
-		url('fonts/icomoon.svg?qt7wfq#icomoon') format('svg');
+	src:url('fonts/icomoon.eot?3rhud8');
+	src:url('fonts/icomoon.eot?#iefix3rhud8') format('embedded-opentype'),
+		url('fonts/icomoon.woff?3rhud8') format('woff'),
+		url('fonts/icomoon.ttf?3rhud8') format('truetype'),
+		url('fonts/icomoon.svg?3rhud8#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -31,16 +31,20 @@ i, .icomoon-liga {
 	-moz-osx-font-smoothing: grayscale;
 }
 
-.im-groups:before {
-	content: "\e617";
-}
-
-.im-followers:before {
+.im-gender:before {
 	content: "\e603";
 }
 
 .im-following:before {
 	content: "\e610";
+}
+
+.im-followers:before {
+	content: "\e61e";
+}
+
+.im-groups:before {
+	content: "\e617";
 }
 
 .im-ads-01:before {

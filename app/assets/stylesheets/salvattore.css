@@ -105,5 +105,38 @@
 .size-4-5  { width: 20%; }
 .size-4-6  { width: 16.667%; }
 
-.social-network-item {
+/* ************************************************************************************************** */
+
+/* grid-st6: A grid with 6 columns [800..1280] width */
+
+#gridst6 {
+ margin: 0 auto;
+ padding: 0;
+ border: 0;
 }
+
+@media screen and (max-width: 360px)
+{    #gridst6[data-columns]::before    {        content: '1 .column.size-st6-1';    }   }
+
+@media screen and (min-width: 361px) and (max-width: 640px)
+{    #gridst6[data-columns]::before    {        content: '2 .column.size-st6-2';     }   }
+ 
+@media screen and (min-width: 451px) and (max-width: 800px)
+{    #gridst6[data-columns]::before    {        content: '4 .column.size-st6-3';     }   }
+ 
+@media screen and (min-width: 800px) and (max-width: 1600px)
+{    #gridst6[data-columns]::before    {        content: '6 .column.size-st6-4';     }   }
+ 
+@media screen and (min-width: 1601px) and (max-width:1920px)
+{    #gridst6[data-columns]::before    {        content: '9 .column.size-st6-5';     }   }
+ 
+@media screen and (min-width: 1921px)
+{    #gridst6[data-columns]::before    {        content: '12 .column.size-st6-6';     }   }
+
+.size-st6-1  { width: 100%; }
+.size-st6-2  { width: 50%; }
+.size-st6-3  { width: 25%; }
+.size-st6-4  { width: 16.666%; }
+.size-st6-5  { width: 11.111%; }
+.size-st6-6  { width: 8.333%; }
+

@@ -122,13 +122,15 @@ class User
 
  def profile? 
     profile = User.has_profile
-
+    
     puts "user profile: #{profile}"
+    puts "caller: #{caller.first}"
     #user_profile = Neo4j::Session.query("match (user:User { uuid : '#{user_id}' })-[has_profile:has_profile]->(profile:UserProfile) return profile").first[0]
     puts " #{profile.class.name}"
     profile = has_profile
-    puts " #{profile.class.name}"
-    puts " #{profile.description}"
+    puts "X1: #{profile.class.name}"
+    puts "X2: #{profile.description}"
+    puts "caller: #{caller.first}"
     profile
   end
 

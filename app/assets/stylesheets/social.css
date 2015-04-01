@@ -231,6 +231,11 @@ li.list-group-item {
 
 ************************************************************************************************************************ */
 
+.social-network-logo {
+  padding-top: 3px;
+  padding-right: 2px;
+}
+
 .form-group {
   clear: left;
 }
@@ -285,6 +290,10 @@ a.header-user-photo {
   padding-top: 4px !important;
   padding-bottom: 0;
   max-height: 46px !important;
+}
+
+span.user-wellcome {
+  word-wrap: break-word;                
 }
 
 #user_info {

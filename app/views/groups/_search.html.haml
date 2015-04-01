@@ -1,30 +1,31 @@
-- search = "AA"
--#%img.img-header{ :src => "http://cdn001.crowdupcafe.com/public/863x200.jpg" }
-= bootstrap_form_for(search, :remote => :true, layout: :inline ) do |f|
-  .panel.panel-default
-    .panel-body
-      .btn-toolbar{ :role => "toolbar" }
-        .btn-group{ :role => "group" }
-          %button.btn.btn-default{ :type => "button", :title => "My groups" }
-            = link_to group_list_path('iparticipate'), :method => :post, :remote => :true do
-              %span.fa-lg
-                %i.fa.fa-icon.icon-torsos-all-female
-          %button.btn.btn-default{ :type => "button", :title => "Groups I administer" }
-            = link_to group_list_path('iadminister'), :method => :post, :remote => :true do
-              %span.fa-lg
-                %i.fa.fa-icon.icon-tools
-          %button.btn.btn-default{ :type => "button", :title => "Pending invitations" }
-            = link_to group_list_path('pendinginvitation'), :method => :post, :remote => :true do
-              %span.fa-lg
-                %i.fa.fa-icon.icon-pin
-              -#%i.fa.fa-icon.icon-pin.fa-stacked
-        .btn-group{ :role => "group" }
-          %span.input-group-btn.search.fa-lg{ :type => "button" }
-            = f.text_field :name, :prepend => "Search", :placeholder => "Enter the text to search", :hide_label => :true, :title => "Text to search"
-            %button.btn.btn-default{ :type => "button" }
-              %span.fa-lg
-                %i.fa.fa-icon.glyphicon.glyphicon-search
-        .btn-group{ :role => "group" }
-          %button.btn.btn-default{ :type => "button", :title => "My groups" }
-            %span.fa-lg
-              %i.fa.fa-icon.icon-list-1
+- if logged_in?
+  .col-xs-36.nothing
+    - search = "AA"
+    = bootstrap_form_for(search, :remote => :true, layout: :inline ) do |f|
+      .panel.panel-default
+        .panel-body
+          .btn-toolbar{ :role => "toolbar" }
+            .btn-group{ :role => "group" }
+              %button.btn.btn-default{ :type => "button", :title => "My groups" }
+                = link_to group_list_path('iparticipate'), :method => :post, :remote => :true do
+                  %span.fa-lg
+                    %i.fa.fa-icon.icon-torsos-all-female
+              %button.btn.btn-default{ :type => "button", :title => "Groups I administer" }
+                = link_to group_list_path('iadminister'), :method => :post, :remote => :true do
+                  %span.fa-lg
+                    %i.fa.fa-icon.icon-tools
+              %button.btn.btn-default{ :type => "button", :title => "Pending invitations" }
+                = link_to group_list_path('pendinginvitation'), :method => :post, :remote => :true do
+                  %span.fa-lg
+                    %i.fa.fa-icon.icon-pin
+                  -#%i.fa.fa-icon.icon-pin.fa-stacked
+            .btn-group{ :role => "group" }
+              %span.input-group-btn.search.fa-lg{ :type => "button" }
+                = f.text_field :name, :prepend => "Search", :placeholder => "Enter the text to search", :hide_label => :true, :title => "Text to search"
+                %button.btn.btn-default{ :type => "button" }
+                  %span.fa-lg
+                    %i.fa.fa-icon.glyphicon.glyphicon-search
+            .btn-group{ :role => "group" }
+              %button.btn.btn-default{ :type => "button", :title => "My groups" }
+                %span.fa-lg
+                  %i.fa.fa-icon.icon-list-1

@@ -1,1 +1,4 @@
-= render partial: 'shared/search'
+- user = current_user
+- social_network = current_social_network
+.row.col-xs-40
+  = render partial: 'top', locals: { user: user, social_network: current_social_network } 

@@ -19,7 +19,7 @@ module Gsn
 
     config.assets.paths << "#{Rails.root}/app/assets/fonts"
     config.assets.paths << "#{Rails.root}/app/assets/images"
-
+ #   config.cache_store  = :dalli_store
     
     config.generators do |g|
       g.orm             :neo4j

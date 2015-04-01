@@ -1,0 +1,32 @@
+- search = Group.new
+- object = ["all", "discussions", "groups", "people"]
+= bootstrap_form_for(search, :remote => :true, layout: :inline ) do |f|
+  .panel.panel-default
+    -#.panel-heading
+      .panel-title
+        - if defined?(title)
+          = title
+          .button.close{:type => "button", "data-dismiss" => "alert", "aria-label" => "Close" }
+        - else
+          New Group
+    .panel-body
+      .btn-toolbar{ :role => "toolbar" }
+        .btn-group{ :role => "group" }
+          %button.btn.btn-default{ :type => "button" }
+            %span.glyphicon.glyphicon-wrench
+          %button.btn.btn-default{ :type => "button" }
+            %span.glyphicon.glyphicon-asterisk
+          %button.btn.btn-default{ :type => "button" }
+            %span.glyphicon.glyphicon-euro
+        .btn-group{ :role => "group" }
+          %button.btn.btn-default{ :type => "button" }
+            %span.glyphicon.glyphicon-cloud
+          %button.btn.btn-default{ :type => "button" }
+            %span.glyphicon.glyphicon-film
+          %button.btn.btn-default{ :type => "button" }
+            %span.glyphicon.glyphicon-glass
+        .btn-group{ :role => "group" }
+          %span.input-group-btn.search{ :type => "button" }
+            = f.text_field :name, :prepend => "Search", :placeholder => "Enter the text to search", :hide_label => :true, :title => "Text to search"
+            %button.btn.btn-default{ :type => "button" }
+              %span.glyphicon.glyphicon-search

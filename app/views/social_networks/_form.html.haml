@@ -23,4 +23,8 @@
         = image_tag social_network.logo.url(:logo) 
         = f.hidden_field :logo_cache
       %button.icon_only{ :type => "submit", :name => "commit", :hide_label => :true, :title => "Save the element" } 
-        %span.glyphicon.glyphicon-save
+        %i.im-dot
+        save
+      %button.icon_only{ :type => "reset", :name => "reset", :hide_label => :true, :title => "cancel" } 
+        %i.im-cancel-circle
+        exit without saving       

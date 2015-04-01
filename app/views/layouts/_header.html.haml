@@ -11,9 +11,6 @@
         = image_tag "joinple_logo.png"
     #navbar.navbar-collapse.collapse
       %ul.nav.navbar-nav.navbar-right
-        - if Rails.env.development?
-          %li
-            = "(width: #{session[:width]}, height: #{session[:height]}, pixel ratio: #{session[:pixelRatio]})"
         - unless logged_in?
           %li
             = link_to root_path, :title => "Joinplee home" do
@@ -87,9 +84,61 @@
                   = image_tag user_profile.photo.url(:btn), :size => ("32x32")
                 - else
                   %i.header.im-user-plus
-                = "Wellcome, #{current_user.first_name}"
+                %span.user-wellcome= "Wellcome, #{current_user.first_name}"
                 %span.caret
             %ul.user.dropdown-menu{ :role => "menu", "aria-labelledby" => "dropdownUser" }
+              %li
+                = link_to posts_path, :remote => :true do
+                  %i.header-dropdown.im-about
+                  My book ()
+              %li
+                = link_to groups_path, :remote => :true do
+                  %i.header-dropdown.im-about
+                  My profiles
+              %li
+                = link_to groups_path, :remote => :true do
+                  %i.header-dropdown.im-about
+                  Settings
+              %li
+                = link_to groups_path, :remote => :true do
+                  %i.header-dropdown.im-about
+                  My preferites
+              %li
+                = link_to logout_path, method: "delete", :title => "Log out" do
+                  %i.header-dropdown.im-logout
+                  Log out
+              - if is_admin?
+                %li.divider
+                %li.header
+                  Administration
+                %li
+                  = link_to landing_pages_path, :remote => :true  do
+                    %i.header-dropdown.im-landing-page
+                    Landing page
+                %li
+                  = link_to social_networks_path, :remote => :true  do
+                    %i.header-dropdown.im-social-networks
+                    Social networks
+                %li.divider
+                %li
+                  = link_to languages_path, :remote => :true  do
+                    %i.header-dropdown.im-language
+                    Languages
+                %li
+                  = link_to dummy_path, :remote => :true  do
+                    %i.header-dropdown.im-administrator
+                    Administrators
+                %li.divider
+              %li
+                = link_to current_user, :remote => :true do
+                  %i.header-dropdown.im-about
+                  Everythings
+              %li
+                %a.toggle{ :type => "toggle", "data-target" => "#tech-info", "data-toggle" => "collapse"}
+                  %i.header-dropdown.im-about
+                  View config
+
+-#
               %li
                 = link_to posts_path, :remote => :true do
                   %i.header-dropdown.im-about
@@ -117,36 +166,3 @@
                 = link_to current_user, :remote => :true do
                   %i.header-dropdown.im-about
                   Everythings
-              %li
-                = link_to logout_path, method: "delete", :title => "Log out" do
-                  %i.header-dropdown.im-about
-                  Log out
-              - if is_admin?
-                %li.divider
-                %li.header
-                  Administration
-                %li
-                  = link_to landing_pages_path, :remote => :true  do
-                    %i.header-dropdown.im-landing-page
-                    Landing page
-                %li
-                  = link_to social_networks_path, :remote => :true  do
-                    %i.header-dropdown.im-social-networks
-                    Social networks
-                %li.divider
-                %li
-                  = link_to languages_path, :remote => :true  do
-                    %i.header-dropdown.im-language
-                    Languages
-                %li
-                  = link_to dummy_path, :remote => :true  do
-                    %i.header-dropdown.im-administrator
-                    Administrators
-                %li
-                  = link_to tests_path  do
-                    %i.header-dropdown.im-about
-                    Test
-                -#%li
-                  = link_to image_list_path  do
-                    %i.header-dropdown.im-about
-                    Media Manager

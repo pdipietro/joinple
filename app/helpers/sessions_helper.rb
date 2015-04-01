@@ -3,7 +3,7 @@ module SessionsHelper
 
   SUPER_SOCIAL_NETWORK_NAME = ["joinple","gsn"]
   SUPER_SOCIAL_BACKGROUND_COLOR = "#a12349"
-  SUPER_SOCIAL_COLOR = "#ffffff"  #333342"
+  SUPER_SOCIAL_COLOR = "#ffffff"  #333342 white is a better solution
 
  # get screen geometry from cookies
   def set_screen_geometry
@@ -47,16 +47,29 @@ module SessionsHelper
         "aaa"
      else
         #puts "social_network #{session[:social_network][:name]} (#{session[:social_network].class})"
-        session[:social_network][:name]
+        #session[:social_network][:name]
+        puts "Into current_social_network_name?"
+        puts "caller: #{caller.first}"
+        puts "----------------- session: #{session}"
+        puts "----------------- session[:social_network]: #{session[:social_network]}"
+        puts "----------------- session[:social_network].class.name: #{session[:social_network].class.name}"
+        puts "----------------- session[:social_network].name: #{session[:social_network].name}"
+        (session[:social_network]).name
      end
   end
 
   def current_social_network_uuid?
-    session[:social_network][:uuid]
+    #session[:social_network][:uuid]
+    session[:social_network].uuid
+  end
+
+  def current_social_network_logo?
+    #session[:social_network][:logo]
+    session[:social_network].logo
   end
 
   def current_group
-    session[:group]
+    session[:group].nil? ? " " : session[:group]
   end
 
   def current_group_name?
@@ -126,7 +139,7 @@ module SessionsHelper
     forget(current_user)
     session.delete(:user_id)
     session.delete(:admin)
-  # session[:social_network] = nil
+    session[:social_network] = nil
     session.delete[:current_user_profile] unless session[current_user_profile].nil?
     session.delete(:group) unless session[:group].nil?
 
@@ -230,16 +243,16 @@ module SessionsHelper
 
   def stars value
     res = Array.new
-    puts "value: #{value}"
+    #puts "value: #{value}"
     [1.0,2.0,3.0,4.0,5.0].each do |ind|
       if ind <= value #or ind == value
-        puts "#{ind} <= #{value}  ==> full"
+       # puts "#{ind} <= #{value}  ==> full"
         res << "full"
       elsif ind - 0.5 <= value
-        puts "#{ind - 0.5} <= #{value}  ==> half"
+       # puts "#{ind - 0.5} <= #{value}  ==> half"
         res << "half"
       else
-        puts "#{ind} <=> #{value}  ==> empty"
+       # puts "#{ind} <=> #{value}  ==> empty"
         res << "empty"
       end
     end
@@ -265,13 +278,9 @@ module SessionsHelper
         log_out
       else 
         session[:social_network] = sn
+
         puts "sn: #{current_social_network}"
-        puts "sn.name: #{current_social_network_name?}"
-       # unless current_user_profile.nil?
-       #   puts "User profile before: #{current_user_profile}"
-       #   puts "User profile class: #{current_user_profile.class}"
-       #   puts "User profile description: #{current_user_profile.description}"
-       # end
+        puts "sn.name: #{current_social_network.name}"
         reset_current_group
       end
     end
