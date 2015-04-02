@@ -1,0 +1,6 @@
+- user = current_user
+.row.col-xs-40
+  = render partial: "shared/logo_social_network" 
+  = render partial: "search", locals: { user: user, groups: groups } 
+  = render partial: "buttons" 
+

@@ -1,6 +1,20 @@
 /* ****************************     SALVATTORE     ******************************* */
 
+@media screen and (max-width: 360px)
+{    #grid3[data-columns]::before    {        content: '1 .column.size-3-1';     }   }
+
+@media screen (max-width: 800px)
+{    @viewport { width: 800px; orientation: landscape; }   }
+ 
+@media screen and (min-width: 800px) and (max-width: 1920px)
+{    @viewport { width: device-width; orientation: landscape; }   }
+
+@media screen and (min-width: 1921px)
+{    @viewport { width: 1920px; orientation: landscape; }   }
+
 .column    { float: left; }
+
+/* ************************************************************************************************** */
 
 /* grid4: Grid with 2 columns on the main page */
 

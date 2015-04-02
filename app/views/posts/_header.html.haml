@@ -1,1 +1,4 @@
-= render partial: 'search'
+- user = current_user
+- social_network = current_social_network
+.row
+  = render partial: 'top', locals: { user: user, social_network: social_network } 

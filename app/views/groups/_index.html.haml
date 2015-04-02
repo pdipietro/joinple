@@ -1,7 +1,7 @@
 -#= render partial: 'shared/panel_header_social_network', locals: { title: "titolo" }
 - if logged_in?
   .panel.panel-default
-    .panel-heading{ :style => social_network_color_style }
+    .panel-heading{ :style => current_social_network_style }
       = title
     .panel-body
       #gridst6{ "data-columns" => "" }

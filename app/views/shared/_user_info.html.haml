@@ -1,7 +1,7 @@
 - rels = count_relationships(user) 
 - user_profile = user.profile?
 - social_network = current_social_network
-.row.nothing.top-rounded{ :style => social_network_color_style }
+.row.nothing.top-rounded{ :style => current_social_network_style }
   .col-xs-28.nothing
     = image_tag "#{user_profile.photo.url(:thumb)}", :name => "user_profile_#{user_profile.uuid}", :class => "responsive user-photo"
   .col-xs-32.nothing

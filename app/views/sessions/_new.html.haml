@@ -1,21 +1,27 @@
-.panel.panel-default
-  .panel-heading
-    Log in
-    .panel-title
-  .panel-body
-    = bootstrap_form_for(:session, :remote => :true ) do |f|
-      -# puts "------------ #{f.class.errors}"
-      -# render 'shared/error_messages', object: f.object, locals: { @obj => f.object } 
-      = f.text_field :email, :prepend => :email, :placeholder => "Enter your email address or nickname", :hide_label => :true
-      = f.text_field :password, :prepend => :password, :placeholder => "Enter your password", :hide_label => :true
-      = f.text_field :nul, :class => "disabled", :disabled => "disabled", :append => f.check_box( :remember_me, :label => "", :class => "adjust-checkbox"), :placeholder => "Remember me on this computer", :hide_label => :true
-      -#f.form_group :remember_me, :hide_label => :true do 
-        = f.check_box :remember_me, :hide_label => :true do
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Remember me on this computer
-      %button.btn.btn-default.btn-sm{ :type => "submit", :name => "commit", :hide_label => :true }
-        %span.glyphicon.icon-log_in
-        Log in
-= link_to "Forgot password?", new_password_reset_path, :remote => :true
-%br
-New user? 
-= link_to "Sign up now!", signup_path, :remote => :true
+.col-xs-10
+.col-xs-40
+  .panel.panel-default
+    .panel-heading{ :style => super_social_network_style }
+      Log in
+      .panel-title
+    .panel-body
+      = bootstrap_form_for(:session, :remote => :true ) do |f|
+        -# puts "------------ #{f.class.errors}"
+        -# render 'shared/error_messages', object: f.object, locals: { @obj => f.object } 
+        .nothing= f.text_field :email, :prepend => :email, :placeholder => "Enter your email address or nickname", :hide_label => :true
+        .spacer
+        .nothing= f.text_field :password, :prepend => :password, :placeholder => "Enter your password", :hide_label => :true
+        .spacer
+        .nothing= f.check_box :remember_me 
+        .spacer
+
+        .col-xs-40.nothing
+          %button.btn.btn-default.btn-sm-nothing{ :type => "submit", :name => "commit", :hide_label => :true, :style => super_social_network_style }
+            %i.im-log-in
+            Log in
+        .col-xs-20.nothing
+          = link_to "Forgot password?", new_password_reset_path, :remote => :true
+          %br
+          New user? 
+          = link_to "Sign up now!", signup_path, :remote => :true
+.col-xs-10

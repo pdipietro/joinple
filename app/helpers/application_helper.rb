@@ -30,14 +30,16 @@ module ApplicationHelper
        sn = sn.start_with?("test.") ? sn.split(".")[1] : sn 
        sn = sn.start_with?("dev.") ? sn.split(".")[1] : sn 
        sn = humanize_word(sn)
-       tmp = SocialNetwork.find_by( :name => sn )
        csn = SocialNetwork.find_by( :name => sn )
        puts "+++++++++++++++ csn.class.name: #{csn.class.name}"
        puts "+++++++++++++++ csn: #{csn}"
-#
-       set_current_social_network (csn)
-       puts "current_social_network: #{current_social_network}"
-       current_social_network
+       if csn.class.name == "SocialNetwork"
+         set_current_social_network (csn)
+         puts "current_social_network: #{current_social_network}"
+         current_social_network
+       else
+         raise "515","Currento social network loading error"
+       end
   end
 
   # admin services are reserved to admin users only

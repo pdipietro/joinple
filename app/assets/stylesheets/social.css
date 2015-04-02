@@ -231,14 +231,63 @@ li.list-group-item {
 
 ************************************************************************************************************************ */
 
+#main_left, 
+#main_right {
+  width: 205px;
+}
+
+#main_left {
+  margin-left: 0;
+  float: left;
+  padding: 0 5px;
+}
+
+#main_right {
+  margin-left: -205px;
+  float: right;
+  padding: 0 5px;
+}
+
+
+#main_center {
+  margin: 0 207px 0 207px;
+  min-width: 386px;
+  padding: 0;
+}
+
+
+html, body, #header, #page {
+  min-width: 800px;
+}
+
 .social-network-logo {
-  padding-top: 3px;
-  padding-right: 2px;
+  padding-top: 5px;
+  /*padding-right: 2px;*/
+}
+
+.social-network-logo,
+#main_header,
+#user_info {
+  max-height: 121px;   /* it was 124 before adding #main_header */
 }
 
 .form-group {
-  clear: left;
+  /*clear: left;*/
+  margin-bottom: 0;
 }
+
+.form-control {
+  -webkit-box-shadow: none; 
+  box-shadow: none; 
+}
+.radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
+  position: initial;
+}
+
+.input-group-addon {
+  padding: 5px 5px;
+}
+
 
 .no-padding {
   padding: 0;
@@ -294,10 +343,6 @@ a.header-user-photo {
 
 span.user-wellcome {
   word-wrap: break-word;                
-}
-
-#user_info {
-  min-height: 124px;
 }
 
 .user-info {

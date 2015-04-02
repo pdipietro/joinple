@@ -1,13 +1,16 @@
-%li.left.list-group-item.no-padding{ :style => social_network_color_style }
-  = link_to dummy_path, :remote => :true do
-    %span.glyphicons.icon-like-2
+= link_to dummy_path, :remote => :true do
+  %li.left.list-group-item.no-padding{ :style => current_social_network_style }
+    -#= image-path 
     Preferites
-%li.list-group-item.no-padding
-  = link_to dummy_path, :remote => :true do
-    Page 1
-%li.list-group-item.no-padding
-  = link_to dummy_path, :remote => :true do
-    Page 2
-%li.list-group-item.no-padding
-  = link_to dummy_path, :remote => :true do
-    Page 3
+= link_to dummy_path, :remote => :true do
+  %li.left.list-group-item.no-padding
+    %i.im-dot
+    Preferite 1
+= link_to dummy_path, :remote => :true do
+  %li.left.list-group-item.no-padding
+    %i.im-dot
+    Preferite 2
+= link_to dummy_path, :remote => :true do
+  %li.left.list-group-item.no-padding
+    %i.im-dot
+    Preferite 3

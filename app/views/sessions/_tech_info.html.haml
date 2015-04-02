@@ -7,19 +7,19 @@
           %span.caret.to-right
           .panel-title
       .panel-body
-        -#.ul
+        .ul
           JoinPle
           .li
-            .col-xs-10
+            .col-xs-20
               background-color
-            .col-xs-10
-              = SUPER_SOCIAL_BACKGROUND_COLOR
+            .col-xs-40
+              = super_social_network_background_color
           .li
-            .col-xs-10
+            .col-xs-20
               color
-            .col-xs-10
-              = SUPER_SOCIAL_COLOR 
-
+            .col-xs-40
+              = super_social_network_color 
+        %hr
         .ul
           Session
           .li
@@ -27,7 +27,7 @@
               Session
             .col-xs-40
               = "#{session} "
-
+        %hr
         .ul
           Screen geometry
           .li
@@ -36,26 +36,28 @@
             .col-xs-40
               = "#{session[:width]}x#{session[:height]}, (#{session[:pixelRatio]}) "
 
+        %hr
         .ul
           Log in
           .li
             .col-xs-20
               user_id
             .col-xs-40
-              = session[:user_id]
+              = current_user_id?
           .li
             .col-xs-20
               admin
             .col-xs-40
-              = session[:admin]
+              = is_admin?
 
+        %hr
         .ul
           Current social network
           .li
             .col-xs-20
               social_network
             .col-xs-40
-              = session[:social_network]
+              = current_social_network
           .li
             .col-xs-20
               name
@@ -65,25 +67,26 @@
             .col-xs-20
               uuid
             .col-xs-40
-              = session[:social_network].uuid
+              = current_social_network_uuid?
           .li
             .col-xs-20
               logo
             .col-xs-40
-              = session[:social_network].logo
+              = current_social_network_logo?
           .li
             .col-xs-20
               background-color
             .col-xs-40
-              = session[:social_network].background_color
+              = current_social_network_background_color?
           .li
             .col-xs-20
               color
             .col-xs-40
-              = session[:social_network].text_color
+              = current_social_network_color?
 
       
-        -#.ul
+        %hr
+        .ul
           Current group
           .li
             .col-xs-20
@@ -111,6 +114,7 @@
             .col-xs-40
               = " "
 
+        %hr
         .ul
           Current user
           .li

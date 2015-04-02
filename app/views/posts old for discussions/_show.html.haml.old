@@ -1,0 +1,48 @@
+- if post.errors.count == 0
+  - owner = post.query_as(:p).match("(p)<-[r:owns]-(u:User)").pluck(:u).first
+  .col-xs-6.col-md-6.col-lg-6{ :id => post.uuid }
+    .container
+      .thumbnail
+        .col-xs-2.col-sm-2.col-md-2.image-72
+          .img-owner1= gravatar_for owner, size: 72
+          -# = link_to root_path do
+              %span.glyphicons.icon-triangle-up
+            = rand(0...1000)
+            %br
+            = link_to root_path do
+              %span.glyphicons.icon-triangle-down
+        .col-xs-1.col-sm-1.col-md-1.v-glyps
+          = link_to onerel_path(post,'Post','likes'), :method => :post, :remote => :true, :title => "like" do
+            %span.glyphicons.icon-like-1
+          = likes = post.query_as(:p).match("(p)<-[r:likes]-(u:User)").pluck(:u).count
+          -#  Like
+          %br
+          -#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          = link_to root_path, :method => :post, :remote => :true, :title => "share" do
+            %span.glyphicons.icon-share-outline
+          95
+          -#  Preferite
+          %br
+          = link_to root_path, :method => :post, :remote => :true, :title => "reply" do
+            %span.glyphicons.icon-reply
+          35
+          -#  reply
+          %br
+          = link_to root_path, :method => :post, :remote => :true, :title => "preferite" do
+            %span.glyphicons.icon-star-4
+          29
+          -#  Share
+        .col-xs-8.col-sm-8.col-md-8
+          .post-header
+            = "by #{owner.full_name} - #{post.created_at.strftime('%F at %H:%M')}"
+          .post-title
+            = post.title
+          .post-content
+            = post.content
+        .col-xs-1.col-sm-1.col-md-1.command-button
+          - if can_modify?(post)
+            = link_to edit_post_path(post), :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Modify the element" do
+              %span.glyphicon.icon-edit-modify-streamline
+            = link_to post, :method => :delete, :data => { :confirm => 'Are you sure?' }, :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Delete the element" do
+              %span.glyphicon.icon-delete-garbage-streamline
+        .response{ :class => "pr#{post.uuid} collapse"}  

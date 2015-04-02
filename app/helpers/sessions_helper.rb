@@ -5,6 +5,18 @@ module SessionsHelper
   SUPER_SOCIAL_BACKGROUND_COLOR = "#a12349"
   SUPER_SOCIAL_COLOR = "#ffffff"  #333342 white is a better solution
 
+  def super_social_network_background_color
+    SUPER_SOCIAL_BACKGROUND_COLOR
+  end
+
+  def super_social_network_color
+    SUPER_SOCIAL_COLOR
+  end
+
+  def super_social_network_style
+      "background-color: #{SUPER_SOCIAL_BACKGROUND_COLOR}; color: #{SUPER_SOCIAL_COLOR};"
+  end
+
  # get screen geometry from cookies
   def set_screen_geometry
      session[:width] = cookies[:width]
@@ -30,15 +42,27 @@ module SessionsHelper
 
   # Return the current Social Network
   def current_social_network
-     session[:social_network]
+    if session[:social_network].class.name != "SocialNetwork"
+      unless session[:social_network_uuid].nil?
+        session[:social_network] = SocialNetwork.find(session[:social_network_uuid])
+      else
+        puts "TRAGEDY !!!!"
+        raise "515", TRAGEDY
+      end
+    end
+    session[:social_network]
   end
 
-  def social_network_color_style
+  def current_social_network_style
       "background-color: #{session[:social_network][:background_color]}; color: #{session[:social_network][:text_color]};"
   end
 
-  def super_social_network_style
-      "background-color: #{SUPER_SOCIAL_BACKGROUND_COLOR}; color: #{SUPER_SOCIAL_COLOR};"
+  def current_social_network_background_color?
+      session[:social_network].background_color
+  end
+
+  def current_social_network_color?
+      session[:social_network].text_color
   end
 
   def current_social_network_name?
@@ -46,26 +70,17 @@ module SessionsHelper
         puts "session[:social_network][:name]   mancante!!!!!!!!!!!!!!"
         "aaa"
      else
-        #puts "social_network #{session[:social_network][:name]} (#{session[:social_network].class})"
-        #session[:social_network][:name]
-        puts "Into current_social_network_name?"
-        puts "caller: #{caller.first}"
-        puts "----------------- session: #{session}"
-        puts "----------------- session[:social_network]: #{session[:social_network]}"
-        puts "----------------- session[:social_network].class.name: #{session[:social_network].class.name}"
-        puts "----------------- session[:social_network].name: #{session[:social_network].name}"
-        (session[:social_network]).name
+        session[:social_network].name
      end
   end
 
   def current_social_network_uuid?
-    #session[:social_network][:uuid]
-    session[:social_network].uuid
+    current_social_network.uuid
   end
 
   def current_social_network_logo?
     #session[:social_network][:logo]
-    session[:social_network].logo
+    current_social_network.logo
   end
 
   def current_group
@@ -73,11 +88,11 @@ module SessionsHelper
   end
 
   def current_group_name?
-    session[:group].nil? ? " " : session[:group][:name]
+    session[:group].nil? ? " " : session[:group].name
   end
 
   def current_group_uuid?
-    session[:group].nil? ? " " : session[:group][:uuid]
+    session[:group].nil? ? " " : session[:group].uuid
   end
 
   def reset_current_group
@@ -178,6 +193,7 @@ module SessionsHelper
   def check_social_network
     set_screen_geometry
     unless session[:social_network].class.name == "SocialNetwork" 
+      puts "!!!!!!!!!!!!!!!!!! WARNING: I'M into check_social_network!!!"
        load_social_network_from_url
        if session[:social_network].nil? 
           redirect_to root_url
@@ -188,7 +204,7 @@ module SessionsHelper
   end
 
   def is_super_social_network?
-    SUPER_SOCIAL_NETWORK_NAME.include? session[:social_network][:name]
+    SUPER_SOCIAL_NETWORK_NAME.include? session[:social_network].name
   end
 
   def is_social_network_customer?
@@ -277,6 +293,7 @@ module SessionsHelper
         puts "sn is nil => faccio il logout"
         log_out
       else 
+        session[:social_network_uuid] = sn.uuid
         session[:social_network] = sn
 
         puts "sn: #{current_social_network}"

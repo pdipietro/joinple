@@ -6,18 +6,7 @@ class SocialNetworksController < ApplicationController
   # GET /social_networks
   # GET /social_networks.json
   def index
-        puts "----------------- session: #{session}"
-        puts "caller: #{caller.first}"
-        puts "----------------- session[:social_network]: #{session[:social_network]}"
-        puts "----------------- session[:social_network].class.name: #{session[:social_network].class.name}"
-        #puts "----------------- session[:social_network].name: #{session[:social_network].name}"
-        puts "all.order ....................."
-    @social_networks = SocialNetwork.all.order(created_at:  :desc)
-        puts "§§§§§§§§§§§§§§§ session[:social_network]: #{session[:social_network]}"
-        puts "§§§§§§§§§§§§§§§ session[:social_network].class.name: #{session[:social_network].class.name}"
-        #puts "§§§§§§§§§§§§§§§ session[:social_network].name: #{session[:social_network].name}"
-@social_networks
-      render partial: 'sessions/tech_info'
+     @social_networks = SocialNetwork.all.order(created_at:  :desc)
   end
 
   # GET /social_networks/1

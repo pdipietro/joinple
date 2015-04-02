@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class SocialNetworkLogoUploader < CarrierWave::Uploader::Base
+class PostHeaderUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   include CarrierWave::RMagick

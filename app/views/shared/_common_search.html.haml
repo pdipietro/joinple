@@ -1,32 +1,33 @@
-- search = Group.new
-- object = ["all", "discussions", "groups", "people"]
-= bootstrap_form_for(search, :remote => :true, layout: :inline ) do |f|
-  .panel.panel-default
-    -#.panel-heading
-      .panel-title
-        - if defined?(title)
-          = title
-          .button.close{:type => "button", "data-dismiss" => "alert", "aria-label" => "Close" }
-        - else
-          New Group
-    .panel-body
-      .btn-toolbar{ :role => "toolbar" }
-        .btn-group{ :role => "group" }
-          %button.btn.btn-default{ :type => "button" }
-            %i.im-wrench
-          %button.btn.btn-default{ :type => "button" }
-            %i.im-asterisk
-          %button.btn.btn-default{ :type => "button" }
-            %i.im-euro
-        .btn-group{ :role => "group" }
-          %button.btn.btn-default{ :type => "button" }
-            %i.im-cloud
-          %button.btn.btn-default{ :type => "button" }
-            %i.im-film
-          %button.btn.btn-default{ :type => "button" }
-            %i.im-glass
-        .btn-group{ :role => "group" }
-          %span.input-group-btn.search{ :type => "button" }
-            = f.text_field :name, :prepend => "Search", :placeholder => "Enter the text to search", :hide_label => :true, :title => "Text to search"
+.col-xs-36.nothing
+  - search = Group.new
+  - object = ["all", "discussions", "groups", "people"]
+  = bootstrap_form_for(search, :remote => :true, layout: :inline ) do |f|
+    .panel.panel-default
+      -#.panel-heading
+        .panel-title
+          - if defined?(title)
+            = title
+            .button.close{:type => "button", "data-dismiss" => "alert", "aria-label" => "Close" }
+          - else
+            New Group
+      .panel-body
+        .btn-toolbar{ :role => "toolbar" }
+          .btn-group{ :role => "group" }
             %button.btn.btn-default{ :type => "button" }
-              %i.im-search
+              %i.im-wrench
+            %button.btn.btn-default{ :type => "button" }
+              %i.im-asterisk
+            %button.btn.btn-default{ :type => "button" }
+              %i.im-euro
+          .btn-group{ :role => "group" }
+            %button.btn.btn-default{ :type => "button" }
+              %i.im-cloud
+            %button.btn.btn-default{ :type => "button" }
+              %i.im-film
+            %button.btn.btn-default{ :type => "button" }
+              %i.im-glass
+          .btn-group{ :role => "group" }
+            %span.input-group-btn.search{ :type => "button" }
+              = f.text_field :name, :prepend => "Search", :placeholder => "Enter the text to search", :hide_label => :true, :title => "Text to search"
+              %button.btn.btn-default{ :type => "button" }
+                %i.im-search

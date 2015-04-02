@@ -4,7 +4,7 @@
   });
 - xxx = ""
 .panel.panel-default
-  .panel-heading{ :style => social_network_color_style }
+  .panel-heading{ :style => current_social_network_style }
     - t = !defined?(title)
     %a.toggle{ :type => "toggle", "data-target" => "#gf#{group.uuid}", "data-toggle" => "collapse", :toggle => :false}
       .panel-title

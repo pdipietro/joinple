@@ -1,17 +1,26 @@
-.panel.panel-default
-  .panel-heading
-    Sign up
-    .panel-title
-  .panel-body
-    = bootstrap_form_for(user, :remote => :true, :html => {:multipart => true} ) do |f|
-      -#= render 'shared/error_messages', object: f
-      = f.text_field :nickname, :prepend => :nickname, :placeholder => "Enter your nickname", :hide_label => :true
-      = f.text_field :first_name, :prepend => :first_name, :placeholder => "Enter your first name", :hide_label => :true
-      = f.text_field :last_name, :prepend => :last_name, :placeholder => "Enter your last name", :hide_label => :true
-      = f.text_field :email, :prepend => :email, :placeholder => "Enter your email address", :hide_label => :true
-      = f.text_field :password, :prepend => :password, :placeholder => "Enter your password", :hide_label => :true
-      = f.text_field :password_confirmation, :prepend => :password_confirmation, :placeholder => "Confirm your password", :hide_label => :true
+.col-xs-10
+.col-xs-40
+  .panel.panel-default
+    .panel-heading{ :style => super_social_network_style }
+      Sign up
+      .panel-title
+    .panel-body
+      = bootstrap_form_for(user, :remote => :true, :html => {:multipart => true} ) do |f|
+        -#= render 'shared/error_messages', object: f
+        .nothing= f.text_field :nickname, :prepend => :nickname, :placeholder => "Enter your nickname", :hide_label => :true
+        .spacer
+        .nothing= f.text_field :first_name, :prepend => :first_name, :placeholder => "Enter your first name", :hide_label => :true
+        .spacer
+        .nothing= f.text_field :last_name, :prepend => :last_name, :placeholder => "Enter your last name", :hide_label => :true
+        .spacer
+        .nothing= f.text_field :email, :prepend => :email, :placeholder => "Enter your email address", :hide_label => :true
+        .spacer
+        .nothing= f.text_field :password, :prepend => :password, :placeholder => "Enter your password", :hide_label => :true
+        .spacer
+        .nothing= f.text_field :password_confirmation, :prepend => :password_confirmation, :placeholder => "Confirm your password", :hide_label => :true
+        .spacer
 
-      %button.btn.btn-default.btn-sm{ :type => "submit", :name => "commit", :hide_label => :true }
-        %span.glyphicon.icon-diff-added
-        Create my account
+        %button.btn.btn-default.btn-sm{ :type => "submit", :name => "commit", :hide_label => :true, :style => super_social_network_style }
+          %i.im-added
+          Create my account
+.col-xs-10

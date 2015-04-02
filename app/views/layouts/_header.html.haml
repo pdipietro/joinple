@@ -116,7 +116,7 @@
                     %i.header-dropdown.im-landing-page
                     Landing page
                 %li
-                  = link_to social_networks_path, :remote => :true  do
+                  = link_to social_networks_path(current_social_network_name?), :remote => :true  do
                     %i.header-dropdown.im-social-networks
                     Social networks
                 %li.divider

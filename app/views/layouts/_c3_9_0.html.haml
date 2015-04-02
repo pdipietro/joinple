@@ -1,13 +1,13 @@
 -#:javascript
   if($("#main_center").length || $("#main_left").length  || $("#main_right").length  || $("#main_header").length || $("#main_add").length || $("#main_content").length) { $("#page").html("<%= escape_javascript(render partial: 'three_columns_layout' ) %>" );}
-%aside#main_left.col-xs-10.sidebar
+%aside#main_left.sidebar
   - if logged_in?
     = render partial: 'shared/left_menu'
-#main_center.col-xs-40
+%aside#main_right
+#main_center
   - if is_admin?
     = render partial: 'sessions/tech_info'
   #main_header
   #main_add
   #main_content
-%aside#main_right.col-xs-10
 

@@ -1,13 +1,16 @@
-%li.left.list-group-item.no-padding{ :style => social_network_color_style }
-  = link_to dummy_path, :remote => :true do
+= link_to posts_path, :remote => :true do
+  %li.left.list-group-item.no-padding{ :style => current_social_network_style }
     -#= image-path 
     Posts
-%li.left.list-group-item.no-padding
-  = link_to dummy_path, :remote => :true do
+= link_to dummy_path, :remote => :true do
+  %li.left.list-group-item.no-padding
+    %i.im-dot
     Post 1
-%li.left.list-group-item.no-padding
-  = link_to dummy_path, :remote => :true do
+= link_to dummy_path, :remote => :true do
+  %li.left.list-group-item.no-padding
+    %i.im-dot
     Post 2
-%li.left.list-group-item.no-padding
-  = link_to dummy_path, :remote => :true do
+= link_to dummy_path, :remote => :true do
+  %li.left.list-group-item.no-padding
+    %i.im-dot
     Post 3
