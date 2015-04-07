@@ -61,6 +61,10 @@ module SessionsHelper
       session[:social_network].background_color
   end
 
+  def current_social_network_background_color_style
+      "background-color: #{session[:social_network][:background_color]}"
+  end
+
   def current_social_network_color?
       session[:social_network].text_color
   end

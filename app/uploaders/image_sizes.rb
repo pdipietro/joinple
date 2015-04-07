@@ -6,6 +6,7 @@ class ImageSizes
           :btn         => ['[36, 36]',        :jpg, :quality => 70],              # user_btn
           :thumb       => ['[84, 84]',        :jpg, :quality => 70],              # generic thumb (user, post, group, etc.)
           :icon        => ['[128, 128]',      :jpg, :quality => 70],              # user_icon on left column
+          :top         => ['[155, 116]',      :jpg, :quality => 70],              # user_icon on left column
           :profile     => ['[200, 200]',      :jpg, :quality => 70],              # generic profile (user, post, group, etc)
           :original    => ['[250, 0]',        :jpg, :quality => 70],              # original image resized
           :banner      => ['[854, 200]',      :jpg, :quality => 70],              # banner for generic profile
@@ -49,7 +50,7 @@ class ImageSizes
                              :header        => [:banner, :preview]
                            },
         :SocialNetwork  => {
-                             :logo          => [:logo, :btn, :icon, :cover]    
+                             :logo          => [:logo, :btn, :icon, :cover, :top]    
                            },
         :LandingPage    => {
                              :header        => [:xsmall, :small, :medium, :large, :xlarge, :xxlarge],        

@@ -31,6 +31,50 @@ i, .icomoon-liga {
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.im-save2:before {
+	content: "\e609";
+}
+
+.im-my-posts:before {
+	content: "\e61f";
+}
+
+.im-all-posts:before {
+	content: "\e620";
+}
+
+.im-bookmarks:before {
+	content: "\e621";
+}
+
+.im-send-post1:before {
+	content: "\e623";
+}
+
+.im-send-post:before {
+	content: "\e624";
+}
+
+.im-search:before {
+	content: "\e629";
+}
+
+.im-mybooks:before {
+	content: "\e625";
+}
+
+.im-mybook:before {
+	content: "\e626";
+}
+
+.im-save:before {
+	content: "\e627";
+}
+
+.im-like:before {
+	content: "\e628";
+}
+
 .im-gender:before {
 	content: "\e603";
 }
@@ -111,16 +155,8 @@ i, .icomoon-liga {
 	content: "\e91e";
 }
 
-.im-profile:before {
-	content: "\e923";
-}
-
 .im-file-text2:before {
 	content: "\e926";
-}
-
-.im-stack:before {
-	content: "\e92e";
 }
 
 .im-lifebuoy:before {
@@ -143,10 +179,6 @@ i, .icomoon-liga {
 	content: "\e973";
 }
 
-.im-search:before {
-	content: "\e986";
-}
-
 .im-key2:before {
 	content: "\e98e";
 }
@@ -161,10 +193,6 @@ i, .icomoon-liga {
 
 .im-bin:before {
 	content: "\e9ac";
-}
-
-.im-download2:before {
-	content: "\e9c5";
 }
 
 .im-attachment:before {
@@ -241,10 +269,6 @@ i, .icomoon-liga {
 
 .im-administrator:before {
 	content: "\e608";
-}
-
-.im-manwoman:before {
-	content: "\e609";
 }
 
 .im-about:before {

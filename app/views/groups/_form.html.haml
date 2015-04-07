@@ -6,7 +6,7 @@
 .panel.panel-default
   .panel-heading{ :style => current_social_network_style }
     - t = !defined?(title)
-    %a.toggle{ :type => "toggle", "data-target" => "#gf#{group.uuid}", "data-toggle" => "collapse", :toggle => :false}
+    %a.toggle.collapse{ :type => "toggle", "data-target" => "#gf#{group.uuid}", "data-toggle" => "collapse", :toggle => :false}
       .panel-title
         - if defined?(title)
           = title

@@ -1,19 +1,48 @@
-.panel.panel-default.nothing
-  .panel-heading{ :style => super_social_network_style }
-  - t = !defined?(title)
-    %a.toggle.collapse{ :type => "toggle", "data-target" => "#lf#{post.uuid}", "data-toggle" => "collapse"}
-      .panel-title
-        - if defined?(title)
-          = title
-          .button.close{:type => "button", "data-dismiss" => "alert", "aria-label" => "Close" }
-        - else
-          New post
-          %span.caret.to-right
-  .panel-body{ :id => "lf#{post.uuid}", :class => post.errors.count == 0 && t ? 'collapse in' : 'collapse' }
-    = bootstrap_form_for(post, :remote => :true ) do |f|
-      = f.text_area :content, :prepend => :content, :placeholder => "Enter the content", :hide_label => :true, :text => "discussion content"
-      -#= f.text_field :is_owned_by, :type => :hidden, :value => "#{current_owner.class.name}:#{current_owner.uuid}", :hide_label => :true
-      %button.icon_only{ :type => "submit", :name => "commit", :hide_label => :true, :title => "Save the element" }
-        %span.glyphicon.glyphicon-save
-  
+- csn = current_social_network
+- search = PostComment.new
+- if logged_in?
+  #post_header_left.social-network-logo{ :style => current_social_network_style }
+    = image_tag current_social_network_logo?.url(:top), :name => "social_network#{current_social_network_uuid?}", :class => "social-network-logo"
+  = bootstrap_form_for(post, :remote => :true ) do |f|
+    #post_header_right
+      .post-icon.nothing
+        .nothing
+          = link_to dummy_path, :remote => :true, :title => "Sign up" do
+            %i.im-camera.im-2x
+        .nothing
+          = link_to dummy_path, :remote => :true, :title => "Sign up" do
+            %i.im-film.im-2x
+      .post-icon.nothing
+        .nothing
+          = link_to dummy_path, :remote => :true, :title => "Sign up" do
+            %i.im-user-plus.im-2x
+        .nothing
+          = link_to dummy_path, :remote => :true, :title => "Sign up" do
+            %i.im-attachment.im-2x
+      .post-save.nothing{ :style => current_social_network_style }
+        %button.icon_only{ :type => "submit", :name => "commit", :hide_label => :true, :title => "Send the post"  } 
+          %i.im-save
+          save
+    #post_header_center
+      .post-text= f.text_area :content, :hide_label => :true
+      .post-button-down.nothing
+        .post-icon.nothing
+          = link_to dummy_path, :remote => :true, :title => "All posts" do
+            %i.im-all-posts.im-2x
+        .post-icon.nothing
+          = link_to dummy_path, :remote => :true, :title => "My posts" do
+            %i.im-my-posts.im-2x
+        .post-icon.nothing
+          = link_to dummy_path, :remote => :true, :title => "Preferites" do
+            %i.im-bookmarks.im-2x
+        .post-icon.nothing
+          = link_to dummy_path, :remote => :true, :title => "TBD" do
+            %i.im-dot.im-2x
+        .post-search.nothing
+          = form_for(search, :remote => :true ) do |f|
+            .post-search-text= f.text_field :content
+        .post-icon.nothing
+          %button.icon_only{ :type => "submit", :name => "commit", :hide_label => :true, :title => "search"  } 
+            %i.im-search.im-2x
+
 

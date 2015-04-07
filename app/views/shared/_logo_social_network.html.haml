@@ -1,5 +1,4 @@
-.col-xs-12.nothing
-  - if logged_in?
-    - csn = current_social_network
-    .social-network-logo{ :style => current_social_network_style }
-      = image_tag current_social_network_logo?.url(:logo), :name => "social_network#{current_social_network_uuid?}", :class => "responsive"
+- if logged_in?
+  - csn = current_social_network
+  #common_header_left.social-network-logo{ :style => current_social_network_style }
+    = image_tag current_social_network_logo?.url(:top), :name => "social_network#{current_social_network_uuid?}", :class => "social-network-logo"

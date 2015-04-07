@@ -48,6 +48,9 @@ i.header.im-signup-landing {
 .im-14x {
   font-size: 140%;
 }
+.im-17x {
+  font-size: 170%;
+}
 .im-2x {
   font-size: 200%;
 }
@@ -210,7 +213,8 @@ a:hover {
   text-decoration: none;
 }
 
-a, a:visited {
+a, a:visited, a:hover {
+  color: inherit;
   text-decoration: none;
 }
 
@@ -226,68 +230,8 @@ li.list-group-item {
 }
 
 /* ************************************************************************************************************************
-
-** da rivedere con Davide 
-
+** Spacer and standard styler
 ************************************************************************************************************************ */
-
-#main_left, 
-#main_right {
-  width: 205px;
-}
-
-#main_left {
-  margin-left: 0;
-  float: left;
-  padding: 0 5px;
-}
-
-#main_right {
-  margin-left: -205px;
-  float: right;
-  padding: 0 5px;
-}
-
-
-#main_center {
-  margin: 0 207px 0 207px;
-  min-width: 386px;
-  padding: 0;
-}
-
-
-html, body, #header, #page {
-  min-width: 800px;
-}
-
-.social-network-logo {
-  padding-top: 5px;
-  /*padding-right: 2px;*/
-}
-
-.social-network-logo,
-#main_header,
-#user_info {
-  max-height: 121px;   /* it was 124 before adding #main_header */
-}
-
-.form-group {
-  /*clear: left;*/
-  margin-bottom: 0;
-}
-
-.form-control {
-  -webkit-box-shadow: none; 
-  box-shadow: none; 
-}
-.radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
-  position: initial;
-}
-
-.input-group-addon {
-  padding: 5px 5px;
-}
-
 
 .no-padding {
   padding: 0;
@@ -311,14 +255,199 @@ html, body, #header, #page {
     clear: left;
 }
 
-.nothing-margin-0010{
-  padding: 0;
-  margin: 0;
-  border: 0;
-}
-
 .spacer {
   height: 4px;
+}
+
+.row {
+  margin: 0;
+}
+
+/* ************************************************************************************************************************
+** Styles to format 3 columns: fixed-fluid-fixed
+************************************************************************************************************************ */
+
+#main_left {
+  width: 205px;
+  margin-left: 0;
+  float: left;
+  padding: 0 5px;
+}
+
+#main_right {
+  width: 205px;
+  margin-left: -205px;
+  float: right;
+  padding: 0 5px;
+}
+
+
+#main_center {
+  margin: 0 207px 0 207px;
+  min-width: 386px;
+  padding: 0;
+}
+
+html, body, #header, #page {
+  min-width: 800px;
+}
+
+/* ************************************************************************************************************************
+***************************************************************************************************************************
+** Common header for posts
+** These are the headers of the main central column (#main_center) for posts
+***************************************************************************************************************************
+************************************************************************************************************************ */
+
+/* ************************************************************************************************************************
+** Post header left
+************************************************************************************************************************ */
+
+#post-header-left {
+  width: 155px;
+  margin-left: 0;
+  float: left;
+  padding: 5px 5px 0 0;
+
+  border-top-left-radius: 4px;
+}
+
+/** Social network logo **/
+
+#post-header-left * .social-network-logo {
+  width: 155px;
+  padding-top: 5px;
+  margin-right: 3px;
+}
+
+#post-header-left * img.social-network-logo {
+  height: 116px;
+  width: auto;
+  padding: 0;
+}
+
+#post-header-left * .social-network-logo,
+#main_header,
+#user_info {
+  max-height: 121px;   /* it was 124 before adding #main_header */
+}
+
+/* ************************************************************************************************************************
+** Post header center
+************************************************************************************************************************ */
+
+#post-header-center {
+  margin: 0 160px 0 160px;
+  min-width: 80px;
+  padding: 0;
+}
+
+#post-header-center * textarea#post_content.form-control {
+  height: 87px;
+  width: 100%;
+  min-width: 87px;
+}
+
+#post-header-center .post-buttons {
+  background-color: #ffffff;
+  height: 30px;
+}
+
+#post-header-center * .post-icon {
+  float: left;
+  width: 10%;
+  margin-top: 4px;
+}
+
+#post-header-center * .post-icon:first-child {
+  margin-left: 8px;
+}
+
+#post-header-center * .post-search {
+  float: left;
+  width: 47%;
+  margin-top: 3px;
+}
+
+#post-header-center * .post-search-text > input {
+  width: 100%;
+}
+
+#post-header-center * .post-icon:last-child {
+  margin-right: 8px;
+}
+
+
+/* ************************************************************************************************************************
+** Post header right
+************************************************************************************************************************ */
+
+#post-header-right {
+  width: 155px;
+  margin-left: -158px;
+  float: right;
+  padding: 0 0 0 0;
+
+  border: 1px solid #cccccc;
+  border-top-right-radius: 4px;
+  background-color: #ffffff;
+}
+
+#post-header-right .post-icon .col {
+  min-height: 47px;
+  sborder: 1px solid #cccccc;
+}
+
+#post-header-right .post-icon {
+  width: 50%;
+  sborder-bottom: 1px solid #cccccc;
+  sclear: both;
+  text-align: center;
+  float: right;
+  background-color: #ffffff;
+}
+
+#post-header-right .post-icon:last-child:after {
+  clear: right;
+  border-left: 1px solid #cccccc;
+}
+
+#post-header-right .post-save {
+  border-bottom: 0;
+  height: 21px;
+}
+
+#post-header-right .post-save  * i {
+  margin-left: 8px;
+  width: 40%;
+}
+
+#post-header-right .post-save {
+  border-top: 4px;
+  margin-right: 8px;
+  width: 100%;
+}
+
+/* ************************************************************************************************************************
+** da rivedere con Davide 
+************************************************************************************************************************ */
+
+.form-group {
+  /*clear: left;*/
+  margin-bottom: 0;
+}
+
+.form-control {
+  -webkit-box-shadow: none; 
+  box-shadow: none; 
+}
+
+.radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
+  position: initial;
+}
+
+.input-group-addon {
+  padding: 5px 5px;
 }
 
 /*.img-owner1,*/
