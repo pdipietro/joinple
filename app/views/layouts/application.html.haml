@@ -28,8 +28,9 @@
         $('input:checkbox').bootstrapSwitch();
       });
     %body{:sn => "#{csnn}"}
-      #header
-        = render 'layouts/header'
-      #page.container-fluid
-        = render partial: 'layouts/c3_9_0'
-        -#= yield
+      #wrapper
+        #header
+          = render 'layouts/header'
+        #page.container-fluid
+          = render partial: 'layouts/c3_9_0'
+          -#= yield

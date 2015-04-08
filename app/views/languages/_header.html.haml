@@ -1,1 +1,8 @@
-= render partial: 'shared/search'
+- if is_admin?
+  - user = current_user
+  - csn = current_social_network
+  - search = PostComment.new
+  #common-header
+    = bootstrap_form_for(search, :remote => :true ) do |f|
+      = render partial: 'top_left'
+      -#= render partial: "shared/people", locals: { csn: csn }

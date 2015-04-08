@@ -1,4 +1,5 @@
 - if logged_in?
-  - csn = current_social_network
-  #common_header_left.social-network-logo{ :style => current_social_network_style }
-    = image_tag current_social_network_logo?.url(:top), :name => "social_network#{current_social_network_uuid?}", :class => "social-network-logo"
+  - unless defined?(style)
+    - style = current_social_network_style
+  #top-right.social-network-logo{ :style => style }
+    = image_tag csn.logo.url(:top), :name => "social_network#{csn.uuid}", :class => "social-network-logo"

@@ -190,8 +190,29 @@ i.header.im-signup-landing {
 
 /* #page margin top must be equal to header.height + 10 px */
 
+body {
+  background-color: #cccccc;
+}
+
+sbody, shtml, header, #page {
+  min-width: 800px;
+  swidth: 1280px;
+  smax-width: 1920px;
+  margin: 0 auto;
+  background-color: pink;
+
+}
+
+#Swrapper {
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 100%;
+  background-color: pink;
+}
+
 #page {
   margin-top: 56px;
+  background-color: #cccccc;
 }
 
 .navbar-brand.logo  {
@@ -257,10 +278,16 @@ li.list-group-item {
 
 .spacer {
   height: 4px;
+  background-color: inherit;
+  color: inherit;
 }
 
 .row {
   margin: 0;
+}
+
+.clearall {
+  clear: both;
 }
 
 /* ************************************************************************************************************************
@@ -289,7 +316,7 @@ li.list-group-item {
 }
 
 html, body, #header, #page {
-  min-width: 800px;
+  amin-width: 800px;
 }
 
 /* ************************************************************************************************************************
@@ -304,13 +331,44 @@ html, body, #header, #page {
 ************************************************************************************************************************ */
 
 #post-header-left {
-  width: 155px;
-  margin-left: 0;
+  width: 400px;
   float: left;
-  padding: 5px 5px 0 0;
-
   border-top-left-radius: 4px;
+  min-height: 176px;
 }
+
+#post-header-left * .command {
+  height: 116px;
+}
+
+#post-header-left * .buttons {
+  float: left;
+  height: 30px;
+  width: 100%;
+  background-color: #ffffff;
+}
+
+#post-header-left * .post-icon {
+  float: left;
+  width: 10%;
+  margin-top: 4px;
+}
+
+#post-header-left * .post-icon:first-child {
+  margin-left: 8px;
+}
+
+#post-header-left * .search {
+  float: left;
+  width: 60%;
+  margin-top: -4px;
+  margin-right: 4px;
+}
+
+#post-header-left * .post-icon:last-child {
+  margin-right: 8px;
+}
+
 
 /** Social network logo **/
 
@@ -324,6 +382,20 @@ html, body, #header, #page {
   height: 116px;
   width: auto;
   padding: 0;
+}
+
+#search-text * {
+  float: left;
+}
+
+#post-header-center * .post-search-text,
+#post-header-center * .post-control,
+.post-text,
+.post-text .form-group,
+.post-text textarea {
+  width: 100%;
+  height: 100%;
+  z-index: 200;
 }
 
 #post-header-left * .social-network-logo,
@@ -369,27 +441,23 @@ html, body, #header, #page {
   margin-top: 3px;
 }
 
-#post-header-center * .post-search-text > input {
-  width: 100%;
-}
 
 #post-header-center * .post-icon:last-child {
   margin-right: 8px;
 }
-
 
 /* ************************************************************************************************************************
 ** Post header right
 ************************************************************************************************************************ */
 
 #post-header-right {
-  width: 155px;
-  margin-left: -158px;
-  float: right;
-  padding: 0 0 0 0;
-
-  border: 1px solid #cccccc;
+  width: auto;
+  sfloat: left;
+  margin-left: 404px;
   border-top-right-radius: 4px;
+  min-height: 184px;
+  max-height: 184px; 
+  sborder: 1px solid #cccccc;
   background-color: #ffffff;
 }
 
@@ -426,6 +494,119 @@ html, body, #header, #page {
   border-top: 4px;
   margin-right: 8px;
   width: 100%;
+}
+
+/* ************************************************************************************************************************
+** Common header left
+************************************************************************************************************************ */
+
+#common-header-left {
+  width: 49.5%;
+  min-width: 270px;
+  margin: 0;
+  padding: 0;
+  float: left;
+  border-top-left-radius: 4px;
+}
+
+#common-header-left * textarea#post_content.form-control {
+  height: 87px;
+  width: 100%;
+  min-width: 87px;
+}
+
+#common-header-left .post-buttons {
+  background-color: #ffffff;
+  height: 30px;
+}
+
+#common-header-left * .post-icon {
+  float: left;
+  width: 10%;
+  margin-top: 4px;
+}
+
+#common-header-left * .post-icon:first-child {
+  margin-left: 8px;
+}
+
+#common-header-left * .post-search {
+  float: left;
+  width: 47%;
+  margin-top: 3px;
+}
+
+#common-header-left * .post-search-text > input {
+  width: 100%;
+}
+
+#common-header-left * .post-icon:last-child {
+  margin-right: 8px;
+}
+
+/* ************************************************************************************************************************
+** Common header right
+************************************************************************************************************************ */
+
+#common-header-right {
+  width: 155px;
+  margin-left: 0;
+  float: right;
+  padding: 5px 5px 0 0;
+
+  border-top-right-radius: 4px;
+}
+
+/** Social network logo **/
+
+#common-header-right * .social-network-logo {
+  width: 155px;
+  padding-top: 5px;
+  margin-right: 3px;
+}
+
+#common-header-right * img.social-network-logo {
+  height: 116px;
+  width: auto;
+  padding: 0;
+}
+
+#common-header-right * .social-network-logo,
+#main_header,
+#user_info {
+  max-height: 121px;   /* it was 124 before adding #main_header */
+}
+
+
+/* ************************************************************************************************************************
+** Dinamic specs for sections
+************************************************************************************************************************ */
+
+@media screen and (max-width: 800px) and (max-width: 1000px)
+{    #social-network-form .col-xs-15,
+     #language-form .col-xs-15 { 
+      width: 0;
+      border:0;
+      padding:0;
+     }
+
+     #social-network-form .col-xs-30,
+     #language-form .col-xs-30 { 
+      padding:0;
+     }
+}
+ 
+@media screen and (min-width: 1000px) and (max-width: 1280px)
+{    #social-network-form .col-xs-15,
+     #language-form .col-xs-15 { 
+      width: 25%; 
+      border:0;
+      padding:0;
+    }
+}
+
+@media screen and (min-width: 1281px)
+{    
 }
 
 /* ************************************************************************************************************************

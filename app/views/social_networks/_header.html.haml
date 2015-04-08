@@ -1,4 +1,8 @@
-- user = current_user
-- social_network = current_social_network
-.row
-  = render partial: 'top', locals: { user: user, social_network: social_network } 
+- if is_admin?
+  - user = current_user
+  - csn = current_social_network
+  - search = PostComment.new
+  #common-header
+    = bootstrap_form_for(search, :remote => :true ) do |f|
+      = render partial: 'top_left'
+      -#= render partial: "shared/logo_social_network", locals: { csn: csn }

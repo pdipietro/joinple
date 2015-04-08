@@ -23,7 +23,8 @@
     = puts "=================>>>> Here is 'landing_pages' layout"
     -#%body{:sn => "#{current_social_network_name?}"}
     %body
-      #header
-        = render 'layouts/header'
-      #page.container-fluid
-        = render 'landing_page'
+      #wrapper
+        #header
+          = render 'layouts/header'
+        #page.container-fluid
+          = render 'landing_page'

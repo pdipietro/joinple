@@ -1,0 +1,30 @@
+#common-header-left
+  - search = PostComment.new
+  -#.post-text= f.text_area :content, :hide_label => :true
+  -#.spacer
+  .post-buttons.nothing
+    .post-icon.nothing
+      %a.toggle{ :type => "toggle", "data-target" => "#social-network-form", "data-toggle" => "collapse", :title => "Create new social network"}
+        %i.im-social-networks.im-2x
+    .post-icon.nothing
+      = link_to dummy_path, :remote => :true, :title => "All posts" do
+        %i.im-all-posts.im-2x
+    .post-icon.nothing
+      = link_to dummy_path, :remote => :true, :title => "My posts" do
+        %i.im-my-posts.im-2x
+    .post-icon.nothing
+      = link_to dummy_path, :remote => :true, :title => "Preferites" do
+        %i.im-bookmarks.im-2x
+    .post-icon.nothing
+      = link_to dummy_path, :remote => :true, :title => "TBD" do
+        %i.im-dot.im-2x
+    .spacer
+    .post-search.nothing
+      = form_for(search, :remote => :true ) do |f|
+        .post-search-text= f.text_field :content
+        .post-icon.nothing
+          %a{ :href => "#", :type => "submit", :name => "commit", :hide_label => :true, :title => "Send the post"  } 
+            %i.im-search.im-2x
+.spacer
+
+
