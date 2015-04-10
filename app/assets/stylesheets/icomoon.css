@@ -31,10 +31,6 @@ i, .icomoon-liga {
 	-moz-osx-font-smoothing: grayscale;
 }
 
-.im-save2:before {
-	content: "\e609";
-}
-
 .im-my-posts:before {
 	content: "\e61f";
 }
@@ -43,16 +39,20 @@ i, .icomoon-liga {
 	content: "\e620";
 }
 
-.im-bookmarks:before {
-	content: "\e621";
+.im-save-3:before {
+	content: "\e609";
 }
 
-.im-send-post1:before {
+.im-save-2:before {
 	content: "\e623";
 }
 
-.im-send-post:before {
+.im-save-1:before {
 	content: "\e624";
+}
+
+.im-send-post:before {
+	content: "\e62a";
 }
 
 .im-search:before {
@@ -65,10 +65,6 @@ i, .icomoon-liga {
 
 .im-mybook:before {
 	content: "\e626";
-}
-
-.im-save:before {
-	content: "\e627";
 }
 
 .im-like:before {

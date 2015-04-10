@@ -1,4 +1,4 @@
-$("#main_add").html("<%= escape_javascript(render partial: 'posts/form', locals: { post: Post.new, current_owner: current_owner } ) %>" );
-$("#main_content *:eq(0)").after("<%= escape_javascript(render partial: 'show_list', locals: { post: @post } ) %>" );
-$("#main_rcontent").html("<%= escape_javascript(render partial: 'rindex' ) %>" );
-$("#user_info").html("<%= escape_javascript(render partial: 'shared/user_info', locals: { user: current_user } ) %>" );
+// $("#main_add").html("<%= escape_javascript(render partial: 'posts/form', locals: { post: Post.new, current_owner: current_owner } ) %>" );
+$("#main_content .column:first_child").after("<%= escape_javascript(render partial: 'show_list', locals: { post: @post } ) %>" );
+// $("#main_rcontent").html("<%= escape_javascript(render partial: 'rindex' ) %>" );
+// $("#user_info").html("<%= escape_javascript(render partial: 'shared/user_info', locals: { user: current_user } ) %>" );

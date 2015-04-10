@@ -12,6 +12,11 @@ class SocialNetwork
 
   property  :logo,              type: String
   mount_uploader :logo,         SocialNetworkLogoUploader 
+  property  :logo_social,       type: String
+  mount_uploader :logo_social,  SocialNetworkLogoSocialUploader 
+
+  has_many  :in,  :has_posts, model_class: Post                # Posts
+
 
   validates   :name, :presence => true, length: { minimum: 2 }
   validates_uniqueness_of :name, case_sensitive: false

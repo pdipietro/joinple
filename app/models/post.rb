@@ -4,14 +4,13 @@ class Post
   include CreatedAtUpdatedAt
   include Content
 
-  include IsOwnedBy
-
   has_many  :in,  :likes_to, rel_class: Likes                  # User
   has_many  :in,  :is_followed_by, rel_class: Follows          # User
   has_many  :in,  :is_preferred_by, rel_class: Preferes
   has_many  :out, :has_tag, rel_class: HasTag                  # :tag
+  has_one   :in,  :is_owned_by, rel_class: Owns                # User
 
-  has_one   :out, :belongs_to, rel_class: PostBelongsTo        # belongs to Post | Group | SocialNetwork
+  has_one   :out, :belongs_to, model_class: SocialNetwork       # belongs to SocialNetwork
   has_many  :out, :has_comments, rel_class: HasPostComment      # :comment
 
   property  :header,            type: String

@@ -1,1 +1,2 @@
-$('#<%= escape_javascript(@social_network.uuid) %>').html("<%= escape_javascript(render partial: 'form', locals: { social_network: @social_network, title: "Edit social network" } ) %>" );
+$("#main_add").html("<%= escape_javascript(render partial: 'form', locals: { social_network: @social_network, title: "Edit the #{@social_network.name} social network" } ) %>" );
+$("#social-network-form").removeClass('in').addClass('in');

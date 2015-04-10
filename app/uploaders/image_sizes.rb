@@ -4,11 +4,19 @@ class ImageSizes
 
     SIZES = {
           :btn         => ['[36, 36]',        :jpg, :quality => 70],              # user_btn
+          :sm_logo     => ['[30, 30]',        :jpg, :quality => 70],              # Social network small logo (top bar et other small bars)
           :thumb       => ['[84, 84]',        :jpg, :quality => 70],              # generic thumb (user, post, group, etc.)
           :icon        => ['[128, 128]',      :jpg, :quality => 70],              # user_icon on left column
           :top         => ['[155, 116]',      :jpg, :quality => 70],              # user_icon on left column
+          :md_logo     => ['[166, 166]',      :jpg, :quality => 70],              # Social network medium logo (top header near commands
           :profile     => ['[200, 200]',      :jpg, :quality => 70],              # generic profile (user, post, group, etc)
           :original    => ['[250, 0]',        :jpg, :quality => 70],              # original image resized
+    
+          :post_std    => ['[400, 200]',      :jpg, :quality => 70],              # Post standard is 400x200 on two columns, but can grow
+          :post1       => ['[800, 400]',      :jpg, :quality => 70],              # Post standard is 400x200 on two columns, but can grow
+          :post2       => ['[600, 300]',      :jpg, :quality => 70],              # Post standard is 400x200 on two columns, but can grow
+          :post3       => ['[600, 300]',      :jpg, :quality => 70],              # Post standard is 400x200 on two columns, but can grow
+                                                                                  # when the screen si stretched
           :banner      => ['[854, 200]',      :jpg, :quality => 70],              # banner for generic profile
           :md_banner   => ['[854,  315]',     :jpg, :quality => 70],              # banner for generic profile
           :lg_banner   => ['[1708, 315]',     :jpg, :quality => 70],              # banner for generic profile
@@ -25,7 +33,7 @@ class ImageSizes
           :small       => ['[640,   200]',    :jpg, :quality => 70],              # landing page header
           :xsmall      => ['[320,   100]',    :jpg, :quality => 70],              # landing page header
 
-          :retina      => ['[1200, -1]',    :jpg, :quality => 30]               # resize for retina display
+          :retina      => ['[1200, -1]',    :jpg, :quality => 30]                 # resize for retina display
         }
 
     CLASSES = {
@@ -43,14 +51,15 @@ class ImageSizes
                              :header        => [:btn, :thumb, :icon, :profile, :md_banner, :lg_banner, :xl_banner, :xxl_banner]
                            },
         :Post           => {
-                             :header        => [:banner, :preview]
+                             :header        => [:post_std, :post1, :post2, :post3, :sm_logo]
                            },
         :Discussion     => {
                              :logo          => [:btn, :thumb, :icon, :profile], 
                              :header        => [:banner, :preview]
                            },
         :SocialNetwork  => {
-                             :logo          => [:logo, :btn, :icon, :cover, :top]    
+                             :logo          => [:logo, :btn, :icon, :cover, :top],    
+                             :logo_social   => [:thumb, :sm_logo, :md_logo]    
                            },
         :LandingPage    => {
                              :header        => [:xsmall, :small, :medium, :large, :xlarge, :xxlarge],        

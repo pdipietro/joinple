@@ -1,7 +1,6 @@
 - csn = current_social_network
-- search = PostComment.new
 - if logged_in?
-  #post-header-left
+  #common-header-left
     = bootstrap_form_for(post, :remote => :true ) do |f|
       .command
         .post-text.nothing= f.text_area :content, :hide_label => :true
@@ -9,52 +8,68 @@
       .row.nothing
         .buttons.nothing
           .post-icon.nothing
-            %a{ :href => "#", :type => "submit", :name => "commit", :hide_label => :true, :title => "Send the post"  } 
-              %i.im-send-post.im-17x
+            = f.submit :remote => :true, :title => "Send the post" do
+              -#= link_to posts_path, :type => "submit", :name => "commit", :method => :post, :remote => :true, :hide_label => :true, :title => "Send the post" do
+              -#%a{ :href => "posts", :method => :post, :type => "submit", :name => "commit", :hide_label => :true, :title => "Send the post"  } 
+              %i.hoverable.im-send-post.im-17x
           .post-icon.nothing
             = link_to dummy_path, :remote => :true, :title => "Add a photo" do
-              %i.im-camera.im-17x
+              %i.hoverable.im-camera.im-17x
           .post-icon.nothing
             = link_to dummy_path, :remote => :true, :title => "Add a video" do
-              %i.im-film.im-17x
+              %i.hoverable.im-film.im-17x
           .post-icon.nothing
             = link_to dummy_path, :remote => :true, :title => "Tag people" do
-              %i.im-user-plus.im-17x
+              %i.hoverable.im-user-plus.im-17x
           .post-icon.nothing
             = link_to dummy_path, :remote => :true, :title => "Add file" do
-              %i.im-attachment.im-17x
+              %i.hoverable.im-attachment.im-17x
           .post-icon.nothing
             = link_to dummy_path, :remote => :true, :title => "Add an emoticon" do
-              %i.im-happy.im-17x
+              %i.hoverable.im-happy.im-17x
       .spacer
       .row.nothing
         .buttons.nothing
           .post-icon.nothing
             = link_to dummy_path, :remote => :true, :title => "Show all posts" do
-              %i.im-all-posts.im-17x
+              %i.activable.im-all-posts.im-17x
           .post-icon.nothing
             = link_to dummy_path, :remote => :true, :title => "Show my posts" do
-              %i.im-my-posts.im-17x
+              %i.activable.im-my-posts.im-17x
           .post-icon.nothing
             = link_to dummy_path, :remote => :true, :title => "Show my preferred posts" do
-              %i.im-bookmarks.im-17x
+              %i.activable.im-bookmark.im-17x
           .post-icon.nothing
             = link_to dummy_path, :remote => :true, :title => "Show my dots <TBD>" do
-              %i.im-dor.im-17x
-          .input-group.search
-            %input.form-control{:placeholder => "Search for...", :type => "text"}
-              %span.input-group-btn
-                %button.btn.btn-default{:type => "button"}
-
-                  %i.nothing.im-search
-          -#.post-search.nothing.form-horizontal
-            = bootstrap_form_for(search, :remote => :true ) do |g|
-              .post-search-text.nothing= g.text_field :content, :hide_label => :true
-              %a{ :href => "#", :type => "submit", :name => "commit", :hide_label => :true, :title => "Search"  } 
-                .post-icon.nothing
-                  %i.im-search.im-17x
-                .float-left
-                  %i.im-happy.im-17x
-                %i.im-search.im-17x
+              %i.activable.im-dot.im-17x
+          = render partial: 'shared/search'
+      #image-list.collapse
+        .spacer
+        .row.nothing
+          .buttons.nothing
+            .post-icon.nothing
+              = link_to dummy_path, :remote => :true, :title => "Show all posts" do
+                %i.activable.im-all-posts.im-17x
+      #video-list.collapse
+        .spacer
+        .row.nothing
+          .buttons.nothing
+            .post-icon.nothing
+              = link_to dummy_path, :remote => :true, :title => "Show all posts" do
+                %i.activable.im-all-posts.im-17x
+      #attachment-list.collapse
+        .spacer
+        .row.nothing
+          .buttons.nothing
+            .post-icon.nothing
+              = link_to dummy_path, :remote => :true, :title => "Show all posts" do
+                %i.activable.im-all-posts.im-17x
+      #tagged-people-list.collapse
+        .spacer
+        .row.nothing
+          .buttons.nothing
+            .post-icon.nothing
+              = link_to dummy_path, :remote => :true, :title => "Show all posts" do
+                %i.activable.im-all-posts.im-17x
+  = render partial: 'shared/logo_social_network'
   = render partial: 'shared/people'
-  .spacer.col-xs-60

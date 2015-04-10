@@ -1,4 +1,3 @@
-
 /* icomoon resize and rotate */
 
 i {
@@ -188,6 +187,27 @@ i.header.im-signup-landing {
   color: #ffffff;
 }
 
+i.activable,
+i.hoverable,
+i.activable:visited,
+i.hoverable:visited {
+  color: #9b9b9b;
+  text-decoration: none;
+
+}
+
+i.hoverable:hover {
+  color: #333342;
+  text-decoration: none;
+}
+
+i.activable:hover,
+i.activable:active,
+i.activable:focus {
+  color: #a02348;
+  text-decoration: none;
+}
+
 /* #page margin top must be equal to header.height + 10 px */
 
 body {
@@ -234,7 +254,7 @@ a:hover {
   text-decoration: none;
 }
 
-a, a:visited, a:hover {
+a, a:visited, a:hover, a:focus, a:active {
   color: inherit;
   text-decoration: none;
 }
@@ -319,6 +339,11 @@ html, body, #header, #page {
   amin-width: 800px;
 }
 
+.page-thumbnail {
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
 /* ************************************************************************************************************************
 ***************************************************************************************************************************
 ** Common header for posts
@@ -329,6 +354,8 @@ html, body, #header, #page {
 /* ************************************************************************************************************************
 ** Post header left
 ************************************************************************************************************************ */
+
+/*
 
 #post-header-left {
   width: 400px;
@@ -360,7 +387,7 @@ html, body, #header, #page {
 
 #post-header-left * .search {
   float: left;
-  width: 60%;
+  width: 55%;
   margin-top: -4px;
   margin-right: 4px;
 }
@@ -369,9 +396,9 @@ html, body, #header, #page {
   margin-right: 8px;
 }
 
-
+*/
 /** Social network logo **/
-
+/*
 #post-header-left * .social-network-logo {
   width: 155px;
   padding-top: 5px;
@@ -401,13 +428,13 @@ html, body, #header, #page {
 #post-header-left * .social-network-logo,
 #main_header,
 #user_info {
-  max-height: 121px;   /* it was 124 before adding #main_header */
+  max-height: 121px;   
 }
-
+*/
 /* ************************************************************************************************************************
 ** Post header center
 ************************************************************************************************************************ */
-
+/*
 #post-header-center {
   margin: 0 160px 0 160px;
   min-width: 80px;
@@ -445,11 +472,11 @@ html, body, #header, #page {
 #post-header-center * .post-icon:last-child {
   margin-right: 8px;
 }
-
+*/
 /* ************************************************************************************************************************
 ** Post header right
 ************************************************************************************************************************ */
-
+/*
 #post-header-right {
   width: auto;
   sfloat: left;
@@ -495,14 +522,15 @@ html, body, #header, #page {
   margin-right: 8px;
   width: 100%;
 }
-
+*/
 /* ************************************************************************************************************************
 ** Common header left
 ************************************************************************************************************************ */
 
 #common-header-left {
-  width: 49.5%;
-  min-width: 270px;
+  width: 400px;
+  min-width: 400px;
+  height: auto; /* 158px; */
   margin: 0;
   padding: 0;
   float: left;
@@ -510,19 +538,20 @@ html, body, #header, #page {
 }
 
 #common-header-left * textarea#post_content.form-control {
-  height: 87px;
+  height: 98px;
   width: 100%;
-  min-width: 87px;
+  min-width: 98px;
 }
 
-#common-header-left .post-buttons {
+#scommon-header-left .post-buttons {
   background-color: #ffffff;
   height: 30px;
 }
 
 #common-header-left * .post-icon {
   float: left;
-  width: 10%;
+  swidth: 10%;
+  margin-right: 16px;
   margin-top: 4px;
 }
 
@@ -530,10 +559,11 @@ html, body, #header, #page {
   margin-left: 8px;
 }
 
-#common-header-left * .post-search {
+#common-header-left * .search {
   float: left;
-  width: 47%;
-  margin-top: 3px;
+  width: 56%;
+  margin-top: 1.5px;
+  margin-right: 8px;
 }
 
 #common-header-left * .post-search-text > input {
@@ -544,37 +574,154 @@ html, body, #header, #page {
   margin-right: 8px;
 }
 
+#common-header-left * .command {
+  height: 98px;
+}
+
+#common-header-left .buttons {
+  width: 400px;
+  height: 30px;
+  float: left;
+  border-radius: 4px;
+  background-color: #ffffff;
+}
+/*
+#post-header-left * .buttons {
+  float: left;
+  height: 30px;
+  width: 100%;
+  background-color: #ffffff;
+}
+
+
+#post-header-left * .search {
+  float: left;
+  width: 55%;
+  margin-top: -4px;
+  margin-right: 4px;
+}
+*/
 /* ************************************************************************************************************************
 ** Common header right
 ************************************************************************************************************************ */
 
 #common-header-right {
-  width: 155px;
-  margin-left: 0;
-  float: right;
-  padding: 5px 5px 0 0;
-
-  border-top-right-radius: 4px;
+  width: auto;
+  margin-left: 570px;
+  border-radius: 4px;
+  min-height: 166px;
+  max-height: 166px; 
+  background-color: #ffffff;
 }
 
-/** Social network logo **/
-
-#common-header-right * .social-network-logo {
-  width: 155px;
-  padding-top: 5px;
-  margin-right: 3px;
-}
-
+/*
 #common-header-right * img.social-network-logo {
   height: 116px;
   width: auto;
   padding: 0;
 }
+*/
 
-#common-header-right * .social-network-logo,
-#main_header,
-#user_info {
-  max-height: 121px;   /* it was 124 before adding #main_header */
+/* ************************************************************************************************************************
+** Social network logo 
+************************************************************************************************************************ */
+
+#social-network.logo-social-md {
+  height: 166px;
+  width: 171px;
+  margin-left: 5px;
+  border-left: 5px;
+  float: left;
+  border-radius: 4px;
+}
+
+#social-network.logo-social-md img {
+  padding-left: 5px;
+}
+
+/* ************************************************************************************************************************
+** Posts
+************************************************************************************************************************ */
+
+.post-text,
+.post-text .form-group,
+.post-text textarea {
+  width: 100%;
+  height: 100%;
+}
+
+.post-text {
+  min-height: 176px;
+  z-index: 2000;
+}
+
+.post {
+  background-color: #ffffff;
+  padding-right: 4px;
+}
+
+.post.header {
+  max-width: 400px;
+  min-height: 200px;
+  max-height: auto;
+}
+
+.post.images {
+  max-width: 400px;
+  height: 300px; 
+}
+
+.post.owner {
+  position: absolute;
+  bottom: o;
+  left: 0;
+  height: 30px;
+  width: auto;
+  background: rgba(128,128,128,50);
+}
+
+.post.content {
+  position: absolute;
+  height: 30px;
+  width: auto;
+  background: #pink;
+}
+
+.post.commands {
+
+}
+
+/* ************************************************************************************************************************
+** Languages
+************************************************************************************************************************ */
+
+.language {
+  background-color: #ffffff;
+}
+
+.language-title {
+  font-weight: bolder;
+  text-align: center;
+}
+
+/* ************************************************************************************************************************
+** List-group-items 
+************************************************************************************************************************ */
+
+li.left,
+.list-group-item:last-child,
+.list-group-item:first-child {
+  border-radius: 0;
+}
+
+ul.list_group a:first-child .list-group-item {
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+}
+
+ul.list_group a:last-child .list-group-item {
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
 }
 
 
@@ -723,6 +870,8 @@ i.user-info-icons {
   border-bottom-right-radius: 4px;
   border-bottom-left-radius: 4px;
 }
+
+
 
 /*
 

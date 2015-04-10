@@ -3,7 +3,7 @@ class PostBelongsTo
   include CreatedAtUpdatedAt
 
   from_class  Post
-  to_class    :any
+  to_class    SocialNetwork
   type 'belongs_to'
 
 end
