@@ -4,7 +4,7 @@
   -#.spacer
   .buttons.nothing
     .post-icon.nothing
-      %a.toggle{ :type => "toggle", "data-target" => "#social-network-form", "data-toggle" => "collapse", :title => "Create new social network"}
+      = link_to new_social_network_path, :remote => :true, :title => "All posts" do
         %i.hoverable.im-plus.im-2x
     .post-icon.nothing
       = link_to dummy_path, :remote => :true, :title => "All posts" do

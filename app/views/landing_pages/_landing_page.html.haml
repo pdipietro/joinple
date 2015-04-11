@@ -20,7 +20,7 @@
   #social_network_introduction 
   #grid4{ "data-columns" => "" }
     - social_networks.each do | sn |
-      .social-network-item.hoverable{ :style => "background-color: #{sn.background_color}; color: #{sn.text_color};" } 
+      .no-padding.social-network-item.hoverable{ :style => "background-color: #{sn.background_color}; color: #{sn.text_color};" } 
         = image_tag sn.logo.url(:cover)
         -#{ :alt => "#{sn}"}
         .view-more

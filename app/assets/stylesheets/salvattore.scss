@@ -1,18 +1,34 @@
+$standard_padding:4px;
+
+
+
 /* ****************************     SALVATTORE     ******************************* */
 
-@media screen and (max-width: 360px)
-{    #grid3[data-columns]::before    {        content: '1 .column.size-3-1';     }   }
-
-@media screen (max-width: 800px)
+@media screen and (max-width: 767px)
 {    @viewport { width: 800px; orientation: landscape; }   }
  
-@media screen and (min-width: 800px) and (max-width: 1920px)
+/* 
+@media screen and (min-width: 768px) and (max-width: 1920px)
+{    @viewport { width: 800px; orientation: landscape; }   }
+*/ 
+
+@media screen and (min-width: 768px) and (max-width: 1920px)
 {    @viewport { width: device-width; orientation: landscape; }   }
 
 @media screen and (min-width: 1921px)
 {    @viewport { width: 1920px; orientation: landscape; }   }
 
-.column    { float: left; }
+.column    { 
+  float: left;
+  .padding {
+    padding-left: $standard_padding;
+    padding-top: $standard_padding;
+  }
+  .padding:first_child ,
+  .no-padding {
+    padding-left: 0;
+  }
+}
 
 /* ************************************************************************************************** */
 
@@ -30,10 +46,10 @@
 @media screen and (min-width: 361px) and (max-width: 640px)
 {    #grid2[data-columns]::before    {        content: '2 .column.size-2-2';     }   }
  
-@media screen and (min-width: 451px) and (max-width: 800px)
+@media screen and (min-width: 641px) and (max-width: 767px)
 {    #grid2[data-columns]::before    {        content: '3 .column.size-2-3';     }   }
  
-@media screen and (min-width: 800px) and (max-width: 1600px)
+@media screen and (min-width: 768px) and (max-width: 1600px)
 {    #grid2[data-columns]::before    {        content: '4 .column.size-2-4';     }   }
  
 @media screen and (min-width: 1601px) and (max-width:1920px)
@@ -65,10 +81,10 @@
 @media screen and (min-width: 361px) and (max-width: 640px)
 {    #grid3[data-columns]::before    {        content: '2 .column.size-3-2';     }   }
  
-@media screen and (min-width: 451px) and (max-width: 800px)
+@media screen and (min-width: 641px) and (max-width: 767px)
 {    #grid3[data-columns]::before    {        content: '3 .column.size-3-3';     }   }
  
-@media screen and (min-width: 800px) and (max-width: 1600px)
+@media screen and (min-width: 768px) and (max-width: 1600px)
 {    #grid3[data-columns]::before    {        content: '4 .column.size-3-4';     }   }
  
 @media screen and (min-width: 1601px) and (max-width:1920px)
@@ -100,10 +116,10 @@
 @media screen and (min-width: 361px) and (max-width: 640px)
 {    #grid4[data-columns]::before    {        content: '2 .column.size-4-2';     }   }
  
-@media screen and (min-width: 451px) and (max-width: 800px)
+@media screen and (min-width: 641px) and (max-width: 767px)
 {    #grid4[data-columns]::before    {        content: '3 .column.size-4-3';     }   }
  
-@media screen and (min-width: 800px) and (max-width: 1600px)
+@media screen and (min-width: 768px) and (max-width: 1600px)
 {    #grid4[data-columns]::before    {        content: '4 .column.size-4-4';     }   }
  
 @media screen and (min-width: 1601px) and (max-width:1920px)
@@ -135,10 +151,10 @@
 @media screen and (min-width: 361px) and (max-width: 640px)
 {    #grid5[data-columns]::before    {        content: '2 .column.size-5-2';     }   }
  
-@media screen and (min-width: 451px) and (max-width: 800px)
+@media screen and (min-width: 641px) and (max-width: 767px)
 {    #grid5[data-columns]::before    {        content: '3 .column.size-5-3';     }   }
  
-@media screen and (min-width: 800px) and (max-width: 1600px)
+@media screen and (min-width: 768px) and (max-width: 1600px)
 {    #grid5[data-columns]::before    {        content: '4 .column.size-5-4';     }   }
  
 @media screen and (min-width: 1601px) and (max-width:1920px)
@@ -176,10 +192,10 @@
 @media screen and (min-width: 361px) and (max-width: 640px)
 {    #gridst6[data-columns]::before    {        content: '2 .column.size-st6-2';     }   }
  
-@media screen and (min-width: 451px) and (max-width: 800px)
+@media screen and (min-width: 641px) and (max-width: 767px)
 {    #gridst6[data-columns]::before    {        content: '4 .column.size-st6-3';     }   }
  
-@media screen and (min-width: 800px) and (max-width: 1600px)
+@media screen and (min-width: 768px) and (max-width: 1600px)
 {    #gridst6[data-columns]::before    {        content: '6 .column.size-st6-4';     }   }
  
 @media screen and (min-width: 1601px) and (max-width:1920px)

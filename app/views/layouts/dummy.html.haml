@@ -6,8 +6,5 @@
       document.cookie='width='+screen.width;
       document.cookie='height='+screen.height;
       document.cookie='pixelRatio='+("devicePixelRatio" in window ? devicePixelRatio : "1");
-      // document.width() doesn't run correctly.
-      // document.cookie='doc_width='+document.width();
-      // var x = 'http://gsn.crowdupcafe.com' 
       document.location.replace(document.baseURI);
   %html

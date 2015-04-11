@@ -8,12 +8,12 @@
       document.cookie='width='+screen.width;
       document.cookie='height='+screen.height;
       document.cookie='pixelRatio='+("devicePixelRatio" in window ? devicePixelRatio : "1");
-    = stylesheet_link_tag    'icomoon', media: 'all', 'data-turbolinks-track' => true
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    -#= stylesheet_link_tag    'icomoon', media: 'all', 'data-turbolinks-track' => true
+    -#= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
  
     = javascript_include_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'salvattore', media: 'all', 'data-turbolinks-track' => true
-    = stylesheet_link_tag    'salvattore', media: 'all', 'data-turbolinks-track' => true
+    -#= stylesheet_link_tag    'salvattore', media: 'all', 'data-turbolinks-track' => true
 
     -#%meta{ :name => "viewport", :content => "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"}    
     -#%meta{ :name => "viewport", :content => "width=device-width, initial-scale=1"}

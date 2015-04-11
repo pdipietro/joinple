@@ -7,7 +7,7 @@ i {
 
 i.header {
   position: relative;
-  top: 5px;
+  top: 5dppx;
   font-size: 1.4em;
   line-height: 0.75em;
 }
@@ -208,16 +208,16 @@ i.activable:focus {
   text-decoration: none;
 }
 
-/* #page margin top must be equal to header.height + 10 px */
+/* #page margin top must be equal to header.height + 10 dppx */
 
 body {
   background-color: #cccccc;
 }
 
 sbody, shtml, header, #page {
-  min-width: 800px;
-  swidth: 1280px;
-  smax-width: 1920px;
+  min-width: 800dppx;
+  swidth: 1280dppx;
+  smax-width: 1920dppx;
   margin: 0 auto;
   background-color: pink;
 
@@ -231,16 +231,16 @@ sbody, shtml, header, #page {
 }
 
 #page {
-  margin-top: 56px;
+  margin-top: 56dppx;
   background-color: #cccccc;
 }
 
 .navbar-brand.logo  {
-  padding: 6.5px 0;
+  padding: 6.5dppx 0;
 }
 
 ul.nav.navbar-nav > li {
-  padding: 0 14px;
+  padding: 0 14dppx;
 }
 
 .navbar-header {
@@ -266,8 +266,8 @@ ul.list_group > li:first-child > a:hover {
 }
 
 li.list-group-item {
-  border-top: 1px solid #e7e7e7;
-  padding-left: 3px;
+  border-top: 1dppx solid #e7e7e7;
+  padding-left: 3dppx;
 }
 
 /* ************************************************************************************************************************
@@ -297,7 +297,7 @@ li.list-group-item {
 }
 
 .spacer {
-  height: 4px;
+  height: 4dppx;
   background-color: inherit;
   color: inherit;
 }
@@ -315,33 +315,33 @@ li.list-group-item {
 ************************************************************************************************************************ */
 
 #main_left {
-  width: 205px;
+  width: 205dppx;
   margin-left: 0;
   float: left;
-  padding: 0 5px;
+  padding: 0 5dppx;
 }
 
 #main_right {
-  width: 205px;
-  margin-left: -205px;
+  width: 205dppx;
+  margin-left: -205dppx;
   float: right;
-  padding: 0 5px;
+  padding: 0 5dppx;
 }
 
 
 #main_center {
-  margin: 0 207px 0 207px;
-  min-width: 386px;
+  margin: 0 207dppx 0 207dppx;
+  min-width: 386dppx;
   padding: 0;
 }
 
 html, body, #header, #page {
-  amin-width: 800px;
+  amin-width: 800dppx;
 }
 
 .page-thumbnail {
-  padding-top: 3px;
-  padding-bottom: 3px;
+  padding-top: 3dppx;
+  padding-bottom: 3dppx;
 }
 
 /* ************************************************************************************************************************
@@ -358,19 +358,19 @@ html, body, #header, #page {
 /*
 
 #post-header-left {
-  width: 400px;
+  width: 400dppx;
   float: left;
-  border-top-left-radius: 4px;
-  min-height: 176px;
+  border-top-left-radius: 4dppx;
+  min-height: 176dppx;
 }
 
 #post-header-left * .command {
-  height: 116px;
+  height: 116dppx;
 }
 
 #post-header-left * .buttons {
   float: left;
-  height: 30px;
+  height: 30dppx;
   width: 100%;
   background-color: #ffffff;
 }
@@ -378,35 +378,35 @@ html, body, #header, #page {
 #post-header-left * .post-icon {
   float: left;
   width: 10%;
-  margin-top: 4px;
+  margin-top: 4dppx;
 }
 
 #post-header-left * .post-icon:first-child {
-  margin-left: 8px;
+  margin-left: 8dppx;
 }
 
 #post-header-left * .search {
   float: left;
   width: 55%;
-  margin-top: -4px;
-  margin-right: 4px;
+  margin-top: -4dppx;
+  margin-right: 4dppx;
 }
 
 #post-header-left * .post-icon:last-child {
-  margin-right: 8px;
+  margin-right: 8dppx;
 }
 
 */
 /** Social network logo **/
 /*
 #post-header-left * .social-network-logo {
-  width: 155px;
-  padding-top: 5px;
-  margin-right: 3px;
+  width: 155dppx;
+  padding-top: 5dppx;
+  margin-right: 3dppx;
 }
 
 #post-header-left * img.social-network-logo {
-  height: 116px;
+  height: 116dppx;
   width: auto;
   padding: 0;
 }
@@ -428,7 +428,7 @@ html, body, #header, #page {
 #post-header-left * .social-network-logo,
 #main_header,
 #user_info {
-  max-height: 121px;   
+  max-height: 121dppx;   
 }
 */
 /* ************************************************************************************************************************
@@ -436,41 +436,41 @@ html, body, #header, #page {
 ************************************************************************************************************************ */
 /*
 #post-header-center {
-  margin: 0 160px 0 160px;
-  min-width: 80px;
+  margin: 0 160dppx 0 160dppx;
+  min-width: 80dppx;
   padding: 0;
 }
 
 #post-header-center * textarea#post_content.form-control {
-  height: 87px;
+  height: 87dppx;
   width: 100%;
-  min-width: 87px;
+  min-width: 87dppx;
 }
 
 #post-header-center .post-buttons {
   background-color: #ffffff;
-  height: 30px;
+  height: 30dppx;
 }
 
 #post-header-center * .post-icon {
   float: left;
   width: 10%;
-  margin-top: 4px;
+  margin-top: 4dppx;
 }
 
 #post-header-center * .post-icon:first-child {
-  margin-left: 8px;
+  margin-left: 8dppx;
 }
 
 #post-header-center * .post-search {
   float: left;
   width: 47%;
-  margin-top: 3px;
+  margin-top: 3dppx;
 }
 
 
 #post-header-center * .post-icon:last-child {
-  margin-right: 8px;
+  margin-right: 8dppx;
 }
 */
 /* ************************************************************************************************************************
@@ -480,22 +480,22 @@ html, body, #header, #page {
 #post-header-right {
   width: auto;
   sfloat: left;
-  margin-left: 404px;
-  border-top-right-radius: 4px;
-  min-height: 184px;
-  max-height: 184px; 
-  sborder: 1px solid #cccccc;
+  margin-left: 404dppx;
+  border-top-right-radius: 4dppx;
+  min-height: 184dppx;
+  max-height: 184dppx; 
+  sborder: 1dppx solid #cccccc;
   background-color: #ffffff;
 }
 
 #post-header-right .post-icon .col {
-  min-height: 47px;
-  sborder: 1px solid #cccccc;
+  min-height: 47dppx;
+  sborder: 1dppx solid #cccccc;
 }
 
 #post-header-right .post-icon {
   width: 50%;
-  sborder-bottom: 1px solid #cccccc;
+  sborder-bottom: 1dppx solid #cccccc;
   sclear: both;
   text-align: center;
   float: right;
@@ -504,22 +504,22 @@ html, body, #header, #page {
 
 #post-header-right .post-icon:last-child:after {
   clear: right;
-  border-left: 1px solid #cccccc;
+  border-left: 1dppx solid #cccccc;
 }
 
 #post-header-right .post-save {
   border-bottom: 0;
-  height: 21px;
+  height: 21dppx;
 }
 
 #post-header-right .post-save  * i {
-  margin-left: 8px;
+  margin-left: 8dppx;
   width: 40%;
 }
 
 #post-header-right .post-save {
-  border-top: 4px;
-  margin-right: 8px;
+  border-top: 4dppx;
+  margin-right: 8dppx;
   width: 100%;
 }
 */
@@ -528,42 +528,42 @@ html, body, #header, #page {
 ************************************************************************************************************************ */
 
 #common-header-left {
-  width: 400px;
-  min-width: 400px;
-  height: auto; /* 158px; */
+  width: 400dppx;
+  min-width: 400dppx;
+  height: auto; /* 158dppx; */
   margin: 0;
   padding: 0;
   float: left;
-  border-top-left-radius: 4px;
+  border-top-left-radius: 4dppx;
 }
 
 #common-header-left * textarea#post_content.form-control {
-  height: 98px;
+  height: 98dppx;
   width: 100%;
-  min-width: 98px;
+  min-width: 98dppx;
 }
 
 #scommon-header-left .post-buttons {
   background-color: #ffffff;
-  height: 30px;
+  height: 30dppx;
 }
 
 #common-header-left * .post-icon {
   float: left;
   swidth: 10%;
-  margin-right: 16px;
-  margin-top: 4px;
+  margin-right: 16dppx;
+  margin-top: 4dppx;
 }
 
 #common-header-left * .post-icon:first-child {
-  margin-left: 8px;
+  margin-left: 8dppx;
 }
 
 #common-header-left * .search {
   float: left;
   width: 56%;
-  margin-top: 1.5px;
-  margin-right: 8px;
+  margin-top: 1.5dppx;
+  margin-right: 8dppx;
 }
 
 #common-header-left * .post-search-text > input {
@@ -571,24 +571,24 @@ html, body, #header, #page {
 }
 
 #common-header-left * .post-icon:last-child {
-  margin-right: 8px;
+  margin-right: 8dppx;
 }
 
 #common-header-left * .command {
-  height: 98px;
+  height: 98dppx;
 }
 
 #common-header-left .buttons {
-  width: 400px;
-  height: 30px;
+  width: 400dppx;
+  height: 30dppx;
   float: left;
-  border-radius: 4px;
+  border-radius: 4dppx;
   background-color: #ffffff;
 }
 /*
 #post-header-left * .buttons {
   float: left;
-  height: 30px;
+  height: 30dppx;
   width: 100%;
   background-color: #ffffff;
 }
@@ -597,8 +597,8 @@ html, body, #header, #page {
 #post-header-left * .search {
   float: left;
   width: 55%;
-  margin-top: -4px;
-  margin-right: 4px;
+  margin-top: -4dppx;
+  margin-right: 4dppx;
 }
 */
 /* ************************************************************************************************************************
@@ -607,16 +607,16 @@ html, body, #header, #page {
 
 #common-header-right {
   width: auto;
-  margin-left: 570px;
-  border-radius: 4px;
-  min-height: 166px;
-  max-height: 166px; 
+  margin-left: 570dppx;
+  border-radius: 4dppx;
+  min-height: 166dppx;
+  max-height: 166dppx; 
   background-color: #ffffff;
 }
 
 /*
 #common-header-right * img.social-network-logo {
-  height: 116px;
+  height: 116dppx;
   width: auto;
   padding: 0;
 }
@@ -627,16 +627,16 @@ html, body, #header, #page {
 ************************************************************************************************************************ */
 
 #social-network.logo-social-md {
-  height: 166px;
-  width: 171px;
-  margin-left: 5px;
-  border-left: 5px;
+  height: 166dppx;
+  width: 171dppx;
+  margin-left: 5dppx;
+  border-left: 5dppx;
   float: left;
-  border-radius: 4px;
+  border-radius: 4dppx;
 }
 
 #social-network.logo-social-md img {
-  padding-left: 5px;
+  padding-left: 5dppx;
 }
 
 /* ************************************************************************************************************************
@@ -651,38 +651,38 @@ html, body, #header, #page {
 }
 
 .post-text {
-  min-height: 176px;
+  min-height: 176dppx;
   z-index: 2000;
 }
 
 .post {
   background-color: #ffffff;
-  padding-right: 4px;
+  padding-right: 4dppx;
 }
 
 .post.header {
-  max-width: 400px;
-  min-height: 200px;
+  max-width: 400dppx;
+  min-height: 200dppx;
   max-height: auto;
 }
 
 .post.images {
-  max-width: 400px;
-  height: 300px; 
+  max-width: 400dppx;
+  height: 300dppx; 
 }
 
 .post.owner {
   position: absolute;
   bottom: o;
   left: 0;
-  height: 30px;
+  height: 30dppx;
   width: auto;
   background: rgba(128,128,128,50);
 }
 
 .post.content {
   position: absolute;
-  height: 30px;
+  height: 30dppx;
   width: auto;
   background: #pink;
 }
@@ -715,13 +715,13 @@ li.left,
 }
 
 ul.list_group a:first-child .list-group-item {
-  border-top-right-radius: 4px;
-  border-top-left-radius: 4px;
+  border-top-right-radius: 4dppx;
+  border-top-left-radius: 4dppx;
 }
 
 ul.list_group a:last-child .list-group-item {
-  border-bottom-right-radius: 4px;
-  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4dppx;
+  border-bottom-left-radius: 4dppx;
 }
 
 
@@ -729,7 +729,7 @@ ul.list_group a:last-child .list-group-item {
 ** Dinamic specs for sections
 ************************************************************************************************************************ */
 
-@media screen and (max-width: 800px) and (max-width: 1000px)
+@media screen and (max-width: 800dppx) and (max-width: 1000dppx)
 {    #social-network-form .col-xs-15,
      #language-form .col-xs-15 { 
       width: 0;
@@ -743,7 +743,7 @@ ul.list_group a:last-child .list-group-item {
      }
 }
  
-@media screen and (min-width: 1000px) and (max-width: 1280px)
+@media screen and (min-width: 1000dppx) and (max-width: 1280dppx)
 {    #social-network-form .col-xs-15,
      #language-form .col-xs-15 { 
       width: 25%; 
@@ -752,7 +752,7 @@ ul.list_group a:last-child .list-group-item {
     }
 }
 
-@media screen and (min-width: 1281px)
+@media screen and (min-width: 1281dppx)
 {    
 }
 
@@ -775,7 +775,7 @@ ul.list_group a:last-child .list-group-item {
 }
 
 .input-group-addon {
-  padding: 5px 5px;
+  padding: 5dppx 5dppx;
 }
 
 /*.img-owner1,*/
@@ -793,9 +793,9 @@ img.responsive.user-photo {
 }
 
 a.header-user-photo {
-  padding-top: 4px !important;
+  padding-top: 4dppx !important;
   padding-bottom: 0;
-  max-height: 46px !important;
+  max-height: 46dppx !important;
 }
 
 span.user-wellcome {
@@ -808,12 +808,12 @@ span.user-wellcome {
 
 .user-info.user-name {
   font-size: 100%;
-  padding-top: 5px;
+  padding-top: 5dppx;
 }
 
 .user-info.usernick {
   font-size: 80%;
-  padding-bottom: 2px;
+  padding-bottom: 2dppx;
 }
 
 .user-star {
@@ -827,31 +827,31 @@ span.user-wellcome {
   color: #333342;
   text-align: center;
   text-align: -webkit-center;
-  border-bottom-right-radius: 4px;
-  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4dppx;
+  border-bottom-left-radius: 4dppx;
 }
 
 i.user-info-icons {
   font-size: medium;
   position: relative;
-  top: 2.5px;
+  top: 2.5dppx;
 }
 
 .top-rounded {
-  border-top-right-radius: 4px;
-  border-top-left-radius: 4px;
+  border-top-right-radius: 4dppx;
+  border-top-left-radius: 4dppx;
 }
 
 .bottom-rounded {
-  border-bottom-right-radius: 4px;
-  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4dppx;
+  border-bottom-left-radius: 4dppx;
 }
 
 .rounded {
-  border-top-right-radius: 4px;
-  border-top-left-radius: 4px;
-  border-bottom-right-radius: 4px;
-  border-bottom-left-radius: 4px;
+  border-top-right-radius: 4dppx;
+  border-top-left-radius: 4dppx;
+  border-bottom-right-radius: 4dppx;
+  border-bottom-left-radius: 4dppx;
 }
 
 .content-element-title {
@@ -861,14 +861,14 @@ i.user-info-icons {
 }
 
 .generic-container {
-  max-width: 415px;
-  margin: 4px 2px 4px 2px;
-  margin: 1px;
-  padding: 1px;
-  border-top-right-radius: 4px;
-  border-top-left-radius: 4px;
-  border-bottom-right-radius: 4px;
-  border-bottom-left-radius: 4px;
+  max-width: 415dppx;
+  margin: 4dppx 2dppx 4dppx 2dppx;
+  margin: 1dppx;
+  padding: 1dppx;
+  border-top-right-radius: 4dppx;
+  border-top-left-radius: 4dppx;
+  border-bottom-right-radius: 4dppx;
+  border-bottom-left-radius: 4dppx;
 }
 
 
@@ -880,26 +880,26 @@ i.user-info-icons {
 }
 
 a.header-user-photo {
-  padding-top: 4px !important;
+  padding-top: 4dppx !important;
   padding-bottom: 0;
-  max-height: 46px !important;
+  max-height: 46dppx !important;
 }
 
 a.header-user-photo > span img {
-  padding-top: 4px;
+  padding-top: 4dppx;
   padding-bottom: 0;
   vertical-align: top;
-  max-height: 46px;
+  max-height: 46dppx;
 }
 
 .header-user-photo > span span {
-  padding-top: 4px;
+  padding-top: 4dppx;
   padding-bottom: 0;
-  max-height: 46px;
+  max-height: 46dppx;
 }
 
 br.header-user-photo {
-  line-height: 1px;
+  line-height: 1dppx;
 }
 /*
             %a.dropdown-toggle.header_user_photo{ :href => "#", :id => "dropdownUser", "data-toggle" => "dropdown", :type => "button", :title => "Myself",  "aria-expanded" => "false"}
@@ -921,13 +921,13 @@ br.header-user-photo {
 }
 
 .input-group-addon {
-  padding-bottom: 4px;
+  padding-bottom: 4dppx;
 }
 
 .checkbox {
   margin: auto;
-  top: 4px;
-  left: 4px;
+  top: 4dppx;
+  left: 4dppx;
 }
 
 .to-right {
@@ -936,7 +936,7 @@ br.header-user-photo {
 }
 
 span.caret.to-right {
-  margin-top: 6px;
+  margin-top: 6dppx;
 }
 
 #main_left, #main_center, #main, #main_right {
@@ -949,8 +949,8 @@ span.caret.to-right {
   margin-right: 0;
   margin-left:0;
   position: relative;
-  top: 3px;
-  left: 4px;
+  top: 3dppx;
+  left: 4dppx;
 }
 
 aside {
@@ -965,17 +965,17 @@ span.transparent:hover {
 /*
 ul.list-group > li:not(first-child),
 ul.list-group {
-  border-left: 0px;
-  border-right: 0px;
-  border: 0px;
-  padding: 0px inherit;
+  border-left: 0dppx;
+  border-right: 0dppx;
+  border: 0dppx;
+  padding: 0dppx inherit;
 }
 ul.list-group > li:first-child {
-  padding-top:  10px;
-  padding-bottom:  10px
+  padding-top:  10dppx;
+  padding-bottom:  10dppx
 }
 ul.list-group > li:last-child {
-  padding-bottom:  10px
+  padding-bottom:  10dppx
 }
 */
 /*
@@ -984,28 +984,28 @@ ul.list-group > li:last-child {
 }
 
 .icon-composed {
-  top: -10px;
-  left: -10px;
+  top: -10dppx;
+  left: -10dppx;
 }
 
 .icon-hover {
-  top: 25px;
-  left: 25px;
+  top: 25dppx;
+  left: 25dppx;
   position: relative;
 }
 
 span.centered {
   position: relative;
-  left: -15px;
+  left: -15dppx;
 
 }
 
 .img-header {
   display: block;
-  width: 863px;
+  width: 863dppx;
   max-width: 100%;
   height: auto;
-  max-height: 200px; 
+  max-height: 200dppx; 
   margin-left: auto;
   margin-right: auto;
 }
@@ -1015,24 +1015,24 @@ span.centered {
   width: 2000%;
   display: block;
   height: auto;
-  margin-left: -30px;
+  margin-left: -30dppx;
   margin-right: auto;
 }
 
 
 .image-72 {
-  border-right: 3px;
-  padding-right: 0px;
-  margin-left: -15px;
-  margin-right: 3px;
+  border-right: 3dppx;
+  padding-right: 0dppx;
+  margin-left: -15dppx;
+  margin-right: 3dppx;
   padding-left: 0;
-  max-width: 72px;
+  max-width: 72dppx;
 }
 
 .v-glyphs {
-  padding-top: 5px;
-  padding-right: 5px;
-  padding-left: 5px;
+  padding-top: 5dppx;
+  padding-right: 5dppx;
+  padding-left: 5dppx;
 }
 
 .post-header {
@@ -1048,14 +1048,14 @@ span.centered {
 
 .command-button {
   padding-right: 0;
-  padding-left: 30px;
+  padding-left: 30dppx;
 
 }
 
 .im-stacked {
-    left: -10px;
+    left: -10dppx;
     position: relative;
-    top: 8px;
+    top: 8dppx;
     }
 
 .shared_debug {
@@ -1097,7 +1097,7 @@ span.centered {
 
 .checkbox {
   display: inline-block;
-  sleft: -25px; 
+  sleft: -25dppx; 
 }
 
 .checkbox > label  {
@@ -1109,19 +1109,19 @@ span.centered {
 }
 
 .bootstrap-switch {
-  min-width: 150px !important;
+  min-width: 150dppx !important;
 }
 
 .bootstrap-switch-container > label {
   text-align: center !important;
 }
 
-.px5 {
-  min-height: 5px;
+.dppx5 {
+  min-height: 5dppx;
 }
 
 .div200 {
-  max-height: 200px;
+  max-height: 200dppx;
 }
 
 li.header {
