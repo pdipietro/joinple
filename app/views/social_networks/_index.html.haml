@@ -1,8 +1,8 @@
 - if logged_in?
   .spacer
-  .page-thumbnail{ :style => super_social_network_style } Social networks
+  .page-thumbnail{ :style => super_social_network_style }= "Social networks"
   .spacer
-  #grid3{ "data-columns" => "" }
+  #grid3.padding{ "data-columns" => "" }
     - social_networks.each do |social_network|
       = render partial: 'show', locals: { social_network: social_network }
 

@@ -22,9 +22,31 @@
     = render 'layouts/shim'
     = puts "=================>>>> Here is 'landing_pages' layout"
     -#%body{:sn => "#{current_social_network_name?}"}
+    = javascript_include_tag 'salvattore.min', media: 'all', 'data-turbolinks-track' => true
     %body
       #wrapper
         #header
           = render 'layouts/header'
         #page.container-fluid
           = render 'landing_page'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -18,21 +18,13 @@ $standard_padding:4px;
 @media screen and (min-width: 1921px)
 {    @viewport { width: 1920px; orientation: landscape; }   }
 
-.column    { 
+.column {
   float: left;
-  .padding {
-    padding-left: $standard_padding;
-    padding-top: $standard_padding;
-  }
-  .padding:first_child ,
-  .no-padding {
-    padding-left: 0;
-  }
 }
 
 /* ************************************************************************************************** */
 
-/* grid4: Grid with 2 columns on the main page */
+/* grid2: Grid with 2 columns on the main page */
 
 #grid2 {
  margin: 0 auto;
@@ -67,12 +59,17 @@ $standard_padding:4px;
 
 /* ************************************************************************************************** */
 
-/* grid3: Grid with 2 columns on the main page */
+/* grid3: Grid with 3 columns on the main page */
 
 #grid3 {
- margin: 0 auto;
  padding: 0;
  border: 0;
+ .padding {
+   margin: 0 -2px 0 2px;
+ } 
+ .no-padding {
+   margin: 0 auto;
+ } 
 }
 
 @media screen and (max-width: 360px)
@@ -163,18 +160,12 @@ $standard_padding:4px;
 @media screen and (min-width: 1921px)
 {    #grid5[data-columns]::before    {        content: '6 .column.size-5-6';     }   }
 
-.size-5-1  { width: 100%; padding-right:3px; }
-.size-5-1:last_child  { padding-right:0; }
-.size-5-2  { width: 50%; padding-right:3px; }
-.size-5-2:last_child  { padding-right:0; }
-.size-5-3  { width: 33.333%; padding-right:3px; }
-.size-5-3:last_child  { padding-right:0; }
-.size-5-4  { width: 25%; padding-right:3px; }
-.size-5-4:last_child  { padding-right:0; }
-.size-5-5  { width: 20%; padding-right:3px; }
-.size-5-5:last_child  { padding-right:0; }
-.size-5-6  { width: 16.667%; padding-right:3px; }
-.size-5-6:last_child  { padding-right:0; }
+.size-5-1  { width: 100%; }
+.size-5-2  { width: 50%; }
+.size-5-3  { width: 33.333%; }
+.size-5-4  { width: 25%; }
+.size-5-5  { width: 20%; }
+.size-5-6  { width: 16.667%; }
 
 /* ************************************************************************************************** */
 
@@ -210,4 +201,23 @@ $standard_padding:4px;
 .size-st6-4  { width: 16.666%; }
 .size-st6-5  { width: 11.111%; }
 .size-st6-6  { width: 8.333%; }
+
+/* ************************************************************************************************** */
+
+.padding {
+  margin: 0 -2px;
+  div.column {
+    padding-left: $standard_padding / 2;
+    padding-right: $standard_padding / 2;
+  }
+}
+
+.no-padding {
+  margin: 0 auto;
+  div.column {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+  }
+}
 

@@ -1,52 +1,54 @@
-:javascript
-  $(function() {
-    $('input:checkbox').bootstrapSwitch();
-  });
-- xxx = ""
-.panel.panel-default
-  .panel-heading{ :style => current_social_network_style }
-    - t = !defined?(title)
-    %a.toggle.collapse{ :type => "toggle", "data-target" => "#gf#{group.uuid}", "data-toggle" => "collapse", :toggle => :false}
-      .panel-title
-        - if defined?(title)
-          = title
-          -#.button.close{:type => "button", "data-dismiss" => "alert", "aria-label" => "Close" }   , :class => group.errors.count == 0 && t ? 'collapse' : '' 
-        - else
-          New Group
-      %span.caret.to-right
-  .panel-body{ :id => "gf#{group.uuid}", :class =>  (group.errors.count == 0 && t) || !t ? 'collapse in' : 'collapse' } 
-    %div  
-      = bootstrap_form_for(group, :remote => :true, :html => {:multipart => true} ) do |f|
-        = f.text_field :name, :prepend => :name, :placeholder => "Enter the group name ", :hide_label => :true
-        = f.text_area :description, :prepend => :description, :placeholder => "Enter the group description", :hide_label => :true
+#group-form{ :class => group.errors.count == 0 ? 'collapse' : 'collapse in' }
+  .spacer
+  .col-xs-15
+  .col-xs-30
+    .panel.panel-default.nothing
+      .panel-heading{ :style => current_social_network_style }
+        %a.toggle{ :type => "toggle", "data-target" => "#group-form", "data-toggle" => "collapse"}
+          .panel-title
+            - if defined?(title)
+              = title
+              .button.close{:type => "button", "data-dismiss" => "alert", "aria-label" => "Close" }
+            - else
+              = "Create a new group"
+            %span.caret.to-right
+      .panel-body
+        = bootstrap_form_for(group, :remote => :true, :html => {:multipart => true} ) do |f|
+          .nothing= f.text_field :name, :prepend => :name, :placeholder => "Enter the group name ", :hide_label => :true
+          .spacer
+          .nothing= f.text_area :description, :prepend => :description, :placeholder => "Enter the group description", :hide_label => :true
 
-        = f.text_field :name , :class => "disabled", :disabled => "disabled", :prepend => :is_open,:append => f.check_box( :is_open, :label => "", :class => "adjust-checkbox-right", "data-size" => "mini", "data-on-text" => "YES", "data-off-text" => "NO", :value => :is_open), :placeholder => "Specify if this group must be open", :hide_label => :true, :prepend => "is open" 
+          .nothing= f.check_box :is_open 
+          .nothing= f.check_box :is_private 
 
-        = f.text_field :name , :class => "disabled", :disabled => "disabled", :prepend => :is_open,:append => f.check_box( :is_open, :label => "", :class => "adjust-checkbox-right", "data-size" => "mini", "data-on-text" => "YES", "data-off-text" => "NO", :value => :is_open), :placeholder => "Specify if this group must be open", :hide_label => :true, :prepend => "is open" 
+          .nothing= f.color_field :background_color, :prepend => "background color", :placeholder => "Enter the standard background color", :hide_label => :true, :class => "left-align" 
+          .spacer
+          .nothing= f.color_field :text_color, :prepend => "text color", :placeholder => "Enter the standard text color", :hide_label => :true, :class => "left-align" 
+          .spacer
 
-        .form-group
-          = f.check_box :is_open, :placeholder => "Specify if this group must be open", layout: :horizontal, "data-label-text" => "is open", "data-label-width" => "auto", "data-size" => "small", "data-on-text" => "YES", "data-off-text" => "NO", :hide_label => :true, control_col: "col-sm-6" 
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          = f.check_box :is_private, :placeholder => "Specify if this group must be private", layout: :horizontal, "data-label-text" => "is private", "data-size" => "small", "data-on-text" => "YES", "data-off-text" => "NO"
+          .nothing= f.text_field :logo, :prepend => "logo image", :placeholder => "Select the group logo (200x200 px)", :hide_label => :true, :disabled => :true
+          .spacer
+          .nothing= f.file_field :logo, :prepend => "logo image", :placeholder => "Select the group logo (200x200 px)", :hide_label => :true
+          .spacer
+          .nothing= image_tag group.logo.url(:profile) 
+          .spacer
+          .nothing= f.hidden_field :logo_cache
 
-        .form-group
-          = f.color_field :background_color, :prepend => "background color", :placeholder => "Enter the background color", :hide_label => :true, layout: :horizontal,control_col: "col-sm-5 noborder", label_col: "col-sm-2", :class => "left-align" 
-          = f.color_field :text_color, :prepend => "text color", :placeholder => "Enter the text color", :hide_label => :true, layout: :horizontal, control_col: "col-sm-5 noborder", label_col: "col-sm-2 noborder", :class => "left-align" 
+          .nothing= f.text_field :header, :prepend => "logo image", :placeholder => "Select the group banner (916x315 px)", :hide_label => :true, :disabled => :true
+          .spacer
+          .nothing= f.file_field :header, :prepend => "logo image", :placeholder => "Select the group banner (916x315 px)", :hide_label => :true
+          .spacer
+          .nothing= image_tag group.header.url(:profile) 
+          .spacer
+          .nothing= image_tag group.header.url(:sm_banner) 
+          .spacer
+          .nothing= f.hidden_field :header_cache
 
-        .form-group
-          = image_tag(group.logo) if (group.logo?)
-          = f.file_field :logo, :multiple => :true, :prepend => "cover image", :placeholder => "Enter the group cover image url", :hide_label => :true
-          = f.hidden_field :logo_cache
-
-        .form-group
-          = image_tag(group.header) if (group.header?)
-          = f.file_field :header, :multiple => :true, :prepend => "cover image", :placeholder => "Enter the group cover image url", :hide_label => :true
-          = f.hidden_field :header_cache
-
-        .form-group     
-          %button.icon_only{ :type => "submit", :name => "commit", :hide_label => :true, :title => "Save the element"  } 
-            %i.im-dot
-            save
+          %button.icon_only{ :type => "submit", :name => "commit", :hide_label => :true, :title => "Save the element" } 
+            %i.im-save-3
+            = "save"
           %button.icon_only{ :type => "reset", :name => "reset", :hide_label => :true, :title => "cancel" } 
             %i.im-cancel-circle
-            exit without saving       
+            = "exit without saving"  
+  .col-xs-15
+

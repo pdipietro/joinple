@@ -1,33 +1,31 @@
-%div.post-container-nothing
-  - if group.errors.count == 0
-    %div{ :id => group.uuid, :style => "background-color: #{group.background_color}; color: #{group.text_color};" }
-      - rels = count_relationships(group)
-      .div
-        -#= image_tag group.banner.url(:logo)
-      .div
-        .post-header
-          = group.name
-        %br
-        .post-content
-          = group.description
-      .div
-        -#= render partial: 'user/short_description', object: "user"
-      .div
-        %hr
-        = link_to onerel_path(group,'Group','likes'), :method => :post, :remote => :true, :test => "Likes" do
-          %i.im-dot
+%div{:id => group.uuid, :style => "background-color: #{group.background_color}; color: #{group.text_color};" }
+  - owner = ""    
+  - rels = count_relationships(group)
+  = link_to group_path(group.uuid), :remote => :true, :title => "View details" do
+    = image_tag group.header.url(:sm_banner), :class => "responsive"
+    .content
+      .title= group.name
+      = group.description
+      %hr
+      = "This group is "
+      .b= group.is_private ? "Private" : "Public"  
+      = " and "
+      .b= group.is_open ? "Open" : "Close"  
+      %hr
+      = link_to onerel_path(group,'Group','likes'), :method => :post, :remote => :true, :test => "Likes" do
+        %i.im-dot
+      = likes = group.query_as(:p).match("(p)<-[r:likes]-(u:User)").pluck(:u).count
+      %hr
+      = link_to onerel_path(group,'Group','likes'), :method => :post, :remote => :true, :test => "Likes" do
+        %i.im-dot
         = likes = group.query_as(:p).match("(p)<-[r:likes]-(u:User)").pluck(:u).count
-        %hr
-      .div
-        = link_to onerel_path(group,'Group','likes'), :method => :post, :remote => :true, :test => "Likes" do
-          %i.im-dot
-          = likes = group.query_as(:p).match("(p)<-[r:likes]-(u:User)").pluck(:u).count
-      .command-button
-        = link_to edit_group_path(group), :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Join the group" do
-          %i.im-dot
-          Join
-        - if can_modify?(group)
-          = link_to edit_group_path(group), :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Modify the element" do
-            %i.im-pencil
-          = link_to group, :method => :delete, :data => { :confirm => 'Are you sure?' }, :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Delete the element" do
-            %i.im-bin
+
+  - if can_modify?(group)
+    .command-button
+      .spaced-icon
+        = link_to edit_group_path(group), :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Modify the element" do
+          %i.im-pencil
+      .spaced-icon
+        = link_to group, :method => :delete, :data => { :confirm => 'Are you sure?' }, :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Delete the element" do
+          %i.im-bin
+  .spacer

@@ -17,7 +17,7 @@
 
     -#%meta{ :name => "viewport", :content => "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"}    
     -#%meta{ :name => "viewport", :content => "width=device-width, initial-scale=1"}
-    %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1", (min-resolution="#{session[:pixelRatio]}dppx"), (-webkit-min-device-pixel-ratio: "#{session[:pixelRatio]}") }
+    %meta{ :name => "viewport", :content => "width=device-width, initial-scale=2", (min-resolution="#{session[:pixelRatio]}dppx"), (-webkit-min-device-pixel-ratio: "#{session[:pixelRatio]}") }
     = csrf_meta_tags
     = google_webfonts_init({              |
         google: ['Roboto Slab', 'Roboto'] |
@@ -28,6 +28,7 @@
       $(function() {
         $('input:checkbox').bootstrapSwitch();
       });
+    = javascript_include_tag 'salvattore.min', media: 'all', 'data-turbolinks-track' => true
     %body{:sn => "#{csnn}"}
       #wrapper
         #header
@@ -35,3 +36,14 @@
         #page.container-fluid
           = render partial: 'layouts/c3_9_0'
           -#= yield
+
+
+
+
+
+
+
+
+
+
+

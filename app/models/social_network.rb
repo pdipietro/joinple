@@ -18,7 +18,7 @@ class SocialNetwork
   has_many  :in,  :has_posts, model_class: Post                # Posts
 
 
-  validates   :name, :presence => true, length: { minimum: 2 }
+  validates   :name, :presence => true, length: { minimum: 2 }, allow_blank: false
   validates_uniqueness_of :name, case_sensitive: false
   validates   :description, length: { minimum: 4 } #, allow_blank: true
   validates   :goal, length: { minimum: 4 } #, allow_blank: true

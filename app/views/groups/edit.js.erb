@@ -1,1 +1,2 @@
-$('#<%= escape_javascript(@group.uuid) %>').html("<%= escape_javascript(render partial: 'form', locals: { group: @group, title: "Edit group" } ) %>" );
+$("#main_add").html("<%= escape_javascript(render partial: 'form', locals: { group: @group, title: "Edit the #{@group.name} group" } ) %>" );
+$("#group-form").removeClass('in').addClass('in');

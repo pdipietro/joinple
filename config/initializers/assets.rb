@@ -12,6 +12,7 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w( ./../images/* )
 
 Rails.application.config.assets.precompile += %w( salvattore.js )
+Rails.application.config.assets.precompile += %w( salvattore.min.js )
 Rails.application.config.assets.precompile += %w( bootstrap.js )
 Rails.application.config.assets.precompile += %w( bootstrap.min.js )
 

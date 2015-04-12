@@ -17,9 +17,10 @@ class ImageSizes
           :post2       => ['[600, 300]',      :jpg, :quality => 70],              # Post standard is 400x200 on two columns, but can grow
           :post3       => ['[600, 300]',      :jpg, :quality => 70],              # Post standard is 400x200 on two columns, but can grow
                                                                                   # when the screen si stretched
-          :banner      => ['[854, 200]',      :jpg, :quality => 70],              # banner for generic profile
-          :md_banner   => ['[854,  315]',     :jpg, :quality => 70],              # banner for generic profile
-          :lg_banner   => ['[1708, 315]',     :jpg, :quality => 70],              # banner for generic profile
+          :banner      => ['[916,  200]',     :jpg, :quality => 70],              # banner for generic profile
+          :sm_banner   => ['[240,  140]',     :jpg, :quality => 70],              # banner for generic profile
+          :md_banner   => ['[916,  315]',     :jpg, :quality => 70],              # banner for generic profile
+          :lg_banner   => ['[1832, 315]',     :jpg, :quality => 70],              # banner for generic profile
           :xl_banner   => ['[2562, 315]',     :jpg, :quality => 70],              # banner for generic profile
           :xxl_banner  => ['[5120, 315]',     :jpg, :quality => 70],              # banner for generic profile
           :logo        => ['[200, 150]',      :jpg, :quality => 70],              # social network logo on a generic page
@@ -48,7 +49,7 @@ class ImageSizes
                            },            
         :Group          => {
                              :logo          => [:btn, :thumb, :icon, :profile], 
-                             :header        => [:btn, :thumb, :icon, :profile, :md_banner, :lg_banner, :xl_banner, :xxl_banner]
+                             :header        => [:btn, :thumb, :icon, :profile, :sm_banner, :md_banner, :lg_banner] #, :xl_banner, :xxl_banner]
                            },
         :Post           => {
                              :header        => [:post_std, :post1, :post2, :post3, :sm_logo]
@@ -62,7 +63,7 @@ class ImageSizes
                              :logo_social   => [:thumb, :sm_logo, :md_logo]    
                            },
         :LandingPage    => {
-                             :header        => [:xsmall, :small, :medium, :large, :xlarge, :xxlarge],        
+                             :header        => [:xsmall, :small, :medium, :large],  # :xlarge, :xxlarge],        
                              :logo          => [:logo]      
                            }
         }
