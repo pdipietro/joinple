@@ -65,15 +65,15 @@ module GroupsHelper
 
       def prepare_query(filter)
 
-          puts "++++ entered groups_helper/prepare_query(filter) ++++"
+       #   puts "++++ entered groups_helper/prepare_query(filter) ++++"
 
           basic_query = "(groups)-[r:belongs_to]->(sn:SocialNetwork { uuid : '#{current_social_network.uuid}'} ) "
 
-          puts basic_query
+       #  puts basic_query
 
           query_string = secondary_query(filter) << basic_query 
 
-          puts "++++ BEFORE RETURN: <#{query_string}> ++++"
+       #   puts "++++ BEFORE RETURN: <#{query_string}> ++++"
           query_string
       end
 

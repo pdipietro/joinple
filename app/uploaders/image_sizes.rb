@@ -1,5 +1,11 @@
 class ImageSizes
 
+# ################ COMMENT #############################################################
+#
+# the size prefixes (sm_, md_, lg_, _xl, _xxl) referso to large and very large devices
+# the prefix is calculated at run_time and depends on the phisical size of the screen
+#
+
     DESTINATION = %q["system/uploads/#{ENV['RAILS_ENV']}/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"]
 
     SIZES = {
@@ -20,6 +26,8 @@ class ImageSizes
           :banner      => ['[916,  200]',     :jpg, :quality => 70],              # banner for generic profile
           :sm_banner   => ['[240,  140]',     :jpg, :quality => 70],              # banner for generic profile
           :md_banner   => ['[916,  315]',     :jpg, :quality => 70],              # banner for generic profile
+          :md_banner   => ['[1084, 315]',     :jpg, :quality => 70],              # banner for generic profile
+
           :lg_banner   => ['[1832, 315]',     :jpg, :quality => 70],              # banner for generic profile
           :xl_banner   => ['[2562, 315]',     :jpg, :quality => 70],              # banner for generic profile
           :xxl_banner  => ['[5120, 315]',     :jpg, :quality => 70],              # banner for generic profile
@@ -49,7 +57,7 @@ class ImageSizes
                            },            
         :Group          => {
                              :logo          => [:btn, :thumb, :icon, :profile], 
-                             :header        => [:btn, :thumb, :icon, :profile, :sm_banner, :md_banner, :lg_banner] #, :xl_banner, :xxl_banner]
+                             :header        => [:btn, :thumb, :icon, :profile, :sm_banner, :md_banner, :lg_banner, :xl_banner]# , :xxl_banner]
                            },
         :Post           => {
                              :header        => [:post_std, :post1, :post2, :post3, :sm_logo]
@@ -73,6 +81,27 @@ class ImageSizes
           :retina           => '-set colorspace sRGB -strip -sharpen 0x0.5'
         }
 
+    SCREEN_WIDTH = [
+          [0,       360, 640, 768,1024, 1280,1440,1600,1920,   2560,  99999],
+          ["none","xxs","xs","sm","md","std","lg","xl","xxl","xxxl","xxxxl"]
+        ]
+
+    SCREEN_WIDTH2 = {
+            :none     =>     0,
+            :xxs      =>   360,
+            :xs       =>   640,
+            :sm       =>   768,
+            :md       =>  1024,
+            :std      =>  1280,
+            :lg       =>  1440,
+            :xl       =>  1600,
+            :xxl      =>  1920,
+            :xxxl     =>  2560,
+            :xxxxl    => 99999
+          }
+
+    RESIZABLE = [[:LandingPage,:header,:full], [:Group,:header,:central], [:Discussion,:header,:central], [:Post,:header,:central]]
+
     def styles(class_name, field_name)
       c = Hash.new
 
@@ -95,8 +124,20 @@ class ImageSizes
         version :btn do
           process :resize_to_fit => [36, 36]
         end
-
     end
 
+    LEFT_COLUMN_WIDTH = 178;
+    RIGHT_COLUMN_WIDTH = 178;
+    STANDARD_PADDING = 4;
+    CENTRAL_WIDTH = LEFT_COLUMN_WIDTH + RIGHT_COLUMN_WIDTH + 2 * STANDARD_PADDING;
+
+    def self.compute_full_image_size (phisical_size)
+        SCREEN_WIDTH2.detect { |k,v| v > phisical_size }[0].to_s
+     end
+
+    def self.compute_salvattore_size (columns, phisical_size, pixelRatio)
+        logical_size = ( phisical_size - CENTRAL_WIDTH ) / ( columns - 1 );
+        SCREEN_WIDTH2.detect { |k,v| v > logical_size }[0].to_s
+    end
 
 end

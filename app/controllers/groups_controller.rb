@@ -40,20 +40,22 @@ class GroupsController < ApplicationController
   # GET /groups/1
   # GET /groups/1.json
   def show
-    puts ("----- Groups Controller: Show -----------------------------------------------------------")
+=begin
     id = params[:id]
     @group = Group.find(id)
     set_current_group(@group)  
 
     query_string = "(posts)-[r:belongs_to]->(group:Group { uuid : '#{current_group_uuid?}'} ) "
-    puts "- Current_group: #{current_group}"
 
     @posts = Post.as(:posts).query.match(query_string).proxy_as(Post, :posts).paginate(:page => 1, :per_page => BASIC_ITEMS_PER_PAGE, return: :posts, order: "posts.created_at desc")
 
-          #get_post_subset(1,BASIC_ITEMS_PER_PAGE,"")
-
-    puts ("@group : #{@group}")
     render 'show', locals: { posts: @posts, current_owner: @group  } 
+end
+    id = params[:id]
+    @group = Group.find(id)
+    set_current_group(@group)  
+    @group
+=end
   end
 
   # GET /groups/new

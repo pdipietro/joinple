@@ -1,0 +1,25 @@
+- if is_admin?
+  -#.p
+    - user = current_user
+    - csn = current_social_network
+    - search = PostComment.new
+
+  #post-header
+  = image_tag group.header.url(:xl_banner), :class => "responsive"
+  #common-header-left
+    .buttons.nothing
+      .post-icon.nothing
+        = link_to new_group_path, :remote => :true, :title => "Add a new group" do
+          %i.hoverable.im-plus.im-2x
+      .post-icon.nothing
+        = link_to dummy_path, :remote => :true, :title => "View all groups" do
+          %i.activable.im-all-posts.im-2x
+      .post-icon.nothing
+        = link_to dummy_path, :remote => :true, :title => "View my groups" do
+          %i.activable.im-all-posts.im-2x
+      .post-icon.nothing
+        = link_to dummy_path, :remote => :true, :title => "View groups I administer" do
+          %i.activable.im-all-posts.im-2x
+      = render partial: 'shared/search'
+  .spacer
+ 
