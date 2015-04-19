@@ -1,31 +1,38 @@
 %div{:id => group.uuid, :style => "background-color: #{group.background_color}; color: #{group.text_color};" }
-  - owner = ""    
+  -# owner = group.get_owner
   - rels = count_relationships(group)
   = link_to group_path(group.uuid), :remote => :true, :title => "View details" do
-    = image_tag group.header.url(:sm_banner), :class => "responsive"
-    .content
-      .title= group.name
-      = group.description
-      %hr
-      = "This group is "
-      .b= group.is_private ? "Private" : "Public"  
-      = " and "
-      .b= group.is_open ? "Open" : "Close"  
-      %hr
-      = link_to onerel_path(group,'Group','likes'), :method => :post, :remote => :true, :test => "Likes" do
-        %i.im-dot
-      = likes = group.query_as(:p).match("(p)<-[r:likes]-(u:User)").pluck(:u).count
-      %hr
-      = link_to onerel_path(group,'Group','likes'), :method => :post, :remote => :true, :test => "Likes" do
-        %i.im-dot
-        = likes = group.query_as(:p).match("(p)<-[r:likes]-(u:User)").pluck(:u).count
+    %div
+      = image_tag group.header.url(:sm_banner), :class => "responsive"
+      .content
+        .title= group.name
+        = group.description
+        .border-1
+          = rels
+        .border-1
+          %span= "This group is "
+          %b= group.is_private ? "Private" : "Public"  
+          %span= " and "
+          %b= group.is_open ? "Open" : "Close"  
 
-  - if can_modify?(group)
-    .command-button
-      .spaced-icon
-        = link_to edit_group_path(group), :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Modify the element" do
-          %i.im-pencil
-      .spaced-icon
-        = link_to group, :method => :delete, :data => { :confirm => 'Are you sure?' }, :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Delete the element" do
-          %i.im-bin
-  .spacer
+        .border-1
+          = link_to onerel_path(group,'Group','likes'), :method => :post, :remote => :true, :test => "Likes" do
+            %i.im-dot
+            = rels["out-follows-User"].nil? ? 0 : rels["out-follows-User"]
+        .border-1
+          = link_to onerel_path(group,'Group','likes'), :method => :post, :remote => :true, :test => "Likes" do
+            %i.im-dot
+            = rels["out-follows-User"].nil? ? 0 : rels["out-follows-User"]
+
+      - if can_modify?(group)
+        .command-button
+          .spaced-icon
+            = link_to edit_group_path(group), :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Modify the element" do
+              %i.im-pencil
+          .spaced-icon
+            = link_to group, :method => :delete, :data => { :confirm => 'Are you sure?' }, :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Delete the element" do
+              %i.im-bin
+          .spaced-icon
+            %button.btn.btn-default.btn-sm-nothing{ :type => "submit", :name => "commit", :hide_label => :true, :style => super_social_network_style }
+              = "Join"
+      .spacer

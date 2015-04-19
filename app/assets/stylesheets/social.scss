@@ -71,16 +71,19 @@ i.header.im-signup-landing {
 .im-17x {
   font-size: 170%;
 }
-.im-2x {
+.im-2x, .im-20x {
   font-size: 200%;
 }
-.im-3x {
+.im-25x {
+  font-size: 250%;
+}
+.im-3x, .im-30x {
   font-size: 3em;
 }
-.im-4x {
+.im-4x, .im-40x {
   font-size: 4em;
 }
-.im-5x {
+.im-5x, .im-50x {
   font-size: 5em;
 }
 .im-fw {
@@ -313,6 +316,11 @@ li.list-group-item {
   color: inherit;
 }
 
+.border-1 {
+  border-top: 1px solid #e7e7e7;
+  padding-top: 1px;
+}
+
 hr {
   border-top: 1px solid transparent;
 }
@@ -329,6 +337,11 @@ hr {
   display: inline-flex;
 }
 
+.to-right {
+  clear: both;
+  float: right;
+}
+
 /* ************************************************************************************************************************
 ** Icons
 ************************************************************************************************************************ */
@@ -337,6 +350,13 @@ hr {
   margin-left: 20px;
   clear: left;
   display: -webkit-inline-box;
+}
+
+.social-icon {
+  position: absolute;
+  top: 7px;
+  left: $left_column_width + $standard_padding * 2;
+  padding: 0 !important;
 }
 
 /* ************************************************************************************************************************
@@ -365,8 +385,7 @@ hr {
 }
 
 .page-thumbnail {
-  padding-top: 3px;
-  padding-bottom: 3px;
+  padding: 3px $standard_padding;
 }
 
 /* ************************************************************************************************************************
@@ -462,6 +481,16 @@ hr {
 
 #social-network.logo-social-md img {
   padding-left: 5px;
+}
+
+/* ************************************************************************************************************************
+** Panel header banner (the colored row on top of a list panel)
+************************************************************************************************************************ */
+
+.header-icons-to-right {
+  clear: right; 
+  float: right;
+  right-margin: 10px;
 }
 
 /* ************************************************************************************************************************
@@ -880,6 +909,12 @@ span.centered {
   padding-right: 0;
   padding-left: 30px;
 
+}
+
+.command-button-right {
+  float: right
+  padding-right: 30px;
+  padding-left: 0;
 }
 
 .im-stacked {

@@ -1,28 +1,12 @@
 = link_to media_managers_path, :remote => :true do
   %li.left.list-group-item.no-padding{ :style => current_social_network_style }
-    -#%i.im-dot
     Media Manager
-= link_to media_manager_path(:landing_page), :remote => :true do
+= link_to media_manager_path(:pictures),  :remote => :true do
   %li.list-group-item.no-padding
-    %i.im-dot
-    Landing Page
-= link_to media_manager_path(:social_networks), :remote => :true do
+    = link_to media_manager_path(:pictures),  :remote => :true do
+      %i.im-dot
+      = "Pictures"
   %li.list-group-item.no-padding
-    %i.im-dot
-    Social networks
-= link_to media_manager_path(:user), :remote => :true do
-  %li.list-group-item.no-padding
-    %i.im-dot
-    User
-= link_to media_manager_path(:groups), :remote => :true do
-  %li.list-group-item.no-padding
-    %i.im-dot
-    Groups
-= link_to media_manager_path(:discussions), :remote => :true do
-  %li.list-group-item.no-padding
-    %i.im-dot
-    Discussions
-= link_to media_manager_path(:posts), :remote => :true do
-  %li.list-group-item.no-padding
-    %i.im-dot
-    Posts
+    = link_to media_manager_path(:video), :remote => :true do
+      %i.im-dot
+      = "Videos"

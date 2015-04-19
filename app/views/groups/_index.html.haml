@@ -1,11 +1,13 @@
 - if logged_in?
   .spacer
-  .page-thumbnail{ :style => current_social_network_style }= "Groups"
+  .page-thumbnail{ :style => current_social_network_style }
+    = title
+    = link_to new_group_path, :remote => :true, :title => "Add a new group" do
+      %i.hoverable.im-plus.to-right
   .spacer
   #grid4.padding{ "data-columns" => "" }
     - groups.each do |group|
       = render partial: "show", locals: { group: group }
-
 
 
 

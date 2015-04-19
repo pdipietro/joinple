@@ -1,5 +1,5 @@
 - if logged_in?
-  = puts "ready to call get_group_subset ... : - self = #{self.class}" 
+  -#= puts "ready to call get_group_subset ... : - self = #{self.class}" 
   - grps = get_group_subset(1,7,subset)
   = link_to groups_path, :remote => :true do
     %li.left.list-group-item.no-padding{ :id => "#{subset}", :style => current_social_network_style }

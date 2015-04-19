@@ -100,8 +100,8 @@ end
     puts ("----- Groups Controller: update -----------------------------------------------------------")
     respond_to do |format|
       if @group.update(group_params)
-        format.js   { render partial: "replace", object: @group, notice: 'Group was successfully created.' }
-        format.html { render partial: "replace", object: @group, notice: 'Group was successfully created.' }
+        format.js   { render partial: "replace", object: @group, notice: 'Group was successfully updated.' }
+        format.html { render partial: "replace", object: @group, notice: 'Group was successfully updated.' }
         format.json { render :show, status: :ok, location: @group }
       else
         format.js   { render :edit, object: @group }
@@ -134,9 +134,9 @@ end
     puts "INTO  - (GroupsController) get_subset"
     query_string = prepare_query(filter)
 
-    puts "group - get subset - query string: #{query_string}"
+    #puts "group - get subset - query string: #{query_string}"
     grp = Group.as(:groups).query.match(query_string).proxy_as(Group, :groups).paginate(:page => actual_page, :per_page => items_per_page, return: :groups, order: "groups.created_at desc")
-    puts "get_subset count: #{grp.count} - class: #{grp.class.name} - #{grp}"
+    #puts "get_subset count: #{grp.count} - class: #{grp.class.name} - #{grp}"
     grp
   end
 
@@ -145,9 +145,9 @@ end
     puts "INTO  - (postsController) get_subset"
     query_string = prepare_post_query(filter)
 
-    puts "post - get subset - query string: #{query_string}"
+    #puts "post - get subset - query string: #{query_string}"
     post = Post.as(:posts).query.match(query_string).proxy_as(Post, :posts).paginate(:page => actual_page, :per_page => items_per_page, return: :posts, order: "posts.created_at desc")
-    puts "get_subset count: #{post.count} - class: #{post.class.name} - #{post}"
+    #puts "get_subset count: #{post.count} - class: #{post.class.name} - #{post}"
     post
   end
 

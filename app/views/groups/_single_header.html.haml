@@ -9,16 +9,13 @@
   #common-header-left
     .buttons.nothing
       .post-icon.nothing
-        = link_to new_group_path, :remote => :true, :title => "Add a new group" do
-          %i.hoverable.im-plus.im-2x
-      .post-icon.nothing
-        = link_to dummy_path, :remote => :true, :title => "View all groups" do
+        = link_to dummy_path, :remote => :true, :title => "View discussions" do
           %i.activable.im-all-posts.im-2x
       .post-icon.nothing
-        = link_to dummy_path, :remote => :true, :title => "View my groups" do
+        = link_to dummy_path, :remote => :true, :title => "View group members" do
           %i.activable.im-all-posts.im-2x
       .post-icon.nothing
-        = link_to dummy_path, :remote => :true, :title => "View groups I administer" do
+        = link_to dummy_path, :remote => :true, :title => "View group admin" do
           %i.activable.im-all-posts.im-2x
       = render partial: 'shared/search'
   .spacer

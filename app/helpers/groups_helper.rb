@@ -1,8 +1,8 @@
 module GroupsHelper
   require 'neo4j-will_paginate_redux'
 
-  BASIC_ITEMS_PER_PAGE = 7
-  SECONDARY_ITEMS_PER_PAGE = 5
+  BASIC_ITEMS_PER_PAGE = 25
+  SECONDARY_ITEMS_PER_PAGE = 25
 
   private
 
@@ -38,7 +38,9 @@ module GroupsHelper
             when "fresh"
                   "Fresh groups"
             when "search"
-                 ""
+                  ""
+            when "all"
+                  "All groups"
             else 
                  "Groups"      
           end
@@ -65,15 +67,10 @@ module GroupsHelper
 
       def prepare_query(filter)
 
-       #   puts "++++ entered groups_helper/prepare_query(filter) ++++"
-
           basic_query = "(groups)-[r:belongs_to]->(sn:SocialNetwork { uuid : '#{current_social_network.uuid}'} ) "
-
-       #  puts basic_query
 
           query_string = secondary_query(filter) << basic_query 
 
-       #   puts "++++ BEFORE RETURN: <#{query_string}> ++++"
           query_string
       end
 

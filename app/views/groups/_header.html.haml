@@ -6,19 +6,18 @@
     #common-header
       = bootstrap_form_for(search, :remote => :true ) do |f|
         = render partial: 'top_left'
-  #common-header-left
-    .buttons.nothing
-      .post-icon.nothing
-        = link_to new_group_path, :remote => :true, :title => "Add a new group" do
-          %i.hoverable.im-plus.im-2x
-      .post-icon.nothing
-        = link_to dummy_path, :remote => :true, :title => "View my groups" do
-          %i.activable.im-all-posts.im-2x
-      .post-icon.nothing
-        = link_to dummy_path, :remote => :true, :title => "View groups I administer" do
-          %i.activable.im-all-posts.im-2x
-      .post-icon.nothing
-        = link_to dummy_path, :remote => :true, :title => "View all groups" do
-          %i.activable.im-all-posts.im-2x
-      = render partial: 'shared/search'
-  .spacer
+  #groups_page
+    #common-header-left
+      .buttons.nothing
+        .post-icon.nothing
+          = link_to groups_list_path("iparticipate"), :remote => :true, :title => "View my groups" do
+            %i.activable.im-my-groups.im-25x
+        .post-icon.nothing
+          = link_to groups_list_path("iadminister"), :remote => :true, :title => "View groups I administer" do
+            %i.activable.im-admin-groups.im-25x
+        .post-icon.nothing
+          = link_to groups_list_path("all"), :remote => :true, :title => "View all groups" do
+            %i.activable.im-all-groups.im-25x
+        = render partial: 'shared/search'
+    .spacer
+

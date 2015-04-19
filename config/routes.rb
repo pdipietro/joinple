@@ -48,7 +48,7 @@ Rails.application.routes.draw do
   resources :media_managers,      constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
   resources :user_profiles,       constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
 
-  post      '/groups/list/:filter(/:limit(/:subject))'  =>   'groups#list', :as => :group_list, defaults: { :format => "js"}, :remote => :true
+  get       'groups/list(/:filter(/:limit(/:subject)))'  =>   'groups#list', :as => :groups_list, defaults: { :format => "js"}, :remote => :true
   post      'likes/:id/:class/:rel_type'    =>    'likes#edit',           :as => :onerel, constraints: AuthConstraint.new
   get       'likes'                         =>    'likes#dummy',          :as => :dummy, constraints: AuthConstraint.new
   post      'search'                        =>    'likes#search',         :as => :search, constraints: AuthConstraint.new

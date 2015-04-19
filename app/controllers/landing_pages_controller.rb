@@ -31,6 +31,9 @@ class LandingPagesController < ApplicationController
     if session[:height].to_s.length < 2
       layout='dummy'
       page='home'
+    elsif logged_in?
+      layout="application"
+      page="home"
     else
       layout='landing_page'   
       page='landing_page'

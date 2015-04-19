@@ -9,6 +9,8 @@
         %span.icon-bar
       .navbar-brand.logo
         = image_tag "joinple_logo.png"
+      .navbar-brand.social-icon
+        = image_tag current_social_network.logo_social.url(:thumb), :size => ("32x32")
     #navbar.navbar-collapse.collapse
       %ul.nav.navbar-nav.navbar-right
         - unless logged_in?
@@ -129,19 +131,14 @@
                     %i.header-dropdown.im-administrator
                     Administrators
                 %li.divider
-              %li
-                = link_to current_user, :remote => :true do
+              -#%li
+                = link_to :href => "", :type => "toggle", "data-target" => "#tech-info", "data-toggle" => "collapse" do
                   %i.header-dropdown.im-about
-                  Everythings
+                  View config
               %li
                 %a.toggle{ :type => "toggle", "data-target" => "#tech-info", "data-toggle" => "collapse"}
                   %i.header-dropdown.im-about
                   View config
-              %li
-                .toggle
-                  = link_to "#", :type => "toggle", "data-target" => "#tech-info", "data-toggle" => "collapse" do
-                    %i.header-dropdown.im-about
-                    View config
 
 -#
               %li

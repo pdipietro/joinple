@@ -31,6 +31,30 @@ i, .icomoon-liga {
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.im-pending-invitations:before {
+	content: "\e623";
+}
+
+.im-my-groups:before {
+	content: "\e624";
+}
+
+.im-all-groups:before {
+	content: "\e625";
+}
+
+.im-admin-groups:before {
+	content: "\e626";
+}
+
+.im-check:before {
+	content: "\e609";
+}
+
+.im-uncheck:before {
+	content: "\e621";
+}
+
 .im-my-posts:before {
 	content: "\e61f";
 }
@@ -39,32 +63,12 @@ i, .icomoon-liga {
 	content: "\e620";
 }
 
-.im-save-3:before {
-	content: "\e609";
-}
-
-.im-save-2:before {
-	content: "\e623";
-}
-
-.im-save-1:before {
-	content: "\e624";
-}
-
 .im-send-post:before {
 	content: "\e62a";
 }
 
 .im-search:before {
 	content: "\e629";
-}
-
-.im-mybooks:before {
-	content: "\e625";
-}
-
-.im-mybook:before {
-	content: "\e626";
 }
 
 .im-like:before {

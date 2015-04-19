@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'icomoon';
-	src:url('fonts/icomoon.eot?cd1qxa');
-	src:url('fonts/icomoon.eot?#iefixcd1qxa') format('embedded-opentype'),
-		url('fonts/icomoon.woff?cd1qxa') format('woff'),
-		url('fonts/icomoon.ttf?cd1qxa') format('truetype'),
-		url('fonts/icomoon.svg?cd1qxa#icomoon') format('svg');
+	src:url('fonts/icomoon.eot?-fqxxvw');
+	src:url('fonts/icomoon.eot?#iefix-fqxxvw') format('embedded-opentype'),
+		url('fonts/icomoon.woff?-fqxxvw') format('woff'),
+		url('fonts/icomoon.ttf?-fqxxvw') format('truetype'),
+		url('fonts/icomoon.svg?-fqxxvw#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -32,6 +32,30 @@ i, .icomoon-liga {
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.im-pending-invitations:before {
+	content: "\e623";
+}
+
+.im-my-groups:before {
+	content: "\e624";
+}
+
+.im-all-groups:before {
+	content: "\e625";
+}
+
+.im-admin-group:before {
+	content: "\e626";
+}
+
+.im-check:before {
+	content: "\e609";
+}
+
+.im-uncheck:before {
+	content: "\e621";
+}
+
 .im-my-posts:before {
 	content: "\e61f";
 }
@@ -40,32 +64,12 @@ i, .icomoon-liga {
 	content: "\e620";
 }
 
-.im-save-3:before {
-	content: "\e609";
-}
-
-.im-save-2:before {
-	content: "\e623";
-}
-
-.im-save-1:before {
-	content: "\e624";
-}
-
 .im-send-post:before {
 	content: "\e62a";
 }
 
 .im-search:before {
 	content: "\e629";
-}
-
-.im-mybooks:before {
-	content: "\e625";
-}
-
-.im-mybook:before {
-	content: "\e626";
 }
 
 .im-like:before {
