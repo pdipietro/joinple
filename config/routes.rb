@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
 
-  resources :post_comments
   root                     'landing_pages#home'#, defaults: { :format => "js"}, :remote => :true
   get    'home'      =>    'landing_pages#home', defaults: { :format => "js"}, :remote => :true
   get    'about'     =>    'static_pages#about', defaults: { :format => "js"}, :remote => :true
@@ -31,7 +30,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users,               defaults: { :format => "js"}, :remote => :true
+  resources :users,               constraints: AuthConstraint.new,defaults: { :format => "js"}, :remote => :true,  except: [:destroy]
 
 # administrative resources
 
@@ -47,6 +46,7 @@ Rails.application.routes.draw do
   resources :images,              constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
   resources :media_managers,      constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
   resources :user_profiles,       constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
+  resources :post_comments,       constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
 
   get       'groups/list(/:filter(/:limit(/:subject)))'  =>   'groups#list', :as => :groups_list, defaults: { :format => "js"}, :remote => :true
   post      'likes/:id/:class/:rel_type'    =>    'likes#edit',           :as => :onerel, constraints: AuthConstraint.new

@@ -39,8 +39,6 @@
 			'photo': '&#xe90f;',
 			'film': '&#xe913;',
 			'video2': '&#xe913;',
-			'video-camera': '&#xe914;',
-			'video3': '&#xe914;',
 			'mic': '&#xe91e;',
 			'microphone': '&#xe91e;',
 			'file-text2': '&#xe926;',

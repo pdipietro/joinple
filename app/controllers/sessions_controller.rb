@@ -1,25 +1,31 @@
 class SessionsController < ApplicationController
-  before_action :check_social_network, only: [:new, :create]
+  before_action :check_social_network, only: [:new] #, :create]
 
   #render_to :js
 
   def new
+    puts "session_helper:new - Social network checked: it is #{current_social_network_name?}"
     respond_to do |format|
         format.js
     end
   end
 
   def create
+    puts "param= #{params[:session][:email]}"
     user = User.find_by(email: params[:session][:email])       
-
+    puts "User-by-email: #{user}"
     if user.nil? then
       user = User.find_by(nickname: params[:session][:email])
+    puts "User-email: #{user}"
     end 
 
     if user && user.authenticate(params[:session][:password])
+      puts "User is authenticated"
+      puts "session_helper:create - Social network checked: it is #{current_social_network_name?}"
       if user.activated?
          log_in user
          params[:session][:remember_me] == '1' ? remember(user) : forget(user)
+         puts "ready to redirect_back oooooooooooooooooooooooooooooooooooo"
          redirect_back_or user
       else
          message  = "Account not activated. "

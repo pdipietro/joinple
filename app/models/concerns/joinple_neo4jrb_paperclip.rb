@@ -47,7 +47,7 @@ end
 #  field :avatar_file_size,    :type => Fixnum
 #  field :avatar_updated_at,   :type => DateTime
 #
-module Gsn 
+module JoinPle 
   module Paperclip
     extend ActiveSupport::Concern
 

@@ -1,6 +1,6 @@
 module ApplicationHelper
 
-  ALLOWED_DOMAIN_SERVER = ["ssdcafe","test","crowdupcafe","joinple"]
+  ALLOWED_DOMAIN_SERVER = ["joinple"]
 
   # Returns the full title on a per-page basis.
   def full_title(page_title = '')
@@ -18,27 +18,34 @@ module ApplicationHelper
   end
 
   def calculate_full_path (sn)
-    "http://#{sn.name.downcase}.crowdupcafe.com"
+    "http://#{sn.name.downcase.gsub(/\s+/, "")}.#{request.domain}"
   end
 
   def load_social_network_from_url
+       puts "+++++++++++++++0 request.domain: #{request.domain}"
       sn = request.domain.split(".").first.downcase
+       puts "+++++++++++++++0 sn: #{sn}"
+      puts "ALLOWED_DOMAIN_SERVER.include? sn: #{ALLOWED_DOMAIN_SERVER.include? sn}"
       if ALLOWED_DOMAIN_SERVER.include? sn
         u = root_url.downcase
         sn = u[u.rindex("//")+2..-1].split(sn).first[0..-2]
       end 
        sn = sn.start_with?("test.") ? sn.split(".")[1] : sn 
+       puts "+++++++++++++++1 sn: #{sn}"
        sn = sn.start_with?("dev.") ? sn.split(".")[1] : sn 
+       puts "+++++++++++++++2 sn: #{sn}"
        sn = humanize_word(sn)
+       puts "+++++++++++++++3 sn: #{sn}"
        csn = SocialNetwork.find_by( :name => sn )
-       puts "+++++++++++++++ csn.class.name: #{csn.class.name}"
-       puts "+++++++++++++++ csn: #{csn}"
+       puts "+++++++++++++++4 csn.class.name: #{csn.class.name}"
+       puts "+++++++++++++++5 csn: #{csn}"
        if csn.class.name == "SocialNetwork"
          set_current_social_network (csn)
          puts "current_social_network: #{current_social_network}"
+      puts "caller: #{caller[0...5]}"
          current_social_network
        else
-         raise "515","Currento social network loading error"
+         raise "515","Current social network loading error"
        end
   end
 

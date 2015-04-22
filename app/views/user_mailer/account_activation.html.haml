@@ -1,6 +1,6 @@
-%h1 aGsn application
+%h1 JoinPl Social Network
 %p
   Hi #{@user.first_name},
 %p
-  Welcome to the Sample App! Click on the link below to activate your account:
+  Welcome to the JoinPle Social Network! Click on the link below to activate your account:
 = link_to "Activate", edit_account_activation_url(@user.activation_token, email: @user.email)

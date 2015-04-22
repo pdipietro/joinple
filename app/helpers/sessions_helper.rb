@@ -1,7 +1,7 @@
 module SessionsHelper
   include ApplicationHelper
 
-  SUPER_SOCIAL_NETWORK_NAME = ["joinple","gsn"]
+  SUPER_SOCIAL_NETWORK_NAME = ["joinple"]
   SUPER_SOCIAL_BACKGROUND_COLOR = "#a12349"
   SUPER_SOCIAL_COLOR = "#ffffff"  #333342 white is a better solution
 
@@ -45,6 +45,7 @@ module SessionsHelper
     if session[:social_network].class.name != "SocialNetwork"
       unless session[:social_network_uuid].nil?
         session[:social_network] = SocialNetwork.find(session[:social_network_uuid])
+        puts "current_social_network loaded: name= #{current_social_network_name?}"
       else
         puts "TRAGEDY !!!!"
         raise "515", TRAGEDY
@@ -74,7 +75,7 @@ module SessionsHelper
         puts "session[:social_network][:name]   mancante!!!!!!!!!!!!!!"
         "aaa"
      else
-        session[:social_network].name
+        session[:social_network][:name]
      end
   end
 
@@ -199,11 +200,13 @@ module SessionsHelper
     unless session[:social_network].class.name == "SocialNetwork" 
       puts "!!!!!!!!!!!!!!!!!! WARNING: I'M into check_social_network!!!"
        load_social_network_from_url
+       puts "session[:social_network]: #{session[:social_network]}, class: #{session[:social_network].class.name}"
        if session[:social_network].nil? 
           redirect_to root_url
        end
     end
 
+    puts "caller: #{caller[0...5]}"
     !session[:social_network].nil? 
   end
 
@@ -292,7 +295,8 @@ module SessionsHelper
   private
 
     def set_current_social_network (sn)
-      puts "HERE INTO set_current_social_network !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+      puts "caller: #{caller[0...5]}"
+      puts "HERE INTO set_current_social_network: #{sn} !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
       if sn.nil?
         puts "sn is nil => faccio il logout"
         log_out

@@ -33,9 +33,6 @@ class StaticPagesController < ApplicationController
     if logged_in?
       r="home"
       l="application"
-#    elsif current_social_network_name?.downcase == "gsn"
-#      r='pre_carousel'
-#      l="pre_carousel"  
     end
     render r, layout: l  
 

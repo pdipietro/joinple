@@ -13,6 +13,7 @@ gem 'will_paginate',           '3.0.7'
 gem 'bootstrap-will_paginate'
 gem 'bootstrap-sass'
 gem 'sass-rails'
+
 gem 'uglifier',                '2.5.3'
 gem 'coffee-rails'
 gem 'jquery-rails'
@@ -41,12 +42,9 @@ group :production do
   gem 'unicorn',        '4.8.3'
 end
 
-#gem "neo4j", "~> 3.0.0"
 gem "neo4j", "~> 4.0"
-#gem 'neo4j-will_paginate', github: 'neo4jrb/neo4j-will_paginate', branch: 'master'
 gem "neo4j-will_paginate_redux"
 
-#gem "haml"
 gem "haml-rails"
 
 gem 'bcrypt-ruby'
@@ -60,7 +58,6 @@ gem 'rack-cors', :require => 'rack/cors'
 gem 'bootstrap_colorpicker_rails'
 gem 'bootstrap-switch-rails', '~> 3.0.0'
 
-#gem "neo4jrb-paperclip", github: 'subvertallchris/neo4jrb-paperclip', require: "neo4jrb_paperclip"
 gem 'remotipart'
 gem 'carrierwave-neo4j', require: 'carrierwave/neo4j'
 gem 'carrierwave-ftp', :require => 'carrierwave/storage/ftp/all' # both FTP/SFTP
@@ -68,10 +65,11 @@ gem "rmagick"
 gem "inline_svg", '0.2.0'
 
 gem 'google-webfonts-rails'
-#gem 'dalli'
 
+#gem 'sprockets-rails', :require => 'sprockets/railtie'
+gem 'sprockets-rails', '2.1.3', :require => 'sprockets/rails/version'
 
-
+# gem "sprockets", '2.12.3' 
 
 #gem 'browser'
 

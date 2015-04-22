@@ -31,6 +31,22 @@ i, .icomoon-liga {
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.im-video-camera:before {
+	content: "\e627";
+}
+
+.im-pictures:before {
+	content: "\e62b";
+}
+
+.im-members:before {
+	content: "\e62c";
+}
+
+.im-discussions-groups:before {
+	content: "\e62d";
+}
+
 .im-pending-invitations:before {
 	content: "\e623";
 }
@@ -43,7 +59,7 @@ i, .icomoon-liga {
 	content: "\e625";
 }
 
-.im-admin-groups:before {
+.im-admin-group:before {
 	content: "\e626";
 }
 
@@ -145,10 +161,6 @@ i, .icomoon-liga {
 
 .im-film:before {
 	content: "\e913";
-}
-
-.im-video-camera:before {
-	content: "\e914";
 }
 
 .im-mic:before {

@@ -6,6 +6,8 @@ class UsersController < ApplicationController
   before_action :set_user,       only: [:show, :edit, :update]
 #  before_action :check_default,  only: [:create, :update]
 
+  respond_to :js
+
   # GET /users
   # GET /users.json
   def index
@@ -13,9 +15,6 @@ class UsersController < ApplicationController
   #  @users = User.as(:t).where('true = true').paginate(:page => params[:page], :per_page => 20)
   #  @users = User.as(:t).where('true = true WITH t ORDER BY t.first_name, t.last_name desc').paginate(:page => params[:page], :per_page => 20)
   #  @users = User.all.paginate(page: params[:page])
-     respond_to do |format|
-         format.js
-     end
   end
 
   # GET /users/1
@@ -55,7 +54,7 @@ class UsersController < ApplicationController
          #@user.save
 
     #    log_in @user
-    #    flash[:success] = "Welcome to the Gsn!"
+    #    flash[:success] = "Welcome to the JoinPle Social Network!"
     #    redirect_to @user
     #    format.json { render :show, status: :created, location: @user }
         @user.send_activation_email
