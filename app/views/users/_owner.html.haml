@@ -1,0 +1,30 @@
+- className = object.class.name
+
+- query = Neo4j::Session.query("match (o:#{className} { uuid : '#{object[:uuid]}' })<-[rel:owns]-(u:User)-[p:has_profile]->(up:UserProfile) return u, up")
+- user = query.first[:u]
+- user_profile = query.first[:up]
+
+%span
+  = image_tag user_profile.photo.url(:btn)
+  = "#{user.first_name} #{user.last_name} (owner)"
+
+
+
+-#
+  require 'rmagick'
+
+  im = Magick::Image.read('walter.jpg').first
+
+  circle = Magick::Image.new 200, 200
+  gc = Magick::Draw.new
+  gc.fill 'black'
+  gc.circle 100, 100, 100, 1
+  gc.draw circle
+
+  mask = circle.blur_image(0,1).negate
+
+  mask.matte = false
+  im.matte = true
+  im.composite!(mask, Magick::CenterGravity, Magick::CopyOpacityCompositeOp)
+
+  im.write 'walter_circle.png'

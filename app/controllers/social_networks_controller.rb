@@ -1,7 +1,41 @@
 class SocialNetworksController < ApplicationController
   before_action :set_social_network, only: [:show, :edit, :update, :destroy]
+  
+  include SocialNetworksHelper
 
   respond_to :js
+
+  helper_method  :secondary_items_per_page, :get_group_subset, :get_posts_subset
+ 
+  # GET /social_network/list/:filter(/:limit(/:subject))
+  def list
+    puts ("----- Social Network Controller: List --(#{params[:filter]})----------------------------------------")
+
+    filter = params[:filter]
+    first_page = params[:from_page].nil? ? 1 : params[:from_page]
+
+    query_string =
+      case filter
+        when "iparticipate"
+             "(user:User { uuid : '#{current_user.uuid}' })-[p:participates|owns]->(social_networks:SocialNetwork)"
+        when "iadminister"
+             "(user:User { uuid : '#{current_user.uuid}' })-[p:owns]->(social_networks:SocialNetwork)" 
+        when "all"
+             "(social_networks:SocialNetwork)"
+      end
+
+    @social_networks = SocialNetwork.as(:social_networks).query.match(query_string).proxy_as(SocialNetwork, :social_networks).paginate(:page => first_page, :per_page => SECONDARY_ITEMS_PER_PAGE, return: :social_networks, order: "social_networks.created_at desc")
+
+    render 'list', locals: { social_networks: @social_networks, subset: filter, title: get_title(filter)}
+  end
+
+  # GET /social_network
+  def index
+    filter = "iparticipate"
+    @social_networks = get_social_network_subset(1,BASIC_ITEMS_PER_PAGE,filter)
+
+    render 'index', locals: { social_networks: @social_networks, subset: filter, title: get_title(filter)}
+  end
 
   # GET /social_networks
   # GET /social_networks.json
@@ -71,6 +105,37 @@ class SocialNetworksController < ApplicationController
     end
   end
 
+  ################################ HELPERS METHODS ##########################
+
+  def secondary_items_per_page
+    SECONDARY_ITEMS_PER_PAGE
+  end
+
+  # GET /groups/list/:filter(/:limit(/:subject))
+  def get_social_network_subset(actual_page, items_per_page, filter)
+    puts "INTO  - get_social_network_subset"
+    query_string = prepare_query(filter)
+    puts "query_string: #{query_string}"
+    sn = SocialNetwork.as(:social_networks).query.match(query_string).proxy_as(SocialNetwork, :social_networks).paginate(:page => actual_page, :per_page => items_per_page, return: :social_networks, order: "social_networks.created_at desc")
+    #grp = Group.as(:groups).query.match(query_string).proxy_as(Group, :groups).paginate(:page => actual_page, :per_page => items_per_page, return: :groups, order: "groups.created_at desc")
+    puts "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    puts "#{sn}"
+    puts "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    sn
+  end
+
+=begin
+  # GET /posts/list/:filter(/:limit(/:subject))
+  def get_post_subset (actual_page, items_per_page, filter)
+    puts "INTO  - (postsController) get_subset"
+    query_string = prepare_post_query(filter)
+
+    #puts "post - get subset - query string: #{query_string}"
+    post = Post.as(:posts).query.match(query_string).proxy_as(Post, :posts).paginate(:page => actual_page, :per_page => items_per_page, return: :posts, order: "posts.created_at desc")
+    #puts "get_subset count: #{post.count} - class: #{post.class.name} - #{post}"
+    post
+  end
+=end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_social_network

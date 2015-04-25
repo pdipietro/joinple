@@ -110,7 +110,7 @@ end
   end
 
   # GET /groups/list/:filter(/:limit(/:subject))
-  def get_media_maneger_subset(actual_page, items_per_page, filter)
+  def get_media_manager_subset(actual_page, items_per_page, filter)
     puts "INTO  - (GroupsController) get_subset"
     query_string = prepare_query(filter)
 

@@ -1,3 +1,3 @@
 $("#tech_info").html("<%= escape_javascript(render partial: 'sessions/tech_info') %>" );
-$("#main_header").html("<%= escape_javascript(render partial: 'full_header', locals: { social_network: current_social_network} ) %>" );
+$("#main_header").html("<%= escape_javascript(render partial: 'header', locals: { social_network: current_social_network} ) %>" );
 $("#main_add").html("<%= escape_javascript(render partial: 'form', locals: { social_network: SocialNetwork.new , languages: Language.all.order(description: :asc) } ) %>" );

@@ -1,4 +1,5 @@
 - if logged_in?
+  - csn = current_social_network
   .spacer
   .page-thumbnail{ :style => current_social_network_style }
     = title
@@ -7,7 +8,7 @@
   .spacer
   #grid4.padding{ "data-columns" => "" }
     - groups.each do |group|
-      = render partial: "show", locals: { group: group }
+      = render partial: "show", locals: { group: group, csn: csn }
 
 
 

@@ -42,6 +42,17 @@ class UserProfilePhotoUploader < CarrierWave::Uploader::Base
       #process :convert => ("-resize #{ImageSizes::SIZES[f][0]}")
     end
   end
+
+=begin
+// Canvas the same size as the final image
+eval("convert -size 36x36 xc:white white.jpg");
+// The mask 
+eval("convert -size 36x36 xc:none -draw \"fill black circle 18,18 18,18\"  write_mask.png");
+// Cut the whole out of the canvas  
+eval("composite -compose Dst_Out write_mask.png white.jpg -matte step.png");
+// Put the canvas over the image and trim off excess white background   
+eval("convert IMG_5745.jpg  step.png -composite -trim final.jpg");
+=end
  
 =begin
    version :btn do

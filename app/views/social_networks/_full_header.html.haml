@@ -1,15 +1,6 @@
 - if is_admin?
-  -#.p
-    - user = current_user
-    - csn = current_social_network
-    - search = PostComment.new
-    #common-header
-      = bootstrap_form_for(search, :remote => :true ) do |f|
-        = render partial: 'top_left'
-        -#= render partial: "shared/logo_social_network", locals: { csn: csn }
   #common-header-left
     .buttons.nothing
-      F
       .post-icon.nothing
         = link_to new_social_network_path, :remote => :true, :title => "Add a new social network" do
           %i.hoverable.im-plus.im-2x

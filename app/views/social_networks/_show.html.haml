@@ -1,5 +1,5 @@
-%div
-  - if social_network.errors.count == 0
+- if social_network.errors.count == 0
+  %div
     = link_to social_network_path(social_network.uuid), :remote => :true, :title => "Edit" do
       %div{ :id => social_network.uuid, :style => "background-color: #{social_network.background_color}; color: #{social_network.text_color};"  }
         = image_tag social_network.logo.url(:cover), :class => "responsive"
@@ -8,6 +8,9 @@
           = social_network.description
           -#= social_network.goal
           -#- if can_modify?(social_network)
+          .border-1
+            = render partial: 'users/owner', locals: { object: social_network }
+          .border-1
           .command-button
             .spaced-icon
               = link_to edit_social_network_path(social_network), :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Modify the element" do

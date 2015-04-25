@@ -1,6 +1,9 @@
 - if logged_in?
   .spacer
-  .page-thumbnail{ :style => super_social_network_style }= "Social networks"
+  .page-thumbnail{ :style => super_social_network_style }
+    = "Social networks"
+    = link_to new_social_network_path, :remote => :true, :title => "Add a new social network" do
+      %i.hoverable.im-plus.to-right
   .spacer
   #grid3.padding{ "data-columns" => "" }
     - social_networks.each do |social_network|

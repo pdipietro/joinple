@@ -1,28 +1,36 @@
-%div{:id => group.uuid, :style => "background-color: #{group.background_color}; color: #{group.text_color};" }
+%div{:id => group.uuid }
   -# owner = group.get_owner
   - rels = count_relationships(group)
   = link_to group_path(group.uuid), :remote => :true, :title => "View details" do
-    %div
-      = image_tag group.header.url(:sm_banner), :class => "responsive"
+    %div{ :style => "background-color: #{group.background_color}; color: #{group.text_color};" }
+      .relative.nothing
+        = image_tag group.header.url(:sm_banner), :class => "responsive"
+        = image_tag csn.logo_social.url(:md_logo), :class => "responsive semi-transparent", :size => ("60x60")
+
       .content
         .title= group.name
         = group.description
         .border-1
-          = rels
+        = rels
         .border-1
-          %span= "This group is "
-          %b= group.is_private ? "Private" : "Public"  
-          %span= " and "
-          %b= group.is_open ? "Open" : "Close"  
+        %span= "This group is "
+        %b= group.is_private ? "Private" : "Public"  
+        %span= " and "
+        %b= group.is_open ? "Open" : "Close"  
 
         .border-1
-          = link_to onerel_path(group,'Group','likes'), :method => :post, :remote => :true, :test => "Likes" do
-            %i.im-dot
+        .command-button
+          .spaced-icon
+            -#= link_to dummy_path(group,'Group','likes'), :remote => :true, :test => "View members" do
+            %i.im-members.im-20x
+            = rels["out-follows-User"].nil? ? 0 : rels["out-follows-User"]
+          .spaced-icon
+            -#= link_to dummy_path(group,'Group','likes'), :remote => :true, :test => "View discussions" do
+            %i.im-discussions.im-20x
             = rels["out-follows-User"].nil? ? 0 : rels["out-follows-User"]
         .border-1
-          = link_to onerel_path(group,'Group','likes'), :method => :post, :remote => :true, :test => "Likes" do
-            %i.im-dot
-            = rels["out-follows-User"].nil? ? 0 : rels["out-follows-User"]
+          = render partial: "users/owner", locals: { object: group }
+        .border-1
 
       - if can_modify?(group)
         .command-button
@@ -35,4 +43,4 @@
           .spaced-icon
             %button.btn.btn-default.btn-sm-nothing{ :type => "submit", :name => "commit", :hide_label => :true, :style => super_social_network_style }
               = "Join"
-      .spacer
+    .spacer

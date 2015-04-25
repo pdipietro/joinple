@@ -360,6 +360,23 @@ hr {
 }
 
 /* ************************************************************************************************************************
+** Images
+************************************************************************************************************************ */
+
+.semi-transparent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  opacity:  0.75;
+
+}
+
+.relative {
+  position: relative;
+}
+
+
+/* ************************************************************************************************************************
 ** Styles to format 3 columns: fixed-fluid-fixed
 ************************************************************************************************************************ */
 
@@ -711,12 +728,12 @@ i.user-info-icons {
 .content {
   padding-left: $min-padding;  
   padding-right: $min-padding;  
-}
-
-.content * .title {
-  font-size: 120%;
-  font-weight: bolder;
-  text-align: -webkit-center
+     > .title,
+     * .title {
+    font-size: 120%;
+    font-weight: bolder;
+    text-align: -webkit-center
+   }
 }
 
 .generic-container {

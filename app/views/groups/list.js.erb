@@ -3,8 +3,8 @@ if($("#groups-page").length == 0) {
   $("#main_header").html("<%= escape_javascript(render partial: 'header', locals: { group: Group.new} ) %>" );
   $("#main_add").html("");
   $("#main_content").html("<%= escape_javascript(render partial: 'index', locals: { groups: @groups, title: ""} ) %>" );
-  $("#main_content").html("<%= escape_javascript(render partial: 'index', locals: { groups: @groups, subset: subset, title: title, icon: icon } ) %>" );
+  $("#main_content").html("<%= escape_javascript(render partial: 'index', locals: { groups: @groups, subset: subset, title: title } ) %>" );
   $("#main_right").html("<%= escape_javascript(render partial: 'rindex', locals: { groups: @groups } ) %>" );
 }
 else
- $("#main_content").html("<%= escape_javascript(render partial: 'index', locals: { groups: @groups, subset: subset, title: title, icon: icon } ) %>" );
+ $("#main_content").html("<%= escape_javascript(render partial: 'index', locals: { groups: @groups, subset: subset, title: title } ) %>" );

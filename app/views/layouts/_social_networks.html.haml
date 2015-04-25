@@ -1,5 +1,7 @@
-%li
-  = link_to session_switch_path(social_network.name), :method => :post, :remote => :true do
-    %span.glyphicons.icon-log-in
-    = social_network.name
-  
+- @social_networks = SocialNetwork.all.order(created_at: :desc)
+- @social_networks.each do |social_network| 
+  - if social_network.name != current_social_network_name?
+    %li
+      %a{ :href => "#{calculate_full_path(social_network)}" }
+        %i.header-dropdown.im-dot{ :style => "color: #{social_network.background_color};" }
+        = social_network.name

@@ -42,7 +42,7 @@ module ApplicationHelper
        if csn.class.name == "SocialNetwork"
          set_current_social_network (csn)
          puts "current_social_network: #{current_social_network}"
-      puts "caller: #{caller[0...5]}"
+         puts "caller: #{caller[0...5]}"
          current_social_network
        else
          raise "515","Current social network loading error"

@@ -22,7 +22,7 @@ class GroupsController < ApplicationController
 
     @groups = get_group_subset(first_page,SECONDARY_ITEMS_PER_PAGE,filter)
  
-    render 'list', locals: { groups: @groups, subset: filter, title: get_title(filter), icon: get_icon(filter)}
+    render 'list', locals: { groups: @groups, subset: filter, title: get_title(filter)}
   end
 
   # GET /groups
@@ -34,7 +34,7 @@ class GroupsController < ApplicationController
     filter = "iparticipate"
     @groups = get_group_subset(1,BASIC_ITEMS_PER_PAGE,filter)
 
-    render 'index', locals: { groups: @groups, subset: filter, title: get_title(filter), icon: get_icon(filter)}
+    render 'index', locals: { groups: @groups, subset: filter, title: get_title(filter)}
   end
 
   # GET /groups/1
