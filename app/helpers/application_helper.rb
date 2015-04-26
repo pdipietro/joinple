@@ -36,7 +36,8 @@ module ApplicationHelper
        puts "+++++++++++++++2 sn: #{sn}"
        sn = humanize_word(sn)
        puts "+++++++++++++++3 sn: #{sn}"
-       csn = SocialNetwork.find_by( :name => sn )
+       csn = SocialNetwork.find_by( :iname => sn )
+       csn = SocialNetwork.find_by( :name => sn ) if csn.nil?
        puts "+++++++++++++++4 csn.class.name: #{csn.class.name}"
        puts "+++++++++++++++5 csn: #{csn}"
        if csn.class.name == "SocialNetwork"

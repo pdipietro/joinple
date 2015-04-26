@@ -2,8 +2,8 @@ if($("#social_networks-page").length == 0) {
   $("#tech_info").html("<%= escape_javascript(render partial: 'sessions/tech_info') %>" );
   $("#main_header").html("<%= escape_javascript(render partial: 'header', locals: { social_network: SocialNetwork.new} ) %>" );
   $("#main_add").html("");
-  $("#main_content").html("<%= escape_javascript(render partial: 'index', locals: { social_networks: @social_networks, title: ""} ) %>" );
   $("#main_content").html("<%= escape_javascript(render partial: 'index', locals: { social_networks: @social_networks, subset: subset, title: title } ) %>" );
+  $("#right-context *").html("");
 }
 else
  $("#main_content").html("<%= escape_javascript(render partial: 'index', locals: { social_networks: @social_networks, subset: subset, title: title } ) %>" );

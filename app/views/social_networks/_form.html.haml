@@ -2,13 +2,14 @@
   .spacer
   .col-xs-15
   .col-xs-30
+    - social_network_2 = social_network
     .panel.panel-default.nothing
       .panel-heading{ :style => super_social_network_style }
         %a.toggle{ :type => "toggle", "data-target" => "#social-network-form", "data-toggle" => "collapse"}
           .panel-title
             - if defined?(title)
               = title
-              .button.close{:type => "button", "data-dismiss" => "alert", "aria-label" => "Close" }
+              -#.button.close{:type => "button", "data-dismiss" => "alert", "aria-label" => "Close" }
             - else
               = "Create a new social network"
             %span.caret.to-right
@@ -16,9 +17,7 @@
         = bootstrap_form_for(social_network, :remote => :true, :html => {:multipart => true} ) do |f|
           .nothing= f.text_field :name, :prepend => :name, :placeholder => "Enter the name of the new social network", :hide_label => :true, :text => "Social network name"
           .spacer
-          .nothing= f.text_field :description, :prepend => :description, :placeholder => "Enter a short description of the social network", :hide_label => :true, :text => "Social network description"
-          .spacer
-          .nothing= f.text_field :goal, :prepend => :goal, :placeholder => "Describe the goals of the social network", :hide_label => :true, :text => "Social network goals"
+          .nothing= f.text_field :short_description, :prepend => :short_description, :placeholder => "Enter a short description of the social network", :hide_label => :true, :text => "Social network short description"
           .spacer
 
           .nothing= f.color_field :background_color, :prepend => "background color", :placeholder => "Enter the standard background color", :hide_label => :true, :class => "left-align" 
@@ -42,11 +41,19 @@
           .spacer
           .nothing= f.hidden_field :logo_social_cache
 
+          .spacer 
+          .nothing= f.text_field :description, :prepend => :description, :placeholder => "Enter a short description of the social network", :hide_label => :true, :text => "Social network description"
+          .spacer
+          .nothing= f.text_field :slogan, :prepend => :slogan, :placeholder => "Describe the slogan of the social network", :hide_label => :true, :text => "Social network slogan"
+          .spacer
+          .nothing= f.text_field :mission, :prepend => :mission, :placeholder => "Describe the mission of the social network", :hide_label => :true, :text => "Social network mission"
+
           %button.icon_only{ :type => "submit", :name => "commit", :hide_label => :true, :title => "Save the element" } 
             %i.im-save-3
             = "save"
           %button.icon_only{ :type => "reset", :name => "reset", :hide_label => :true, :title => "cancel" } 
             %i.im-cancel-circle
             = "exit without saving"  
+
   .col-xs-15
 

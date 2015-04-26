@@ -1,4 +1,4 @@
-#user_profile-form.collapse.in{ :class => user_profile.errors.count == 0 ? 'collapse' : 'collapse in' }
+#user_profile-form{ :class => user_profile.errors.count == 0 ? 'collapse' : 'collapse in' }
   .spacer
   .col-xs-15
   .col-xs-30
@@ -6,10 +6,10 @@
       .panel-heading{ :style => super_social_network_style }
         %a.toggle{ :type => "toggle", "data-target" => "#user_profile-form", "data-toggle" => "collapse"}
           .panel-title
-            = "Manage your user profile"
-            %span.caret.to-right
+            = "Manage the user profile of #{user.full_name}"
+           %span.caret.to-right
       .panel-body
-        = bootstrap_form_for(user_profile, :remote => :true, :html => {:multipart => true} ) do |f|
+        = bootstrap_form_for(user_progile, :remote => :true, :html => {:multipart => true} ) do |f|
           .nothing= f.text_area :description, :prepend => :description, :placeholder => "Enter the user description", :hide_label => :true
           .spacer
 

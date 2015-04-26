@@ -1,10 +1,7 @@
 - if logged_in?
-  -# user = current_user
-  -# social_network = current_social_network
-  -# right_menu_icons = right_menu_icons_number
-  %ul#hotgroups.list_group.nothing= render partial: 'right_menu', locals: { groups: @groups, subset: "hot", title: "Hot groups",  icon: "icon-flame" }
+  %ul#hotgroups.list_group.nothing= render partial: 'right_menu', locals: { groups: @groups, subset: "hot", title: "Hot groups" }
   .spacer
-  %ul#freshgroups.list_group.nothing= render partial: 'right_menu', locals: { groups: @groups, subset: "fresh", title: "Fresh groups",  icon: "icon-clock" }
+  %ul#freshgroups.list_group.nothing= render partial: 'right_menu', locals: { groups: @groups, subset: "fresh", title: "Fresh groups" }
   .spacer
-  %ul#mycontactsgroups.list_group.nothing= render partial: 'right_menu', locals: { groups: @groups, subset: "mycontacts", title: "My contact's groups", icon: "icon-heart" }
+  %ul#mycontactsgroups.list_group.nothing= render partial: 'right_menu', locals: { groups: @groups, subset: "mycontacts", title: "My contact's groups" }
   .spacer

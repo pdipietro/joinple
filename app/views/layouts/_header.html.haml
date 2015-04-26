@@ -1,5 +1,5 @@
 %nav.navbar-default.navbar-fixed-top{ :role => "navigation" }
-  - user_profile = logged_in? ? profile?(current_user) : nil
+  - user_profile = logged_in? ? current_user.has_profile : nil
   .container-fluid
     .navbar-header
       %button.navbar-toggle.collapsed{ :type => "button", "data-toggle" => "collapse",  "data-target" => "#navbar" }
@@ -85,10 +85,7 @@
           %li.dropdown
             %a.dropdown-toggle.header-user-photo{ :href => "#", :id => "dropdownUser", "data-toggle" => "dropdown", :type => "button", :title => "Myself",  "aria-expanded" => "false"}
               %span
-                - unless user_profile.nil?
-                  = image_tag user_profile.photo.url(:btn), :size => ("32x32")
-                - else
-                  %i.header.im-user-plus
+                = image_tag user_profile.photo.url(:btn), :size => ("32x32")
                 %span.user-wellcome= "Wellcome, #{current_user.first_name}"
                 %span.caret
             %ul.user.dropdown-menu{ :role => "menu", "aria-labelledby" => "dropdownUser" }
@@ -97,7 +94,7 @@
                   %i.header-dropdown.im-about
                   My book ()
               %li
-                = link_to groups_path, :remote => :true do
+                = link_to user_profile_path(user_profile.uuid), :remote => :true, :title => "Edit user profile" do
                   %i.header-dropdown.im-about
                   My profiles
               %li

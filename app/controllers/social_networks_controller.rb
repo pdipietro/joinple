@@ -1,12 +1,14 @@
 class SocialNetworksController < ApplicationController
   before_action :set_social_network, only: [:show, :edit, :update, :destroy]
   
-  include SocialNetworksHelper
+  require 'neo4j-will_paginate_redux'
 
   respond_to :js
 
-  helper_method  :secondary_items_per_page, :get_group_subset, :get_posts_subset
- 
+  BASIC_ITEMS_PER_PAGE = 25
+  SECONDARY_ITEMS_PER_PAGE = 25
+
+
   # GET /social_network/list/:filter(/:limit(/:subject))
   def list
     puts ("----- Social Network Controller: List --(#{params[:filter]})----------------------------------------")
@@ -144,6 +146,24 @@ class SocialNetworksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def social_network_params
-      params.require(:social_network).permit(:name, :description, :goal, :logo, :background_color, :text_color, :logo_cache, :logo_social, :logo_social_cache)
+      params.require(:social_network).permit(:name, :description, :short_description, :mission, :slogan, :logo, :background_color, :text_color, :logo_cache, :logo_social, :logo_social_cache)
     end
+
+    def get_title(filter)
+      case filter
+        when "iparticipate"
+              "My social networks"
+        when "iadminister"
+              "Social networks I administer"
+        when "mycontacts"
+              "My contact's social networks"
+        when "search"
+              ""
+        when "all"
+              "All social networks"
+        else 
+             "Social networks"      
+      end
+    end
+
 end

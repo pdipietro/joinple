@@ -1,5 +1,5 @@
 - if is_admin?
-  #tech-info.panel.panel-default.collapse
+  #tech-info.panel.panel-default.collapse.col-xs-60
     .panel
       %a.toggle{ :type => "toggle", "data-target" => "#tech-info", "data-toggle" => "collapse"}
         .panel-heading{ :style => super_social_network_style }
@@ -7,7 +7,7 @@
           %span.caret.to-right
           .panel-title
       .panel-body
-        .ul
+        .ul.col-xs-60
           JoinPle
           .li
             .col-xs-20
@@ -20,7 +20,7 @@
             .col-xs-40
               = super_social_network_color 
         %hr
-        .ul
+        .ul.col-xs-60
           Session
           .li
             .col-xs-20
@@ -28,7 +28,7 @@
             .col-xs-40
               = "#{session} "
         %hr
-        .ul
+        .ul.col-xs-60
           Screen geometry
           .li
             .col-xs-20
@@ -37,7 +37,7 @@
               = "#{session[:width]}x#{session[:height]}, (#{session[:pixelRatio]}) "
 
         %hr
-        .ul
+        .ul.col-xs-60
           Log in
           .li
             .col-xs-20
@@ -51,7 +51,7 @@
               = is_admin?
 
         %hr
-        .ul
+        .ul.col-xs-60
           Current social network
           .li
             .col-xs-20
@@ -86,7 +86,7 @@
 
       
         %hr
-        .ul
+        .ul.col-xs-60
           Current group
           .li
             .col-xs-20
@@ -115,7 +115,7 @@
               = " "
 
         %hr
-        .ul
+        .ul.col-xs-60
           Current user
           .li
             .col-xs-20

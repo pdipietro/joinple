@@ -198,7 +198,7 @@ i.header.im-signup-landing {
 .im-stack-2x {
   position: absolute;
   left: 0;
-  width: 100%;
+  width: 100%; 
   text-align: center;
 }
 .im-stack-1x {
@@ -342,6 +342,10 @@ hr {
   float: right;
 }
 
+.transparent-line:before {
+  content: '\1';
+}
+
 /* ************************************************************************************************************************
 ** Icons
 ************************************************************************************************************************ */
@@ -375,6 +379,10 @@ hr {
   position: relative;
 }
 
+.centered {
+  margin-left: auto;
+  margin-right: auto;
+}
 
 /* ************************************************************************************************************************
 ** Styles to format 3 columns: fixed-fluid-fixed
@@ -730,8 +738,17 @@ i.user-info-icons {
   padding-right: $min-padding;  
      > .title,
      * .title {
-    font-size: 120%;
+    /*font-size: 120%;*/
     font-weight: bolder;
+    text-align: -webkit-center
+   }
+     > .short-description,
+     * .short-description,
+     > .user-nick,
+     * .user-nick,
+     > .user-star,
+     * .user-star
+      {
     text-align: -webkit-center
    }
 }

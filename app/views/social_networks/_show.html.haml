@@ -1,21 +1,22 @@
 - if social_network.errors.count == 0
-  %div
+  %div{ :id => social_network.uuid }
     = link_to social_network_path(social_network.uuid), :remote => :true, :title => "Edit" do
-      %div{ :id => social_network.uuid, :style => "background-color: #{social_network.background_color}; color: #{social_network.text_color};"  }
-        = image_tag social_network.logo.url(:cover), :class => "responsive"
-        .content
-          .title= social_network.name
-          = social_network.description
-          -#= social_network.goal
-          -#- if can_modify?(social_network)
-          .border-1
-            = render partial: 'users/owner', locals: { object: social_network }
-          .border-1
-          .command-button
-            .spaced-icon
-              = link_to edit_social_network_path(social_network), :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Modify the element" do
-                %i.im-pencil
-            .spaced-icon
-              = link_to social_network, :method => :delete, :data => { :confirm => 'Are you sure?' }, :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Delete the element" do
-                %i.im-bin
+      = image_tag social_network.logo.url(:cover), :class => "responsive"
+    .content{ :style => "background-color: #ffffff; color: #000000;" }
+      .title= social_network.name
+      .short-description= social_network.short_description
+      .border-1
+      = render partial: 'users/owner', locals: { object: social_network  }
+      .border-1
+      .command-button.nothing{ :style => "background-color: #{social_network.background_color}; color: #{social_network.text_color};" }
+        - if can_modify?(social_network)
+          .spaced-icon
+            = link_to edit_social_network_path(social_network), :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Modify the element" do
+              %i.im-pencil
+          .spaced-icon
+            = link_to social_network, :method => :delete, :data => { :confirm => 'Are you sure?' }, :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Delete the element" do
+              %i.im-bin
+        .spaced-icon
+          %button.btn.btn-default.btn-sm-nothing{ :type => "submit", :name => "commit", :hide_label => :true, :style => super_social_network_style }
+            = "Join"
     .spacer

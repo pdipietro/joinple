@@ -5,8 +5,10 @@
 - user_profile = query.first[:up]
 
 %span
-  = image_tag user_profile.photo.url(:btn)
-  = "#{user.first_name} #{user.last_name} (owner)"
+  = link_to user_path(user.uuid), :remote => :true, :title => "Edit" do
+    = image_tag user_profile.photo.url(:btn)
+    = "#{user.full_name} (@#{user.nickname})"
+
 
 
 

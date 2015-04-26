@@ -8,6 +8,31 @@ class UsersController < ApplicationController
 
   respond_to :js
 
+  helper_method  :secondary_items_per_page, :get_group_subset, :get_posts_subset
+ 
+  # GET /users/list/:filter(/:limit(/:subject))
+  def list
+    puts ("----- User: List --(#{params[:filter]})----------------------------------------")
+
+    filter = params[:filter]
+    first_page = params[:from_page].nil? ? 1 : params[:from_page]
+    deep = params[:deep].nil? ? "" : "*1..#{params[:deept]}"
+
+    query_string =
+      case filter
+        when "myfollowers"
+             "(user:User { uuid : '#{current_user.uuid}' })<-[p:follows]#{deep}-(users:User)" 
+        when "ifollowing"
+             "(user:User { uuid : '#{current_user.uuid}' })-[p:follows]#{deep}->(users:User)" 
+        when "all"
+             "(users:User)"
+      end
+
+    @users = User.as(:users).query.match(query_string).proxy_as(User, :users).paginate(:page => first_page, :per_page => SECONDARY_ITEMS_PER_PAGE, return: :users, order: "users.created_at desc")
+
+    render 'list', locals: { users: @users, subset: filter, title: get_title(filter)}
+  end
+
   # GET /users
   # GET /users.json
   def index

@@ -1,19 +1,119 @@
-.thumbnail.margin-right
-  .container-fluid
-    .column
-      .row
-        .user-owner
-          = gravatar_for user
-      .row
-        = "#{user.first_name}"
-        = "#{user.last_name}"
-      .row
-        -#= "(#{user.nickname})"
-        .post-glyps
-          = link_to onerel_path(user,'User','likes'), :method => :post, :remote => :true do
-            %span.glyphicons.icon-like-1
-            - likes = user.query_as(:p).match("(p)<-[r:likes]-(u:User)").pluck(:u).count
-            %span.badge
-              = likes
-      -#.row
-        = render partial: 'shared/stats', locals: { user: user, current: :false }
+%div{:id => user.uuid }
+  - puts user.full_name
+  -# owner = group.get_owner
+  - rels = count_relationships(user) 
+  - user_profile = user.has_profile
+  %div{ :style => "background-color: #ffffff; color: #000000;" }
+    .row.nothing.top-rounded
+      .col-xs-28.nothing
+        = link_to user_path(user.uuid), :remote => :true, :title => "View details" do
+          = image_tag "#{user_profile.photo.url(:icon)}", :name => "user_profile_#{user_profile.uuid}", :class => "responsive user-photo"
+      .col-xs-32.nothing
+        .user-info.user-name
+          = user.first_name
+          %br
+          = user.last_name
+          %br
+          %span.user-info.usernick= "@#{user.nickname}"
+          %br
+          %span.user-info.user-star
+            - stars((1 + rand(49)) / 10.0).each do |k|
+              %i{ :class => "im-star-#{k}" }
+    .border-1
+    .col-xs-12.nothing
+      %i.user-info-icons.im-following
+      %br
+      - followings_number = rels["out-follows-User"]
+      = followings_number
+    .col-xs-12.nothing
+      %i.user-info-icons.im-followers
+      %br
+      - followers_number = rels["in-follows-User"]
+      = followers_number
+      = 46532
+    .col-xs-12.nothing
+      %i.user-info-icons.im-discussions
+      %br
+      172
+    .col-xs-12.nothing
+      %i.user-info-icons.im-groups
+      %br
+      - groups_number = rels["out-owns-Group"]
+      = groups_number
+    .col-xs-12.nothing
+      %i.user-info-icons.im-blog2
+      %br
+      93
+    .border-1
+    .centered
+      = link_to onerel_path(user,'User','follows'), :method => :post, :to_class => :true do
+        - unless current_user?(user)
+          - i_follow = current_user.query_as(:p).match("(p)-[r:follows]->(u:User { uuid : '#{user.uuid}' })").pluck(:u).count
+          = i_follow == 1 ? "unfollow" : "follow" 
+        - else
+          .transparent-line
+  .spacer
+
+
+
+
+
+
+
+
+
+-#  
+      .relative.nothing
+        = image_tag user_profile.photo.url(:icon), :class => "responsive centered"
+      .content
+        .title= user.full_name
+        .user-nick= "@#{user.nickname}"
+        .spacer
+        %span.centered.user-info.user-star
+          - stars((1 + rand(49)) / 10.0).each do |k|
+            %i{ :class => "im-star-#{k}" }
+        .border-1
+        .row.nothing.user-info-icons
+          .col-xs-12.nothing
+            %i.user-info-icons.im-following
+            %br
+            - followings_number = rels["out-follows-User"]
+            = followings_number
+          .col-xs-12.nothing
+            %i.user-info-icons.im-followers
+            %br
+            - followers_number = rels["in-follows-User"]
+            = followers_number
+            = 46532
+          .col-xs-12.nothing
+            %i.user-info-icons.im-discussions
+            %br
+            172
+          .col-xs-12.nothing
+            %i.user-info-icons.im-groups
+            %br
+            - groups_number = rels["out-owns-Group"]
+            = groups_number
+          .col-xs-12.nothing
+            %i.user-info-icons.im-blog2
+            %br
+            93
+          -#.border-1
+            This is and old implementation for like/follow
+            .post-glyps
+              = link_to onerel_path(user,'User','likes'), :method => :post, :remote => :true do
+                %span.glyphicons.icon-like-1
+                - likes = user.query_as(:p).match("(p)<-[r:likes]-(u:User)").pluck(:u).count
+                %span.badge
+                  = likes
+        .border-1
+        .centered
+          = link_to onerel_path(user,'User','follows'), :method => :post, :to_class => :true do
+            - unless current_user?(user)
+              - i_follow = current_user.query_as(:p).match("(p)-[r:follows]->(u:User { uuid : '#{user.uuid}' })").pluck(:u).count
+              = i_follow == 1 ? "unfollow" : "follow" 
+            - else
+              .transparent-line
+
+      .spacer
+    .spacer
