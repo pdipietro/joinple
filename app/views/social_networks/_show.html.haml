@@ -1,8 +1,8 @@
 - if social_network.errors.count == 0
   %div{ :id => social_network.uuid }
-    = link_to social_network_path(social_network.uuid), :remote => :true, :title => "Edit" do
-      = image_tag social_network.logo.url(:cover), :class => "responsive"
-    .content{ :style => "background-color: #ffffff; color: #000000;" }
+    .contour-3{:style => "border-color: #{social_network.background_color}; " }
+      = link_to social_network_path(social_network.uuid), :remote => :true, :title => "Edit" do
+        = image_tag social_network.logo.url(:cover), :class => "responsive"
       .title= social_network.name
       .short-description= social_network.short_description
       .border-1

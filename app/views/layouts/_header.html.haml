@@ -9,8 +9,9 @@
         %span.icon-bar
       .navbar-brand.logo
         = image_tag "joinple_logo.png"
-      .navbar-brand.social-icon
-        = image_tag current_social_network.logo_social.url(:thumb), :size => ("32x32")
+      - if logged_in? 
+        .navbar-brand.social-icon
+          = image_tag current_social_network.logo_social.url(:thumb), :size => ("32x32")
     #navbar.navbar-collapse.collapse
       %ul.nav.navbar-nav.navbar-right
         - unless logged_in?

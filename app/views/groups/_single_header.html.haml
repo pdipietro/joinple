@@ -1,11 +1,25 @@
-- if is_admin?
+- if logged_in?
+  - csn = current_social_network
   -#.p
     - user = current_user
     - csn = current_social_network
-    - search = PostComment.new
 
-  #post-header
-  = image_tag group.header.url(:xl_banner), :class => "responsive"
+  #group-header
+    .relative.nothing
+      = image_tag group.header.url(:md_banner), :class => "responsive"
+      = image_tag csn.logo_social.url(:thumb), :class => "responsive overloaded-logo", :size => ("80x80")
+      %span.semi-transparent-bar
+      %span.solid-text
+        = group.name
+        = " - "
+        = group.description
+        %span.to-right
+          = "pippo     pluto     paperino"
+          %span.spaced-icon
+            %button.btn.btn-default.btn-sm-nothing{ :type => "submit", :name => "commit", :hide_label => :true, :style => super_social_network_style }
+              = "Join"
+
+  .spacer
   #common-header-left
     .buttons.nothing
       .post-icon.nothing
@@ -17,6 +31,16 @@
       .post-icon.nothing
         = link_to dummy_path, :remote => :true, :title => "View group admins" do
           %i.activable.im-admin-group.im-2x
+      .post-icon.nothing
+        = link_to dummy_path, :remote => :true, :title => "View group events" do
+          %i.activable.im-calendar.im-2x
       = render partial: 'shared/search'
+      .post-icon.nothing
+        = link_to dummy_path, :remote => :true, :title => "View group info" do
+          %i.activable.im-about.im-2x
+      - if can_modify?(group)
+        .post-icon.nothing
+          = link_to edit_group_path(group), :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Modify the element" do
+            %i.activable.im-pencil.im-2x
   .spacer
  

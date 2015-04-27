@@ -19,6 +19,9 @@ $people_box_height:166px;
 $logo_social_width:$people_box_height;
 $logo_social_height:$people_box_height;
 
+$joinple_background_color:#a12349;
+$joinple_text_color:#000000;
+
 /* icomoon resize and rotate */
 
 i {
@@ -346,6 +349,32 @@ hr {
   content: '\1';
 }
 
+
+.contour {
+  background-color: #ffffff; 
+  color: #000000; 
+}
+
+.contour-2 {
+    @extend .contour;
+    border: 2px solid #000000;
+}
+
+.contour-3 {
+    @extend .contour;
+    border: 3px solid #000000;
+}
+
+.joinple-contour-2 {
+    @extend .contour;
+    border: 2px solid $joinple_background_color;
+  }
+
+.joinple-contour-3 {
+    @extend .contour;
+    border: 3px solid $joinple_background_color;
+}
+
 /* ************************************************************************************************************************
 ** Icons
 ************************************************************************************************************************ */
@@ -367,12 +396,16 @@ hr {
 ** Images
 ************************************************************************************************************************ */
 
-.semi-transparent {
+.overloaded-logo {
   position: absolute;
   bottom: 0;
   left: 0;
+  z-index: 20;
+}
+.semi-transparent, 
+.semi-transparent-logo {
+  @extend .overloaded-logo;
   opacity:  0.75;
-
 }
 
 .relative {
@@ -383,6 +416,36 @@ hr {
   margin-left: auto;
   margin-right: auto;
 }
+
+/* ************************************************************************************************************************
+** grey bar on images
+************************************************************************************************************************ */
+
+.bar-on-image-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2.5em;
+  padding-left: $standard_padding + 80;
+  padding-right: $standard_padding;
+  z-index: 10;
+}
+
+.semi-transparent-bar {
+  @extend .bar-on-image-bottom;
+  background-color: #6c6c6c;
+  opacity: 0.70;
+  z-index: 10;
+}
+
+.solid-text {
+  @extend .bar-on-image-bottom;
+  color: #ffffff;
+  opacity: 1;
+  z-index:  20;
+}
+
 
 /* ************************************************************************************************************************
 ** Styles to format 3 columns: fixed-fluid-fixed
@@ -425,7 +488,7 @@ hr {
 ************************************************************************************************************************ */
 
 #common-header-left {
-  width: $common_header_left_width;
+  width: 100%;
   min-width: $common_header_left_width;
   height: auto; 
   margin: 0;
@@ -471,8 +534,8 @@ hr {
 }
 
 #common-header-left .buttons {
-  width: $common_header_right_width;
-  height: $command_line_height;
+  width: auto;
+  height: inherit;
   float: left;
   border-radius: 4px;
   background-color: #ffffff;

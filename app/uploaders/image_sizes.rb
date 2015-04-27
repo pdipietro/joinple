@@ -24,8 +24,8 @@ class ImageSizes
           :post3       => ['[600, 300]',      :jpg, :quality => 70],              # Post standard is 400x200 on two columns, but can grow
                                                                                   # when the screen si stretched
           :banner      => ['[916,  200]',     :jpg, :quality => 70],              # banner for generic profile
-          :sm_banner   => ['[240,  140]',     :jpg, :quality => 70],              # banner for generic profile
-          :md_banner   => ['[916,  315]',     :jpg, :quality => 70],              # banner for generic profile
+          :xs_banner   => ['[240,  140]',     :jpg, :quality => 70],              # banner for generic profile
+          :sm_banner   => ['[916,  315]',     :jpg, :quality => 70],              # banner for generic profile
           :md_banner   => ['[1084, 315]',     :jpg, :quality => 70],              # banner for generic profile
 
           :lg_banner   => ['[1832, 315]',     :jpg, :quality => 70],              # banner for generic profile
