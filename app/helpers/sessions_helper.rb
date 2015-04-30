@@ -292,6 +292,10 @@ module SessionsHelper
     icon_number[:blogs] = 4
   end
 
+  def set_checked parm,value
+    (parm == value) ? %w":checked => 'checked'" : %w":x => '1'"
+  end  
+
   private
 
     def set_current_social_network (sn)

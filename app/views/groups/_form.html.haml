@@ -3,23 +3,14 @@
   .col-xs-15
   .col-xs-30
     .panel.panel-default.nothing
-      .panel-heading{ :style => current_social_network_style }
-        %a.toggle{ :type => "toggle", "data-target" => "#group-form", "data-toggle" => "collapse"}
-          .panel-title
-            - if defined?(title)
-              = title
-              .button.close{:type => "button", "data-dismiss" => "alert", "aria-label" => "Close" }
-            - else
-              = "Create a new group"
-            %span.caret.to-right
+      = render partial: 'shared/common_panel_header', locals: { :style => "current", :data_target => "#group-form", :title => title }
       .panel-body
         = bootstrap_form_for(group, :remote => :true, :html => {:multipart => true} ) do |f|
           .nothing= f.text_field :name, :prepend => :name, :placeholder => "Enter the group name ", :hide_label => :true
           .spacer
           .nothing= f.text_area :description, :prepend => :description, :placeholder => "Enter the group description", :hide_label => :true
 
-          .nothing= f.check_box :is_open 
-          .nothing= f.check_box :is_private 
+          = f.collection_radio_buttons :type, [['open'], ['closed'], ['secret']], :first, :first, :inline => true, :checked => group.type, :prepend => "group type", :label => "group type ", :class => "nothing", :item_wrapper_class => 'radio inline', :item_wrapper_tag => :label, :collection_wrapper_tag => :div, :collection_wrapper_class => "controls"
 
           .nothing= f.color_field :background_color, :prepend => "background color", :placeholder => "Enter the standard background color", :hide_label => :true, :class => "left-align" 
           .spacer
@@ -44,11 +35,7 @@
           .spacer
           .nothing= f.hidden_field :header_cache
 
-          %button.icon_only{ :type => "submit", :name => "commit", :hide_label => :true, :title => "Save the element" } 
-            %i.im-save-3
-            = "save"
-          %button.icon_only{ :type => "reset", :name => "reset", :hide_label => :true, :title => "cancel" } 
-            %i.im-cancel-circle
-            = "exit without saving"  
+          = render partial: 'shared/common_panel_footer'
+
   .col-xs-15
 

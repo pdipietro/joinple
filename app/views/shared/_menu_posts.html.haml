@@ -1,16 +1,39 @@
-= link_to posts_path, :remote => :true do
+-#= link_to posts_path, :remote => :true do
   %li.left.list-group-item.no-padding{ :style => current_social_network_style }
-    -#= image-path 
-    Posts
-= link_to dummy_path, :remote => :true do
-  %li.left.list-group-item.no-padding
-    %i.im-dot
-    Post 1
-= link_to dummy_path, :remote => :true do
-  %li.left.list-group-item.no-padding
-    %i.im-dot
-    Post 2
-= link_to dummy_path, :remote => :true do
-  %li.left.list-group-item.no-padding
-    %i.im-dot
-    Post 3
+    %i.im-all-posts.im-2x
+
+    %span.center-top= current_social_network_name?
+    %span.center-bottom= "Home posts"
+-#    
+  %li.left.list-group-item.no-padding.rounded
+    .col-xs-10.nothing
+      %span.myposts-icon{ :style => current_social_network_style }
+        %span.spaced-icon.transparent
+          %button.btn.btn-default.btn-sm-nothing{ :type => "submit", :name => "commit", :hide_label => :true }= "J"
+        %i.im-all-posts.im-2x
+    .col-xs-50.nothing-centered
+      %span= current_social_network_name?
+      %span= "Home posts"
+
+
+-#= link_to posts_path, :remote => :true do
+  %li.left.list-group-item.rounded
+    .post-left-button
+      .col-xs-13.nothing{ :style => ( " #{current_social_network_background_color_style}; color: #ffffff; ")}
+        %i.im-all-posts.im-2x
+        .icon1x30
+      .col-xs-47.nothing.text-center.right-rounded-right{ :style => ( " background-color: #ffffff; ") }
+        .row.title= current_social_network_name?
+        .row= "Home posts"
+  .spacer
+
+
+
+= link_to posts_path, :remote => :true do
+  .row.nothing.top.rounded
+    .col-xs-13.nothing{ :style => ( " #{current_social_network_background_color_style}; color: #ffffff; ")}
+      #post-left-button-adjust
+        %i.im-all-posts.im-25x
+    .col-xs-47.nothing.text-center.right-rounded{ :style => ( " background-color: #ffffff; color: #000000; ") }
+      .title= current_social_network_name?
+      .row= "Home posts"

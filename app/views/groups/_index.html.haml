@@ -8,6 +8,7 @@
   .spacer
   #grid4.padding{ "data-columns" => "" }
     - groups.each do |group|
+      - puts "type => #{group.type}"
       = render partial: "show", locals: { group: group, csn: csn }
 
 

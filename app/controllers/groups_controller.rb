@@ -21,6 +21,10 @@ class GroupsController < ApplicationController
     first_page = params[:from_page].nil? ? 1 : params[:from_page]
 
     @groups = get_group_subset(first_page,SECONDARY_ITEMS_PER_PAGE,filter)
+
+    @groups.each do |g|
+      puts g.type
+    end
  
     render 'list', locals: { groups: @groups, subset: filter, title: get_title(filter)}
   end
@@ -72,17 +76,14 @@ end
   # POST /groups
   # POST /groups.json
   def create
-     puts ("----- Groups Controller: Create -----------------------------------------------------------")
-   @group = Group.new(group_params)
+    puts ("----- Groups Controller: Create -----------------------------------------------------------")
+    @group = Group.new(group_params)
 
     respond_to do |format|
-        puts ("1) @group.logo:  <#{@group.logo.url}><#{@group.logo.current_path}><#{@group.logo.identifier}>")
-        puts ("1) @group.header:  <#{@group.header.url}><#{@group.header.current_path}><#{@group.header.identifier}>")
+      puts ("1- @group.type:  #{@group.type}")
       if @group.save
         rel = Owns.create(from_node: current_user, to_node: @group)
         rel = BelongsTo.create(from_node: @group, to_node: current_social_network)
-        puts ("2) @group.logo:  <#{@group.logo.url}><#{@group.logo.current_path}><#{@group.logo.identifier}>")
-        puts ("2) @group.header:  <#{@group.header.url}><#{@group.header.current_path}><#{@group.header.identifier}>")
         format.js   { render partial: "enqueue", object: @group, notice: 'Group was successfully created.' }
         format.html { redirect_to(request.env["HTTP_REFERER"]) }
         format.json { render :show, status: :created, location: @group }
@@ -159,7 +160,7 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def group_params
-      params.require(:group).permit(:name, :description, :is_open, :is_private, :background_color, :text_color,
+      params.require(:group).permit(:name, :description, :type, :background_color, :text_color,
         :logo, :header, :logo_cache, :header_cache)
     end
 end

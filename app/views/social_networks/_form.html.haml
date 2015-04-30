@@ -12,7 +12,8 @@
               -#.button.close{:type => "button", "data-dismiss" => "alert", "aria-label" => "Close" }
             - else
               = "Create a new social network"
-            %span.caret.to-right
+            %span.to-right
+              %i.im-uncheck
       .panel-body
         = bootstrap_form_for(social_network, :remote => :true, :html => {:multipart => true} ) do |f|
           .nothing= f.text_field :name, :prepend => :name, :placeholder => "Enter the name of the new social network", :hide_label => :true, :text => "Social network name"
@@ -49,11 +50,11 @@
           .nothing= f.text_field :mission, :prepend => :mission, :placeholder => "Describe the mission of the social network", :hide_label => :true, :text => "Social network mission"
 
           %button.icon_only{ :type => "submit", :name => "commit", :hide_label => :true, :title => "Save the element" } 
-            %i.im-save-3
+            %i.im-check
             = "save"
-          %button.icon_only{ :type => "reset", :name => "reset", :hide_label => :true, :title => "cancel" } 
-            %i.im-cancel-circle
-            = "exit without saving"  
+          %button.icon_only{ :type => "reset", :name => "reset", :hide_label => :true, :title => "Clear the form" } 
+            %i.im-uncheck
+            = "clear"  
 
   .col-xs-15
 

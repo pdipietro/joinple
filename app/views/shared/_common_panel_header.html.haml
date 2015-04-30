@@ -1,0 +1,29 @@
+-#****************************************************************************************************************
+  - sample: render partial: 'shared/common_panel_heading', locals: { :style => "your style", :data_target => "your target", :title => "your title"}
+  - Needs three params:
+    - style: a String usually one of
+      - "current" for current_social_network_style
+      - "super" super_social_network_style
+      - or a different style that will be passed as a block
+    - data-target: the toggler to be used 
+      - example: "#group-form"
+    - title
+  ****************************************************************************************************************
+
+- title = defined?(title) ? title : "Add"
+- decoded_style = case style                              |
+    when "current"  then  current_social_network_style    | 
+    when "super" then super_social_network_style          |
+    else style                                            |
+  end                                   
+.panel-heading{ :style => decoded_style }
+  %a.toggle{ :type => "toggle", "data-target" => data_target, "data-toggle" => "collapse"}
+    .panel-title
+      - if defined?(title)
+        = title
+        -#.button.close{:type => "button", "data-dismiss" => "alert", "aria-label" => "Close" }
+      - else
+        - raise "TITLE MISSED"
+      %span.im-stack.to-right
+        %i.im-uncheck-stack-1
+        %i.im-uncheck-stack-2

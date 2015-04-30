@@ -10,8 +10,9 @@ class Group
   property  :description,  :type =>   String
   property  :background_color, :type =>   String, default: "inherit"
   property  :text_color,   :type =>   String, default: "inherit"
-  property  :is_open,      :type =>   Boolean, default: false
-  property  :is_private,   :type =>   Boolean, default: false
+  #property  :is_open,      :type =>   Boolean, default: false
+  #property  :is_private,   :type =>   Boolean, default: false
+  property  :type,         :type =>   String, default: "open"
 
   property  :logo,              type: String
   mount_uploader :logo,         GroupLogoUploader 
@@ -31,6 +32,8 @@ class Group
 
   validates   :name, length: { minimum: 6 }
   validates   :description, length: { minimum: 3 }
+  validates_uniqueness_of :name, case_sensitive:false
+ # validates   :type, inclusion: { in: ["open", "closed", "secret"] }
   #validates   :image, length: { minimum: 6 }
   #validates   :icon, length: { minimum: 6 }
   #validates   :color, format: { with: VALID_RGBA_REGEX }

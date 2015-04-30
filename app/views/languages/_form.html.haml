@@ -20,10 +20,11 @@
           .spacer
 
           %button.icon_only{ :type => "submit", :name => "commit", :hide_label => :true, :title => "Save the element" } 
-            %i.im-dot
+            %i.im-check
             = "save"
-          %button.icon_only{ :type => "reset", :name => "reset", :hide_label => :true, :title => "cancel" } 
-            %i.im-cancel-circle
-            = "exit without saving"  
+          %button.icon_only{ :type => "reset", :name => "reset", :hide_label => :true, :title => "clear" } 
+            -#%i.im-cancel-circle
+            %i.im-uncheck
+            = "clear"  
   .col-xs-15
 

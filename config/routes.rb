@@ -49,6 +49,7 @@ Rails.application.routes.draw do
   resources :post_comments,       constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
 
   get       'groups/list(/:filter(/:from_page(/:limit(/:subject(/:deep)))))'  =>   'groups#list', :as => :groups_list, defaults: { :format => "js"}, :remote => :true
+  get       'group/list(/:filter(/:from_page(/:limit(/:subject(/:deep)))))'  =>    'groups#list_one', :as => :group_list, defaults: { :format => "js"}, :remote => :true
   get       'social_networks/list(/:filter(/:from_page(/:limit(/:subject(/:deep)))))'  =>   'social_networks#list', :as => :social_networks_list, defaults: { :format => "js"}, :remote => :true
   get       'user/list(/:filter(/:from_page(/:limit(/:subject(/:deep)))))'  =>   'user#list', :as => :users_list, defaults: { :format => "js"}, :remote => :true
 #  get       'discussion/list(/:filter(/:from_page(/:limit(/:subject(/:deep)))))'  =>   'discussion#list', :as => :discussions_list, defaults: { :format => "js"}, :remote => :true

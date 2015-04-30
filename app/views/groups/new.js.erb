@@ -1,2 +1,2 @@
-$("#main_add").html("<%= escape_javascript(render partial: 'form', locals: { group: @group } ) %>" );
+$("#main_add").html("<%= escape_javascript(render partial: 'form', locals: { group: @group, title: 'Add a new group' } ) %>" );
 $("#group-form").removeClass('in').addClass('in');

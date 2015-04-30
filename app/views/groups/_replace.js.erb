@@ -1,3 +1,2 @@
-$("#main_add").html("<%= escape_javascript(render partial: 'form', locals: { group: Group.new } ) %>" );
 $("#group-form").removeClass('in');
 $("#<%= escape_javascript(@group.uuid) %>").html("<%= escape_javascript(render partial: 'show', locals: { group: @group, csn: current_social_network } ) %>" );

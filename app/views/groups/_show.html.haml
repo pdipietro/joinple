@@ -1,49 +1,50 @@
-%div{:id => group.uuid }
-  -# owner = group.get_owner
-  - rels = count_relationships(group)
-  = link_to group_path(group.uuid), :remote => :true, :title => "View details" do
-    .contour-3{:style => "border-color: #{group.background_color}; " }
-      .relative.nothing
-        = image_tag group.header.url(:sm_banner), :class => "responsive"
-        = image_tag csn.logo_social.url(:md_logo), :class => "responsive semi-transparent", :size => ("30x30")
+- unless group.type == "secret" and is_admin? == false
+  %div{:id => group.uuid }
+    -# owner = group.get_owner
+    - rels = count_relationships(group)
+    = link_to group_path(group.uuid), :remote => :true, :title => "View details" do
+      .contour-3{:style => "border-color: #{group.background_color}; " }
+        .relative.nothing
+          - if group.header.length === 0 
+            .group-image-replacement{:style => "background-color: #{group.background_color}; " }
+          -else  
+            = image_tag group.header.url(:sm_banner), :class => "responsive"
+          = image_tag csn.logo_social.url(:md_logo), :class => "responsive semi-transparent", :size => ("30x30")
 
-      .content
-        .title= group.name
-        = group.description
+        .content
+          .title= group.name
+          = group.description
+          .border-1
+          %span= "This group is "
+          %b= group.type 
+
         .border-1
-        %span= "This group is "
-        %b= group.is_private ? "Private" : "Public"  
-        %span= " and "
-        %b= group.is_open ? "Open" : "Close"  
-
-      .border-1
-      .command-button
-        .spaced-icon
-          = link_to dummy_path(group,'Group','likes'), :remote => :true, :test => "View members" do
-            %i.im-members.im-20x
-            = rels["out-follows-User"].nil? ? 0 : rels["out-follows-User"]
-        .spaced-icon
-          = link_to dummy_path(group,'Group','likes'), :remote => :true, :test => "View discussions" do
-            %i.im-discussions-groups.im-20x
-            = rels["out-follows-User"].nil? ? 0 : rels["out-follows-User"]
-        .spaced-icon
-          = link_to dummy_path(group,'Group','likes'), :remote => :true, :test => "View following/er" do
-            %i.im-dot.im-20x
-            = rels["out-follows-User"].nil? ? 0 : rels["out-follows-User"]
-            "(bidi-follows)""
-      .border-1
-        = render partial: "users/owner", locals: { object: group }
-      .border-1
-
-      .command-button{ :style => "background-color: #{group.background_color}; color: #{group.text_color};" }
-        - if can_modify?(group)
+        .command-button
           .spaced-icon
-            = link_to edit_group_path(group), :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Modify the element" do
-              %i.im-pencil
+            = link_to dummy_path(group,'Group','likes'), :remote => :true, :title => "View members" do
+              %i.im-members.im-20x
+              = rels["out-follows-User"].nil? ? 0 : rels["out-follows-User"]
           .spaced-icon
-            = link_to group, :method => :delete, :data => { :confirm => 'Are you sure?' }, :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Delete the element" do
-              %i.im-bin
-        .spaced-icon
-          %button.btn.btn-default.btn-sm-nothing{ :type => "submit", :name => "commit", :hide_label => :true, :style => super_social_network_style }
-            = "Join"
-    .spacer
+            = link_to dummy_path(group,'Group','likes'), :remote => :true, :title => "View discussions" do
+              %i.im-discussions-groups.im-20x
+              = rels["out-follows-User"].nil? ? 0 : rels["out-follows-User"]
+          .spaced-icon
+            = link_to dummy_path(group,'Group','likes'), :remote => :true, :title => "View following/er" do
+              %i.im-bi-follow.im-20x
+              = rels["out-follows-User"].nil? ? 0 : rels["out-follows-User"]
+        .border-1
+          = render partial: "users/owner", locals: { object: group }
+        .border-1
+
+        .command-button{ :style => "background-color: #{group.background_color}; color: #{group.text_color};" }
+          - if can_modify?(group)
+            .spaced-icon
+              = link_to edit_group_path(group), :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Modify the element" do
+                %i.im-pencil
+            .spaced-icon
+              = link_to group, :method => :delete, :data => { :confirm => 'Are you sure?' }, :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Delete the element" do
+                %i.im-bin
+          .spaced-icon
+            %button.btn.btn-default.btn-sm-nothing{ :type => "submit", :name => "commit", :hide_label => :true, :style => super_social_network_style }
+              = "Join"
+      .spacer
