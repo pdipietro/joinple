@@ -1,0 +1,1 @@
+$("#main_content").html("<%= escape_javascript(render partial: 'users/index', locals: { users: @users, subset: subset, title: title } ) %>" );

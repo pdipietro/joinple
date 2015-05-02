@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
   respond_to :js
 
-  helper_method  :secondary_items_per_page, :get_group_subset, :get_posts_subset
+  #helper_method  :secondary_items_per_page, :get_group_subset, :get_posts_subset
  
   # GET /users/list/:filter(/:limit(/:subject))
   def list
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
 
     @users = User.as(:users).query.match(query_string).proxy_as(User, :users).paginate(:page => first_page, :per_page => SECONDARY_ITEMS_PER_PAGE, return: :users, order: "users.created_at desc")
 
-    render 'list', locals: { users: @users, subset: filter, title: get_title(filter)}
+    render partial: 'list', locals: { users: @users, subset: filter, title: get_title(filter)}
   end
 
   # GET /users
@@ -150,5 +150,21 @@ class UsersController < ApplicationController
   #    @user.check_default
   #    puts "CheckDefault done! #{@user.activation_token} - #{@user.last_name} --------------------------------------------------------------"
   #  end
+
+
+    def get_title(filter)
+        case filter
+          when "all"
+                "All users"
+          when "ifollowing"
+                "Users I follow"
+          when "myfollowers"
+                "Users following me"
+          else 
+               "TITLE MISSED"  
+               raise 565    
+        end
+    end
+
 
 end

@@ -1,13 +1,11 @@
 - if logged_in?
   .spacer
   .page-thumbnail{ :style => super_social_network_style }
-    = "Users"
-    -#= link_to new_social_network_path, :remote => :true, :title => "Add a new social network" do
-      %i.hoverable.im-plus.to-right
+    = title
   .spacer
   #grid5.padding{ "data-columns" => "" }
     - users.each do |user|
-      = render partial: 'show', locals: { user: user }
+      = render partial: 'users/show', locals: { user: user }
 
 
 

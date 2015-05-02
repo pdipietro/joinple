@@ -5,6 +5,8 @@ module SessionsHelper
   SUPER_SOCIAL_BACKGROUND_COLOR = "#a12349"
   SUPER_SOCIAL_COLOR = "#ffffff"  #333342 white is a better solution
 
+  SECONDARY_ITEMS_PER_PAGE = 12
+
   def super_social_network_background_color
     SUPER_SOCIAL_BACKGROUND_COLOR
   end
@@ -15,6 +17,10 @@ module SessionsHelper
 
   def super_social_network_style
       "background-color: #{SUPER_SOCIAL_BACKGROUND_COLOR}; color: #{SUPER_SOCIAL_COLOR};"
+  end
+
+  def super_social_border_color
+      "border-color: #{SUPER_SOCIAL_BACKGROUND_COLOR};"
   end
 
  # get screen geometry from cookies
@@ -206,7 +212,7 @@ module SessionsHelper
        end
     end
 
-    puts "caller: #{caller[0...5]}"
+    #puts "caller: #{caller[0...5]}"
     !session[:social_network].nil? 
   end
 
@@ -294,13 +300,17 @@ module SessionsHelper
 
   def set_checked parm,value
     (parm == value) ? %w":checked => 'checked'" : %w":x => '1'"
-  end  
+  end
+
+  def secondary_items_per_page
+    SECONDARY_ITEMS_PER_PAGE
+  end
 
   private
 
     def set_current_social_network (sn)
-      puts "caller: #{caller[0...5]}"
-      puts "HERE INTO set_current_social_network: #{sn} !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+     # puts "caller: #{caller[0...5]}"
+     # puts "HERE INTO set_current_social_network: #{sn} !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
       if sn.nil?
         puts "sn is nil => faccio il logout"
         log_out
@@ -308,8 +318,8 @@ module SessionsHelper
         session[:social_network_uuid] = sn.uuid
         session[:social_network] = sn
 
-        puts "sn: #{current_social_network}"
-        puts "sn.name: #{current_social_network.name}"
+      #  puts "sn: #{current_social_network}"
+      #  puts "sn.name: #{current_social_network.name}"
         reset_current_group
       end
     end

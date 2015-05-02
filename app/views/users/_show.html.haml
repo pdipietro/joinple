@@ -20,30 +20,31 @@
             - stars((1 + rand(49)) / 10.0).each do |k|
               %i{ :class => "im-star-#{k}" }
     .border-1
-    .col-xs-12.nothing
-      %i.user-info-icons.im-following
-      %br
-      - followings_number = rels["out-follows-User"]
-      = followings_number
-    .col-xs-12.nothing
-      %i.user-info-icons.im-followers
-      %br
-      - followers_number = rels["in-follows-User"]
-      = followers_number
-      = 46532
-    .col-xs-12.nothing
-      %i.user-info-icons.im-discussions
-      %br
-      172
-    .col-xs-12.nothing
-      %i.user-info-icons.im-groups
-      %br
-      - groups_number = rels["out-owns-Group"]
-      = groups_number
-    .col-xs-12.nothing
-      %i.user-info-icons.im-blog2
-      %br
-      93
+    .row
+      .col-xs-12.nothing
+        %i.user-info-icons.im-following
+        %br
+        - followings_number = rels["out-follows-User"]
+        = followings_number
+      .col-xs-12.nothing
+        %i.user-info-icons.im-followers
+        %br
+        - followers_number = rels["in-follows-User"]
+        = followers_number
+        = 46532
+      .col-xs-12.nothing
+        %i.user-info-icons.im-discussions
+        %br
+        172
+      .col-xs-12.nothing
+        %i.user-info-icons.im-groups
+        %br
+        - groups_number = rels["out-owns-Group"]
+        = groups_number
+      .col-xs-12.nothing
+        %i.user-info-icons.im-blog2
+        %br
+        93
     .border-1
     .centered
       = link_to onerel_path(user,'User','follows'), :method => :post, :to_class => :true do
@@ -51,7 +52,8 @@
           - i_follow = current_user.query_as(:p).match("(p)-[r:follows]->(u:User { uuid : '#{user.uuid}' })").pluck(:u).count
           = i_follow == 1 ? "unfollow" : "follow" 
         - else
-          .transparent-line
+          -#.transparent-line= 
+          &nbsp;
   .spacer
 
 

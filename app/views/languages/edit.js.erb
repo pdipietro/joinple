@@ -1,1 +1,2 @@
-$('#<%= escape_javascript(@language.uuid) %>').html("<%= escape_javascript(render partial: 'form', locals: { language: @language, title: "Edit language" } ) %>" );
+$("#main_add").html("<%= escape_javascript(render partial: 'form', locals: { language: @language, title: "Edit the #{@language.code} language" } ) %>" );
+$("#language-form").removeClass('in').addClass('in');

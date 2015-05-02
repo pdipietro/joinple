@@ -3,15 +3,7 @@
   .col-xs-15
   .col-xs-30
     .panel.panel-default.nothing
-      .panel-heading{ :style => super_social_network_style }
-        %a.toggle{ :type => "toggle", "data-target" => "#language-form", "data-toggle" => "collapse"}
-          .panel-title
-            - if defined?(title)
-              = title
-              .button.close{:type => "button", "data-dismiss" => "alert", "aria-label" => "Close" }
-            - else
-              = "Add a new language"
-            %span.caret.to-right
+      = render partial: 'shared/common_panel_header', locals: { :style => "super", :data_target => "#language-form", :title => title }
       .panel-body
         = bootstrap_form_for(language, :remote => :true ) do |f|
           .nothing= f.text_field :code, :prepend => :code, :placeholder => "2 chars language code (ISO 639-1), plus an optional hyphen and 2 chars country code", :hide_label => :true, :text => "language code"
@@ -19,12 +11,6 @@
           .nothing= f.text_field :description, :prepend => :description, :placeholder => "Enter the language description", :hide_label => :true, :text => "language description"
           .spacer
 
-          %button.icon_only{ :type => "submit", :name => "commit", :hide_label => :true, :title => "Save the element" } 
-            %i.im-check
-            = "save"
-          %button.icon_only{ :type => "reset", :name => "reset", :hide_label => :true, :title => "clear" } 
-            -#%i.im-cancel-circle
-            %i.im-uncheck
-            = "clear"  
+          = render partial: 'shared/common_panel_footer'
   .col-xs-15
 

@@ -1,6 +1,6 @@
 class LanguagesController < ApplicationController
   before_action :set_language, only: [:show, :edit, :update, :destroy]
-  
+
   respond_to :js
 
   # GET /languages

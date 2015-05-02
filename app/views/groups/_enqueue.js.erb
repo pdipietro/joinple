@@ -1,1 +1,2 @@
-$("#main_content column[0]").after("<%= escape_javascript(render partial: 'show', locals: { group: @group } ) %>" );
+$("#language-form").removeClass('in');
+$("#main_content .padding .column *:eq(0)").after("<%= escape_javascript(render partial: 'show', locals: { group: @group } ) %>" );

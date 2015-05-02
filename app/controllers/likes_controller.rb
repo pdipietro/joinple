@@ -6,18 +6,18 @@ class LikesController < ApplicationController
      puts "Params: #{params} *******************************************************************************************"
      @id = params[:id]
      @class = params[:class]
-     @rel_type = params[:rel_type].downcase
+     @relationship = params[:relationship].downcase
      @dest = Neo4j::Session.query("match (dest:#{@class} { uuid : '#{@id}' }) return dest").first[0]
  
-     like = Neo4j::Session.query("match (u:User { uuid : '#{current_user.uuid}' })-[rel:#{@rel_type}]->(dest:#{@class} { uuid : '#{@id}' }) return rel")
+     like = Neo4j::Session.query("match (u:User { uuid : '#{current_user_id?}' })-[rel:#{@relationship}]->(dest:#{@class} { uuid : '#{@id}' }) return rel")
      if like.count == 0
-        base = Object.const_get("#{@rel_type.capitalize}::#{@rel_type.capitalize}")
-        rel = base.create(from_node: current_user, to_node: @dest)
+        like = Neo4j::Session.query("match (user:User { uuid : '#{current_user_id?}' }), (dest:#{@class} { uuid : '#{@id}' })
+               create (user)-[rel:#{@relationship}]->(dest) return rel")
      else
-        like = Neo4j::Session.query("match (u:User { uuid : '#{current_user.uuid}' })-[rel:#{@rel_type}]->(dest:#{@class} { uuid : '#{@id}' }) delete rel")
+        like = Neo4j::Session.query("match (u:User { uuid : '#{current_user_id?}' })-[rel:#{@relationship}]->(dest:#{@class} { uuid : '#{@id}' }) delete rel")
      end
     
-     partial_name = "user_#{@rel_type}_#{@class.downcase}.js.erb"
+     partial_name = "user_#{@relationship}_#{@class.downcase}.js.erb"
 
      @dest
      respond_to do |format|

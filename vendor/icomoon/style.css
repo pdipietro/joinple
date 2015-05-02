@@ -1,11 +1,11 @@
 @font-face {
 	font-family: 'icomoon';
-	src:url('fonts/icomoon.eot?q5ekme');
-	src:url('fonts/icomoon.eot?#iefixq5ekme') format('embedded-opentype'),
-		url('fonts/icomoon.woff2?q5ekme') format('woff2'),
-		url('fonts/icomoon.woff?q5ekme') format('woff'),
-		url('fonts/icomoon.ttf?q5ekme') format('truetype'),
-		url('fonts/icomoon.svg?q5ekme#icomoon') format('svg');
+	src:url('fonts/icomoon.eot?-a86q37');
+	src:url('fonts/icomoon.eot?#iefix-a86q37') format('embedded-opentype'),
+		url('fonts/icomoon.woff2?-a86q37') format('woff2'),
+		url('fonts/icomoon.woff?-a86q37') format('woff'),
+		url('fonts/icomoon.ttf?-a86q37') format('truetype'),
+		url('fonts/icomoon.svg?-a86q37#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -24,6 +24,10 @@ i {
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.im-uncheck-full:before {
+	content: "\e633";
+}
+
 .im-groups:before {
 	content: "\e631";
 }
@@ -34,10 +38,6 @@ i {
 
 .im-bi-follow:before {
 	content: "\e634";
-}
-
-.im-uncheck-full:before {
-	content: "\e633";
 }
 
 .im-invite-someone:before {

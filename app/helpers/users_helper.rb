@@ -80,5 +80,4 @@ puts x.next
       end
    end
 
-
 end

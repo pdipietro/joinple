@@ -1,23 +1,13 @@
 - if logged_in?
   .spacer
-  .page-thumbnail{ :style => super_social_network_style }= "Languages"
+  .page-thumbnail{ :style => super_social_network_style }
+    = title
+    = link_to new_language_path, :remote => :true, :title => "Add a new Language" do
+      %i.hoverable.im-plus.to-right
   .spacer
   #grid5.padding{ "data-columns" => "" }
     - languages.each do |language|
       = render partial: "show", locals: { language: language }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

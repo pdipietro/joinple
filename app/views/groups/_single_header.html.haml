@@ -8,6 +8,8 @@
     .relative.nothing
       = image_tag group.header.url(:md_banner), :class => "responsive"
       = image_tag group.logo.url(:thumb), :class => "responsive overloaded-logo", :size => ("80x80")
+      - if group.logo.length === 0 
+        .group-thumb-image-replacement{:style => "background-color: #{group.background_color}; ", :class => "overloaded-logo" }
       %span.semi-transparent-bar
       %span.solid-text
         %span.title= group.name
@@ -19,31 +21,31 @@
         %span.to-right
           = "pippo     pluto     paperino"
           %span.spaced-icon
-            %button.btn.btn-default.btn-sm-nothing{ :type => "submit", :name => "commit", :hide_label => :true, :style => super_social_network_style }
+            = link_to onerel_path(group,'Group','participates'), :type => "button", :method => :post, :remote => :true, :title => "Join", :style => super_social_network_style do
               = "Join"
 
   .spacer
   #common-header-left
     .buttons.nothing
       .post-icon.nothing
-        = link_to group_list_path("discussions"), :remote => :true, :title => "View discussions" do
+        = link_to group_list_path(group.uuid,"discussions"), :remote => :true, :title => "View discussions" do
           %i.activable.im-discussions-groups.im-2x
       .post-icon.nothing
-        = link_to group_list_path("events"), :remote => :true, :title => "View group events" do
+        = link_to group_list_path(group.uuid,"events"), :remote => :true, :title => "View group events" do
           %i.activable.im-calendar.im-2x
       .post-icon.nothing
-        = link_to group_list_path("admins"), :remote => :true, :title => "View group admins" do
+        = link_to group_list_path(group.uuid,"admins"), :remote => :true, :title => "View group admins" do
           %i.activable.im-admin-group.im-2x
       .post-icon.nothing
-        = link_to group_list_path("members"), :remote => :true, :title => "View group members" do
+        = link_to group_list_path(group.uuid,"members"), :remote => :true, :title => "View group members" do
           %i.activable.im-members.im-2x
       = render partial: 'shared/search'
       .post-icon.nothing
-        = link_to group_list_path("info"), :remote => :true, :title => "View group info" do
+        = link_to group_list_path(group.uuid,"info"), :remote => :true, :title => "View group info" do
           %i.activable.im-about.im-2x
       .post-icon.nothing
-        = link_to group_list_path("invite"), :remote => :true, :title => "Invite other people" do
-          %i.activable.im-about.im-2x
+        = link_to group_list_path(group.uuid,"invite"), :remote => :true, :title => "Invite other people" do
+          %i.activable.im-invite-someone.im-2x
       - if can_modify?(group)
         .post-icon.nothing
           = link_to edit_group_path(group), :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Modify the element" do

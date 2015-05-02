@@ -1,11 +1,4 @@
 - if is_admin?
-  -#.p
-    - user = current_user
-    - csn = current_social_network
-    - search = PostComment.new
-    #common-header
-      = bootstrap_form_for(search, :remote => :true ) do |f|
-        = render partial: 'top_left'
   #groups_page
     #common-header-left
       .buttons.nothing
@@ -18,6 +11,9 @@
         .post-icon.nothing
           = link_to groups_list_path("all"), :remote => :true, :title => "View all groups" do
             %i.activable.im-all-groups.im-25x
+        .post-icon.nothing
+          = link_to groups_list_path("pendinginvitation"), :remote => :true, :title => "View pending invitation" do
+            %i.activable.im-pending-invitations.im-25x
         = render partial: 'shared/search'
     .spacer
 

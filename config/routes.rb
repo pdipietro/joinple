@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-
+  resources :discussions
   root                     'landing_pages#home'#, defaults: { :format => "js"}, :remote => :true
   get    'home'      =>    'landing_pages#home', defaults: { :format => "js"}, :remote => :true
   get    'about'     =>    'static_pages#about', defaults: { :format => "js"}, :remote => :true
@@ -49,16 +49,17 @@ Rails.application.routes.draw do
   resources :post_comments,       constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
 
   get       'groups/list(/:filter(/:from_page(/:limit(/:subject(/:deep)))))'  =>   'groups#list', :as => :groups_list, defaults: { :format => "js"}, :remote => :true
-  get       'group/list(/:filter(/:from_page(/:limit(/:subject(/:deep)))))'  =>    'groups#list_one', :as => :group_list, defaults: { :format => "js"}, :remote => :true
+  get       'group/:id/list(/:filter(/:from_page(/:limit(/:subject(/:deep)))))'  =>    'groups#list_one', :as => :group_list, defaults: { :format => "js"}, :remote => :true
   get       'social_networks/list(/:filter(/:from_page(/:limit(/:subject(/:deep)))))'  =>   'social_networks#list', :as => :social_networks_list, defaults: { :format => "js"}, :remote => :true
-  get       'user/list(/:filter(/:from_page(/:limit(/:subject(/:deep)))))'  =>   'user#list', :as => :users_list, defaults: { :format => "js"}, :remote => :true
-#  get       'discussion/list(/:filter(/:from_page(/:limit(/:subject(/:deep)))))'  =>   'discussion#list', :as => :discussions_list, defaults: { :format => "js"}, :remote => :true
+  get       'social_network/:id/list(/:filter(/:from_page(/:limit(/:subject(/:deep)))))'  =>   'social_networks#list_one', :as => :social_network_list, defaults: { :format => "js"}, :remote => :true
+  get       'users/list(/:filter(/:from_page(/:limit(/:subject(/:deep)))))'  =>   'users#list', :as => :users_list, defaults: { :format => "js"}, :remote => :true
+  get       'discussion/list(/:filter(/:from_page(/:limit(/:subject(/:deep)))))'  =>   'discussions#list', :as => :discussions_list, defaults: { :format => "js"}, :remote => :true
 #  get       'post/list(/:filter(/:from_page(/:limit(/:subject(/:deep)))))'  =>   'post#list', :as => :posts_list, defaults: { :format => "js"}, :remote => :true
 
-  post      'likes/:id/:class/:rel_type'    =>    'likes#edit',           :as => :onerel, constraints: AuthConstraint.new
-  get       'likes'                         =>    'likes#dummy',          :as => :dummy, constraints: AuthConstraint.new
-  post      'search'                        =>    'likes#search',         :as => :search, constraints: AuthConstraint.new
-  get       '/media_managers/list/'         =>    'media_managers#list',  :as => :image_list #, defaults: { :format => "js"}, :remote => :true
+  post      'likes/:id/:class/:relationship' =>    'likes#edit',           :as => :onerel, constraints: AuthConstraint.new
+  get       'likes'                          =>    'likes#dummy',          :as => :dummy, constraints: AuthConstraint.new
+  post      'search'                         =>    'likes#search',         :as => :search, constraints: AuthConstraint.new
+  get       '/media_managers/list/'          =>    'media_managers#list',  :as => :image_list #, defaults: { :format => "js"}, :remote => :true
  # get       'user_profiles'                 =>    'user_profiles#edit',    :as => :edit, constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
 
 end

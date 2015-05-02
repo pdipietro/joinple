@@ -31,6 +31,7 @@ class SocialNetworksController < ApplicationController
     render 'list', locals: { social_networks: @social_networks, subset: filter, title: get_title(filter)}
   end
 
+=begin
   # GET /social_network
   def index
     filter = "iparticipate"
@@ -38,6 +39,7 @@ class SocialNetworksController < ApplicationController
 
     render 'index', locals: { social_networks: @social_networks, subset: filter, title: get_title(filter)}
   end
+=end
 
   # GET /social_networks
   # GET /social_networks.json
