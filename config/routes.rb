@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :discussions
   root                     'landing_pages#home'#, defaults: { :format => "js"}, :remote => :true
   get    'home'      =>    'landing_pages#home', defaults: { :format => "js"}, :remote => :true
   get    'about'     =>    'static_pages#about', defaults: { :format => "js"}, :remote => :true
@@ -37,7 +36,7 @@ Rails.application.routes.draw do
   resources :languages,           constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
   resources :social_networks,     constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true,  except: [:destroy]
 
-  resources :posts,               constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true     #, only: [:create, :destroy]
+  resources :posts,               constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
   resources :groups,              constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
 
   resources :landing_pages,       constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true,  except: [:destroy]
@@ -46,7 +45,9 @@ Rails.application.routes.draw do
   resources :images,              constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
   resources :media_managers,      constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
   resources :user_profiles,       constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
-  resources :post_comments,       constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
+  resources :post_comments,       constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true,  except: [:new]
+  resources :discussions,         constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true,  except: [:new]
+  resources :discussion_comments, constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true,  except: [:new]
 
   get       'groups/list(/:filter(/:from_page(/:limit(/:subject(/:deep)))))'  =>   'groups#list', :as => :groups_list, defaults: { :format => "js"}, :remote => :true
   get       'group/:id/list(/:filter(/:from_page(/:limit(/:subject(/:deep)))))'  =>    'groups#list_one', :as => :group_list, defaults: { :format => "js"}, :remote => :true

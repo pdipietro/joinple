@@ -32,6 +32,50 @@ i, .icomoon-liga {
 }
 
 
+.im-my-groups:before {
+	content: "\e60a";
+}
+
+.im-admin-group:before {
+	content: "\e60b";
+}
+
+.im-all-groups:before {
+	content: "\e60c";
+}
+
+.im-my-events:before {
+	content: "\e629";
+}
+
+.im-all-events:before {
+	content: "\e636";
+}
+
+.im-all-discussions:before {
+	content: "\e637";
+}
+
+.im-my-discussions:before {
+	content: "\e638";
+}
+
+.im-thermometer:before {
+	content: "\e639";
+}
+
+.im-hot:before {
+	content: "\e63a";
+}
+
+.im-fresh:before {
+	content: "\e63b";
+}
+
+.im-uncheck-full:before {
+	content: "\e633";
+}
+
 .im-groups:before {
 	content: "\e631";
 }
@@ -42,10 +86,6 @@ i, .icomoon-liga {
 
 .im-bi-follow:before {
 	content: "\e634";
-}
-
-.im-uncheck-full:before {
-	content: "\e633";
 }
 
 .im-invite-someone:before {
@@ -90,18 +130,6 @@ i, .icomoon-liga {
 
 .im-pending-invitations:before {
 	content: "\e609";
-}
-
-.im-my-groups:before {
-	content: "\e60a";
-}
-
-.im-all-groups:before {
-	content: "\e60b";
-}
-
-.im-admin-group:before {
-	content: "\e60c";
 }
 
 .im-uncheck:before {
@@ -198,10 +226,6 @@ i, .icomoon-liga {
 
 .im-dot:before {
 	content: "\e624";
-}
-
-.im-calendar:before {
-	content: "\e629";
 }
 
 .im-cog:before {

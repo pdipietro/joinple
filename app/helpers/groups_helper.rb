@@ -26,6 +26,14 @@ module GroupsHelper
                   "Group members"
             when "admins"
                   "Group admins"
+            when "alldiscussions"
+                  "All discussions"
+            when "mydiscussions"
+                  "My discussions"
+            when "allevents"
+                  "All events"
+            when "myevents"
+                  "My events"
             else 
                  "Groups"      
           end

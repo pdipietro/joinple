@@ -1,10 +1,25 @@
-= form_for @discussion do |f|
-  - if @discussion.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@discussion.errors.count, "error")} prohibited this discussion from being saved:"
-      %ul
-        - @discussion.errors.full_messages.each do |msg|
-          %li= msg
+#discussion-form{ :class => discussion.errors.count == 0 ? 'collapse' : 'collapse in' }
+  .spacer
+  .col-xs-15
+  .col-xs-30
+    .panel.panel-default.nothing
+      = render partial: 'shared/common_panel_header', locals: { :style => "current", :data_target => "#discussion-form", :title => title }
+      .panel-body
+        = bootstrap_form_for(discussion, :remote => :true, :html => {:multipart => true} ) do |f|
+          .nothing= f.text_field :title, :prepend => :title, :placeholder => "Enter the discussion title name ", :hide_label => :true
+          .spacer
+          .nothing= f.text_area :description, :prepend => :description, :placeholder => "Enter the discussion description", :hide_label => :true
+          .spacer
 
-  .actions
-    = f.submit 'Save'
+          .nothing= f.text_field :logo, :prepend => "logo image", :placeholder => "Select the discussion logo (200x200 px)", :hide_label => :true, :disabled => :true
+          .spacer
+          .nothing= f.file_field :logo, :prepend => "logo image", :placeholder => "Select the discussion logo (200x200 px)", :hide_label => :true
+          .spacer
+          .nothing= image_tag discussion.logo.url(:profile) 
+          .spacer
+          .nothing= f.hidden_field :logo_cache
+
+          = render partial: 'shared/common_panel_footer'
+
+  .col-xs-15
+

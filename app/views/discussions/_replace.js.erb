@@ -1,0 +1,2 @@
+$("#discussion-form").removeClass('in');
+$("#<%= escape_javascript(@group.uuid) %>").html("<%= escape_javascript(render partial: 'show', locals: { discussion: @discussion, csn: current_social_network } ) %>" );

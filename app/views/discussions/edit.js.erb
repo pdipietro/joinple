@@ -1,0 +1,2 @@
+$("#main_add").html("<%= escape_javascript(render partial: 'form', locals: { group: @group, title: "Edit the #{@discussion.title} discussion" } ) %>" );
+$("#discussion-form").removeClass('in').addClass('in');

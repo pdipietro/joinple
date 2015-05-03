@@ -2,7 +2,6 @@ class Discussion
   include Neo4j::ActiveNode
   include Uuid
   include CreatedAtUpdatedAt
-  include Content
 
   property  :title,           type: String
   property  :description,     type: String
@@ -19,6 +18,8 @@ class Discussion
   has_one   :out, :belongs_to, model_class: Group               # belongs to Group
   has_many  :out, :has_comments, rel_class: HasDiscussionComment      # :comment
 
-
+  validates   :title, :presence => true
+  validates   :title, length: { minimum: 6 }
+  validates   :description, length: { minimum: 10 }, allow_blank: true
 
 end

@@ -1,4 +1,4 @@
-- if is_admin?
+- if logged_in?
   #groups_page
     #common-header-left
       .buttons.nothing
@@ -9,11 +9,20 @@
           = link_to groups_list_path("iadminister"), :remote => :true, :title => "View groups I administer" do
             %i.activable.im-admin-group.im-25x
         .post-icon.nothing
-          = link_to groups_list_path("all"), :remote => :true, :title => "View all groups" do
-            %i.activable.im-all-groups.im-25x
-        .post-icon.nothing
           = link_to groups_list_path("pendinginvitation"), :remote => :true, :title => "View pending invitation" do
             %i.activable.im-pending-invitations.im-25x
         = render partial: 'shared/search'
+        .post-icon.nothing
+          = link_to groups_list_path("all"), :remote => :true, :title => "View all groups" do
+            %i.activable.im-all-groups.im-25x
+        .post-icon.nothing
+          = link_to groups_list_path("hot"), :remote => :true, :title => "View hot groups" do
+            %i.activable.im-hot.im-25x
+        .post-icon.nothing
+          = link_to groups_list_path("fresh"), :remote => :true, :title => "View fresh groups" do
+            %i.activable.im-thermometer.im-25x
+        .post-icon.nothing
+          = link_to groups_list_path("fresh"), :remote => :true, :title => "View fresh groups" do
+            %i.activable.im-fresh.im-25x
     .spacer
 

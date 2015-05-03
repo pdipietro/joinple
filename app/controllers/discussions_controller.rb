@@ -1,5 +1,92 @@
 class DiscussionsController < ApplicationController
-  before_action :set_discussion, only: [:show, :edit, :update, :destroy]
+  before_action :set_discussion, only: [:show, :edit, :update, :destroy, :list_one]
+  before_action :check_social_network
+  before_action :logged_in_user, only: [:create, :destroy]
+
+  respond_to :js
+
+ # GET group/:id/list/:filter(/:from_page(/:limit(/:subject(/:deep))))
+  def list_one
+    puts ("----- Discussion Controller: List_one --(#{params[:filter]})----------------------------------------")
+
+    filter = params[:filter]
+    first_page = params[:from_page].nil? ? 1 : params[:from_page]
+    discussion_id = params[:discussion_id]
+
+    puts "@discussion: #{@discussion}"
+
+    basic_query = "(g:discussion { uuid : '#{@discussion.uuid}' })"
+
+    subject = ""
+
+    qstr =
+      case filter
+        when "members"
+              subject = User
+              "(user:User)-[p:participates|owns|admins]->"
+        when "admins"
+              subject = User
+              "(user:User)-[p:owns|admins]->"
+        when "events"
+              ""
+        when "discussions"
+              subject = Discussion
+              ""
+        else 
+             ""      
+       end
+
+    query_string = qstr << basic_query
+
+    puts "Query: #{query_string}"
+
+    @users = Neo4j::Session.query.match(query_string).proxy_as(User, :user).paginate(:page => first_page, :per_page => secondary_items_per_page, return: "user distinct",order: "user.last_name asc, user.first_name  asc")
+  
+    @users.each do |u|
+      puts "User: #{u.last_name}"
+    end
+
+    render partial: "#{subject.name.pluralize.downcase}/list", locals: { group: @group, users: @users, subset: filter, title: get_title(filter)}
+
+  end
+
+  # GET /groups/list/:filter(/:limit(/:subject))
+  def list
+    puts ("----- Discussion Controller: List --(#{params[:filter]})----------------------------------------")
+
+    filter = params[:filter]
+    first_page = params[:from_page].nil? ? 1 : params[:from_page]
+
+    basic_query = "(discussions)-[r:belongs_to]->(g:Group { uuid : '#{current_group_uuid?}'} ) "
+
+    qstr =
+      case filter
+        when "iparticipate"
+              "(user:User { uuid : '#{current_user.uuid}' })-[p:participates|owns|admins]->"
+        when "iadminister"
+              "(user:User { uuid : '#{current_user.uuid}' })-[p:owns|admins]->"
+        when "mycontacts"
+              "(user:User { uuid : '#{current_user.uuid}' })-[f:is_friend_of*1..2]->(afriend:User)-[p:owns]->"
+        when "hot"
+              "(user:User { uuid : '#{current_user.uuid}' })-[p:owns]->"
+        when "fresh"
+              ""
+        when "search"
+              ""
+        when "all"
+              ""
+        else 
+             ""      
+       end
+
+    query_string = qstr << basic_query
+
+    @groups = Discussion.as(:discussions).query.match(query_string).proxy_as(Discussion, :discussions).paginate(:page => first_page, :per_page => secondary_items_per_page, return: "distinct discussion", order: "discussion.created_at desc")
+
+    render 'list', locals: { groups: @groups, subset: filter, title: get_title(filter)}
+
+  end
+
 
   # GET /discussions
   # GET /discussions.json
@@ -28,9 +115,13 @@ class DiscussionsController < ApplicationController
 
     respond_to do |format|
       if @discussion.save
+        rel = Owns.create(from_node: current_user, to_node: @discussion)
+        rel = BelongsTo.create(from_node: @discussion, to_node: current_group)
+        format.js   { render partial: "enqueue", object: @discussion, notice: 'Discussion was successfully created.' }
         format.html { redirect_to @discussion, notice: 'Discussion was successfully created.' }
         format.json { render :show, status: :created, location: @discussion }
       else
+        format.js   { render :new, object: @discussion }
         format.html { render :new }
         format.json { render json: @discussion.errors, status: :unprocessable_entity }
       end
@@ -42,9 +133,11 @@ class DiscussionsController < ApplicationController
   def update
     respond_to do |format|
       if @discussion.update(discussion_params)
+        format.js   { render partial: "replace", object: @discussion, notice: 'Discussion was successfully updated.' }
         format.html { redirect_to @discussion, notice: 'Discussion was successfully updated.' }
         format.json { render :show, status: :ok, location: @discussion }
       else
+        format.js   { render :edit, object: @discussion }
         format.html { render :edit }
         format.json { render json: @discussion.errors, status: :unprocessable_entity }
       end
@@ -54,8 +147,10 @@ class DiscussionsController < ApplicationController
   # DELETE /discussions/1
   # DELETE /discussions/1.json
   def destroy
+    dest = @discussion.uuid
     @discussion.destroy
     respond_to do |format|
+      format.js   { render partial: "shared/remove", locals: { dest: dest } }
       format.html { redirect_to discussions_url, notice: 'Discussion was successfully destroyed.' }
       format.json { head :no_content }
     end
@@ -69,6 +164,6 @@ class DiscussionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def discussion_params
-      params[:discussion]
+      params.require(:discussion).permit(:title, :description, :logo, :logo_cache)
     end
 end

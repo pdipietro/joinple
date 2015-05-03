@@ -1,11 +1,11 @@
 @font-face {
 	font-family: 'icomoon';
-	src:url('fonts/icomoon.eot?-a86q37');
-	src:url('fonts/icomoon.eot?#iefix-a86q37') format('embedded-opentype'),
-		url('fonts/icomoon.woff2?-a86q37') format('woff2'),
-		url('fonts/icomoon.woff?-a86q37') format('woff'),
-		url('fonts/icomoon.ttf?-a86q37') format('truetype'),
-		url('fonts/icomoon.svg?-a86q37#icomoon') format('svg');
+	src:url('fonts/icomoon.eot?-pu7ayg');
+	src:url('fonts/icomoon.eot?#iefix-pu7ayg') format('embedded-opentype'),
+		url('fonts/icomoon.woff2?-pu7ayg') format('woff2'),
+		url('fonts/icomoon.woff?-pu7ayg') format('woff'),
+		url('fonts/icomoon.ttf?-pu7ayg') format('truetype'),
+		url('fonts/icomoon.svg?-pu7ayg#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -22,6 +22,46 @@ i {
 	/* Better Font Rendering =========== */
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+}
+
+.im-my-groups:before {
+	content: "\e60a";
+}
+
+.im-admin-group:before {
+	content: "\e60b";
+}
+
+.im-all-groups:before {
+	content: "\e60c";
+}
+
+.im-my-events:before {
+	content: "\e629";
+}
+
+.im-all-events:before {
+	content: "\e636";
+}
+
+.im-all-discussions:before {
+	content: "\e637";
+}
+
+.im-my-discussions:before {
+	content: "\e638";
+}
+
+.im-thermometer:before {
+	content: "\e639";
+}
+
+.im-hot:before {
+	content: "\e63a";
+}
+
+.im-fresh:before {
+	content: "\e63b";
 }
 
 .im-uncheck-full:before {
@@ -82,18 +122,6 @@ i {
 
 .im-pending-invitations:before {
 	content: "\e609";
-}
-
-.im-my-groups:before {
-	content: "\e60a";
-}
-
-.im-all-groups:before {
-	content: "\e60b";
-}
-
-.im-admin-group:before {
-	content: "\e60c";
 }
 
 .im-uncheck:before {
@@ -190,10 +218,6 @@ i {
 
 .im-dot:before {
 	content: "\e624";
-}
-
-.im-calendar:before {
-	content: "\e629";
 }
 
 .im-cog:before {

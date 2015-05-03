@@ -1,0 +1,2 @@
+$("#discussion-form").removeClass('in');
+$("#main_content .padding .column *:eq(0)").after("<%= escape_javascript(render partial: 'show', locals: { discussion: @discussion } ) %>" );

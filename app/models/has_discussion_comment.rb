@@ -1,9 +1,9 @@
-class HasPostComment
+class HasDiscussionComment
   include Neo4j::ActiveRel
   include CreatedAtUpdatedAt
 
   from_class  Discussion
-  to_class    CommentComment
-  type 'has_comment'
+  to_class    DiscussionComment
+  type 'has_discussion_comment'
 
 end
