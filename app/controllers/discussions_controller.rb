@@ -113,10 +113,13 @@ class DiscussionsController < ApplicationController
   def create
     @discussion = Discussion.new(discussion_params)
 
+    puts ("Discussion.class: #{@discussion.class}")
+    puts ("current_group.class: #{current_group.class}")
+
     respond_to do |format|
       if @discussion.save
         rel = Owns.create(from_node: current_user, to_node: @discussion)
-        rel = BelongsTo.create(from_node: @discussion, to_node: current_group)
+        rel = @discussion.create_rel("belongs_to", current_group)
         format.js   { render partial: "enqueue", object: @discussion, notice: 'Discussion was successfully created.' }
         format.html { redirect_to @discussion, notice: 'Discussion was successfully created.' }
         format.json { render :show, status: :created, location: @discussion }
@@ -149,6 +152,7 @@ class DiscussionsController < ApplicationController
   def destroy
     dest = @discussion.uuid
     @discussion.destroy
+    reset_current_discussion
     respond_to do |format|
       format.js   { render partial: "shared/remove", locals: { dest: dest } }
       format.html { redirect_to discussions_url, notice: 'Discussion was successfully destroyed.' }
@@ -160,6 +164,7 @@ class DiscussionsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_discussion
       @discussion = Discussion.find(params[:id])
+      set_current_discussion(@discussion)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

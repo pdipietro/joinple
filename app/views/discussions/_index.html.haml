@@ -6,9 +6,9 @@
     = link_to new_discussion_path, :remote => :true, :title => "Add a new discussion" do
       %i.hoverable.im-plus.to-right
   .spacer
-  #grid4.padding{ "data-columns" => "" }
+  #grid2.padding{ "data-columns" => "" }
     - discussions.each do |discussion|
-      = render partial: "show", locals: { discussion: discussion, csn: csn }
+      = render partial: "discussions/show", locals: { discussion: discussion, csn: csn }
 
 
 

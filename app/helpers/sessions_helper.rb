@@ -95,26 +95,40 @@ module SessionsHelper
   end
 
   def current_group
-    session[:group].nil? ? " " : session[:group]
-  end
-
-  def current_group_name?
-    session[:group].nil? ? " " : session[:group].name
-  end
-
-  def current_group_uuid?
-    session[:group].nil? ? " " : session[:group].uuid
+    puts "session::current_group: #{session[:group_uuid]}"
+    @current_group = session[:group_uuid].nil? ? nil : Group.find(session[:group_uuid])
+    puts "group: #{@current_group}, admin: #{session[:group_admin]}"
+    @current_group
   end
 
   def reset_current_group
-    session[:group] = nil
+    puts "************************** RESET CURRENT GROUP ***********************************"
+    puts caller[0..10]
+    session[:group_uuid] = nil
+    session[:group_admin] = nil
+    puts "************************** RESET CURRENT GROUP ***********************************"
   end
 
-  def set_current_group(group)
-    session[:group] = group
+  def set_current_group(uuid)
+    puts "*************************** SET CURRENT GROUP ************************************"
+    puts caller[0..10]
+    session[:group_uuid] = uuid
+    x = Neo4j::Session.query("match(User { uuid : '#{current_user_id?}' })-[r:owns|admins]->(g:Group { uuid : '#{uuid}' }) return count(g) as g")
+    session[:group_admin] = (x.next[:g] > 0) ? true : false;
+    puts "*************************** SET CURRENT GROUP ************************************"
   end
 
-  
+  def current_discussion
+    @current_discussion = session[:discussion].nil? ? nil : Discussion.find(session[:discussion])
+  end
+
+  def reset_current_discussion
+    session[:discussion] = nil
+  end
+
+  def set_current_discussion(discussion)
+    session[:discussion] = discussion.uuid
+  end
 
   # Returns the current logged-in user (if any).
   def current_user
@@ -168,6 +182,7 @@ module SessionsHelper
     session[:social_network] = nil
     session.delete[:current_user_profile] unless session[current_user_profile].nil?
     session.delete(:group) unless session[:group].nil?
+    session.delete(:discussion) unless session[:discussion].nil?
 
     session.delete(:social_network) unless session[:social_network].nil?
     @current_user = nil
@@ -310,7 +325,7 @@ module SessionsHelper
 
     def set_current_social_network (sn)
      # puts "caller: #{caller[0...5]}"
-     # puts "HERE INTO set_current_social_network: #{sn} !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+     puts "HERE INTO set_current_social_network: #{sn} !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
       if sn.nil?
         puts "sn is nil => faccio il logout"
         log_out
@@ -318,9 +333,7 @@ module SessionsHelper
         session[:social_network_uuid] = sn.uuid
         session[:social_network] = sn
 
-      #  puts "sn: #{current_social_network}"
-      #  puts "sn.name: #{current_social_network.name}"
-        reset_current_group
+        #reset_current_group
       end
     end
 

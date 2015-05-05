@@ -1,0 +1,61 @@
+-# unless discussion.type == "secret" and is_admin? == false
+- group = current_group
+- if logged_in?
+  %div{:id => discussion.uuid }
+    -# owner = group.get_owner
+    - rels = count_relationships(discussion)
+    = link_to discussion_path(discussion.uuid), :remote => :true, :title => "View details" do
+      .contour-3{:style => "border-color: #{group.background_color}; " }
+        .relative.nothing
+          - if group.header.length === 0 
+            .group-image-replacement{:style => "background-color: #{group.background_color}; " }
+          -else  
+            = image_tag discussion.logo.url(:icon), :class => "responsive"
+          = image_tag csn.logo_social.url(:md_logo), :class => "responsive semi-transparent", :size => ("30x30")
+
+        .content
+          .title= discussion.title
+          = discussion.description
+          .border-1
+          = "created on #{discussion.created_at} by"
+          = render partial: "users/owner", locals: { object: discussion }
+          - unless discussion.created_at == discussion.updated_at
+            = "updated on #{discussion.updated_at}"
+
+        .border-1
+        .command-button
+          .spaced-icon
+            = link_to dummy_path(discussion,'Discussion','likes'), :remote => :true, :title => "View members" do
+              = "likes"
+              %i.im-members.im-20x
+              = rels["out-follows-User"].nil? ? 0 : rels["out-follows-User"]
+          .spaced-icon
+            = link_to dummy_path(discussion,'Discussion','likes'), :remote => :true, :title => "View discussions" do
+              = "share"
+              %i.im-discussions-groups.im-20x
+              = rels["out-follows-User"].nil? ? 0 : rels["out-follows-User"]
+          .spaced-icon
+            = link_to dummy_path(discussion,'Discussion','likes'), :remote => :true, :title => "View following/er" do
+              = "followed by"
+              %i.im-bi-follow.im-20x
+              = rels["out-follows-User"].nil? ? 0 : rels["out-follows-User"]
+        .border-1
+
+        .command-button{ :style => "background-color: #{group.background_color}; color: #{group.text_color};" }
+          - if can_modify?(discussion)
+            .spaced-icon
+              = link_to edit_discussion_path(discussion), :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Modify the element" do
+                %i.im-pencil
+            .spaced-icon
+              = link_to discussion, :method => :delete, :data => { :confirm => 'Are you sure?' }, :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Delete the element" do
+                %i.im-bin
+          .spaced-icon
+            = link_to onerel_path(discussion,'Discussion','participates'), :type => "button", :method => :post, :remote => :true, :title => "Join", :style => super_social_network_style do
+              = "Join"
+              %span.glyphicons.icon-like-1
+              = likes = discussion.query_as(:p).match("(p)<-[r:participates]-(u:User)").pluck(:u).count
+              %br
+          -#.spaced-icon
+            %button.btn.btn-default.btn-sm-nothing{ :type => "submit", :name => "commit", :hide_label => :true, :style => super_social_network_style }
+              = "Join"
+      .spacer

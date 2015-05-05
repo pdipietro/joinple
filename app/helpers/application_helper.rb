@@ -17,8 +17,28 @@ module ApplicationHelper
     SecureRandom.urlsafe_base64
   end
 
+  def get_background
+    env = recode_env
+    if (env == "test.") 
+      "background-color : #fde8ee;"
+    elsif (env == "dev.") 
+      "background-color : #5C8D69;" 
+    else 
+      ""
+    end
+  end
+
+  def recode_env
+    case ENV['RAILS_ENV']
+      when "development" then "dev."
+      when "test" then "test."
+      else ""
+    end
+  end
+
   def calculate_full_path (sn)
-    "http://#{sn.name.downcase.gsub(/\s+/, "")}.#{request.domain}"
+    env = recode_env
+    "http://#{env}#{sn.name.downcase.gsub(/\s+/, "")}.#{request.domain}"
   end
 
   def load_social_network_from_url

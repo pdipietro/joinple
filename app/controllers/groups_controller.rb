@@ -5,6 +5,8 @@ class GroupsController < ApplicationController
   before_action :check_social_network
   before_action :set_group, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_user, only: [:create, :destroy]
+  before_action  :set_current_group_loc, only: [:show, :list_one]
+  before_action  :reset_current_group_loc, only: [:edit, :update, :destroy, :create]
 
   respond_to :js
 
@@ -106,7 +108,6 @@ class GroupsController < ApplicationController
   # GET /groups.json
   def index
     puts ("----- Groups Controller: Index -----------------------------------------------------------")
-    reset_current_group  
 
     filter = "iparticipate"
     @groups = get_group_subset(1,basic_items_per_page,filter)
@@ -175,6 +176,8 @@ class GroupsController < ApplicationController
   def destroy
     dest = @group.uuid
     @group.destroy
+    reset_current_group
+    
     respond_to do |format|
       format.js   { render partial: "shared/remove", locals: { dest: dest } }
       format.html { redirect_to groups_url, notice: 'Group was successfully destroyed.' }
@@ -193,4 +196,20 @@ class GroupsController < ApplicationController
       params.require(:group).permit(:name, :description, :type, :background_color, :text_color,
         :logo, :header, :logo_cache, :header_cache)
     end
+
+    def remove_group
+      reset_current_group
+      puts ("Group has been reset")
+    end
+
+    def set_current_group_loc
+      set_current_group(params[:id])
+      puts ("Group by session: #{current_group.name}")
+    end
+
+    def reset_current_group_loc
+      reset_current_group
+      puts ("Current group reset")
+    end
+
 end

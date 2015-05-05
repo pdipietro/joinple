@@ -46,7 +46,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     puts "UsersController.show start"
-    puts "session: #{session.id}, sn: #{current_social_network_name?}, user: #{current_user.nickname unless current_user.nil?}, admin: #{is_admin?} - group: #{current_group_name?} - group admin: #{is_group_admin?}"
+    puts "session: #{session.id}, sn: #{current_social_network_name?}, user: #{current_user.nickname unless current_user.nil?}, admin: #{is_admin?} - group: #{current_group.name unless current_group.nil?} - group admin: #{is_group_admin?}"
     @posts = Post.all.order(created_at:  :desc)
     @user = User.find(params[:id])
     respond_to do |format|

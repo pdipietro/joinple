@@ -45,9 +45,9 @@ Rails.application.routes.draw do
   resources :images,              constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
   resources :media_managers,      constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
   resources :user_profiles,       constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
-  resources :post_comments,       constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true,  except: [:new]
-  resources :discussions,         constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true,  except: [:new]
-  resources :discussion_comments, constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true,  except: [:new]
+  resources :post_comments,       constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
+  resources :discussions,         constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
+  resources :discussion_comments, constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
 
   get       'groups/list(/:filter(/:from_page(/:limit(/:subject(/:deep)))))'  =>   'groups#list', :as => :groups_list, defaults: { :format => "js"}, :remote => :true
   get       'group/:id/list(/:filter(/:from_page(/:limit(/:subject(/:deep)))))'  =>    'groups#list_one', :as => :group_list, defaults: { :format => "js"}, :remote => :true
@@ -55,7 +55,16 @@ Rails.application.routes.draw do
   get       'social_network/:id/list(/:filter(/:from_page(/:limit(/:subject(/:deep)))))'  =>   'social_networks#list_one', :as => :social_network_list, defaults: { :format => "js"}, :remote => :true
   get       'users/list(/:filter(/:from_page(/:limit(/:subject(/:deep)))))'  =>   'users#list', :as => :users_list, defaults: { :format => "js"}, :remote => :true
   get       'discussion/list(/:filter(/:from_page(/:limit(/:subject(/:deep)))))'  =>   'discussions#list', :as => :discussions_list, defaults: { :format => "js"}, :remote => :true
+
 #  get       'post/list(/:filter(/:from_page(/:limit(/:subject(/:deep)))))'  =>   'post#list', :as => :posts_list, defaults: { :format => "js"}, :remote => :true
+
+# These new routes support passing the belongs_to object
+
+#  post       'discussions/create/:belongs_to_class/:belongs_to_id'          =>   'discussions#create',         :as => :discussions_create, defaults: { :format => "js"}, :remote => :true
+#  post       'discussion_comments/create/:belongs_to_class/:belongs_to_id'  =>   'discussion_comments#create', :as => :discussion_comment_create, defaults: { :format => "js"}, :remote => :true
+#  post       'post_comments/create/:belongs_to_class/:belongs_to_id'        =>   'post_comments#create',       :as => :post_comment_create, defaults: { :format => "js"}, :remote => :true
+
+# These are miscellaneous routes
 
   post      'likes/:id/:class/:relationship' =>    'likes#edit',           :as => :onerel, constraints: AuthConstraint.new
   get       'likes'                          =>    'likes#dummy',          :as => :dummy, constraints: AuthConstraint.new

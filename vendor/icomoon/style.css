@@ -1,11 +1,11 @@
 @font-face {
 	font-family: 'icomoon';
-	src:url('fonts/icomoon.eot?-pu7ayg');
-	src:url('fonts/icomoon.eot?#iefix-pu7ayg') format('embedded-opentype'),
-		url('fonts/icomoon.woff2?-pu7ayg') format('woff2'),
-		url('fonts/icomoon.woff?-pu7ayg') format('woff'),
-		url('fonts/icomoon.ttf?-pu7ayg') format('truetype'),
-		url('fonts/icomoon.svg?-pu7ayg#icomoon') format('svg');
+	src:url('fonts/icomoon.eot?-iezntk');
+	src:url('fonts/icomoon.eot?#iefix-iezntk') format('embedded-opentype'),
+		url('fonts/icomoon.woff2?-iezntk') format('woff2'),
+		url('fonts/icomoon.woff?-iezntk') format('woff'),
+		url('fonts/icomoon.ttf?-iezntk') format('truetype'),
+		url('fonts/icomoon.svg?-iezntk#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -24,16 +24,44 @@ i {
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.im-terms:before {
+	content: "\e616";
+}
+
+.im-home:before {
+	content: "\e63c";
+}
+
+.im-pencil:before {
+	content: "\e620";
+}
+
+.im-members:before {
+	content: "\e626";
+}
+
+.im-info:before {
+	content: "\e63b";
+}
+
+.im-all-groups:before {
+	content: "\e60c";
+}
+
+.im-thermometer:before {
+	content: "\e639";
+}
+
+.im-hot:before {
+	content: "\e63a";
+}
+
 .im-my-groups:before {
 	content: "\e60a";
 }
 
 .im-admin-group:before {
 	content: "\e60b";
-}
-
-.im-all-groups:before {
-	content: "\e60c";
 }
 
 .im-my-events:before {
@@ -50,18 +78,6 @@ i {
 
 .im-my-discussions:before {
 	content: "\e638";
-}
-
-.im-thermometer:before {
-	content: "\e639";
-}
-
-.im-hot:before {
-	content: "\e63a";
-}
-
-.im-fresh:before {
-	content: "\e63b";
 }
 
 .im-uncheck-full:before {
@@ -160,10 +176,6 @@ i {
 	content: "\e615";
 }
 
-.im-terms:before {
-	content: "\e616";
-}
-
 .im-star-full:before {
 	content: "\e617";
 }
@@ -200,10 +212,6 @@ i {
 	content: "\e61f";
 }
 
-.im-about:before {
-	content: "\e620";
-}
-
 .im-faq:before {
 	content: "\e621";
 }
@@ -232,10 +240,6 @@ i {
 	content: "\e625";
 }
 
-.im-pencil:before {
-	content: "\e626";
-}
-
 .im-plus:before {
 	content: "\e627";
 }
@@ -252,14 +256,6 @@ i {
 	content: "\f04f";
 }
 
-.im-info:before {
-	content: "\f059";
-}
-
-.im-home:before {
-	content: "\e900";
-}
-
 .im-newspaper:before {
 	content: "\e904";
 }
@@ -270,10 +266,6 @@ i {
 
 .im-mic:before {
 	content: "\e91e";
-}
-
-.im-members:before {
-	content: "\e972";
 }
 
 .im-user-plus:before {

@@ -15,12 +15,17 @@
         %span.title= group.name
         = " - "
         = group.description
+        = " - "
+        = current_group.uuid unless current_group.nil?
         %span.spaced-icon.transparent
           %button.btn.btn-default.btn-sm-nothing{ :type => "submit", :name => "commit", :hide_label => :true }= "J"
       %span.solid-text
         %span.to-right
+          %b= group.type 
+          %span= "group"
+          = " - "
           - users_number = Neo4j::Session.query.match("(user:User)-[p:participates|owns|admins]->(g:Group { uuid : '#{@group.uuid}' }) return count (distinct user) as c").first[:c]
-          = pluralize(users_number,"user")
+          = pluralize(users_number,"member")
           %span.spaced-icon
             = link_to onerel_path(group,'Group','participates'), :type => "button", :method => :post, :remote => :true, :title => "Join", :style => super_social_network_style, :class => "btn btn-default btn-sm-nothing" do
               = "Join"

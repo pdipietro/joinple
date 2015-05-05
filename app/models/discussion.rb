@@ -15,7 +15,7 @@ class Discussion
   property  :logo,              type: String
   mount_uploader :logo,         DiscussionLogoUploader 
 
-  has_one   :out, :belongs_to, model_class: Group               # belongs to Group
+  has_one   :out, :belongs_to, model_class: false #[:Group, :Discussion]     # belongs to Group
   has_many  :out, :has_comments, rel_class: HasDiscussionComment      # :comment
 
   validates   :title, :presence => true

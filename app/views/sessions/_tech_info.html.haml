@@ -7,38 +7,41 @@
           %span.caret.to-right
           .panel-title
       .panel-body
+        -#
+          - caller.each do |l|
+            - k = l['/home/pdipietro/joinple/app/views/'].to_s
+            = l if k.length > 0
+          -#= caller[1..15]
+          = " ********************************************************************************************************************************** "
+          = caller
+          - if defined?(view)
+            .ul.col-xs-60
+              .title= "Caller: #{view}"
+            .border
         .ul.col-xs-60
-          JoinPle
+          .title= "JoinPle"
           .li
             .col-xs-20
-              background-color
-            .col-xs-40
-              = super_social_network_background_color
-          .li
-            .col-xs-20
-              color
-            .col-xs-40
-              = super_social_network_color 
-        %hr
+              colors
+            .col-xs-40{ :style => super_social_network_style }
+              color test color test color test color test
+        .border
         .ul.col-xs-60
-          Session
+          .title= "Session"
           .li
             .col-xs-20
               Session
             .col-xs-40
               = "#{session} "
-        %hr
-        .ul.col-xs-60
-          Screen geometry
           .li
             .col-xs-20
-              width x height (pixel ratio)
+              client screen: width x height (pixel ratio)
             .col-xs-40
               = "#{session[:width]}x#{session[:height]}, (#{session[:pixelRatio]}) "
 
-        %hr
+        .border
         .ul.col-xs-60
-          Log in
+          .title= "User logged in: #{current_user.full_name} - @#{current_user.nickname}"
           .li
             .col-xs-20
               user_id
@@ -49,20 +52,20 @@
               admin
             .col-xs-40
               = is_admin?
+          .li
+            .col-xs-20
+              profile
+            .col-xs-40
+              = current_user_profile
 
-        %hr
+        .border
         .ul.col-xs-60
-          Current social network
+          .title= "Current social network: #{current_social_network_name?}"
           .li
             .col-xs-20
               social_network
             .col-xs-40
               = current_social_network
-          .li
-            .col-xs-20
-              name
-            .col-xs-40
-              = current_social_network_name?
           .li
             .col-xs-20
               uuid
@@ -75,55 +78,32 @@
               = current_social_network_logo?
           .li
             .col-xs-20
-              background-color
-            .col-xs-40
-              = current_social_network_background_color?
-          .li
-            .col-xs-20
-              color
-            .col-xs-40
-              = current_social_network_color?
-
-      
-        %hr
+              colors
+            .col-xs-40{ :style => current_social_network_style }
+              color test color test color test color test
+        .border
         .ul.col-xs-60
-          Current group
-          .li
-            .col-xs-20
-              group
-            .col-xs-40
-              = current_group
-          .li
-            .col-xs-20
-              name
-            .col-xs-40
-              = current_group_name?
-          .li
-            .col-xs-20
-              uuid
-            .col-xs-40
-              = current_group_uuid?
-          .li
-            .col-xs-20
-              background-color
-            .col-xs-40
-              = " "
-          .li
-            .col-xs-20
-              color
-            .col-xs-40
-              = " "
-
-        %hr
+          - cg = nil
+          - cg = current_group
+          - if cg.nil?
+            .title= "No current group selected"
+          - else
+            .title= "Current group: #{cg.name}"
+            .li
+              .col-xs-20
+                uuid
+              .col-xs-40
+                = cg.uuid
+            .li
+              .col-xs-20
+                admin
+              .col-xs-40
+                = is_group_admin?
+            -#.li
+              .col-xs-20
+                colors
+              .col-xs-40{ :style => current_group_style }
+                color test color test color test color test
+        .border
         .ul.col-xs-60
-          Current user
-          .li
-            .col-xs-20
-              id
-            .col-xs-40
-              = current_user_id?
-          .li
-            .col-xs-20
-              profile
-            .col-xs-40
-              = current_user_profile
+          = Time.new

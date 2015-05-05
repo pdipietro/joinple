@@ -31,6 +31,37 @@ i, .icomoon-liga {
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.im-terms:before {
+	content: "\e616";
+}
+
+.im-home:before {
+	content: "\e63c";
+}
+
+.im-pencil:before {
+	content: "\e620";
+}
+
+.im-members:before {
+	content: "\e626";
+}
+
+.im-info:before {
+	content: "\e63b";
+}
+
+.im-all-groups:before {
+	content: "\e60c";
+}
+
+.im-thermometer:before {
+	content: "\e639";
+}
+
+.im-hot:before {
+	content: "\e63a";
+}
 
 .im-my-groups:before {
 	content: "\e60a";
@@ -38,10 +69,6 @@ i, .icomoon-liga {
 
 .im-admin-group:before {
 	content: "\e60b";
-}
-
-.im-all-groups:before {
-	content: "\e60c";
 }
 
 .im-my-events:before {
@@ -58,18 +85,6 @@ i, .icomoon-liga {
 
 .im-my-discussions:before {
 	content: "\e638";
-}
-
-.im-thermometer:before {
-	content: "\e639";
-}
-
-.im-hot:before {
-	content: "\e63a";
-}
-
-.im-fresh:before {
-	content: "\e63b";
 }
 
 .im-uncheck-full:before {
@@ -168,10 +183,6 @@ i, .icomoon-liga {
 	content: "\e615";
 }
 
-.im-terms:before {
-	content: "\e616";
-}
-
 .im-star-full:before {
 	content: "\e617";
 }
@@ -208,10 +219,6 @@ i, .icomoon-liga {
 	content: "\e61f";
 }
 
-.im-about:before {
-	content: "\e620";
-}
-
 .im-faq:before {
 	content: "\e621";
 }
@@ -240,10 +247,6 @@ i, .icomoon-liga {
 	content: "\e625";
 }
 
-.im-pencil:before {
-	content: "\e626";
-}
-
 .im-plus:before {
 	content: "\e627";
 }
@@ -260,14 +263,6 @@ i, .icomoon-liga {
 	content: "\f04f";
 }
 
-.im-info:before {
-	content: "\f059";
-}
-
-.im-home:before {
-	content: "\e900";
-}
-
 .im-newspaper:before {
 	content: "\e904";
 }
@@ -278,10 +273,6 @@ i, .icomoon-liga {
 
 .im-mic:before {
 	content: "\e91e";
-}
-
-.im-members:before {
-	content: "\e972";
 }
 
 .im-user-plus:before {
