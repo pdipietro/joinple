@@ -13,7 +13,7 @@ class PostComment
 
   has_one   :out, :belongs_to, rel_class: PostBelongsTo        # :Post
 
-  property  :header,            type: String
-  mount_uploader :header,       PostHeaderUploader 
+  property  :images,            type: String
+  mount_uploader :images,       PostCommentImageUploader 
 
 end

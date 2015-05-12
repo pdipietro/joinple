@@ -13,8 +13,8 @@ class Post
   has_one   :out, :belongs_to, model_class: SocialNetwork       # belongs to SocialNetwork
   has_many  :out, :has_comments, rel_class: HasPostComment      # :comment
 
-  property  :header,            type: String
-  mount_uploader :header,       PostHeaderUploader 
+  property  :image,            type: String
+  mount_uploader :image,       PostImageUploader 
 
   def self.find_by user
       PostsController.find user

@@ -18,7 +18,7 @@ class ImageSizes
           :profile     => ['[200, 200]',      :jpg, :quality => 70],              # generic profile (user, post, group, etc)
           :original    => ['[250, 0]',        :jpg, :quality => 70],              # original image resized
     
-          :post_std    => ['[400, 200]',      :jpg, :quality => 70],              # Post standard is 400x200 on two columns, but can grow
+          :post        => ['[400, 200]',      :jpg, :quality => 70],              # Post standard is 400x200 on two columns, but can grow
           :post1       => ['[800, 400]',      :jpg, :quality => 70],              # Post standard is 400x200 on two columns, but can grow
           :post2       => ['[600, 300]',      :jpg, :quality => 70],              # Post standard is 400x200 on two columns, but can grow
           :post3       => ['[600, 300]',      :jpg, :quality => 70],              # Post standard is 400x200 on two columns, but can grow
@@ -27,13 +27,18 @@ class ImageSizes
           :xs_banner   => ['[240,  140]',     :jpg, :quality => 70],              # banner for generic profile
           :sm_banner   => ['[916,  315]',     :jpg, :quality => 70],              # banner for generic profile
           :md_banner   => ['[1084, 315]',     :jpg, :quality => 70],              # banner for generic profile
-
           :lg_banner   => ['[1832, 315]',     :jpg, :quality => 70],              # banner for generic profile
           :xl_banner   => ['[2562, 315]',     :jpg, :quality => 70],              # banner for generic profile
           :xxl_banner  => ['[5120, 315]',     :jpg, :quality => 70],              # banner for generic profile
           :logo        => ['[200, 150]',      :jpg, :quality => 70],              # social network logo on a generic page
           :preview     => ['[400, 200]',      :jpg, :quality => 70],              # preview for post
           :cover       => ['[400, 300]',      :jpg, :quality => 70],              # social network logo on a generic page
+
+          :sm_banner_sh   => ['[916,  116]',     :jpg, :quality => 70],              # banner for generic profile
+          :md_banner_sh   => ['[1084, 116]',     :jpg, :quality => 70],              # banner for generic profile
+          :lg_banner_sh   => ['[1832, 116]',     :jpg, :quality => 70],              # banner for generic profile
+          :xl_banner_sh   => ['[2562, 116]',     :jpg, :quality => 70],              # banner for generic profile
+
 
           :xxlarge     => ['[5120, 1600]',    :jpg, :quality => 70],              # landing page header
           :xlarge      => ['[2560,  800]',    :jpg, :quality => 70],              # landing page header
@@ -57,10 +62,12 @@ class ImageSizes
                            },            
         :Group          => {
                              :logo          => [:btn, :thumb, :icon, :profile], 
-                             :header        => [:btn, :thumb, :icon, :profile, :sm_banner, :md_banner, :lg_banner, :xl_banner]# , :xxl_banner]
+                             :header        => [:btn, :thumb, :icon, :profile, :sm_banner, :md_banner, :lg_banner, :xl_banner, 
+                                                                   :sm_banner_sh, :md_banner_sh, :lg_banner_sh, :xl_banner_sh,
+                                              ]# , :xxl_banner]
                            },
         :Post           => {
-                             :header        => [:post_std, :post1, :post2, :post3, :sm_logo]
+                             :image         => [:post, :post1, :post2, :post3, :sm_logo, :btn]
                            },
         :Discussion     => {
                              :logo          => [:btn, :thumb, :icon, :profile], 
@@ -73,7 +80,14 @@ class ImageSizes
         :LandingPage    => {
                              :header        => [:xsmall, :small, :medium, :large],  # :xlarge, :xxlarge],        
                              :logo          => [:logo]      
-                           }
+                           },
+        :DiscussionComment    => {
+                             :image         => [:post, :post1, :post2, :post3, :btn]        
+                           },
+        :PostComment    => {
+                             :image         => [:post, :post1, :post2, :post3, :btn]        
+                           },
+
         }
 
     CONVERT_OPTIONS = {

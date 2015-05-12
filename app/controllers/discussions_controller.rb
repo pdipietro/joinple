@@ -1,4 +1,7 @@
 class DiscussionsController < ApplicationController
+
+  include DiscussionsHelper
+
   before_action :set_discussion, only: [:show, :edit, :update, :destroy, :list_one]
   before_action :check_social_network
   before_action :logged_in_user, only: [:create, :destroy]
@@ -46,7 +49,7 @@ class DiscussionsController < ApplicationController
       puts "User: #{u.last_name}"
     end
 
-    render partial: "#{subject.name.pluralize.downcase}/list", locals: { group: @group, users: @users, subset: filter, title: get_title(filter)}
+    render partial: "#{subject.name.pluralize.downcase}/list", locals: { discussions: @discussions, group: @group, users: @users, subset: filter, title: get_title(filter)}
 
   end
 
@@ -57,10 +60,22 @@ class DiscussionsController < ApplicationController
     filter = params[:filter]
     first_page = params[:from_page].nil? ? 1 : params[:from_page]
 
-    basic_query = "(discussions)-[r:belongs_to]->(g:Group { uuid : '#{current_group_uuid?}'} ) "
+    show_group = filter == "iparticipateinallgroups" ? true : false
+    show_social = filter == "iparticipateinallsocialnetworks" ? true : false
+
+    basic_query =
+      if filter == "iparticipateinallgroups"
+         "(discussions)-[r:belongs_to]->(g:Group)-[r2:belongs_to]->(s:SocialNetwork { uuid : '#{current_social_network_uuid?}'} ) "
+      elsif filter == "iparticipateinallsocialnetworks"
+         "(discussions) "
+      else
+        "(discussions)-[r:belongs_to]->(g:Group { uuid : '#{current_group.uuid}'} ) "
+      end 
 
     qstr =
       case filter
+        when "iparticipateinallgroups"
+              "(user:User { uuid : '#{current_user.uuid}' })-[p:participates|owns|admins]->"
         when "iparticipate"
               "(user:User { uuid : '#{current_user.uuid}' })-[p:participates|owns|admins]->"
         when "iadminister"
@@ -81,9 +96,9 @@ class DiscussionsController < ApplicationController
 
     query_string = qstr << basic_query
 
-    @groups = Discussion.as(:discussions).query.match(query_string).proxy_as(Discussion, :discussions).paginate(:page => first_page, :per_page => secondary_items_per_page, return: "distinct discussion", order: "discussion.created_at desc")
+    @discussions = Discussion.as(:discussions).query.match(query_string).proxy_as(Discussion, :discussions).paginate(:page => first_page, :per_page => secondary_items_per_page, return: "distinct discussion", order: "discussions.created_at desc")
 
-    render 'list', locals: { groups: @groups, subset: filter, title: get_title(filter)}
+    render 'list', locals: { discussions: @discussions, subset: filter, title: get_title(filter), show_group: show_group, show_social: show_social}
 
   end
 
@@ -164,7 +179,6 @@ class DiscussionsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_discussion
       @discussion = Discussion.find(params[:id])
-      set_current_discussion(@discussion)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

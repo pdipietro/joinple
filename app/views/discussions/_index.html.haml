@@ -1,14 +1,19 @@
 - if logged_in?
   - csn = current_social_network
+  - show_group = defined?(show_group) ? show_group : false; 
+  - show_social = defined?(show_social) ? show_social : false; 
   .spacer
   .page-thumbnail{ :style => current_social_network_style }
     = title
     = link_to new_discussion_path, :remote => :true, :title => "Add a new discussion" do
       %i.hoverable.im-plus.to-right
   .spacer
+  - latest = ""
   #grid2.padding{ "data-columns" => "" }
     - discussions.each do |discussion|
-      = render partial: "discussions/show", locals: { discussion: discussion, csn: csn }
+      - unless discussion.uuid == latest
+        = render partial: "discussions/show", locals: { discussion: discussion, csn: csn, show_group: show_group, show_social: show_social }
+        - latest = discussion.uuid
 
 
 

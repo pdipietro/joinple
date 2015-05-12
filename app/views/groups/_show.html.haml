@@ -1,5 +1,5 @@
 - unless group.type == "secret" and is_admin? == false
-  %div{:id => group.uuid }
+  .group{:id => group.uuid }
     -# owner = group.get_owner
     - rels = count_relationships(group)
     = link_to group_path(group.uuid), :remote => :true, :title => "View details" do

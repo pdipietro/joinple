@@ -10,8 +10,6 @@ class Group
   property  :description,  :type =>   String
   property  :background_color, :type =>   String, default: "inherit"
   property  :text_color,   :type =>   String, default: "inherit"
-  #property  :is_open,      :type =>   Boolean, default: false
-  #property  :is_private,   :type =>   Boolean, default: false
   property  :type,         :type =>   String, default: "open"
 
   property  :logo,              type: String
@@ -45,6 +43,10 @@ class Group
 #  def check_current_user
 #      is_owned_by = PostsController.get_current_user if is_owned_by.nil?
 #  end
+
+  def style
+    "background-color: #{self.background_color}; color: #{self.text_color};"
+  end
 
 end
 

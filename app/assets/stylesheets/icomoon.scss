@@ -31,6 +31,14 @@ i, .icomoon-liga {
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.im-not-preferred:before {
+	content: "\e63d";
+}
+
+.im-preferred:before {
+	content: "\e63e";
+}
+
 .im-terms:before {
 	content: "\e616";
 }

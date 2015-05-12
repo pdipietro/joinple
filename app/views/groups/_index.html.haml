@@ -6,10 +6,13 @@
     = link_to new_group_path, :remote => :true, :title => "Add a new group" do
       %i.hoverable.im-plus.to-right
   .spacer
+  - latest = ""
   #grid4.padding{ "data-columns" => "" }
     - groups.each do |group|
-      - puts "type => #{group.type}"
-      = render partial: "show", locals: { group: group, csn: csn }
+      - unless group.uuid == latest
+        - puts "type => #{group.type}"
+        = render partial: "groups/show", locals: { group: group, csn: csn }
+        - latest = group.uuid
 
 
 

@@ -74,7 +74,8 @@ class GroupsController < ApplicationController
     filter = params[:filter]
     first_page = params[:from_page].nil? ? 1 : params[:from_page]
 
-    basic_query = "(groups)-[r:belongs_to]->(sn:SocialNetwork { uuid : '#{current_social_network.uuid}'} ) "
+    basic_query = "(groups:Group)-[r:belongs_to]->(sn:SocialNetwork { uuid : '#{current_social_network.uuid}'} ) "
+    #with distinct ugroups as groups"
 
     qstr =
       case filter
@@ -98,7 +99,7 @@ class GroupsController < ApplicationController
 
     query_string = qstr << basic_query
 
-    @groups = Group.as(:groups).query.match(query_string).proxy_as(Group, :groups).paginate(:page => first_page, :per_page => secondary_items_per_page, return: "distinct groups", order: "groups.created_at desc")
+    @groups = Group.as(:groups).query.match(query_string).proxy_as(Group, :groups).paginate(:page => first_page, :per_page => secondary_items_per_page, return: "groups", order: "groups.created_at desc")
 
     render 'list', locals: { groups: @groups, subset: filter, title: get_title(filter)}
 
@@ -139,7 +140,24 @@ class GroupsController < ApplicationController
     @group = Group.new(group_params)
 
     respond_to do |format|
-      puts ("1- @group.type:  #{@group.type}")
+      begin
+        tx = Neo4j::Transaction.new
+          @group.save
+          rel = Owns.create(from_node: current_user, to_node: @group)
+          rel = BelongsTo.create(from_node: @group, to_node: current_social_network)
+        rescue => e
+          tx.failure
+          format.js   { render :new, object: @group }
+          format.html { render :new }
+          format.json { render json: @group.errors, status: :unprocessable_entity }
+        ensure
+          tx.close
+          format.js   { render partial: "enqueue", object: @group, notice: 'Group was successfully created.' }
+          format.html { redirect_to(request.env["HTTP_REFERER"]) }
+          format.json { render :show, status: :created, location: @group }
+      end
+
+=begin
       if @group.save
         rel = Owns.create(from_node: current_user, to_node: @group)
         rel = BelongsTo.create(from_node: @group, to_node: current_social_network)
@@ -151,6 +169,7 @@ class GroupsController < ApplicationController
         format.html { render :new }
         format.json { render json: @group.errors, status: :unprocessable_entity }
       end
+=end
     end
   end
 

@@ -2,9 +2,9 @@ if($("#discussion-page").length == 0) {
   $("#tech_info").html("<%= escape_javascript(render partial: 'sessions/tech_info', locals: { view: 'discussion::list.js.erb (1)' }) %>" );
   $("#main_header").html("<%= escape_javascript(render partial: 'header', locals: { discussion: Discussion.new} ) %>" );
   $("#main_add").html("");
-  $("#main_content").html("<%= escape_javascript(render partial: 'index', locals: { discussion: @discussion, subset: subset, title: title } ) %>" );
+  $("#main_content").html("<%= escape_javascript(render partial: 'index', locals: { discussions: @discussions, subset: subset, title: title, show_group: show_group, show_social: show_social } ) %>" );
 } 
 else {
- $("#main_content").html("<%= escape_javascript(render partial: 'index', locals: { discussion: @discussion, subset: subset, title: title } ) %>" );
+ $("#main_content").html("<%= escape_javascript(render partial: 'index', locals: { discussions: @discussions, subset: subset, title: title, show_group: show_group, show_social: show_social} ) %>" );
  $("#tech_info").html("<%= escape_javascript(render partial: 'sessions/tech_info', locals: { view: 'discussion::list.js.erb (2)' }) %>" );
 }

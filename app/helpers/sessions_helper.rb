@@ -3,7 +3,9 @@ module SessionsHelper
 
   SUPER_SOCIAL_NETWORK_NAME = ["joinple"]
   SUPER_SOCIAL_BACKGROUND_COLOR = "#a12349"
-  SUPER_SOCIAL_COLOR = "#ffffff"  #333342 white is a better solution
+  SUPER_SOCIAL_BACKGROUND_COLOR_REVERSE = "#333342"
+  SUPER_SOCIAL_COLOR = "#ffffff"  # was #333342 but white is a better solution
+
 
   SECONDARY_ITEMS_PER_PAGE = 12
 
@@ -17,6 +19,10 @@ module SessionsHelper
 
   def super_social_network_style
       "background-color: #{SUPER_SOCIAL_BACKGROUND_COLOR}; color: #{SUPER_SOCIAL_COLOR};"
+  end
+
+  def super_social_network_style_reverse
+      "background-color: #{SUPER_SOCIAL_BACKGROUND_COLOR_REVERSE}; color: #ffffff;"
   end
 
   def super_social_border_color
@@ -95,39 +101,39 @@ module SessionsHelper
   end
 
   def current_group
-    puts "session::current_group: #{session[:group_uuid]}"
+    #puts "session::current_group: #{session[:group_uuid]}"
     @current_group = session[:group_uuid].nil? ? nil : Group.find(session[:group_uuid])
-    puts "group: #{@current_group}, admin: #{session[:group_admin]}"
-    @current_group
+    #puts "group: #{@current_group}, admin: #{session[:group_admin]}"
+    #@current_group
   end
 
   def reset_current_group
-    puts "************************** RESET CURRENT GROUP ***********************************"
-    puts caller[0..10]
+    #puts "************************** RESET CURRENT GROUP ***********************************"
+    #puts caller[0..10]
     session[:group_uuid] = nil
     session[:group_admin] = nil
-    puts "************************** RESET CURRENT GROUP ***********************************"
+    #puts "************************** RESET CURRENT GROUP ***********************************"
   end
 
   def set_current_group(uuid)
-    puts "*************************** SET CURRENT GROUP ************************************"
-    puts caller[0..10]
+    #puts "*************************** SET CURRENT GROUP ************************************"
+    #puts caller[0..10]
     session[:group_uuid] = uuid
     x = Neo4j::Session.query("match(User { uuid : '#{current_user_id?}' })-[r:owns|admins]->(g:Group { uuid : '#{uuid}' }) return count(g) as g")
     session[:group_admin] = (x.next[:g] > 0) ? true : false;
-    puts "*************************** SET CURRENT GROUP ************************************"
+    #puts "*************************** SET CURRENT GROUP ************************************"
   end
 
   def current_discussion
-    @current_discussion = session[:discussion].nil? ? nil : Discussion.find(session[:discussion])
+    @current_discussion = session[:discussion.uuid].nil? ? nil : Discussion.find(session[:discussion_uuid])
   end
 
   def reset_current_discussion
-    session[:discussion] = nil
+    session[:discussion_uuid] = nil
   end
 
-  def set_current_discussion(discussion)
-    session[:discussion] = discussion.uuid
+  def set_current_discussion(uuid)
+    session[:discussion_uuid] = uuid
   end
 
   # Returns the current logged-in user (if any).

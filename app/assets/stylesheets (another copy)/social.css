@@ -301,6 +301,10 @@ li.list-group-item {
   background-color: inherit;
   color: inherit;
 }
+.spacer-2x {
+  @include .spacer;
+  height: 8dppx;
+}
 
 .row {
   margin: 0;

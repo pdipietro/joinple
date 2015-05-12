@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class PostHeaderUploader < CarrierWave::Uploader::Base
+class PostCommentImageUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   include CarrierWave::RMagick
@@ -34,7 +34,7 @@ class PostHeaderUploader < CarrierWave::Uploader::Base
   # end
 
   # Create different versions of your uploaded files:
-  ImageSizes::CLASSES[:Post][:header].each do |f|
+  ImageSizes::CLASSES[:PostComment][:image].each do |f|
     k = "process :resize_to_fill => #{ImageSizes::SIZES[f][0]}"
     puts "#{k}"
     version f do
