@@ -152,24 +152,11 @@ class GroupsController < ApplicationController
           format.json { render json: @group.errors, status: :unprocessable_entity }
         ensure
           tx.close
-          format.js   { render partial: "enqueue", object: @group, notice: 'Group was successfully created.' }
+          format.js   { render partial: "enqueue", object: Group.new, notice: 'Group was successfully created.' }
           format.html { redirect_to(request.env["HTTP_REFERER"]) }
           format.json { render :show, status: :created, location: @group }
       end
 
-=begin
-      if @group.save
-        rel = Owns.create(from_node: current_user, to_node: @group)
-        rel = BelongsTo.create(from_node: @group, to_node: current_social_network)
-        format.js   { render partial: "enqueue", object: @group, notice: 'Group was successfully created.' }
-        format.html { redirect_to(request.env["HTTP_REFERER"]) }
-        format.json { render :show, status: :created, location: @group }
-      else
-        format.js   { render :new, object: @group }
-        format.html { render :new }
-        format.json { render json: @group.errors, status: :unprocessable_entity }
-      end
-=end
     end
   end
 

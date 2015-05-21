@@ -7,9 +7,10 @@
   #group-header
     .relative.nothing
       = image_tag group.header.url(:md_banner), :class => "responsive"
-      = image_tag group.logo.url(:thumb), :class => "responsive overloaded-logo", :size => ("80x80")
+      -#= image_tag group.logo.url(:thumb), :class => "responsive overloaded-logo-80", :size => ("80x80")
+      = image_tag group.logo.url(:thumb), :class => "responsive overloaded-logo-80"
       - if group.logo.length === 0 
-        .group-thumb-image-replacement{:style => "background-color: #{group.background_color}; ", :class => "overloaded-logo" }
+        .group-thumb-image-replacement{:style => "background-color: #{group.background_color}; ", :class => "overloaded-logo-80" }
       %span.semi-transparent-bar
       %span.solid-text
         %span.title= group.name

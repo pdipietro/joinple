@@ -1,6 +1,5 @@
 class StaticPagesController < ApplicationController
   before_filter :check_social_network
-  layout "carousel", :only => [:carousel]
   
   def about
   end
@@ -24,18 +23,6 @@ class StaticPagesController < ApplicationController
   end
 
   def terms
-  end
-
-  def carousel
-    puts "Carousel-Logged in? : #{logged_in?}"
-    r='carousel'
-    l="carousel"  
-    if logged_in?
-      r="home"
-      l="application"
-    end
-    render r, layout: l  
-
   end
 
 end

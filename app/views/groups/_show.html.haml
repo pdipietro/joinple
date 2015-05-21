@@ -7,7 +7,7 @@
         .relative.nothing
           - if group.header.length === 0 
             .group-image-replacement{:style => "background-color: #{group.background_color}; " }
-          -else  
+          - else  
             = image_tag group.header.url(:sm_banner), :class => "responsive"
           = image_tag csn.logo_social.url(:md_logo), :class => "responsive semi-transparent", :size => ("30x30")
 
