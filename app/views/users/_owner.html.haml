@@ -4,29 +4,19 @@
 - user = query.first[:u]
 - user_profile = query.first[:up]
 
-%span
-  = link_to user_path(user.uuid), :remote => :true, :title => "Edit" do
-    = image_tag user_profile.photo.url(:btn)
-    = "#{user.full_name} (@#{user.nickname})"
+- if defined?(type)
+  %span{ :class => "semi-transparent-#{type}-bar", :style => "clear: both;" }
+  %span.solida
+    = link_to user_path(user.uuid), :remote => :true, :title => "Edit" do
+      = image_tag user_profile.photo.url(:btn), :class => "circle"
+      = "#{user.full_name} (@#{user.nickname})"
+      %span.to-right
+        = "created on #{object.created_at.to_formatted_s(:short)}"
+        = image_tag user_profile.photo.url(:btn), :class => "circle", :size => ("1x1")
+- else
+  %span
+    = link_to user_path(user.uuid), :remote => :true, :title => "Edit" do
+      = image_tag user_profile.photo.url(:btn), :class => "circle"
+      = "#{user.full_name} (@#{user.nickname})"
 
 
-
-
--#
-  require 'rmagick'
-
-  im = Magick::Image.read('walter.jpg').first
-
-  circle = Magick::Image.new 200, 200
-  gc = Magick::Draw.new
-  gc.fill 'black'
-  gc.circle 100, 100, 100, 1
-  gc.draw circle
-
-  mask = circle.blur_image(0,1).negate
-
-  mask.matte = false
-  im.matte = true
-  im.composite!(mask, Magick::CenterGravity, Magick::CopyOpacityCompositeOp)
-
-  im.write 'walter_circle.png'

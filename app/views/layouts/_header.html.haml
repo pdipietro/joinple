@@ -90,7 +90,7 @@
           %li.dropdown
             %a.dropdown-toggle.header-user-photo{ :href => "#", :id => "dropdownUser", "data-toggle" => "dropdown", :type => "button", :title => "Myself",  "aria-expanded" => "false"}
               %span
-                = image_tag user_profile.photo.url(:btn), :size => ("32x32")
+                = image_tag user_profile.photo.url(:btn), :size => ("32x32"), :class => "circle"
                 %span.user-wellcome= "Wellcome, #{current_user.first_name}"
                 %span.caret
             %ul.user.dropdown-menu{ :role => "menu", "aria-labelledby" => "dropdownUser" }

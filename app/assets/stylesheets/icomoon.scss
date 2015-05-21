@@ -31,6 +31,14 @@ i, .icomoon-liga {
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.im-add-photo:before {
+	content: "\e630";
+}
+
+.im-shuffle:before {
+	content: "\e63f";
+}
+
 .im-not-preferred:before {
 	content: "\e63d";
 }
@@ -284,7 +292,7 @@ i, .icomoon-liga {
 }
 
 .im-user-plus:before {
-	content: "\e973";
+	content: "\e971";
 }
 
 .im-search:before {
@@ -329,9 +337,5 @@ i, .icomoon-liga {
 
 .im-lifebuoy:before {
 	content: "\e62f";
-}
-
-.im-shuffle:before {
-	content: "\e630";
 }
 

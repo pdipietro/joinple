@@ -1,4 +1,4 @@
-/* COMMON CONSTANTS */
+/* ********************************** COMMON CONSTANTS *************************************************** */
 
 $min_screen_width:768px;
 
@@ -14,13 +14,17 @@ $command_line_height:30px;
 $min_padding:3px;
 $standard_padding:4px;
 
-$people_box_height:166px;
+$people_box_height: 164px;
 
 $logo_social_width:$people_box_height;
 $logo_social_height:$people_box_height;
 
-$joinple_background_color:#a12349;
+$joinple_background_color: #a12349;
 $joinple_text_color:#000000;
+
+$btn_height:36px;
+
+/* ********************************** END COMMON CONSTANTS *********************************************** */
 
 /* icomoon resize and rotate */
 
@@ -322,13 +326,19 @@ ul.nav.navbar-nav > li {
 
 /* ************************************* link elements doesn't have underline and a different color ********************* */
 
-a:hover {
+a:hover,
+i.hoverable:hover {
   cursor: pointer;
   text-decoration: none;
 }
 
 a, a:visited, a:hover, a:focus, a:active {
   color: inherit;
+  text-decoration: none;
+}
+
+.btn-icon-only {
+  background-color: inherit;
   text-decoration: none;
 }
 
@@ -399,6 +409,7 @@ hr {
 
 .buttons {
   display: inline-flex;
+  background-color: inherit;
 }
 
 .to-right {
@@ -435,6 +446,19 @@ hr {
     border: 3px solid $joinple_background_color;
 }
 
+.img-thumbnail {
+  padding: 4px;
+  background-color: $joinple_background_color;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  -webkit-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
+}
+
 .group-image-replacement {
   width: 100%;
   height: 60px;
@@ -447,7 +471,7 @@ hr {
 
 .group-mini-header {
   width: 100%;
-  height: 36px;
+  height: $btn_height;
   background-color: $joinple_background_color;
 }
 
@@ -481,6 +505,10 @@ hr {
   padding-top: 2px;
 }
 
+.circle {
+  border-radius: 50%;
+}
+
 .rounded {
   border-radius: 4px;
 }
@@ -509,6 +537,19 @@ hr {
   z-index: 20;
 }
 
+.overloaded-30 {
+  @extend .overloaded-logo;
+  width: 30px;
+  height: 30px;  
+}
+
+.overloaded-logo-80,
+.overloaded-80 {
+  @extend .overloaded-logo;
+  width: 80px;
+  height: 80px;  
+}
+
 .semi-transparent, 
 .semi-transparent-logo {
   @extend .overloaded-logo;
@@ -517,6 +558,8 @@ hr {
 
 .relative {
   position: relative;
+  float: left;
+  width: 100%
 }
 
 .centered {
@@ -528,6 +571,12 @@ hr {
   text-align: center;
 }
 
+img.responsive {
+  max-width: 100% !important;
+  display: block;
+  height: auto;
+}
+
 /* ************************************************************************************************************************
 ** grey bar on images
 ************************************************************************************************************************ */
@@ -537,14 +586,15 @@ hr {
   bottom: 0;
   left: 0;
   width: 100%;
-  min-height: 2.5em;
-  padding-left: $standard_padding + 80;
+  min-height: $btn_height;
+  padding-left: $standard_padding;
   padding-right: $standard_padding;
   z-index: 10;
 }
 
 .semi-transparent-bar {
   @extend .bar-on-image-bottom;
+  padding-left: $standard_padding + 80;
   background-color: #6c6c6c;
   opacity: 0.70;
   z-index: 10;
@@ -560,6 +610,34 @@ hr {
 .transparent {
   opacity: 0;
 }
+
+.semi-transparent-owner-bar {
+  @extend .bar-on-image-bottom;
+  background-color: #6c6c6c;
+  opacity: 0.70;
+  z-index: 10;
+  color: #ffffff;
+  border: 0;
+  border-left: 2px solid #ffffff;
+  border-right: 2px solid #ffffff;
+  clear: both;
+}
+
+.solida-background {
+  position: relative;
+  height: $btn_height + 2;
+  display: block;
+  min-width: $post_image_width;
+  z-index: 10;
+}
+
+.solida {
+  @extend .bar-on-image-bottom;
+  color: #ffffff;
+  opacity: 1;
+  z-index: 20;
+}
+
 
 /* ************************************************************************************************************************
 ** Styles to format 3 columns: fixed-fluid-fixed
@@ -648,7 +726,7 @@ hr {
 }
 
 #common-header-left .buttons {
-  width: auto;
+  width: 100%;
   height: inherit;
   float: left;
   border-radius: 4px;
@@ -662,9 +740,9 @@ hr {
 #common-header-right {
   width: auto;
   margin-left: $common_header_right_width + $left_column_width;
+  margin-left: $common_header_left_width + 4;
   border-radius: 4px;
   min-height: $people_box_height;
-  max-height: $people_box_height; 
   background-color: #ffffff;
 }
 
@@ -709,6 +787,21 @@ hr {
 ** Posts
 ************************************************************************************************************************ */
 
+#post-header-left {
+  @extend #common-header-left;
+  width: 49.7%; 
+}
+
+#post-header-right {
+  @extend #common-header-left;
+  width: 49.7%; 
+  float: right;
+  margin-left: $standard_padding;
+  border-radius: 4px;
+  min-height: $people_box_height;
+  background-color: #ffffff;
+}
+
 #post-left-button-adjust {
   padding-left: 3px;
   padding-top: 2px
@@ -728,7 +821,6 @@ hr {
 
 .post {
   background-color: #ffffff;
-  padding-right: $standard_padding;
 }
 
 .post.header {
@@ -761,6 +853,48 @@ hr {
 .post.commands {
 
 }
+
+.images {
+  width: 100%;
+}
+
+.img-c0 {
+  max-width: 100% !important;
+  vertical-align: center;  
+  padding: 2px;
+}
+
+.img-c1 {
+  max-width: 50% !important;
+  display: block;
+  height: auto;
+  float: left;
+  vertical-align: center;  
+  padding: 2px;
+}
+
+.img-c2 {
+  float: left;
+  vertical-align: center;  
+  max-width: 50% !important;
+  padding: 2px;
+}
+
+.img-c3 {
+  float: left;
+  vertical-align: center;  
+  max-width: 25% !important;
+  padding: 2px;
+}
+
+/*
+.overloaded-logo {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+*/
 
 /* ************************************************************************************************************************
 ** Languages
@@ -850,7 +984,8 @@ ul.list_group a:last-child .list-group-item {
 }
 
 /*.img-owner1,*/
-img.responsive {
+
+img.aresponsive {
   max-width: 100% !important;
   display: block;
   height: auto;
@@ -874,6 +1009,7 @@ span.user-wellcome {
 }
 
 .user-info {
+  text-align: center;
   text-align: -webkit-center;
 }
 
@@ -932,7 +1068,9 @@ i.user-info-icons {
 
 .content {
   padding-left: $min-padding;  
-  padding-right: $min-padding;  
+  padding-right: $min-padding;
+  text-align: -webkit-left;
+  text-align: justify;
      > .title,
      * .title {
     /*font-size: 120%;*/
@@ -991,20 +1129,7 @@ a.header-user-photo > span img {
 br.header-user-photo {
   line-height: 1px;
 }
-/*
-            %a.dropdown-toggle.header_user_photo{ :href => "#", :id => "dropdownUser", "data-toggle" => "dropdown", :type => "button", :title => "Myself",  "aria-expanded" => "false"}
-              %span
-                - unless user_profile.nil?
-                  = image_tag user_profile.photo.url(:btn), :size => ("32x32")
-                - else
-                  %i.header.im-user-plus
-                %span  
-                  = "Wellcome"
-                  %br
-                  = current_user.first_name
-                %span.caret
- 
-*/
+
 /*
 .thumbnail {
   border: 0;
@@ -1233,3 +1358,125 @@ li.header ~ li.divider {
 
 }
 */
+
+
+.im-plus-grey {
+  @extend .im-plus;
+  color: #9b9b9b !important;
+}
+
+.image-upload {
+  cursor: pointer;
+}
+
+.image-upload > input {
+  display: none;
+}
+
+.fileinput-exists .fileinput-new,
+.fileinput-new .fileinput-exists {
+  display: none;
+}
+
+.fileinput .thumbnail {
+  background-color: transparent;
+  border: 2px solid #9d9d9d;
+  border-radius: 4px;
+}
+
+/*
+
+.fileinput {
+  margin-bottom: 9px;
+  sdisplay: inline-block;
+}
+
+
+
+.fileinput .thumbnail {
+  overflow: hidden;
+  sdisplay: inline-block;
+  margin-bottom: 5px;
+  vertical-align: middle;
+  text-align: center;
+  width: $btn_height; 
+  height: $btn_height;
+}
+
+.fileinput .sthumbnail > img {
+  max-height: 100%;
+}
+.fileinput .btn {
+  vertical-align: middle;
+}
+.fileinput-inline .fileinput-controls {
+  display: inline;
+}
+.fileinput-filename {
+  vertical-align: middle;
+  display: inline-block;
+  overflow: hidden;
+}
+.form-control .fileinput-filename {
+  vertical-align: bottom;
+}
+.fileinput.input-group {
+  display: table;
+}
+.fileinput.input-group > * {
+  position: relative;
+  z-index: 2;
+}
+
+.btn-file {
+  overflow: hidden;
+  position: relative;
+  vertical-align: middle;
+}
+.btn-file > input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  font-size: 23px;
+  height: 100%;
+  width: 100%;
+  direction: ltr;
+  cursor: pointer;
+}
+
+input .absolute {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  font-size: 23px;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+}
+
+.btn-file * input label {
+  display: none;
+}
+
+.fileinput.input-group > .btn-file {
+  z-index: 1;   
+}
+.fileinput-new.input-group .btn-file,
+.fileinput-new .input-group .btn-file {
+  border-radius: 0 4px 4px 0;
+}
+
+
+*/
+
+/* ************** Patch for bootstrap and use with button **************************** */
+
+.dropdown-menu {
+  display: none;
+}

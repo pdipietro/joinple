@@ -1,2 +1,7 @@
-#common-header-right
-  
+#post-header-right
+  - users = User.all
+  - users.each do |user|
+    %span.user-faces
+      = link_to user_path(user.uuid), :remote => :true, :title => "#{user.first_name} #{user.last_name} (@#{user.nickname})" do
+        = image_tag user.has_profile.photo.url(:btn)
+

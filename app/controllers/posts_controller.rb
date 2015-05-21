@@ -5,19 +5,37 @@ class PostsController < ApplicationController
 
   respond_to :js
 
-  
- # GET /posts/list/:filter(/:limit(/:subject))
-=begin
+  # GET /groups/list/:filter(/:limit(/:subject))
   def list
+    puts ("----- Post Controller: List --(#{params[:filter]})----------------------------------------")
+
+  #  reset_current_post  
+
     filter = params[:filter]
-    puts params[:from_page].class
     first_page = params[:from_page].nil? ? 1 : params[:from_page]
 
-    @posts = get_post_subset(first_page,SECONDARY_ITEMS_PER_PAGE,filter)
- 
-    render 'list', locals: { posts: @posts, subset: filter, title: get_title(filter), icon: get_icon(filter)}
+    basic_query = "(groups:Group)-[r:belongs_to]->(sn:SocialNetwork { uuid : '#{current_social_network.uuid}'} ) "
+    #with distinct ugroups as groups"
+
+    qstr =
+      case filter
+        when "iprefere"
+              "(user:User { uuid : '#{current_user.uuid}' })-[p:preferes]->"
+        when "iparticipate"
+              "(user:User { uuid : '#{current_user.uuid}' })-[p:participates|owns|admins]->"
+        when "all"
+              ""
+        else 
+             ""      
+       end
+
+    query_string = qstr << basic_query
+
+    @groups = Group.as(:groups).query.match(query_string).proxy_as(Group, :groups).paginate(:page => first_page, :per_page => secondary_items_per_page, return: "groups", order: "groups.created_at desc")
+
+    render 'list', locals: { groups: @groups, subset: filter, title: get_title(filter)}
+
   end
-=end
 
   # GET /posts
   # GET /posts.json
@@ -36,30 +54,31 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-#    puts "post_params[:is_owned_by]: #{post_params[:is_owned_by]}"
-#    is_owned_by = post_params[:is_owned_by].split(":")
-#    @current_owner_class = is_owned_by[0]
-#    @current_owner_uuid = is_owned_by[1]
-#    params[:post].delete("is_owned_by")
     @post = Post.new(post_params)
+   # puts "POST: #{@post},  ==== > #{@post.arrs}"
+   # set_images (@post) 
 
-#    @current_owner = Neo4j::Session.query("match (dest:#{@current_owner_class} { uuid : '#{@current_owner_uuid}' }) return dest").first[0]
-#    @current_social_network = Neo4j::Session.query("match (dest:SocialNetwork { uuid : '#{current_social_network_uuid?}' }) return dest").first[0]
-
-#    puts "Owner class is: #{@current_owner.class.name}, #{@current_owner}"
 
     respond_to do |format|
-      if @post.save
-        rel = Owns.create(from_node: current_user, to_node: @post)
-        rel = BelongsTo.create(from_node: @post, to_node: current_social_network)
-
-        format.js   { render partial: "enqueue", object: @post, locals: { :current_owner => @current_owner }, notice: 'Post was successfully created.' }
-        format.html { redirect_to(request.env["HTTP_REFERER"]) }
-        format.json { render :show, status: :created, location: @post, user: @post.is_owned_by }
-      else
-        format.js   { render :new, object: @post, locals: { :current_owner => @current_owner } }
-        format.html { render :new }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
+      begin
+        tx = Neo4j::Transaction.new
+          @post.save
+          puts "posts error: #{@post.errors}"
+          rel = Owns.create(from_node: current_user, to_node: @post)
+          puts "Owns.create: #{rel.errors}"
+          #rel = BelongsTo.create(from_node: @post, to_node: current_social_network)
+          rel = @post.create_rel("belongs_to", current_social_network)  
+        rescue => e
+          tx.failure
+          puts "--------- /post/create: transaction failure: #{@post.content}, #{@post.image}"
+          format.js   { render :new, object: @post }
+          format.html { render :new }
+          format.json { render json: @post.errors, status: :unprocessable_entity }
+        ensure
+          tx.close
+          format.js   { render partial: "enqueue", object: @post, notice: 'Post was successfully created.' }
+          format.html { redirect_to(request.env["HTTP_REFERER"]) }
+          format.json { render :show, status: :created, location: @post, user: @post.is_owned_by }
       end
     end
   end
@@ -107,16 +126,28 @@ class PostsController < ApplicationController
     post
   end
 
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
       @post = Post.find(params[:id])
     end
-
+ 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:content)
+      params.require(:post).permit(:content, :image0, :image1, :image2, :image3, :image4, :hidden_image0, :hidden_image1, :hidden_image2, :hidden_image3, :hidden_image4 )
+    end
+
+    def set_images (post)
+      i = 0
+      arrs = post.arrs
+      post.image0 = post.image1 = post.image2 = post.image3 = post.image4 = ""
+      arrs.each do |arr|
+        puts "Arr: #{arr}"
+        x = "post.image#{i}"
+        i = i + 1
+        eval (x)       
+      end
+      arrs = []
     end
 end
 

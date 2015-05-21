@@ -18,10 +18,12 @@ class ImageSizes
           :profile     => ['[200, 200]',      :jpg, :quality => 70],              # generic profile (user, post, group, etc)
           :original    => ['[250, 0]',        :jpg, :quality => 70],              # original image resized
     
-          :post        => ['[400, 200]',      :jpg, :quality => 70],              # Post standard is 400x200 on two columns, but can grow
-          :post1       => ['[800, 400]',      :jpg, :quality => 70],              # Post standard is 400x200 on two columns, but can grow
-          :post2       => ['[600, 300]',      :jpg, :quality => 70],              # Post standard is 400x200 on two columns, but can grow
-          :post3       => ['[600, 300]',      :jpg, :quality => 70],              # Post standard is 400x200 on two columns, but can grow
+          :post        => ['[600, 300]',      :jpg, :quality => 70],              # Post standard is 400x200 on two columns, but can grow
+          :post_sq     => ['[300, 300]',      :jpg, :quality => 70],              # Post standard is 400x200 on two columns, but can grow
+          :post_s      => ['[300, 150]',      :jpg, :quality => 70],              # Post standard is 400x200 on two columns, but can grow
+
+          :comment     => ['[150,  75]',      :jpg, :quality => 70],              # Post standard is 400x200 on two columns, but can grow
+
                                                                                   # when the screen si stretched
           :banner      => ['[916,  200]',     :jpg, :quality => 70],              # banner for generic profile
           :xs_banner   => ['[240,  140]',     :jpg, :quality => 70],              # banner for generic profile
@@ -67,7 +69,7 @@ class ImageSizes
                                               ]# , :xxl_banner]
                            },
         :Post           => {
-                             :image         => [:post, :post1, :post2, :post3, :sm_logo, :btn]
+                             :image         => [:post, :post_sq, :post_s]
                            },
         :Discussion     => {
                              :logo          => [:btn, :thumb, :icon, :profile], 
@@ -82,10 +84,10 @@ class ImageSizes
                              :logo          => [:logo]      
                            },
         :DiscussionComment    => {
-                             :image         => [:post, :post1, :post2, :post3, :btn]        
+                             :image         => [:comment, :btn]        
                            },
         :PostComment    => {
-                             :image         => [:post, :post1, :post2, :post3, :btn]        
+                             :image         => [:comment, :btn]        
                            },
 
         }

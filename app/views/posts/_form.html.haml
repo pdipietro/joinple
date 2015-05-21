@@ -1,10 +1,10 @@
 - csn = current_social_network
 - search = PostComment.new
 - if logged_in?
-  #post_header_left.social-network-logo{ :style => current_social_network_style }
+  #post-header-left.social-network-logo{ :style => current_social_network_style }
     = image_tag current_social_network_logo?.url(:top), :name => "social_network#{current_social_network_uuid?}", :class => "social-network-logo"
   = bootstrap_form_for(post, :remote => :true ) do |f|
-    #post_header_right
+    #post-header-right
       .post-icon.nothing
         .nothing
           = link_to dummy_path, :remote => :true, :title => "Sign up" do
@@ -23,8 +23,8 @@
         %button.icon_only{ :type => "submit", :name => "commit", :hide_label => :true, :title => "Send the post"  } 
           %i.im-save
           save
-    #post_header_center
-      .post-text= f.text_area :content, :hide_label => :true
+    #post-header-center
+      .post-text= f.text_area :content, :hide_label => :true, :placeholder => "Enter comment ..."
       .post-button-down.nothing
         .post-icon.nothing
           = link_to dummy_path, :remote => :true, :title => "All posts" do
