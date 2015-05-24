@@ -577,6 +577,7 @@ img.responsive {
   height: auto;
 }
 
+
 /* ************************************************************************************************************************
 ** grey bar on images
 ************************************************************************************************************************ */
@@ -638,6 +639,39 @@ img.responsive {
   z-index: 20;
 }
 
+.vertical-middle {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(50%);
+  -ms-transform: translateY(50%);
+  transform: translateY(50%);
+}
+
+.full_screen_image {
+  position: fixed;
+  background-color: #6c6c6c;
+  opacity: 0.8;
+  z-index: 2000;
+  top: 5%;
+  left: 5%;
+  bottom: 5%;
+  right: 5%;
+}
+
+.image-middle {
+  position: fixed;
+  background-color: #6c6c6c;
+  opacity: 1;
+  z-index: 2005;
+
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
 
 /* ************************************************************************************************************************
 ** Styles to format 3 columns: fixed-fluid-fixed

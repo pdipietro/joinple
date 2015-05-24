@@ -339,6 +339,7 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    url_safe_base64 (0.2.2)
     web-console (2.0.0.beta3)
       activemodel (~> 4.0)
       binding_of_caller (= 0.7.3.pre1)
@@ -396,5 +397,6 @@ DEPENDENCIES
   turbolinks (= 2.3.0)
   uglifier (= 2.5.3)
   unicorn (= 4.8.3)
+  url_safe_base64
   web-console (= 2.0.0.beta3)
   will_paginate (= 3.0.7)

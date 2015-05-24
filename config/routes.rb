@@ -76,6 +76,8 @@ Rails.application.routes.draw do
   post      'likes/:id/:class/:relationship' =>    'likes#edit',           :as => :onerel, constraints: AuthConstraint.new
   get       'likes'                          =>    'likes#dummy',          :as => :dummy, constraints: AuthConstraint.new
   post      'search'                         =>    'likes#search',         :as => :search, constraints: AuthConstraint.new
+  post      'show_image/:img'                =>    'likes#show_image',     :as => :show_image, defaults: { :format => "js"}, constraints: AuthConstraint.new, :remote => :true
+  get       'hide_image'                     =>    'likes#hide_image',     :as => :hide_image, defaults: { :format => "js"}, constraints: AuthConstraint.new, :remote => :true
   get       '/media_managers/list/'          =>    'media_managers#list',  :as => :image_list #, defaults: { :format => "js"}, :remote => :true
  # get       'user_profiles'                 =>    'user_profiles#edit',    :as => :edit, constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
 

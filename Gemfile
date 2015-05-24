@@ -69,6 +69,8 @@ gem 'google-webfonts-rails'
 #gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem 'sprockets-rails', '2.1.3', :require => 'sprockets/rails/version'
 
+gem 'url_safe_base64'
+
 # gem "sprockets", '2.12.3' 
 
 #gem 'browser'

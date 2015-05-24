@@ -1,3 +1,4 @@
+- require 'base64'
 - if post.errors.count == 0
   - rels = count_relationships(post)
   %div
@@ -9,8 +10,6 @@
     - arr << post.image4 unless post.image4.length == 0  
     - image_cnt = arr.length
 
-    = puts "We have #{image_cnt} images."
-
     -# #####################################################################################
 
     .post{ :id => post.uuid }
@@ -20,29 +19,42 @@
             - when 0
               .solida-background
             - when 1
-              = image_tag arr[0].url(:post), :class => "img-c0"
+              = link_to show_image_path( img: UrlSafeBase64.encode64(arr[0].to_s) ), :remote => :true, :method => :post do
+                = image_tag arr[0].url(:post), :class => "img-c0"
             - when 2
-              = image_tag arr[0].url(:post_sq), :class => "img-c1"
-              = image_tag arr[1].url(:post_sq), :class => "img-c1"
+              = link_to show_image_path( img: UrlSafeBase64.encode64(arr[0].to_s) ), :remote => :true, :method => :post do
+                = image_tag arr[0].url(:post_sq), :class => "img-c1"
+              = link_to show_image_path( img: UrlSafeBase64.encode64(arr[1].to_s) ), :remote => :true, :method => :post do
+                = image_tag arr[1].url(:post_sq), :class => "img-c1"
             - when 3
-              = image_tag arr[0].url(:post_sq), :class => "img-c1"
-              = image_tag arr[1].url(:post_s), :class => "img-c2"
-              = image_tag arr[2].url(:post_s), :class => "img-c2"
+              = link_to show_image_path( img: UrlSafeBase64.encode64(arr[0].to_s) ), :remote => :true, :method => :post do
+                = image_tag arr[0].url(:post_sq), :class => "img-c1"
+              = link_to show_image_path( img: UrlSafeBase64.encode64(arr[1].to_s) ), :remote => :true, :method => :post do
+                = image_tag arr[1].url(:post_s), :class => "img-c2"
+              = link_to show_image_path( img: UrlSafeBase64.encode64(arr[2].to_s) ), :remote => :true, :method => :post do
+                = image_tag arr[2].url(:post_s), :class => "img-c2"
             - when 4
-              = image_tag arr[0].url(:post_s), :class => "img-c2"
-              = image_tag arr[1].url(:post_s), :class => "img-c2"
-              = image_tag arr[2].url(:post_s), :class => "img-c2"
-              = image_tag arr[3].url(:post_s), :class => "img-c2"  
+              = link_to show_image_path( img: UrlSafeBase64.encode64(arr[0].to_s) ), :remote => :true, :method => :post do
+                = image_tag arr[0].url(:post_s), :class => "img-c2"
+              = link_to show_image_path( img: UrlSafeBase64.encode64(arr[1].to_s) ), :remote => :true, :method => :post do
+                = image_tag arr[1].url(:post_s), :class => "img-c2"
+              = link_to show_image_path( img: UrlSafeBase64.encode64(arr[2].to_s) ), :remote => :true, :method => :post do
+                = image_tag arr[2].url(:post_s), :class => "img-c2"
+              = link_to show_image_path( img: UrlSafeBase64.encode64(arr[3].to_s) ), :remote => :true, :method => :post do
+                = image_tag arr[3].url(:post_s), :class => "img-c2"  
             - when 5
-              = image_tag arr[0].url(:post_sq), :class => "img-c1"
-              = image_tag arr[1].url(:post_sq), :class => "img-c3"
-              = image_tag arr[2].url(:post_sq), :class => "img-c3"
-              = image_tag arr[3].url(:post_sq), :class => "img-c3"
-              = image_tag arr[4].url(:post_sq), :class => "img-c3"
+              = link_to show_image_path( img: UrlSafeBase64.encode64(arr[0].to_s) ), :remote => :true, :method => :post do
+                = image_tag arr[0].url(:post_sq), :class => "img-c1"
+              = link_to show_image_path( img: UrlSafeBase64.encode64(arr[1].to_s) ), :remote => :true, :method => :post do
+                = image_tag arr[1].url(:post_sq), :class => "img-c3"
+              = link_to show_image_path( img: UrlSafeBase64.encode64(arr[2].to_s) ), :remote => :true, :method => :post do
+                = image_tag arr[2].url(:post_sq), :class => "img-c3"
+              = link_to show_image_path( img: UrlSafeBase64.encode64(arr[3].to_s) ), :remote => :true, :method => :post do
+                = image_tag arr[3].url(:post_sq), :class => "img-c3"
+              = link_to show_image_path( img: UrlSafeBase64.encode64(arr[4].to_s) ), :remote => :true, :method => :post do
+                = image_tag arr[4].url(:post_sq), :class => "img-c3"
           = render partial: 'users/owner', locals: { object: post, type: "owner"  }
 
-        -#.owner{ :style => "clear: both;" }
-          -#= render partial: 'users/owner', locals: { object: post, type: "owner"  }
       .border-1
       .content
         - if post.content.length > 300
@@ -70,49 +82,4 @@
               = rels["out-follows-User"].nil? ? 0 : rels["out-follows-User"]
         .border-1
 
-
-    -# #####################################################################################
-
-    -#.post{ :id => post.uuid }
-      .header
-        - case image_cnt
-          - when 0
-            .owner{ :style => "position: relative;" }
-              = render partial: 'users/owner', locals: { object: post, type: "gray"   }
-          - when 1
-            .owner{ :style => "position: relative;" }
-              = image_tag arr[0].url(:post), :class => "responsive img-top"
-              = render partial: 'users/owner', locals: { object: post, type: "gray"   }
-          - when 2
-            .owner{ :style => "position: relative;" }
-              = image_tag arr[0].url(:post_sq), :class => "img-c1"
-              = image_tag arr[1].url(:post_sq), :class => "img-c1"
-              = render partial: 'users/owner', locals: { object: post, type: "gray"  }
-          - when 3
-            .owner{ :style => "position: relative;" }
-              = image_tag arr[0].url(:post), :class => "responsive img-top"
-              = render partial: 'users/owner', locals: { object: post, type: "gray"   }
-            = image_tag arr[1].url(:post_s), :class => "img-c1"
-            = image_tag arr[2].url(:post_s), :class => "img-c1"
-          - when 4
-            .owner{ :style => "position: relative;" }
-              = image_tag arr[0].url(:post_sq), :class => "img-c1"
-              = image_tag arr[1].url(:post_sq), :class => "img-c1"
-              = render partial: 'users/owner', locals: { object: post, type: "gray"   }
-            = image_tag arr[2].url(:post_s), :class => "img-c1"
-            = image_tag arr[3].url(:post_s), :class => "img-c1"
-          - when 5
-            .owner{ :style => "position: relative;" }
-              = image_tag arr[0].url(:post), :class => "responsive img-top"
-              = render partial: 'users/owner', locals: { object: post, type: "gray"   }
-            = image_tag arr[1].url(:post_s), :class => "img-c1"
-            = image_tag arr[2].url(:post_s), :class => "img-c1"
-            = image_tag arr[3].url(:post_s), :class => "img-c1"
-            = image_tag arr[4].url(:post_s), :class => "img-c1"
-
-        .owner{ :style => "clear: both;" }
-          -#= render partial: 'users/owner', locals: { object: post  }
-      .content
-        = post.content
-      .commands
     .spacer
