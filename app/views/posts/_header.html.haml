@@ -1,87 +1,76 @@
 - csn = current_social_network
 - if logged_in?
-  #post-header-left
-    = bootstrap_form_for(post, :remote => :true ) do |f|
-      .command
+  %div.cinq1
+    #post-header-left{ :style => "border: 1px dotted green;" }
+      = bootstrap_form_for(post, :remote => :true ) do |f|
         .post-text.nothing= f.text_area :content, :hide_label => :true
         -#.fileinput-preview
           - post.images.to_a.each do |image|
             - unless image.length == 0 
               .nothing= image_tag image.url(:btn)
 
-      .spacer
-      .row.nothing
-        .buttons.nothing
-          .post-icon.nothing
-            %button.nothing.btn-icon-only{ :type => "button", "data-target" => "#add-images", "data-toggle" => "collapse", :title => "Add images" }
-              %i.hoverable.im-camera.im-17x
-          .post-icon.nothing
-            %button.nothing.btn-icon-only{ :type => "button", "data-target" => "#add-movies", "data-toggle" => "collapse", :title => "Add images" }
-              %i.hoverable.im-film.im-17x
-          .post-icon.nothing
-            %button.nothing.btn-icon-only{ :type => "button", "data-target" => "#add-files", "data-toggle" => "collapse", :title => "Add images" }
-              %i.hoverable.im-user-plus.im-17x
-          .post-icon.nothing
-            = link_to dummy_path, :remote => :true, :title => "Add file" do
-              %i.hoverable.im-attachment.im-17x
-          .post-icon.nothing
-            = link_to dummy_path, :remote => :true, :title => "Add an emoticon" do
-              %i.hoverable.im-happy.im-17x
-          .post-icon.nothing
-            = f.submit :remote => :true, :title => "Send the post" do
-              %i.hoverable.im-send-post.im-17x
-
-      #add-images.collapse.row.nothing
         .spacer
-        .buttons.nothing.btn-file
-          - (0..4).each do |cnt|
+        .row.nothing
+          .buttons-line-m.post-width.nothing
             .post-icon.nothing
-              %span.nothing.fileinput.fileinput-new{"data-provides" => "fileinput"}
-                %span.nothing.fileinput-preview.fileinput-exists.thumbnail{:style => "width: 36px; height: 36px;"}
-                %span.nothing.fileinput-exists  
-                  %a.icon_only{"data-dismiss" => "fileinput", :href => "#"} 
-                    %i.hoverable.im-cancel-circle
-                %span.image-upload.fileinput-new
-                  %label{ :for => "image#{cnt}" }
-                    %i.hoverable.im-add-photo.im-17x
-                  %input{:id => "image#{cnt}", :name => "post[image#{cnt}]", :type => "file" }
+              %button.nothing.btn-icon-only{ :type => "button", "data-target" => "#add-images", "data-toggle" => "collapse", :title => "Add images" }
+                %i.hoverable.im-camera.im-17x
+            .post-icon.nothing.disabled
+              %button.nothing.btn-icon-only{ :type => "button", "data-target" => "#add-movies", "data-toggle" => "collapse", :title => "Add images" }
+                %i.hoverable.im-film.im-17x
+            .post-icon.nothing.disabled
+              %button.nothing.btn-icon-only{ :type => "button", "data-target" => "#add-files", "data-toggle" => "collapse", :title => "Add images" }
+                %i.hoverable.im-user-plus.im-17x
+            .post-icon.nothing.disabled
+              = link_to dummy_path, :remote => :true, :title => "Add file" do
+                %i.hoverable.im-attachment.im-17x
+            .post-icon.nothing.disabled
+              = link_to dummy_path, :remote => :true, :title => "Add an emoticon" do
+                %i.hoverable.im-happy.im-17x
+            .post-icon.nothing
+              = f.submit :remote => :true, :title => "Send the post" do
+                %i.hoverable.im-send-post.im-17x
 
-
-        #add-movies.collapse.row.nothing
+        #add-images.collapse.row.nothing
           .spacer
-          .buttons.nothing.btn-file
-            = "Here will be movies"
-
-        #add-files.collapse.row.nothing
-          .spacer
-          .buttons.nothing.btn-file
-            = "Here will be files"
-
-      .spacer
-      .row.nothing
-        .buttons.nothing
-          .post-icon.nothing
-            = link_to posts_list_path("all"), :remote => :true, :title => "View all posts" do
-              %i.activable.im-all-posts.im-17x
-          .post-icon.nothing
-            = link_to posts_list_path("iparticipate"), :remote => :true, :title => "View my posts" do
-              %i.activable.im-my-posts.im-17x
-          .post-icon.nothing
-            = link_to posts_list_path("iprefere"), :remote => :true, :title => "View my posts" do
-              %i.activable.im-bookmark.im-17x
-          -#= render partial: 'shared/search'
-
-  = render partial: 'shared/people'
+          .buttons-line-m.post-width.nothing.btn-file
+            - (0..4).each do |cnt|
+              .post-icon.nothing
+                %span.nothing.fileinput.fileinput-new{"data-provides" => "fileinput"}
+                  %span.nothing.fileinput-preview.fileinput-exists.thumbnail{:style => "width: 36px; height: 36px;"}
+                  %span.nothing.fileinput-exists  
+                    %a.icon_only{"data-dismiss" => "fileinput", :href => "#"} 
+                      %i.hoverable.im-cancel-circle
+                  %span.image-upload.fileinput-new
+                    %label{ :for => "image#{cnt}" }
+                      %i.hoverable.im-add-photo.im-17x
+                    %input{:id => "image#{cnt}", :name => "post[image#{cnt}]", :type => "file" }
 
 
+          #add-movies.collapse.row.nothing
+            .spacer
+            .buttons-line-m.post-width.nothing.btn-file
+              = "Here will be movies"
 
+          #add-files.collapse.row.nothing
+            .spacer
+            .buttons-line-m.post-width.nothing.btn-file
+              = "Here will be files"
 
-  -#.post-icon.nothing= render partial: 'shared/images', locals: { max: mx, name: "post[image]" }
-  -#.post-icon.nothing= render partial: 'shared/images', locals: { max: mx, a_class: "post", name: "image", format: ":btn" }
+        .spacer
+        .row.nothing
+          .buttons-line-m.post-width.nothing
+            .post-icon.nothing
+              = link_to posts_list_path("all"), :remote => :true, :title => "View all posts" do
+                %i.activable.im-all-posts.im-17x
+            .post-icon.nothing
+              = link_to posts_list_path("iparticipate"), :remote => :true, :title => "View my posts" do
+                %i.activable.im-my-posts.im-17x
+            .post-icon.nothing
+              = link_to posts_list_path("iprefere"), :remote => :true, :title => "View my preferred posts" do
+                %i.activable.im-bookmark.im-17x
+            -#= render partial: 'shared/search'
 
-  -# (1..5).each do |cnt|
-    - nm = "post.image#{cnt - 1}.url(:btn)"
-    .post-icon.nothing
-      = f.file_field nm, :class => "nothing" 
-      = image_tag nm, :class => "nothing" 
-      -#= f.hidden_field :name => "image#{cnt - 1}_cache"
+  %div.cinq2
+    = render partial: 'shared/people'
+

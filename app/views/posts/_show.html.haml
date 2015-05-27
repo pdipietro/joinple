@@ -10,76 +10,113 @@
     - arr << post.image4 unless post.image4.length == 0  
     - image_cnt = arr.length
 
-    -# #####################################################################################
+    -# *********************************** POST IMAGES ****************************************** 
 
-    .post{ :id => post.uuid }
+    .post{ :id => post.uuid, :style => "border: 1px dotted red;" }
       .header
-        .relative.nothing
-          - case image_cnt
-            - when 0
-              .solida-background
-            - when 1
-              = link_to show_image_path( img: UrlSafeBase64.encode64(arr[0].to_s) ), :remote => :true, :method => :post do
-                = image_tag arr[0].url(:post), :class => "img-c0"
-            - when 2
-              = link_to show_image_path( img: UrlSafeBase64.encode64(arr[0].to_s) ), :remote => :true, :method => :post do
-                = image_tag arr[0].url(:post_sq), :class => "img-c1"
-              = link_to show_image_path( img: UrlSafeBase64.encode64(arr[1].to_s) ), :remote => :true, :method => :post do
-                = image_tag arr[1].url(:post_sq), :class => "img-c1"
-            - when 3
-              = link_to show_image_path( img: UrlSafeBase64.encode64(arr[0].to_s) ), :remote => :true, :method => :post do
-                = image_tag arr[0].url(:post_sq), :class => "img-c1"
-              = link_to show_image_path( img: UrlSafeBase64.encode64(arr[1].to_s) ), :remote => :true, :method => :post do
-                = image_tag arr[1].url(:post_s), :class => "img-c2"
-              = link_to show_image_path( img: UrlSafeBase64.encode64(arr[2].to_s) ), :remote => :true, :method => :post do
-                = image_tag arr[2].url(:post_s), :class => "img-c2"
-            - when 4
-              = link_to show_image_path( img: UrlSafeBase64.encode64(arr[0].to_s) ), :remote => :true, :method => :post do
-                = image_tag arr[0].url(:post_s), :class => "img-c2"
-              = link_to show_image_path( img: UrlSafeBase64.encode64(arr[1].to_s) ), :remote => :true, :method => :post do
-                = image_tag arr[1].url(:post_s), :class => "img-c2"
-              = link_to show_image_path( img: UrlSafeBase64.encode64(arr[2].to_s) ), :remote => :true, :method => :post do
-                = image_tag arr[2].url(:post_s), :class => "img-c2"
-              = link_to show_image_path( img: UrlSafeBase64.encode64(arr[3].to_s) ), :remote => :true, :method => :post do
-                = image_tag arr[3].url(:post_s), :class => "img-c2"  
-            - when 5
-              = link_to show_image_path( img: UrlSafeBase64.encode64(arr[0].to_s) ), :remote => :true, :method => :post do
-                = image_tag arr[0].url(:post_sq), :class => "img-c1"
-              = link_to show_image_path( img: UrlSafeBase64.encode64(arr[1].to_s) ), :remote => :true, :method => :post do
-                = image_tag arr[1].url(:post_sq), :class => "img-c3"
-              = link_to show_image_path( img: UrlSafeBase64.encode64(arr[2].to_s) ), :remote => :true, :method => :post do
-                = image_tag arr[2].url(:post_sq), :class => "img-c3"
-              = link_to show_image_path( img: UrlSafeBase64.encode64(arr[3].to_s) ), :remote => :true, :method => :post do
-                = image_tag arr[3].url(:post_sq), :class => "img-c3"
-              = link_to show_image_path( img: UrlSafeBase64.encode64(arr[4].to_s) ), :remote => :true, :method => :post do
-                = image_tag arr[4].url(:post_sq), :class => "img-c3"
-          = render partial: 'users/owner', locals: { object: post, type: "owner"  }
+      .relative.nothing
+        - case image_cnt
+          - when 0
+            .solida-background
+          - when 1
+            = link_to show_image_path( img: UrlSafeBase64.encode64(arr[0].to_s) ), :remote => :true, :method => :post do
+              = image_tag arr[0].url(:post), :class => "img-c0 disabled"
+          - when 2
+            = link_to show_image_path( img: UrlSafeBase64.encode64(arr[0].to_s) ), :remote => :true, :method => :post do
+              = image_tag arr[0].url(:post_sq), :class => "img-c1"
+            = link_to show_image_path( img: UrlSafeBase64.encode64(arr[1].to_s) ), :remote => :true, :method => :post do
+              = image_tag arr[1].url(:post_sq), :class => "img-c1"
+          - when 3
+            = link_to show_image_path( img: UrlSafeBase64.encode64(arr[0].to_s) ), :remote => :true, :method => :post do
+              = image_tag arr[0].url(:post_sq), :class => "img-c1"
+            = link_to show_image_path( img: UrlSafeBase64.encode64(arr[1].to_s) ), :remote => :true, :method => :post do
+              = image_tag arr[1].url(:post_s), :class => "img-c2"
+            = link_to show_image_path( img: UrlSafeBase64.encode64(arr[2].to_s) ), :remote => :true, :method => :post do
+              = image_tag arr[2].url(:post_s), :class => "img-c2"
+          - when 4
+            = link_to show_image_path( img: UrlSafeBase64.encode64(arr[0].to_s) ), :remote => :true, :method => :post do
+              = image_tag arr[0].url(:post_s), :class => "img-c2"
+            = link_to show_image_path( img: UrlSafeBase64.encode64(arr[1].to_s) ), :remote => :true, :method => :post do
+              = image_tag arr[1].url(:post_s), :class => "img-c2"
+            = link_to show_image_path( img: UrlSafeBase64.encode64(arr[2].to_s) ), :remote => :true, :method => :post do
+              = image_tag arr[2].url(:post_s), :class => "img-c2"
+            = link_to show_image_path( img: UrlSafeBase64.encode64(arr[3].to_s) ), :remote => :true, :method => :post do
+              = image_tag arr[3].url(:post_s), :class => "img-c2"  
+          - when 5
+            = link_to show_image_path( img: UrlSafeBase64.encode64(arr[0].to_s) ), :remote => :true, :method => :post do
+              = image_tag arr[0].url(:post_sq), :class => "img-c1"
+            = link_to show_image_path( img: UrlSafeBase64.encode64(arr[1].to_s) ), :remote => :true, :method => :post do
+              = image_tag arr[1].url(:post_sq), :class => "img-c3"
+            = link_to show_image_path( img: UrlSafeBase64.encode64(arr[2].to_s) ), :remote => :true, :method => :post do
+              = image_tag arr[2].url(:post_sq), :class => "img-c3"
+            = link_to show_image_path( img: UrlSafeBase64.encode64(arr[3].to_s) ), :remote => :true, :method => :post do
+              = image_tag arr[3].url(:post_sq), :class => "img-c3"
+            = link_to show_image_path( img: UrlSafeBase64.encode64(arr[4].to_s) ), :remote => :true, :method => :post do
+              = image_tag arr[4].url(:post_sq), :class => "img-c3"
+        = render partial: 'users/owner', locals: { object: post, type: "owner", title: "owner details" }
 
+
+      -# *********************************** POST CONTENT ****************************************** 
       .border-1
       .content
         - if post.content.length > 300
-          = post.content[0...300]
-          = link_to dummy_path(post,'Post','likes'), :remote => :true, :title => "read more" do
-            "... more"
+          .first-part.collapse.in{ :name => "post_content_full_#{post.uuid}"}
+            = post.content[0...300]
+            %a.toggle{ :type => "toggle", "data-target" => "div[name=post_content_full_#{post.uuid}]", "data-toggle" => "collapse"}
+              %i.header-dropdown.im-about
+              %span{ :style => "color: #{current_social_network_background_color?};" }= " ... more"
+          .full-part.collapse{ :name => "post_content_full_#{post.uuid}"}
+            %a.toggle{ :type => "toggle", "data-target" => "div[name=post_content_full_#{post.uuid}]", "data-toggle" => "collapse"}
+              = post.content
         - else
-          = post.content[0...300]
-      .border-1
+          %span= post.content[0...300]
 
-      .commands
-        .spacer
-        .command-button
-          .spaced-icon
-            = link_to dummy_path(post,'Post','likes'), :remote => :true, :title => "Likes" do
-              %i.im-likes.im-20x
-              = rels["out-follows-User"].nil? ? 0 : rels["out-follows-User"]
-          .spaced-icon
-            = link_to dummy_path(post,'Post','likes'), :remote => :true, :title => "Preferreds" do
-              %i.im-discussions-groups.im-20x
-              = rels["out-follows-User"].nil? ? 0 : rels["out-follows-User"]
-          .spaced-icon
-            = link_to dummy_path(post,'Post','likes'), :remote => :true, :title => "Repost" do
-              %i.im-bi-follow.im-20x
-              = rels["out-follows-User"].nil? ? 0 : rels["out-follows-User"]
-        .border-1
+      -# *********************************** COMMAND LINE ****************************************** 
+
+      .border-1
+      .buttons-line-s
+        .spaced-icon-left{ :style => "font-size: 10px;"}
+          = link_to dummy_path(post,'Post','likes'), :remote => :true, :title => "Likes" do
+            = "like"
+        .spaced-icon-left{ :style => "font-size: 10px;"}
+          = link_to dummy_path(post,'Post','likes'), :remote => :true, :title => "Share" do
+            = "share"
+        .spaced-icon-left{ :style => "font-size: 10px;"}
+          = link_to dummy_path(post,'Post','likes'), :remote => :true, :title => "Preferreds" do
+            %span= "preferred"
+        
+        %span.to-right
+          %span
+            .spaced-icon-left
+              = link_to dummy_path(post,'Post','likes'), :remote => :true, :title => "Likes" do
+                %i.hoverable.im-like{ :style => "font-size: 15px;"}
+                %span.spaced-icon
+                  %span{ :style => "font-size: 10px;"}= rels["out-follows-User"].nil? ? 12 : rels["out-follows-User"]
+              = link_to dummy_path(post,'Post','likes'), :remote => :true, :title => "Repost" do
+                %i.hoverable.im-star-empty{ :style => "font-size: 15px;"}
+                %span.icon-space.spaced-icon
+                  %span{ :style => "font-size: 10px;"}= rels["out-follows-User"].nil? ? 0 : rels["out-follows-User"]
+              = link_to dummy_path(post,'Post','likes'), :remote => :true, :title => "Preferreds" do
+                %i.hoverable.im-preferred{ :style => "font-size: 15px;"}
+                %span.icon-space.spaced-icon
+                  %span{ :style => "font-size: 10px;"}= rels["out-follows-User"].nil? ? 325 : rels["out-follows-User"]
+      -#.spacer-2x
+
+      -# *********************************** POST COMMENT LINE ****************************************** 
+
+      .border-1
+      .panel-body
+        - post_comment = PostComment.new
+        = bootstrap_form_for(post_comment, layout: :horizontal, :remote => :true, :html => {:multipart => true} ) do |f|
+ 
+          .row
+            -#.col-lg-60
+            .input-group
+              %span.input-group-btn
+                .owner-image= render partial: 'users/owner', locals: { object: post, type: "owner", show: "imageOnly"  }
+              %textarea.form-control{:placeholder => "insert comment ..."}
+              %span.input-group-btn
+                %button.btn.btn-default.btn-icon-only{ :type => "submit", :name => "commit", :hide_label => :true, :title => "send the post" } 
+                  %i.hoverable.im-send-post
 
     .spacer

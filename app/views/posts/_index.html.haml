@@ -2,7 +2,7 @@
   .spacer
   .page-thumbnail{ :style => current_social_network_style }= "Posts"
   .spacer
-  #grid2.padding{ "data-columns" => "" }
+  #gridPost.padding{ "data-columns" => "" }
     - posts.each do |post|
       = render partial: "show", locals: { post: post }
 

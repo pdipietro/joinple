@@ -75,6 +75,9 @@ i.header.im-signup-landing {
 .im-14x {
   font-size: 140%;
 }
+.im-15x {
+  font-size: 150%;
+}
 .im-17x {
   font-size: 170%;
 }
@@ -337,9 +340,14 @@ a, a:visited, a:hover, a:focus, a:active {
   text-decoration: none;
 }
 
-.btn-icon-only {
+.btn-icon-only,
+.btn-icon-only:focus,
+.btn-icon-only:hover
+ {
   background-color: inherit;
+  background-color: none;
   text-decoration: none;
+  border: none;
 }
 
 .panel-header a,
@@ -375,6 +383,12 @@ li.list-group-item {
   border: 0;
 }
 
+.padding-1 {
+  padding: 1px;
+  padding-right: 3px;
+}
+
+
 .flush {
     clear: left;
 }
@@ -383,6 +397,7 @@ li.list-group-item {
   height: $standard_padding;
   background-color: inherit;
   color: inherit;
+  clear: both;
 }
 
 .spacer-2x {
@@ -393,6 +408,11 @@ li.list-group-item {
 .border-1 {
   border-top: 1px solid #e7e7e7;
   padding-top: 1px;
+}
+
+.border-1::after,
+.border-1:before {
+  clear: both;
 }
 
 hr {
@@ -514,8 +534,26 @@ hr {
 }
 
 .spaced-icon {
-  margin-left: 20px;
+  margin-right: 10px;
+  display: -webkit-inline-box;
+  display: inline;
+}
+
+.spaced-icon-right {
+  margin-right: 10px;
   clear: left;
+  display: -webkit-inline-box;
+}
+
+.spaced-icon-left {
+  margin-left: 10px;
+  clear: right;
+  display: -webkit-inline-box;
+}
+
+.spaced-icon-left:first-child {
+  margin-left: 4px;
+  clear: right;
   display: -webkit-inline-box;
 }
 
@@ -524,6 +562,14 @@ hr {
   top: 7px;
   left: $left_column_width + $standard_padding * 2;
   padding: 0 !important;
+}
+
+.clear {
+  clear: both;
+}
+
+.float-right {
+  float:right;  
 }
 
 /* ************************************************************************************************************************
@@ -647,6 +693,13 @@ img.responsive {
   transform: translateY(50%);
 }
 
+
+.vertical-middle-right {
+  @extend .vertical-middle;
+  sclear: right; 
+  float: right;
+}
+
 .full_screen_image {
   position: fixed;
   background-color: #6c6c6c;
@@ -722,13 +775,13 @@ img.responsive {
   float: left;
   border-top-left-radius: 4px;
 }
-
+/*
 #common-header-left * textarea#post_content.form-control {
   height: 98px;
   width: 100%;
-  min-width: 98px;
+  min-height: 98px;
 }
-
+*/
 #common-header-left * .post-icon {
   float: left;
   swidth: 10%;
@@ -783,7 +836,7 @@ img.responsive {
 /* ************************************************************************************************************************
 ** Social network logo 
 ************************************************************************************************************************ */
-
+/*
 #social-network.logo-social-md {
   height: $logo_social_height;
   width: $logo_social_width + 5px;
@@ -796,7 +849,7 @@ img.responsive {
 #social-network.logo-social-md img {
   padding-left: 5px;
 }
-
+*/
 /* ************************************************************************************************************************
 ** Panel header banner (the colored row on top of a list panel)
 ************************************************************************************************************************ */
@@ -821,19 +874,58 @@ img.responsive {
 ** Posts
 ************************************************************************************************************************ */
 
+.cinq1 {
+  width: 384px;
+}
+
+@media screen and (max-width: 800px)
+{       
+    .cinq2 {
+      display: none;
+    }
+}
+
+@media screen and (min-width: 801px)
+{    
+    .cinq2 {
+      margin-left: 388px;
+      max-height: 168px;
+      overflow-y: hidden;
+    }
+}
+
+
 #post-header-left {
   @extend #common-header-left;
-  width: 49.7%; 
+
+  min-width: $common_header_left_width; 
+  max-width: $common_header_left_width;
+
+}
+#post-header-left:after {
+  clear: right;
 }
 
 #post-header-right {
-  @extend #common-header-left;
-  width: 49.7%; 
-  float: right;
+ /* @extend #common-header-left; */
+
+  width: auto;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border-top-left-radius: 4px;
+
+
+
   margin-left: $standard_padding;
   border-radius: 4px;
   min-height: $people_box_height;
   background-color: #ffffff;
+  overflow-y: hidden;
+}
+
+#post-header-right:before {
+  clear:right;
 }
 
 #post-left-button-adjust {
@@ -841,20 +933,34 @@ img.responsive {
   padding-top: 2px
 }
 
-.post-text,
-.post-text .form-group,
-.post-text textarea {
-  width: 100%;
-  height: 100%;
+.post-width {
+  min-width: $common_header_left_width; 
+  max-width: $common_header_left_width; 
+  border-radius: 4px;
 }
 
-.post-text {
-  min-height: 176px;
-  z-index: 2000;
-}
-
-.post {
+.post
+{
   background-color: #ffffff;
+}
+
+/*
+.post,
+.post > * 
+.post ~ * 
+{
+ 
+  background-color: #ffffff;
+  min-width: $common_header_left_width; 
+  max-width: $common_header_left_width; 
+}
+*/
+
+.post-text,
+.post-text > * > textarea {
+  @extend .post-width;
+  min-height: 98px;
+  max-height: 300px;
 }
 
 .post.header {
@@ -880,12 +986,26 @@ img.responsive {
 .post.content {
   position: absolute;
   height: $command_line_height;
-  width: auto;
-  background: #pink;
+  background: pink;
 }
 
-.post.commands {
+.buttons-line-s {
+  display: inline-flex;
+  min-height: 18px;
+  padding: 1px 2px;
+  background-color: #ffffff;
+  font-style: italic;
+}
 
+.buttons-line-m {
+  @extend .buttons-line-s;
+  min-height: 26px;
+
+}
+
+.post.command {
+  width: inherit;
+  height: inherit;
 }
 
 .images {
@@ -921,14 +1041,22 @@ img.responsive {
   padding: 2px;
 }
 
-/*
-.overloaded-logo {
-  position: relative;
-  bottom: 0;
-  left: 0;
+.autosize {
+  min-height: 2.5em;
+  height: auto;
   width: 100%;
 }
-*/
+
+.input-area {
+  float: left;
+}
+
+.float {
+  clear: left;
+  float: left;
+}
+
+
 
 /* ************************************************************************************************************************
 ** Languages
@@ -1000,7 +1128,6 @@ ul.list_group a:last-child .list-group-item {
 ************************************************************************************************************************ */
 
 .form-group {
-  /*clear: left;*/
   margin-bottom: 0;
 }
 
@@ -1016,8 +1143,6 @@ ul.list_group a:last-child .list-group-item {
 .input-group-addon {
   padding: 5px 5px;
 }
-
-/*.img-owner1,*/
 
 img.aresponsive {
   max-width: 100% !important;
@@ -1078,6 +1203,14 @@ i.user-info-icons {
   top: 2.5px;
 }
 
+.user-faces {
+  @extend .nothing;
+  width: 18px;
+  height: 18px;
+  float: left;
+
+}
+
 .top-rounded {
   border-top-right-radius: 4px;
   border-top-left-radius: 4px;
@@ -1135,264 +1268,16 @@ i.user-info-icons {
 
 
 
-/*
 
-.user-info-right {
-  clear: left;
+.disabled {
+  color: pink;
+  opacity: .4;
+  pointer-events: none;
 }
 
-a.header-user-photo {
-  padding-top: 4px !important;
-  padding-bottom: 0;
-  max-height: 46px !important;
+img.disabled {
+  pointer-events: none;
 }
-
-a.header-user-photo > span img {
-  padding-top: 4px;
-  padding-bottom: 0;
-  vertical-align: top;
-  max-height: 46px;
-}
-
-.header-user-photo > span span {
-  padding-top: 4px;
-  padding-bottom: 0;
-  max-height: 46px;
-}
-
-br.header-user-photo {
-  line-height: 1px;
-}
-
-/*
-.thumbnail {
-  border: 0;
-}
-
-.input-group-addon {
-  padding-bottom: 4px;
-}
-
-.checkbox {
-  margin: auto;
-  top: 4px;
-  left: 4px;
-}
-
-.to-right {
-  clear: both;
-  float: right;
-}
-
-span.caret.to-right {
-  margin-top: 6px;
-}
-
-#main_left, #main_center, #main, #main_right {
-  z-index: 0;
-}
-
-.myself,
-.myself img.gravatar,
-.myself img.avatar {
-  margin-right: 0;
-  margin-left:0;
-  position: relative;
-  top: 3px;
-  left: 4px;
-}
-
-aside {
-  background-color: transparent !important;
-}
-
-span.transparent,
-span.transparent:hover {
-  color: transparent !important;
-  background-color: transparent !important;
-}
-/*
-ul.list-group > li:not(first-child),
-ul.list-group {
-  border-left: 0px;
-  border-right: 0px;
-  border: 0px;
-  padding: 0px inherit;
-}
-ul.list-group > li:first-child {
-  padding-top:  10px;
-  padding-bottom:  10px
-}
-ul.list-group > li:last-child {
-  padding-bottom:  10px
-}
-*/
-/*
-.search {
-  display: inline;
-}
-
-.icon-composed {
-  top: -10px;
-  left: -10px;
-}
-
-.icon-hover {
-  top: 25px;
-  left: 25px;
-  position: relative;
-}
-
-span.centered {
-  position: relative;
-  left: -15px;
-
-}
-
-.img-header {
-  display: block;
-  width: 863px;
-  max-width: 100%;
-  height: auto;
-  max-height: 200px; 
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.img-owner {
-  max-width: 200%;
-  width: 2000%;
-  display: block;
-  height: auto;
-  margin-left: -30px;
-  margin-right: auto;
-}
-
-
-.image-72 {
-  border-right: 3px;
-  padding-right: 0px;
-  margin-left: -15px;
-  margin-right: 3px;
-  padding-left: 0;
-  max-width: 72px;
-}
-
-.v-glyphs {
-  padding-top: 5px;
-  padding-right: 5px;
-  padding-left: 5px;
-}
-
-.post-header {
-  font-weight:  700;
-  font-size: 80%;
-}
-
-.post-title {
-  font-weight: bold;
-  font-size: 120%;
-
-}
-
-.command-button {
-  padding-right: 0;
-  padding-left: 30px;
-
-}
-
-.command-button-right {
-  float: right
-  padding-right: 30px;
-  padding-left: 0;
-}
-
-.im-stacked {
-    left: -10px;
-    position: relative;
-    top: 8px;
-    }
-
-.shared_debug {
-  font-size: 70%;
-}
-
-
-.group-header {
-  .group-title {
-    font-size: 300%;
-  }
-  .group-description {
-    font-size: 150%;
-    text-align: top;
-  }
-}
-
-.more {
-  font-size: 80%;
-}
-
-.group-header.left  {
-    bottom: 0;
-    position: absolute;
-    left: 0;
-}
-
-.group-header.right {
-    bottom: 0;
-    position: absolute;
-    right: 0;
-}
-
-.noborder {
-  border: 0;
-  padding: 0;
-  margin: 0;
-}
-
-.checkbox {
-  display: inline-block;
-  sleft: -25px; 
-}
-
-.checkbox > label  {
-  padding-left: 0;
-  margin-left: 0;
-  top: 0;
-  left: 0;
-  font-size: 0;
-}
-
-.bootstrap-switch {
-  min-width: 150px !important;
-}
-
-.bootstrap-switch-container > label {
-  text-align: center !important;
-}
-
-.px5 {
-  min-height: 5px;
-}
-
-.div200 {
-  max-height: 200px;
-}
-
-li.header {
-  text-align: center;
-  font-weight: bold;
-  background-color: $navbar-default-bg;
-}
-
-li.header ~ li,
-li.header ~ li.divider {
-
-  background-color: $navbar-default-bg-a;
-
-}
-*/
-
 
 .im-plus-grey {
   @extend .im-plus;
@@ -1418,96 +1303,6 @@ li.header ~ li.divider {
   border-radius: 4px;
 }
 
-/*
-
-.fileinput {
-  margin-bottom: 9px;
-  sdisplay: inline-block;
-}
-
-
-
-.fileinput .thumbnail {
-  overflow: hidden;
-  sdisplay: inline-block;
-  margin-bottom: 5px;
-  vertical-align: middle;
-  text-align: center;
-  width: $btn_height; 
-  height: $btn_height;
-}
-
-.fileinput .sthumbnail > img {
-  max-height: 100%;
-}
-.fileinput .btn {
-  vertical-align: middle;
-}
-.fileinput-inline .fileinput-controls {
-  display: inline;
-}
-.fileinput-filename {
-  vertical-align: middle;
-  display: inline-block;
-  overflow: hidden;
-}
-.form-control .fileinput-filename {
-  vertical-align: bottom;
-}
-.fileinput.input-group {
-  display: table;
-}
-.fileinput.input-group > * {
-  position: relative;
-  z-index: 2;
-}
-
-.btn-file {
-  overflow: hidden;
-  position: relative;
-  vertical-align: middle;
-}
-.btn-file > input {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 0;
-  opacity: 0;
-  filter: alpha(opacity=0);
-  font-size: 23px;
-  height: 100%;
-  width: 100%;
-  direction: ltr;
-  cursor: pointer;
-}
-
-input .absolute {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 0;
-  opacity: 0;
-  filter: alpha(opacity=0);
-  font-size: 23px;
-  height: 100%;
-  width: 100%;
-  cursor: pointer;
-}
-
-.btn-file * input label {
-  display: none;
-}
-
-.fileinput.input-group > .btn-file {
-  z-index: 1;   
-}
-.fileinput-new.input-group .btn-file,
-.fileinput-new .input-group .btn-file {
-  border-radius: 0 4px 4px 0;
-}
-
-
-*/
 
 /* ************** Patch for bootstrap and use with button **************************** */
 
