@@ -1,10 +1,10 @@
-= form_for @post_comment do |f|
-  - if @post_comment.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@post_comment.errors.count, "error")} prohibited this post_comment from being saved:"
-      %ul
-        - @post_comment.errors.full_messages.each do |msg|
-          %li= msg
-
-  .actions
-    = f.submit 'Save'
+.panel-body
+  .row
+    .input-group
+      = bootstrap_form_for(post_comment, layout: :horizontal, :remote => :true, :html => {:multipart => true} ) do |f|
+        = hidden_field_tag  :post_uuid, "#{post.uuid}"
+        .owner-image.float-left= render partial: 'users/owner', locals: { object: post_comment, type: "owner", show: "imageOnly", local_current_user: :true  }
+        .post-comment-text.float-left= f.text_area :content, hide_label: true, :placeholder => "insert comment ..."
+        -#%span.input-group-btn
+        %button.float-left.btn.btn-default.btn-icon-only{ :type => "submit", :name => "commit", :hide_label => :true, :title => "send the post" } 
+          %i.hoverable.im-send-post

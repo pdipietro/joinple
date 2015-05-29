@@ -1,17 +1,13 @@
 - csn = current_social_network
 - if logged_in?
-  %div.cinq1
-    #post-header-left{ :style => "border: 1px dotted green;" }
+  .post-left-container
+    #post-header-left
       = bootstrap_form_for(post, :remote => :true ) do |f|
-        .post-text.nothing= f.text_area :content, :hide_label => :true
-        -#.fileinput-preview
-          - post.images.to_a.each do |image|
-            - unless image.length == 0 
-              .nothing= image_tag image.url(:btn)
+        .post-text.nothing.shadowing= f.text_area :content, :hide_label => :true
 
         .spacer
         .row.nothing
-          .buttons-line-m.post-width.nothing
+          .buttons-line-m.post-width.nothing.shadowing
             .post-icon.nothing
               %button.nothing.btn-icon-only{ :type => "button", "data-target" => "#add-images", "data-toggle" => "collapse", :title => "Add images" }
                 %i.hoverable.im-camera.im-17x
@@ -32,8 +28,7 @@
                 %i.hoverable.im-send-post.im-17x
 
         #add-images.collapse.row.nothing
-          .spacer
-          .buttons-line-m.post-width.nothing.btn-file
+          .buttons-line-m.post-width.nothing.btn-file.shadowing
             - (0..4).each do |cnt|
               .post-icon.nothing
                 %span.nothing.fileinput.fileinput-new{"data-provides" => "fileinput"}
@@ -47,19 +42,16 @@
                     %input{:id => "image#{cnt}", :name => "post[image#{cnt}]", :type => "file" }
 
 
-          #add-movies.collapse.row.nothing
-            .spacer
+          #add-movies.collapse.row.nothing.shadowing
             .buttons-line-m.post-width.nothing.btn-file
               = "Here will be movies"
 
-          #add-files.collapse.row.nothing
-            .spacer
+          #add-files.collapse.row.nothing.shadowing
             .buttons-line-m.post-width.nothing.btn-file
               = "Here will be files"
 
-        .spacer
         .row.nothing
-          .buttons-line-m.post-width.nothing
+          .buttons-line-m.post-width.nothing.shadowing
             .post-icon.nothing
               = link_to posts_list_path("all"), :remote => :true, :title => "View all posts" do
                 %i.activable.im-all-posts.im-17x
@@ -71,6 +63,6 @@
                 %i.activable.im-bookmark.im-17x
             -#= render partial: 'shared/search'
 
-  %div.cinq2
+  .post-right-container.shadowing
     = render partial: 'shared/people'
 

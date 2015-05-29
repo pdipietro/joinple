@@ -1,13 +1,11 @@
 - if logged_in?
-  .spacer
   .page-thumbnail{ :style => current_social_network_style }= "Posts"
-  .spacer
-  #gridPost.padding{ "data-columns" => "" }
+  #gridPost.grid-padding.no-padding{ "data-columns" => "" }
     - posts.each do |post|
       = render partial: "show", locals: { post: post }
 
 
-
+  
 
 
 

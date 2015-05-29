@@ -22,261 +22,222 @@ $standard_padding:4px;
   float: left;
 }
 
+.size-1  { width: 100%; }
+.size-2  { width: 50%; }
+.size-3  { width: 33.333%; }
+.size-4  { width: 25%; }
+.size-5  { width: 20%; }
+.size-6  { width: 16.666%; }
+
+
+#grid1, #grid2, #grid3, #grid4, #grid5, #grid6, #gridPost {
+  border: 0;
+  margin: 0 auto;
+  padding: 0;
+
+  &.grid-padding {
+    & .size-1, & .size-2, & .size-3, & .size-4, & .size-5, & .size-6 {
+      padding-left: $standard_padding;
+      padding-right: $standard_padding;
+    }
+  }
+
+  &.grid-padding .size-1:first-child,
+  &.grid-padding .size-2:first-child,
+  &.grid-padding .size-3:first-child,
+  &.grid-padding .size-4:first-child,
+  &.grid-padding .size-5:first-child,
+  &.grid-padding .size-6:first-child {
+    padding-left:0;
+    padding-right: $standard_padding;
+  }
+
+  &.grid-padding .size-1:last-child,
+  &.grid-padding .size-2:last-child,
+  &.grid-padding .size-3:last-child,
+  &.grid-padding .size-4:last-child,
+  &.grid-padding .size-5:last-child,
+  &.grid-padding .size-6:last-child  {
+    padding-right:0;
+    padding-left: $standard_padding;
+  }
+
+}
+
+
+
 /* ************************************************************************************************** */
 
 /* gridPost: Grid with 2 columns on the main page but the size is not less then 1167*/
 
-#gridPost {
- margin: 0 auto;
- padding: 0;
- border: 0;
-}
-
 @media screen and (max-width: 360px)
-{    #gridPost[data-columns]::before    {        content: '1 .column.size-2-1';    }   }
+{    #gridPost[data-columns]::before    {        content: '1 .column.size-1';    }   }
 
 @media screen and (min-width: 361px) and (max-width: 640px)
-{    #gridPost[data-columns]::before    {        content: '1 .column.size-2-1';     }   }
+{    #gridPost[data-columns]::before    {        content: '1 .column.size-1';     }   }
  
 @media screen and (min-width: 641px) and (max-width: 806px)
-{    #gridPost[data-columns]::before    {        content: '1 .column.size-2-1';     }   }
+{    #gridPost[data-columns]::before    {        content: '1 .column.size-1';     }   }
 
 @media screen and (min-width: 807px) and (max-width: 1190px)
-{    #gridPost[data-columns]::before    {        content: '1 .column.size-2-1';     }   }
+{    #gridPost[data-columns]::before    {        content: '1 .column.size-1';     }   }
  
 @media screen and (min-width: 1191px) and (max-width: 1574px)
-{    #gridPost[data-columns]::before    {        content: '2 .column.size-2-2';     }   }
+{    #gridPost[data-columns]::before    {        content: '2 .column.size-2';     }   }
  
 @media screen and (min-width: 1575px) and (max-width:1958px)
-{    #gridPost[data-columns]::before    {        content: '3 .column.size-2-3';     }   }
+{    #gridPost[data-columns]::before    {        content: '3 .column.size-3';     }   }
  
 @media screen and (min-width: 1959px)
-{    #gridPost[data-columns]::before    {        content: '4 .column.size-2-4';     }   }
+{    #gridPost[data-columns]::before    {        content: '4 .column.size-4';     }   }
+
+/* ************************************************************************************************** */
+
+/* grid1: Grid with 2 columns on the main page */
+
+@media screen and (max-width: 360px)
+{    #grid1[data-columns]::before    {        content: '1 .column.size-1';    }   }
+
+@media screen and (min-width: 361px) and (max-width: 640px)
+{    #grid1[data-columns]::before    {        content: '1 .column.size-1';     }   }
+ 
+@media screen and (min-width: 641px) and (max-width: 767px)
+{    #grid1[data-columns]::before    {        content: '1 .column.size-1';     }   }
+
+@media screen and (min-width: 768px) and (max-width: 1280px)
+{    #grid1[data-columns]::before    {        content: '2 .column.size-2';     }   }
+ 
+@media screen and (min-width: 1281px) and (max-width: 1600px)
+{    #grid1[data-columns]::before    {        content: '3 .column.size-3';     }   }
+ 
+@media screen and (min-width: 1601px) and (max-width:1920px)
+{    #grid1[data-columns]::before    {        content: '4 .column.size-4';     }   }
+ 
+@media screen and (min-width: 1921px)
+{    #grid1[data-columns]::before    {        content: '6 .column.size-2';     }   }
 
 /* ************************************************************************************************** */
 
 /* grid2: Grid with 2 columns on the main page */
 
-#grid2 {
- margin: 0 auto;
- padding: 0;
- border: 0;
-}
-
 @media screen and (max-width: 360px)
-{    #grid2[data-columns]::before    {        content: '1 .column.size-2-1';    }   }
+{    #grid2[data-columns]::before    {        content: '1 .column.size-1';    }   }
 
 @media screen and (min-width: 361px) and (max-width: 640px)
-{    #grid2[data-columns]::before    {        content: '1 .column.size-2-1';     }   }
+{    #grid2[data-columns]::before    {        content: '1 .column.size-1';     }   }
  
 @media screen and (min-width: 641px) and (max-width: 767px)
-{    #grid2[data-columns]::before    {        content: '1 .column.size-2-1';     }   }
+{    #grid2[data-columns]::before    {        content: '1 .column.size-1';     }   }
 
 @media screen and (min-width: 768px) and (max-width: 1280px)
-{    #grid2[data-columns]::before    {        content: '2 .column.size-2-2';     }   }
+{    #grid2[data-columns]::before    {        content: '2 .column.size-2';     }   }
  
 @media screen and (min-width: 1281px) and (max-width: 1600px)
-{    #grid2[data-columns]::before    {        content: '3 .column.size-2-3';     }   }
+{    #grid2[data-columns]::before    {        content: '3 .column.size-3';     }   }
  
 @media screen and (min-width: 1601px) and (max-width:1920px)
-{    #grid2[data-columns]::before    {        content: '4 .column.size-2-4';     }   }
+{    #grid2[data-columns]::before    {        content: '4 .column.size-4';     }   }
  
 @media screen and (min-width: 1921px)
-{    #grid2[data-columns]::before    {        content: '6 .column.size-2-6';     }   }
+{    #grid2[data-columns]::before    {        content: '6 .column.size-6';     }   }
 
-.size-2-1  { width: 100%; }
-.size-2-2  { width: 50%; }
-.size-2-3  { width: 33.333%; }
-.size-2-4  { width: 25%; }
-.size-2-5  { width: 20%; }
-
-/* ************************************************************************************************** */
-
-/* grid2: Grid with 2 columns on the main page */
-
-#grid2 {
- margin: 0 auto;
- padding: 0;
- border: 0;
-}
-
-@media screen and (max-width: 360px)
-{    #grid2[data-columns]::before    {        content: '1 .column.size-2-1';    }   }
-
-@media screen and (min-width: 361px) and (max-width: 640px)
-{    #grid2[data-columns]::before    {        content: '1 .column.size-2-1';     }   }
- 
-@media screen and (min-width: 641px) and (max-width: 767px)
-{    #grid2[data-columns]::before    {        content: '1 .column.size-2-1';     }   }
-
-@media screen and (min-width: 768px) and (max-width: 1280px)
-{    #grid2[data-columns]::before    {        content: '2 .column.size-2-2';     }   }
- 
-@media screen and (min-width: 1281px) and (max-width: 1600px)
-{    #grid2[data-columns]::before    {        content: '3 .column.size-2-3';     }   }
- 
-@media screen and (min-width: 1601px) and (max-width:1920px)
-{    #grid2[data-columns]::before    {        content: '4 .column.size-2-4';     }   }
- 
-@media screen and (min-width: 1921px)
-{    #grid2[data-columns]::before    {        content: '6 .column.size-2-6';     }   }
-
-.size-2-1  { width: 100%; }
-.size-2-2  { width: 50%; }
-.size-2-3  { width: 33.333%; }
-.size-2-4  { width: 25%; }
-.size-2-5  { width: 20%; }
-.size-2-6  { width: 16.667%; }
-
-size-2-6  { width: 16.667%; }
 
 /* ************************************************************************************************** */
 
 /* grid3: Grid with 3 columns on the main page */
 
-#grid3 {
- padding: 0;
- border: 0;
- .padding {
-   margin: 0 -2px 0 2px;
- } 
- .no-padding {
-   margin: 0 auto;
- } 
-}
-
 @media screen and (max-width: 360px)
-{    #grid3[data-columns]::before    {        content: '1 .column.size-3-1';     }   }
+{    #grid3[data-columns]::before    {        content: '1 .column.size-1';     }   }
 
 @media screen and (min-width: 361px) and (max-width: 640px)
-{    #grid3[data-columns]::before    {        content: '2 .column.size-3-2';     }   }
+{    #grid3[data-columns]::before    {        content: '2 .column.size-2';     }   }
  
 @media screen and (min-width: 641px) and (max-width: 767px)
-{    #grid3[data-columns]::before    {        content: '3 .column.size-3-3';     }   }
+{    #grid3[data-columns]::before    {        content: '3 .column.size-3';     }   }
  
 @media screen and (min-width: 768px) and (max-width: 1600px)
-{    #grid3[data-columns]::before    {        content: '4 .column.size-3-4';     }   }
+{    #grid3[data-columns]::before    {        content: '4 .column.size-4';     }   }
  
 @media screen and (min-width: 1601px) and (max-width:1920px)
-{    #grid3[data-columns]::before    {        content: '5 .column.size-3-5';     }   }
+{    #grid3[data-columns]::before    {        content: '5 .column.size-5';     }   }
  
 @media screen and (min-width: 1921px)
-{    #grid3[data-columns]::before    {        content: '6 .column.size-3-6';     }   }
+{    #grid3[data-columns]::before    {        content: '6 .column.size-6';     }   }
 
-.size-3-1  { width: 100%; }
-.size-3-2  { width: 50%; }
-.size-3-3  { width: 33.333%; }
-.size-3-4  { width: 25%; }
-.size-3-5  { width: 20%; }
-.size-3-6  { width: 16.667%; }
 
 /* ************************************************************************************************** */
 
 /* grid4: Grid with 4 columns on the main page */
 
-#grid4 {
- margin: 0 auto;
- padding: 0;
- border: 0;
-}
 
 @media screen and (max-width: 360px)
-{    #grid4[data-columns]::before    {        content: '1 .column.size-4-1';    }   }
+{    #grid4[data-columns]::before    {        content: '1 .column.size-1';    }   }
 
 @media screen and (min-width: 361px) and (max-width: 640px)
-{    #grid4[data-columns]::before    {        content: '2 .column.size-4-2';     }   }
+{    #grid4[data-columns]::before    {        content: '2 .column.size-2';     }   }
  
 @media screen and (min-width: 641px) and (max-width: 767px)
-{    #grid4[data-columns]::before    {        content: '3 .column.size-4-3';     }   }
+{    #grid4[data-columns]::before    {        content: '3 .column.size-3';     }   }
  
 @media screen and (min-width: 768px) and (max-width: 1600px)
-{    #grid4[data-columns]::before    {        content: '4 .column.size-4-4';     }   }
+{    #grid4[data-columns]::before    {        content: '4 .column.size-4';     }   }
  
 @media screen and (min-width: 1601px) and (max-width:1920px)
-{    #grid4[data-columns]::before    {        content: '5 .column.size-4-5';     }   }
+{    #grid4[data-columns]::before    {        content: '5 .column.size-5';     }   }
  
 @media screen and (min-width: 1921px)
-{    #grid4[data-columns]::before    {        content: '6 .column.size-4-6';     }   }
+{    #grid4[data-columns]::before    {        content: '6 .column.size-6';     }   }
 
-.size-4-1  { width: 100%; }
-.size-4-2  { width: 50%; }
-.size-4-3  { width: 33.333%; }
-.size-4-4  { width: 25%; }
-.size-4-5  { width: 20%; }
-.size-4-6  { width: 16.667%; }
 
 /* ************************************************************************************************** */
 
 /* grid5: Grid with 5 columns on the main page */
 
-#grid5 {
- margin: 0 auto;
- padding: 0;
- border: 0;
-}
-
 @media screen and (max-width: 360px)
-{    #grid5[data-columns]::before    {        content: '1 .column.size-5-1';    }   }
+{    #grid5[data-columns]::before    {        content: '1 .column.size-1';    }   }
 
 @media screen and (min-width: 361px) and (max-width: 640px)
-{    #grid5[data-columns]::before    {        content: '2 .column.size-5-2';     }   }
+{    #grid5[data-columns]::before    {        content: '2 .column.size-2';     }   }
  
 @media screen and (min-width: 641px) and (max-width: 767px)
-{    #grid5[data-columns]::before    {        content: '3 .column.size-5-3';     }   }
+{    #grid5[data-columns]::before    {        content: '3 .column.size-3';     }   }
  
 @media screen and (min-width: 768px) and (max-width: 1600px)
-{    #grid5[data-columns]::before    {        content: '4 .column.size-5-4';     }   }
+{    #grid5[data-columns]::before    {        content: '4 .column.size-4';     }   }
  
 @media screen and (min-width: 1601px) and (max-width:1920px)
-{    #grid5[data-columns]::before    {        content: '5 .column.size-5-5';     }   }
+{    #grid5[data-columns]::before    {        content: '5 .column.size-5';     }   }
  
 @media screen and (min-width: 1921px)
-{    #grid5[data-columns]::before    {        content: '6 .column.size-5-6';     }   }
-
-.size-5-1  { width: 100%; }
-.size-5-2  { width: 50%; }
-.size-5-3  { width: 33.333%; }
-.size-5-4  { width: 25%; }
-.size-5-5  { width: 20%; }
-.size-5-6  { width: 16.667%; }
+{    #grid5[data-columns]::before    {        content: '6 .column.size-6';     }   }
 
 /* ************************************************************************************************** */
 
-/* grid-st6: A grid with 6 columns [800..1280] width */
-
-#gridst6 {
- margin: 0 auto;
- padding: 0;
- border: 0;
-}
+/* grid-6: A grid with 6 columns [800..1280] width */
 
 @media screen and (max-width: 360px)
-{    #gridst6[data-columns]::before    {        content: '1 .column.size-st6-1';    }   }
+{    #gridst6[data-columns]::before    {        content: '1 .column.size-1';    }   }
 
 @media screen and (min-width: 361px) and (max-width: 640px)
-{    #gridst6[data-columns]::before    {        content: '2 .column.size-st6-2';     }   }
+{    #gridst6[data-columns]::before    {        content: '2 .column.size-2';     }   }
  
 @media screen and (min-width: 641px) and (max-width: 767px)
-{    #gridst6[data-columns]::before    {        content: '4 .column.size-st6-3';     }   }
+{    #gridst6[data-columns]::before    {        content: '4 .column.size-3';     }   }
  
 @media screen and (min-width: 768px) and (max-width: 1600px)
-{    #gridst6[data-columns]::before    {        content: '6 .column.size-st6-4';     }   }
+{    #gridst6[data-columns]::before    {        content: '6 .column.size-4';     }   }
  
 @media screen and (min-width: 1601px) and (max-width:1920px)
-{    #gridst6[data-columns]::before    {        content: '9 .column.size-st6-5';     }   }
+{    #gridst6[data-columns]::before    {        content: '9 .column.size-5';     }   }
  
 @media screen and (min-width: 1921px)
-{    #gridst6[data-columns]::before    {        content: '12 .column.size-st6-6';     }   }
+{    #gridst6[data-columns]::before    {        content: '12 .column.size-6';     }   }
 
-.size-st6-1  { width: 100%; }
-.size-st6-2  { width: 50%; }
-.size-st6-3  { width: 25%; }
-.size-st6-4  { width: 16.666%; }
-.size-st6-5  { width: 11.111%; }
-.size-st6-6  { width: 8.333%; }
 
 /* ************************************************************************************************** */
 
+
+/*
 .padding {
   margin: 0 -2px;
   div.column {
@@ -294,3 +255,4 @@ size-2-6  { width: 16.667%; }
   }
 }
 
+*/

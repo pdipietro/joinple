@@ -55,9 +55,6 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(post_params)
-   # puts "POST: #{@post},  ==== > #{@post.arrs}"
-   # set_images (@post) 
-
 
     respond_to do |format|
       begin

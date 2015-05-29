@@ -7,7 +7,7 @@
       %i.hoverable.im-plus.to-right
   .spacer
   - latest = ""
-  #grid4.padding{ "data-columns" => "" }
+  #grid4.grid-padding.no-padding{ "data-columns" => "" }
     - groups.each do |group|
       - unless group.uuid == latest
         - puts "type => #{group.type}"

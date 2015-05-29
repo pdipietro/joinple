@@ -11,7 +11,7 @@ class Post
   has_one   :in,  :is_owned_by, rel_class: Owns                # User
 
   has_one   :out, :belongs_to, model_class: SocialNetwork       # belongs to SocialNetwork
-  has_many  :out, :has_comments, rel_class: HasPostComment      # :comment
+  has_many  :out, :has_comment, model_class: PostComment, type: "has_comment"     # :comment
 
   property  :image0,             type: String                       
   mount_uploader :image0,        PostImageUploader 

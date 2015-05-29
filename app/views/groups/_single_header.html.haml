@@ -5,8 +5,8 @@
     - csn = current_social_network
 
   #group-header
-    .relative.nothing
-      = image_tag group.header.url(:md_banner), :class => "responsive"
+    .relative.group-header
+      = image_tag group.header.url(:md_banner), :class => "responsive rounded"
       -#= image_tag group.logo.url(:thumb), :class => "responsive overloaded-logo-80", :size => ("80x80")
       = image_tag group.logo.url(:thumb), :class => "responsive overloaded-logo-80"
       - if group.logo.length === 0 
@@ -31,7 +31,6 @@
             = link_to onerel_path(group,'Group','participates'), :type => "button", :method => :post, :remote => :true, :title => "Join", :style => super_social_network_style, :class => "btn btn-default btn-sm-nothing" do
               = "Join"
 
-  .spacer
   #common-header-left
     .buttons.nothing
       .post-icon.nothing
@@ -63,5 +62,4 @@
         .post-icon.nothing
           = link_to edit_group_path(group), :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Modify the element" do
             %i.activable.im-pencil.im-2x
-  .spacer
  

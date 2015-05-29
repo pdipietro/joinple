@@ -1,6 +1,6 @@
-#post-header-right{ :style => "border: 1px dotted green;" }
+#post-header-right
   - users = User.all
-  - (1..40).each do |a|
+  - (1..1).each do |a|
     - users.each do |user|
       %span.user-faces
         = link_to user_path(user.uuid), :remote => :true, :title => "#{user.first_name} #{user.last_name} (@#{user.nickname})" do

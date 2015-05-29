@@ -1,24 +1,32 @@
-- className = object.class.name
+- unless defined?(local_current_user)
+  - className = object.class.name
+  - query = Neo4j::Session.query("match (o:#{className} { uuid : '#{object[:uuid]}' })<-[rel:owns]-(u:User)-[p:has_profile]->(up:UserProfile) return u, up")
+  - user = query.first[:u]
+  - user_profile = query.first[:up]
 
-- query = Neo4j::Session.query("match (o:#{className} { uuid : '#{object[:uuid]}' })<-[rel:owns]-(u:User)-[p:has_profile]->(up:UserProfile) return u, up")
-- user = query.first[:u]
-- user_profile = query.first[:up]
 - title = defined?(title) ? title : "Edit"
 
-- if defined?(show)
-  = image_tag user_profile.photo.url(:btn), :class => "circle padding-1"
+- size = defined?(size) ? size : "36x36"
+
+
+= puts "user_profile: #{user}"
+
+- if defined?(local_current_user)
+  = image_tag current_user.has_profile.photo.url(:btn), :class => "circle padding-1", :size => size
+- elsif defined?(show)
+  = image_tag user_profile.photo.url(:btn), :class => "circle padding-1", :size => size
 - elsif defined?(type)
   %span{ :class => "semi-transparent-#{type}-bar", :style => "clear: both;" }
   %div.solida
     = link_to user_path(user.uuid), :remote => :true, :title => title do
-      = image_tag user_profile.photo.url(:btn), :class => "circle padding-1"
+      = image_tag user_profile.photo.url(:btn), :class => "circle padding-1", :size => size
       = "#{user.full_name} (@#{user.nickname})"
     %span.to-right.vertical-middle
       = "created on #{object.created_at.to_formatted_s(:short)}"
 - else
   %span
     = link_to user_path(user.uuid), :remote => :true, :title => title do
-      = image_tag user_profile.photo.url(:btn), :class => "circle padding-1"
+      = image_tag user_profile.photo.url(:btn), :class => "circle padding-1", :size => size
       = "#{user.full_name} (@#{user.nickname})"
 
 

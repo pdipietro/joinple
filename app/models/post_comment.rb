@@ -11,9 +11,9 @@ class PostComment
   has_many  :in,  :is_preferred_by, rel_class: Preferes
   has_many  :out, :has_tag, rel_class: HasTag                  # :tag
 
-  has_one   :out, :belongs_to, rel_class: PostBelongsTo        # :Post
+  has_one   :in, :belongs_to, model_class: Post, type: "belongs_to"  # belongs to Post
 
-  property  :images,            type: String
-  mount_uploader :images,       PostCommentImageUploader 
+  property  :image,            type: String
+  mount_uploader :image,       PostCommentImageUploader 
 
 end

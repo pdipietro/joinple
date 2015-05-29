@@ -1,0 +1,19 @@
+.border-1
+
+-# unless post_comment.image.url.length === 0
+  = image_tag post_comment.image.url(:md_logo), :class => "responsive semi-transparent", :size => ("30x30")
+
+.content
+  .owner-image.float-left= render partial: 'users/owner', locals: { object: post_comment, type: "owner", show: "imageOnly", size: "30x30"  }
+  .float-left
+    - if post_comment.content.length > 300
+      .first-part.collapse.in{ :name => "post_content_full_#{post_comment.uuid}"}
+        = post_comment.content[0...300]
+        %a.toggle{ :type => "toggle", "data-target" => "div[name=post_comment_content_full_#{post_comment.uuid}]", "data-toggle" => "collapse"}
+          %i.header-dropdown.im-about
+          %span{ :style => "color: #{current_social_network_background_color?};" }= " ... more"
+      .full-part.collapse{ :name => "post_comment_content_full_#{post_comment.uuid}"}
+        %a.toggle{ :type => "toggle", "data-target" => "div[name=post_comment_content_full_#{post_comment.uuid}]", "data-toggle" => "collapse"}
+          = post_comment.content
+    - else
+      %span= post_comment.content[0...300]

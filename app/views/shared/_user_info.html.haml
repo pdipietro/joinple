@@ -18,26 +18,26 @@
 
 .row.nothing.user-info-icons
   .col-xs-12.nothing
-    %i.user-info-icons.im-following
+    %i.user-info-icons.activable.im-following
     %br
     - followings_number = rels["out-follows-User"]
     = followings_number
   .col-xs-12.nothing
-    %i.user-info-icons.im-followers
+    %i.user-info-icons.activable.im-followers
     %br
     - followers_number = rels["in-follows-User"]
     = followers_number
     = 4532
   .col-xs-12.nothing
-    %i.user-info-icons.im-discussions
+    %i.user-info-icons.activable.im-discussions
     %br
     172
   .col-xs-12.nothing
-    %i.user-info-icons.im-groups
+    %i.user-info-icons.activable.im-groups
     %br
     - groups_number = rels["out-owns-Group"]
     = groups_number
   .col-xs-12.nothing
-    %i.user-info-icons.im-blog2
+    %i.user-info-icons.activable.im-blog2
     %br
     93
