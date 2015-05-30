@@ -71,37 +71,26 @@
 
       -# *********************************** COMMAND LINE ****************************************** 
 
-      -#.border-1
-      .buttons-line-s
-        .spaced-icon-left{ :style => "font-size: 10px;"}
-          = link_to dummy_path(post,'Post','likes'), :remote => :true, :title => "Likes" do
-            = "like"
-        .spaced-icon-left{ :style => "font-size: 10px;"}
-          = link_to dummy_path(post,'Post','likes'), :remote => :true, :title => "Share" do
-            = "share"
-        .spaced-icon-left{ :style => "font-size: 10px;"}
-          = link_to dummy_path(post,'Post','likes'), :remote => :true, :title => "Preferreds" do
-            %span= "preferred"
+      .command-line-s
+        = link_to dummy_path(post,'Post','likes'), :remote => :true, :title => "Smile", :class => ("hoverable") do
+          = "Smile"
+        = link_to dummy_path(post,'Post','likes'), :remote => :true, :title => "Share", :class => ("hoverable") do
+          = "Share"
+        = link_to dummy_path(post,'Post','likes'), :remote => :true, :title => "Preferreds", :class => ("hoverable") do
+          = "Preferred"
         
-        %span.to-right
-          %span
-            .spaced-icon-left
-              = link_to dummy_path(post,'Post','likes'), :remote => :true, :title => "Likes" do
-                %i.hoverable.im-like{ :style => "font-size: 15px;"}
-                %span.spaced-icon
-                  %span{ :style => "font-size: 10px;"}= rels["out-follows-User"].nil? ? 12 : rels["out-follows-User"]
-              = link_to dummy_path(post,'Post','likes'), :remote => :true, :title => "Shares" do
-                %i.hoverable.im-share2{ :style => "font-size: 15px;"}
-                %span.icon-space.spaced-icon
-                  %span{ :style => "font-size: 10px;"}= rels["out-follows-User"].nil? ? 0 : rels["out-follows-User"]
-              = link_to dummy_path(post,'Post','likes'), :remote => :true, :title => "Preferreds" do
-                %i.hoverable.im-bookmarks{ :style => "font-size: 15px;"}
-                %span.icon-space.spaced-icon
-                  %span{ :style => "font-size: 10px;"}= rels["out-follows-User"].nil? ? 325 : rels["out-follows-User"]
-      -#.spacer-2x
+        .to-right
+          = link_to dummy_path(post,'Post','likes'), :remote => :true, :title => "Likes", :class => ("hoverable") do
+            %i.hoverable.im-like
+            = rels["out-follows-User"].nil? ? 12 : rels["out-follows-User"]
+          = link_to dummy_path(post,'Post','likes'), :remote => :true, :title => "Shares", :class => ("hoverable") do
+            %i.hoverable.im-share2
+            = rels["out-follows-User"].nil? ? 0 : rels["out-follows-User"]
+          = link_to dummy_path(post,'Post','likes'), :remote => :true, :title => "Preferreds", :class => ("hoverable") do
+            %i.hoverable.im-bookmarks
+            = rels["out-follows-User"].nil? ? 325 : rels["out-follows-User"]
 
       -# *********************************** POST COMMENT LINE ****************************************** 
-
 
       = puts "-----------------------has_comment#: #{post.has_comment.count} #{post.has_comment}"
       - post.has_comment.each do |rel|

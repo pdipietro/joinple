@@ -1,19 +1,33 @@
+- q = "match (o:PostComment { uuid : '#{post_comment.uuid}' })<-[rel:owns]-(u:User)-[p:has_profile]->(up:UserProfile) return u, up;"
+- query = Neo4j::Session.query(q)
+- user = query.first[:u]
+- user_profile = query.first[:up]
+
 .border-1
 
--# unless post_comment.image.url.length === 0
-  = image_tag post_comment.image.url(:md_logo), :class => "responsive semi-transparent", :size => ("30x30")
-
 .content
-  .owner-image.float-left= render partial: 'users/owner', locals: { object: post_comment, type: "owner", show: "imageOnly", size: "30x30"  }
-  .float-left
+  .col-xs-5
+    = link_to user_path(user.uuid), :remote => :true, :title => "show" do
+      .owner-image= image_tag user.has_profile.photo.url(:btn), :class => "circle padding-1", :size => "30x30"
+  .col-xs-52
     - if post_comment.content.length > 300
-      .first-part.collapse.in{ :name => "post_content_full_#{post_comment.uuid}"}
+      .first-part.collapse.in{ :name => "post_comment_content_full_#{post_comment.uuid}"}
+        %span
+          = link_to user_path(user.uuid), :remote => :true, :title => "show", :class => ("hoverable") do
+            = "#{user.full_name}"
         = post_comment.content[0...300]
-        %a.toggle{ :type => "toggle", "data-target" => "div[name=post_comment_content_full_#{post_comment.uuid}]", "data-toggle" => "collapse"}
+        %a.toggle.hoverable{ :type => "toggle", "data-target" => "div[name=post_comment_content_full_#{post_comment.uuid}]", "data-toggle" => "collapse"}
           %i.header-dropdown.im-about
-          %span{ :style => "color: #{current_social_network_background_color?};" }= " ... more"
+          %span= " ... more"
       .full-part.collapse{ :name => "post_comment_content_full_#{post_comment.uuid}"}
-        %a.toggle{ :type => "toggle", "data-target" => "div[name=post_comment_content_full_#{post_comment.uuid}]", "data-toggle" => "collapse"}
-          = post_comment.content
+        %span
+          = link_to user_path(user.uuid), :remote => :true, :title => "show", :class => ("hoverable") do
+            = "#{user.full_name}"
+        %a.toggle{ :type => "toggle", "data-target" => "*[name=post_comment_content_full_#{post_comment.uuid}]", "data-toggle" => "collapse"}
+          %span= post_comment.content
     - else
+      %span
+        = link_to user_path(user.uuid), :remote => :true, :title => "show", :class => ("hoverable") do
+          = "#{user.full_name}"
       %span= post_comment.content[0...300]
+  .col-xs-3

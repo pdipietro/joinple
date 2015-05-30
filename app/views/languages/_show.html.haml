@@ -1,22 +1,19 @@
-%div{ :id => language.uuid }
-  - if language.errors.count == 0
-    -#= link_to language_path(language.uuid), :remote => :true, :title => "Edit" do
-    .contour-3{:style => "#{super_social_border_color}" }
-      .relative.nothing
-        .language
-          .language-title
-            = language.code 
-          .language-content{:style => "color: #000000; " }
-            = language.description 
+%div
+  .language{ :id => language.uuid }
+    - if language.errors.count == 0
+      .contour-3{:style => "#{super_social_border_color}, color: #000000; background-color: #ffffff;" }
+        .language-title
+          = language.code 
+        .language-content
+          = language.description 
         - if is_admin? 
-          .command-button{:style => super_social_network_style }
-            - if can_modify?(language)
-              .spaced-icon
+          .command-line{:style => super_social_network_style }
+            .spacer
+            .command-line-m{:style => super_social_network_style }
+              - if can_modify?(language)
                 = link_to edit_language_path(language), :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Modify the element" do
                   %i.im-pencil
-              .spaced-icon
                 = link_to language, :method => :delete, :data => { :confirm => 'Are you sure?' }, :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Delete the element" do
                   %i.im-bin
-    .spacer
 
 

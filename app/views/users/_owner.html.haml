@@ -17,15 +17,15 @@
   = image_tag user_profile.photo.url(:btn), :class => "circle padding-1", :size => size
 - elsif defined?(type)
   %span{ :class => "semi-transparent-#{type}-bar", :style => "clear: both;" }
-  %div.solida
-    = link_to user_path(user.uuid), :remote => :true, :title => title do
+  %div.solida.not-hoverable
+    = link_to user_path(user.uuid), :remote => :true, :title => title, :class => ("hoverable white") do
       = image_tag user_profile.photo.url(:btn), :class => "circle padding-1", :size => size
       = "#{user.full_name} (@#{user.nickname})"
     %span.to-right.vertical-middle
       = "created on #{object.created_at.to_formatted_s(:short)}"
 - else
   %span
-    = link_to user_path(user.uuid), :remote => :true, :title => title do
+    = link_to user_path(user.uuid), :remote => :true, :title => title, :class => ("hoverable") do
       = image_tag user_profile.photo.url(:btn), :class => "circle padding-1", :size => size
       = "#{user.full_name} (@#{user.nickname})"
 

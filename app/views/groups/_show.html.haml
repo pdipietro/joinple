@@ -2,8 +2,8 @@
   %div
     .group{:id => group.uuid }
       - rels = count_relationships(group)
-      = link_to group_path(group.uuid), :remote => :true, :title => "View details" do
-        .contour-3{:style => "border-color: #{group.background_color}; " }
+      .contour-3{:style => "border-color: #{group.background_color}; " }
+        = link_to group_path(group.uuid), :remote => :true, :title => "View details", :class => ("hoverable") do
           .relative.nothing
             - if group.header.length === 0 
               .group-image-replacement{:style => "background-color: #{group.background_color}; " }
@@ -14,42 +14,33 @@
           .content
             .title= group.name
             = group.description
-            .border-1
-            %span= "This group is "
-            %b= group.type 
+      
+        .border-1
+        %span= "This group is "
+        %b= group.type 
 
-          .border-1
-          .command-button
-            .spaced-icon
-              = link_to dummy_path(group,'Group','likes'), :remote => :true, :title => "View members" do
-                %i.im-members.im-20x
-                = rels["out-follows-User"].nil? ? 0 : rels["out-follows-User"]
-            .spaced-icon
-              = link_to dummy_path(group,'Group','likes'), :remote => :true, :title => "View discussions" do
-                %i.im-discussions-groups.im-20x
-                = rels["out-follows-User"].nil? ? 0 : rels["out-follows-User"]
-            .spaced-icon
-              = link_to dummy_path(group,'Group','likes'), :remote => :true, :title => "View following/er" do
-                %i.im-bi-follow.im-20x
-                = rels["out-follows-User"].nil? ? 0 : rels["out-follows-User"]
-          .border-1
-            = render partial: "users/owner", locals: { object: group }
-          .border-1
+        .border-1
+        .command-line-s
+          = link_to dummy_path(group,'Group','likes'), :remote => :true, :title => "View members", :class => ("hoverable") do
+            %i.hoverable.im-members
+            = rels["out-follows-User"].nil? ? 0 : rels["out-follows-User"]
+          = link_to dummy_path(group,'Group','likes'), :remote => :true, :title => "View discussions", :class => ("hoverable") do
+            %i.hoverable.im-discussions-groups
+            = rels["out-follows-User"].nil? ? 0 : rels["out-follows-User"]
+          = link_to dummy_path(group,'Group','likes'), :remote => :true, :title => "View following/er", :class => ("hoverable") do
+            %i.hoverable.im-bi-follow
+            = rels["out-follows-User"].nil? ? 0 : rels["out-follows-User"]
+        .border-1
+        = render partial: "users/owner", locals: { object: group }
 
-          .command-button{ :style => "background-color: #{group.background_color}; color: #{group.text_color};" }
+        .command-line{ :style => "background-color: #{group.background_color}; color: #{group.text_color};" }
+          .spacer
+          .command-line-m{ :style => "background-color: #{group.background_color}; color: #{group.text_color};" }
             - if can_modify?(group)
-              .spaced-icon
-                = link_to edit_group_path(group), :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Modify the element" do
-                  %i.im-pencil
-              .spaced-icon
-                = link_to group, :method => :delete, :data => { :confirm => 'Are you sure?' }, :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Delete the element" do
-                  %i.im-bin
-            .spaced-icon
-              = link_to onerel_path(group,'Group','participates'), :type => "button", :method => :post, :remote => :true, :title => "Join", :style => super_social_network_style do
-                = "Join"
-                %span.glyphicons.icon-like-1
-                = likes = group.query_as(:p).match("(p)<-[r:participates]-(u:User)").pluck(:u).count
-                %br
-            -#.spaced-icon
-              %button.btn.btn-default.btn-sm-nothing{ :type => "submit", :name => "commit", :hide_label => :true, :style => super_social_network_style }
-                = "Join"
+              = link_to edit_group_path(group), :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Modify the element" do
+                %i.im-pencil
+              = link_to group, :method => :delete, :data => { :confirm => 'Are you sure?' }, :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Delete the element" do
+                %i.im-bin
+            = link_to onerel_path(group,'Group','participates'), :type => "button", :method => :post, :remote => :true, :title => "Join", :style => super_social_network_style do
+              = "Join"
+              %br

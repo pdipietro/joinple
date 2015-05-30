@@ -22,6 +22,8 @@ $logo_social_height:$people_box_height;
 $joinple_background_color: #a12349;
 $joinple_text_color:#000000;
 
+$default_text_color: rgb(51,51,51);
+
 $btn_height:36px;
 
 $margin_standard: 0.7em;
@@ -304,6 +306,7 @@ i.activable:focus {
 
 body {
   background-color: #cccccc;
+  color: $default_text_color;
 }
 
 header, #page {
@@ -331,17 +334,59 @@ ul.nav.navbar-nav > li {
 
 /* ************************************* link elements doesn't have underline and a different color ********************* */
 
-a:hover,
+/*
 i.hoverable:hover {
   cursor: pointer;
   text-decoration: none;
 }
+*/
 
-a, a:visited, a:hover, a:focus, a:active {
-  color: inherit;
-  text-decoration: none;
+a, a.hoverable, a.hoverable.white {
+  color: #0066CC;
 }
 
+a.hoverable.white {
+  color: white;
+}
+
+a:not(.hoverable) {
+  color: $default_text_color;
+  text-decoration: none;
+  -webkit-text-decoration: underline;
+}
+
+a.hoverable:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  -webkit-text-decoration: underline;
+}
+
+a:visited, a:focus, a:active {
+  text-decoration: none;
+  -webkit-text-decoration: none;
+}
+
+/*
+.not-hoverable a
+{
+  color: inherited;
+  text-decoration: none;
+  -webkit-text-decoration: none;
+}
+
+a > .not-hoverable, a > .not-hoverable:hover,
+a:visited, a:focus, a:active,
+a.not-hoverable, a.not-hoverable:hover,
+a .not-hoverable, a .not-hoverable:hover,
+li .not-hoverable, li .not-hoverable:hover,
+solida a
+ {
+  color: initial;
+  text-decoration: none;
+  -webkit-text-decoration: none;
+  display: inline-block;
+}
+*/
 .btn-icon-only,
 .btn-icon-only:focus,
 .btn-icon-only:hover
@@ -352,11 +397,14 @@ a, a:visited, a:hover, a:focus, a:active {
   border: none;
 }
 
+/*
 .panel-header a,
 ul.list_group > li:first-child > a,
 ul.list_group > li:first-child > a:hover {
   color: #ffffff !important;
 }
+
+*/
 
 .list-group-item {
   border: none;
@@ -556,30 +604,6 @@ hr {
 
 .rounded {
   border-radius: 4px;
-}
-
-.spaced-icon {
-  margin-right: 10px;
-  display: -webkit-inline-box;
-  display: inline;
-}
-
-.spaced-icon-right {
-  margin-right: 10px;
-  clear: left;
-  display: -webkit-inline-box;
-}
-
-.spaced-icon-left {
-  margin-left: 10px;
-  clear: right;
-  display: -webkit-inline-box;
-}
-
-.spaced-icon-left:first-child {
-  margin-left: 4px;
-  clear: right;
-  display: -webkit-inline-box;
 }
 
 .social-icon {
@@ -976,7 +1000,7 @@ img.responsive {
 
 .panel,
 .language,
-.social_network,
+.social-network,
 .page-thumbnail,
 #common-header-left,
 #groups-page, #group-form, .group, .group-header,
@@ -988,26 +1012,6 @@ img.responsive {
   @extend .rounded;
   @extend .shadowing;
 }
-/*
-.page-thumbnail,
-#groups-page, #group_form
-#posts_page,
-#discussion_page {
-  @extend .shadowing;
-  margin-bottom: $margin_standard;
-}
-*/
-/*
-.post,
-.post > * 
-.post ~ * 
-{
- 
-  background-color: #ffffff;
-  min-width: $common_header_left_width; 
-  max-width: $common_header_left_width; 
-}
-*/
 
 .post-text,
 .post-text > * > textarea {
@@ -1042,19 +1046,120 @@ img.responsive {
   background: pink;
 }
 
-.buttons-line-s {
-/*  display: inline-flex; */
+
+/* ************************************************************************************************************************
+** Command lines: (s|m) list of command/icons/buttons on a single line
+************************************************************************************************************************ */
+
+.command-line {
+  display: block;
+}
+
+.command-line-s {
+  @extend .command-line;
+
+  display: -webkit-inline-box;
+  display: -moz-webkit-inline-box;
+  display: -ms-webkit-inline-box;
+  display: -o-webkit-inline-box;
+  display: inline;
+  clear: left;
+
   min-height: 18px;
   padding: 1px 2px;
   background-color: #ffffff;
   font-style: italic;
+  font-size: 10px;
 }
 
-.buttons-line-m {
-  @extend .buttons-line-s;
+.command-line-s * {
+  margin-right: 10px;
+}
+
+.command-line-s *.to-right {
+  @extend .to-right;
+}
+
+.command-line-s *:first-child {
+  margin-left: 4px;
+}
+
+.command-line-s *:last-child {
+  margin-right: 4px;
+}
+
+.command-line-s .to-right a i,
+.command-line-s a i {
+  font-size: 15px;
+  margin-top: 2px !important;
+}
+
+.command-line-m {
+  @extend .command-line-s;
   min-height: 26px;
-
+  font-size: 15px;
 }
+
+.command-line-m .to-right a i,
+.command-line-m a i {
+  font-size: 20px;
+  margin-top: 2px !important;
+}
+
+
+
+
+
+
+/*
+.spaced-icon, .spaced, {
+  display: -webkit-inline-box;
+  display: -moz-webkit-inline-box;
+  display: -ms-webkit-inline-box;
+  display: -o-webkit-inline-box;
+  display: inline;
+  clear: left;
+}
+
+.spaced-icon-right, .spaced-right {
+  @extend .spaced;
+  margin-right: 10px;
+  clear: left;
+}
+
+.spaced-icon-left, .spaced-left {
+  @extend .spaced;
+  margin-left: 10px;
+  clear: right;
+}
+
+.spaced-icon-left:first-child,
+.spaced-left:first-child
+ {
+  @extend .spaced-left;
+  margin-left: 4px;
+}
+
+.command-line-s {
+  @extend .command-line;
+  min-height: 18px;
+  padding: 1px 2px;
+  background-color: #ffffff;
+  font-style: italic;
+  font-size: 10px;
+}
+
+.command-line-s:first-child,
+.spaced-left:first-child
+ {
+  margin-left: 4px;
+}
+
+.command-line-s a {
+  
+}
+
+*/
 
 .post.command {
   width: inherit;
@@ -1166,7 +1271,7 @@ ul.list_group a:last-child .list-group-item {
 /* ************************************************************************************************************************
 ** Dinamic specs for sections
 ************************************************************************************************************************ */
-
+/*
 @media screen and (max-width: 800px) and (max-width: 1000px)
 {    #social-network-form .col-xs-15,
      #language-form .col-xs-15 { 
@@ -1193,7 +1298,7 @@ ul.list_group a:last-child .list-group-item {
 @media screen and (min-width: 1281px)
 {    
 }
-
+*/
 /* ************************************************************************************************************************
 ** da rivedere con Davide 
 ************************************************************************************************************************ */
