@@ -1,2 +1,2 @@
 $("#language-form").removeClass('in');
-$("#main_content .padding .column *:eq(0)").after("<%= escape_javascript(render partial: 'show', locals: { language: @language } ) %>" );
+$("#main_content .grid-padding .column *:eq(0)").before("<%= escape_javascript(render partial: 'show', locals: { language: @language } ) %>" );

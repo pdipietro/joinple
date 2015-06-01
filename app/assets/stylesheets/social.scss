@@ -1477,3 +1477,18 @@ img.disabled {
 .dropdown-menu {
   display: none;
 }
+
+/* ************** Menu Post un left aside **************************** */
+
+ul#myposts a li {
+  max-height: 38px;
+  min-height: 38px;
+  background-color: #ffffff;
+  padding: 2px 0;
+  border-radius: 4px;
+
+  & .row > div:first-child {
+    border-right: 1px solid #e7e7e7;
+  }
+}
+

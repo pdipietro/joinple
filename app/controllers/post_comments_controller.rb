@@ -24,44 +24,40 @@ class PostCommentsController < ApplicationController
   # POST /post_comments
   # POST /post_comments.json
   def create
+    success = true
     @post_comment = PostComment.new(post_comment_params)
 
     post_uuid = params[:post_uuid]
     post = Post.find(post_uuid)
     puts "post_uuid done: #{post_uuid}"
 
-  respond_to do |format|
     begin
       tx = Neo4j::Transaction.new
+
       @post_comment.save
-
-      puts "@post_comment.save ERROR: #{@post_comment.errors}" unless @post_comment.errors.count == 0
-      puts "@post_comment.save DONE: #{@post_comment.errors}" if @post_comment.errors.count == 0
-
       rel = Owns.create(from_node: current_user, to_node: @post_comment)
-
-      puts "Owns.create ERROR: #{rel.errors}" unless rel.errors.count == 0
-      puts "Owns.create DONE: #{rel.errors}" if rel.errors.count == 0
-
       rel = HasPostComment.create(from_node: post, to_node: @post_comment)  
       
-      puts "post.create_rel ERROR: #{rel.errors}" unless rel.errors.count == 0
-      puts "post.create_rel DONE: #{rel.errors}" if rel.errors.count == 0
-
       rescue => e
         tx.failure
-        puts "--------- /postComment/create: transaction failure: #{@post_comment.content}"
-        format.js   { render :new, locals: { :post_comment => @post_comment, :post => post } }
-        format.html { render :new }
-        format.json { render json: @post_comment.errors, status: :unprocessable_entity }
+        success = false
       ensure
         tx.close
-        puts "--------- /postComment/create: transaction succeeded: #{@post_comment.content}"
-        format.js   { render partial: "enqueue", object: @post_comment, locals: { :post => post }, notice: 'Post was successfully created.' }
-        format.html { redirect_to(request.env["HTTP_REFERER"]) }
-        format.json { render :show, status: :created, location: @post_comment, user: @post_comment.is_owned_by }
+
+      respond_to do |format|
+        unless success 
+          puts "--------- /postComment/create: transaction failure: #{@post_comment.content}"
+          format.js   { render :new, locals: { :post_comment => @post_comment, :post => post } }
+          format.html { render :new }
+          format.json { render json: @post_comment.errors, status: :unprocessable_entity }
+        else
+          puts "--------- /postComment/create: transaction succeeded: #{@post_comment.content}"
+          format.js   { render partial: "enqueue", object: @post_comment, locals: { :post => post }, notice: 'Post was successfully created.' }
+          format.html { redirect_to(request.env["HTTP_REFERER"]) }
+          format.json { render :show, status: :created, location: @post_comment, user: @post_comment.is_owned_by }
+        end
+      end
     end
-  end
   end
 
   # PATCH/PUT /post_comments/1

@@ -1,6 +1,6 @@
 if($("#lists-page").length == 0) {
   $("#tech_info").html("<%= escape_javascript(render partial: 'sessions/tech_info') %>" );
-  $("#main_header").html("<%= escape_javascript(render partial: 'header', locals: { language: Lamguage.new} ) %>" );
+  $("#main_header").html("<%= escape_javascript(render partial: 'header', locals: { language: Language.new} ) %>" );
   $("#main_add").html("");
   $("#main_content").html("<%= escape_javascript(render partial: 'index', locals: { languages: @languages, title: ""} ) %>" );
   $("#main_content").html("<%= escape_javascript(render partial: 'index', locals: { languages: @languages, subset: subset, title: title } ) %>" );
