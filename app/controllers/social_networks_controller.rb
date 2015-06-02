@@ -148,7 +148,7 @@ class SocialNetworksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def social_network_params
-      params.require(:social_network).permit(:name, :description, :short_description, :mission, :slogan, :logo, :background_color, :text_color, :logo_cache, :logo_social, :logo_social_cache)
+      params.require(:social_network).permit(:name, :description, :short_description, :mission, :slogan, :logo, :background_color, :text_color, :social_network_color, :logo_cache, :logo_social, :logo_social_cache)
     end
 
     def get_title(filter)

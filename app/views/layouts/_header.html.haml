@@ -1,7 +1,7 @@
 - background_color = get_background
 %nav.navbar-default.navbar-fixed-top{ :role => "navigation" }
   - user_profile = logged_in? ? current_user.has_profile : nil
-  .container-fluid
+  .container-fluid.shadowing
     .navbar-header
       %button.navbar-toggle.collapsed{ :type => "button", "data-toggle" => "collapse",  "data-target" => "#navbar" }
         %span.sr-only  Toggle navigation
@@ -38,19 +38,11 @@
               %i.header.im-people-sidebardx
           %li.dropdown
             %a.dropdown-toggle{ :href => "#", :id => "dropdownSocial", "data-toggle" => "dropdown", :type => "button", :title => "Social networks", "aria-expanded" => "false"}
-              %i.header.im-shuffle
+              %i.header.im-like-top
               %span.caret
             %ul.dropdown-menu{ :role => "menu", "aria-labelledby" => "dropdownSocial" }
               #social_network_list
                 = render partial: 'layouts/social_networks' 
-                -#
-                  - @social_networks = SocialNetwork.all.order(created_at: :desc)
-                  - @social_networks.each do |social_network| 
-                    - if social_network.name != current_social_network_name?
-                      %li
-                        %a{ :href => "#{calculate_full_path(social_network)}" }
-                          %i.header-dropdown.im-dot{ :style => "color: #{social_network.background_color};" }
-                          = social_network.name
           %li
             = link_to root_path, :remote => :true, :title => "Notifications" do
               %i.header.im-bell
@@ -91,7 +83,7 @@
             %a.dropdown-toggle.header-user-photo{ :href => "#", :id => "dropdownUser", "data-toggle" => "dropdown", :type => "button", :title => "Myself",  "aria-expanded" => "false"}
               %span
                 = image_tag user_profile.photo.url(:btn), :size => ("32x32"), :class => "circle"
-                %span.user-wellcome= "Wellcome, #{current_user.first_name}"
+                %span.user-welcome= "Welcome, #{current_user.first_name}"
                 %span.caret
             %ul.user.dropdown-menu{ :role => "menu", "aria-labelledby" => "dropdownUser" }
               %li

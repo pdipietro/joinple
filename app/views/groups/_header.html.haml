@@ -25,3 +25,20 @@
           = link_to groups_list_path("fresh"), :remote => :true, :title => "View fresh groups" do
             %i.activable.im-fresh.im-25x
 
+    .spacer
+    .command-line-m
+      = link_to groups_list_path("iparticipate"), :remote => :true, :title => "View my groups" do
+        %i.activable.im-my-groups
+      = link_to groups_list_path("iadminister"), :remote => :true, :title => "View groups I administer" do
+        %i.activable.im-admin-group
+      = link_to groups_list_path("pendinginvitation"), :remote => :true, :title => "View pending invitation" do
+        %i.activable.im-pending-invitations
+      = render partial: 'shared/search'
+      = link_to groups_list_path("all"), :remote => :true, :title => "View all groups" do
+        %i.activable.im-all-groups
+      = link_to groups_list_path("hot"), :remote => :true, :title => "View hot groups" do
+        %i.activable.im-hot
+      = link_to groups_list_path("fresh"), :remote => :true, :title => "View fresh groups" do
+        %i.activable.im-thermometer
+      = link_to groups_list_path("fresh"), :remote => :true, :title => "View fresh groups" do
+        %i.activable.im-fresh

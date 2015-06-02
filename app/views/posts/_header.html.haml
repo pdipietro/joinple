@@ -53,15 +53,14 @@
         .row.nothing
           .buttons-line-m.post-width.nothing.shadowing
             .post-icon.nothing
-              = link_to posts_list_path("all"), :remote => :true, :title => "View all posts" do
+              = link_to posts_list_path( csn.uuid, "all"), :remote => :true, :title => "View all posts" do
                 %i.activable.im-all-posts.im-17x
             .post-icon.nothing
-              = link_to posts_list_path("iparticipate"), :remote => :true, :title => "View my posts" do
+              = link_to posts_list_path( csn.uuid, "iparticipate"), :remote => :true, :title => "View my posts" do
                 %i.activable.im-my-posts.im-17x
             .post-icon.nothing
-              = link_to posts_list_path("iprefere"), :remote => :true, :title => "View my preferred posts" do
-                %i.activable.im-bookmark.im-17x
-            -#= render partial: 'shared/search'
+              = link_to posts_list_path( csn.uuid, "iprefere"), :remote => :true, :title => "View my preferred posts" do
+                %i.activable.im-bookmarks.im-17x
 
   .post-right-container.shadowing
     = render partial: 'shared/people'

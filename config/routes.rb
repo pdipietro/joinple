@@ -60,7 +60,7 @@ Rails.application.routes.draw do
   get       'discussions/list(/:filter(/:from_page(/:limit(/:subject(/:deep)))))'  =>   'discussions#list', :as => :discussions_list, defaults: { :format => "js"}, :remote => :true
   get       'discussions/add(/:filter(/:from_page(/:limit(/:subject(/:deep)))))'  =>   'discussions#add', :as => :discussions_add, defaults: { :format => "js"}, :remote => :true
 
-  get       'posts/list(/:filter(/:from_page(/:limit(/:subject(/:deep)))))'  =>   'posts#list', :as => :posts_list, defaults: { :format => "js"}, :remote => :true
+  get       'posts/list/:social_uuid(/:filter(/:from_page(/:limit(/:subject(/:deep)))))'  =>   'posts#list', :as => :posts_list, defaults: { :format => "js"}, :remote => :true
   get       'post/:id/list(/:filter(/:from_page(/:limit(/:subject(/:deep)))))'  =>    'posts#list_one', :as => :post_list, defaults: { :format => "js"}, :remote => :true
 
 #  get       'post/list(/:filter(/:from_page(/:limit(/:subject(/:deep)))))'  =>   'post#list', :as => :posts_list, defaults: { :format => "js"}, :remote => :true

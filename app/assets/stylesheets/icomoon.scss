@@ -31,6 +31,10 @@ i, .icomoon-liga {
 	-moz-osx-font-smoothing: grayscale;
 }
 
+
+.im-like-top:before {
+	content: "\e642";
+}
 .im-share2:before {
 	content: "\e640";
 }
@@ -39,9 +43,6 @@ i, .icomoon-liga {
 }
 .im-add-photo:before {
 	content: "\e630";
-}
-.im-shuffle:before {
-	content: "\e63f";
 }
 .im-not-preferred:before {
 	content: "\e63d";

@@ -6,12 +6,13 @@ class SocialNetwork
   include Name
   include Description
 
-  property  :background_color,  :type =>   String, default: "#000000"
-  property  :text_color,        :type =>   String, default: "#ffffff"
-  property  :mission,           :type =>   String
-  property  :slogan,            :type =>   String
-  property  :short_description, :type =>   String
-  property  :iname,             :type =>   String
+  property  :background_color,         :type =>   String, default: "#e5e5e5"
+  property  :social_network_color,     :type =>   String, default: "#000000"
+  property  :text_color,               :type =>   String, default: "#323342"
+  property  :mission,                  :type =>   String
+  property  :slogan,                   :type =>   String
+  property  :short_description,        :type =>   String
+  property  :iname,                    :type =>   String
 
   property  :logo,              type: String
   mount_uploader :logo,         SocialNetworkLogoUploader 

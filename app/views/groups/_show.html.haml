@@ -38,9 +38,9 @@
           .command-line-m{ :style => "background-color: #{group.background_color}; color: #{group.text_color};" }
             - if can_modify?(group)
               = link_to edit_group_path(group), :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Modify the element" do
-                %i.im-pencil
+                %i.im-pencil{ :style => "color: #{group.text_color};" }
               = link_to group, :method => :delete, :data => { :confirm => 'Are you sure?' }, :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Delete the element" do
-                %i.im-bin
+                %i.im-bin{ :style => "color: #{group.text_color};" }
             = link_to onerel_path(group,'Group','participates'), :type => "button", :method => :post, :remote => :true, :title => "Join", :style => super_social_network_style do
               = "Join"
               %br

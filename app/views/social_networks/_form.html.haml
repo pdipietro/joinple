@@ -18,25 +18,27 @@
         = bootstrap_form_for(social_network, :remote => :true, :html => {:multipart => true} ) do |f|
           .nothing= f.text_field :name, :prepend => :name, :placeholder => "Enter the name of the new social network", :hide_label => :true, :text => "Social network name"
           .spacer
-          .nothing= f.text_field :short_description, :prepend => :short_description, :placeholder => "Enter a short description of the social network", :hide_label => :true, :text => "Social network short description"
+          .nothing= f.text_field :short_description, :prepend => "short description", :placeholder => "Enter a short description of the social network", :hide_label => :true, :text => "Social network short description"
           .spacer
 
-          .nothing= f.color_field :background_color, :prepend => "background color", :placeholder => "Enter the standard background color", :hide_label => :true, :class => "left-align" 
+          .nothing= f.color_field :background_color, :prepend => "background color", :placeholder => "Select the background color", :hide_label => :true, :class => "left-align" 
           .spacer
-          .nothing= f.color_field :text_color, :prepend => "text color", :placeholder => "Enter the standard text color", :hide_label => :true, :class => "left-align" 
+          .nothing= f.color_field :social_network_color, :prepend => "social network color", :placeholder => "Select the social network color", :hide_label => :true, :class => "left-align" 
+          .spacer
+          .nothing= f.color_field :text_color, :prepend => "title text color", :placeholder => "Select the title text color", :hide_label => :true, :class => "left-align" 
           .spacer
 
-          .nothing= f.text_field :logo, :prepend => "logo image", :placeholder => "Select an external logo (400x300 px)", :hide_label => :true, :disabled => :true
+          .nothing= f.text_field :logo, :prepend => "banner", :placeholder => "Select an external logo (400x300 px)", :hide_label => :true, :disabled => :true
           .spacer
-          .nothing= f.file_field :logo, :prepend => "logo image", :placeholder => "Select an external logo (400x300 px)", :hide_label => :true
+          .nothing= f.file_field :logo, :prepend => "banner", :placeholder => "Select an external logo (400x300 px)", :hide_label => :true
           .spacer
           .nothing= image_tag social_network.logo.url(:logo) 
           .spacer
           .nothing= f.hidden_field :logo_cache
 
-          .nothing= f.text_field :logo_social, :prepend => "logo image", :placeholder => "Select an internal logo (166x166 px)", :hide_label => :true, :disabled => :true
+          .nothing= f.text_field :logo_social, :prepend => "logo", :placeholder => "Select an internal logo (166x166 px)", :hide_label => :true, :disabled => :true
           .spacer
-          .nothing= f.file_field :logo_social, :prepend => "logo image", :placeholder => "Select an internal logo (166x166 px)", :hide_label => :true
+          .nothing= f.file_field :logo_social, :prepend => "logo", :placeholder => "Select an internal logo (166x166 px)", :hide_label => :true
           .spacer
           .nothing= image_tag social_network.logo_social.url(:thumb) 
           .spacer
@@ -48,6 +50,7 @@
           .nothing= f.text_field :slogan, :prepend => :slogan, :placeholder => "Describe the slogan of the social network", :hide_label => :true, :text => "Social network slogan"
           .spacer
           .nothing= f.text_field :mission, :prepend => :mission, :placeholder => "Describe the mission of the social network", :hide_label => :true, :text => "Social network mission"
+          .spacer
 
           %button.icon_only{ :type => "submit", :name => "commit", :hide_label => :true, :title => "Save the element" } 
             %i.im-check

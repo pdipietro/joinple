@@ -24,9 +24,9 @@
           .spacer
           .nothing= f.hidden_field :logo_cache
 
-          .nothing= f.text_field :header, :prepend => "logo image", :placeholder => "Select the group banner (916x315 px)", :hide_label => :true, :disabled => :true
+          .nothing= f.text_field :header, :prepend => "header image", :placeholder => "Select the header banner (916x315 px)", :hide_label => :true, :disabled => :true
           .spacer
-          .nothing= f.file_field :header, :prepend => "logo image", :placeholder => "Select the group banner (916x315 px)", :hide_label => :true
+          .nothing= f.file_field :header, :prepend => "header image", :placeholder => "Select the header banner (916x315 px)", :hide_label => :true
           .spacer
           .nothing= image_tag group.header.url(:profile) 
           .spacer

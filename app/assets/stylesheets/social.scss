@@ -19,7 +19,11 @@ $people_box_height: 158px;
 $logo_social_width:$people_box_height;
 $logo_social_height:$people_box_height;
 
-$joinple_background_color: #a12349;
+$joinple_banner_background_color:#f5f5f5;
+$joinple_page_background_color:#e5e5e5;
+$joinple_color:#323342;
+ 
+$joinple_background_color: #a02348;
 $joinple_text_color:#000000;
 
 $default_text_color: rgb(51,51,51);
@@ -291,33 +295,37 @@ i.hoverable:visited {
 }
 
 i.hoverable:hover {
-  color: #333342;
+  color: $joinple_color;
   text-decoration: none;
 }
 
 i.activable:hover,
 i.activable:active,
 i.activable:focus {
-  color: #a02348;
+  color: $joinple_background_color;
   text-decoration: none;
 }
 
 /* #page margin top must be equal to header.height + 10 px */
 
 body {
-  background-color: #cccccc;
+  -webkit-font-smoothing: antialiased;
+  background-color: $joinple_page_background_color;
   color: $default_text_color;
 }
 
 header, #page {
   min-width: $min_screen_width;
   margin: 0 auto;
-  background-color: pink;
 }
 
 #page {
   margin-top: 56px;
-  background-color: #cccccc;
+  background-color: $joinple_page_background_color;
+}
+
+.container-fluid {
+  background-color: $joinple_banner_background_color;
 }
 
 .navbar-brand.logo  {
@@ -352,7 +360,7 @@ a.hoverable.white {
 a:not(.hoverable) {
   color: $default_text_color;
   text-decoration: none;
-  -webkit-text-decoration: underline;
+  -webkit-text-decoration: none;
 }
 
 a.hoverable:hover {
@@ -551,7 +559,7 @@ hr {
 ** shadowing
 ************************************************************************************************************************ */
 
-.shadowing {
+.qshadowing {
   -webkit-box-shadow: 2px 4px 4px #888;
   -moz-box-shadow: 2px 4px 4px #888;
   -o-box-shadow: 2px 4px 4px #888;
@@ -559,6 +567,13 @@ hr {
   box-shadow: 2px 4px 4px #888;
 }
 
+.shadowing {
+  -webkit-box-shadow: 2px 4px 4px #888;
+  -moz-box-shadow: 2px 4px 4px #888;
+  -o-box-shadow: 2px 4px 4px #888;
+  -ms-box-shadow: 2px 4px 4px #888;
+  box-shadow: 2px 4px 4px #888;
+}
 /* ************************************************************************************************************************
 ** named elements
 ************************************************************************************************************************ */
@@ -1339,8 +1354,12 @@ a.header-user-photo {
   max-height: 46px !important;
 }
 
-span.user-wellcome {
-  word-wrap: break-word;                
+span.user-welcome {
+  word-wrap: break-word;    
+  &:hover {
+    text-decoration: underline;
+    -webkit-text-decoration: underline;
+  }            
 }
 
 .user-info {

@@ -3,5 +3,5 @@
   - if social_network.name != current_social_network_name?
     %li
       %a{ :href => "#{calculate_full_path(social_network)}" }
-        %i.header-dropdown.im-dot{ :style => "color: #{social_network.background_color};" }
+        %i.header-dropdown.im-dot{ :style => "color: #{social_network.social_network_color};" }
         = social_network.name

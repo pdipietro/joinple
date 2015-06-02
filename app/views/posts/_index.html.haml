@@ -1,5 +1,5 @@
 - if logged_in?
-  .page-thumbnail{ :style => current_social_network_style }= "Posts"
+  .page-thumbnail{ :style => current_social_network_style }= "Fottiti-title"
   #gridPost.grid-padding.no-padding{ "data-columns" => "" }
     - posts.each do |post|
       = render partial: "show", locals: { post: post }

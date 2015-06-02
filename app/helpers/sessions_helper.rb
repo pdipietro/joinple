@@ -2,8 +2,8 @@ module SessionsHelper
   include ApplicationHelper
 
   SUPER_SOCIAL_NETWORK_NAME = ["joinple"]
-  SUPER_SOCIAL_BACKGROUND_COLOR = "#a12349"
-  SUPER_SOCIAL_BACKGROUND_COLOR_REVERSE = "#333342"
+  SUPER_SOCIAL_BACKGROUND_COLOR = "#a02348"
+  SUPER_SOCIAL_BACKGROUND_COLOR_REVERSE = "#323342"
   SUPER_SOCIAL_COLOR = "#ffffff"  # was #333342 but white is a better solution
 
 
@@ -67,7 +67,11 @@ module SessionsHelper
   end
 
   def current_social_network_style
-      "background-color: #{session[:social_network][:background_color]}; color: #{session[:social_network][:text_color]};"
+      "background-color: #{session[:social_network][:social_network_color]}; color: #{session[:social_network][:text_color]};"
+  end
+
+  def current_social_network_social_network_color?
+      session[:social_network].social_network_color
   end
 
   def current_social_network_background_color?
@@ -78,7 +82,7 @@ module SessionsHelper
       "background-color: #{session[:social_network][:background_color]}"
   end
 
-  def current_social_network_color?
+  def current_social_network_text_color?
       session[:social_network].text_color
   end
 

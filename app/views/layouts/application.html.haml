@@ -25,11 +25,10 @@
       });
     = javascript_include_tag 'salvattore.min', media: 'all', 'data-turbolinks-track' => true
     %body{:sn => "#{csnn}"}
-      #wrapper
+      #wrapper{ :bg => "#{current_social_network_background_color?}"}
         #header
           = render 'layouts/header'
         #page.container-fluid
           = render partial: 'layouts/c3_9_0'
-          -#= yield
 
 

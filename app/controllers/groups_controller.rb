@@ -218,4 +218,37 @@ class GroupsController < ApplicationController
       puts ("Current group reset")
     end
 
+    def get_title(filter)
+        case filter
+          when "iparticipate"
+                "My groups"
+          when "iadminister"
+                "Groups I administer"
+          when "mycontacts"
+                "My contact's groups"
+          when "hot"
+                "Hot groups"
+          when "fresh"
+                "Fresh groups"
+          when "search"
+                ""
+          when "all"
+                "All groups"
+          when "members"
+                "Group members"
+          when "admins"
+                "Group admins"
+          when "alldiscussions"
+                "All discussions"
+          when "mydiscussions"
+                "My discussions"
+          when "allevents"
+                "All events"
+          when "myevents"
+                "My events"
+          else 
+               "Groups"      
+        end
+    end
+
 end

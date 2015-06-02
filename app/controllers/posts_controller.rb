@@ -5,17 +5,15 @@ class PostsController < ApplicationController
 
   respond_to :js
 
-  # GET /groups/list/:filter(/:limit(/:subject))
+  # GET /post/list/:filter(/:limit(/:subject))
   def list
     puts ("----- Post Controller: List --(#{params[:filter]})----------------------------------------")
 
-  #  reset_current_post  
-
-    filter = params[:filter]
+     filter = params[:filter]
+    social_uuid = params[:social_uuid]
     first_page = params[:from_page].nil? ? 1 : params[:from_page]
 
-    basic_query = "(groups:Group)-[r:belongs_to]->(sn:SocialNetwork { uuid : '#{current_social_network.uuid}'} ) "
-    #with distinct ugroups as groups"
+    basic_query = "(posts:Post)-[r:belongs_to]->(sn:SocialNetwork { uuid : '#{social_uuid}'} ) "
 
     qstr =
       case filter
@@ -31,9 +29,17 @@ class PostsController < ApplicationController
 
     query_string = qstr << basic_query
 
-    @groups = Group.as(:groups).query.match(query_string).proxy_as(Group, :groups).paginate(:page => first_page, :per_page => secondary_items_per_page, return: "groups", order: "groups.created_at desc")
+    puts "---------------- Query: #{query_string}"
 
-    render 'list', locals: { groups: @groups, subset: filter, title: get_title(filter)}
+    @posts = Post.as(:posts).query.match(query_string).proxy_as(Post, :posts).paginate(:page => first_page, :per_page => secondary_items_per_page, return: "posts", order: "posts.created_at desc")
+
+puts "=============================================================================================="
+    @posts.each do |post|
+      puts post.content
+    end
+puts "=============================================================================================="
+
+    render 'list', locals: { posts: @posts, subset: filter, title: get_title(filter)}
 
   end
 
@@ -146,5 +152,20 @@ class PostsController < ApplicationController
       end
       arrs = []
     end
+
+    def get_title(filter)
+        case filter
+          when "iparticipate"
+                "My posts"
+          when "iprefere"
+                "My preferred posts"
+          when "all"
+                "All posts"
+          else 
+               "All posts"      
+        end
+    end
+
+
 end
 
