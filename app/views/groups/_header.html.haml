@@ -11,6 +11,7 @@
         .post-icon.nothing
           = link_to groups_list_path("pendinginvitation"), :remote => :true, :title => "View pending invitation" do
             %i.activable.im-pending-invitations.im-25x
+        -#.h-divider
         = render partial: 'shared/search'
         .post-icon.nothing
           = link_to groups_list_path("all"), :remote => :true, :title => "View all groups" do
@@ -21,10 +22,7 @@
         .post-icon.nothing
           = link_to groups_list_path("fresh"), :remote => :true, :title => "View fresh groups" do
             %i.activable.im-thermometer.im-25x
-        .post-icon.nothing
-          = link_to groups_list_path("fresh"), :remote => :true, :title => "View fresh groups" do
-            %i.activable.im-fresh.im-25x
-
+  -# 
     .spacer
     .command-line-m
       = link_to groups_list_path("iparticipate"), :remote => :true, :title => "View my groups" do
@@ -40,5 +38,3 @@
         %i.activable.im-hot
       = link_to groups_list_path("fresh"), :remote => :true, :title => "View fresh groups" do
         %i.activable.im-thermometer
-      = link_to groups_list_path("fresh"), :remote => :true, :title => "View fresh groups" do
-        %i.activable.im-fresh

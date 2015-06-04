@@ -1,3 +1,5 @@
+- rels = count_relationships(post_comment)
+ 
 - q = "match (o:PostComment { uuid : '#{post_comment.uuid}' })<-[rel:owns]-(u:User)-[p:has_profile]->(up:UserProfile) return u, up;"
 - query = Neo4j::Session.query(q)
 - user = query.first[:u]
@@ -30,4 +32,19 @@
         = link_to user_path(user.uuid), :remote => :true, :title => "show", :class => ("hoverable") do
           = "#{user.full_name}"
       %span= post_comment.content[0...300]
+
+      -# *********************************** COMMAND LINE ****************************************** 
+
+    .spacer
+    .command-line-s
+      = link_to onerel_path(post_comment,'PostComment','likes'), :method => :post, :remote => :true, :title => "Smile", :class => ("hoverable") do
+        = "Smile"
+      
+      .to-right
+        - puts (rels)
+        = link_to dummy_path(post_comment,'PostComment','likes'), :remote => :true, :title => "Likes", :class => ("hoverable") do
+          %i.hoverable.im-like
+          = rels["in-follows-User"].nil? ? 0 : rels["in-follows-User"]
+
   .col-xs-3
+    -#= friendly_diff_date(post.created_at)    # this LOC locks the system !!!!! 

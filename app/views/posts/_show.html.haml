@@ -71,24 +71,26 @@
 
       -# *********************************** COMMAND LINE ****************************************** 
 
+      .spacer
       .command-line-s
-        = link_to dummy_path(post,'Post','likes'), :remote => :true, :title => "Smile", :class => ("hoverable") do
+        = link_to onerel_path(post,'Post','likes'), :method => :post, :remote => :true, :title => "Smile", :class => ("hoverable") do
           = "Smile"
-        = link_to dummy_path(post,'Post','likes'), :remote => :true, :title => "Share", :class => ("hoverable") do
+        = link_to dummy_path(post,'Post','likes'), :method => :post, :remote => :true, :title => "Share", :class => ("hoverable") do
           = "Share"
-        = link_to dummy_path(post,'Post','likes'), :remote => :true, :title => "Preferreds", :class => ("hoverable") do
+        = link_to onerel_path(post,'Post','preferes'), :method => :post, :remote => :true, :title => "Preferreds", :class => ("hoverable") do
           = "Preferred"
         
         .to-right
+          - puts (rels)
           = link_to dummy_path(post,'Post','likes'), :remote => :true, :title => "Likes", :class => ("hoverable") do
             %i.hoverable.im-like
-            = rels["out-follows-User"].nil? ? 12 : rels["out-follows-User"]
+            = rels["in-follows-User"].nil? ? 0 : rels["in-follows-User"]
           = link_to dummy_path(post,'Post','likes'), :remote => :true, :title => "Shares", :class => ("hoverable") do
             %i.hoverable.im-share2
-            = rels["out-follows-User"].nil? ? 0 : rels["out-follows-User"]
-          = link_to dummy_path(post,'Post','likes'), :remote => :true, :title => "Preferreds", :class => ("hoverable") do
+            = rels["in-follows-User"].nil? ? 0 : rels["out-follows-User"]
+          = link_to dummy_path(post,'Post','preferes'), :remote => :true, :title => "Preferreds", :class => ("hoverable") do
             %i.hoverable.im-bookmarks
-            = rels["out-follows-User"].nil? ? 325 : rels["out-follows-User"]
+            = rels["in-preferes-User"].nil? ? 0 : rels["in-preferes-User"]
 
       -# *********************************** POST COMMENT LINE ****************************************** 
 

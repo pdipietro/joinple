@@ -17,6 +17,8 @@ class PostsController < ApplicationController
 
     qstr =
       case filter
+        when "ifollow"
+              "(user:User { uuid : '#{current_user.uuid}' })-[p:follows]->(f:User)-[follows]->"
         when "iprefere"
               "(user:User { uuid : '#{current_user.uuid}' })-[p:preferes]->"
         when "iparticipate"
@@ -155,6 +157,8 @@ puts "==========================================================================
 
     def get_title(filter)
         case filter
+          when "ifollow"
+                "My following posts"
           when "iparticipate"
                 "My posts"
           when "iprefere"

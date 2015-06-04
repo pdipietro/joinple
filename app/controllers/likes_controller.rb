@@ -4,6 +4,8 @@ class LikesController < ApplicationController
 
   respond_to :js
 
+  # 
+
   def edit 
      puts "Params: #{params} *******************************************************************************************"
      @id = params[:id]

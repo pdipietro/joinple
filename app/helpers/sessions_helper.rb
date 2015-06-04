@@ -1,4 +1,5 @@
 module SessionsHelper
+  include ActionView::Helpers::DateHelper
   include ApplicationHelper
 
   SUPER_SOCIAL_NETWORK_NAME = ["joinple"]
@@ -329,6 +330,31 @@ module SessionsHelper
 
   def secondary_items_per_page
     SECONDARY_ITEMS_PER_PAGE
+  end
+
+  def friendly_diff_date(time)
+    delta = time - Time.now
+
+    %w[years months days hours minutes seconds].collect do |step|
+      seconds = 1.send(step)
+      (delta / seconds).to_i.tap do
+        delta %= seconds
+      end
+    end
+
+    prefix = "ymdhms"
+    k = 0 
+
+    res =
+      %w[years months days hours minutes seconds].each do |step|
+        seconds = 1.send(step)
+        (delta / seconds).to_i.tap do
+          delta %= seconds
+        end
+      end
+
+puts " ------------------------------------________> #{res}"
+
   end
 
   private

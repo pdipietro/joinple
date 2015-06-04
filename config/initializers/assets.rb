@@ -15,6 +15,7 @@ Rails.application.config.assets.precompile += %w( salvattore.js )
 Rails.application.config.assets.precompile += %w( salvattore.min.js )
 Rails.application.config.assets.precompile += %w( bootstrap.js )
 Rails.application.config.assets.precompile += %w( bootstrap.min.js )
+#Rails.application.config.assets.precompile += %w( jasny-bootstrap.js )
 
 Rails.application.config.assets.precompile += %w( social/*_bootstrap.css )
 

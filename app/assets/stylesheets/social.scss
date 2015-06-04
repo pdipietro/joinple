@@ -30,7 +30,7 @@ $default_text_color: rgb(51,51,51);
 
 $btn_height:36px;
 
-$margin_standard: 0.7em;
+$margin_standard: 0.5em;
 
 /* ********************************** END COMMON CONSTANTS *********************************************** */
 
@@ -407,12 +407,22 @@ solida a
 
 /*
 .panel-header a,
-ul.list_group > li:first-child > a,
-ul.list_group > li:first-child > a:hover {
+ul.list-group > li:first-child > a,
+ul.list-group > li:first-child > a:hover {
   color: #ffffff !important;
 }
 
 */
+
+ul.list-group {
+  border-radius: 4px;
+}
+
+.list-group {
+  margin-bottom: 0;
+  margin-bottom: $margin_standard;
+  background-color: #ffffff;
+}
 
 .list-group-item {
   border: none;
@@ -499,6 +509,15 @@ hr {
   content: '\1';
 }
 
+.h-divider {
+  width: 3px;
+  border-left: 3px solid #9b9b9b;
+  height: 37px;
+  padding: 0;
+  margin-left: -10px;
+  margin-right: 5px;
+}
+
 .contour {
   background-color: #ffffff; 
   color: #000000; 
@@ -559,30 +578,22 @@ hr {
 ** shadowing
 ************************************************************************************************************************ */
 
-.qshadowing {
-  -webkit-box-shadow: 2px 4px 4px #888;
-  -moz-box-shadow: 2px 4px 4px #888;
-  -o-box-shadow: 2px 4px 4px #888;
-  -ms-box-shadow: 2px 4px 4px #888;
-  box-shadow: 2px 4px 4px #888;
+.shadowing {
+  -webkit-box-shadow: 2px 4px 4px #ccc;
+  -moz-box-shadow: 2px 4px 4px #ccc;
+  -o-box-shadow: 2px 4px 4px #ccc;
+  -ms-box-shadow: 2px 4px 4px #ccc;
+  box-shadow: 2px 4px 4px #ccc;
 }
 
-.shadowing {
-  -webkit-box-shadow: 2px 4px 4px #888;
-  -moz-box-shadow: 2px 4px 4px #888;
-  -o-box-shadow: 2px 4px 4px #888;
-  -ms-box-shadow: 2px 4px 4px #888;
-  box-shadow: 2px 4px 4px #888;
-}
 /* ************************************************************************************************************************
 ** named elements
 ************************************************************************************************************************ */
 
 #user_info {
   @extend .shadowing;
-  margin-bottom: 1em;
+  margin-bottom: 0.7em;
 }
-
 
 /* ************************************************************************************************************************
 ** Stage display
@@ -858,19 +869,19 @@ img.responsive {
 #common-header-left * .post-icon {
   float: left;
   swidth: 10%;
-  margin-right: 16px;
+  margin-right: 10px;    /* was 16 */
   margin-top: 4px;
 }
 
 #common-header-left * .post-icon:first-child {
-  margin-left: 8px;
+  margin-left: 5px;
 }
 
 #common-header-left * .search {
   float: left;
   width: 56%;
   margin-top: 1.5px;
-  margin-right: 8px;
+  margin-right: 5px;
 }
 
 #common-header-left * .post-search-text > input {
@@ -878,7 +889,7 @@ img.responsive {
 }
 
 #common-header-left * .post-icon:last-child {
-  margin-right: 8px;
+  margin-right: 5px;
 }
 
 #common-header-left * .command {
@@ -1012,12 +1023,15 @@ img.responsive {
   border-radius: 4px;
 }
 
+.post .content {
+  line-height: 1.3em;
+}
 
 .panel,
 .language,
 .social-network,
 .page-thumbnail,
-#common-header-left,
+#scommon-header-left,
 #groups-page, #group-form, .group, .group-header,
 #posts-page, .post,
 #discussion-page, .discussion {
@@ -1033,6 +1047,7 @@ img.responsive {
   @extend .post-width;
   min-height: 98px;
   max-height: 300px;
+
 }
 
 .post.header {
@@ -1068,6 +1083,7 @@ img.responsive {
 
 .command-line {
   display: block;
+  position: relative;
 }
 
 .command-line-s {
@@ -1087,8 +1103,13 @@ img.responsive {
   font-size: 10px;
 }
 
-.command-line-s * {
+.command-line-s *,
+.command-line-m *,
+.command-line-l * {
   margin-right: 10px;
+  sclear: both;
+  sposition: absolute;
+  stop: 0;
 }
 
 .command-line-s *.to-right {
@@ -1104,7 +1125,8 @@ img.responsive {
 }
 
 .command-line-s .to-right a i,
-.command-line-s a i {
+.command-line-s a i,
+.command-line-m input {
   font-size: 15px;
   margin-top: 2px !important;
 }
@@ -1112,9 +1134,12 @@ img.responsive {
 .command-line-m {
   @extend .command-line-s;
   min-height: 26px;
-  font-size: 15px;
+  font-size: 18px;
 }
 
+.command-line-m .to-right button i,
+.command-line-m button i, 
+.command-line-m .fileinput, 
 .command-line-m .to-right a i,
 .command-line-m a i {
   font-size: 20px;
@@ -1233,7 +1258,7 @@ img.responsive {
 }
 
 .post-comment-text > div > div > textarea {
-  min-height: 98px;
+  smin-height: 98px;
   max-height: 300px;
   max-width: 360px;
   min-width: 360px;
@@ -1266,18 +1291,19 @@ li.left,
   border-radius: 0;
 }
 
-ul.list_group {
+ul.list-group {
   @extend .shadowing;
+  list-style-type: none;
 }
 
-ul.list_group a:first-child .list-group-item {
+ul.list-group a:first-child .list-group-item {
   border-top-right-radius: 4px;
   border-top-left-radius: 4px;
   border-top: 0;
-  margin-top: 1em;
+  margin-top: 0.7em;
 }
 
-ul.list_group a:last-child .list-group-item {
+ul.list-group a:last-child .list-group-item {
   border-bottom-right-radius: 4px;
   border-bottom-left-radius: 4px;
 }
@@ -1490,6 +1516,9 @@ img.disabled {
   border-radius: 4px;
 }
 
+.fileinput-preview {
+  float:  left;
+}
 
 /* ************** Patch for bootstrap and use with button **************************** */
 
@@ -1509,5 +1538,122 @@ ul#myposts a li {
   & .row > div:first-child {
     border-right: 1px solid #e7e7e7;
   }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.fileinput {
+  margin-bottom: 9px;
+  sdisplay: inline-block;
+}
+
+
+
+.fileinput .thumbnail {
+  overflow: hidden;
+  sdisplay: inline-block;
+  margin-bottom: 5px;
+  vertical-align: middle;
+  text-align: center;
+  width: $btn_height; 
+  height: $btn_height;
+}
+
+.fileinput .sthumbnail > img {
+  max-height: 100%;
+}
+.fileinput .btn {
+  vertical-align: middle;
+}
+.fileinput-inline .fileinput-controls {
+  display: inline;
+}
+.fileinput-filename {
+  vertical-align: middle;
+  display: inline-block;
+  overflow: hidden;
+}
+.form-control .fileinput-filename {
+  vertical-align: bottom;
+}
+.fileinput.input-group {
+  display: table;
+}
+.fileinput.input-group > * {
+  position: relative;
+  z-index: 2;
+}
+
+.btn-file {
+  overflow: hidden;
+  position: relative;
+  vertical-align: middle;
+}
+.btn-file > input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  font-size: 23px;
+  height: 100%;
+  width: 100%;
+  direction: ltr;
+  cursor: pointer;
+}
+
+input .absolute {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  font-size: 23px;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+}
+
+.btn-file * input label {
+  display: none;
+}
+
+.fileinput.input-group > .btn-file {
+  z-index: 1;   
+}
+.fileinput-new.input-group .btn-file,
+.fileinput-new .input-group .btn-file {
+  border-radius: 0 4px 4px 0;
 }
 

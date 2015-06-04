@@ -1,6 +1,5 @@
 %div{ :id => user.uuid }
   - puts user.full_name
-  -# owner = group.get_owner
   - rels = count_relationships(user) 
   - user_profile = user.has_profile
   .joinple-contour-2
@@ -47,7 +46,7 @@
         93
     .border-1
     .centered
-      = link_to onerel_path(user,'User','follows'), :method => :post, :to_class => :true do
+      = link_to onerel_path(user,'User','follows'), :method => :post, :to_class => :true, :class => ("hoverable") do
         - unless current_user?(user)
           - i_follow = current_user.query_as(:p).match("(p)-[r:follows]->(u:User { uuid : '#{user.uuid}' })").pluck(:u).count
           = i_follow == 1 ? "unfollow" : "follow" 

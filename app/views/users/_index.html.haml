@@ -1,9 +1,7 @@
 - if logged_in?
-  .spacer
   .page-thumbnail{ :style => super_social_network_style }
     = title
-  .spacer
-  #grid5.padding{ "data-columns" => "" }
+  #grid5.grid-padding.no-padding{ "data-columns" => "" }
     - users.each do |user|
       = render partial: 'users/show', locals: { user: user }
 

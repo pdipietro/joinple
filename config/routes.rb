@@ -73,7 +73,7 @@ Rails.application.routes.draw do
 
 # These are miscellaneous routes
 
-  post      'likes/:id/:class/:relationship' =>    'likes#edit',           :as => :onerel, constraints: AuthConstraint.new
+  post      'likes/:id/:class/:relationship' =>    'likes#edit',           :as => :onerel, defaults: { :format => "js"}, constraints: AuthConstraint.new, :remote => :true
   get       'likes'                          =>    'likes#dummy',          :as => :dummy, constraints: AuthConstraint.new
   post      'search'                         =>    'likes#search',         :as => :search, constraints: AuthConstraint.new
   post      'show_image/:img'                =>    'likes#show_image',     :as => :show_image, defaults: { :format => "js"}, constraints: AuthConstraint.new, :remote => :true
