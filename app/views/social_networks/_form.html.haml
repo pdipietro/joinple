@@ -4,7 +4,9 @@
   .col-xs-30
     - social_network_2 = social_network
     .panel.panel-default.nothing
-      .panel-heading{ :style => super_social_network_style }
+      = render partial: 'shared/common_panel_header', locals: { :style => "super", :data_target => "social_network-form", :title => title }
+
+      -#.panel-heading{ :style => super_social_network_style }
         %a.toggle{ :type => "toggle", "data-target" => "#social-network-form", "data-toggle" => "collapse"}
           .panel-title
             - if defined?(title)

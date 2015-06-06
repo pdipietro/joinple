@@ -7,9 +7,9 @@
         .language-content
           = language.description 
         - if is_admin? 
-          .command-line{:style => super_social_network_style }
+          %div{:style => super_social_network_style }
             .spacer
-            .command-line-m{:style => super_social_network_style }
+            .command-line-m
               - if can_modify?(language)
                 = link_to edit_language_path(language), :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Modify the element" do
                   %i.im-pencil

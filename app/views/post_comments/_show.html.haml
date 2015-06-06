@@ -5,46 +5,46 @@
 - user = query.first[:u]
 - user_profile = query.first[:up]
 
-.border-1
-
-.content
-  .col-xs-5
-    = link_to user_path(user.uuid), :remote => :true, :title => "show" do
-      .owner-image= image_tag user.has_profile.photo.url(:btn), :class => "circle padding-1", :size => "30x30"
-  .col-xs-52
-    - if post_comment.content.length > 300
-      .first-part.collapse.in{ :name => "post_comment_content_full_#{post_comment.uuid}"}
+.post-content
+  .content
+    .col-xs-5
+      = link_to user_path(user.uuid), :remote => :true, :title => "show" do
+        .owner-image= image_tag user.has_profile.photo.url(:btn), :class => "circle padding-1", :size => "30x30"
+    .col-xs-52
+      - if post_comment.content.length > 300
+        .first-part.collapse.in{ :name => "post_comment_content_full_#{post_comment.uuid}"}
+          %span
+            = link_to user_path(user.uuid), :remote => :true, :title => "show", :class => ("hoverable") do
+              = "#{user.full_name}"
+          = post_comment.content[0...300]
+          %a.toggle.hoverable{ :type => "toggle", "data-target" => "div[name=post_comment_content_full_#{post_comment.uuid}]", "data-toggle" => "collapse"}
+            %i.header-dropdown.im-about
+            %span= " ... more"
+        .full-part.collapse{ :name => "post_comment_content_full_#{post_comment.uuid}"}
+          %span
+            = link_to user_path(user.uuid), :remote => :true, :title => "show", :class => ("hoverable") do
+              = "#{user.full_name}"
+          %a.toggle{ :type => "toggle", "data-target" => "*[name=post_comment_content_full_#{post_comment.uuid}]", "data-toggle" => "collapse"}
+            %span= post_comment.content
+      - else
         %span
           = link_to user_path(user.uuid), :remote => :true, :title => "show", :class => ("hoverable") do
             = "#{user.full_name}"
-        = post_comment.content[0...300]
-        %a.toggle.hoverable{ :type => "toggle", "data-target" => "div[name=post_comment_content_full_#{post_comment.uuid}]", "data-toggle" => "collapse"}
-          %i.header-dropdown.im-about
-          %span= " ... more"
-      .full-part.collapse{ :name => "post_comment_content_full_#{post_comment.uuid}"}
-        %span
-          = link_to user_path(user.uuid), :remote => :true, :title => "show", :class => ("hoverable") do
-            = "#{user.full_name}"
-        %a.toggle{ :type => "toggle", "data-target" => "*[name=post_comment_content_full_#{post_comment.uuid}]", "data-toggle" => "collapse"}
-          %span= post_comment.content
-    - else
-      %span
-        = link_to user_path(user.uuid), :remote => :true, :title => "show", :class => ("hoverable") do
-          = "#{user.full_name}"
-      %span= post_comment.content[0...300]
+        %span= post_comment.content[0...300]
 
-      -# *********************************** COMMAND LINE ****************************************** 
+        -# *********************************** COMMAND LINE ****************************************** 
 
-    .spacer
-    .command-line-s
-      = link_to onerel_path(post_comment,'PostComment','likes'), :method => :post, :remote => :true, :title => "Smile", :class => ("hoverable") do
-        = "Smile"
-      
-      .to-right
-        - puts (rels)
-        = link_to dummy_path(post_comment,'PostComment','likes'), :remote => :true, :title => "Likes", :class => ("hoverable") do
-          %i.hoverable.im-like
-          = rels["in-follows-User"].nil? ? 0 : rels["in-follows-User"]
+      .spacer
+      %div
+        .command-line-s
+          = link_to onerel_path(post_comment,'PostComment','likes'), :method => :post, :remote => :true, :title => "Smile", :class => ("hoverable") do
+            = "Smile"
+        
+        .command-line-s.to-right
+          - puts (rels)
+          = link_to dummy_path(post_comment,'PostComment','likes'), :remote => :true, :title => "Likes", :class => ("hoverable") do
+            %i.hoverable.im-like
+            = rels["in-follows-User"].nil? ? 0 : rels["in-follows-User"]
 
-  .col-xs-3
-    -#= friendly_diff_date(post.created_at)    # this LOC locks the system !!!!! 
+    .col-xs-3
+      -#= friendly_diff_date(post.created_at)    # this LOC locks the system !!!!! 

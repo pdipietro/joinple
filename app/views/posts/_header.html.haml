@@ -5,27 +5,28 @@
       %ul.list-group
         .post-text= f.text_area :content, :hide_label => :true
 
-      %ul.list-group
-        .command-line-m
-          %button.nothing.btn-icon-only{ :type => "button", "data-target" => "#add-images", "data-toggle" => "collapse", :title => "Add images" }
-            %i.hoverable.im-camera
-          %button.nothing.btn-icon-only{ :type => "button", "data-target" => "#add-movies", "data-toggle" => "collapse", :title => "Add images", :class => "disabled" }
+      %ul.list-group{ :style => "sborder: 1px solid red; "}
+        .command-line-m{ :style => "sborder: 1px dotted blue; "}
+          %button.btn-icon-only{ :type => "button", "data-target" => "#add-images", "data-toggle" => "collapse", :title => "Add images", :style => "sborder: 1px dashed orange; "}
+            %i.hoverable.im-camera{ :style => "sborder: 1px solid black; "}
+          %button.btn-icon-only{ :type => "button", "data-target" => "#add-movies", "data-toggle" => "collapse", :title => "Add images", :class => "disabled" }
             %i.hoverable.im-film
-          %button.nothing.btn-icon-only{ :type => "button", "data-target" => "#add-files", "data-toggle" => "collapse", :title => "Add images", :class => "disabled" }
+          %button.btn-icon-only{ :type => "button", "data-target" => "#add-files", "data-toggle" => "collapse", :title => "Add images", :class => "disabled" }
             %i.hoverable.im-user-plus
           = link_to dummy_path, :remote => :true, :title => "Add file", :class => "disabled" do
             %i.hoverable.im-attachment
-          = link_to dummy_path, :remote => :true, :title => "Add an emoticon", :class => "disabled" do
-            %i.hoverable.im-happy
+          = link_to dummy_path, :remote => :true, :title => "Add an emoticon", :class => "disabled", :style => "sborder: 1px dashed orange; " do
+            %i.hoverable.im-happy{ :style => "sborder: 1px solid black; "}
           = f.submit :remote => :true, :title => "Send the post", :value => "Send the post" do
             %i.hoverable.im-send-post
 
-      %ul#add-images.list-group.collapse.post-width{ :style => "background-color:  white;"}
-        .command-line-m
+      %ul#add-images.list-group.collapse{ :style => "background-color:  white; sborder: 1px solid maroon;"}
+        .command-line
+          %div= "add your images ... "
           - (0..4).each do |cnt|
-            %span.nothing.fileinput.fileinput-new{"data-provides" => "fileinput"}
-              %span.nothing.fileinput-preview.fileinput-exists.thumbnail{:style => "width: 36px; height: 36px;"}
-              %span.nothing.fileinput-exists  
+            %div.fileinput.fileinput-new{"data-provides" => "fileinput"}
+              %span.fileinput-preview.fileinput-exists.thumbnail{:style => "width: 36px; height: 36px;"}
+              %span.fileinput-exists  
                 %a.icon_only{"data-dismiss" => "fileinput", :href => "#"} 
                   %i.hoverable.im-cancel-circle
               %span.image-upload.fileinput-new
@@ -34,16 +35,38 @@
                 %input{:id => "image#{cnt}", :name => "post[image#{cnt}]", :type => "file" }
 
 
-      %ul#add-movies.list-group.collapse.nothing.post-width{ :style => "background-color:  white;"}
+      %ul#add-movies.list-group.collapse{ :style => "background-color:  white;"}
         .command-line-m
           = "Here will be movies"
 
-      %ul#add-files.list-group.collapse.nothing.post-width{ :style => "background-color:  white;"}
+      %ul#add-files.list-group.collapse{ :style => "background-color:  white;"}
         .command-line-m
           = "Here will be files"
 
-      %ul.list-group.post-width{ :style => "background-color:  white;"}
+      %ul.list-group{ :style => "background-color:  white; sborder: 1px solid green;"}
+        .command-line-s
+          = link_to posts_list_path( csn.uuid, "ifollow"), :remote => :true, :title => "My following posts" do
+            %i.activable.im-following-post
+          = link_to posts_list_path( csn.uuid, "all"), :remote => :true, :title => "All posts" do
+            %i.activable.im-all-posts
+          = link_to posts_list_path( csn.uuid, "iparticipate"), :remote => :true, :title => "My posts" do
+            %i.activable.im-my-posts
+          = link_to posts_list_path( csn.uuid, "iprefere"), :remote => :true, :title => "My preferred posts" do
+            %i.activable.im-bookmarks
+
+      %ul.list-group{ :style => "background-color:  white; sborder: 1px solid green;"}
         .command-line-m
+          = link_to posts_list_path( csn.uuid, "ifollow"), :remote => :true, :title => "My following posts" do
+            %i.activable.im-following-post
+          = link_to posts_list_path( csn.uuid, "all"), :remote => :true, :title => "All posts" do
+            %i.activable.im-all-posts
+          = link_to posts_list_path( csn.uuid, "iparticipate"), :remote => :true, :title => "My posts" do
+            %i.activable.im-my-posts
+          = link_to posts_list_path( csn.uuid, "iprefere"), :remote => :true, :title => "My preferred posts" do
+            %i.activable.im-bookmarks
+
+      %ul.list-group{ :style => "background-color:  white; sborder: 1px solid green;"}
+        .command-line-l
           = link_to posts_list_path( csn.uuid, "ifollow"), :remote => :true, :title => "My following posts" do
             %i.activable.im-following-post
           = link_to posts_list_path( csn.uuid, "all"), :remote => :true, :title => "All posts" do

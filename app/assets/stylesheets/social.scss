@@ -34,11 +34,50 @@ $margin_standard: 0.5em;
 
 /* ********************************** END COMMON CONSTANTS *********************************************** */
 
+/* #page margin top must be equal to header.height + 10 px */
+
+html {
+  font-size: 16px;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  background-color: $joinple_page_background_color;
+  color: $default_text_color;
+  font-size: 0.75em;   /* base: 16px from bootstrap * 0.75 ==> 1.2px */
+}
+
+.dropdown-menu,
+.form-control,
+.input-group-addon,
+input, button, select, textarea
+ {
+  font-size: 1em;
+}
+
+.btn {
+  font-size: 1em;
+  margin-top: -8px;
+  padding: 0 3px 0 1px;
+}
+
+.panel-title,
+.panel-header {
+  font-size: 1.1em;
+  color: #ffffff;
+}
+
+nav i,
+.dropdown-menu i {
+  font-size: 2em; 
+}
+
 /* icomoon resize and rotate */
 
 i {
-  padding: 0 !important;
-  margin: 0  !important;
+  padding: 0;
+  margin: 0;
+  sborder: 1px dotted red;
 }
 
 i.header {
@@ -238,25 +277,21 @@ i.header.im-signup-landing {
 .im-check {
   color: #09a01f;
   font-weight: bolder;
-  font-size: 150%;
 }
 
 .im-eraser {
   font-weight: bolder;
-  font-size: 150%;
 }
 
 .im-plus {
   color: #ffffff !important;
   font-weight: bolder;
-  font-size: 150%;
 }
 
 .im-uncheck-stack {
   vertical-align: middle;
   display: inline-block;
   font-weight: bolder;
-  font-size: 150%;
 
   &-1 {
     @extend .im-uncheck-full;
@@ -268,6 +303,7 @@ i.header.im-signup-landing {
     @extend .im-uncheck;
     position: absolute;
     left: 0;
+    top: 0;
     color: #d41111;
   }  
 }
@@ -275,13 +311,11 @@ i.header.im-signup-landing {
 .im-uncheck {
   color: #d41111;
   font-weight: bolder;
-  font-size: 150%;
 }
 
 .im-uncheck-full {
   color: #ffffff;
   font-weight: bolder;
-  font-size: 150%;
 }
 
 
@@ -306,14 +340,6 @@ i.activable:focus {
   text-decoration: none;
 }
 
-/* #page margin top must be equal to header.height + 10 px */
-
-body {
-  -webkit-font-smoothing: antialiased;
-  background-color: $joinple_page_background_color;
-  color: $default_text_color;
-}
-
 header, #page {
   min-width: $min_screen_width;
   margin: 0 auto;
@@ -329,15 +355,23 @@ header, #page {
 }
 
 .navbar-brand.logo  {
-  padding: 6.5px 0;
+  padding: 0.7em 0;
+  font-size: 1em;
 }
 
 ul.nav.navbar-nav > li {
-  padding: 0 14px;
+  padding: 0 0.8em;
 }
 
 .navbar-header {
   z-index: 100;
+}
+
+.navbar-default,
+.navbar-default .container-fluid {
+  max-height: 46px;
+  min-height: 46px;
+  vertical-align: middle;
 }
 
 /* ************************************* link elements doesn't have underline and a different color ********************* */
@@ -358,7 +392,7 @@ a.hoverable.white {
 }
 
 a:not(.hoverable) {
-  color: $default_text_color;
+  color: inherit;
   text-decoration: none;
   -webkit-text-decoration: none;
 }
@@ -397,22 +431,21 @@ solida a
 */
 .btn-icon-only,
 .btn-icon-only:focus,
-.btn-icon-only:hover
+.btn-icon-only:hover,
+.btn-icon-only:visited,
+.btn-icon-only:active,
+.input[type="button" i], 
+.input[type="submit" i], 
+.input[type="reset" i], 
+.input[type="file" i]::-webkit-file-upload-button,
+button
  {
   background-color: inherit;
   background-color: none;
   text-decoration: none;
-  border: none;
+  border: none !important;
+  padding: none !important;
 }
-
-/*
-.panel-header a,
-ul.list-group > li:first-child > a,
-ul.list-group > li:first-child > a:hover {
-  color: #ffffff !important;
-}
-
-*/
 
 ul.list-group {
   border-radius: 4px;
@@ -602,7 +635,6 @@ hr {
 .stage {
   padding-top: 6px !important;
   padding-right: 60px !important;
-  font-size: 2em;
   color: red;
   font-weight: bold;
 }
@@ -613,6 +645,8 @@ hr {
 
 .title {
   font-weight: bolder;
+  text-align: -webkit-center;
+  text-align: center;
 }
 
 /* ************************************************************************************************************************
@@ -991,15 +1025,11 @@ img.responsive {
 }
 
 #post-header-right {
- /* @extend #common-header-left; */
-
   width: auto;
   min-width: 0;
   margin: 0;
   padding: 0;
   border-top-left-radius: 4px;
-
-
 
   margin-left: $standard_padding;
   border-radius: 4px;
@@ -1017,14 +1047,43 @@ img.responsive {
   padding-top: 2px
 }
 
+/*
 .post-width {
   min-width: $common_header_left_width; 
   max-width: $common_header_left_width; 
   border-radius: 4px;
 }
+*/
+.post > .content {
+  padding-top: 0.5em;
+}
 
-.post .content {
+.post > .content,
+.post-text textarea {
+  font-size: 1.2em;
   line-height: 1.3em;
+}
+
+.post-content {
+  display: block;
+}
+
+.post-content:after {
+  clear: both;
+}
+
+.post > .post-content:nth-child(even) .content .col-xs-52 {
+    background: #f5f5f5;
+ }
+
+/*
+.post > .post-content:nth-child(odd) * {
+  background: red;
+}
+*/
+
+.post-content span {
+    line-height: 1.3em;
 }
 
 .panel,
@@ -1041,7 +1100,7 @@ img.responsive {
   @extend .rounded;
   @extend .shadowing;
 }
-
+/*
 .post-text,
 .post-text > * > textarea {
   @extend .post-width;
@@ -1070,12 +1129,7 @@ img.responsive {
   background: rgba(128,128,128,50);
 }
 
-.post.content {
-  position: absolute;
-  height: $command_line_height;
-  background: pink;
-}
-
+*/
 
 /* ************************************************************************************************************************
 ** Command lines: (s|m) list of command/icons/buttons on a single line
@@ -1084,9 +1138,120 @@ img.responsive {
 .command-line {
   display: block;
   position: relative;
+  display: -webkit-inline-box;
+  display: -moz-webkit-inline-box;
+  display: -ms-webkit-inline-box;
+  display: -o-webkit-inline-box;
+
+  clear: left;
+
+  padding: 3px 2px 0px 1px;
+  font-style: italic;
+  smargin-top: 2px !important;
+
+  font-size: 1em;
+  min-height: 2em;
+
+  & > * {
+    margin-right: 10px;
+    vertical-align: middle;
+    padding: 0;
+  }
+
+/*
+  & > .to-right {
+    @extend .to-right;
+  }
+*/
+  & > *:first-child {
+   margin-left: 4px;
+  }
+
+  & > *:flast-child {
+   margin-right: 4px;
+  }
+
+
+  & button { 
+    background-color: transparent;
+    text-decoration: none;
+    border: 0 !important;
+    padding: 0 !important;
+    margin-top: -5px;
+  }
+
+  & a i,
+  & button i, 
+  & label i { 
+    font-size: 1.5em;
+    svertical-align: middle;
+  }
+
+  & input[type="submit"] { 
+    font-size: 0.9em;
+    padding: 0 3px 0 2px;
+    margin-top: -7px;
+  }
+
+  & img {
+    padding: 0;
+  }
+
+/*
+  &  .btn-icon-only,
+  &  .btn-icon-only:focus,
+  &  .btn-icon-only:hover,
+  &  .btn-icon-only:visited,
+  &  .btn-icon-only:active,
+  &  .input[type="button" i], 
+  &  .input[type="submit" i], 
+  &  .input[type="reset" i], 
+  &  .input[type="file" i]::-webkit-file-upload-button,
+  &  button
+   {
+    background-color: inherit;
+    background-color: none;
+    text-decoration: none;
+    border: none !important;
+    padding: none !important;
+  }
+*/
+
 }
 
 .command-line-s {
+  @extend .command-line;
+  font-size: 0.9em;
+  min-height: 2em;
+  max-height: 2em;
+}
+
+
+.command-line-m {
+  @extend .command-line;
+  min-height: 2em;
+  max-height: 2em;
+}
+
+.command-line-l {
+  @extend .command-line;
+  font-size: 1.2em;
+  min-height: 2em;
+  max-height: 2em;
+}
+
+/* ************************************************************************************************************************
+** Command lines: (s|m) list of command/icons/buttons on a single line
+************************************************************************************************************************ */
+
+/*
+
+.command-line {
+  display: block;
+  position: relative;
+}
+
+.command-line-m {
   @extend .command-line;
 
   display: -webkit-inline-box;
@@ -1096,11 +1261,25 @@ img.responsive {
   display: inline;
   clear: left;
 
-  min-height: 18px;
+  min-height: 1.8em;
   padding: 1px 2px;
   background-color: #ffffff;
   font-style: italic;
-  font-size: 10px;
+  margin-top: 2px !important;
+
+  & *.to-right {
+    @extend .to-right;
+  }
+}
+
+.command-line-s {
+  @extend .command-line-m;
+  font-size: 0.9em;
+}
+
+.command-line-l {
+  @extend .command-line-m;
+  font-size: 1.1em;
 }
 
 .command-line-s *,
@@ -1112,6 +1291,8 @@ img.responsive {
   stop: 0;
 }
 
+.command-line-s *.to-right,
+.command-line-s *.to-right,
 .command-line-s *.to-right {
   @extend .to-right;
 }
@@ -1125,16 +1306,21 @@ img.responsive {
 }
 
 .command-line-s .to-right a i,
+.command-line-s a i {
+}
+
+.command-line-s .to-right a i,
 .command-line-s a i,
 .command-line-m input {
-  font-size: 15px;
+  font-size: 125%;
   margin-top: 2px !important;
 }
 
-.command-line-m {
+.command-line-m,
+.command-line-m input {
   @extend .command-line-s;
   min-height: 26px;
-  font-size: 18px;
+  font-size: 85%;
 }
 
 .command-line-m .to-right button i,
@@ -1142,12 +1328,12 @@ img.responsive {
 .command-line-m .fileinput, 
 .command-line-m .to-right a i,
 .command-line-m a i {
-  font-size: 20px;
+  font-size: 125%;
   margin-top: 2px !important;
+  vertical-align: middle;
 }
 
-
-
+*/
 
 
 
@@ -1186,7 +1372,7 @@ img.responsive {
   padding: 1px 2px;
   background-color: #ffffff;
   font-style: italic;
-  font-size: 10px;
+  font-size: 85%;
 }
 
 .command-line-s:first-child,
@@ -1339,7 +1525,9 @@ ul.list-group a:last-child .list-group-item {
 @media screen and (min-width: 1281px)
 {    
 }
+
 */
+
 /* ************************************************************************************************************************
 ** da rivedere con Davide 
 ************************************************************************************************************************ */
@@ -1380,46 +1568,47 @@ a.header-user-photo {
   max-height: 46px !important;
 }
 
-span.user-welcome {
+.welcome {
   word-wrap: break-word;    
+  text-align: center;
+  text-align: -webkit-center;
   &:hover {
     text-decoration: underline;
     -webkit-text-decoration: underline;
   }            
 }
 
+
+
 .user-info {
   text-align: center;
   text-align: -webkit-center;
-}
-
-.user-info.user-name {
-  font-size: 100%;
+  font-size: 0.9em;;
   padding-top: 5px;
 }
 
-.user-info.usernick {
-  font-size: 80%;
-  padding-bottom: 2px;
+.user-info .name {
 }
 
-.user-star {
-  font-size: 80%;
-  text-align: center;
-  text-align: -webkit-center;
+.user-info .nick {
+  font-size: 0.95em;
 }
 
-.user-info-icons {
+.user-info .stars {
+  padding-top: 5px;
+}
+
+.user-info.icons {
   background-color: #ffffff;
   color: #333342;
   text-align: center;
   text-align: -webkit-center;
   border-bottom-right-radius: 4px;
   border-bottom-left-radius: 4px;
+  font-size: 0.95 em;
 }
 
 i.user-info-icons {
-  font-size: medium;
   position: relative;
   top: 2.5px;
 }
@@ -1479,8 +1668,9 @@ i.user-info-icons {
   border-bottom-left-radius: 4px;
 }
 
-
-
+/* ************************************************************************************************************************
+** Jasny CSS 
+************************************************************************************************************************ */
 
 .disabled {
   color: pink;
@@ -1497,7 +1687,7 @@ img.disabled {
   color: #9b9b9b !important;
 }
 
-.image-upload {
+.image-upload label i{
   cursor: pointer;
 }
 
@@ -1516,9 +1706,19 @@ img.disabled {
   border-radius: 4px;
 }
 
-.fileinput-preview {
-  float:  left;
+.fileinput {
+ sfloat:  left;
 }
+
+
+.fileinput-exists > a > i {
+  smargin-left: -16px;
+}
+
+
+
+
+
 
 /* ************** Patch for bootstrap and use with button **************************** */
 
@@ -1573,30 +1773,28 @@ ul#myposts a li {
 
 .fileinput {
   margin-bottom: 9px;
-  sdisplay: inline-block;
 }
 
 
 
 .fileinput .thumbnail {
   overflow: hidden;
-  sdisplay: inline-block;
   margin-bottom: 5px;
   vertical-align: middle;
   text-align: center;
   width: $btn_height; 
   height: $btn_height;
+  padding: 0;
 }
 
-.fileinput .sthumbnail > img {
-  max-height: 100%;
-}
 .fileinput .btn {
   vertical-align: middle;
 }
+
 .fileinput-inline .fileinput-controls {
   display: inline;
 }
+
 .fileinput-filename {
   vertical-align: middle;
   display: inline-block;
@@ -1625,7 +1823,6 @@ ul#myposts a li {
   margin: 0;
   opacity: 0;
   filter: alpha(opacity=0);
-  font-size: 23px;
   height: 100%;
   width: 100%;
   direction: ltr;
@@ -1639,7 +1836,6 @@ input .absolute {
   margin: 0;
   opacity: 0;
   filter: alpha(opacity=0);
-  font-size: 23px;
   height: 100%;
   width: 100%;
   cursor: pointer;

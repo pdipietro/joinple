@@ -9,12 +9,13 @@
           .border-1
           = render partial: 'users/owner', locals: { object: social_network  }
           .border-1
-          .command-line{ :style => "background-color: #{social_network.social_network_color}; color: #{social_network.text_color};" }
-            .command-line-m{ :style => "background-color: #{social_network.social_network_color}; color: #{social_network.text_color};" }
-            - if can_modify?(social_network)
-              = link_to edit_social_network_path(social_network), :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Modify the element" do
-                %i.im-pencil{ :style => "color: #{social_network.text_color};" }
-              = link_to social_network, :method => :delete, :data => { :confirm => 'Are you sure?' }, :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Delete the element" do
-                %i.im-bin{ :style => "color: #{social_network.text_color};" }
-            %button.btn.btn-default.btn-sm-nothing{ :type => "submit", :name => "commit", :hide_label => :true, :style => super_social_network_style }
-              = "Join"
+          %div{ :style => "background-color: #{social_network.social_network_color}; color: #{social_network.text_color};" }
+            .spacer
+            .command-line-m
+              - if can_modify?(social_network)
+                = link_to edit_social_network_path(social_network), :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Modify the element" do
+                  %i.im-pencil{ :style => "color: #{social_network.text_color};" }
+                = link_to social_network, :method => :delete, :data => { :confirm => 'Are you sure?' }, :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Delete the element" do
+                  %i.im-bin{ :style => "color: #{social_network.text_color};" }
+              %button.btn.btn-default.btn-sm-nothing{ :type => "submit", :name => "commit", :hide_label => :true, :style => super_social_network_style }
+                = "Join"

@@ -72,15 +72,16 @@
       -# *********************************** COMMAND LINE ****************************************** 
 
       .spacer
-      .command-line-s
-        = link_to onerel_path(post,'Post','likes'), :method => :post, :remote => :true, :title => "Smile", :class => ("hoverable") do
-          = "Smile"
-        = link_to dummy_path(post,'Post','likes'), :method => :post, :remote => :true, :title => "Share", :class => ("hoverable") do
-          = "Share"
-        = link_to onerel_path(post,'Post','preferes'), :method => :post, :remote => :true, :title => "Preferreds", :class => ("hoverable") do
-          = "Preferred"
-        
-        .to-right
+      %div
+        .command-line-s{ :style => "sborder: 1px dotted blue; "}
+          = link_to onerel_path(post,'Post','likes'), :method => :post, :remote => :true, :title => "Smile", :class => ("hoverable") do
+            = "Smile"
+          = link_to dummy_path(post,'Post','likes'), :method => :post, :remote => :true, :title => "Share", :class => ("hoverable") do
+            = "Share"
+          = link_to onerel_path(post,'Post','preferes'), :method => :post, :remote => :true, :title => "Preferreds", :class => ("hoverable") do
+            = "Preferred"
+          
+        .command-line-s.to-right{ :style => "sborder: 1px solid red; "}
           - puts (rels)
           = link_to dummy_path(post,'Post','likes'), :remote => :true, :title => "Likes", :class => ("hoverable") do
             %i.hoverable.im-like

@@ -21,37 +21,37 @@
         - unless logged_in?
           %li
             = link_to root_path, :title => "Joinplee home" do
-              %i.header.im-home
+              %i.im-home
               -#Home
           %li
             = link_to login_path, :remote => :true, :title => "Log in" do
-              %i.header.im-login-landing
+              %i.im-login-landing
           %li
             = link_to signup_path, :remote => :true, :title => "Sign up" do
-              %i.header.im-signup-landing
+              %i.im-signup-landing
         - else
           %li
             = link_to root_path, :remote => :true, :title => "Go to Joinple" do
-              %i.header.im-home
+              %i.im-home
           %li
             = link_to users_path, :remote => :true, :title => "People" do
-              %i.header.im-people-sidebardx
+              %i.im-people-sidebardx
           %li.dropdown
             %a.dropdown-toggle{ :href => "#", :id => "dropdownSocial", "data-toggle" => "dropdown", :type => "button", :title => "Social networks", "aria-expanded" => "false"}
-              %i.header.im-like-top
+              %i.im-like-top
               %span.caret
             %ul.dropdown-menu{ :role => "menu", "aria-labelledby" => "dropdownSocial" }
               #social_network_list
                 = render partial: 'layouts/social_networks' 
           %li
             = link_to root_path, :remote => :true, :title => "Notifications" do
-              %i.header.im-bell
+              %i.im-bell
           %li
             = link_to users_path, :remote => :true, :title => "Messages" do
-              %i.header.im-envelop
-          %li.dropdown.navbar-brand
+              %i.im-envelop
+          %li.dropdown
             %a.dropdown-toggle{ :href => "#", "aria-expanded" => "false", "data-toggle" => "dropdown", :type => "button", :title => "About the 'Super Social Network'"} 
-              %i.header.im-terms
+              %i.im-terms
               %span.caret
             %ul.dropdown-menu{ :role => "menu"}
               %li
@@ -83,7 +83,13 @@
             %a.dropdown-toggle.header-user-photo{ :href => "#", :id => "dropdownUser", "data-toggle" => "dropdown", :type => "button", :title => "Myself",  "aria-expanded" => "false"}
               %span
                 = image_tag user_profile.photo.url(:btn), :size => ("32x32"), :class => "circle"
-                %span.user-welcome= "Welcome, #{current_user.first_name}"
+                %span.welcome= "Welcome, #{current_user.first_name}"
+                %span.caret
+              -#.user-info
+                = image_tag user_profile.photo.url(:btn), :size => ("32x32"), :class => "circle"
+                .welcome= "Welcome, \n#{current_user.first_name}"
+                -#%br
+                -#.name="#{current_user.first_name}"
                 %span.caret
             %ul.user.dropdown-menu{ :role => "menu", "aria-labelledby" => "dropdownUser" }
               %li

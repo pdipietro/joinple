@@ -5,39 +5,38 @@
   .col-xs-28.nothing
     = image_tag "#{user_profile.photo.url(:thumb)}", :name => "user_profile_#{user_profile.uuid}", :class => "responsive user-photo"
   .col-xs-32.nothing
-    .user-info.user-name
-      = user.first_name
-      %br
-      = user.last_name
-      %br
-      %span.user-info.usernick= "@#{user.nickname}"
-      %br
-      %span.user-info.user-star{ :style => "color: yellow;" }
+    .user-info
+      .name
+        = user.first_name
+        %br
+        = user.last_name
+      .nick
+        = "@#{user.nickname}"
+      .stars{ :style => "color: yellow;" }
         - stars((1 + rand(49)) / 10.0).each do |k|
           %i{ :class => "im-star-#{k}" }
 
-.row.nothing.user-info-icons
+.row.nothing.user-info.icons
   .col-xs-12.nothing
-    %i.user-info-icons.activable.im-following
+    %i.activable.im-following
     %br
     - followings_number = rels["out-follows-User"]
     = followings_number
   .col-xs-12.nothing
-    %i.user-info-icons.activable.im-followers
+    %i.activable.im-followers
     %br
     - followers_number = rels["in-follows-User"]
     = followers_number
-    = 4532
   .col-xs-12.nothing
-    %i.user-info-icons.activable.im-discussions
+    %i.activable.im-discussions
     %br
     172
   .col-xs-12.nothing
-    %i.user-info-icons.activable.im-groups
+    %i.activable.im-groups
     %br
     - groups_number = rels["out-owns-Group"]
     = groups_number
   .col-xs-12.nothing
-    %i.user-info-icons.activable.im-blog2
+    %i.activable.im-blog2
     %br
     93
