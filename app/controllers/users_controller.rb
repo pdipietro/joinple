@@ -12,25 +12,45 @@ class UsersController < ApplicationController
  
   # GET /users/list/:filter(/:limit(/:subject))
   def list
-    puts ("----- User: List --(#{params[:filter]})----------------------------------------")
+    puts ("----- User Controller: List --(get       'users/list/:class_name/:object_id/:rel(/from_page(/:limit(/:subject(/:deep))))'----------------------------------------")
 
-    filter = params[:filter]
+    class_name = params[:class]
+    object_id = params[:object_id]
+    filter = params[:rel]
+
+    puts "+++++++++++++++++++++++++++++++++++++ #{class_name} +++++++++ #{object_id} +++++++++++++++++ #{filter} ++++++++++++++++++++"
+
     first_page = params[:from_page].nil? ? 1 : params[:from_page]
-    deep = params[:deep].nil? ? "" : "*1..#{params[:deept]}"
 
-    query_string =
+    basic_query = "(dest:#{class_name} { uuid : '#{object_id}'})-[r:belongs_to]->(sn:SocialNetwork { uuid : '#{current_social_network_uuid?}'} ) "
+
+    qstr =
       case filter
-        when "myfollowers"
-             "(user:User { uuid : '#{current_user.uuid}' })<-[p:follows]#{deep}-(users:User)" 
+        when "likes"
+              "(users:User)-[p:likes]->(dest:#{class_name} { uuid : '#{object_id}'})" 
+        when "shares"
+              "(users:User)-[p:shares]->(dest:#{class_name} { uuid : '#{object_id}'})" 
+        when "preferes"
+              "(users:User)-[p:preferes->(dest:#{class_name} { uuid : '#{object_id}'})"
         when "ifollowing"
-             "(user:User { uuid : '#{current_user.uuid}' })-[p:follows]#{deep}->(users:User)" 
+              "(me:User { uuid : '#{current_user_id?}'})-[p:follows]->(users:User)"
+        when "ifollower"
+              "(me:User { uuid : '#{current_user_id?}'})<-[p:follows]-(users:User)"
         when "all"
-             "(users:User)"
-      end
+              "(user:User)"
+        else 
+             ""      
+       end
 
-    @users = User.as(:users).query.match(query_string).proxy_as(User, :users).paginate(:page => first_page, :per_page => SECONDARY_ITEMS_PER_PAGE, return: :users, order: "users.created_at desc")
+    puts "---------------- Query: #{qstr}"
 
-    render partial: 'list', locals: { users: @users, subset: filter, title: get_title(filter)}
+    @users = Neo4j::Session.query.match(qstr).proxy_as(User, :users).paginate(:page => first_page, :per_page => secondary_items_per_page, return: "user distinct", order: "users.last_name asc, users.first_name asc")
+
+    if class_name == "Users"
+      render 'index', object: @users
+    else
+      render 'likes/show_content', locals: { objects: @users, subset: filter, form_path: "users/list", title: get_title(filter,class_name)}
+    end
   end
 
   # GET /users
@@ -152,17 +172,23 @@ class UsersController < ApplicationController
   #  end
 
 
-    def get_title(filter)
+    def get_title(filter,class_name = "")
         case filter
           when "all"
                 "All users"
           when "ifollowing"
                 "Users I follow"
-          when "myfollowers"
+          when "ifollower"
                 "Users following me"
+          when "likes"
+                "#{class_name.pluralize} I smile"
+          when "shares"
+                "things I've shared"
+          when "preferes"
+                "User I prefere"
           else 
-               "TITLE MISSED"  
-               raise 565    
+             "TITLE MISSED"  
+             raise 565    
         end
     end
 

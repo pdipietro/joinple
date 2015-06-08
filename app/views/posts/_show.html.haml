@@ -75,21 +75,21 @@
       %div
         .command-line-s{ :style => "sborder: 1px dotted blue; "}
           = link_to onerel_path(post,'Post','likes'), :method => :post, :remote => :true, :title => "Smile", :class => ("hoverable") do
-            = "Smile"
+            = rels["in-likes-me"].nil? ? "Smile" : "Not smile"
           = link_to dummy_path(post,'Post','likes'), :method => :post, :remote => :true, :title => "Share", :class => ("hoverable") do
             = "Share"
           = link_to onerel_path(post,'Post','preferes'), :method => :post, :remote => :true, :title => "Preferreds", :class => ("hoverable") do
-            = "Preferred"
+            = rels["in-preferes-me"].nil? ? "Preferred" : "Not preferred"
           
         .command-line-s.to-right{ :style => "sborder: 1px solid red; "}
           - puts (rels)
-          = link_to dummy_path(post,'Post','likes'), :remote => :true, :title => "Likes", :class => ("hoverable") do
+          = link_to users_list_path('Post',post.uuid,'likes'), :remote => :true, :title => "Likes", :class => ("hoverable") do
             %i.hoverable.im-like
-            = rels["in-follows-User"].nil? ? 0 : rels["in-follows-User"]
-          = link_to dummy_path(post,'Post','likes'), :remote => :true, :title => "Shares", :class => ("hoverable") do
+            = rels["in-likes-User"].nil? ? 0 : rels["in-likes-User"]
+          = link_to users_list_path('Post',post.uuid,'shares'), :remote => :true, :title => "Shares", :class => ("hoverable") do
             %i.hoverable.im-share2
             = rels["in-follows-User"].nil? ? 0 : rels["out-follows-User"]
-          = link_to dummy_path(post,'Post','preferes'), :remote => :true, :title => "Preferreds", :class => ("hoverable") do
+          = link_to users_list_path('Post',post.uuid,'preferes'), :remote => :true, :title => "Preferreds", :class => ("hoverable") do
             %i.hoverable.im-bookmarks
             = rels["in-preferes-User"].nil? ? 0 : rels["in-preferes-User"]
 

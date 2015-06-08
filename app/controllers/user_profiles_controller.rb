@@ -6,7 +6,6 @@ class UserProfilesController < ApplicationController
   def show
   end
 
-
   # GET /user_profiles/1/edit
   def edit
   end

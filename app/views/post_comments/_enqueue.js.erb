@@ -1,1 +1,2 @@
-$("##{post_uuid}").last("<%= escape_javascript(render partial: 'show', locals: { post_comment: @post_comment } ) %>" );
+$('#<%= escape_javascript(post.uuid)%>').find(' > div:nth-last-child(2)').before("<%= escape_javascript(render partial: 'show', locals: { post_comment: @post_comment } ) %>" );
+$('#<%= escape_javascript(post.uuid)%>').find(' textarea').val("");

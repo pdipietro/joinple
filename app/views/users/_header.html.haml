@@ -1,14 +1,13 @@
-- if is_admin?
-  #common-header-left
-    .buttons.nothing
-      .post-icon.nothing
-        = link_to users_list_path("all"), :remote => :true, :title => "View all users" do
-          %i.activable.im-all-posts.im-2x
-      .post-icon.nothing
-        = link_to users_list_path("ifollowing"), :remote => :true, :title => "View all users I follow" do
-          %i.activable.im-my-posts.im-2x
-      .post-icon.nothing
-        = link_to users_list_path("myfollowers"), :remote => :true, :title => "View all users following me" do
-          %i.activable.im-bookmark.im-2x
-      = render partial: 'shared/search'
-  .spacer
+%div
+  .buttons.nothing
+
+    .post-icon.nothing
+      = link_to users_list_path("User","x","all"), :remote => :true, :title => "View all users" do
+        %i.activable.im-all-posts
+    .post-icon.nothing
+      = link_to users_list_path("User","x","ifollowing"), :remote => :true, :title => "View all users I follow" do
+        %i.activable.im-my-posts
+    .post-icon.nothing
+      = link_to users_list_path("User","x","myfollowers"), :remote => :true, :title => "View all users following me" do
+        %i.activable.im-bookmark
+    = render partial: 'shared/search'

@@ -1,2 +1,0 @@
-$("#<%= escape_javascript(@dest.uuid) %>").html("<%= escape_javascript(render partial: 'users/show', locals: { user: @dest } ) %>" );
-$("#mystats").html("<%= escape_javascript(render partial: 'shared/stats', locals: { user: current_user } ) %>" );

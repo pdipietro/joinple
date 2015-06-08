@@ -23,11 +23,11 @@ Rails.application.routes.draw do
   resources :account_activations, only: [:edit], defaults: { :format => "js"}, :remote => :true
   resources :password_resets, only: [:new, :create, :edit, :update], defaults: { :format => "js"}, :remote => :true
 
-  resources :users, :remote => :true do
-    member do
-      get :following, :followers, :likes, :preferes,  :follows, :is_followed_by #, :likes_to, :is_prefered_by
-    end
-  end
+#  resources :users, :remote => :true do
+#    member do
+#      get :following, :followers, :likes, :preferes,  :follows, :is_followed_by #, :likes_to, :is_prefered_by
+#    end
+#  end
 
   resources :users,               constraints: AuthConstraint.new,defaults: { :format => "js"}, :remote => :true,  except: [:destroy]
 
@@ -55,7 +55,7 @@ Rails.application.routes.draw do
   get       'social_networks/list(/:filter(/:from_page(/:limit(/:subject(/:deep)))))'  =>   'social_networks#list', :as => :social_networks_list, defaults: { :format => "js"}, :remote => :true
   get       'social_network/:id/list(/:filter(/:from_page(/:limit(/:subject(/:deep)))))'  =>   'social_networks#list_one', :as => :social_network_list, defaults: { :format => "js"}, :remote => :true
 
-  get       'users/list(/:filter(/:from_page(/:limit(/:subject(/:deep)))))'  =>   'users#list', :as => :users_list, defaults: { :format => "js"}, :remote => :true
+  get       'users/list/:class/:object_id/:rel(/:from_page(/:limit(/:subject(/:deep))))'  =>   'users#list', :as => :users_list, defaults: { :format => "js"}, :remote => :true
 
   get       'discussions/list(/:filter(/:from_page(/:limit(/:subject(/:deep)))))'  =>   'discussions#list', :as => :discussions_list, defaults: { :format => "js"}, :remote => :true
   get       'discussions/add(/:filter(/:from_page(/:limit(/:subject(/:deep)))))'  =>   'discussions#add', :as => :discussions_add, defaults: { :format => "js"}, :remote => :true
@@ -77,7 +77,8 @@ Rails.application.routes.draw do
   get       'likes'                          =>    'likes#dummy',          :as => :dummy, constraints: AuthConstraint.new
   post      'search'                         =>    'likes#search',         :as => :search, constraints: AuthConstraint.new
   post      'show_image/:img'                =>    'likes#show_image',     :as => :show_image, defaults: { :format => "js"}, constraints: AuthConstraint.new, :remote => :true
-  get       'hide_image'                     =>    'likes#hide_image',     :as => :hide_image, defaults: { :format => "js"}, constraints: AuthConstraint.new, :remote => :true
+  post      'show_content/:img'              =>    'likes#show_content',   :as => :show_content, defaults: { :format => "js"}, constraints: AuthConstraint.new, :remote => :true
+  get       'hide'                           =>    'likes#hide',           :as => :hide, defaults: { :format => "js"}, constraints: AuthConstraint.new, :remote => :true
   get       '/media_managers/list/'          =>    'media_managers#list',  :as => :image_list #, defaults: { :format => "js"}, :remote => :true
  # get       'user_profiles'                 =>    'user_profiles#edit',    :as => :edit, constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
 

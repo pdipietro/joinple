@@ -1,0 +1,6 @@
+%div
+  %div{ :id => "ss#{user.uuid}" }
+    .command_line_s.shadowing.rounded{ :style => "background-color: #ffffff;"}
+      = link_to user_profile_path(user.has_profile.uuid), :remote => :true, :title => "View profile", :class => "hoverable" do
+        = image_tag "#{user.has_profile.photo.url(:btn)}", :name => "user_profile_#{user.has_profile.uuid}", :class => "user-photo"
+        = user.full_name

@@ -1,0 +1,1 @@
+$('#<%= escape_javascript(@post-comment.uuid) %>').html("<%= escape_javascript(render partial: 'edit', locals: { post_comment: @post-comment, title: "Edit post comment"  } ) %>" );

@@ -1,0 +1,4 @@
+= link_to hide_path, :remote => :true, :title => "Close" do
+  .full-screen-layer
+  .middle-layer-transparent= render partial: form_path, locals: { objects: objects, title:  title }
+  .middle-layer.shadowing

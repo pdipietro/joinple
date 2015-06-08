@@ -3,8 +3,10 @@
     .input-group
       = bootstrap_form_for(post_comment, layout: :horizontal, :remote => :true, :html => {:multipart => true} ) do |f|
         = hidden_field_tag  :post_uuid, "#{post.uuid}"
-        .owner-image.float-left= render partial: 'users/owner', locals: { object: post_comment, type: "owner", show: "imageOnly", local_current_user: :true  }
-        .post-comment-text.float-left= f.text_area :content, hide_label: true, :placeholder => "insert comment ..."
-        -#%span.input-group-btn
-        %button.float-left.btn.btn-default.btn-icon-only{ :type => "submit", :name => "commit", :hide_label => :true, :title => "send the post" } 
-          %i.hoverable.im-send-post
+        .col-xs-5
+          .owner-image.float-left= render partial: 'users/owner', locals: { object: post_comment, type: "owner", show: "imageOnly", local_current_user: :true  }
+        .col-xs-50
+          .post-comment-text.float-left= f.text_area :content, hide_label: true, :placeholder => "insert comment ..."
+        .col-xs-5
+          %button.btn-icon-only{ :type => "submit", :name => "commit", :hide_label => :true, :title => "send the post" } 
+            %i.l.hoverable.im-send-post

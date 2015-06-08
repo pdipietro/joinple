@@ -9,7 +9,7 @@ class PostsController < ApplicationController
   def list
     puts ("----- Post Controller: List --(#{params[:filter]})----------------------------------------")
 
-     filter = params[:filter]
+    filter = params[:filter]
     social_uuid = params[:social_uuid]
     first_page = params[:from_page].nil? ? 1 : params[:from_page]
 

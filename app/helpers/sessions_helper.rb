@@ -283,16 +283,28 @@ module SessionsHelper
   end
 
   def count_relationships (obj)
-#    rel = Neo4j::Session.query("match (user:User {uuid : '#{self.uuid}'})-[owns]->(x) return 'out' as dir, type(owns), labels(x),count(*) union match (user:User {uuid : '#{self.uuid}'})<-[owns]-(x) return 'in' as dir, type(owns), labels(x),count(*)")
-    rel = Neo4j::Session.query("match (item:#{obj.class.name} {uuid : '#{obj.uuid}'})-[rel]->(x) return 'out' as dir, type(rel) as rel, labels(x) as label,count(*) as count union match (item:#{obj.class.name} {uuid : '#{obj.uuid}'})<-[rel]-(x) return 'in' as dir, type(rel) as rel, labels(x) as label, count(*) as count ")
-    puts "rel: #{rel} - x2: #{rel.class.name} - x3: #{rel.count} "#- x4: #{x4} - x5: #{x5}, #{x5.class.name}"
+    qs = "match (item:#{obj.class.name} {uuid : '#{obj.uuid}'})-[rel]->(x) return 'out' as dir, type(rel) as rel, labels(x) as label,count(*) as count      \                          
+      union                                                                                                                                                 \
+          match (item:#{obj.class.name} {uuid : '#{obj.uuid}'})<-[rel]-(x) return 'in' as dir, type(rel) as rel, labels(x) as label, count(*) as count      \
+      union                                                                                                                                                 \
+          match (item:#{obj.class.name} {uuid : '#{obj.uuid}'})-[rel]-(me:User {uuid : '#{current_user_id?}'}) return 'in' as dir, type(rel) as rel, ['me'] as label, count(*) as count "
 
+#    puts "qs: #{qs}"
+    rel = Neo4j::Session.query(qs) 
+
+    #puts "rel: #{rel} - x2: #{rel.class.name} - x3: #{rel.count} "#- x4: #{x4} - x5: #{x5}, #{x5.class.name}"
+
+ #   puts " - - - - - - - - - - - - item:#{obj.class.name} has the following relatonships:"
     hash = Hash.new
     rel.each do |row|
+ #     puts "#{row[2]} - #{row[2][0]}"
       hash ["#{row[0]}-#{row[1]}-#{row[2][0]}"] = row[3]
     end
 
-    puts "hash: #{hash}"
+  #  hash.each do |h|
+  #    puts "hash: #{h}"
+  #  end
+  #  puts "---------------- END ---------------------"
     hash
   end
 

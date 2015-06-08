@@ -4,10 +4,8 @@ class LikesController < ApplicationController
 
   respond_to :js
 
-  # 
-
   def edit 
-     puts "Params: #{params} *******************************************************************************************"
+     #puts "Params: #{params} *******************************************************************************************"
      @id = params[:id]
      @class = params[:class]
      @relationship = params[:relationship].downcase
@@ -44,16 +42,23 @@ class LikesController < ApplicationController
 
   def show_image
     @image = params[:img]
-
-    #respond_to do |format|
-    #    format.js 
-    #end
   end
 
-  def hide_image
-    #respond_to do |format|
-    #    format.js 
-    #end
+  def show_content
+    @subject = params[:subject]
+    @rel = params[:rel]
+    @class = param[:class].downcase
+    @class_uuid = params[:object]
+
+    user_list = Neo4j::Session.query("match (u:User { uuid : '#{@subject}' })-[rel:#{@rel}]->(obj:#{@class} { uuid : '#{@class_uuid}' }) return unique user order by first_name, last_name")
+
+    respond_to do |format|
+         format.js { render partial: show_content, object: user_list }
+    end
+
+  end
+
+  def hide
   end
 
 end

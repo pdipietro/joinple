@@ -30,11 +30,9 @@
         %br
         - followers_number = rels["in-follows-User"]
         = followers_number
-        = 46532
       .col-xs-12.nothing
         %i.user-info-icons.im-discussions
         %br
-        172
       .col-xs-12.nothing
         %i.user-info-icons.im-groups
         %br
@@ -43,7 +41,6 @@
       .col-xs-12.nothing
         %i.user-info-icons.im-blog2
         %br
-        93
     .border-1
     .centered
       = link_to onerel_path(user,'User','follows'), :method => :post, :to_class => :true, :class => ("hoverable") do

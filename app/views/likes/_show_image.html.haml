@@ -1,4 +1,4 @@
-= link_to hide_image_path, :remote => :true, :title => "Close" do
-  .full_screen_image
-  %img.image-middle-transparent.responsive{:src => UrlSafeBase64.decode64(image), :alt => ""}
-  %img.image-middle.shadowing.responsive{:src => UrlSafeBase64.decode64(image), :alt => ""}
+= link_to hide_path, :remote => :true, :title => "Close" do
+  .full-screen-layer
+  %img.middle-layer-transparent.responsive{:src => UrlSafeBase64.decode64(image), :alt => ""}
+  %img.middle-layer.shadowing.responsive{:src => UrlSafeBase64.decode64(image), :alt => ""}

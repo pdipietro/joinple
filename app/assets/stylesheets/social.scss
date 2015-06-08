@@ -77,9 +77,18 @@ nav i,
 i {
   padding: 0;
   margin: 0;
-  sborder: 1px dotted red;
+
+  &.s {
+  font-size: 0.9em;
+  }
+
+  &.l {
+  font-size: 1.5em;
+  }
+
 }
 
+/*
 i.header {
   position: relative;
   top: 5px;
@@ -113,7 +122,11 @@ i.header.im-signup-landing {
   color: #333342;
 }
 
+*/
+
 /* makes the font 33% larger relative to the icon container */
+
+/*
 .im-lg {
   font-size: 1.33333333em;
   line-height: 0.75em;
@@ -185,6 +198,8 @@ i.header.im-signup-landing {
 .fa.pull-right {
   margin-left: .3em;
 }
+
+*/
 .im-spin {
   -webkit-animation: fa-spin 2s infinite linear;
   animation: fa-spin 2s infinite linear;
@@ -428,7 +443,9 @@ solida a
   -webkit-text-decoration: none;
   display: inline-block;
 }
+
 */
+
 .btn-icon-only,
 .btn-icon-only:focus,
 .btn-icon-only:hover,
@@ -445,6 +462,12 @@ button
   text-decoration: none;
   border: none !important;
   padding: none !important;
+}
+
+button.btn-icon-only 
+ {
+  background-color: transparent;
+  border: 0;
 }
 
 ul.list-group {
@@ -809,7 +832,7 @@ img.responsive {
   float: right;
 }
 
-.full_screen_image {
+.full-screen-layer {
   position: fixed;
   background-color: #6c6c6c;
   opacity: 0;
@@ -820,7 +843,7 @@ img.responsive {
   right: 0%;
 }
 
-.image-middle {
+.middle-layer {
   position: fixed;
   background-color: #6c6c6c;
   opacity: 1;
@@ -837,12 +860,14 @@ img.responsive {
   sborder: 50px dotted #333342;
 }
 
-.image-middle-transparent {
-  @extend .image-middle;
+.middle-layer-transparent {
+  @extend .middle-layer;
   border: 50px solid #333342;
   opacity: 0.95;
   border-radius: 25px;
 }
+
+
 
 /* ************************************************************************************************************************
 ** Styles to format 3 columns: fixed-fluid-fixed
@@ -1673,7 +1698,6 @@ i.user-info-icons {
 ************************************************************************************************************************ */
 
 .disabled {
-  color: pink;
   opacity: .4;
   pointer-events: none;
 }
