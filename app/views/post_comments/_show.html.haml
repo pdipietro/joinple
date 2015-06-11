@@ -6,6 +6,7 @@
 - user_profile = query.first[:up]
 
 .post-content{ :id => post_comment.uuid }
+  .border-1
   .content
     .col-xs-5
       = link_to user_profile_path(user.has_profile.uuid), :remote => :true, :title => "show" do
@@ -46,4 +47,6 @@
             = rels["in-likes-User"].nil? ? 0 : rels["in-likes-User"]
 
     .col-xs-3
-      -#= friendly_diff_date(post.created_at)    # this LOC locks the system !!!!! 
+      = (Date.parse(DateTime.now.to_s) - Date.parse(post_comment.created_at.to_s)).to_i
+
+      

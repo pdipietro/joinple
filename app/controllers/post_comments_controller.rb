@@ -27,9 +27,7 @@ class PostCommentsController < ApplicationController
     success = true
     @post_comment = PostComment.new(post_comment_params)
 
-    post_uuid = params[:post_uuid]
-    post = Post.find(post_uuid)
-    puts "post_uuid done: #{post_uuid}"
+    post = Post.find(params[:post_uuid])
 
     begin
       tx = Neo4j::Transaction.new
@@ -92,7 +90,7 @@ class PostCommentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_comment_params
-      params.require(:post_comment).permit(:content, :image, :post_uuid)
+      params.require(:post_comment).permit(:content, :image, :uuid)
     end
     # params.require(:user).permit(:nickname, :first_name, :last_name, :email, :password, :password_confirmation )
  

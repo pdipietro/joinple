@@ -76,13 +76,10 @@ $standard_padding:4px;
 @media screen and (min-width: 361px) and (max-width: 640px)
 {    #gridPost[data-columns]::before    {        content: '1 .column.size-1';     }   }
  
-@media screen and (min-width: 641px) and (max-width: 806px)
+@media screen and (min-width: 641px) and (max-width: 1000px)
 {    #gridPost[data-columns]::before    {        content: '1 .column.size-1';     }   }
 
-@media screen and (min-width: 807px) and (max-width: 1190px)
-{    #gridPost[data-columns]::before    {        content: '1 .column.size-1';     }   }
- 
-@media screen and (min-width: 1191px) and (max-width: 1574px)
+@media screen and (min-width: 1001px) and (max-width: 1574px)
 {    #gridPost[data-columns]::before    {        content: '2 .column.size-2';     }   }
  
 @media screen and (min-width: 1575px) and (max-width:1958px)
