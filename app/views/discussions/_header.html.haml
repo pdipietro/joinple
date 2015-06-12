@@ -1,24 +1,18 @@
 - if logged_in?
-  #discussion-page
-    #common-header-left
-      .buttons.nothing
-        .post-icon.nothing
-          = link_to discussions_list_path("iparticipate"), :remote => :true, :title => "View my discussions" do
-            %i.activable.im-my-discussions.im-25x
-        .post-icon.nothing
-          = link_to discussions_list_path("iadminister"), :remote => :true, :title => "View discussions I administer" do
-            %i.activable.im-admin-discussion.im-25x
-        .post-icon.nothing
-          = link_to discussions_list_path("pendinginvitation"), :remote => :true, :title => "View pending invitation" do
-            %i.activable.im-pending-invitations.im-25x
+  #discussions-page
+    .command-line-container
+      .command-line-l
+        = link_to discussions_list_path("iparticipate"), :remote => :true, :title => "View my discussions" do
+          %i.activable.im-my-discussions.im-25x
+        = link_to discussions_list_path("iadminister"), :remote => :true, :title => "View discussions I administer" do
+          %i.activable.im-admin-discussion.im-25x
+        = link_to discussions_list_path("pendinginvitation"), :remote => :true, :title => "View pending invitation" do
+          %i.activable.im-pending-invitations.im-25x
         = render partial: 'shared/search'
-        .post-icon.nothing
-          = link_to discussions_list_path("all"), :remote => :true, :title => "View all discussions" do
-            %i.activable.im-all-discussion.im-25x
-        .post-icon.nothing
-          = link_to discussions_list_path("hot"), :remote => :true, :title => "View hot discussions" do
-            %i.activable.im-hot-groups.im-25x
-        .post-icon.nothing
-          = link_to discussions_list_path("fresh"), :remote => :true, :title => "View fresh discussions" do
-            %i.activable.im-fresh-groups.im-25x
+        = link_to discussions_list_path("all"), :remote => :true, :title => "View all discussions" do
+          %i.activable.im-all-discussion.im-25x
+        = link_to discussions_list_path("hot"), :remote => :true, :title => "View hot discussions" do
+          %i.activable.im-hot-groups.im-25x
+        = link_to discussions_list_path("fresh"), :remote => :true, :title => "View fresh discussions" do
+          %i.activable.im-fresh-groups.im-25x
 

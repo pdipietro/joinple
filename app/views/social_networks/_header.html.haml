@@ -1,15 +1,11 @@
-- if is_admin?
-  #common-header-left
-    .buttons.nothing
-      .post-icon.nothing
-        = link_to social_networks_list_path("all"), :remote => :true, :title => "View all social networks" do
-          %i.activable.im-all-posts.im-2x
-      .post-icon.nothing
-        = link_to social_networks_list_path("iparticipate"), :remote => :true, :title => "View my social networks" do
-          %i.activable.im-my-posts.im-2x
-      .post-icon.nothing
-        = link_to social_networks_list_path("all"), :remote => :true, :title => "View my preferred social networks" do
-          %i.activable.im-bookmark.im-2x
+#social-networks-page
+  .command-line-container
+    .command-line-l
+      = link_to social_networks_list_path("all"), :remote => :true, :title => "View all social networks" do
+        %i.activable.im-all-posts.im-2x
+      = link_to social_networks_list_path("iparticipate"), :remote => :true, :title => "View my social networks" do
+        %i.activable.im-my-posts.im-2x
+      = link_to social_networks_list_path("all"), :remote => :true, :title => "View my preferred social networks" do
+        %i.activable.im-bookmark.im-2x
       = render partial: 'shared/search'
-  .spacer
 
