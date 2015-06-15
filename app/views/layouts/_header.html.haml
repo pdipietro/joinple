@@ -10,12 +10,12 @@
         %span.icon-bar
       .navbar-brand.logo
         = image_tag "joinple_logo.png"
-      -# if logged_in? 
-        .navbar-brand.social-icon
-          = image_tag current_social_network.logo_social.url(:thumb), :size => ("32x32")
+      - unless ENV['RAILS_ENV'] == "production"
+        .stage
+          = ENV['RAILS_ENV']
     #navbar.navbar-collapse.collapse
       %ul.nav.navbar-nav.navbar-right
-        - unless ENV['RAILS_ENV'] == "production"
+        -# unless ENV['RAILS_ENV'] == "production"
           %li.stage
             = ENV['RAILS_ENV']
         - unless logged_in?

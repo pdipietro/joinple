@@ -1,8 +1,5 @@
 - if logged_in?
   - csn = current_social_network
-  -#.p
-    - user = current_user
-    - csn = current_social_network
 
   #group-header
     .relative.group-header
@@ -31,35 +28,26 @@
             = link_to onerel_path(group,'Group','participates'), :type => "button", :method => :post, :remote => :true, :title => "Join", :style => super_social_network_style, :class => "btn btn-default btn-sm-nothing" do
               = "Join"
 
-  #common-header-left
-    .buttons.nothing
-      .post-icon.nothing
+    .command-line-container
+      .command-line-l
         = link_to group_list_path(group.uuid,"mydiscussions"), :remote => :true, :title => "View my group discussions" do
           %i.activable.im-my-discussions.im-2x
-      .post-icon.nothing
         = link_to group_list_path(group.uuid,"alldiscussions"), :remote => :true, :title => "View all group discussions" do
           %i.activable.im-all-discussions.im-2x
-      .post-icon.nothing
         = link_to group_list_path(group.uuid,"myevents"), :remote => :true, :title => "View my group events" do
           %i.activable.im-my-events.im-2x
-      .post-icon.nothing
         = link_to group_list_path(group.uuid,"allevents"), :remote => :true, :title => "View all group events" do
           %i.activable.im-all-events.im-2x
-      .post-icon.nothing
         = link_to group_list_path(group.uuid,"invite"), :remote => :true, :title => "Invite other people" do
           %i.activable.im-invite-someone.im-2x
-      = render partial: 'shared/search'
-      .post-icon.nothing
+        = render partial: 'shared/search'
         = link_to group_list_path(group.uuid,"info"), :remote => :true, :title => "View group info" do
           %i.activable.im-about.im-2x
-      .post-icon.nothing
         = link_to group_list_path(group.uuid,"admins"), :remote => :true, :title => "View group admins" do
           %i.activable.im-admin-group.im-2x
-      .post-icon.nothing
         = link_to group_list_path(group.uuid,"members"), :remote => :true, :title => "View group members" do
           %i.activable.im-members.im-2x
-      - if can_modify?(group)
-        .post-icon.nothing
+        - if can_modify?(group)
           = link_to edit_group_path(group), :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Modify the element" do
             %i.activable.im-pencil.im-2x
  

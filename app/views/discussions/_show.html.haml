@@ -1,7 +1,7 @@
 - if logged_in?
   -# unless discussion.type == "secret" and is_admin? == false
   - puts "discussion.belongs_to: #{discussion.belongs_to.class.name}"
-  - group = discussion.belongs_to.class.name == "Group" ? discussion.belongs_to : ""
+  - group = discussion.belongs_to.class.name == "Group" ? discussion.belongs_to : nil
   - style = group.nil? ? '' : "border-color: #{group.background_color};"
   - show_group = false unless defined?(show_group)        
   - show_social = false unless defined?(show_social)        
@@ -26,7 +26,7 @@
                 .title= discussion.title
                 = discussion.description
             .col-xs-9.nothing
-              .to-right.nothing
+              -#.to-right.nothing
                 - if group.header.length == 0 
                   .group-image-replacement{:style => "background-color: #{group.background_color}; " }
                 - else  
@@ -42,32 +42,28 @@
               -# = image_tag csn.logo_social.url(:md_logo), :class => "responsive semi-transparent", :size => ("30x30")
 
       .border-1
-        %span.command-button
-          .spaced-icon
-            = link_to dummy_path(discussion,'Discussion','likes'), :remote => :true, :title => "Like" do
-              = "Like"
-        %span.command-button
-          .spaced-icon
-            = link_to dummy_path(discussion,'Discussion','Share'), :remote => :true, :title => "Share" do
-              = "Share"
-        %span.command-button
-          .spaced-icon
-            = link_to dummy_path(discussion,'Discussion','Follow'), :remote => :true, :title => "Follow" do
-              = "Follow"
-        %span.command-button.to-right
-          .spaced-icon
-            = link_to dummy_path(discussion,'Discussion','likes'), :remote => :true, :title => "Members" do
-              %i.im-members.im-20x
-              = rels["out-follows-User"].nil? ? 0 : rels["out-follows-User"]
-          .spaced-icon
-            = link_to dummy_path(discussion,'Discussion','likes'), :remote => :true, :title => "Discussions" do
-              %i.im-discussions-groups.im-20x
-              = rels["out-follows-User"].nil? ? 0 : rels["out-follows-User"]
-          .spaced-icon
-            = link_to dummy_path(discussion,'Discussion','likes'), :remote => :true, :title => "Following/er" do
-              %i.im-bi-follow.im-20x
-              = rels["out-follows-User"].nil? ? 0 : rels["out-follows-User"]
-          .spaced-icon
+      %div
+        .command-line-s
+          = link_to onerel_path(discussion,'Discussion','Members'), :remote => :true, :title => "Members" do
+            %i.hoverable.im-members.im
+            = rels["out-follows-User"].nil? ? 0 : rels["out-follows-User"]
+          = link_to onerel_path(discussion,'Discussion','Members'), :remote => :true, :title => "Discussions" do
+            %i.hoverable.im-discussions-groups
+            = rels["out-follows-User"].nil? ? 0 : rels["out-follows-User"]
+          = link_to onerel_path(discussion,'Discussion','Members'), :remote => :true, :title => "Following/er" do
+            %i.hoverable.im-bi-follow
+            = rels["out-follows-User"].nil? ? 0 : rels["out-follows-User"]
+        
+        .command-line-s.to-right
+          = link_to users_list_path('Discussions',discussion.uuid,'likes'), :remote => :true, :title => "Likes", :class => ("hoverable") do
+            %i.hoverable.im-like
+            = rels["in-likes-User"].nil? ? 0 : rels["in-likes-User"]
+          = link_to users_list_path('Discussions',discussion.uuid,'shares'), :remote => :true, :title => "Shares", :class => ("hoverable") do
+            %i.hoverable.im-share2
+            = rels["in-follows-User"].nil? ? 0 : rels["out-follows-User"]
+          = link_to users_list_path('Discussions',discussion.uuid,'preferes'), :remote => :true, :title => "Preferreds", :class => ("hoverable") do
+            %i.hoverable.im-bookmarks
+            = rels["in-preferes-User"].nil? ? 0 : rels["in-preferes-User"]
       .spacer-2x
 
       .border-1
@@ -76,82 +72,19 @@
         = "Last post if any"
       .border-1
 
-      -# management likes/share/followed by
+      -# *********************************** DISCUSSION COMMENT LINE ****************************************** 
 
-      .command-button
-        .spaced-icon
-          = link_to dummy_path(discussion,'Discussion','likes'), :remote => :true, :title => "View members" do
-            %i.im-members.im-20x
-            = rels["out-follows-User"].nil? ? 0 : rels["out-follows-User"]
-        .spaced-icon
-          = link_to dummy_path(discussion,'Discussion','likes'), :remote => :true, :title => "View discussions" do
-            %i.im-discussions-groups.im-20x
-            = rels["out-follows-User"].nil? ? 0 : rels["out-follows-User"]
-        .spaced-icon
-          = link_to dummy_path(discussion,'Discussion','likes'), :remote => :true, :title => "View following/er" do
-            %i.im-bi-follow.im-20x
-            = rels["out-follows-User"].nil? ? 0 : rels["out-follows-User"]
+      - discussion.has_comment.each do |rel|
+        = render partial: "discussion_comments/show", locals: { discussion_comment: rel }
+
       .border-1
-
-      -# management comment entry line
-
-      .buttons.nothing
-        - comment = DiscussionComment.new
-        .panel-body
-          .post-icon.nothing
-            = link_to dummy_path(discussion,'Discussion','likes'), :remote => :true, :title => "View members" do
-              %i.im-camera.im-20x
-          .post-icon.nothing
-            = link_to dummy_path(discussion,'Discussion','likes'), :remote => :true, :title => "View discussions" do
-              %i.im-attachment.im-20x
-          .post-icon.nothing
-            = link_to dummy_path(discussion,'Discussion','likes'), :remote => :true, :title => "View following/er" do
-              %i.im-like.im-20x
-          .input-group.search
-            = bootstrap_form_for(comment, :remote => :true, :html => {:multipart => true} ) do |f|
-              %input.form-control{:placeholder => "Add a comment ...", :type => "text"}
-                %span.input-group-btn
-                  %button.btn.btn-default{:type => "button"}
-                    %i.nothing.im-send-post.im-15
-      .border-1
-
-      -# attachment notification
-
-      .buttons.nothing
-        .panel-body{ :id => "#{discussion.uuid}" }
-          .post-icon.nothing
-            = link_to dummy_path(discussion,'Discussion','likes'), :remote => :true, :title => "View members" do
-              %i.im-camera.im-20x
-          .post-icon.nothing
-            = link_to dummy_path(discussion,'Discussion','likes'), :remote => :true, :title => "View discussions" do
-              %i.im-attachment.im-20x
-          .post-icon.nothing
-            = link_to dummy_path(discussion,'Discussion','likes'), :remote => :true, :title => "View following/er" do
-              %i.im-like.im-20x
-          .input-group.search
-            = bootstrap_form_for(comment, :remote => :true, :html => {:multipart => true} ) do |f|
-              %input.form-control{:placeholder => "Add a comment ...", :type => "text"}
-                %span.input-group-btn
-                  %button.btn.btn-default{:type => "button"}
-                    %i.nothing.im-send-post.im-15
+      = render partial: "discussion_comments/form", locals: { discussion_comment: DiscussionComment.new, discussion: discussion }
 
 
       .border-1
-      .command-button{ :style => "background-color: #{group.background_color}; color: #{group.text_color};" }
+      .command-line-m
         - if can_modify?(discussion)
-          .spaced-icon
-            = link_to edit_discussion_path(discussion), :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Modify the element" do
-              %i.im-pencil
-          .spaced-icon
-            = link_to discussion, :method => :delete, :data => { :confirm => 'Are you sure?' }, :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Delete the element" do
-              %i.im-bin
-        .spaced-icon
-          = link_to onerel_path(discussion,'Discussion','participates'), :type => "button", :method => :post, :remote => :true, :title => "Join", :style => super_social_network_style do
-            = "Join"
-            %span.glyphicons.icon-like-1
-            = likes = discussion.query_as(:p).match("(p)<-[r:participates]-(u:User)").pluck(:u).count
-            %br
-        -#.spaced-icon
-          %button.btn.btn-default.btn-sm-nothing{ :type => "submit", :name => "commit", :hide_label => :true, :style => super_social_network_style }
-            = "Join"
-    .spacer
+          = link_to edit_discussion_path(discussion), :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Modify the element" do
+            %i.im-pencil
+          = link_to discussion, :method => :delete, :data => { :confirm => 'Are you sure?' }, :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Delete the element" do
+            %i.im-bin

@@ -1,7 +1,0 @@
-- if logged_in?
-  %ul#hotgroups.list_group.nothing= render partial: 'right_menu', locals: { groups: @groups, subset: "hot", title: "Hot groups" }
-  .spacer
-  %ul#freshgroups.list_group.nothing= render partial: 'right_menu', locals: { groups: @groups, subset: "fresh", title: "Fresh groups" }
-  .spacer
-  %ul#mycontactsgroups.list_group.nothing= render partial: 'right_menu', locals: { groups: @groups, subset: "mycontacts", title: "My contact's groups" }
-  .spacer

@@ -73,7 +73,7 @@
 
       .spacer
       %div
-        .command-line-s{ :style => "sborder: 1px dotted blue; "}
+        .command-line-s
           = link_to onerel_path(post,'Post','likes'), :method => :post, :remote => :true, :title => "Smile", :class => ("hoverable") do
             = rels["in-likes-me"].nil? ? "Smile" : "Not smile"
           = link_to dummy_path(post,'Post','likes'), :method => :post, :remote => :true, :title => "Share", :class => ("hoverable") do
@@ -81,7 +81,7 @@
           = link_to onerel_path(post,'Post','preferes'), :method => :post, :remote => :true, :title => "Preferreds", :class => ("hoverable") do
             = rels["in-preferes-me"].nil? ? "Preferred" : "Not preferred"
           
-        .command-line-s.to-right{ :style => "sborder: 1px solid red; "}
+        .command-line-s.to-right
           - puts (rels)
           = link_to users_list_path('Post',post.uuid,'likes'), :remote => :true, :title => "Likes", :class => ("hoverable") do
             %i.hoverable.im-like

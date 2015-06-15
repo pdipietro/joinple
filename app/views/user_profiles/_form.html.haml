@@ -1,4 +1,4 @@
-#user_profile-form.collapse.in{ :class => user_profile.errors.count == 0 ? 'collapse' : 'collapse in' }
+#user-profile-form.collapse.in{ :class => user_profile.errors.count == 0 ? 'collapse' : 'collapse in' }
   .spacer
   .col-xs-15
   .col-xs-30
@@ -23,9 +23,6 @@
           .nothing= f.file_field :photo, :prepend => "photo image", :placeholder => "Enter the image (200x200px at 300dpi)", :hide_label => :true
           .spacer
             = image_tag user_profile.photo.url(:profile) 
-            = image_tag user_profile.photo.url(:icon) 
-            = image_tag user_profile.photo.url(:thumb) 
-            = image_tag user_profile.photo.url(:btn) 
             = f.hidden_field :photo_cache
           .spacer
 

@@ -102,6 +102,17 @@ si.header-dropdown {
   font-size: 1em; 
 }
 
+.navbar-collapse.in {
+  overflow-y: auto;
+  background-color: $joinple_banner_background_color;
+
+  & .navbar-nav > li > a {
+   padding-top: 0;
+   padding-bottom: 0;
+   line-height: 1; 
+  }
+}
+
 /* icomoon resize and rotate */
 
 i {
@@ -538,9 +549,10 @@ hr {
 
 .stage {
   padding-top: 6px !important;
-  padding-right: 60px !important;
+  padding-left: 60px !important;
   color: red;
   font-weight: bold;
+  float: left;
 }
 
 /* ************************************************************************************************************************
@@ -709,7 +721,6 @@ img.responsive {
 
 .vertical-middle-right {
   @extend .vertical-middle;
-  sclear: right; 
   float: right;
 }
 
@@ -737,8 +748,6 @@ img.responsive {
   -ms-transform: translate(-50%, -50%);
   -o-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-
-  sborder: 50px dotted #333342;
 }
 
 .middle-layer-transparent {
@@ -975,8 +984,9 @@ img.responsive {
 #social-networks-page,
 #groups-page, #group-form, .group, .group-header,
 #posts-page, .post,
-#discussions-page, .discussion {
-
+#discussions-page, .discussion,
+#user-profile-form, #user-profile-page, .user-profile
+ {
   background-color: #ffffff;
   margin-bottom: $margin_standard;
   @extend .rounded;
@@ -986,6 +996,11 @@ img.responsive {
 /* ************************************************************************************************************************
 ** Command lines: (s|m) list of command/icons/buttons on a single line
 ************************************************************************************************************************ */
+
+.command-line-container {
+  width: 100%;
+  background-color: #ffffff;
+}
 
 .command-line {
   display: block;
@@ -1065,10 +1080,6 @@ img.responsive {
   max-height: 2em;
 }
 
-.command-line-base {
-  width: 100;
-}
-
 /* ************************************************************************************************************************
 ** Post images
 ************************************************************************************************************************ */
@@ -1131,14 +1142,9 @@ img.responsive {
   top: 0px;
 }
 
-
 /* ************************************************************************************************************************
 ** Languages
 ************************************************************************************************************************ */
-
-.language {
-  background-color: #ffffff;
-}
 
 .language-title {
   font-weight: bolder;
@@ -1171,7 +1177,6 @@ ul.list-group a:last-child .list-group-item {
   border-bottom-right-radius: 4px;
   border-bottom-left-radius: 4px;
 }
-
 
 /* ************************************************************************************************************************
 ** Other
@@ -1369,4 +1374,3 @@ ul#myposts a li {
     border-right: 1px solid #e7e7e7;
   }
 }
-

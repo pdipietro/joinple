@@ -1,13 +1,10 @@
-%div
-  .buttons.nothing
-
-    .post-icon.nothing
+#users-page
+  .command-line-container
+    .command-line-l
       = link_to users_list_path("User","x","all"), :remote => :true, :title => "View all users" do
         %i.activable.im-all-posts
-    .post-icon.nothing
       = link_to users_list_path("User","x","ifollowing"), :remote => :true, :title => "View all users I follow" do
         %i.activable.im-my-posts
-    .post-icon.nothing
       = link_to users_list_path("User","x","myfollowers"), :remote => :true, :title => "View all users following me" do
         %i.activable.im-bookmark
-    = render partial: 'shared/search'
+      = render partial: 'shared/search'

@@ -30,7 +30,8 @@
   .col-xs-12.nothing
     %i.activable.im-discussions
     %br
-    172
+    - discu_number = rels["in-follows-Discussion"]
+    = discu_number
   .col-xs-12.nothing
     %i.activable.im-groups
     %br
@@ -39,4 +40,5 @@
   .col-xs-12.nothing
     %i.activable.im-blog2
     %br
-    93
+    - blog_number = rels["in-follows-Blog"]
+    = blog_number

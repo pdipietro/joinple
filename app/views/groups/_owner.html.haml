@@ -1,7 +1,7 @@
 - group = object.belongs_to
 - show_date = defined?(creation_date) 
 
-= link_to group_path(group.uuid), :remote => :true, :title => "Go to group" do
+-#= link_to group_path(group.uuid), :remote => :true, :title => "Go to group" do
   .nothing.group-mini-header{ :style => group.style }
     %span.to-right
       = image_tag group.logo.url(:btn)

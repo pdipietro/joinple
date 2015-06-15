@@ -21,13 +21,13 @@
 
         .border-1
         .command-line-s
-          = link_to dummy_path(group,'Group','likes'), :remote => :true, :title => "View members", :class => ("hoverable") do
+          = link_to users_list_path('Group',group.uuid,'likes'), :remote => :true, :title => "View members", :class => ("hoverable") do
             %i.hoverable.im-members
             = rels["out-follows-User"].nil? ? 0 : rels["out-follows-User"]
-          = link_to dummy_path(group,'Group','likes'), :remote => :true, :title => "View discussions", :class => ("hoverable") do
+          = link_to users_list_path('Group',group.uuid,'likes'), :remote => :true, :title => "View discussions", :class => ("hoverable") do
             %i.hoverable.im-discussions-groups
             = rels["out-follows-User"].nil? ? 0 : rels["out-follows-User"]
-          = link_to dummy_path(group,'Group','likes'), :remote => :true, :title => "View following/er", :class => ("hoverable") do
+          = link_to users_list_path('Group',group.uuid,'likes'), :remote => :true, :title => "View following/er", :class => ("hoverable") do
             %i.hoverable.im-bi-follow
             = rels["out-follows-User"].nil? ? 0 : rels["out-follows-User"]
         .border-1

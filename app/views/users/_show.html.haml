@@ -5,7 +5,7 @@
   .joinple-contour-2
     .row.nothing.top-rounded
       .col-xs-28.nothing
-        = link_to user_path(user.uuid), :remote => :true, :title => "View details" do
+        = link_to user_profile_path(user.has_profile.uuid), :remote => :true, :title => "View details" do
           = image_tag "#{user_profile.photo.url(:icon)}", :name => "user_profile_#{user_profile.uuid}", :class => "responsive user-photo"
       .col-xs-32.nothing
         .user-info.user-name
@@ -33,6 +33,8 @@
       .col-xs-12.nothing
         %i.user-info-icons.im-discussions
         %br
+        - discu_number = rels["in-follows-Discussion"]
+        = discu_number
       .col-xs-12.nothing
         %i.user-info-icons.im-groups
         %br
@@ -41,14 +43,15 @@
       .col-xs-12.nothing
         %i.user-info-icons.im-blog2
         %br
+        - blog_number = rels["in-follows-Blog"]
+        = blog_number
     .border-1
     .centered
-      = link_to onerel_path(user,'User','follows'), :method => :post, :to_class => :true, :class => ("hoverable") do
+      = link_to onerel_path(user,'User','follows'), :method => :post, :remote => :true, :to_class => :true, :class => ("hoverable") do
         - unless current_user?(user)
           - i_follow = current_user.query_as(:p).match("(p)-[r:follows]->(u:User { uuid : '#{user.uuid}' })").pluck(:u).count
           = i_follow == 1 ? "unfollow" : "follow" 
         - else
-          -#.transparent-line= 
           &nbsp;
   .spacer
 
