@@ -29,7 +29,8 @@ Rails.application.routes.draw do
 #    end
 #  end
 
-  resources :users,               constraints: AuthConstraint.new,defaults: { :format => "js"}, :remote => :true,  except: [:destroy]
+  resources :users,               constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true,  except: [:destroy, :show]
+  resources :users,                                                defaults: { :format => "js"}, :remote => :true,  only: [:show]
 
 # administrative resources
 

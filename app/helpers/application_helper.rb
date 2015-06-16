@@ -1,6 +1,6 @@
 module ApplicationHelper
 
-  ALLOWED_DOMAIN_SERVER = ["joinple"]
+  ALLOWED_DOMAIN_SERVER = ["joinple","estatetuttoanno"]
 
   # Returns the full title on a per-page basis.
   def full_title(page_title = '')
@@ -51,7 +51,7 @@ module ApplicationHelper
        sn = sn.start_with?("test.") ? sn.split(".")[1] : sn 
        sn = sn.start_with?("dev.") ? sn.split(".")[1] : sn 
        sn = humanize_word(sn)
-       csn = SocialNetwork.find_by( :iname => sn )
+       csn = SocialNetwork.find_by( :iname => sn.downcase )
        csn = SocialNetwork.find_by( :name => sn ) if csn.nil?
        if csn.class.name == "SocialNetwork"
          set_current_social_network (csn)

@@ -39,6 +39,7 @@ module SessionsHelper
 
  # Logs in the given user.
   def log_in(user)
+     puts "++++++++++++ Logging in ++++++++++++++++++++"
      set_screen_geometry
      session[:user_id] = user.id
      session[:admin] = user.admin
@@ -89,8 +90,8 @@ module SessionsHelper
 
   def current_social_network_name?
      if session[:social_network].nil? 
-        puts "session[:social_network][:name]   mancante!!!!!!!!!!!!!!"
-        "aaa"
+        puts "session[:social_network][:name] mancante!!!!!!!!!!!!!!"
+        puts caller[0..10]
      else
         session[:social_network][:name]
      end
@@ -228,14 +229,14 @@ module SessionsHelper
 
   # check if the social network is changed
   def check_social_network
+    puts "!!!!!!!!!!!!!!!!!! WARNING: I'M into check_social_network!!! - #{session[:social_network].class.name} - session[:social_network].name"
     set_screen_geometry
     unless session[:social_network].class.name == "SocialNetwork" 
-      puts "!!!!!!!!!!!!!!!!!! WARNING: I'M into check_social_network!!!"
-       load_social_network_from_url
-       puts "session[:social_network]: #{session[:social_network]}, class: #{session[:social_network].class.name}"
-       if session[:social_network].nil? 
-          redirect_to root_url
-       end
+      load_social_network_from_url
+      puts "session[:social_network]: #{session[:social_network]}, class: #{session[:social_network].class.name}"
+      if session[:social_network].nil? 
+         redirect_to root_url
+      end
     end
 
     #puts "caller: #{caller[0...5]}"
@@ -243,6 +244,7 @@ module SessionsHelper
   end
 
   def is_super_social_network?
+    puts """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""#{session[:social_network].name}"
     SUPER_SOCIAL_NETWORK_NAME.include? session[:social_network].name
   end
 
@@ -372,16 +374,14 @@ puts " ------------------------------------________> #{res}"
   private
 
     def set_current_social_network (sn)
-     # puts "caller: #{caller[0...5]}"
-     puts "HERE INTO set_current_social_network: #{sn} !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+      # puts "caller: #{caller[0...5]}"
+      puts "HERE INTO set_current_social_network: #{sn} !!!"
       if sn.nil?
-        puts "sn is nil => faccio il logout"
+        puts "sn is nil => logging out"
         log_out
       else 
         session[:social_network_uuid] = sn.uuid
         session[:social_network] = sn
-
-        #reset_current_group
       end
     end
 

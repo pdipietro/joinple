@@ -39,7 +39,7 @@ class SocialNetwork
     self.short_description = humanize_sentence(self.short_description) if self.short_description
     self.slogan = humanize_sentence(self.slogan) if self.slogan
     self.mission = humanize_word(self.mission) if self.mission
-    self.iname = name.gsub(/\s+/, "")  
+    self.iname = name.gsub(/\s+/, "").downcase  
   end
 
 end

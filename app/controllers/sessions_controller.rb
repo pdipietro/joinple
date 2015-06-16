@@ -4,10 +4,10 @@ class SessionsController < ApplicationController
   #render_to :js
 
   def new
-    puts "session_helper:new - Social network checked: it is #{current_social_network_name?}"
-    respond_to do |format|
-        format.js
-    end
+    puts "session_helper:new - Social network checked: it is #{current_social_network_name?.downcase}"
+#    respond_to do |format|
+#        format.js
+#    end
   end
 
   def create
@@ -21,11 +21,11 @@ class SessionsController < ApplicationController
 
     if user && user.authenticate(params[:session][:password])
       puts "User is authenticated"
-      puts "session_helper:create - Social network checked: it is #{current_social_network_name?}"
+      #puts "session_helper:create - Social network checked: it is #{current_social_network_name?}"
       if user.activated?
          log_in user
          params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-         puts "ready to redirect_back oooooooooooooooooooooooooooooooooooo"
+         puts "ready to redirect_back_or user: #{user.full_name}, - #{user.uuid}"
          redirect_back_or user
       else
          message  = "Account not activated. "
