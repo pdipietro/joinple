@@ -32,15 +32,24 @@ class ImageSizes
           :lg_banner   => ['[1832, 315]',     :jpg, :quality => 70],              # banner for generic profile
           :xl_banner   => ['[2562, 315]',     :jpg, :quality => 70],              # banner for generic profile
           :xxl_banner  => ['[5120, 315]',     :jpg, :quality => 70],              # banner for generic profile
+          :imac_retina => ['[5120, 3414]',    :jpg, :quality => 70],              # social network logo on a generic page
+          :imac        => ['[2560, 1707]',    :jpg, :quality => 70],              # social network logo on a generic page
           :logo        => ['[200, 150]',      :jpg, :quality => 70],              # social network logo on a generic page
           :preview     => ['[400, 200]',      :jpg, :quality => 70],              # preview for post
           :cover       => ['[400, 300]',      :jpg, :quality => 70],              # social network logo on a generic page
+          :q20_orig    => ['[2560, 1707]',    :jpg],                              # banner for generic profile
+          :q20_local   => ['[2560, 1707]',    :jpg, :quality => 20],              # banner for generic profile
+          :q100_orig   => ['[2560, 1707]',    :jpg],                              # banner for generic profile
+          :q100_local  => ['[2560, 1707]',    :jpg, :quality => 20],              # banner for generic profile
+          :xl_banner   => ['[2562, 315]',     :jpg, :quality => 70],              # banner for generic profile
 
-          :sm_banner_sh   => ['[916,  116]',     :jpg, :quality => 70],              # banner for generic profile
-          :md_banner_sh   => ['[1084, 116]',     :jpg, :quality => 70],              # banner for generic profile
-          :lg_banner_sh   => ['[1832, 116]',     :jpg, :quality => 70],              # banner for generic profile
-          :xl_banner_sh   => ['[2562, 116]',     :jpg, :quality => 70],              # banner for generic profile
+          :sm_banner_sh   => ['[916,  116]',  :jpg, :quality => 70],              # banner for generic profile
+          :md_banner_sh   => ['[1084, 116]',  :jpg, :quality => 70],              # banner for generic profile
+          :lg_banner_sh   => ['[1832, 116]',  :jpg, :quality => 70],              # banner for generic profile
+          :xl_banner_sh   => ['[2562, 116]',  :jpg, :quality => 70],              # banner for generic profile
 
+          :md_header     => ['[1500, 200]',   :jpg, :quality => 70],              # discussion header 
+          :xxs_header    => ['[60, 30]',      :jpg, :quality => 70],              # discussion header 
 
           :xxlarge     => ['[5120, 1600]',    :jpg, :quality => 70],              # landing page header
           :xlarge      => ['[2560,  800]',    :jpg, :quality => 70],              # landing page header
@@ -49,7 +58,7 @@ class ImageSizes
           :small       => ['[640,   200]',    :jpg, :quality => 70],              # landing page header
           :xsmall      => ['[320,   100]',    :jpg, :quality => 70],              # landing page header
 
-          :retina      => ['[1200, -1]',    :jpg, :quality => 30]                 # resize for retina display
+          :retina      => ['[1200, -1]',      :jpg, :quality => 30]               # resize for retina display
         }
 
     CLASSES = {
@@ -64,16 +73,16 @@ class ImageSizes
                            },            
         :Group          => {
                              :logo          => [:btn, :thumb, :icon, :profile], 
-                             :header        => [:btn, :thumb, :icon, :profile, :sm_banner, :md_banner, :lg_banner, :xl_banner, 
-                                                                   :sm_banner_sh, :md_banner_sh, :lg_banner_sh, :xl_banner_sh,
-                                              ]# , :xxl_banner]
+                             :header        => [:btn, :thumb, :icon, :profile, :sm_banner, :md_banner, :lg_banner, :xl_banner, :xxl_banner, 
+                                                :imac_retina, :imac, :q20_orig, :q20_local, :q100_orig, :q100_local,
+                                                :sm_banner_sh, :md_banner_sh, :lg_banner_sh, :xl_banner_sh
+                                               ]
                            },
         :Post           => {
                              :image         => [:post, :post_sq, :post_s]
                            },
         :Discussion     => {
-                             :logo          => [:btn, :thumb, :icon, :profile], 
-                             :header        => [:banner, :preview]
+                             :header        => [:xxs_header, :md_header]
                            },
         :SocialNetwork  => {
                              :logo          => [:logo, :btn, :icon, :cover, :top],    

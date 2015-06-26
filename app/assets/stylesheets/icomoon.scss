@@ -30,8 +30,30 @@ i, .icomoon-liga {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
-
-
+.im-my-socials:before {
+	content: "\e609";
+}
+.im-thread:before {
+	content: "\e645";
+}
+.im-all-socials:before {
+	content: "\e646";
+}
+.im-pending-invitations:before {
+	content: "\e647";
+}
+.im-terms:before {
+	content: "\e616";
+}
+.im-camera:before {
+	content: "\e62e";
+}
+.im-film:before {
+	content: "\e643";
+}
+.im-user-plus:before {
+	content: "\e644";
+}
 .im-following-post:before {
 	content: "\e63f";
 }
@@ -52,9 +74,6 @@ i, .icomoon-liga {
 }
 .im-preferred:before {
 	content: "\e63e";
-}
-.im-terms:before {
-	content: "\e616";
 }
 .im-home:before {
 	content: "\e63c";
@@ -136,9 +155,6 @@ i, .icomoon-liga {
 }
 .im-pictures:before {
 	content: "\e608";
-}
-.im-pending-invitations:before {
-	content: "\e609";
 }
 .im-uncheck:before {
 	content: "\e60d";
@@ -227,14 +243,8 @@ i, .icomoon-liga {
 .im-newspaper:before {
 	content: "\e904";
 }
-.im-film:before {
-	content: "\e913";
-}
 .im-mic:before {
 	content: "\e91e";
-}
-.im-user-plus:before {
-	content: "\e971";
 }
 .im-search:before {
 	content: "\e986";
@@ -262,9 +272,6 @@ i, .icomoon-liga {
 }
 .im-bell:before {
 	content: "\e62d";
-}
-.im-camera:before {
-	content: "\e62e";
 }
 .im-lifebuoy:before {
 	content: "\e62f";

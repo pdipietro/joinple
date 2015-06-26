@@ -5,6 +5,8 @@ class Discussion
 
   property  :title,           type: String
   property  :description,     type: String
+  property  :background_color,         :type =>   String, default: "inherit"
+
 
   has_many  :in,  :likes_to, rel_class: Likes                  # User
   has_many  :in,  :is_followed_by, rel_class: Follows          # User
@@ -12,8 +14,8 @@ class Discussion
   has_many  :out, :has_tag, rel_class: HasTag                  # :tag
   has_one   :in,  :is_owned_by, rel_class: Owns                # User
 
-  property  :logo,              type: String
-  mount_uploader :logo,         DiscussionLogoUploader 
+  property  :header,              type: String
+  mount_uploader :header,         DiscussionHeaderUploader 
 
   has_one   :out, :belongs_to, model_class: Group       # belongs to Group
   has_many  :out, :has_comment, model_class: DiscussionComment, type: "has_comment"     # :DiscussionComment

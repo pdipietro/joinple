@@ -60,11 +60,13 @@ class DiscussionsController < ApplicationController
     filter = params[:filter]
     first_page = params[:from_page].nil? ? 1 : params[:from_page]
 
-    show_group = filter == "iparticipateinallgroups" ? true : false
+    show_group = filter == "iparticipateinmygroups" ? true : false
     show_social = filter == "iparticipateinallsocialnetworks" ? true : false
 
     basic_query =
-      if filter == "iparticipateinallgroups"
+      if filter == "allingroupsiparticipate"
+         "(g:Group)-[r2:belongs_to]->(s:SocialNetwork { uuid : '#{current_social_network_uuid?}'} ), (discussions)-[r:belongs_to]->(g) "
+      elsif ["allicreated", "alliparticipate"].include? filter
          "(discussions)-[r:belongs_to]->(g:Group)-[r2:belongs_to]->(s:SocialNetwork { uuid : '#{current_social_network_uuid?}'} ) "
       elsif filter == "iparticipateinallsocialnetworks"
          "(discussions) "
@@ -74,9 +76,11 @@ class DiscussionsController < ApplicationController
 
     qstr =
       case filter
-        when "iparticipateinallgroups"
-              "(user:User { uuid : '#{current_user.uuid}' })-[p:participates|owns|admins]->"
-        when "iparticipate"
+        when "allingroupsiparticipate"
+              "(user:User { uuid : '#{current_user.uuid}' })-[p:participates|owns]->"
+        when "allicreated"
+              "(user:User { uuid : '#{current_user.uuid}' })-[p:owns|admins]->"
+        when "iparticipate", "alliparticipate"
               "(user:User { uuid : '#{current_user.uuid}' })-[p:participates|owns|admins]->"
         when "iadminister"
               "(user:User { uuid : '#{current_user.uuid}' })-[p:owns|admins]->"
@@ -95,6 +99,8 @@ class DiscussionsController < ApplicationController
        end
 
     query_string = qstr << basic_query
+
+    puts "===> #{query_string}"
 
     @discussions = Discussion.as(:discussions).query.match(query_string).proxy_as(Discussion, :discussions).paginate(:page => first_page, :per_page => secondary_items_per_page, return: "distinct discussion", order: "discussions.created_at desc")
 
@@ -183,6 +189,6 @@ class DiscussionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def discussion_params
-      params.require(:discussion).permit(:title, :description, :logo, :logo_cache)
+      params.require(:discussion).permit(:title, :description, :header, :header_cache)
     end
 end

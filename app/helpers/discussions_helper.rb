@@ -26,12 +26,16 @@ module DiscussionsHelper
                   "All discussions"
             when "mydiscussions"
                   "My discussions"
-            when "iparticipateinallgroups"
-                  "My discussion in all groups"
-            when "iparticipateinallsocialnetwork"
-                  "My discussion in all social networks"
+
+
+            when "allingroupsiparticipate"
+                  "All discussions in my groups"
+            when "allicreated"
+                  "All my discussions"
+            when "alliparticipate"
+                  "Discussions I participate"
             else 
-                 "Discussions"      
+                 "Discussions - check title !!!"      
           end
       end
 

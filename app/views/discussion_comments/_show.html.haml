@@ -1,6 +1,7 @@
-- rels = count_relationships(post_comment)
+- rels = count_relationships(discussion_comment)
  
-- q = "match (o:PostComment { uuid : '#{discussion_comment.uuid}' })<-[rel:owns]-(u:User)-[p:has_profile]->(up:UserProfile) return u, up;"
+- q = "match (o:DiscussionComment { uuid : '#{discussion_comment.uuid}' })<-[rel:owns]-(u:User)-[p:has_profile]->(up:UserProfile) return u, up;"
+= puts "-------- > q: #{q}"
 - query = Neo4j::Session.query(q)
 - user = query.first[:u]
 - user_profile = query.first[:up]

@@ -2,13 +2,12 @@ module SessionsHelper
   include ActionView::Helpers::DateHelper
   include ApplicationHelper
 
-  SUPER_SOCIAL_NETWORK_NAME = ["joinple"]
+  SUPER_SOCIAL_NETWORK_NAME = ["joinple","estatetuttoanno"]
   SUPER_SOCIAL_BACKGROUND_COLOR = "#a02348"
   SUPER_SOCIAL_BACKGROUND_COLOR_REVERSE = "#323342"
   SUPER_SOCIAL_COLOR = "#ffffff"  # was #333342 but white is a better solution
 
-
-  SECONDARY_ITEMS_PER_PAGE = 12
+  SECONDARY_ITEMS_PER_PAGE = 24
 
   def super_social_network_background_color
     SUPER_SOCIAL_BACKGROUND_COLOR

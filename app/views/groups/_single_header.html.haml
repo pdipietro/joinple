@@ -3,7 +3,8 @@
 
   #group-header
     .relative.group-header
-      = image_tag group.header.url(:md_banner), :class => "responsive rounded"
+      = link_to show_image_path( img: UrlSafeBase64.encode64(group.header.url.to_s)), :remote => :true, :method => :post do
+        = image_tag group.header.url(:xl_banner), :class => "responsive rounded"
       -#= image_tag group.logo.url(:thumb), :class => "responsive overloaded-logo-80", :size => ("80x80")
       = image_tag group.logo.url(:thumb), :class => "responsive overloaded-logo-80"
       - if group.logo.length === 0 
@@ -31,23 +32,23 @@
     .command-line-container
       .command-line-l
         = link_to group_list_path(group.uuid,"mydiscussions"), :remote => :true, :title => "View my group discussions" do
-          %i.activable.im-my-discussions.im-2x
+          %i.activable.im-my-discussions
         = link_to group_list_path(group.uuid,"alldiscussions"), :remote => :true, :title => "View all group discussions" do
-          %i.activable.im-all-discussions.im-2x
+          %i.activable.im-all-discussions
         = link_to group_list_path(group.uuid,"myevents"), :remote => :true, :title => "View my group events" do
-          %i.activable.im-my-events.im-2x
+          %i.activable.im-my-events
         = link_to group_list_path(group.uuid,"allevents"), :remote => :true, :title => "View all group events" do
-          %i.activable.im-all-events.im-2x
+          %i.activable.im-all-events
         = link_to group_list_path(group.uuid,"invite"), :remote => :true, :title => "Invite other people" do
-          %i.activable.im-invite-someone.im-2x
+          %i.activable.im-invite-someone
         = render partial: 'shared/search'
         = link_to group_list_path(group.uuid,"info"), :remote => :true, :title => "View group info" do
-          %i.activable.im-about.im-2x
+          %i.activable.im-about
         = link_to group_list_path(group.uuid,"admins"), :remote => :true, :title => "View group admins" do
-          %i.activable.im-admin-group.im-2x
+          %i.activable.im-admin-group
         = link_to group_list_path(group.uuid,"members"), :remote => :true, :title => "View group members" do
-          %i.activable.im-members.im-2x
+          %i.activable.im-members
         - if can_modify?(group)
           = link_to edit_group_path(group), :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Modify the element" do
-            %i.activable.im-pencil.im-2x
+            %i.activable.im-pencil
  

@@ -21,16 +21,16 @@
       .border-1
         = link_to discussion_path(discussion.uuid), :remote => :true, :title => "View details" do
           .row.relative.nothing{ :style => "background-color: #e0e0e0; " }
-            .col-xs-51.nothing
+            .col-xs-41.nothing
               .content
                 .title= discussion.title
                 = discussion.description
-            .col-xs-9.nothing
-              -#.to-right.nothing
-                - if group.header.length == 0 
-                  .group-image-replacement{:style => "background-color: #{group.background_color}; " }
+            .col-xs-19.nothing
+              .to-right.nothing
+                - if discussion.header.length == 0 
+                  .discussion-image-replacement{:style => "background-color: #{discussion.background_color}; " }
                 - else  
-                  = image_tag discussion.logo.url(:btn)
+                  = image_tag discussion.header.url(:xxs_header)
                 .command-button.to-right
                   - if false
                     = link_to dummy_path(discussion,'Discussion','likes'), :remote => :true, :title => "add to preferites" do
@@ -44,33 +44,25 @@
       .border-1
       %div
         .command-line-s
-          = link_to onerel_path(discussion,'Discussion','Members'), :remote => :true, :title => "Members" do
-            %i.hoverable.im-members.im
-            = rels["out-follows-User"].nil? ? 0 : rels["out-follows-User"]
-          = link_to onerel_path(discussion,'Discussion','Members'), :remote => :true, :title => "Discussions" do
-            %i.hoverable.im-discussions-groups
-            = rels["out-follows-User"].nil? ? 0 : rels["out-follows-User"]
-          = link_to onerel_path(discussion,'Discussion','Members'), :remote => :true, :title => "Following/er" do
-            %i.hoverable.im-bi-follow
-            = rels["out-follows-User"].nil? ? 0 : rels["out-follows-User"]
-        
+          = link_to onerel_path(discussion,'Discussion','likes'), :method => :post, :remote => :true, :title => "Smile", :class => ("hoverable") do
+            = rels["in-likes-me"].nil? ? "Smile" : "Not smile"
+          = link_to dummy_path(discussion,'Discussion','likes'), :method => :post, :remote => :true, :title => "Share", :class => ("hoverable") do
+            = "Share"
+          = link_to onerel_path(discussion,'Discussion','preferes'), :method => :post, :remote => :true, :title => "Preferreds", :class => ("hoverable") do
+            = rels["in-preferes-me"].nil? ? "Preferred" : "Not preferred"
+          
         .command-line-s.to-right
-          = link_to users_list_path('Discussions',discussion.uuid,'likes'), :remote => :true, :title => "Likes", :class => ("hoverable") do
+          - puts (rels)
+          = link_to users_list_path('Discussion',discussion.uuid,'likes'), :remote => :true, :title => "Likes", :class => ("hoverable") do
             %i.hoverable.im-like
             = rels["in-likes-User"].nil? ? 0 : rels["in-likes-User"]
-          = link_to users_list_path('Discussions',discussion.uuid,'shares'), :remote => :true, :title => "Shares", :class => ("hoverable") do
+          = link_to users_list_path('Discussion',discussion.uuid,'shares'), :remote => :true, :title => "Shares", :class => ("hoverable") do
             %i.hoverable.im-share2
             = rels["in-follows-User"].nil? ? 0 : rels["out-follows-User"]
-          = link_to users_list_path('Discussions',discussion.uuid,'preferes'), :remote => :true, :title => "Preferreds", :class => ("hoverable") do
+          = link_to users_list_path('Discussion',discussion.uuid,'preferes'), :remote => :true, :title => "Preferreds", :class => ("hoverable") do
             %i.hoverable.im-bookmarks
             = rels["in-preferes-User"].nil? ? 0 : rels["in-preferes-User"]
       .spacer-2x
-
-      .border-1
-        = "First post if any"
-      .border-1
-        = "Last post if any"
-      .border-1
 
       -# *********************************** DISCUSSION COMMENT LINE ****************************************** 
 

@@ -8,8 +8,8 @@
 
   #discussion-header
     .relative.nothing
-      = image_tag group.header.url(:md_banner_sh), :class => "responsive"
-      = image_tag group.logo.url(:thumb), :class => "responsive overloaded-logo", :size => ("60x60")
+      = image_tag discussion.header.url(:md_header), :class => "responsive"
+    -#= image_tag group.logo.url(:thumb), :class => "responsive overloaded-logo", :size => ("60x60")
       - if group.logo.length === 0 
         .group-thumb-image-replacement{:style => "background-color: #{group.background_color}; ", :class => "overloaded-logo" }
       %span.semi-transparent-bar
@@ -25,7 +25,7 @@
     .relative.nothing
 
 
-    .nothing.group-mini-header
+    -#.nothing.group-mini-header
 
 
 

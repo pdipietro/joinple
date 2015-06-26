@@ -961,7 +961,8 @@ img.responsive {
   line-height: 1.3;
 }
 
-.post-content {
+.post-content,
+.discussion-content  {
   display: block;
 }
 
@@ -1136,7 +1137,8 @@ img.responsive {
   float: left;
 }
 
-.post-comment-text > textarea {
+.post-comment-text > textarea,
+.discussion-comment-text > textarea {
   resize: vertical;
   width: 100%;
   top: 0px;

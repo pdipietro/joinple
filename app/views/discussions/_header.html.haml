@@ -2,17 +2,18 @@
   #discussions-page
     .command-line-container
       .command-line-l
-        = link_to discussions_list_path("iparticipate"), :remote => :true, :title => "View my discussions" do
+        = link_to discussions_list_path("allingroupsiparticipate"), :remote => :true, :title => "All discussions" do
           %i.activable.im-my-discussions
-        = link_to discussions_list_path("iadminister"), :remote => :true, :title => "View discussions I administer" do
-          %i.activable.im-admin-discussion
+        = link_to discussions_list_path("allicreated"), :remote => :true, :title => "View discussions I created or administer" do
+          %i.activable.im-admin-discussions
+          %i.activable.im-dot
+        = link_to discussions_list_path("alliparticipate"), :remote => :true, :title => "View all discussions I participate" do
+          %i.activable.im-all-discussions
         = link_to discussions_list_path("pendinginvitation"), :remote => :true, :title => "View pending invitation" do
           %i.activable.im-pending-invitations
         = render partial: 'shared/search'
-        = link_to discussions_list_path("all"), :remote => :true, :title => "View all discussions" do
-          %i.activable.im-all-discussion
-        = link_to discussions_list_path("hot"), :remote => :true, :title => "View hot discussions" do
-          %i.activable.im-hot-groups
-        = link_to discussions_list_path("fresh"), :remote => :true, :title => "View fresh discussions" do
-          %i.activable.im-fresh-groups
+        -#= link_to discussions_list_path("hot"), :remote => :true, :title => "View hot discussions" do
+          %i.activable.im-hot
+        -#= link_to discussions_list_path("fresh"), :remote => :true, :title => "View fresh discussions" do
+          %i.activable.im-thermometer
 

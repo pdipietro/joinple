@@ -4,6 +4,6 @@ class HasDiscussionComment
 
   from_class  Discussion
   to_class    DiscussionComment
-  type 'has_discussion_comment'
+  type 'has_comment'
 
 end

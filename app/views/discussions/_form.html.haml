@@ -10,13 +10,13 @@
           .nothing= f.text_area :description, :prepend => :description, :placeholder => "Enter the discussion description", :hide_label => :true
           .spacer
 
-          .nothing= f.text_field :logo, :prepend => "logo image", :placeholder => "Select the discussion logo (200x200 px)", :hide_label => :true, :disabled => :true
+          .nothing= f.text_field :header, :prepend => "cover image", :placeholder => "Select the discussion cover (1500x200 px)", :hide_label => :true, :disabled => :true
           .spacer
-          .nothing= f.file_field :logo, :prepend => "logo image", :placeholder => "Select the discussion logo (200x200 px)", :hide_label => :true
+          .nothing= f.file_field :header, :prepend => "cover image", :placeholder => "Select the discussion cover (1500x200 px)", :hide_label => :true
           .spacer
-          .nothing= image_tag discussion.logo.url(:profile) 
+          .nothing= image_tag discussion.header.url(:md_header) 
           .spacer
-          .nothing= f.hidden_field :logo_cache
+          .nothing= f.hidden_field :header_cache
 
           = render partial: 'shared/common_panel_footer'
 
