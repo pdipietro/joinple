@@ -517,8 +517,17 @@ hr {
 
 .group-mini-header {
   width: 100%;
-  height: $btn_height;
+  height: $btn_height + 4;
+  padding: 2px 2px 0 2px;
   background-color: $joinple_background_color;
+}
+
+.group-mini-banner {
+  @extend .nothing;
+  width: 100px;
+  height: 34px;
+  max-height: 34px;
+  float: left;
 }
 
 
@@ -983,7 +992,7 @@ img.responsive {
 .social-network,
 .page-thumbnail,
 #social-networks-page,
-#groups-page, #group-form, .group, .group-header,
+#groups-page, #group-form, .group, .group-header, #group-banner,
 #posts-page, .post,
 #discussions-page, .discussion,
 #user-profile-form, #user-profile-page, .user-profile
@@ -992,6 +1001,10 @@ img.responsive {
   margin-bottom: $margin_standard;
   @extend .rounded;
   @extend .shadowing;
+}
+
+.discussion {
+  padding: 2px;
 }
 
 /* ************************************************************************************************************************

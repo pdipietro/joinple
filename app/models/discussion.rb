@@ -17,7 +17,7 @@ class Discussion
   property  :header,              type: String
   mount_uploader :header,         DiscussionHeaderUploader 
 
-  has_one   :out, :belongs_to, model_class: Group       # belongs to Group
+  has_one   :out, :belongs_to, model_class: Group,  type: "belongs_to"      # belongs to Group
   has_many  :out, :has_comment, model_class: DiscussionComment, type: "has_comment"     # :DiscussionComment
 
   validates   :title, :presence => true

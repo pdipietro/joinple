@@ -1,0 +1,12 @@
+#group-banner.shadowing
+  - query = "match (groups:Group)-[r:belongs_to]->(sn:SocialNetwork { uuid : '#{current_social_network.uuid}'} ) where groups.type in ['open','closed'] optional match (user:User { uuid : '#{current_user.uuid}' })-[p]->(groups) return distinct groups,user order by user.uuid, groups.uuid;"
+  - groups = Neo4j::Session.query(query)
+
+  - groups.each do |response|
+    - group = response[0]
+    - if group.header.length > 0
+      %span.group-mini-banner
+        = link_to group_path(group.uuid), :remote => :true, :title => group.name, :class => ("hoverable") do
+          = image_tag group.header.url(:sm_banner), :class => "responsive"
+
+.spacer
