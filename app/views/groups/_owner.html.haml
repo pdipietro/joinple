@@ -1,10 +1,12 @@
 - show_date = defined?(creation_date) 
 
 = link_to group_path(group.uuid), :remote => :true, :title => "Go to group" do
-  .nothing.group-mini-header{ :style => group.style }
-    %span.to-right
-      = image_tag group.logo.url(:btn)
-    %span Group
-    %br
-    %span.title= group.name
--#.spacer{ :style => group.style }
+  .group-mini-header.relative{ :style => "background-color: transparent;" }
+    .absolute.top.opaque-25.index-10{ :style => group.style }
+      &nbsp;
+    .absolute.top.padding-top.index-20
+      %span.to-right
+        = image_tag group.logo.url(:btn)
+      %span Group
+      %br
+      %span.title= group.name
