@@ -2,5 +2,6 @@ $("#main_header").html("<%= escape_javascript(render partial: 'single_header', l
 $("#main_add").html("" );
 $("#main_content").html("" );
 $("#tech_info").html("<%= escape_javascript(render partial: 'sessions/tech_info', locals: { view: 'show.js.erb' }) %>" );
+$("#main_content").html("<%= escape_javascript(render partial: 'discussions/index', locals: { discussions: result, subset: subset, title: title, show_group: show_group, show_social: show_social } ) %>" );
 
 

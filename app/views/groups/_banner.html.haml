@@ -6,7 +6,7 @@
     - group = response[0]
     - if group.header.length > 0
       %span.group-mini-banner
-        = link_to group_path(group.uuid), :remote => :true, :title => group.name, :class => ("hoverable") do
+        = link_to groups_show_path(group.uuid,"alldiscussions"), :remote => :true, :title => group.name, :class => ("hoverable") do
           = image_tag group.header.url(:sm_banner), :class => "responsive"
 
 .spacer

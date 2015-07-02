@@ -1,4 +1,4 @@
 $("#tech_info").html("<%= escape_javascript(render partial: 'sessions/tech_info') %>" );
-$("#main_header").html("<%= escape_javascript(render partial: 'header', locals: { discussion: Discussion.new} ) %>" );
+$("#main_header").html("<%= escape_javascript(render partial: 'discussions/header', locals: { discussion: Discussion.new} ) %>" );
 $("#main_add").html("");
-$("#main_content").html("<%= escape_javascript(render partial: 'index', locals: { discussions: @discussions} ) %>" );
+$("#main_content").html("<%= escape_javascript(render partial: 'discussions/index', locals: { discussions: @discussions, show_group: true } ) %>" );

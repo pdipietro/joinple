@@ -38,7 +38,7 @@ Rails.application.routes.draw do
   resources :social_networks,     constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true,  except: [:destroy]
 
   resources :posts,               constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
-  resources :groups,              constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
+  resources :groups,              constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true,  except: [:show]
 
   resources :landing_pages,       constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true,  except: [:destroy]
   resources :tags,                constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
@@ -52,6 +52,7 @@ Rails.application.routes.draw do
 
   get       'groups/list(/:filter(/:from_page(/:limit(/:subject(/:deep)))))'  =>   'groups#list', :as => :groups_list, defaults: { :format => "js"}, :remote => :true
   get       'group/:id/list(/:filter(/:from_page(/:limit(/:subject(/:deep)))))'  =>    'groups#list_one', :as => :group_list, defaults: { :format => "js"}, :remote => :true
+  get       'groups/:id(/:filter)'                                      =>    'groups#show', :as => :groups_show, defaults: { :format => "js"}, :remote => :true
 
   get       'social_networks/list(/:filter(/:from_page(/:limit(/:subject(/:deep)))))'  =>   'social_networks#list', :as => :social_networks_list, defaults: { :format => "js"}, :remote => :true
   get       'social_network/:id/list(/:filter(/:from_page(/:limit(/:subject(/:deep)))))'  =>   'social_networks#list_one', :as => :social_network_list, defaults: { :format => "js"}, :remote => :true

@@ -24,6 +24,9 @@
       $(function() {
         $('input:checkbox').bootstrapSwitch();
       });
+      $(document).on('page:load', function(){
+        window['rangy'].initialized = false
+      });
     = javascript_include_tag 'salvattore.min', media: 'all', 'data-turbolinks-track' => true
     %body{:sn => "#{csnn}"}
       #wrapper{ :bg => "#{current_social_network_background_color?}"}

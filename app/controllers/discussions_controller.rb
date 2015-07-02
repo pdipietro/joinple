@@ -59,17 +59,21 @@ class DiscussionsController < ApplicationController
 
     filter = params[:filter]
     first_page = params[:from_page].nil? ? 1 : params[:from_page]
+    dest_id = params[:id]
 
-    show_group = filter == "iparticipateinmygroups" ? true : false
+    show_group = ["allingroupsiparticipate","allicreated","alliparticipate"].include?(filter) 
     show_social = filter == "iparticipateinallsocialnetworks" ? true : false
+    puts "===================== render list with show_group: '#{show_group}', filter: '#{filter}'"
 
     basic_query =
       if filter == "allingroupsiparticipate"
          "(g:Group)-[r2:belongs_to]->(s:SocialNetwork { uuid : '#{current_social_network_uuid?}'} ), (discussions)-[r:belongs_to]->(g) "
-      elsif ["allicreated", "alliparticipate"].include? filter
+      elsif ["allicreated", "alliparticipate"].include?(filter)
          "(discussions)-[r:belongs_to]->(g:Group)-[r2:belongs_to]->(s:SocialNetwork { uuid : '#{current_social_network_uuid?}'} ) "
       elsif filter == "iparticipateinallsocialnetworks"
          "(discussions) "
+      elsif ["alldiscussionsinagroup","mydiscussionsinagroup"].include?(filter)
+        "(discussions)-[r:belongs_to]->(g:Group { uuid : '#{dest_id}'} ) "
       else
         "(discussions)-[r:belongs_to]->(g:Group { uuid : '#{current_group.uuid}'} ) "
       end 
@@ -80,7 +84,7 @@ class DiscussionsController < ApplicationController
               "(user:User { uuid : '#{current_user.uuid}' })-[p:participates|owns]->"
         when "allicreated"
               "(user:User { uuid : '#{current_user.uuid}' })-[p:owns|admins]->"
-        when "iparticipate", "alliparticipate"
+        when "iparticipate", "alliparticipate", "mydiscussionsinagroup"
               "(user:User { uuid : '#{current_user.uuid}' })-[p:participates|owns|admins]->"
         when "iadminister"
               "(user:User { uuid : '#{current_user.uuid}' })-[p:owns|admins]->"
@@ -92,7 +96,7 @@ class DiscussionsController < ApplicationController
               ""
         when "search"
               ""
-        when "all"
+        when "all","alldiscussionsinagroup"
               ""
         else 
              ""      
@@ -102,9 +106,11 @@ class DiscussionsController < ApplicationController
 
     puts "===> #{query_string}"
 
-    @discussions = Discussion.as(:discussions).query.match(query_string).proxy_as(Discussion, :discussions).paginate(:page => first_page, :per_page => secondary_items_per_page, return: "distinct discussion", order: "discussions.created_at desc")
+    @result = Discussion.as(:discussions).query.match(query_string).proxy_as(Discussion, :discussions).paginate(:page => first_page, :per_page => secondary_items_per_page, return: "distinct discussion", order: "discussions.created_at desc")
 
-    render 'list', locals: { discussions: @discussions, subset: filter, title: get_title(filter), show_group: show_group, show_social: show_social}
+    puts "===================== render list with show_group: #{show_group}"
+
+    render 'list', locals: { result: @result, subset: filter, title: get_title(filter), show_group: show_group, show_social: show_social}
 
   end
 

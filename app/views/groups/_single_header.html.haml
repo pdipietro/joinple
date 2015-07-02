@@ -31,22 +31,22 @@
 
     .command-line-container
       .command-line-l
-        = link_to group_list_path(group.uuid,"mydiscussions"), :remote => :true, :title => "View my group discussions" do
-          %i.activable.im-my-discussions
         = link_to group_list_path(group.uuid,"alldiscussions"), :remote => :true, :title => "View all group discussions" do
           %i.activable.im-all-discussions
-        = link_to group_list_path(group.uuid,"myevents"), :remote => :true, :title => "View my group events" do
+        = link_to group_list_path(group.uuid,"mydiscussions"), :remote => :true, :title => "View my group discussions" do
+          %i.activable.im-my-discussions
+        = link_to groups_list_path(group.uuid,"myevents"), :remote => :true, :title => "View my group events" do
           %i.activable.im-my-events
-        = link_to group_list_path(group.uuid,"allevents"), :remote => :true, :title => "View all group events" do
+        = link_to groups_list_path(group.uuid,"allevents"), :remote => :true, :title => "View all group events" do
           %i.activable.im-all-events
-        = link_to group_list_path(group.uuid,"invite"), :remote => :true, :title => "Invite other people" do
+        = link_to groups_list_path(group.uuid,"invite"), :remote => :true, :title => "Invite other people" do
           %i.activable.im-invite-someone
         = render partial: 'shared/search'
-        = link_to group_list_path(group.uuid,"info"), :remote => :true, :title => "View group info" do
+        = link_to groups_list_path(group.uuid,"info"), :remote => :true, :title => "View group info" do
           %i.activable.im-about
-        = link_to group_list_path(group.uuid,"admins"), :remote => :true, :title => "View group admins" do
+        = link_to groups_list_path(group.uuid,"admins"), :remote => :true, :title => "View group admins" do
           %i.activable.im-admin-group
-        = link_to group_list_path(group.uuid,"members"), :remote => :true, :title => "View group members" do
+        = link_to groups_list_path(group.uuid,"members"), :remote => :true, :title => "View group members" do
           %i.activable.im-members
         - if can_modify?(group)
           = link_to edit_group_path(group), :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Modify the element" do

@@ -2,14 +2,10 @@
   - csn = current_social_network
   - group = discussion.belongs_to
 
-  -#.p
-    - user = current_user
-    - csn = current_social_network
-
   #discussion-header
     .relative.nothing
       = image_tag discussion.header.url(:md_header), :class => "responsive"
-    -#= image_tag group.logo.url(:thumb), :class => "responsive overloaded-logo", :size => ("60x60")
+      = image_tag group.logo.url(:thumb), :class => "responsive overloaded-logo-80"
       - if group.logo.length === 0 
         .group-thumb-image-replacement{:style => "background-color: #{group.background_color}; ", :class => "overloaded-logo" }
       %span.semi-transparent-bar
@@ -20,63 +16,7 @@
         %span.spaced-icon.transparent
           %button.btn.btn-default.btn-sm-nothing{ :type => "submit", :name => "commit", :hide_label => :true }= "J"
 
-    .spacer      
+    .spacer
 
-    .relative.nothing
+    = render partial: "discussions/show", locals: { discussion: discussion }
 
-
-    -#.nothing.group-mini-header
-
-
-
-      -#= image_tag group.header.url(:md_banner), :class => "responsive"
-      = image_tag discussion.logo.url(:thumb), :class => "responsive overloaded-logo", :size => ("80x80")
-      - if discussion.logo.length === 0 
-        .group-thumb-image-replacement{:style => "background-color: #{group.background_color}; ", :class => "overloaded-logo" }
-      %span.semi-transparent-bar
-      %span.solid-text
-        %span.title= discussion.title
-        %span.spaced-icon.transparent
-          %button.btn.btn-default.btn-sm-nothing{ :type => "submit", :name => "commit", :hide_label => :true }= "J"
-      %span.solid-text
-        %span.to-right
-          - users_number = Neo4j::Session.query.match("(user:User)-[p:participates|owns|admins]->(d:Discussion { uuid : '#{discussion.uuid}' }) return count (distinct user) as c").first[:c]
-          = pluralize(users_number,"member")
-          %span.spaced-icon
-            = link_to onerel_path(discussion,'Discussion','participates'), :type => "button", :method => :post, :remote => :true, :title => "Join", :style => super_social_network_style, :class => "btn btn-default btn-sm-nothing" do
-              = "Join"
--#
-  .spacer
-  #common-header-left
-    .buttons.nothing
-      .post-icon.nothing
-        = link_to group_list_path(group.uuid,"mydiscussions"), :remote => :true, :title => "View my group discussions" do
-          %i.activable.im-my-discussions.im-2x
-      .post-icon.nothing
-        = link_to group_list_path(group.uuid,"alldiscussions"), :remote => :true, :title => "View all group discussions" do
-          %i.activable.im-all-discussions.im-2x
-      .post-icon.nothing
-        = link_to group_list_path(group.uuid,"myevents"), :remote => :true, :title => "View my group events" do
-          %i.activable.im-my-events.im-2x
-      .post-icon.nothing
-        = link_to group_list_path(group.uuid,"allevents"), :remote => :true, :title => "View all group events" do
-          %i.activable.im-all-events.im-2x
-      .post-icon.nothing
-        = link_to group_list_path(group.uuid,"invite"), :remote => :true, :title => "Invite other people" do
-          %i.activable.im-invite-someone.im-2x
-      = render partial: 'shared/search'
-      .post-icon.nothing
-        = link_to group_list_path(group.uuid,"info"), :remote => :true, :title => "View group info" do
-          %i.activable.im-about.im-2x
-      .post-icon.nothing
-        = link_to group_list_path(group.uuid,"admins"), :remote => :true, :title => "View group admins" do
-          %i.activable.im-admin-group.im-2x
-      .post-icon.nothing
-        = link_to group_list_path(group.uuid,"members"), :remote => :true, :title => "View group members" do
-          %i.activable.im-members.im-2x
-      - if can_modify?(group)
-        .post-icon.nothing
-          = link_to edit_group_path(group), :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Modify the element" do
-            %i.activable.im-pencil.im-2x
-  .spacer
- 

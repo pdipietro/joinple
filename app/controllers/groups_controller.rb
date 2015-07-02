@@ -1,5 +1,4 @@
 class GroupsController < ApplicationController
-
   include GroupsHelper
 
   before_action :check_social_network
@@ -10,60 +9,60 @@ class GroupsController < ApplicationController
 
   respond_to :js
 
- # helper_method  :secondary_items_per_page, :get_group_subset, :get_posts_subset
- 
- # GET group/:id/list/:filter(/:from_page(/:limit(/:subject(/:deep))))
+
   def list_one
-    puts ("----- Group Controller: List_one --(#{params[:filter]})----------------------------------------")
 
-    filter = params[:filter]
-    first_page = params[:from_page].nil? ? 1 : params[:from_page]
-    group_uuid = params[:id]
+ #   unless @show
+      @filter = params[:filter]
+      @first_page = params[:from_page].nil? ? 1 : params[:from_page]
+      @group_uuid = params[:id]
+ #   end
 
-    basic_query = "(g:Group { uuid : '#{group_uuid}' })"
+    @subject = q = @result = ""
 
-    subject = q = ""
-    @collections = @events = @users = ""
+    basic_query = "(g:Group { uuid : '#{@group_uuid}' })"
 
-    case filter
+    case @filter
       when "members"
-            subject = User
+            @subject = User
             query = "(user:User)-[p:participates|owns|admins]->" << basic_query 
-            @users = Neo4j::Session.query.match(query).proxy_as(User, :user).paginate(:page => first_page, :per_page => secondary_items_per_page, return: "user distinct",order: "user.last_name asc, user.first_name  asc")
+            @result = Neo4j::Session.query.match(query).proxy_as(User, :user).paginate(:page => @first_page, :per_page => secondary_items_per_page, return: "user distinct",order: "user.last_name asc, user.first_name  asc")
       when "admins"
-            subject = User
+            @subject = User
             query = "(user:User)-[p:owns|admins]->" << basic_query
-            @users = Neo4j::Session.query.match(query).proxy_as(User, :user).paginate(:page => first_page, :per_page => secondary_items_per_page, return: "user distinct",order: "user.last_name asc, user.first_name  asc")
+            @result = Neo4j::Session.query.match(query).proxy_as(User, :user).paginate(:page => @first_page, :per_page => secondary_items_per_page, return: "user distinct",order: "user.last_name asc, user.first_name  asc")
       when "alldiscussions"
-            subject = Discussion
+            @subject = Discussion
             query = "(discussion:Discussion)-[b:belongs_to]->" << basic_query
-            @discussions = Neo4j::Session.query.match(query).proxy_as(Discussion, :discussion).paginate(:page => first_page, :per_page => secondary_items_per_page, return: "discussion distinct",order: "discussion.modified_at desc")
+            @result = Neo4j::Session.query.match(query).proxy_as(Discussion, :discussion).paginate(:page => @first_page, :per_page => secondary_items_per_page, return: "discussion distinct",order: "discussion.modified_at desc")
       when "mydiscussions"
-            subject = Discussion
+            @subject = Discussion
             query = "(user:User { uuid : '#{current_user_id?}' })-[p:participates|owns|admins]->(discussion:Discussion)-[b:belongs_to]->" << basic_query
-            @discussions = Neo4j::Session.query.match(query).proxy_as(Discussion, :discussion).paginate(:page => first_page, :per_page => secondary_items_per_page, return: "discussion distinct",order: "discussion.modified_at desc")
+            @result = Neo4j::Session.query.match(query).proxy_as(Discussion, :discussion).paginate(:page => @first_page, :per_page => secondary_items_per_page, return: "discussion distinct",order: "discussion.modified_at desc")
       when "allevents"
-            subject = Event
+            @subject = Event
             query = "(event:Event)-[b:belongs_to]->" << basic_query
-            @events = Neo4j::Session.query.match(query).proxy_as(Event, :event).paginate(:page => first_page, :per_page => secondary_items_per_page, return: "event distinct",order: "event.date asc")
+            @result = Neo4j::Session.query.match(query).proxy_as(Event, :event).paginate(:page => @first_page, :per_page => secondary_items_per_page, return: "event distinct",order: "event.date asc")
       when "myevents"
-            subject = Event
+            @subject = Event
             query = "(user:User { uuid : '#{current_user_uuid?}' })-[p:participates|owns|admins]->(event:Event)-[b:belongs_to]->" << basic_query
-            @events = Neo4j::Session.query.match(query).proxy_as(Event, :event).paginate(:page => first_page, :per_page => secondary_items_per_page, return: "event distinct",order: "event.date asc")
+            @result = Neo4j::Session.query.match(query).proxy_as(Event, :event).paginate(:page => @first_page, :per_page => secondary_items_per_page, return: "event distinct",order: "event.date asc")
       else 
            ""      
      end
 
-    puts "Query: #{query}"
+     puts "Query: #{query}"
 
-   # @users = subject.as(:users).query.match(query_string).proxy_as(User, :users).paginate(:page => first_page, :per_page => secondary_items_per_page, return: :users, order: "users.last_name asc, users.first_name  asc")
-   # @users = Neo4j::Session.query.match(query_string).proxy_as(User, :user).paginate(:page => first_page, :per_page => secondary_items_per_page, return: "distinct user", order: "user.last_name asc, user.first_name  asc")
-   # @users = Neo4j::Session.query.match(query_string).proxy_as(User, :user).paginate(:page => first_page, :per_page => secondary_items_per_page, return: ":user distinct",order: "user.last_name asc, user.first_name  asc")
-    #@users = Neo4j::Session.query.match(query_string).proxy_as(User, :user).paginate(:page => first_page, :per_page => secondary_items_per_page, return: "user distinct",order: "user.last_name asc, user.first_name  asc")
-  
-    render partial: "#{subject.name.pluralize.downcase}/list", locals: { group: @group, users: @users, events: @events, discussions: @discussions, subset: filter, title: get_title(filter)}
+     rnd = @show ? "show_single" : "#{@subject.name.pluralize.downcase}/list_content"
+     subject = @subject.name.pluralize.downcase
+
+     puts "Must render: #{rnd} -> #{subject}"
+        
+       render rnd, locals: { group: @group, result: @result, subset: @filter, subject: subject, title: get_title(@filter), show_group: false, show_social: false } and return
+#       render partial: "#{@subject.name.pluralize.downcase}/list", locals: { group: @group, result: @users, events: @events, discussions: @discussions, subset: @filter, subject: @subject, title: get_title(filter) }
 
   end
+
 
   # GET /groups/list/:filter(/:limit(/:subject))
   def list
@@ -119,7 +118,13 @@ class GroupsController < ApplicationController
   # GET /groups/1
   # GET /groups/1.json
   def show
+      puts ("----- Groups Controller: show -----------------------------------------------------------")
+      @show = true
+#      @filter = params[:filter]
+#      @first_page = params[:from_page].nil? ? 1 : params[:from_page]
+#      @group_uuid = params[:id]
 
+      list_one
   end
 
   # GET /groups/new

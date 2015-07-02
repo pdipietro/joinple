@@ -3,7 +3,7 @@
     .group{:id => group.uuid }
       - rels = count_relationships(group)
       .contour-3{:style => "border-color: #{group.background_color}; " }
-        = link_to group_path(group.uuid), :remote => :true, :title => "View details", :class => ("hoverable") do
+        = link_to groups_show_path(group.uuid,"alldiscussions"), :remote => :true, :title => "View details", :class => ("hoverable") do
           .relative.nothing
             - if group.header.length === 0 
               .group-image-replacement{:style => "background-color: #{group.background_color}; " }

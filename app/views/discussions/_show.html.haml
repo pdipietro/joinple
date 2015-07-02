@@ -7,7 +7,8 @@
   - show_social = false unless defined?(show_social)  
   .discussion{:id => discussion.uuid }
     - rels = count_relationships(discussion)
-    = render partial: "groups/owner", locals: { group: group }
+    - if show_group 
+      = render partial: "groups/owner", locals: { group: group }
     .spacer
 
     .owner

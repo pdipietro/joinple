@@ -5,6 +5,9 @@
   .spacer
   .page-thumbnail{ :style => current_social_network_style }
     = title
+    - unless show_group
+      = link_to new_discussion_path, :remote => :true, :title => "Add a new discussion" do
+        %i.hoverable.im-plus.to-right
   .spacer
   - latest = ""
   #gridPost.grid-padding.no-padding{ "data-columns" => "" }

@@ -727,6 +727,11 @@ img.responsive {
   z-index:  20;
 }
 
+#discussion-header .solid-text,
+#group-header .solid-text {
+  padding-left: 90px;
+}
+
 .transparent {
   opacity: 0;
 }

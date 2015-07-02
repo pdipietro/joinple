@@ -55,6 +55,8 @@ GEM
     bootstrap-switch-rails (3.0.2)
     bootstrap-will_paginate (0.0.10)
       will_paginate
+    bootstrap-wysihtml5-rails (0.3.3.7)
+      railties (>= 3.0)
     bootstrap_colorpicker_rails (1.0.2)
       railties (>= 3.0)
     bootstrap_form (2.3.0)
@@ -357,6 +359,7 @@ DEPENDENCIES
   bootstrap-sass
   bootstrap-switch-rails (~> 3.0.0)
   bootstrap-will_paginate
+  bootstrap-wysihtml5-rails
   bootstrap_colorpicker_rails
   bootstrap_form
   byebug (= 3.4.0)

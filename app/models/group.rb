@@ -30,7 +30,7 @@ class Group
 
   validates   :name, length: { minimum: 6 }
   validates   :description, length: { minimum: 3 }
-  validates_uniqueness_of :name, case_sensitive:false
+  # validates_uniqueness_of :name, case_sensitive:false
   validates   :type, inclusion: { in: ["open", "closed", "secret"] }
   #validates   :image, length: { minimum: 6 }
   #validates   :icon, length: { minimum: 6 }
