@@ -1,2 +1,2 @@
-$("#main_add").html("<%= escape_javascript(render partial: 'form', locals: { discussion_comment: discussion_comment, discussion: discussion } ) %>" );
-$("#group-discussion").removeClass('in').addClass('in');
+console.log("al solito ...")
+$("#<%= escape_javascript(parent_uuid)%>-add").html("<%= escape_javascript(render partial: 'form', locals: { discussion_comment: discussion_comment, parent_class: parent_class, parent_uuid: parent_uuid } ) %>" );

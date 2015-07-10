@@ -18,7 +18,7 @@ class DiscussionsController < ApplicationController
 
     puts "@discussion: #{@discussion}"
 
-    basic_query = "(g:discussion { uuid : '#{@discussion.uuid}' })"
+    basic_query = "(g:Discussion { uuid : '#{@discussion.uuid}' })"
 
     subject = ""
 

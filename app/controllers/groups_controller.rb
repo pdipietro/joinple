@@ -100,7 +100,7 @@ class GroupsController < ApplicationController
 
     @groups = Group.as(:groups).query.match(query_string).proxy_as(Group, :groups).paginate(:page => first_page, :per_page => secondary_items_per_page, return: "groups", order: "groups.created_at desc")
 
-    render 'list', locals: { groups: @groups, subset: filter, title: get_title(filter)}
+    render 'list', locals: { groups: @groups, subset: filter, title: get_title(filter), from_page: first_page + 1}
 
   end
 

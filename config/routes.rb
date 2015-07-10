@@ -48,7 +48,7 @@ Rails.application.routes.draw do
   resources :user_profiles,       constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
   resources :post_comments,       constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
   resources :discussions,         constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
-  resources :discussion_comments, constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
+  resources :discussion_comments, constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true, except: [:new]
 
   get       'groups/list(/:filter(/:from_page(/:limit(/:subject(/:deep)))))'  =>   'groups#list', :as => :groups_list, defaults: { :format => "js"}, :remote => :true
   get       'group/:id/list(/:filter(/:from_page(/:limit(/:subject(/:deep)))))'  =>    'groups#list_one', :as => :group_list, defaults: { :format => "js"}, :remote => :true
@@ -64,6 +64,9 @@ Rails.application.routes.draw do
 
   get       'posts/list/:social_uuid(/:filter(/:from_page(/:limit(/:subject(/:deep)))))'  =>   'posts#list', :as => :posts_list, defaults: { :format => "js"}, :remote => :true
   get       'post/:id/list(/:filter(/:from_page(/:limit(/:subject(/:deep)))))'  =>    'posts#list_one', :as => :post_list, defaults: { :format => "js"}, :remote => :true
+
+
+  get       'discussion_comment/new(/:parent_class/:parent_uuid)'            =>    'discussion_comments#new', :as => :new_discussion_comment, defaults: { :format => "js"}, :remote => :true
 
 #  get       'post/list(/:filter(/:from_page(/:limit(/:subject(/:deep)))))'  =>   'post#list', :as => :posts_list, defaults: { :format => "js"}, :remote => :true
 

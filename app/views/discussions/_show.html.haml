@@ -63,14 +63,18 @@
           = rels["in-preferes-User"].nil? ? 0 : rels["in-preferes-User"]
     .spacer-2x
 
+    .border-1
+    = render partial: "discussion_comments/form", locals: { discussion_comment: DiscussionComment.new, parent_class: "Discussion", parent_uuid: discussion.uuid }
+
     -# *********************************** DISCUSSION COMMENT LINE ****************************************** 
 
-    - discussion.has_comment.each do |rel|
-      = render partial: "discussion_comments/show", locals: { discussion_comment: rel }
+    -# query_string = "(g:Discussion { uuid : '#{discussion.uuid}' })-[dc:has_comment]->(discussion_comment:DiscussionComment) return discussion_comment order by discussion_comment.created_at desc limit 2"
+    -# has_comment = Neo4j::Session.query.match(query_string).proxy_as(DiscussionComment, :discussion_comment)
 
-    .border-1
-    = render partial: "discussion_comments/form", locals: { discussion_comment: DiscussionComment.new, discussion: discussion }
-
+    - comments = discussion.has_comment.all.order(created_at:  :desc).limit(2)
+  
+    - comments.each do |rel|
+      = render partial: "discussion_comments/show", locals: { discussion_comment: rel, parent_class: "Discussion", parent_uuid: discussion.uuid }
 
     .border-1
     .command-line-m

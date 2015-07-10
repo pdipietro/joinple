@@ -1,11 +1,12 @@
 .panel-body
   .row
     = form_for(discussion_comment, :remote => :true) do |f|
-      = hidden_field_tag :discussion_uuid, discussion.uuid
+      = hidden_field_tag "parent_class", parent_class
+      = hidden_field_tag "parent_uuid", parent_uuid
       .col-xs-6
         .owner-image= render partial: 'users/owner', locals: { object: discussion_comment, type: "owner", show: "imageOnly", local_current_user: :true  }
       .col-xs-51
         .discussion-comment-text= f.text_area :content, as: :wysihtml5, :placeholder => "insert comment ..."
       .col-xs-3.nothing
-        %button.btn-icon-only.nothing{ :type => "submit", :name => "commit", :hide_label => :true, :title => "start the discussion" } 
+        %button.btn-icon-only.nothing{ :type => "submit", :name => "commit", :hide_label => :true, :title => "send" } 
           %i.l.hoverable.im-send-post

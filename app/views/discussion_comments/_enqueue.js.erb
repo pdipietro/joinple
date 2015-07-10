@@ -1,2 +1,1 @@
-$('#<%= escape_javascript(post.uuid)%>').find(' > div:nth-last-child(2)').before("<%= escape_javascript(render partial: 'show', locals: { discussion_comment: @discussion_comment, discussion: discussion } ) %>" );
-$('#<%= escape_javascript(post.uuid)%>').find(' textarea').val("");
+$('#<%= escape_javascript(@discussion_comment.uuid)%>').html("<%= escape_javascript(render partial: 'show', locals: { discussion_comment: @discussion_comment, parent_uuid: parent_uuid, parent_class: parent_class } ) %>" );

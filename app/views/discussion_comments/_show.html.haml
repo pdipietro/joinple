@@ -6,7 +6,7 @@
 - user = query.first[:u]
 - user_profile = query.first[:up]
 
-.discussion-content{ :id => discussion_comment.uuid }
+.discussion-comment-content{ :id => discussion_comment.uuid }
   .border-1
   .content
     .col-xs-5
@@ -34,20 +34,36 @@
             = "#{user.full_name}"
         %span= discussion_comment.content[0...300]
 
-        -# *********************************** COMMAND LINE ****************************************** 
+
+      -# *********************************** COMMAND LINE ****************************************** 
 
       .spacer
       %div
         .command-line-s
           = link_to onerel_path(discussion_comment,'DiscussionComment','likes'), :method => :post, :remote => :true, :title => "Smile", :class => ("hoverable") do
             = rels["in-likes-me"].nil? ? "Smile" : "Not smile"
+          = link_to new_discussion_comment_path('DiscussionComment',discussion_comment.uuid), :remote => :true, :title => "Smile", :class => ("hoverable") do
+            = "Reply"
         .command-line-s.to-right
           - puts (rels)
-          = link_to users_list_path('discussionComment',discussion_comment.uuid,'likes'), :remote => :true, :title => "Likes", :class => ("hoverable") do
+          = link_to users_list_path('DiscussionComment',discussion_comment.uuid,'likes'), :remote => :true, :title => "Likes", :class => ("hoverable") do
             %i.hoverable.im-like
             = rels["in-likes-User"].nil? ? 0 : rels["in-likes-User"]
 
+      - comments = discussion_comment.has_comment.order(created_at:  :desc).limit(10)
+  
+      - comments.each do |rel|
+        = render partial: "discussion_comments/show", locals: { discussion_comment: rel, parent_class: "DiscussionComment", parent_uuid: discussion_comment.uuid }
+
     .col-xs-3
       = (Date.parse(DateTime.now.to_s) - Date.parse(discussion_comment.created_at.to_s)).to_i
+
+  .insert-space{ :id => "#{discussion_comment.uuid}-add" }
+
+  -# comments = discussion_comment.has_comment.all.order(created_at:  :desc).limit(2)
+  -# comments = discussion_comment.has_comment.order(created_at:  :desc).limit(10)
+  
+  -# comments.each do |rel|
+    =# render partial: "discussion_comments/show", locals: { discussion_comment: rel, parent_class: "DiscussionComment", parent_uuid: discussion_comment.uuid }
 
       

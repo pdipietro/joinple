@@ -25,3 +25,6 @@ class Discussion
   validates   :description, length: { minimum: 10 }, allow_blank: true
 
 end
+
+
+ 
