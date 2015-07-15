@@ -547,7 +547,7 @@ hr {
 ** named elements
 ************************************************************************************************************************ */
 
-#user_info {
+#subject_info {
   @extend .shadowing;
   margin-bottom: 0.7em;
 }
@@ -1038,7 +1038,7 @@ img.responsive {
 #groups-page, #group-form, .group, .group-header, #group-banner,
 #posts-page, .post,
 #discussions-page, .discussion,
-#user-profile-form, #user-profile-page, .user-profile
+#subject-profile-form, #subject-profile-page, .subject-profile
  {
   background-color: #ffffff;
   margin-bottom: $margin_standard;
@@ -1257,14 +1257,14 @@ ul.list-group a:last-child .list-group-item {
   padding: 5px 5px;
 }
 
-img.responsive.user-photo {
+img.responsive.subject-photo {
   vertical-align: top;
   position: relative;
   top: 0;
   z-index: 200;
 }
 
-a.header-user-photo {
+a.header-subject-photo {
   padding-top: 4px !important;
   padding-bottom: 0;
   max-height: 46px !important;
@@ -1280,25 +1280,25 @@ a.header-user-photo {
   }            
 }
 
-.user-info {
+.subject-info {
   text-align: center;
   text-align: -webkit-center;
   font-size: 0.9em;;
   padding-top: 5px;
 }
 
-.user-info .name {
+.subject-info .name {
 }
 
-.user-info .nick {
+.subject-info .nick {
   font-size: 0.95em;
 }
 
-.user-info .stars {
+.subject-info .stars {
   padding-top: 5px;
 }
 
-.user-info.icons {
+.subject-info.icons {
   background-color: #ffffff;
   color: #333342;
   text-align: center;
@@ -1308,12 +1308,12 @@ a.header-user-photo {
   font-size: 0.95 em;
 }
 
-i.user-info-icons {
+i.subject-info-icons {
   position: relative;
   top: 2.5px;
 }
 
-.user-faces {
+.subject-faces {
   @extend .nothing;
   width: 18px;
   height: 18px;
@@ -1348,10 +1348,10 @@ i.user-info-icons {
    }
      > .short-description,
      * .short-description,
-     > .user-nick,
-     * .user-nick,
-     > .user-star,
-     * .user-star
+     > .subject-nick,
+     * .subject-nick,
+     > .subject-star,
+     * .subject-star
       {
     text-align: -webkit-center
    }

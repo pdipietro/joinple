@@ -9,8 +9,8 @@ class ApplicationController < ActionController::Base
 
   private
 
-    # Confirms a logged-in user.
-    def logged_in_user
+    # Confirms a logged-in subject.
+    def logged_in_subject
       unless logged_in?
         store_location
         flash[:danger] = "Please log in."

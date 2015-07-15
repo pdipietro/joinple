@@ -3,7 +3,7 @@ class GroupsController < ApplicationController
 
   before_action :check_social_network
   before_action :set_group, only: [:show, :edit, :update, :destroy]
-  before_action :logged_in_user, only: [:create, :destroy]
+  before_action :logged_in_subject, only: [:create, :destroy]
   before_action  :set_current_group_loc, only: [:show, :list_one]
   before_action  :reset_current_group_loc, only: [:edit, :update, :destroy, :create]
 
@@ -24,20 +24,20 @@ class GroupsController < ApplicationController
 
     case @filter
       when "members"
-            @subject = User
-            query = "(user:User)-[p:participates|owns|admins]->" << basic_query 
-            @result = Neo4j::Session.query.match(query).proxy_as(User, :user).paginate(:page => @first_page, :per_page => secondary_items_per_page, return: "user distinct",order: "user.last_name asc, user.first_name  asc")
+            @subject = Subject
+            query = "(subject:Subject)-[p:participates|owns|admins]->" << basic_query 
+            @result = Neo4j::Session.query.match(query).proxy_as(Subject, :subject).paginate(:page => @first_page, :per_page => secondary_items_per_page, return: "subject distinct",order: "subject.last_name asc, subject.first_name  asc")
       when "admins"
-            @subject = User
-            query = "(user:User)-[p:owns|admins]->" << basic_query
-            @result = Neo4j::Session.query.match(query).proxy_as(User, :user).paginate(:page => @first_page, :per_page => secondary_items_per_page, return: "user distinct",order: "user.last_name asc, user.first_name  asc")
+            @subject = Subject
+            query = "(subject:Subject)-[p:owns|admins]->" << basic_query
+            @result = Neo4j::Session.query.match(query).proxy_as(Subject, :subject).paginate(:page => @first_page, :per_page => secondary_items_per_page, return: "subject distinct",order: "subject.last_name asc, subject.first_name  asc")
       when "alldiscussions"
             @subject = Discussion
             query = "(discussion:Discussion)-[b:belongs_to]->" << basic_query
             @result = Neo4j::Session.query.match(query).proxy_as(Discussion, :discussion).paginate(:page => @first_page, :per_page => secondary_items_per_page, return: "discussion distinct",order: "discussion.modified_at desc")
       when "mydiscussions"
             @subject = Discussion
-            query = "(user:User { uuid : '#{current_user_id?}' })-[p:participates|owns|admins]->(discussion:Discussion)-[b:belongs_to]->" << basic_query
+            query = "(subject:Subject { uuid : '#{current_subject_id?}' })-[p:participates|owns|admins]->(discussion:Discussion)-[b:belongs_to]->" << basic_query
             @result = Neo4j::Session.query.match(query).proxy_as(Discussion, :discussion).paginate(:page => @first_page, :per_page => secondary_items_per_page, return: "discussion distinct",order: "discussion.modified_at desc")
       when "allevents"
             @subject = Event
@@ -45,7 +45,7 @@ class GroupsController < ApplicationController
             @result = Neo4j::Session.query.match(query).proxy_as(Event, :event).paginate(:page => @first_page, :per_page => secondary_items_per_page, return: "event distinct",order: "event.date asc")
       when "myevents"
             @subject = Event
-            query = "(user:User { uuid : '#{current_user_uuid?}' })-[p:participates|owns|admins]->(event:Event)-[b:belongs_to]->" << basic_query
+            query = "(subject:Subject { uuid : '#{current_subject_uuid?}' })-[p:participates|owns|admins]->(event:Event)-[b:belongs_to]->" << basic_query
             @result = Neo4j::Session.query.match(query).proxy_as(Event, :event).paginate(:page => @first_page, :per_page => secondary_items_per_page, return: "event distinct",order: "event.date asc")
       else 
            ""      
@@ -59,7 +59,7 @@ class GroupsController < ApplicationController
      puts "Must render: #{rnd} -> #{subject}"
         
        render rnd, locals: { group: @group, result: @result, subset: @filter, subject: subject, title: get_title(@filter), show_group: false, show_social: false } and return
-#       render partial: "#{@subject.name.pluralize.downcase}/list", locals: { group: @group, result: @users, events: @events, discussions: @discussions, subset: @filter, subject: @subject, title: get_title(filter) }
+#       render partial: "#{@subject.name.pluralize.downcase}/list", locals: { group: @group, result: @subjects, events: @events, discussions: @discussions, subset: @filter, subject: @subject, title: get_title(filter) }
 
   end
 
@@ -79,13 +79,13 @@ class GroupsController < ApplicationController
     qstr =
       case filter
         when "iparticipate"
-              "(user:User { uuid : '#{current_user.uuid}' })-[p:participates|owns|admins]->"
+              "(subject:Subject { uuid : '#{current_subject.uuid}' })-[p:participates|owns|admins]->"
         when "iadminister"
-              "(user:User { uuid : '#{current_user.uuid}' })-[p:owns|admins]->"
+              "(subject:Subject { uuid : '#{current_subject.uuid}' })-[p:owns|admins]->"
         when "mycontacts"
-              "(user:User { uuid : '#{current_user.uuid}' })-[f:is_friend_of*1..2]->(afriend:User)-[p:owns]->"
+              "(subject:Subject { uuid : '#{current_subject.uuid}' })-[f:is_friend_of*1..2]->(afriend:Subject)-[p:owns]->"
         when "hot"
-              "(user:User { uuid : '#{current_user.uuid}' })-[p:owns]->"
+              "(subject:Subject { uuid : '#{current_subject.uuid}' })-[p:owns]->"
         when "fresh"
               ""
         when "search"
@@ -148,7 +148,7 @@ class GroupsController < ApplicationController
       begin
         tx = Neo4j::Transaction.new
           @group.save
-          rel = Owns.create(from_node: current_user, to_node: @group)
+          rel = Owns.create(from_node: current_subject, to_node: @group)
           rel = BelongsTo.create(from_node: @group, to_node: current_social_network)
         rescue => e
           tx.failure

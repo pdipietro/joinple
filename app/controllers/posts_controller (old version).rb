@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :check_social_network
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :logged_in_user, only: [:index, :create, :destroy]
+  before_action :logged_in_subject, only: [:index, :create, :destroy]
 
   respond_to :js
 
@@ -21,7 +21,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-  #  @users = User.as(:t).where('true = true WITH t ORDER BY t.first_name, t.last_name desc')
+  #  @subjects = Subject.as(:t).where('true = true WITH t ORDER BY t.first_name, t.last_name desc')
     @posts = Post.all.order(created_at: :desc)
   end
 
@@ -51,12 +51,12 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        rel = Owns.create(from_node: current_user, to_node: @post)
+        rel = Owns.create(from_node: current_subject, to_node: @post)
         rel = BelongsTo.create(from_node: @post, to_node: current_social_network)
 
         format.js   { render partial: "enqueue", object: @post, locals: { :current_owner => @current_owner }, notice: 'Post was successfully created.' }
         format.html { redirect_to(request.env["HTTP_REFERER"]) }
-        format.json { render :show, status: :created, location: @post, user: @post.is_owned_by }
+        format.json { render :show, status: :created, location: @post, subject: @post.is_owned_by }
       else
         format.js   { render :new, object: @post, locals: { :current_owner => @current_owner } }
         format.html { render :new }
@@ -93,8 +93,8 @@ class PostsController < ApplicationController
     end
   end
 
-  def get_current_user
-     current_user
+  def get_current_subject
+     current_subject
   end
 
   # GET /posts/list/:filter(/:limit(/:subject))

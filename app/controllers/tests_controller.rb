@@ -29,7 +29,7 @@ class TestsController < ApplicationController
 
     respond_to do |format|
       if @test.save
-        rel = Owns.create(from_node: current_user, to_node: @test)  
+        rel = Owns.create(from_node: current_subject, to_node: @test)  
 
         format.js   { render partial: "enqueue", object: @test, notice: 'Test was successfully created.' }
         format.html { redirect_to @test, notice: 'Test was successfully created.' }

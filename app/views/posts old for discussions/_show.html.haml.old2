@@ -1,5 +1,5 @@
 - if post.errors.count == 0
-  - owner = post.query_as(:p).match("(p)<-[r:owns]-(u:User)").pluck(:u).first
+  - owner = post.query_as(:p).match("(p)<-[r:owns]-(u:Subject)").pluck(:u).first
   -#.col-xs-6.col-sm-6.col-md-6{ :id => post.uuid }
   .item{ :id => post.uuid }
     .col-xs-12.col-sm-12.col-md-6.col-lg-6{ :id => post.uuid }
@@ -33,7 +33,7 @@
           -#.col-xs-4.col-sm-4.col-md-4.v-glyphs
           = link_to onerel_path(post,'Post','likes'), :method => :post, :remote => :true, :title => "like" do
             %span.glyphicons.icon-like-1
-          = likes = post.query_as(:p).match("(p)<-[r:likes]-(u:User)").pluck(:u).count
+          = likes = post.query_as(:p).match("(p)<-[r:likes]-(u:Subject)").pluck(:u).count
           Like -
           = link_to root_path, :method => :post, :remote => :true, :title => "share" do
             %span.glyphicons.icon-share-outline

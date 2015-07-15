@@ -4,7 +4,7 @@
       = hidden_field_tag "parent_class", parent_class
       = hidden_field_tag "parent_uuid", parent_uuid
       .col-xs-6
-        .owner-image= render partial: 'users/owner', locals: { object: discussion_comment, type: "owner", show: "imageOnly", local_current_user: :true  }
+        .owner-image= render partial: 'subjects/owner', locals: { object: discussion_comment, type: "owner", show: "imageOnly", local_current_subject: :true  }
       .col-xs-51
         .discussion-comment-text= f.text_area :content, as: :wysihtml5, :placeholder => "insert comment ..."
       .col-xs-3.nothing

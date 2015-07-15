@@ -1,0 +1,6 @@
+%h1 JoinPl Social Network
+%p
+  Hi #{@subject.first_name},
+%p
+  Welcome to the JoinPle Social Network! Click on the link below to activate your account:
+= link_to "Activate", edit_account_activation_url(@subject.activation_token, email: @subject.email)

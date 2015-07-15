@@ -1,5 +1,5 @@
 - if post.errors.count == 0
-  - owner = post.query_as(:p).match("(p)<-[r:owns]-(u:User)").pluck(:u).first
+  - owner = post.query_as(:p).match("(p)<-[r:owns]-(u:Subject)").pluck(:u).first
   .item{ :id => post.uuid }
     .xs-3.noborder
       .img-owner1= gravatar_for owner, size: 72
@@ -26,7 +26,7 @@
       -#.v-glyphs
       = link_to onerel_path(post,'Post','likes'), :method => :post, :remote => :true, :title => "like" do
         %span.glyphicons.icon-like-1
-      = likes = post.query_as(:p).match("(p)<-[r:likes]-(u:User)").pluck(:u).count
+      = likes = post.query_as(:p).match("(p)<-[r:likes]-(u:Subject)").pluck(:u).count
       Like -
       = link_to root_path, :method => :post, :remote => :true, :title => "share" do
         %span.glyphicons.icon-share-outline

@@ -17,13 +17,13 @@ class DiscussionCommentsController < ApplicationController
     qstr =
       case filter
         when "iparticipate"
-              "(user:User { uuid : '#{current_user.uuid}' })-[p:participates|owns|admins]->"
+              "(subject:Subject { uuid : '#{current_subject.uuid}' })-[p:participates|owns|admins]->"
         when "iadminister"
-              "(user:User { uuid : '#{current_user.uuid}' })-[p:owns|admins]->"
+              "(subject:Subject { uuid : '#{current_subject.uuid}' })-[p:owns|admins]->"
         when "mycontacts"
-              "(user:User { uuid : '#{current_user.uuid}' })-[f:is_friend_of*1..2]->(afriend:User)-[p:owns]->"
+              "(subject:Subject { uuid : '#{current_subject.uuid}' })-[f:is_friend_of*1..2]->(afriend:Subject)-[p:owns]->"
         when "hot"
-              "(user:User { uuid : '#{current_user.uuid}' })-[p:owns]->"
+              "(subject:Subject { uuid : '#{current_subject.uuid}' })-[p:owns]->"
         when "fresh"
               ""
         when "search"
@@ -85,7 +85,7 @@ class DiscussionCommentsController < ApplicationController
       @discussion_comment.save
       puts "Discussion_comment_uuid: #{@discussion_comment.uuid}"
 
-      rel = Owns.create(from_node: current_user, to_node: @discussion_comment)
+      rel = Owns.create(from_node: current_subject, to_node: @discussion_comment)
       puts "rel: #{rel}"
       #rel = HasComment.create(from_node: parent, to_node: @discussion_comment)  
       #puts "rel: #{rel}"
@@ -108,7 +108,7 @@ class DiscussionCommentsController < ApplicationController
           puts "--------- /discussionComment/create: transaction succeeded: #{@discussion_comment.content}"
           format.js   { render partial: "enqueue", object: @discussion_comment, locals: { :parent_class => parent_class, parent_uuid  => parent_uuid  }, notice: 'Post was successfully created.' }
           format.html { redirect_to(request.env["HTTP_REFERER"]) }
-          format.json { render :show, status: :created, location: @discussion_comment, user: @discussion_comment.is_owned_by }
+          format.json { render :show, status: :created, location: @discussion_comment, subject: @discussion_comment.is_owned_by }
         end
       end
     end

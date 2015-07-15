@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :check_social_network
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :logged_in_user, only: [:index, :create, :destroy]
+  before_action :logged_in_subject, only: [:index, :create, :destroy]
 
   respond_to :js
 
@@ -18,11 +18,11 @@ class PostsController < ApplicationController
     qstr =
       case filter
         when "ifollow"
-              "(user:User { uuid : '#{current_user.uuid}' })-[p:follows]->(f:User)-[follows]->"
+              "(subject:Subject { uuid : '#{current_subject.uuid}' })-[p:follows]->(f:Subject)-[follows]->"
         when "iprefere"
-              "(user:User { uuid : '#{current_user.uuid}' })-[p:preferes]->"
+              "(subject:Subject { uuid : '#{current_subject.uuid}' })-[p:preferes]->"
         when "iparticipate"
-              "(user:User { uuid : '#{current_user.uuid}' })-[p:participates|owns|admins]->"
+              "(subject:Subject { uuid : '#{current_subject.uuid}' })-[p:participates|owns|admins]->"
         when "all"
               ""
         else 
@@ -69,7 +69,7 @@ puts "==========================================================================
         tx = Neo4j::Transaction.new
           @post.save
           puts "posts error: #{@post.errors}"
-          rel = Owns.create(from_node: current_user, to_node: @post)
+          rel = Owns.create(from_node: current_subject, to_node: @post)
           puts "Owns.create: #{rel.errors}"
           #rel = BelongsTo.create(from_node: @post, to_node: current_social_network)
           rel = @post.create_rel("belongs_to", current_social_network)  
@@ -83,7 +83,7 @@ puts "==========================================================================
           tx.close
           format.js   { render partial: "enqueue", object: @post, notice: 'Post was successfully created.' }
           format.html { redirect_to(request.env["HTTP_REFERER"]) }
-          format.json { render :show, status: :created, location: @post, user: @post.is_owned_by }
+          format.json { render :show, status: :created, location: @post, subject: @post.is_owned_by }
       end
     end
   end
@@ -116,8 +116,8 @@ puts "==========================================================================
     end
   end
 
-  def get_current_user
-     current_user
+  def get_current_subject
+     current_subject
   end
 
   # GET /posts/list/:filter(/:limit(/:subject))

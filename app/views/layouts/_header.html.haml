@@ -1,6 +1,6 @@
 - background_color = get_background
 %nav.navbar-default.navbar-fixed-top{ :role => "navigation" }
-  - user_profile = logged_in? ? current_user.has_profile : nil
+  - subject_profile = logged_in? ? current_subject.has_profile : nil
   .container-fluid.shadowing
     .navbar-header
       %button.navbar-toggle.collapsed{ :type => "button", "data-toggle" => "collapse",  "data-target" => "#navbar" }
@@ -34,7 +34,7 @@
             = link_to root_path, :remote => :true, :title => "Go to Joinple" do
               %i.im-home
           %li
-            = link_to users_path, :remote => :true, :title => "People" do
+            = link_to subjects_path, :remote => :true, :title => "People" do
               %i.im-people-sidebardx
           %li.dropdown
             %a.dropdown-toggle{ :href => "#", :id => "dropdownSocial", "data-toggle" => "dropdown", :type => "button", :title => "Social networks", "aria-expanded" => "false"}
@@ -47,7 +47,7 @@
             = link_to root_path, :remote => :true, :title => "Notifications" do
               %i.im-bell
           %li
-            = link_to users_path, :remote => :true, :title => "Messages" do
+            = link_to subjects_path, :remote => :true, :title => "Messages" do
               %i.im-envelop
           %li.dropdown
             %a.dropdown-toggle{ :href => "#", "aria-expanded" => "false", "data-toggle" => "dropdown", :type => "button", :title => "About the 'Super Social Network'"} 
@@ -80,18 +80,18 @@
                   %i.header-dropdown.im-contacts
                   About
           %li.dropdown
-            %a.dropdown-toggle.header-user-photo{ :href => "#", :id => "dropdownUser", "data-toggle" => "dropdown", :type => "button", :title => "Myself",  "aria-expanded" => "false"}
+            %a.dropdown-toggle.header-subject-photo{ :href => "#", :id => "dropdownSubject", "data-toggle" => "dropdown", :type => "button", :title => "Myself",  "aria-expanded" => "false"}
               -#%span
-              = image_tag user_profile.photo.url(:btn), :size => ("32x32"), :class => "circle"
-              %span.welcome= "Welcome, #{current_user.first_name}"
+              = image_tag subject_profile.photo.url(:btn), :size => ("32x32"), :class => "circle"
+              %span.welcome= "Welcome, #{current_subject.first_name}"
               %span.caret
-            %ul.user.dropdown-menu{ :role => "menu" }
+            %ul.subject.dropdown-menu{ :role => "menu" }
               %li
                 = link_to posts_path, :remote => :true do
                   %i.header-dropdown.im-about
                   My book ()
               %li
-                = link_to user_profile_path(user_profile.uuid), :remote => :true, :title => "Edit user profile" do
+                = link_to subject_profile_path(subject_profile.uuid), :remote => :true, :title => "Edit subject profile" do
                   %i.header-dropdown.im-about
                   My profiles
               %li
@@ -154,15 +154,15 @@
                   Setting
               %li.divider
               %li
-                = link_to edit_user_profile_path(user_profile.id), :remote => :true do
+                = link_to edit_subject_profile_path(subject_profile.id), :remote => :true do
                   %i.header-dropdown.im-profile-setting
                   Change profile
               %li
-                = link_to current_user, :remote => :true do
+                = link_to current_subject, :remote => :true do
                   %i.header-dropdown.im-about
                   Change password
               %li.divider
               %li
-                = link_to current_user, :remote => :true do
+                = link_to current_subject, :remote => :true do
                   %i.header-dropdown.im-about
                   Everythings

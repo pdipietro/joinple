@@ -1,5 +1,5 @@
 #group-banner.shadowing
-  - query = "match (groups:Group)-[r:belongs_to]->(sn:SocialNetwork { uuid : '#{current_social_network.uuid}'} ) where groups.type in ['open','closed'] optional match (user:User { uuid : '#{current_user.uuid}' })-[p]->(groups) return distinct groups,user order by user.uuid, groups.uuid;"
+  - query = "match (groups:Group)-[r:belongs_to]->(sn:SocialNetwork { uuid : '#{current_social_network.uuid}'} ) where groups.type in ['open','closed'] optional match (subject:Subject { uuid : '#{current_subject.uuid}' })-[p]->(groups) return distinct groups,subject order by subject.uuid, groups.uuid;"
   - groups = Neo4j::Session.query(query)
 
   - groups.each do |response|

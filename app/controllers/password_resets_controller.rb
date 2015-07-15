@@ -1,16 +1,16 @@
 class PasswordResetsController < ApplicationController
-  before_action :get_user,   only: [:edit, :update]
-  before_action :valid_user, only: [:edit, :update]
+  before_action :get_subject,   only: [:edit, :update]
+  before_action :valid_subject, only: [:edit, :update]
   before_action :check_expiration, only: [:edit, :update]
 
   def new
   end
 
   def create
-    @user = User.find_by(email: params[:password_reset][:email].downcase)
-    if @user
-      @user.create_reset_digest
-      @user.send_password_reset_email
+    @subject = Subject.find_by(email: params[:password_reset][:email].downcase)
+    if @subject
+      @subject.create_reset_digest
+      @subject.send_password_reset_email
       flash[:info] = "Email sent with password reset instructions"
       redirect_to root_url
     else
@@ -26,10 +26,10 @@ class PasswordResetsController < ApplicationController
     if both_passwords_blank?
       flash.now[:danger] = "Password/confirmation can't be blank"
       render 'edit'
-    elsif @user.update_attributes(user_params)
-      log_in @user
+    elsif @subject.update_attributes(subject_params)
+      log_in @subject
       flash[:success] = "Password has been reset."
-      redirect_to @user
+      redirect_to @subject
     else
       render 'edit'
     end
@@ -37,33 +37,33 @@ class PasswordResetsController < ApplicationController
 
   private
 
-    def user_params
-      params.require(:user).permit(:password, :password_confirmation)
+    def subject_params
+      params.require(:subject).permit(:password, :password_confirmation)
     end
 
     # Returns true if password & confirmation are blank.
     def both_passwords_blank?
-      params[:user][:password].blank? &&
-      params[:user][:password_confirmation].blank?
+      params[:subject][:password].blank? &&
+      params[:subject][:password_confirmation].blank?
     end
 
     # Before filters
 
-    def get_user
-      @user = User.find_by(email: params[:email])
+    def get_subject
+      @subject = Subject.find_by(email: params[:email])
     end
 
-    # Confirms a valid user.
-    def valid_user
-      unless (@user && @user.activated? &&
-              @user.authenticated?(:reset, params[:id]))
+    # Confirms a valid subject.
+    def valid_subject
+      unless (@subject && @subject.activated? &&
+              @subject.authenticated?(:reset, params[:id]))
         redirect_to root_url
       end
     end
 
     # Checks expiration of reset token.
     def check_expiration
-      if @user.password_reset_expired?
+      if @subject.password_reset_expired?
         flash[:danger] = "Password reset has expired."
         redirect_to new_password_reset_url
       end

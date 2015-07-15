@@ -61,14 +61,14 @@ module ApplicationHelper
        end
   end
 
-  # admin services are reserved to admin users only
-  def check_admin_user
-    redirect_to(root_url, format: :js) unless current_user.admin?
+  # admin services are reserved to admin subjects only
+  def check_admin_subject
+    redirect_to(root_url, format: :js) unless current_subject.admin?
   end
 
-  # admin services are reserved to admin users only
-  def current_user
-    session.current_user
+  # admin services are reserved to admin subjects only
+  def current_subject
+    session.current_subject
   end
 
   # capitalize the first word and any first word after a '.' 

@@ -34,21 +34,21 @@
       #
       # Example using Active Record (which automatically includes ActiveModel::SecurePassword):
       #
-      #   # Schema: User(name:string, password_digest:string)
-      #   class User < ActiveRecord::Base
+      #   # Schema: Subject(name:string, password_digest:string)
+      #   class Subject < ActiveRecord::Base
       #     has_secure_password
       #   end
       #
-      #   user = User.new(name: 'david', password: '', password_confirmation: 'nomatch')
-      #   user.save                                                       # => false, password required
-      #   user.password = 'mUc3m00RsqyRe'
-      #   user.save                                                       # => false, confirmation doesn't match
-      #   user.password_confirmation = 'mUc3m00RsqyRe'
-      #   user.save                                                       # => true
-      #   user.authenticate('notright')                                   # => false
-      #   user.authenticate('mUc3m00RsqyRe')                              # => user
-      #   User.find_by(name: 'david').try(:authenticate, 'notright')      # => false
-      #   User.find_by(name: 'david').try(:authenticate, 'mUc3m00RsqyRe') # => user
+      #   subject = Subject.new(name: 'david', password: '', password_confirmation: 'nomatch')
+      #   subject.save                                                       # => false, password required
+      #   subject.password = 'mUc3m00RsqyRe'
+      #   subject.save                                                       # => false, confirmation doesn't match
+      #   subject.password_confirmation = 'mUc3m00RsqyRe'
+      #   subject.save                                                       # => true
+      #   subject.authenticate('notright')                                   # => false
+      #   subject.authenticate('mUc3m00RsqyRe')                              # => subject
+      #   Subject.find_by(name: 'david').try(:authenticate, 'notright')      # => false
+      #   Subject.find_by(name: 'david').try(:authenticate, 'mUc3m00RsqyRe') # => subject
       def has_secure_password(options = {})
         # Load bcrypt gem only when has_secure_password is used.
         # This is to avoid ActiveModel (and by extension the entire framework)
@@ -68,7 +68,7 @@
           # This ensures the model has a password by checking whether the password_digest
           # is present, so that this works with both new and existing records. However,
           # when there is an error, the message is added to the password attribute instead
-          # so that the error message will make sense to the end-user.
+          # so that the error message will make sense to the end-subject.
           validate do |record|
             record.errors.add(:password, :blank) unless record.password_digest.present?
           end
@@ -89,14 +89,14 @@
     module InstanceMethodsOnActivation
       # Returns +self+ if the password is correct, otherwise +false+.
       #
-      #   class User < ActiveRecord::Base
+      #   class Subject < ActiveRecord::Base
       #     has_secure_password validations: false
       #   end
       #
-      #   user = User.new(name: 'david', password: 'mUc3m00RsqyRe')
-      #   user.save
-      #   user.authenticate('notright')      # => false
-      #   user.authenticate('mUc3m00RsqyRe') # => user
+      #   subject = Subject.new(name: 'david', password: 'mUc3m00RsqyRe')
+      #   subject.save
+      #   subject.authenticate('notright')      # => false
+      #   subject.authenticate('mUc3m00RsqyRe') # => subject
       def authenticate(unencrypted_password)
         BCrypt::Password.new(password_digest) == unencrypted_password && self
       end
@@ -106,15 +106,15 @@
       # Encrypts the password into the +password_digest+ attribute, only if the
       # new password is not empty.
       #
-      #   class User < ActiveRecord::Base
+      #   class Subject < ActiveRecord::Base
       #     has_secure_password validations: false
       #   end
       #
-      #   user = User.new
-      #   user.password = nil
-      #   user.password_digest # => nil
-      #   user.password = 'mUc3m00RsqyRe'
-      #   user.password_digest # => "$2a$10$4LEA7r4YmNHtvlAvHhsYAeZmk/xeUVtMTYqwIvYY76EW5GUqDiP4."
+      #   subject = Subject.new
+      #   subject.password = nil
+      #   subject.password_digest # => nil
+      #   subject.password = 'mUc3m00RsqyRe'
+      #   subject.password_digest # => "$2a$10$4LEA7r4YmNHtvlAvHhsYAeZmk/xeUVtMTYqwIvYY76EW5GUqDiP4."
       def password=(unencrypted_password)
         if unencrypted_password.nil?
           self.password_digest = nil

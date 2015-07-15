@@ -30,7 +30,7 @@
       #
       #   Model:
       #     class Person < ActiveRecord::Base
-      #       validates_confirmation_of :user_name, :password
+      #       validates_confirmation_of :subject_name, :password
       #       validates_confirmation_of :email_address,
       #                                 message: 'should match confirmation'
       #     end

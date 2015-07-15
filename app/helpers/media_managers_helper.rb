@@ -10,7 +10,7 @@ module MediaManagersHelper
 
           puts "++++ entered groups_helper/prepare_query(filter) ++++"
 
-          basic_query = "(images)-[r:owned-by]->(u:User { uuid : '#{current_user.uuid}'} ) "
+          basic_query = "(images)-[r:owned-by]->(u:Subject { uuid : '#{current_subject.uuid}'} ) "
 
           puts "++++ IMAGES BASIC QUERY BEFORE RETURN: <#{basic_query}> ++++"
           basic_query

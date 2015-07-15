@@ -12,21 +12,21 @@ class SessionsController < ApplicationController
 
   def create
     puts "param= #{params[:session][:email]}"
-    user = User.find_by(email: params[:session][:email])       
-    puts "User-by-email: #{user}"
-    if user.nil? then
-      user = User.find_by(nickname: params[:session][:email])
-    puts "User-email: #{user}"
+    subject = Subject.find_by(email: params[:session][:email])       
+    puts "Subject-by-email: #{subject}"
+    if subject.nil? then
+      subject = Subject.find_by(nickname: params[:session][:email])
+    puts "Subject-email: #{subject}"
     end 
 
-    if user && user.authenticate(params[:session][:password])
-      puts "User is authenticated"
+    if subject && subject.authenticate(params[:session][:password])
+      puts "Subject is authenticated"
       #puts "session_helper:create - Social network checked: it is #{current_social_network_name?}"
-      if user.activated?
-         log_in user
-         params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-         puts "ready to redirect_back_or user: #{user.full_name}, - #{user.uuid}"
-         redirect_back_or user
+      if subject.activated?
+         log_in subject
+         params[:session][:remember_me] == '1' ? remember(subject) : forget(subject)
+         puts "ready to redirect_back_or subject: #{subject.full_name}, - #{subject.uuid}"
+         redirect_back_or subject
       else
          message  = "Account not activated. "
          message += "Check your email for the activation link."

@@ -1,8 +1,8 @@
 #post-header-right.shadowing
-  - users = User.all
+  - subjects = Subject.all
   - (1..1).each do |a|
-    - users.each do |user|
-      %span.user-faces
-        = link_to user_profile_path(user.has_profile.uuid), :remote => :true, :title => "#{user.first_name} #{user.last_name} (@#{user.nickname})" do
-          = image_tag user.has_profile.photo.url(:btn), :class => "responsive"
+    - subjects.each do |subject|
+      %span.subject-faces
+        = link_to subject_profile_path(subject.has_profile.uuid), :remote => :true, :title => "#{subject.first_name} #{subject.last_name} (@#{subject.nickname})" do
+          = image_tag subject.has_profile.photo.url(:btn), :class => "responsive"
 

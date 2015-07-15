@@ -4,7 +4,7 @@ class DiscussionsController < ApplicationController
 
   before_action :set_discussion, only: [:show, :edit, :update, :destroy, :list_one]
   before_action :check_social_network
-  before_action :logged_in_user, only: [:create, :destroy]
+  before_action :logged_in_subject, only: [:create, :destroy]
 
   respond_to :js
 
@@ -25,11 +25,11 @@ class DiscussionsController < ApplicationController
     qstr =
       case filter
         when "members"
-              subject = User
-              "(user:User)-[p:participates|owns|admins]->"
+              subject = Subject
+              "(subject:Subject)-[p:participates|owns|admins]->"
         when "admins"
-              subject = User
-              "(user:User)-[p:owns|admins]->"
+              subject = Subject
+              "(subject:Subject)-[p:owns|admins]->"
         when "events"
               ""
         when "discussions"
@@ -43,13 +43,13 @@ class DiscussionsController < ApplicationController
 
     puts "Query: #{query_string}"
 
-    @users = Neo4j::Session.query.match(query_string).proxy_as(User, :user).paginate(:page => first_page, :per_page => secondary_items_per_page, return: "user distinct",order: "user.last_name asc, user.first_name  asc")
+    @subjects = Neo4j::Session.query.match(query_string).proxy_as(Subject, :subject).paginate(:page => first_page, :per_page => secondary_items_per_page, return: "subject distinct",order: "subject.last_name asc, subject.first_name  asc")
   
-    @users.each do |u|
-      puts "User: #{u.last_name}"
+    @subjects.each do |u|
+      puts "Subject: #{u.last_name}"
     end
 
-    render partial: "#{subject.name.pluralize.downcase}/list", locals: { discussions: @discussions, group: @group, users: @users, subset: filter, title: get_title(filter)}
+    render partial: "#{subject.name.pluralize.downcase}/list", locals: { discussions: @discussions, group: @group, subjects: @subjects, subset: filter, title: get_title(filter)}
 
   end
 
@@ -81,17 +81,17 @@ class DiscussionsController < ApplicationController
     qstr =
       case filter
         when "allingroupsiparticipate"
-              "(user:User { uuid : '#{current_user.uuid}' })-[p:participates|owns]->"
+              "(subject:Subject { uuid : '#{current_subject.uuid}' })-[p:participates|owns]->"
         when "allicreated"
-              "(user:User { uuid : '#{current_user.uuid}' })-[p:owns|admins]->"
+              "(subject:Subject { uuid : '#{current_subject.uuid}' })-[p:owns|admins]->"
         when "iparticipate", "alliparticipate", "mydiscussionsinagroup"
-              "(user:User { uuid : '#{current_user.uuid}' })-[p:participates|owns|admins]->"
+              "(subject:Subject { uuid : '#{current_subject.uuid}' })-[p:participates|owns|admins]->"
         when "iadminister"
-              "(user:User { uuid : '#{current_user.uuid}' })-[p:owns|admins]->"
+              "(subject:Subject { uuid : '#{current_subject.uuid}' })-[p:owns|admins]->"
         when "mycontacts"
-              "(user:User { uuid : '#{current_user.uuid}' })-[f:is_friend_of*1..2]->(afriend:User)-[p:owns]->"
+              "(subject:Subject { uuid : '#{current_subject.uuid}' })-[f:is_friend_of*1..2]->(afriend:Subject)-[p:owns]->"
         when "hot"
-              "(user:User { uuid : '#{current_user.uuid}' })-[p:owns]->"
+              "(subject:Subject { uuid : '#{current_subject.uuid}' })-[p:owns]->"
         when "fresh"
               ""
         when "search"
@@ -145,7 +145,7 @@ class DiscussionsController < ApplicationController
 
     respond_to do |format|
       if @discussion.save
-        rel = Owns.create(from_node: current_user, to_node: @discussion)
+        rel = Owns.create(from_node: current_subject, to_node: @discussion)
         rel = @discussion.create_rel("belongs_to", current_group)
         format.js   { render partial: "enqueue", object: @discussion, notice: 'Discussion was successfully created.' }
         format.html { redirect_to @discussion, notice: 'Discussion was successfully created.' }

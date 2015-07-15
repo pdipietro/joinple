@@ -1,6 +1,6 @@
-- user = current_user
+- subject = current_subject
 .row.col-xs-40
   = render partial: "shared/logo_social_network" 
-  = render partial: "search", locals: { user: user, groups: groups } 
+  = render partial: "search", locals: { subject: subject, groups: groups } 
   = render partial: "buttons" 
 

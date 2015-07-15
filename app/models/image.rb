@@ -6,6 +6,6 @@ class Image
   property :image,            type: String
   mount_uploader :image,      ImageImageUploader 
 
-  has_one   :in,  :is_owned_by, rel_class: HasImage   # User
+  has_one   :in,  :is_owned_by, rel_class: HasImage   # Subject
 
 end

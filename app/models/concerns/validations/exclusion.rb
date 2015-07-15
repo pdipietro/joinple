@@ -16,11 +16,11 @@ require "clusivity"
       # particular enumerable object.
       #
       #   class Person < ActiveRecord::Base
-      #     validates_exclusion_of :username, in: %w( admin superuser ), message: "You don't belong here"
+      #     validates_exclusion_of :subjectname, in: %w( admin supersubject ), message: "You don't belong here"
       #     validates_exclusion_of :age, in: 30..60, message: 'This site is only for under 30 and over 60'
       #     validates_exclusion_of :format, in: %w( mov avi ), message: "extension %{value} is not allowed"
-      #     validates_exclusion_of :password, in: ->(person) { [person.username, person.first_name] },
-      #                            message: 'should not be the same as your username or first name'
+      #     validates_exclusion_of :password, in: ->(person) { [person.subjectname, person.first_name] },
+      #                            message: 'should not be the same as your subjectname or first name'
       #     validates_exclusion_of :karma, in: :reserved_karmas
       #   end
       #

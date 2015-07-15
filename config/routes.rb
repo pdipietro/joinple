@@ -29,8 +29,8 @@ Rails.application.routes.draw do
 #    end
 #  end
 
-  resources :users,               constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true,  except: [:destroy, :show]
-  resources :users,                                                defaults: { :format => "js"}, :remote => :true,  only: [:show]
+  resources :subjects,               constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true,  except: [:destroy, :show]
+  resources :subjects,                                                defaults: { :format => "js"}, :remote => :true,  only: [:show]
 
 # administrative resources
 
@@ -45,7 +45,7 @@ Rails.application.routes.draw do
   resources :tests,               constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
   resources :images,              constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
   resources :media_managers,      constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
-  resources :user_profiles,       constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
+  resources :subject_profiles,    constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
   resources :post_comments,       constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
   resources :discussions,         constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
   resources :discussion_comments, constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true, except: [:new]
@@ -57,7 +57,7 @@ Rails.application.routes.draw do
   get       'social_networks/list(/:filter(/:from_page(/:limit(/:subject(/:deep)))))'  =>   'social_networks#list', :as => :social_networks_list, defaults: { :format => "js"}, :remote => :true
   get       'social_network/:id/list(/:filter(/:from_page(/:limit(/:subject(/:deep)))))'  =>   'social_networks#list_one', :as => :social_network_list, defaults: { :format => "js"}, :remote => :true
 
-  get       'users/list/:class/:object_id/:rel(/:from_page(/:limit(/:subject(/:deep))))'  =>   'users#list', :as => :users_list, defaults: { :format => "js"}, :remote => :true
+  get       'subjects/list/:class/:object_id/:rel(/:from_page(/:limit(/:subject(/:deep))))'  =>   'subjects#list', :as => :subjects_list, defaults: { :format => "js"}, :remote => :true
 
   get       'discussions/list(/:filter(/:from_page(/:limit(/:subject(/:deep)))))'  =>   'discussions#list', :as => :discussions_list, defaults: { :format => "js"}, :remote => :true
   get       'discussions/add(/:filter(/:from_page(/:limit(/:subject(/:deep)))))'  =>   'discussions#add', :as => :discussions_add, defaults: { :format => "js"}, :remote => :true

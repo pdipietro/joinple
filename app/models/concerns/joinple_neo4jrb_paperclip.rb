@@ -25,7 +25,7 @@ end
 #
 # Example:
 #
-#  class User
+#  class Subject
 #    include Neo4j::ActiveNode
 #    include Neo4jrb::Paperclip
 #
@@ -33,7 +33,7 @@ end
 #    validates_attachment_content_type :avatar, content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 #  end
 #
-# The above example is all you need to do. This will load the Paperclip library into the User model
+# The above example is all you need to do. This will load the Paperclip library into the Subject model
 # and add the "has_neo4jrb_attached_file" class method. Provide this method with the same values as you would
 # when using "vanilla Paperclip". The first parameter is a symbol [:field] and the second parameter is a hash of options [options = {}].
 # Note that the validation must come after the call to :has_neo4jrb_attached_file.
@@ -67,7 +67,7 @@ module JoinPle
 
         ##
         # Invoke Paperclip's #has_attached_file method and passes in the
-        # arguments specified by the user that invoked Neo4jrb::Paperclip#has_neo4jrb_attached_file
+        # arguments specified by the subject that invoked Neo4jrb::Paperclip#has_neo4jrb_attached_file
         has_attached_file(field, options)
 
         ##

@@ -8,7 +8,7 @@ class LanguagesController < ApplicationController
   def index
     @languages = Language.all.order(code: :asc)
 
-#    @languages = Neo4j::Session.query("match (language:Language)<-[owns:owns]-(owner:User) return language,owner.uuid as owner_uuid")
+#    @languages = Neo4j::Session.query("match (language:Language)<-[owns:owns]-(owner:Subject) return language,owner.uuid as owner_uuid")
 
   end
 
@@ -33,7 +33,7 @@ class LanguagesController < ApplicationController
     
     respond_to do |format|
       if @language.save
-         rel = Owns.create(from_node: current_user, to_node: @language)  
+         rel = Owns.create(from_node: current_subject, to_node: @language)  
 
          format.js   { render partial: "enqueue", object: @language, notice: 'Language was successfully created.' }
          format.html { redirect_to @language, notice: 'Language was successfully created.' }

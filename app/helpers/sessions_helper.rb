@@ -36,21 +36,21 @@ module SessionsHelper
      session[:pixelRatio] = cookies[:pixelRatio]
   end
 
- # Logs in the given user.
-  def log_in(user)
+ # Logs in the given subject.
+  def log_in(subject)
      puts "++++++++++++ Logging in ++++++++++++++++++++"
      set_screen_geometry
-     session[:user_id] = user.id
-     session[:admin] = user.admin
-     set_current_user_profile
+     session[:subject_id] = subject.id
+     session[:admin] = subject.admin
+     set_current_subject_profile
      check_social_network
   end
 
-  # Remembers a user in a persistent session.
-  def remember(user)
-    user.remember
-    cookies.permanent.signed[:user_id] = user.id
-    cookies.permanent[:remember_token] = user.remember_token
+  # Remembers a subject in a persistent session.
+  def remember(subject)
+    subject.remember
+    cookies.permanent.signed[:subject_id] = subject.id
+    cookies.permanent[:remember_token] = subject.remember_token
   end
 
   # Return the current Social Network
@@ -124,7 +124,7 @@ module SessionsHelper
     #puts "*************************** SET CURRENT GROUP ************************************"
     #puts caller[0..10]
     session[:group_uuid] = uuid
-    x = Neo4j::Session.query("match(User { uuid : '#{current_user_id?}' })-[r:owns|admins]->(g:Group { uuid : '#{uuid}' }) return count(g) as g")
+    x = Neo4j::Session.query("match(Subject { uuid : '#{current_subject_id?}' })-[r:owns|admins]->(g:Group { uuid : '#{uuid}' }) return count(g) as g")
     session[:group_admin] = (x.next[:g] > 0) ? true : false;
     #puts "*************************** SET CURRENT GROUP ************************************"
   end
@@ -141,78 +141,78 @@ module SessionsHelper
     session[:discussion_uuid] = uuid
   end
 
-  # Returns the current logged-in user (if any).
-  def current_user
-    if (user_id = session[:user_id])
-      @current_user ||= User.find(user_id)
-    elsif (user_id = cookies.permanent.signed[:user_id])
-      user = User.find(user_id)
-      if user && user.authenticated?(:remember, cookies[:remember_token])
-        log_in user
-        @current_user = user
+  # Returns the current logged-in subject (if any).
+  def current_subject
+    if (subject_id = session[:subject_id])
+      @current_subject ||= Subject.find(subject_id)
+    elsif (subject_id = cookies.permanent.signed[:subject_id])
+      subject = Subject.find(subject_id)
+      if subject && subject.authenticated?(:remember, cookies[:remember_token])
+        log_in subject
+        @current_subject = subject
       else
-        @current_user = nil
+        @current_subject = nil
       end
     end
-    @current_user
+    @current_subject
   end
 
-  def current_user_id?
-    session[:user_id]
+  def current_subject_id?
+    session[:subject_id]
   end
 
- def profile? user
-    profile = user.profile?
+ def profile? subject
+    profile = subject.profile?
 
-    puts "user profile: #{profile}"
-    #user_profile = Neo4j::Session.query("match (user:User { uuid : '#{user_id}' })-[has_profile:has_profile]->(profile:UserProfile) return profile").first[0]
-    #puts "self.find_by_user after: #{user_profile.class.name} - #{user_profile}"
+    puts "subject profile: #{profile}"
+    #subject_profile = Neo4j::Session.query("match (subject:Subject { uuid : '#{subject_id}' })-[has_profile:has_profile]->(profile:SubjectProfile) return profile").first[0]
+    #puts "self.find_by_subject after: #{subject_profile.class.name} - #{subject_profile}"
     profile
   end
 
 
-  def set_current_user_profile
-  #  session[:current_user_profile] = UserProfile.find_by_user session[:user_id]
+  def set_current_subject_profile
+  #  session[:current_subject_profile] = SubjectProfile.find_by_subject session[:subject_id]
   end
 
-  # Return the current_user profile
-  def current_user_profile
-    session[:current_user_profile]
+  # Return the current_subject profile
+  def current_subject_profile
+    session[:current_subject_profile]
   end
  
-  # Returns true if the user is logged in, false otherwise.
+  # Returns true if the subject is logged in, false otherwise.
   def logged_in?
-    !current_user.nil?
+    !current_subject.nil?
   end
 
-  # Logs out the current user.
+  # Logs out the current subject.
   def log_out
-    forget(current_user)
-    session.delete(:user_id)
+    forget(current_subject)
+    session.delete(:subject_id)
     session.delete(:admin)
     session[:social_network] = nil
-    session.delete[:current_user_profile] unless session[current_user_profile].nil?
+    session.delete[:current_subject_profile] unless session[current_subject_profile].nil?
     session.delete(:group) unless session[:group].nil?
     session.delete(:discussion) unless session[:discussion].nil?
 
     session.delete(:social_network) unless session[:social_network].nil?
-    @current_user = nil
+    @current_subject = nil
   end
 
   # Forgets a persistent session.
-  def forget(user)
+  def forget(subject)
     begin
       rescue
-        user.forget
+        subject.forget
       ensure
-      cookies.delete(:user_id)
+      cookies.delete(:subject_id)
       cookies.delete(:remember_token)
     end
   end
 
-  # Returns true if the given user is the current user.
-  def current_user?(user)
-    user == current_user
+  # Returns true if the given subject is the current subject.
+  def current_subject?(subject)
+    subject == current_subject
   end
   
    # Redirects to stored location (or to the default).
@@ -248,7 +248,7 @@ module SessionsHelper
   end
 
   def is_social_network_customer?
-     is_customer = Neo4j::Session.query("match (u:User { uuid : '#{current_user.uuid}' })-[rel:is_customer]->(dest:SocialNetwork { uuid : '#{session[:social_network][:uuid]}' }) return rel")
+     is_customer = Neo4j::Session.query("match (u:Subject { uuid : '#{current_subject.uuid}' })-[rel:is_customer]->(dest:SocialNetwork { uuid : '#{session[:social_network][:uuid]}' }) return rel")
      is_customer.count == 0 ? false : true
   end
 
@@ -272,7 +272,7 @@ module SessionsHelper
       elsif is_group_admin?
           puts "Can Modify? #{object.class.name.singularize}-#{object.uuid} because IS GROUP ADMIN!!!"
           true
-      elsif is_owner?(current_user,object)
+      elsif is_owner?(current_subject,object)
           puts "Can Modify? #{object.class.name.singularize}-#{object.uuid} because IS OWNER!!!"
           true
       elsif is_group_owner?(current_group,object)
@@ -288,7 +288,7 @@ module SessionsHelper
       union                                                                                                                                                 \
           match (item:#{obj.class.name} {uuid : '#{obj.uuid}'})<-[rel]-(x) return 'in' as dir, type(rel) as rel, labels(x) as label, count(*) as count      \
       union                                                                                                                                                 \
-          match (item:#{obj.class.name} {uuid : '#{obj.uuid}'})-[rel]-(me:User {uuid : '#{current_user_id?}'}) return 'in' as dir, type(rel) as rel, ['me'] as label, count(*) as count "
+          match (item:#{obj.class.name} {uuid : '#{obj.uuid}'})-[rel]-(me:Subject {uuid : '#{current_subject_id?}'}) return 'in' as dir, type(rel) as rel, ['me'] as label, count(*) as count "
 
 #    puts "qs: #{qs}"
     rel = Neo4j::Session.query(qs) 

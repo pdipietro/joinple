@@ -12,13 +12,13 @@ module ActiveModel
       #
       #   validates :terms, acceptance: true
       #   validates :password, confirmation: true
-      #   validates :username, exclusion: { in: %w(admin superuser) }
+      #   validates :subjectname, exclusion: { in: %w(admin supersubject) }
       #   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
       #   validates :age, inclusion: { in: 0..9 }
       #   validates :first_name, length: { maximum: 30 }
       #   validates :age, numericality: true
-      #   validates :username, presence: true
-      #   validates :username, uniqueness: true
+      #   validates :subjectname, presence: true
+      #   validates :subjectname, uniqueness: true
       #
       # The power of the +validates+ method comes when using custom validators
       # and default validators in one call for a given attribute.
@@ -78,11 +78,11 @@ module ActiveModel
       #   <tt>on: [:create, :custom_validation_context]</tt>)
       # * <tt>:if</tt> - Specifies a method, proc or string to call to determine
       #   if the validation should occur (e.g. <tt>if: :allow_validation</tt>,
-      #   or <tt>if: Proc.new { |user| user.signup_step > 2 }</tt>). The method,
+      #   or <tt>if: Proc.new { |subject| subject.signup_step > 2 }</tt>). The method,
       #   proc or string should return or evaluate to a +true+ or +false+ value.
       # * <tt>:unless</tt> - Specifies a method, proc or string to call to determine
       #   if the validation should not occur (e.g. <tt>unless: :skip_validation</tt>,
-      #   or <tt>unless: Proc.new { |user| user.signup_step <= 2 }</tt>). The
+      #   or <tt>unless: Proc.new { |subject| subject.signup_step <= 2 }</tt>). The
       #   method, proc or string should return or evaluate to a +true+ or
       #   +false+ value.
       # * <tt>:allow_nil</tt> - Skip validation if the attribute is +nil+.
@@ -125,7 +125,7 @@ module ActiveModel
       end
 
       # This method is used to define validations that cannot be corrected by end
-      # users and are considered exceptional. So each validator defined with bang
+      # subjects and are considered exceptional. So each validator defined with bang
       # or <tt>:strict</tt> option set to <tt>true</tt> will always raise
       # <tt>ActiveModel::StrictValidationFailed</tt> instead of adding error
       # when validation fails. See <tt>validates</tt> for more information about

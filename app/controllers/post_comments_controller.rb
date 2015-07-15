@@ -33,7 +33,7 @@ class PostCommentsController < ApplicationController
       tx = Neo4j::Transaction.new
 
       @post_comment.save
-      rel = Owns.create(from_node: current_user, to_node: @post_comment)
+      rel = Owns.create(from_node: current_subject, to_node: @post_comment)
       rel = HasPostComment.create(from_node: post, to_node: @post_comment)  
       
       rescue => e
@@ -52,7 +52,7 @@ class PostCommentsController < ApplicationController
           puts "--------- /postComment/create: transaction succeeded: #{@post_comment.content}"
           format.js   { render partial: "enqueue", object: @post_comment, locals: { :post => post }, notice: 'Post was successfully created.' }
           format.html { redirect_to(request.env["HTTP_REFERER"]) }
-          format.json { render :show, status: :created, location: @post_comment, user: @post_comment.is_owned_by }
+          format.json { render :show, status: :created, location: @post_comment, subject: @post_comment.is_owned_by }
         end
       end
     end
@@ -92,6 +92,6 @@ class PostCommentsController < ApplicationController
     def post_comment_params
       params.require(:post_comment).permit(:content, :image, :uuid)
     end
-    # params.require(:user).permit(:nickname, :first_name, :last_name, :email, :password, :password_confirmation )
+    # params.require(:subject).permit(:nickname, :first_name, :last_name, :email, :password, :password_confirmation )
  
 end

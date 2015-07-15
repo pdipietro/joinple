@@ -1,6 +1,6 @@
 class LikesController < ApplicationController
   before_action :check_social_network
-  before_action :logged_in_user
+  before_action :logged_in_subject
 
   respond_to :js
 
@@ -11,15 +11,15 @@ class LikesController < ApplicationController
      @relationship = params[:relationship].downcase
      @dest = Neo4j::Session.query("match (dest:#{@class} { uuid : '#{@id}' }) return dest").first[0]
  
-     like = Neo4j::Session.query("match (u:User { uuid : '#{current_user_id?}' })-[rel:#{@relationship}]->(dest:#{@class} { uuid : '#{@id}' }) return rel")
+     like = Neo4j::Session.query("match (u:Subject { uuid : '#{current_subject_id?}' })-[rel:#{@relationship}]->(dest:#{@class} { uuid : '#{@id}' }) return rel")
      if like.count == 0
-        like = Neo4j::Session.query("match (user:User { uuid : '#{current_user_id?}' }), (dest:#{@class} { uuid : '#{@id}' })
-               create (user)-[rel:#{@relationship}]->(dest) return rel")
+        like = Neo4j::Session.query("match (subject:Subject { uuid : '#{current_subject_id?}' }), (dest:#{@class} { uuid : '#{@id}' })
+               create (subject)-[rel:#{@relationship}]->(dest) return rel")
      else
-        like = Neo4j::Session.query("match (u:User { uuid : '#{current_user_id?}' })-[rel:#{@relationship}]->(dest:#{@class} { uuid : '#{@id}' }) delete rel")
+        like = Neo4j::Session.query("match (u:Subject { uuid : '#{current_subject_id?}' })-[rel:#{@relationship}]->(dest:#{@class} { uuid : '#{@id}' }) delete rel")
      end
     
-     partial_name = "user_#{@relationship}_#{@class.downcase}.js.erb"
+     partial_name = "subject_#{@relationship}_#{@class.downcase}.js.erb"
 
      @dest
      respond_to do |format|
@@ -50,10 +50,10 @@ class LikesController < ApplicationController
     @class = param[:class].downcase
     @class_uuid = params[:object]
 
-    user_list = Neo4j::Session.query("match (u:User { uuid : '#{@subject}' })-[rel:#{@rel}]->(obj:#{@class} { uuid : '#{@class_uuid}' }) return unique user order by first_name, last_name")
+    subject_list = Neo4j::Session.query("match (u:Subject { uuid : '#{@subject}' })-[rel:#{@rel}]->(obj:#{@class} { uuid : '#{@class_uuid}' }) return unique subject order by first_name, last_name")
 
     respond_to do |format|
-         format.js { render partial: show_content, object: user_list }
+         format.js { render partial: show_content, object: subject_list }
     end
 
   end

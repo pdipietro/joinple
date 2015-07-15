@@ -41,12 +41,12 @@
 
         .border
         .ul.col-xs-60
-          .title= "User logged in: #{current_user.full_name} - @#{current_user.nickname}"
+          .title= "Subject logged in: #{current_subject.full_name} - @#{current_subject.nickname}"
           .li
             .col-xs-20
-              user_id
+              subject_id
             .col-xs-40
-              = current_user_id?
+              = current_subject_id?
           .li
             .col-xs-20
               admin
@@ -56,7 +56,7 @@
             .col-xs-20
               profile
             .col-xs-40
-              = current_user_profile
+              = current_subject_profile
 
         .border
         .ul.col-xs-60

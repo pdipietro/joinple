@@ -21,17 +21,17 @@
 
         .border-1
         .command-line-s
-          = link_to users_list_path('Group',group.uuid,'likes'), :remote => :true, :title => "View members", :class => ("hoverable") do
+          = link_to subjects_list_path('Group',group.uuid,'likes'), :remote => :true, :title => "View members", :class => ("hoverable") do
             %i.hoverable.im-members
-            = rels["out-follows-User"].nil? ? 0 : rels["out-follows-User"]
-          = link_to users_list_path('Group',group.uuid,'likes'), :remote => :true, :title => "View discussions", :class => ("hoverable") do
+            = rels["out-follows-Subject"].nil? ? 0 : rels["out-follows-Subject"]
+          = link_to subjects_list_path('Group',group.uuid,'likes'), :remote => :true, :title => "View discussions", :class => ("hoverable") do
             %i.hoverable.im-discussions-groups
-            = rels["out-follows-User"].nil? ? 0 : rels["out-follows-User"]
-          = link_to users_list_path('Group',group.uuid,'likes'), :remote => :true, :title => "View following/er", :class => ("hoverable") do
+            = rels["out-follows-Subject"].nil? ? 0 : rels["out-follows-Subject"]
+          = link_to subjects_list_path('Group',group.uuid,'likes'), :remote => :true, :title => "View following/er", :class => ("hoverable") do
             %i.hoverable.im-bi-follow
-            = rels["out-follows-User"].nil? ? 0 : rels["out-follows-User"]
+            = rels["out-follows-Subject"].nil? ? 0 : rels["out-follows-Subject"]
         .border-1
-        = render partial: "users/owner", locals: { object: group }
+        = render partial: "subjects/owner", locals: { object: group }
 
         %div{ :style => "background-color: #{group.background_color}; color: #{group.text_color};" }
           .spacer

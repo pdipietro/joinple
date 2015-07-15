@@ -13,7 +13,7 @@ module MediaManagerItem
   has_many :out, landing_page_header, rel_class: HasImage
   has_many :out, landing_page_logo, rel_class: HasImage
   has_many :out, social_network_logo, rel_class: HasImage
-  has_many :out, user_avatar, rel_class: HasImage
-  has_many :out, user_image, rel_class: HasImage
+  has_many :out, subject_avatar, rel_class: HasImage
+  has_many :out, subject_image, rel_class: HasImage
 
 end

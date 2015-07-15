@@ -51,7 +51,7 @@
               = image_tag arr[3].url(:post_sq), :class => "img-c3"
             = link_to show_image_path( img: UrlSafeBase64.encode64(arr[4].to_s) ), :remote => :true, :method => :post do
               = image_tag arr[4].url(:post_sq), :class => "img-c3"
-        = render partial: 'users/owner', locals: { object: post, type: "owner", title: "owner details" }
+        = render partial: 'subjects/owner', locals: { object: post, type: "owner", title: "owner details" }
 
 
       -# *********************************** POST CONTENT ****************************************** 
@@ -83,15 +83,15 @@
           
         .command-line-s.to-right
           - puts (rels)
-          = link_to users_list_path('Post',post.uuid,'likes'), :remote => :true, :title => "Likes", :class => ("hoverable") do
+          = link_to subjects_list_path('Post',post.uuid,'likes'), :remote => :true, :title => "Likes", :class => ("hoverable") do
             %i.hoverable.im-like
-            = rels["in-likes-User"].nil? ? 0 : rels["in-likes-User"]
-          = link_to users_list_path('Post',post.uuid,'shares'), :remote => :true, :title => "Shares", :class => ("hoverable") do
+            = rels["in-likes-Subject"].nil? ? 0 : rels["in-likes-Subject"]
+          = link_to subjects_list_path('Post',post.uuid,'shares'), :remote => :true, :title => "Shares", :class => ("hoverable") do
             %i.hoverable.im-share2
-            = rels["in-follows-User"].nil? ? 0 : rels["out-follows-User"]
-          = link_to users_list_path('Post',post.uuid,'preferes'), :remote => :true, :title => "Preferreds", :class => ("hoverable") do
+            = rels["in-follows-Subject"].nil? ? 0 : rels["out-follows-Subject"]
+          = link_to subjects_list_path('Post',post.uuid,'preferes'), :remote => :true, :title => "Preferreds", :class => ("hoverable") do
             %i.hoverable.im-bookmarks
-            = rels["in-preferes-User"].nil? ? 0 : rels["in-preferes-User"]
+            = rels["in-preferes-Subject"].nil? ? 0 : rels["in-preferes-Subject"]
 
       -# *********************************** POST COMMENT LINE ****************************************** 
 

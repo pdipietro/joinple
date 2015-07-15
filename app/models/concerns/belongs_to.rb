@@ -3,7 +3,7 @@ module BelongsTo
  # include SessionsHelper
 
   included do 
-    has_many :out, :is_followed_by, model_class: :User, origin: :follows
+    has_many :out, :is_followed_by, model_class: :Subject, origin: :follows
   end
 
 end

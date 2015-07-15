@@ -1,7 +1,7 @@
 class LandingPagesController < ApplicationController
  
   before_action :check_social_network
-  before_action :logged_in_user, only: [:create, :destroy]
+  before_action :logged_in_subject, only: [:create, :destroy]
   after_action :set_screen_geometry, only: [:index, :landing_page, :home]
   before_action :set_landing_page, only: [:show, :edit, :update, :destroy]
 

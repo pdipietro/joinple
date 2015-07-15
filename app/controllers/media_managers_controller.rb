@@ -3,7 +3,7 @@ class MediaManagersController < ApplicationController
 
   before_action :check_social_network
  # before_action :set_group, only: [:show, :edit, :update, :destroy]
-  before_action :logged_in_user, only: [:create, :destroy]
+  before_action :logged_in_subject, only: [:create, :destroy]
 
   respond_to :js
 

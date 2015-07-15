@@ -19,9 +19,9 @@ class SocialNetworksController < ApplicationController
     query_string =
       case filter
         when "iparticipate"
-             "(user:User { uuid : '#{current_user.uuid}' })-[p:participates|owns]->(social_networks:SocialNetwork)"
+             "(subject:Subject { uuid : '#{current_subject.uuid}' })-[p:participates|owns]->(social_networks:SocialNetwork)"
         when "iadminister"
-             "(user:User { uuid : '#{current_user.uuid}' })-[p:owns]->(social_networks:SocialNetwork)" 
+             "(subject:Subject { uuid : '#{current_subject.uuid}' })-[p:owns]->(social_networks:SocialNetwork)" 
         when "all"
              "(social_networks:SocialNetwork)"
       end
@@ -68,7 +68,7 @@ class SocialNetworksController < ApplicationController
 
     respond_to do |format|
       if @social_network.save
-        rel = Owns.create(from_node: current_user, to_node: @social_network) 
+        rel = Owns.create(from_node: current_subject, to_node: @social_network) 
 
         format.js   { render partial: "enqueue", object: @social_network, notice: 'Social network was successfully created.' }
         format.html { redirect_to @social_network, notice: 'Social network was successfully created.' }
