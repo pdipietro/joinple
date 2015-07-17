@@ -10,9 +10,9 @@
         %span.icon-bar
       .navbar-brand.logo
         = image_tag "joinple_logo.png"
-      - unless ENV['RAILS_ENV'] == "production"
+        -# unless ENV['RAILS_ENV'] == "production"
         .stage
-          = ENV['RAILS_ENV']
+          = stage.humanize 
     #navbar.navbar-collapse.collapse
       %ul.nav.navbar-nav.navbar-right
         -# unless ENV['RAILS_ENV'] == "production"
