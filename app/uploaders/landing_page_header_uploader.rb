@@ -36,7 +36,7 @@ class LandingPageHeaderUploader < CarrierWave::Uploader::Base
   # Create different versions of your uploaded files:
   ImageSizes::CLASSES[:LandingPage][:header].each do |f|
     k = "process :resize_to_fill => #{ImageSizes::SIZES[f][0]}"
-    puts "#{k}"
+    #puts "#{k}"
     version f do
       eval(k)
       #process :convert => ("-resize #{ImageSizes::SIZES[f][0]}")

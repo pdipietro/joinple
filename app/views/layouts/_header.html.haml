@@ -17,7 +17,8 @@
       %ul.nav.navbar-nav.navbar-right
         -# unless ENV['RAILS_ENV'] == "production"
           %li.stage
-            = ENV['RAILS_ENV']
+            = stage.humanize 
+            -#= ENV['RAILS_ENV']
         - unless logged_in?
           %li
             = link_to root_path, :title => "Joinplee home" do

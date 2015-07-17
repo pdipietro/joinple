@@ -36,7 +36,7 @@ class GroupHeaderUploader < CarrierWave::Uploader::Base
    
   ImageSizes::CLASSES[:Group][:header].each do |f|
    k = "process :resize_to_fill => #{ImageSizes::SIZES[f][0]}"
-    puts "#{k}"
+    #puts "#{k}"
     version f do
       eval(k)
       #process :convert => ("-resize #{ImageSizes::SIZES[f][0]}")

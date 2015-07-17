@@ -6,7 +6,9 @@ class ImageSizes
 # the prefix is calculated at run_time and depends on the phisical size of the screen
 #
 
-    DESTINATION = %q["system/uploads/#{ENV['RAILS_ENV']}/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"]
+    #DESTINATION = %q["system/uploads/#{ENV['RAILS_ENV']}/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"]
+    #DESTINATION = %q["system/uploads/#{stage}/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"]
+    DESTINATION = %q["system/uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"]
 
     SIZES = {
           :btn         => ['[36, 36]',        :jpg, :quality => 70],              # subject_btn

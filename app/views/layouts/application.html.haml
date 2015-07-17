@@ -3,6 +3,7 @@
   %head
     - csnn = current_social_network_name?.nil? ? "JoinPle" : current_social_network_name?
     = puts " ******************************************* #{current_social_network_name?}"
+    = puts " ******************************************* #{gethostname}"
     %title= csnn.capitalize
     :javascript
       document.cookie='width='+screen.width;
