@@ -24,7 +24,7 @@ module ApplicationHelper
       STAGE_BACKGROUND[@stage]
   end
 
-  def recode_env
+  def JETTALO_recode_env
     case ENV['RAILS_ENV']
       when "development" then "dev."
       when "dev"  then "dev."
@@ -37,7 +37,11 @@ module ApplicationHelper
   def calculate_full_path (sn)
     #env = recode_env
     #"http://#{env}#{sn.name.downcase.gsub(/\s+/, "")}.#{request.domain}"
-    "http://#{@stage}.#{sn.name.downcase.gsub(/\s+/, "")}.#{request.domain}"
+    if @stage == ""
+      "http://#{sn.name.downcase.gsub(/\s+/, "")}.#{request.domain}"
+    else
+      "http://#{@stage}.#{sn.name.downcase.gsub(/\s+/, "")}.#{request.domain}"
+    end
   end
 
   def gethostname
@@ -66,7 +70,8 @@ module ApplicationHelper
        if stage.count == 1
           @stage = stage[0]
        else
-         raise  "515","Error on redirected server: doesn't contains a stage fragment"
+         @stage = ""
+         #raise  "515","Error on redirected server: doesn't contains a stage fragment"
        end
     else
        raise  "516","Error: domain server #{sn} is not allowed"
@@ -82,7 +87,7 @@ module ApplicationHelper
         sn = u[u.rindex("//")+2..-1].split(sn).first[0..-2]
       end 
        sn = sn.start_with?("test.") ? sn.split(".")[1] : sn 
-       sn = sn.start_with?("dev.") ? sn.split(".")[1] : sn 
+       sn = sn.start_with?("dev.")  ? sn.split(".")[1] : sn 
        sn = sn.start_with?("demo.") ? sn.split(".")[1] : sn 
        sn = humanize_word(sn)
        csn = SocialNetwork.find_by( :iname => sn.downcase )
