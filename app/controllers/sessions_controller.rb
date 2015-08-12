@@ -1,7 +1,12 @@
 class SessionsController < ApplicationController
   before_action :check_social_network, only: [:new] #, :create]
 
-  #render_to :js
+
+  def admin
+    respond_to do |format|
+        format.html { render :newAdmin, object: :session }
+    end
+  end
 
   def new
     puts "session_helper:new - Social network checked: it is #{current_social_network_name?.downcase}"

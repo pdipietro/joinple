@@ -651,7 +651,8 @@ hr {
   text-align: center;
 }
 
-img.responsive {
+img.responsive,
+video.responsive {
   max-width: 100% !important;
   display: block;
   height: auto;
@@ -1431,4 +1432,75 @@ ul#myposts a li {
   & .row > div:first-child {
     border-right: 1px solid #e7e7e7;
   }
+}
+
+
+
+
+
+/* ******************* Landing Page v0.75 ************************ */
+
+.landing {
+  position: fixed;
+  color: #ffffff;
+  top: 0px;
+  text-shadow: 4px 3px 5px rgba(0, 0, 0, 1);
+
+  .logo {
+    padding: 10px;
+  }
+
+  .text {
+    position: fixed;
+
+    text-align: center;
+
+    .line1 {
+      font-size: 3.35em;
+
+    }
+
+    .line2 {
+      font-size: 1.85em;
+
+    }
+    .line3 {
+      font-size: 1.5em;
+    }
+
+    #mailCollection {
+      .centered {
+        width: 80% !important;
+        text-align: center; 
+        font-size: 1.5em;
+        text-shadow: none;
+      }
+      .help-block {
+        padding: 3px;
+        background-color: #ffffff;
+      }
+    }
+    .semail {
+      font-size: 1.5em;
+      text-shadow: none;
+
+    }
+    .video {
+      margin: 0 auto;
+      smax-width: 50% !important;
+      sheight: auto;
+    }
+  }
+
+
+  .footer {
+    position: fixed;
+    bottom: 0;
+    font-size: 3em;
+    width: 100%;
+    sheight: 2em;
+    background-color: #a02348;
+    text-align: center;
+  }
+
 }

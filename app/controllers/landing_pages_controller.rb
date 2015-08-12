@@ -20,24 +20,31 @@ class LandingPagesController < ApplicationController
   end
 
   def home
-    puts params
-    screen_geometry= params
-    puts "Home-Logged in? : #{logged_in?}"
-    if load_social_network_from_url.nil?
-      render file: "#{Rails.root}/public/404.html", layout: false, status: 404
-      false
-    end
 
-    if session[:height].to_s.length < 2
-      layout='dummy'
-      page='home'
-    elsif logged_in?
-      layout="application"
+    if is_deploy or is_dev
+      layout="mail_collector"
       page="home"
     else
-      layout='landing_page'   
-      page='landing_page'
-     end 
+      puts params
+      screen_geometry= params
+      puts "Home-Logged in? : #{logged_in?}"
+      if load_social_network_from_url.nil?
+        render file: "#{Rails.root}/public/404.html", layout: false, status: 404
+        false
+      end
+
+      if session[:height].to_s.length < 2
+        layout='dummy'
+        page='home'
+      elsif logged_in?
+        layout="application"
+        page="home"
+      else
+        layout='landing_page'   
+        page='landing_page'
+       end 
+    end
+
     respond_to do |format|
       format.html {render layout: layout }
       format.js {render layout: layout }

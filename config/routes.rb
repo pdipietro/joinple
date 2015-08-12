@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get    'privacy'   =>    'static_pages#privacy', defaults: { :format => "js"}, :remote => :true
   get    'terms'     =>    'static_pages#terms', defaults: { :format => "js"}, :remote => :true
 
+  get    'admin'     =>    'sessions#loginAdmin'
+
   get    'login'     =>    'sessions#new', defaults: { :format => "js"}, :remote => :true
   post   'login'     =>    'sessions#create', defaults: { :format => "js"}, :remote => :true
   get    'signup'    =>    'users#new', defaults: { :format => "js"}, :remote => :true
@@ -20,8 +22,11 @@ Rails.application.routes.draw do
 #  get    'password_resets/new'
 #  get    'password_resets/edit.
 
+  resources :mail_collectors,                                      defaults: { :format => "js"}, :remote => :true
+
   resources :account_activations, only: [:edit], defaults: { :format => "js"}, :remote => :true
   resources :password_resets, only: [:new, :create, :edit, :update], defaults: { :format => "js"}, :remote => :true
+
 
 #  resources :users, :remote => :true do
 #    member do
@@ -29,8 +34,8 @@ Rails.application.routes.draw do
 #    end
 #  end
 
-  resources :subjects,               constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true,  except: [:destroy, :show]
-  resources :subjects,                                                defaults: { :format => "js"}, :remote => :true,  only: [:show]
+  resources :subjects,            constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true,  except: [:destroy, :show]
+  resources :subjects,                                             defaults: { :format => "js"}, :remote => :true,  only: [:show]
 
 # administrative resources
 

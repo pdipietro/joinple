@@ -7,6 +7,10 @@ class ApplicationController < ActionController::Base
 
   helper_method :load_social_network
 
+  def caller_ip
+    request.env['HTTP_X_FORWARDED_FOR']
+  end
+
   private
 
     # Confirms a logged-in subject.

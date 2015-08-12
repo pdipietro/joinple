@@ -72,6 +72,10 @@ gem 'sprockets-rails', '2.1.3', :require => 'sprockets/rails/version'
 gem 'url_safe_base64'
 gem 'bootstrap-wysihtml5-rails'
 
+gem 'cloudinary'
+
+gem 'geocoder'
+
 # gem "sprockets", '2.12.3' 
 
 #gem 'browser'

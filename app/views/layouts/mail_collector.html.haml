@@ -1,0 +1,46 @@
+!!!
+%html
+  %head
+    :javascript
+      document.cookie='width='+screen.width;
+      document.cookie='height='+screen.height;
+      document.cookie='pixelRatio='+("devicePixelRatio" in window ? devicePixelRatio : "1");
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'salvattore', media: 'all', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+    = google_webfonts_init({              |
+        google: ['Roboto Slab', 'Roboto'] |
+      })                                  |
+    = render 'layouts/shim'
+    %body
+      #wrapper
+        - x = 1 + rand(4)
+        = cl_image_tag("landing#{x}.jpg", :alt => "landing page", :width => :auto, :dpr => :auto, :class => "cld-responsive", :responsive_placeholder => "blank", :style => "height: 100%" )
+
+      - ip = request.env['HTTP_X_FORWARDED_FOR']
+
+      - if ip.start_with?("192.168.10.") # or true # and false
+        .landing
+          = cl_image_tag ("logo_joinple.png"), :class => "logo"
+          .row.text
+            .col-xs-8
+            .col-xs-44
+              .line1
+                = t("landing_page.landing_075.line_1").html_safe
+                .spacer
+              .line2
+                = t("landing_page.landing_075.line_2").html_safe
+                .spacer
+              = render partial: "mail_collectors/form" , locals: { line: "line_3" }
+              .video
+                = cl_video_tag("video1.mp4", :quality=>30, :fetch_format=>:auto, :controls => :true, :width => "300", :height => "200")
+          .row.footer
+            .col-xs-60
+            = t("landing_page.landing_075.footer").html_safe
+
+    :javascript
+      $.cloudinary.responsive()
+
+
+

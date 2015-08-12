@@ -1,0 +1,22 @@
+---
+development:
+  cloud_name: www-joinple-com
+  api_key: '318235473349975'
+  api_secret: "-ansQxvlvQ0AzwctsjGwdSeMQkA"
+  enhance_image_tag: true
+  static_image_support: false
+#  cdn_subdomain: true
+production:
+  cloud_name: www-joinple-com
+  api_key: '318235473349975'
+  api_secret: "-ansQxvlvQ0AzwctsjGwdSeMQkA"
+  enhance_image_tag: true
+  static_image_support: true
+  cdn_subdomain: true
+test:
+  cloud_name: www-joinple-com
+  api_key: '318235473349975'
+  api_secret: "-ansQxvlvQ0AzwctsjGwdSeMQkA"
+  enhance_image_tag: true
+  static_image_support: false
+  cdn_subdomain: true

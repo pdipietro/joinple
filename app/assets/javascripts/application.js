@@ -16,4 +16,5 @@
 //= require bootstrap-sprockets
 //= require bootstrap-switch
 //= require turbolinks
+//= require cloudinary
 //= require_tree .

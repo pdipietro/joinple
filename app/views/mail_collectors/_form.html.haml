@@ -1,0 +1,12 @@
+#mailCollection 
+  - if line == "line_3"
+    - mailcollector = defined?(mail_collector) ? mail_collector : MailCollector.new
+    = bootstrap_form_for(mailcollector, :remote => :true) do |f|
+      .centered= f.text_field :email, append: ( f.submit t(:send) ), prepend: t("landing_page.email.label").html_safe, :hide_label => :true, placeholder: t("landing_page.email.placeholder").html_safe
+    .spacer
+    .line3
+      = t("landing_page.landing_075.line_3").html_safe
+  - else
+    .line2
+      = t("landing_page.landing_075.line_4").html_safe
+

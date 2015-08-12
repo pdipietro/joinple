@@ -370,6 +370,10 @@ puts " ------------------------------------________> #{res}"
 
   end
 
+  def caller_ip
+    request.env['HTTP_X_FORWARDED_FOR']
+  end
+  
   private
 
     def set_current_social_network (sn)
@@ -383,6 +387,8 @@ puts " ------------------------------------________> #{res}"
         session[:social_network] = sn
       end
     end
+
+
 
 
 

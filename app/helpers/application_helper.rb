@@ -1,8 +1,8 @@
 module ApplicationHelper
 
   ALLOWED_DOMAIN_SERVER = ["joinple","estatetuttoanno"]
-  STAGE_HUMANIZED = { "dev" => "development", "development" => "development", "test" => "test", "demo" => "demo", "" => "production" }
-  STAGE_BACKGROUND = { "dev" => "background-color : #5C8D69;", "development" => "background-color : #5C8D69;", "test" => "background-color : #fde8ee;", "demo" => "background-color : yellow;", "" => "" }
+  STAGE_HUMANIZED = { "dev" => "development", "test" => "test", "demo" => "demo", "" => "production" }
+  STAGE_BACKGROUND = { "dev" => "background-color : #5C8D69;", "test" => "background-color : #fde8ee;", "demo" => "background-color : yellow;", "" => "" }
 
 
   # Returns the full title on a per-page basis.
@@ -20,21 +20,28 @@ module ApplicationHelper
     SecureRandom.urlsafe_base64
   end
 
+
+
+  # Check the current stage.
+  def is_dev
+    @stage == "dev"
+  end
+  def is_test
+    @stage == "test"
+  end
+  def is_demo
+    @stage == "demo"
+  end
+  def is_deploy
+    @stage == ""
+  end
+
+
   def get_background
       STAGE_BACKGROUND[@stage]
   end
 
-  def JETTALO_recode_env
-    case ENV['RAILS_ENV']
-      when "development" then "dev."
-      when "dev"  then "dev."
-      when "test" then "test."
-      when "demo" then "demo."
-      else ""
-    end
-  end
-
-  def calculate_full_path (sn)
+    def calculate_full_path (sn)
     #env = recode_env
     #"http://#{env}#{sn.name.downcase.gsub(/\s+/, "")}.#{request.domain}"
     if @stage == ""
@@ -79,6 +86,9 @@ module ApplicationHelper
   end
 
   def load_social_network_from_url
+
+      set_locale
+
       check_machine_name_vs_request
       sn = request.domain.split(".").first.downcase
       puts "ALLOWED_DOMAIN_SERVER.include? sn: #{ALLOWED_DOMAIN_SERVER.include? sn}"
@@ -118,6 +128,18 @@ module ApplicationHelper
   # capitalize the first word and any first word after a '.' and add a final '.'
   def humanize_sentence(sentence)
       sentence.split('.').map(&:strip).map(&:capitalize).join('. ') + '.'
+  end
+
+  def set_locale
+    logger.debug "* Accept-Language: #{request.env['HTTP_ACCEPT_LANGUAGE']}"
+    I18n.locale = extract_locale_from_accept_language_header
+    logger.debug "* Locale set to '#{I18n.locale}'"
+  end
+ 
+  private
+  
+  def extract_locale_from_accept_language_header
+    request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first
   end
 
 end

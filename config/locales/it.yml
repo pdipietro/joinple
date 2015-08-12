@@ -19,18 +19,18 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
-en:
-  hello: "Hello world"
+it:
+  hello: "Ciao mondo!"
   date:
     formats:
-      default: "%Y-%m-%d"
+      default: "%d-%m-%Y"
       short: "%b %d"
       long: "%B %d, %Y"
-  send: "send"
+  send: "invia"
   landing_page:
     email: 
       label: "email"
-      placeholder: "Insert your email address ..."
+      placeholder: "inserisci il tuo indirizzo email ..."
     landing_075:
       line_1: "People getting together to learn, share and create a social network"
       line_2: "It works for you & the things you believe in rather than for advertisers.<br />Join now and invite your friends!"
@@ -43,23 +43,23 @@ en:
         language:
           attributes:
             code:
-              taken: "Language code already used"
-              placeholder: "Enter the language code in the form 'xx' or 'xx-yy'"
+              taken: "il codice lingua è già esistente"
+              placeholder: "inserisci il codice lingua nella forma 'xx' oppure 'xx-yy' ..."
             description:
-              taken: "Language description already used"
-              placeholder: "Enter the language description"
+              taken: "questa descrizione è già stata utilizzata per un'altra lingua."
+              placeholder: "inserisci la edscrizione della lingua ..."
         subject:
           attributes:
             nickname:
-              label: "nickname"
-              taken: "Nickname not available: it must be unique in the system"
+              label: "soprannome"
+              taken: "il soprannome scelto è già stato utilizzato: deve essere univoco nel sistema"
             first_name:
-              label: "first name"
+              label: "nome"
             last_name:
-              label: "last name"
+              label: "cognome"
         mail_collector:
           attributes:
             email:
-              taken: "email already taken"
-              placeholder: "Insert your email address ..."
+              taken: "email già in uso"
+              placeholder: "inserisci il tuo indirizzo email ..."
 
