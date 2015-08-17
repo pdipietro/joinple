@@ -34,11 +34,23 @@ $margin_standard: 0.5em;
 
 /* ********************************** END COMMON CONSTANTS *********************************************** */
 
-/* #page margin top must be equal to header.height + 10 px */
+/* ************************************ START FONT-SIZE ************************************************** */
 
-html {
-  font-size: 16px;
-}
+html { font-size: 16px; }
+
+@media screen and (min-width: 360px)  and (max-width: 720px) 
+  { html {  font-size: 12px;   } } 
+
+@media screen and (max-width: 1279px) 
+  { html {  font-size: 14px;   } } 
+
+@media screen and (max-device-width: 480px) 
+  { html {  font-size: 12px;   } } 
+
+
+/* ************************************* END FONT-SIZE *************************************************** */
+
+/* #page margin top must be equal to header.height + 10 px */
 
 body {
   -webkit-font-smoothing: antialiased;
@@ -650,6 +662,15 @@ hr {
 .text-center {
   text-align: center;
 }
+
+.responsive img {
+  max-width: 100% !important;
+  display: block;
+  height: auto !important;
+
+  
+}
+
 
 img.responsive,
 video.responsive {

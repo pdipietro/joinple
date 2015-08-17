@@ -33,9 +33,22 @@ module SessionsHelper
   def set_screen_geometry
      session[:width] = cookies[:width]
      session[:height] = cookies[:height]
-     session[:pixelRatio] = cookies[:pixelRatio]
+     session[:pixelRatio] = cookies[:pixelRatio].to_f
   end
 
+  def browser_geometry
+     { :width => :session[:width], :dpr => :session[:pixelRatio], :height => session[:pixelRatio] }
+  end
+
+  def browser_width
+     :session[:width]
+  end
+  def browser_height
+     session[:height]
+  end
+  def browser_pixelRatio
+     session[:pixelRatio]
+  end
  # Logs in the given subject.
   def log_in(subject)
      puts "++++++++++++ Logging in ++++++++++++++++++++"

@@ -4,7 +4,9 @@
     :javascript
       document.cookie='width='+screen.width;
       document.cookie='height='+screen.height;
-      document.cookie='pixelRatio='+("devicePixelRatio" in window ? devicePixelRatio : "1");
+      document.cookie='pixelRatio='+("devicePixelRatio" in window ? devicePixelRatio : "1.0");
+      document.cookie='windowHeight='+window.height;
+      document.cookie='windowWidth='+window.width;
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'salvattore', media: 'all', 'data-turbolinks-track' => true
@@ -16,7 +18,19 @@
     %body
       #wrapper
         - x = 1 + rand(4)
-        = cl_image_tag("landing#{x}.jpg", :alt => "landing page", :width => :auto, :dpr => :auto, :class => "cld-responsive", :responsive_placeholder => "blank", :style => "height: 100%" )
+        - src = "landing#{x}.jpg"
+        -#= cl_image_tag("landing#{x}.jpg", :alt => "landing page", :width => :auto, :dpr => :auto, :class => "cld-responsive", :responsive_placeholder => "blank", :style => "height: 100%" )
+        -#.responsive
+          = cl_image_tag("landing#{x}.jpg", :alt => "landing page",:crop => :fill, :width => cookies[:width], :height => cookies[:height], :dpr => session[:pixelRatio])
+        -#, :class => "responsive" )
+          = jpl_image_tag(("landing#{x}.jpg", :alt => "landing page",:crop => :crop, :width => cookies[:width], :height => cookies[:height], :dpr => session[:pixelRatio]:class => "responsive"   
+        - src = "landing#{x}.jpg"
+        :javascript
+          var h = $(window).height();
+          var filename = "#{src}"
+          $.cloudinary.image(filename, {width: "auto", height: h, crop: "fill", cloud_name: "dev-joinple-com", responsive: true, dpr: 'auto', style: "height: 100%"}).appendTo('#wrapper').cloudinary_update();
+          $.cloudinary.responsive();
+      
 
       - ip = request.env['HTTP_X_FORWARDED_FOR']
 
