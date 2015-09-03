@@ -24,7 +24,7 @@ module ApplicationHelper
 
   # Check the current stage.
   def is_dev
-    ["dev","dev5"].contains @stage
+    ["dev","dev5"].include? @stage
   end
   def is_test
     @stage == "test"

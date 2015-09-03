@@ -32,11 +32,14 @@ en:
       label: "email"
       placeholder: "Insert your email address ..."
     landing_075:
-      line_1: "People getting together to learn, share and create a social network"
-      line_2: "It works for you & the things you believe in rather than for advertisers.<br />Join now and invite your friends!"
-      line_3: "Leave us your email and we will contact you as soon as the platform will be online.<br />In addition, you will receive a free gift from our team."
-      line_4: "Thank you for enable us to contact you.<br />We'll never sell or use your email other than for Joinple evolution and notices."
-      footer: "IT WILL BE FREE"
+      line_1: "Your social network, our users, your passions, together!"
+      line_2_col_1: "<b>The easiest way, fast and free to create a social network</b> on your passions, interests, causes, business and much more.<br />Users of all JoinPle's social networks are waiting for you and ready to follow you."
+      line_2_col_2: "For the first time, <b>with just a single membership, you'll find, in a unique environment, many social networks</b> on your different passions.</br>Your friends are already booking, don't wait any longer!"
+      line_3: "To be notified when JoinPle will be online you can leave us your e-mail.<br>You will receive a gift as appreciation."
+      line_4: "Thanks for your interest from the JoinPle's team. We suggest you to see our funny video and follow us on ours social network profiles."
+      line_5: "Watch 1 minute video of JoinPle and visit our YouTube channel."
+      privacy_accepted: "You need to check this box to accept our terms of service and privacy policy."
+      footer: "IT'S FREE"
   neo4j:
     errors:
       models:

@@ -1,7 +1,6 @@
 $standard_padding:4px;
 
 
-
 /* ****************************     SALVATTORE     ******************************* */
 
 @media screen and (max-width: 767px)
@@ -30,7 +29,8 @@ $standard_padding:4px;
 .size-6  { width: 16.666%; }
 
 
-#grid1, #grid2, #grid3, #grid4, #grid5, #grid6, #gridPost {
+
+#grid1, #grid2, #grid3, #grid4, #grid5, #grid6, #gridPost, #grid075 {
   border: 0;
   margin: 0 auto;
   padding: 0;
@@ -65,6 +65,15 @@ $standard_padding:4px;
 }
 
 
+/* ************************************************************************************************** */
+
+/* grid075: Grid with 2 columns on the landing page of the 0.75 version */
+
+@media screen and (min-width: 100px) and (max-width: 719px)
+{    #grid075[data-columns]::before    {        content: '1 .column.size-1';    }   }
+
+@media screen and (min-width: 720px) and (max-width: 9999px)
+{    #grid075[data-columns]::before    {        content: '2 .column.size-2';     }   }
 
 /* ************************************************************************************************** */
 

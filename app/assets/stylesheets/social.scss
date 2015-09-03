@@ -1461,33 +1461,39 @@ ul#myposts a li {
 
 /* ******************* Landing Page v0.75 ************************ */
 
-.landing {
-  position: fixed;
+#landing-075 {
+  overflow-y: visible;
+  overflow-x: hidden;
+}
+
+#wrapper-page1 {
+  position: relative;
   color: #ffffff;
   top: 0px;
-  text-shadow: 4px 3px 5px rgba(0, 0, 0, 1);
+  z-index: 0;
+}
+
+.landing {
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #ffffff;
+  z-index: 10;
 
   .logo {
     padding: 10px;
   }
 
-  .text {
-    position: fixed;
+  .row {
+    sposition: fixed;
 
     text-align: center;
 
     .line1 {
+      text-shadow: 4px 3px 5px rgba(0, 0, 0, 1);
       font-size: 3.35em;
-
     }
-
-    .line2 {
-      font-size: 1.85em;
-
-    }
-    .line3 {
-      font-size: 1.5em;
-    }
+/* 3.35 - 1.85 - 1.5 */
 
     #mailCollection {
       .centered {
@@ -1513,6 +1519,53 @@ ul#myposts a li {
     }
   }
 
+  .milk {
+    background-color: #ffffff;
+    opacity: 0.70;
+    width: 100%;
+    height: auto;
+  }
+
+  .line2 {
+    color: #636369;
+    font-size: 1.6em;
+
+    text-align: justify;
+    text-align: -webkit-left;
+    text-align: -mox-left;
+    text-align: -ms-left;
+    text-align: -o-left;
+   } 
+
+  .line2-1 {
+    @extend .line2;
+    padding: 4px 140px 4px 140px;
+    overflow: auto;
+  }
+
+  .line2-2 {
+    @extend .line2;
+    padding: 4px 140px 4px 140px;
+    overflow: auto;
+  }
+
+  .line3 {
+    font-size: 1.5em;
+    color: #A02348;
+    font-weight: bolder;
+  }
+
+  .line5 {
+    text-shadow: 4px 3px 5px rgba(0, 0, 0, 1);
+    font-size: 1.5em;
+  }
+
+  #landing-mail {
+    text-align: center;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
   .footer {
     position: fixed;
@@ -1523,5 +1576,8 @@ ul#myposts a li {
     background-color: #a02348;
     text-align: center;
   }
+}
 
+.landing .page2 {
+  background-color: green;
 }
