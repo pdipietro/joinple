@@ -26,6 +26,12 @@ class MailCollectorsController < ApplicationController
   def create
     @mail_collector = MailCollector.new(mail_collector_params)
     @mail_collector.ip_address = caller_ip
+    puts "@mail_collector: #{@mail_collector}"
+    puts "@mail_collector.save: #{@mail_collector.save}"
+    puts "@mail_collector.errors: #{@mail_collector.errors}"
+    @mail_collector.errors.each do |m|
+      puts m
+    end
 
     respond_to do |format|
       if @mail_collector.save
@@ -59,6 +65,6 @@ class MailCollectorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def mail_collector_params
-      params.require(:mail_collector).permit(:email)
+      params.require(:mail_collector).permit(:email, :privacy_accepted)
     end
 end

@@ -42,7 +42,7 @@
                     .line2-2= t("landing_page.landing_075.line_2_col_2").html_safe
                 .spacer-2x  
 
-                = render partial: "mail_collectors/form" , locals: { line: "line_3" }
+                = render partial: "mail_collectors/form", object: MailCollector.new, locals: { line: "line_3" }
 
                 .row
                   .line5

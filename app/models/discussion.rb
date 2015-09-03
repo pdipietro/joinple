@@ -14,7 +14,7 @@ class Discussion
   has_many  :out, :has_tag, rel_class: HasTag                  # :tag
   has_one   :in,  :is_owned_by, rel_class: Owns                # Subject
 
-  #property  :header,              type: String
+  property  :header,              type: String
   mount_uploader :header,         DiscussionHeaderUploader 
 
   has_one   :out, :belongs_to, model_class: Group,  type: "belongs_to"      # belongs to Group

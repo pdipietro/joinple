@@ -4,6 +4,8 @@ class MailCollector
   include Uuid
   include CreatedAtUpdatedAt
 
+  TRUE_VALUES = [true, 1, '1', 't', 'T', 'true', 'TRUE'].to_set  
+
   before_create :check_default
   before_save :check_default
 
@@ -11,7 +13,7 @@ class MailCollector
   #after_validation :geocode
 
   property :email, type: String
-  property :privacy_accepted, type: Boolean
+  property :privacy_accepted, type: Boolean, default: false
   property :ip_address, type: String
   property :lat
   property :lon
@@ -22,7 +24,7 @@ class MailCollector
   validates   :email, format: { with: VALID_EMAIL_REGEX }
   validates_uniqueness_of :email, case_sensitive:false
   validates   :privacy_accepted, presence: true
-  validates   :privacy_accepted, inclusion: { in: ["true"] }
+  validates   :privacy_accepted, inclusion: { in: TRUE_VALUES }
 
   def check_default
     self.email = self.email.downcase    

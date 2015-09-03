@@ -1,3 +1,4 @@
+
 require File.expand_path('../boot', __FILE__)
 
 # Pick the frameworks you want:
@@ -18,6 +19,8 @@ Bundler.require(*Rails.groups)
 
 module Gsn
   class Application < Rails::Application
+
+    config.web_console.whitelisted_ips = '192.168.10.10'
 
     config.assets.paths << "#{Rails.root}/app/assets/fonts"
     config.assets.paths << "#{Rails.root}/app/assets/images"
