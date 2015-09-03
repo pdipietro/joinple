@@ -1,0 +1,28 @@
+- size = defined?(size) ? size : btn
+- css = defined?(css) ? css : ""
+- shape = defined?(shape) ? shape : ""
+- puts "text.class.name: #{text.class.name}" if defined?(text) 
+
+- text = text.nil? ? " aa" : " " + text 
+
+- puts "size: #{size}"
+- puts "shape: #{shape}"
+- puts "css: #{css}"
+- puts "text: #{text}"
+- puts "subject_profile: #{subject_profile}"
+
+- sizes = Hash.new
+- sizes = { :btn => 36, :thumb => 84, :icon => 128, :profile => 250 }
+
+- puts "sizes: #{sizes}"
+
+- puts "size.class.name: #{size.class.name}"
+
+- size = sizes[:size] if size.class.name != 'Fixnum'
+
+- aShape = defined?(shape) ? shape : "" 
+- puts "size: #{size}"
+- puts "shape: #{shape}"
+- aShape << css unless css.nil?
+
+= cl_image_tag subject_profile.photo, :limit => :true, :width => size, :class => "responsive #{aShape} "

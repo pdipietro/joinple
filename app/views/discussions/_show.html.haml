@@ -23,7 +23,7 @@
           .content
             .title= discussion.title
         .col-xs-19
-          .to-right
+          -#.to-right
             - if discussion.header.length == 0 
               .discussion-image-replacement{:style => "background-color: #{discussion.background_color}; " }
             - else  

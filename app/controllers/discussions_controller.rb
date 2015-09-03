@@ -138,6 +138,7 @@ class DiscussionsController < ApplicationController
   # POST /discussions
   # POST /discussions.json
   def create
+    puts ("discussion_params: #{discussion_params}")
     @discussion = Discussion.new(discussion_params)
 
     puts ("Discussion.class: #{@discussion.class}")
@@ -195,6 +196,6 @@ class DiscussionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def discussion_params
-      params.require(:discussion).permit(:title, :description, :header, :header_cache)
+      params.require(:discussion).permit(:title, :description, :header)
     end
 end

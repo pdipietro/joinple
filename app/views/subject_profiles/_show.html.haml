@@ -3,7 +3,8 @@
   = "#{subject.full_name} (@#{subject.nickname})'s subject profile"
 .subject-profile{ :id => subject_profile.uuid }
   -#.contour-3{:style => "border-color: #{subject_profile.text_color}; " }
-  = image_tag subject_profile.photo.url(:profile), :class => "responsive"
+  -#= image_tag subject_profile.photo.url(:profile), :class => "responsive"
+  = render partial: "subject_profiles/photo_show", locals: { :subject_profile => subject_profile, :size => :profile }
   = "#{subject.full_name} (@#{subject.nickname})"
   - unless subject_profile.description.nil?
     .border-1

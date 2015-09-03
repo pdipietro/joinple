@@ -3,7 +3,8 @@
 - social_network = current_social_network
 .row.nothing.top-rounded{ :style => current_social_network_style }
   .col-xs-28.nothing
-    = image_tag "#{subject_profile.photo.url(:thumb)}", :name => "subject_profile_#{subject_profile.uuid}", :class => "responsive subject-photo"
+    -#= image_tag "#{subject_profile.photo.url(:thumb)}", :name => "subject_profile_#{subject_profile.uuid}", :class => "responsive subject-photo"
+    = render partial: 'subject_profiles/photo_show', locals: { subject_profile: subject_profile, size: "thumb", shape: "", :css => "subject-photo", :text => "subject_profile_#{subject_profile.uuid}"}
   .col-xs-32.nothing
     .subject-info
       .name

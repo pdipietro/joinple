@@ -19,9 +19,9 @@ class SocialNetwork
   property  :logo_social,       type: String
   mount_uploader :logo_social,  SocialNetworkLogoSocialUploader 
 
-  has_many  :in,  :has_posts, model_class: Post                # Posts
-  has_many  :in,  :has_tag, model_class: Tag                   # Tags
-  has_many  :in,  :has_hashtag, model_class: HashTag           # HashTags
+  has_many  :in,  :has_posts, model_class: Post, type: "post"                # Posts
+  has_many  :in,  :has_tag, model_class: Tag, type: "has_tag"                   # Tags
+  has_many  :in,  :has_hashtag, model_class: HashTag, type: "has_hashtag"           # HashTags
 
   validates   :name, :presence => true, length: { minimum: 2 }, allow_blank: false
   validates_uniqueness_of :name, case_sensitive: false

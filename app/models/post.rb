@@ -10,7 +10,7 @@ class Post
   has_many  :out, :has_tag, rel_class: HasTag                  # :tag
   has_one   :in,  :is_owned_by, rel_class: Owns                # Subject
 
-  has_one   :out, :belongs_to, model_class: SocialNetwork       # belongs to SocialNetwork
+  has_one   :out, :belongs_to, model_class: SocialNetwork , type: "belongs_to"      # belongs to SocialNetwork
   has_many  :out, :has_comment, model_class: PostComment, type: "has_comment"     # :comment
 
   property  :image0,             type: String                       

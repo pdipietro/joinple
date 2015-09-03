@@ -1,8 +1,8 @@
 module ApplicationHelper
 
   ALLOWED_DOMAIN_SERVER = ["joinple","estatetuttoanno"]
-  STAGE_HUMANIZED = { "dev" => "development", "test" => "test", "demo" => "demo", "" => "production" }
-  STAGE_BACKGROUND = { "dev" => "background-color : #5C8D69;", "test" => "background-color : #fde8ee;", "demo" => "background-color : yellow;", "" => "" }
+  STAGE_HUMANIZED = { "dev" => "development", "dev5" => "development", "test" => "test", "demo" => "demo", "" => "production" }
+  STAGE_BACKGROUND = { "dev" => "background-color : #5C8D69;", "dev5" => "background-color : #5C8D69;", "test" => "background-color : #fde8ee;", "demo" => "background-color : yellow;", "" => "" }
 
 
   # Returns the full title on a per-page basis.
@@ -24,7 +24,7 @@ module ApplicationHelper
 
   # Check the current stage.
   def is_dev
-    @stage == "dev"
+    ["dev","dev5"].contains @stage
   end
   def is_test
     @stage == "test"
@@ -66,12 +66,16 @@ module ApplicationHelper
   def check_machine_name_vs_request
     host_name = gethostname
 
+puts ("host_name: #{host_name}")
+
     sn = request.domain.split(".").first.downcase
+puts ("sn: #{sn}")
+
     puts "ALLOWED_DOMAIN_SERVER.include? #{sn}: #{ALLOWED_DOMAIN_SERVER.include? sn}"
     if ALLOWED_DOMAIN_SERVER.include? sn
        u = root_url.downcase
        u = u[u.rindex("//")+2..-1]
-       puts "root url: #{u}"
+       puts "root url: #{u} - #{host_name.split("-")}"
        stage = host_name.split("-") & u.split(".")
        puts "Stages: #{stage}"
        if stage.count == 1
@@ -83,6 +87,7 @@ module ApplicationHelper
     else
        raise  "516","Error: domain server #{sn} is not allowed"
     end
+puts ("@stage: #{@stage}")
   end
 
   def load_social_network_from_url
@@ -98,6 +103,7 @@ module ApplicationHelper
       end 
        sn = sn.start_with?("test.") ? sn.split(".")[1] : sn 
        sn = sn.start_with?("dev.")  ? sn.split(".")[1] : sn 
+       sn = sn.start_with?("dev5.")  ? sn.split(".")[1] : sn 
        sn = sn.start_with?("demo.") ? sn.split(".")[1] : sn 
        sn = humanize_word(sn)
        csn = SocialNetwork.find_by( :iname => sn.downcase )

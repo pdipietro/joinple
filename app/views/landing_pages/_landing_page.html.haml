@@ -5,12 +5,21 @@
     -# banners_count = landing_page.banners.count
       - banner = banners[rand(1..banners_count)]
       - column-size = 6
-      -#= image_tag landing_page.banner.url
-    = image_tag landing_page.header.url(:large)
+    = cl_image_tag landing_page.header
+    :javascript
+      var h = $(window).height()/2;
+      var w = $(window).width;
+      var filename = "#{landing_page.header}.jpg"
+      $.cloudinary.image filename, { width: w, height: h, crop: "fit", cloud_name: "dev-joinple-com", responsive: true, dpr: 'auto'}.cloudinary_update();
+      $.cloudinary.responsive();
     .scontainer-fluid.intro
       .row
         .col-xs-40.col-xs-offset-10
-          .central-logo= image_tag landing_page.logo.url(:logo)
+          = cl_image_tag landing_page.logo, { :class => "central-logo "}
+          :javascript
+            var filename = "#{landing_page.logo}.jpg"
+            $.cloudinary.image filename, { height: 400, crop: "fill", cloud_name: "dev-joinple-com", responsive: true, dpr: 'auto'}.cloudinary_update()).cloudinary_update();
+            $.cloudinary.responsive();
           .h4.intro-text
             = landing_page.description
           %span.signup-btn

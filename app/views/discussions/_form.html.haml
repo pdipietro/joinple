@@ -9,16 +9,35 @@
           .spacer
           .nothing= f.text_area :description, :prepend => :description, :placeholder => "Enter the discussion description", :hide_label => :true
           .spacer
+          -#.nothing= f.file_field :header, :prepend => :title, :append => (#upload_widget_opener "Upload one images") , :hide_label => :true
+          
+                    -#.nothing= f.text_field :header, :prepend => "cover image", :placeholder => "Select the discussion cover (1500x200 px)", :hide_label => :true, :disabled => :true
+                    -#.spacer
+                    -#.nothing= f.file_field :header, :prepend => "cover image", :placeholder => "Select the discussion cover (1500x200 px)", :hide_label => :true
+                    -#.spacer
+                    -#}.nothing f.field
+          #upload_widget_opener "Upload one images"
+          -#.nothing= image_tag discussion.header.url(:md_header) 
+          .spacer
+          -#.nothing= f.hidden_field :header_cache
 
-          .nothing= f.text_field :header, :prepend => "cover image", :placeholder => "Select the discussion cover (1500x200 px)", :hide_label => :true, :disabled => :true
-          .spacer
-          .nothing= f.file_field :header, :prepend => "cover image", :placeholder => "Select the discussion cover (1500x200 px)", :hide_label => :true
-          .spacer
-          .nothing= image_tag discussion.header.url(:md_header) 
-          .spacer
-          .nothing= f.hidden_field :header_cache
+          - ratio = 400.0/300.0
+          - puts ("Ratio: #{ratio}")
+
+          = javascript_include_tag '//widget.cloudinary.com/global/all.js', media: 'all', 'data-turbolinks-track' => true
+
+          :javascript 
+            cloudinary.applyUploadWidget(document.getElementById('upload_widget_opener'), 
+              { cloud_name: 'dev-joinple-com', upload_preset: 'landing/header', field_name: 'discussion[header]', cropping: 'server', multiple: 'false', cropping_aspect_ratio: '"#{ratio}"', gravity: 'custom' }, 
+                function(error, result) {console.log(error, result)});
 
           = render partial: 'shared/common_panel_footer'
 
   .col-xs-15
 
+-#= javascript_include_tag '//widget.cloudinary.com/global/all.js', media: 'all', 'data-turbolinks-track' => true
+          
+-#:javascript 
+  cloudinary.applyUploadWidget(document.getElementById('upload_widget_opener'), 
+    { cloud_name: 'dev-joinple-com', upload_preset: 'uns-post', field_name: 'discussion[header]', cropping: 'server', multiple: 'false' }, 
+      function(error, result) {console.log(error, result)});

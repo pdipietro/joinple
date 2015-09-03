@@ -42,7 +42,7 @@ class LandingPagesController < ApplicationController
       else
         layout='landing_page'   
         page='landing_page'
-       end 
+      end 
     end
 
     respond_to do |format|
@@ -92,6 +92,7 @@ class LandingPagesController < ApplicationController
   # POST /landing_pages
   # POST /landing_pages.json
   def create
+    puts "landing_page_params: #{landing_page_params}"
     @landing_page = LandingPage.new(landing_page_params)
 
     respond_to do |format|
@@ -127,7 +128,7 @@ class LandingPagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def landing_page_params
-      params.require(:landing_page).permit(:description, :logo, :logo_cache, :header, :header_cache)
+      params.require(:landing_page).permit(:description, :logo, :header)
     end
 
     def get_request_cookie
