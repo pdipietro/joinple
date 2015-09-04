@@ -1,9 +1,15 @@
 class MailCollector 
   include Neo4j::ActiveNode
-
+  include Neo4j::ActiveNode::Spatial
+  
   include Uuid
   include CreatedAtUpdatedAt
 
+  #spatial_index 'mailcollectors'
+  #property :ip_address, type: String
+  #property :lat
+  #property :lon
+  
   TRUE_VALUES = [true, 1, '1', 't', 'T', 'true', 'TRUE'].to_set  
 
   before_create :check_default

@@ -7,3 +7,8 @@
 ------
 
 
+To enable 0,75 on dev5 change 
+
+landing_pagesc_controller.rb:Line 24
+
+   if is_deploy  # or is_dev

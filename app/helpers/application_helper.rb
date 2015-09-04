@@ -23,7 +23,7 @@ module ApplicationHelper
 
 
   # Check the current stage.
-  def is_dev
+  def is_dev 
     ["dev","dev5"].include? @stage
   end
   def is_test
