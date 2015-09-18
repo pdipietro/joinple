@@ -2,7 +2,11 @@
 
 #upload_subject_photo "Upload subject photo"
 - ratio_logo = 1.0
+- button_caption = t("neo4j.errors.models.subject_profile.button_caption")
 :javascript 
   cloudinary.applyUploadWidget(document.getElementById('upload_subject_photo'), 
-  { cloud_name: 'dev-joinple-com', upload_preset: 'subject-photo', field_name: 'subject_profile[photo]', cropping: 'server', multiple: 'false', cropping_aspect_ratio: "#{ratio_logo}", button_caption: "" }, 
+  { cloud_name: 'dev-joinple-com', upload_preset: 'subject-photo', field_name: 'subject_profile[photo]', cropping: 'server', multiple: 'false', cropping_aspect_ratio: "#{ratio_logo}", cropping_default_selection_ratio: "0.1", button_caption: "#{button_caption}" }, 
     function(error, result) {console.log(error, result)});
+
+
+-## , public_id: "#{subject_profile.uuid}"

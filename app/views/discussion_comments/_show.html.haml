@@ -11,7 +11,8 @@
   .content
     .col-xs-5
       = link_to subject_profile_path(subject.has_profile.uuid), :remote => :true, :title => "show" do
-        .owner-image= image_tag subject.has_profile.photo.url(:btn), :class => "circle padding-1", :size => "30x30"
+        -#.owner-image= image_tag subject.has_profile.photo.url(:btn), :class => "circle padding-1", :size => "30x30"
+        =owner-image render partial: "subject_profiles/photo_show", locals: { :subject_profile => subject.has_profile, :size => :comment, :shape => "responsive circle padding-1" }
     .col-xs-52
       - if discussion_comment.content.length > 300
         .first-part.collapse.in{ :name => "discussion_comment_content_full_#{discussion_comment.uuid}"}

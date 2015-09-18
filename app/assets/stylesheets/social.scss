@@ -436,6 +436,14 @@ li.list-group-item {
   @extend .spacer;
   height: $standard_padding * 2;
 }
+.spacer-4x {
+  @extend .spacer;
+  height: $standard_padding * 4;
+}
+.spacer-8x {
+  @extend .spacer;
+  height: $standard_padding * 8;
+}
 
 .border-1 {
   border-top: 1px solid #e7e7e7;
@@ -663,6 +671,7 @@ hr {
   text-align: center;
 }
 
+.resp img,
 .responsive img {
   max-width: 100% !important;
   display: block;
@@ -1461,39 +1470,47 @@ ul#myposts a li {
 
 /* ******************* Landing Page v0.75 ************************ */
 
-#landing-075 {
-  overflow-y: visible;
-  overflow-x: hidden;
-}
-
-#wrapper-page1 {
-  position: relative;
-  color: #ffffff;
-  top: 0px;
-  z-index: 0;
+.landing .page1 .container {
+    background-color: transparent !important;
+    padding: 0;
+    top: 0;
+    position: inherit;
+    width: 100%;
 }
 
 .landing {
-  position: absolute;
-  left: 0;
-  top: 0;
   color: #ffffff;
-  z-index: 10;
+  z-index: 0;
+  width: 100%;
+
+  .background {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: -20;
+  }
 
   .logo {
     padding: 10px;
+    z-index: 0;
   }
 
   .row {
-    sposition: fixed;
-
     text-align: center;
 
     .line1 {
       text-shadow: 4px 3px 5px rgba(0, 0, 0, 1);
       font-size: 3.35em;
     }
-/* 3.35 - 1.85 - 1.5 */
+
+    &.milk {
+      background-color: rgba(255, 255, 255, 0.4);
+
+      .line2 {
+        color: #333342;
+      }
+    }
 
     #mailCollection {
       .centered {
@@ -1507,52 +1524,47 @@ ul#myposts a li {
         background-color: #ffffff;
       }
     }
-    .semail {
-      font-size: 1.5em;
-      text-shadow: none;
 
-    }
     .video {
       margin: 0 auto;
-      smax-width: 50% !important;
-      sheight: auto;
     }
+
+  .checkbox label {
+   font-size: 0.9em;
+   color: #ffffff;
+   text-shadow: 4px 3px 5px rgba(0, 0, 0, 1);
   }
 
-  .milk {
-    background-color: #ffffff;
-    opacity: 0.70;
-    width: 100%;
-    height: auto;
+
   }
+
+  #landing-mail .checkbox %label {
+        font-size: 0.9em;
+        color: pink;
+      }
 
   .line2 {
-    color: #636369;
     font-size: 1.6em;
 
-    text-align: justify;
+    text-align: -auto;
     text-align: -webkit-left;
     text-align: -mox-left;
     text-align: -ms-left;
     text-align: -o-left;
    } 
 
-  .line2-1 {
-    @extend .line2;
-    padding: 4px 140px 4px 140px;
-    overflow: auto;
-  }
-
-  .line2-2 {
-    @extend .line2;
-    padding: 4px 140px 4px 140px;
-    overflow: auto;
-  }
 
   .line3 {
     font-size: 1.5em;
     color: #A02348;
-    font-weight: bolder;
+
+      &.milk {
+        background-color: rgba(255, 255, 255, 0.4);
+      }
+  }
+
+  .line4 {
+    font-size: 1.5em;
   }
 
   .line5 {
@@ -1567,17 +1579,58 @@ ul#myposts a li {
     margin-right: auto;
   }
 
-  .footer {
-    position: fixed;
-    bottom: 0;
-    font-size: 3em;
+  .page1 .footer {
     width: 100%;
-    sheight: 2em;
+    font-size: 2em;
     background-color: #a02348;
     text-align: center;
   }
 }
 
-.landing .page2 {
-  background-color: green;
+.landing .page2,
+.landing .footer
+ {
+  margin: 0;
+  background-color: #333342;
+  width: 100%;
+
 }
+
+.landing .page3 {
+  background-color: #a02348;
+  font-size: 2em;
+  width: 100%;
+}
+
+
+.page2 .line_1.col_1 {
+  font-size: 3em;
+  text-align: -webkit-center;
+  
+}
+.page2 .line_1.col_2.part_2 {
+  font-size: 2em;
+  text-align: right;
+  font-weigth: bold;
+  font-style: italic;
+}
+
+.page2 .line_1,
+.page2 .line_2,
+.page2 .line_3,
+.page2 .line_4 {
+  font-size: 1.5em;
+  text-align: left;
+  font-weigth: bold;
+}
+
+.page1 .row * .t,
+.page2 .row .t {
+  padding-right: 30px !important;
+  padding-left: 30px !important;
+}
+
+.page3 .row {
+   font-size: 2em;
+}
+

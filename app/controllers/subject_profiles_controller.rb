@@ -13,6 +13,10 @@ class SubjectProfilesController < ApplicationController
   # PATCH/PUT /subject_profiles/1
   # PATCH/PUT /subject_profiles/1.json
   def update
+    x = subject_profile_params
+    x.each do |n|
+      puts "n: #{n}"
+    end
     respond_to do |format|
       if @subject_profile.update(subject_profile_params)
         format.js { render :replace, object: @subject_profile, notice: 'Subject profile was successfully updated.' }

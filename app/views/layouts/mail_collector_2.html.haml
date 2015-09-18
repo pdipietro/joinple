@@ -18,7 +18,7 @@
         document.cookie='windowHeight='+$(window).height();
         document.cookie='windowWidth='+$(window).width();
       -#{:style => "width: #{browser_width}px;"}
-      .landing-075{:style => "max-width: #{browser_width}px;"}
+      .landing-075 
         - puts "browser_geometry: browser_width: #{browser_width}, dpr: #{browser_pixelRatio}, height: #{browser_height}, windowHeight: #{window_height}, windowWidth: #{window_width}"
       
         - ip = request.env['HTTP_X_FORWARDED_FOR']
@@ -26,59 +26,26 @@
         - if ip.start_with?("192.168.10.") or ip == ("100.78.25.223") or ip == "66.249.65.4" # or true # and false
 
           .landing
-            #y.page1{:style => "max-width: #{browser_width}px;"}
-              = cl_image_tag("logo_joinple.png", :width=>212, :crop=>:scale, :fetch_format=>:auto, :class => "responsive logo")
-              .spacer-2x
-              .row
-                .col-xs-60
-                  .t.line1= t("landing_page.landing_075.page_1.line_1").html_safe
-              .spacer-4x
-              .row.milk
-                .col-xs-60.col-sm-30
-                  .t.line2= t("landing_page.landing_075.page_1.line_2_col_1").html_safe
-                .visible-xs.spacer-2x
-                .col-xs-60.col-sm-30
-                  .t.line2= t("landing_page.landing_075.page_1.line_2_col_2").html_safe
-              .spacer-2x
-              .row.footer
-                .col-xs-60
-                  = t("landing_page.landing_075.page_1.footer").html_safe
-              .spacer-2x
-
-              = render partial: "mail_collectors/form", object: MailCollector.new, locals: { line: "line_3" }
-
-              .row
-                .line5
-                  = t("landing_page.landing_075.page_1.line_5").html_safe
-                .video
-                  = cl_video_tag("video1.mp4", :quality=>30, :fetch_format=>:auto, :controls => :true, :width => "300", :height => "200")
-
-              .spacer-4x
-
-            .background
-              - x = 1 #+ rand(4)
-              - src = "landing/0.75/landing-#{x}.jpg"
-              -#= cl_image_tag "#{src}", :class => "uresponsive", :style => "width: #{browser_width}px;", :crop => :fill, :dpr => :auto
-              #x
-              -#:javascript
-                var h = $(window).height();
-                var filename = "#{src}"
-                $.cloudinary.image(filename, {width: "auto", height: h, crop: "fill", cloud_name: "dev-joinple-com", responsive: true, dpr: 'auto', style: "height: 100%"}).appendTo('#x').cloudinary_update();
-                $.cloudinary.responsive();
-              :javascript
-                var h = $("#y").height();
-                var k = $(window).width();
-                var filename = "#{src}"
-                $.cloudinary.image(filename, {width: "auto", height: h, crop: "fill", cloud_name: "dev-joinple-com", responsive: true, dpr: 'auto', style: "height: 100%"}).appendTo('#x').cloudinary_update();
-                $.cloudinary.responsive();
-
-            .page2.container
+            .page1
+              .background
+                - x = 1 #+ rand(4)
+                - src = "landing/0.75/landing-#{x}.jpg"
+                = cl_image_tag "#{src}", :class => "responsive", :style => "width: #{window_width}px;", :crop => :scale, :dpr => :auto
+                
+                -#:javascript
+                  var h = $(window).height();
+                  var filename = "#{src}"
+                  $.cloudinary.image(filename, {width: "auto", height: h, crop: "fill", cloud_name: "dev-joinple-com", responsive: true, dpr: 'auto', style: "height: 100%"}).appendTo('#wrapper-page1').cloudinary_update();
+                  $.cloudinary.responsive();
+-#
+              .container
               .spacer-4x  
               .row
                 .col-xs-60.col-sm-30
-                  .t.line_1.col_1
-                    = t("landing_page.landing_075.page_2.line_1.col_1").html_safe
-                .visible-xs.spacer-2x
+                  .t.line_1.col_2.part_1
+                    = t("landing_page.landing_075.page_2.line_1.col_1.part_1").html_safe
+                  .t.line_1.col_2.part_2
+                    = t("landing_page.landing_075.page_2.line_1.col_1.part_2").html_safe
                 .col-xs-60.col-sm-30
                   .t.line_1
                     = cl_image_tag "landing/0.75/logo-contest.it.png", :class => "centered responsive", :dpr => :auto    
@@ -90,27 +57,27 @@
                     = t("landing_page.landing_075.page_2.line_2.col_1").html_safe
                   .spacer-8x
                 .col-xs-60.col-sm-30.col-md-20
-                  = cl_image_tag("round-2.png", :radius=>30, :width=>56, :crop=>:scale, :fetch_format=>:auto, :class => "centered responsive")
+                  = cl_image_tag("round-2.png", :radius=>30, :width=>56, :crop=>:scale, :fetch_format=>:auto, :class => "centered")
                   .t.line_2.col_2
                     = t("landing_page.landing_075.page_2.line_2.col_2").html_safe
                   .spacer-8x
                 .col-xs-60.col-sm-30.col-md-20
-                  = cl_image_tag("round-3.png", :radius=>30, :width=>56, :crop=>:scale, :fetch_format=>:auto, :class => "centered responsive")
+                  = cl_image_tag("round-3.png", :radius=>30, :width=>56, :crop=>:scale, :fetch_format=>:auto, :class => "centered")
                   .t.line_2.col_3
                     = t("landing_page.landing_075.page_2.line_2.col_3").html_safe
                   .spacer-8x
                 .col-xs-60.col-sm-30.col-md-20
-                  = cl_image_tag("round-4.png", :radius=>30, :width=>56, :crop=>:scale, :fetch_format=>:auto, :class => "centered responsive")
+                  = cl_image_tag("round-4.png", :radius=>30, :width=>56, :crop=>:scale, :fetch_format=>:auto, :class => "centered")
                   .t.line_3.col_1
                     = t("landing_page.landing_075.page_2.line_3.col_1").html_safe
                   .spacer-8x
                 .col-xs-60.col-sm-30.col-md-20
-                  = cl_image_tag("round-5.png", :radius=>30, :width=>56, :crop=>:scale, :fetch_format=>:auto, :class => "centered responsive")
+                  = cl_image_tag("round-5.png", :radius=>30, :width=>56, :crop=>:scale, :fetch_format=>:auto, :class => "centered")
                   .t.line_3.col_2
                     = t("landing_page.landing_075.page_2.line_3.col_2").html_safe
                   .spacer-8x
                 .col-xs-60.col-sm-30.col-md-20
-                  = cl_image_tag("round-6.png", :radius=>30, :width=>56, :crop=>:scale, :fetch_format=>:auto, :class => "centered responsive")
+                  = cl_image_tag("round-6.png", :radius=>30, :width=>56, :crop=>:scale, :fetch_format=>:auto, :class => "centered")
                   .t.line_3.col_3
                     = t("landing_page.landing_075.page_2.line_3.col_3").html_safe
                   .spacer-8x
@@ -131,18 +98,18 @@
                 .t.line_4.col_2
                   = t("landing_page.landing_075.page_2.line_4.col_2").html_safe
                 .col-xs-12
-                  = cl_image_tag("facebook_x1i3az.png", :width=>56, :crop=>:scale, :fetch_format=>:auto, :class => "centered responsive", :dpr => :auto)
+                  = cl_image_tag("facebook_x1i3az.png", :width=>70, :crop=>:scale, :fetch_format=>:auto, :class => "centered", :dpr => :auto)
                 .col-xs-12
-                  = cl_image_tag("twitter_vh94ez.png", :width=>56, :crop=>:scale, :fetch_format=>:auto, :class => "centered responsive", :dpr => :auto)
+                  = cl_image_tag("twitter_vh94ez.png", :width=>70, :crop=>:scale, :fetch_format=>:auto, :class => "centered", :dpr => :auto)
                 .col-xs-12
-                  = cl_image_tag("google_tun9e8.png", :width=>56, :crop=>:scale, :fetch_format=>:auto, :class => "centered responsive", :dpr => :auto)
+                  = cl_image_tag("google_tun9e8.png", :width=>70, :crop=>:scale, :fetch_format=>:auto, :class => "centered", :dpr => :auto)
                 .col-xs-12
-                  = cl_image_tag("instagram_jgobub.png", :width=>56, :crop=>:scale, :fetch_format=>:auto, :class => "centered responsive", :dpr => :auto)
+                  = cl_image_tag("instagram_jgobub.png", :width=>70, :crop=>:scale, :fetch_format=>:auto, :class => "centered", :dpr => :auto)
                 .col-xs-12
-                  = cl_image_tag("whatsapp_tdq3nc.png", :width=>56, :crop=>:scale, :fetch_format=>:auto, :class => "centered responsive", :dpr => :auto)
+                  = cl_image_tag("whatsapp_tdq3nc.png", :width=>70, :crop=>:scale, :fetch_format=>:auto, :class => "centered", :dpr => :auto)
               .spacer-4x
 
-            .page3.container
+            -#.page3.container
               .spacer-4x
               .row
                 .t.line_1
@@ -171,14 +138,13 @@
               .spacer-8x
 
 
-            .footer
+            -#.footer.container
               .spacer-4x
               .row
-                - t("landing_page.landing_075.footer.line").each do |c|
-                  .col-xs-30.col-md-10.col-lg-6
+                = t("landing_page.landing_075.footer.line").each do |c|
+                  .col-md-8.col-xs-6
                     = c.html_safe
-              .spacer-4x
 
-:javascript
+-#:javascript
   $.cloudinary.responsive()
 

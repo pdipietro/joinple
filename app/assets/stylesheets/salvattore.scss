@@ -3,20 +3,21 @@ $standard_padding:4px;
 
 /* ****************************     SALVATTORE     ******************************* */
 
+/*
 @media screen and (max-width: 767px)
 {    @viewport { width: 800px; orientation: landscape; }   }
- 
+ */
 /* 
 @media screen and (min-width: 768px) and (max-width: 1920px)
 {    @viewport { width: 800px; orientation: landscape; }   }
 */ 
-
+/*
 @media screen and (min-width: 768px) and (max-width: 1920px)
 {    @viewport { width: device-width; orientation: landscape; }   }
 
 @media screen and (min-width: 1921px)
 {    @viewport { width: 1920px; orientation: landscape; }   }
-
+*/
 .column {
   float: left;
 }

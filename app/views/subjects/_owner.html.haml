@@ -6,30 +6,35 @@
 
 - title = defined?(title) ? title : "Edit"
 
-- size = defined?(size) ? size : "36x36"
-- size = defined?(size) ? size : "36"
-
+-# size = defined?(size) ? size : "36x36"
+- size |= :profile
 
 = puts "subject_profile: #{subject}"
+= puts "size: #{size} -------"
 
 - if defined?(local_current_subject)
-  = image_tag current_subject.has_profile.photo.url(:btn), :class => "circle padding-1", :size => size
+  -#= image_tag current_subject.has_profile.photo.url(:btn), :class => "circle padding-1", :size => size
+  -#= cl_image_tag subject_profile.photo, :limit => :true, :width => :btn, :shape => "responsive circle ", :size => size
+  = render partial: "subject_profiles/photo_show", locals: { :subject_profile => subject_profile, :size => :basic, :shape => "responsive circle" }
 - elsif defined?(show)
-  = image_tag subject_profile.photo.url(:btn), :class => "circle padding-1", :size => size
+  -#= image_tag subject_profile.photo.url(:btn), :class => "circle padding-1", :size => size
+  -#= cl_image_tag subject_profile.photo, :limit => :true, :width => :btn, :shape => "responsive circle padding-1", :size => size
+  = render partial: "subject_profiles/photo_show", locals: { :subject_profile => subject_profile, :header => :basic, :shape => "responsive circle padding-1" }
 - elsif defined?(type)
   %span{ :class => "semi-transparent-#{type}-bar", :style => "clear: both;" }
   %div.solida.not-hoverable
-    = link_to subject_profile_path(subject.has_profile.uuid), :remote => :true, :title => title, :class => ("hoverable white") do
+    = link_to subject_profile_path(subject.has_profile.uuid), :remote => :true, :title => title, :shape => ("hoverable white") do
       -#= image_tag subject_profile.photo.url(:btn), :class => "circle padding-1", :size => size
-      = render partial: "subject_profile/photo_show", locals: { :subject_profile => subject_profile, :size => :photo, :class => "circle padding-1" }
+      = render partial: "subject_profile/photo_show", locals: { :subject_profile => subject_profile, :size => :photo, :shape => "circle padding-1" }
       = "#{subject.full_name} (@#{subject.nickname})"
     %span.to-right.vertical-middle
       = "created on #{object.created_at.to_formatted_s(:short)}"
 - else
   %span
     = link_to subject_profile_path(subject.has_profile.uuid), :remote => :true, :title => title, :class => ("hoverable") do
-      = image_tag subject_profile.photo.url(:btn), :class => "circle padding-1", :size => size
-      = render partial: "subject_profile/photo_show", locals: { :subject_profile => subject_profile, :size => size, :class => "circle padding-1" }
+      -#= image_tag subject_profile.photo.url(:btn), :class => "circle padding-1", :size => size
+      -#= cl_image_tag subject_profile.photo, :limit => :true, :width => :btn, :class => "responsive circle padding-1"
+      = render partial: "subject_profiles/photo_show", locals: { :subject_profile => subject_profile, :size => :btn, :shape => "circle padding-1" }
       = "#{subject.full_name} (@#{subject.nickname})"
 
 

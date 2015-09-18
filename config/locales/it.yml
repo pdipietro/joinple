@@ -32,14 +32,42 @@ it:
       label: "email"
       placeholder: "inserisci il tuo indirizzo email ..."
     landing_075:
-      line_1: "Il tuo social network, i nostri utenti, le vostre passioni, insieme!"
-      line_2_col_1: "<b>Il modo più semplice, veloce e gratuito per creare un social network</b> sulle tue passioni, interessi, cause, attività imprenditoriali e molto altro ancora.</br>Gli utenti di tutti i social network JoinPle ti aspettano e sono già pronti a seguirti."
-      line_2_col_2: "Per la prima volta, <b>con un’unica e semplice iscrizione, trovi in un solo ambiente tanti social network</b> sui tuoi diversi interessi.</br>I tuoi amici si sono già prenotati, non aspettare oltre."
-      line_3: "Per essere avvisato quando JoinPle sarà online, puoi lasciarci la tua email.</br>Per ringraziarti riceverai un omaggio."
-      line_4: "Il team JoinPle ti ringrazia per il tuo interesse. Ti invitiamo a vedere un nostro divertente video e a seguirci sui nostri canali social."
-      line_5: "Guarda il video di 1 minuto di JoinPle e visita il nostro canale YouTube"
-      privacy_accepted: "Acconsento al trattamento dei miei dati personali."
-      footer: "E' GRATIS!"
+      page_1:
+        line_1: "Il tuo social network, i nostri utenti, le vostre passioni, insieme!"
+        line_2_col_1: "<b>Il modo più semplice, veloce e gratuito per creare un social network</b> sulle tue passioni, interessi, cause, attività imprenditoriali e molto altro ancora.</br>Gli utenti di tutti i social network JoinPle ti aspettano e sono già pronti a seguirti."
+        line_2_col_2: "Per la prima volta, <b>con un’unica e semplice iscrizione, trovi in un solo ambiente tanti social network</b> sui tuoi diversi interessi.</br>I tuoi amici si sono già prenotati, non aspettare oltre."
+        line_3: "<b>Per essere avvisato quando JoinPle sarà online, puoi lasciarci la tua email.</br>Per ringraziarti riceverai un omaggio.</b>"
+        line_4: "Il team JoinPle ti ringrazia per il tuo interesse. Ti invitiamo a vedere un nostro divertente video e a seguirci sui nostri canali social."
+        line_5: "Guarda il video di 1 minuto di JoinPle e visita il nostro canale YouTube"
+        privacy_accepted: "Acconsento al trattamento dei miei dati personali."
+        footer: "E' GRATIS!"
+      page_2:
+        line_1:
+          col_1: "PARTECIPA AL NOSTRO CONCORSO E DIVENTA L'UTENTE N.&nbsp;1"
+        line_2:
+          col_1: "<span style='color: #A02348'>LASCIA LA TUA EMAIL</span> SUL SITO JOINPLE.COM</span>"
+          col_2: "SCARICA E STAMPA <span style='color: #A02348'>IL FOGLIO DEL CONCORSO</span> OPPURE SCRIVILO A MANO SU UN FOGLIO"
+          col_3: "SCATTA UNA <span style='color: #A02348'>FOTO DIVERTENTE</span> CON CHI VUOI E PUBBLICALA SU UNO DEI NOSTRI PROFILI SOCIAL ABILITATI AL CONCORSO"
+        line_3:
+          col_1: "OGNI POST DOVR&#192; CONTENERE l'HASHTAG <span style='color: #A02348'>#JOINPLEUSER1</span> E LA MENZIONE AL NOSTRO PROFILO"
+          col_2: "INVITA I TUOI AMICI A <span style='color: #A02348'>CLICCARE MI PIACE O CONDIVIDERE</span> LA TUA FOTO. PI&Ugrave; NE OTTIENI PI&Ugrave; POSSIBILIT&Agrave; AVRAI DI VINCERE"
+          col_3: "<span style='color: #A02348'>SCOPRI IL VINCITORE.</span> IL TEAM JOINPLE SELEZIONER&Agrave; IL VINCITORE TRA LE 10 FOTO PI&Ugrave; DIVERTENTI CHE AVRANNO RICEVUTO <span style='color: #A02348'>IL MAGGIOR NUMERO DI PREFERENZE IN TUTTI I NOSTRI PROFILI SOCIAL</span>"
+        line_4:
+          col_1: "SCARICA IL FOGLIO DEL CONCORSO"
+          col_2: "SCOPRI PERCH&Eacute; DIVENTARE L'UTENTE N.1"
+          col_3: "GUARDA IL VIDEO DEL CONCORSO</span>"
+      page_3:
+        line_1: "DIVENTA PARTE DEL TEAM DI JOINPLE"
+        line_2: "STIAMO RICERCANDO QUESTI PROFILI"
+        line_3_col_1: "</br>APP DEVELOPER"
+        line_3_col_2: "</br>WEB MARKETING SPECIALIST"
+        line_3_col_3: "</br>RAILS w/ANGULAR.JS DEVELOPER"
+        line_4: "INVIA IL TUO CV A RECRUITMENT (at) JOINPLE (dot) COM"      
+      footer:
+        line: ["Chi siamo", "Cookie" , "Privacy" , "Condizioni"]
+    recruit:
+        
+
   neo4j:
     errors:
       models:
@@ -60,9 +88,11 @@ it:
               label: "nome"
             last_name:
               label: "cognome"
+        subject_profile:
+          attributes:
+          button_caption: "inserisci la tua foto ..."
         mail_collector:
           attributes:
             email:
               taken: "email già in uso"
               placeholder: "inserisci il tuo indirizzo email ..."
-

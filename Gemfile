@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 
 ruby '2.2.1'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'
 # Use SCSS for stylesheets
@@ -14,8 +13,6 @@ gem 'uglifier'
 # Use CoffeeScript for .coffee assets and views
 #gem 'coffee-rails', '~> 4.1.0'
 gem 'coffee-rails'
-# See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -26,25 +23,6 @@ gem 'jbuilder', '>= 2.2.3'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use Unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
-group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
-
-  # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
-
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-end
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
@@ -63,7 +41,9 @@ gem 'sass_paths'
 
 group :development, :test do
   gem 'sass-rails-source-maps'
-#  gem 'sqlite3'
+  gem 'byebug'
+ # gem 'web-console', '~> 2.0'
+  gem 'spring'
 end
 
 group :test do
@@ -73,7 +53,6 @@ group :test do
 end
 
 group :production do
-  #gem 'pg',             '0.17.1'
   gem 'rails_12factor', '0.0.2'
   gem 'unicorn',        '4.8.3'
 end
@@ -84,13 +63,10 @@ gem "haml-rails"
 
 gem 'bcrypt-ruby'
 gem "pry-rails"
-#gem "pry-stack"
-#gem "pry-debugger"
 
 gem 'jquery-turbolinks'
 gem 'responders', '~> 2.0'
 gem 'bootstrap_form'
-#-----------gem 'font-awesome-sass'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'bootstrap_colorpicker_rails'
 gem 'bootstrap-switch-rails', '~> 3.0.0'
@@ -104,7 +80,6 @@ gem "inline_svg", '0.2.0'
 gem 'google-webfonts-rails'
 
 gem 'sprockets-rails', :require => 'sprockets/railtie'
-#gem 'sprockets-rails', '2.1.3', :require => 'sprockets/rails/version'
 
 gem 'url_safe_base64'
 gem 'bootstrap-wysihtml5-rails'

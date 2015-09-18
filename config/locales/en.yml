@@ -35,11 +35,35 @@ en:
       line_1: "Your social network, our users, your passions, together!"
       line_2_col_1: "<b>The easiest way, fast and free to create a social network</b> on your passions, interests, causes, business and much more.<br />Users of all JoinPle's social networks are waiting for you and ready to follow you."
       line_2_col_2: "For the first time, <b>with just a single membership, you'll find, in a unique environment, many social networks</b> on your different passions.</br>Your friends are already booking, don't wait any longer!"
-      line_3: "To be notified when JoinPle will be online you can leave us your e-mail.<br>You will receive a gift as appreciation."
+      line_3: "<b>To be notified when JoinPle will be online you can leave us your e-mail.<br>You will receive a gift as appreciation.</b>"
       line_4: "Thanks for your interest from the JoinPle's team. We suggest you to see our funny video and follow us on ours social network profiles."
       line_5: "Watch 1 minute video of JoinPle and visit our YouTube channel."
       privacy_accepted: "You need to check this box to accept our terms of service and privacy policy."
       footer: "IT'S FREE"
+      page_2:
+        line_1:
+          col_1: "PARTECIPA</br>AL NOSTRO CONCORSO</br>E DIVENTA L'UTENTE N. 1"
+        line_2:
+          col_1: "<span style='color: #A02348'>LASCIA LA TUA EMAIL</span> SUL SITO JOINPLE.COM</span>"
+          col_2: "SCARICA E STAMPA <span style='color: #A02348'>IL FOGLIO DEL CONCORSO</span> OPPURE SCRIVILO A MANO SU UN FOGLIO"
+          col_3: "SCATTA UNA <span style='color: #A02348'>FOTO DIVERTENTE</span> CON CHI VUOI E PUBBLICALA SU UNO DEI NOSTRI PROFILI SOCIAL ABILITATI AL CONCORSO"
+        line_3:
+          col_1: "OGNI POST DOVR&#192; CONTENERE l'HASHTAG <span style='color: #A02348'>#JOINPLEUSER1</span> E LA MENZIONE AL NOSTRO PROFILO"
+          col_2: "INVITA I TUOI AMICI A <span style='color: #A02348'>CLICCARE MI PIACE O CONDIVIDERE</span> LA TUA FOTO. PI&Ugrave; NE OTTIENI PI&Ugrave; POSSIBILIT&Agrave; AVRAI DI VINCERE"
+          col_3: "<span style='color: #A02348'>SCOPRI IL VINCITORE.</span> IL TEAM JOINPLE SELEZIONER&Agrave; IL VINCITORE TRA LE 10 FOTO PI&Ugrave; DIVERTENTI CHE AVRANNO RICEVUTO <span style='color: #A02348'>IL MAGGIOR NUMERO DI PREFERENZE IN TUTTI I NOSTRI PROFILI SOCIAL</span>"
+        line_4:
+          col_1: "SCARICA IL FOGLIO DEL CONCORSO"
+          col_2: "SCOPRI PERCH&Eacute; DIVENTARE L'UTENTE N.1"
+          col_3: "GUARDA IL VIDEO DEL CONCORSO</span>"
+      page_3:
+        line_1: "BE PART OF JOINPLE'S TEAM"
+        line_2: "WE ARE LOOKING FOR THESE PROFILES"
+        line_3_col_1: "</br>APP DEVELOPER"
+        line_3_col_2: "</br>WEB MARKETING SPECIALIST"
+        line_3_col_3: "</br>RAILS w/ANGULAR.JS DEVELOPER"
+        line_4: "SEND YOUR CV AT RECRUITMENT (at) JOINPLE (dot) COM"        
+      footer:
+        line: ["About us", "Cookie" , "Privacy" , "Conditions"]
   neo4j:
     errors:
       models:
@@ -60,9 +84,12 @@ en:
               label: "first name"
             last_name:
               label: "last name"
+        subject_profile:
+          attributes:
+          button_caption: "insert your photo ..."
         mail_collector:
           attributes:
             email:
-              taken: "email already taken"
+              taken: "email address already in use"
               placeholder: "Insert your email address ..."
 

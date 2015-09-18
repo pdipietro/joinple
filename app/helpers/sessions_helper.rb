@@ -34,17 +34,25 @@ module SessionsHelper
      session[:width] = cookies[:width]
      session[:height] = cookies[:height]
      session[:pixelRatio] = cookies[:pixelRatio].to_f
+     session[:windowWidth] = cookies[:windowWidth]
+     session[:windowHeight] = cookies[:windowHeight]
   end
 
   def browser_geometry
-     { :width => :session[:width], :dpr => :session[:pixelRatio], :height => session[:pixelRatio] }
+     { :width => :session[:width], :dpr => :session[:pixelRatio], :height => session[:pixelRatio], :windowHeight =>  session[:windowWidth], :windowWidth => session[:windowWidth] }
   end
 
   def browser_width
-     :session[:width]
+     session[:width]
   end
   def browser_height
      session[:height]
+  end
+  def window_width
+     session[:windowWidth]
+  end
+  def window_height
+     session[:windowHeight]
   end
   def browser_pixelRatio
      session[:pixelRatio]
