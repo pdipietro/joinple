@@ -3,7 +3,7 @@
     .social-network{ :id => social_network.uuid }
       = link_to social_network_path(social_network.uuid), :remote => :true, :title => "Edit" do
         .contour-3{:style => "border-color: #{social_network.social_network_color}; " }
-          = image_tag social_network.logo.url(:cover), :class => "responsive"
+          = cl_image_tag social_network.logo, :class => "responsive"
           .title= social_network.name
           .short-description= social_network.short_description
           .border-1

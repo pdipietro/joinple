@@ -26,16 +26,6 @@ create (_3:`User` {uuid:"6313ea55-73a7-4c88-b95f-39281553f55c",first_name:"Paolo
 create (_4:`User` {uuid:"6338b402-2ebd-4994-8c8b-95e709fe7b4f",first_name:"Davide",admin:"true",activated:"true",email:"dmancinelli@gmail.com",password_digest:"$2a$10$gBu/x.x6w7OgRBrkBZDCzuYFP5YFoqpjtKn4jbQX8RIebCcdvvpVq",last_name:"Mancinelli",activation_digest:"$2a$10$SJqyDq6W.LSydAyLPoE93uVlDxWzF2hT0kcEYUmgFdJIvaMHpLh5O",created_at:1424474174,updated_at:1424474174,nickname:"dvd",photo:""})
 
 
-create (_19:LandingPage{uuid:"f904e257-ac7f-4e8a-becb-55473b067bb2",created_at:1425298841,updated_at:1426843019,description:"Il girato dell’inseguimento sulla Nomentana (Aston Martin e Jaguar lanciate a 150 all’ora, con sgommate e sgasate), «è stato danneggiato da un problema tecnico» quando era già stato spedito in Inghilterra, alla sede della Eon, la società che produce “Spectre”, la ventiquattresima pellicola che ha per protagonista l’agente segreto più famoso del mondo.",String:"logo",logo:"slider5_1280x400_144dpi.jpg",header:"slider3_2560x800_144dpi.jpg"})
-create (_20:SocialNetwork{uuid:"0eac1c1b-f716-4612-80a7-809e611d7b5e",created_at:1422514338,updated_at:1426512356,description:"A generic social network.",name:"Gsn",background_color:"#0080ff",text_color:"#ffffff",goal:"Implements the basic functionalities of any social network",logo:"863x200.jpg"})
-create (_21:SocialNetwork{uuid:"7dadbef8-91f2-4801-9241-72d09c433874",created_at:1421477725,updated_at:1426512390,description:"Tracing system for goods and foods.",name:"Trace",background_color:"#ff8000",text_color:"#0000a0",goal:"Help people to track",logo:"cover-trace-400x300-144dpi.jpg"})
-create (_22:SocialNetwork{uuid:"7602926d-702a-4b30-9c05-125d50212e79",created_at:1422308304,updated_at:1426512370,description:"Help people find a job.",name:"Work",background_color:"#004080",text_color:"#ffffff",goal:"Support job searching",logo:"cover-job-400x300-144dpi.jpg"})
-create (_23:SocialNetwork{uuid:"34d47641-5ce5-4788-af53-6f1053c71ced",created_at:1426503166,updated_at:1426512338,description:"3d printing.",name:"3d",background_color:"#00ff00",text_color:"#000000",goal:"A social network to discuss and share opinions, experiences and ideas about the new opportunities offered by 3d printing",logo:"cover-144dpi.jpg"})
-create (_24:SocialNetwork{uuid:"1dba3e06-a9aa-41df-bb2c-8c8353d46353",created_at:1426503887,updated_at:1426512321,description:"Sustainable tourism.",name:"Tourism",background_color:"#ff00ff",text_color:"#0080ff",goal:"A place where passionate people can meet and share their ideas, opinions, experiences and feedback about sustainable and intelligent tourism",logo:"cover-144dpi.jpg"})
-create (_25:SocialNetwork{uuid:"57d4702c-c967-40f1-8155-85ad7f1cb79b",created_at:1426524121,updated_at:1426524121,description:"Morbida, avvolgente, carezzevole.",name:"Silk lovers",background_color:"#8047bd",text_color:"#ffffff",goal:"Scambiare considerazioni e esperienze tra tutti coloro che amano lasciarsi carezzare dal morbido tessuto",logo:"abissixtwitter.jpg"})
-create (_26:SocialNetwork{uuid:"f03bdb80-2cf4-44fc-9798-e78534e07201",created_at:1426504098,updated_at:1426512299,description:"Share your places of life as only you can know.",name:"Syplaces",background_color:"#1cca55",text_color:"#000000",goal:"Today we share everything except one thing, our places of life. Syplaces is a social network based on human knowledge and on living places of people. You can share your knowledge of your living places, the place can be any, even workplace, the important thing is that you share your personal knowledge of that place. Knowledge is the engine of mankind and the places of our lives are our history",logo:"cover-144dpi.jpg"})
-
-
 create (_27:`Language` {`code`:"fr-fr", `created_at`:1420983722, `description`:"Français (france)", `updated_at`:1421690318, `uuid`:"bc3cb602-323e-4d3e-8827-7309417cdb21"})
 create (_28:`Language` {`code`:"it-it", `created_at`:1420460700, `description`:"Italiano (Italia)", `updated_at`:1420460700, `uuid`:"58eb0495-7533-4721-9ef2-20274645afab"})
 create (_29:`Language` {`code`:"en-us", `created_at`:1420463037, `description`:"English (united states)", `updated_at`:1421690340, `uuid`:"e5b2c85f-312d-4cb5-8b78-8c41836c21b8"})
@@ -54,14 +44,7 @@ create (_2-[:`has_profile` {`created_at`:1422308305, `updated_at`:1422308305}]->
 create (_3-[:`has_profile` {`created_at`:1422308305, `updated_at`:1422308305}]->_34)
 create (_4-[:`has_profile` {`created_at`:1422308305, `updated_at`:1422308305}]->_35)
 
-create (_0-[:`owns` {`created_at`:1422308305, `updated_at`:1422308305}]->_20)
 create (_0-[:`likes` {`created_at`:1421889296, `updated_at`:1421889296}]->_1)
-create (_0-[:`owns` {`created_at`:1422308305, `updated_at`:1422308305}]->_21)
-create (_0-[:`owns` {`created_at`:1422308305, `updated_at`:1422308305}]->_22)
-create (_0-[:`owns` {`created_at`:1422308305, `updated_at`:1422308305}]->_23)
-create (_0-[:`owns` {`created_at`:1422308305, `updated_at`:1422308305}]->_24)
-create (_1-[:`owns` {`created_at`:1422514338, `updated_at`:1422514338}]->_25)
-create (_4-[:`owns` {`created_at`:1422308305, `updated_at`:1422308305}]->_26)
 
 create (_0-[:`likes` {`created_at`:1421340602, `updated_at`:1421340602}]->_2)
 create (_0-[:`likes` {`created_at`:1421323454, `updated_at`:1421323454}]->_3)
@@ -70,13 +53,6 @@ create (_0-[:`follows` {`created_at`:1421351616, `updated_at`:1421351616}]->_1)
 create (_0-[:`follows` {`created_at`:1421333446, `updated_at`:1421333446}]->_3)
 
 create (_19-[:`speaks` {`created_at`:1421477725, `updated_at`:1421477725}]->_29)
-create (_20-[:`speaks` {`created_at`:1421477725, `updated_at`:1421477725}]->_29)
-create (_21-[:`speaks` {`created_at`:1421477725, `updated_at`:1421477725}]->_29)
-create (_22-[:`speaks` {`created_at`:1421477725, `updated_at`:1421477725}]->_29)
-create (_23-[:`speaks` {`created_at`:1421477725, `updated_at`:1421477725}]->_29)
-create (_24-[:`speaks` {`created_at`:1421477725, `updated_at`:1421477725}]->_29)
-create (_25-[:`speaks` {`created_at`:1421477725, `updated_at`:1421477725}]->_29)
-create (_26-[:`speaks` {`created_at`:1421477725, `updated_at`:1421477725}]->_29)
 
 ;
 

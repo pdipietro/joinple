@@ -21,7 +21,7 @@ class LandingPagesController < ApplicationController
 
   def home
 
-    if is_deploy or is_dev
+    if is_deploy # or is_dev
       layout="mail_collector"
       page="home"
     else

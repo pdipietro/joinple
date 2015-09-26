@@ -16,15 +16,16 @@ $standard_padding:4px;
 
 $people_box_height: 143px;
 
-$logo_social_width:$people_box_height;
-$logo_social_height:$people_box_height;
+$logo_width:$people_box_height;
+$logo_height:$people_box_height;
 
 $joinple_banner_background_color:#f5f5f5;
 $joinple_page_background_color:#e5e5e5;
-$joinple_color:#323342;
+$joinple_color:#333342;
  
 $joinple_background_color: #a02348;
-$joinple_text_color:#000000;
+$joinple_text_color:#000000; 
+$milk:rgba(255, 255, 255, 0.4);
 
 $default_text_color: rgb(51,51,51);
 
@@ -1505,10 +1506,10 @@ ul#myposts a li {
     }
 
     &.milk {
-      background-color: rgba(255, 255, 255, 0.4);
+      background-color: $milk;
 
       .line2 {
-        color: #333342;
+        color: $joinple_color;
       }
     }
 
@@ -1556,10 +1557,10 @@ ul#myposts a li {
 
   .line3 {
     font-size: 1.5em;
-    color: #A02348;
+    color: $joinple_background_color;
 
       &.milk {
-        background-color: rgba(255, 255, 255, 0.4);
+        background-color: $milk;
       }
   }
 
@@ -1582,7 +1583,7 @@ ul#myposts a li {
   .page1 .footer {
     width: 100%;
     font-size: 2em;
-    background-color: #a02348;
+    background-color: $joinple_background_color;
     text-align: center;
   }
 }
@@ -1591,13 +1592,13 @@ ul#myposts a li {
 .landing .footer
  {
   margin: 0;
-  background-color: #333342;
+  background-color: $joinple_color;
   width: 100%;
 
 }
 
 .landing .page3 {
-  background-color: #a02348;
+  background-color: $joinple_background_color;
   font-size: 2em;
   width: 100%;
 }

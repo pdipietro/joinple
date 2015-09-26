@@ -1,0 +1,59 @@
+begin
+create constraint on (n:`Discussion`) assert n.`uuid` is unique;
+create constraint on (n:`Group`) assert n.`uuid` is unique;
+create constraint on (n:`HasImage`) assert n.`uuid` is unique;
+create constraint on (n:`Image`) assert n.`uuid` is unique;
+create constraint on (n:`ImgLandingPageHeader`) assert n.`uuid` is unique;
+create constraint on (n:`ImgLandingPageLogo`) assert n.`uuid` is unique;
+create constraint on (n:`ImgLandingPagelogo`) assert n.`uuid` is unique;
+create constraint on (n:`LandingPageHeader`) assert n.`uuid` is unique;
+create constraint on (n:`LandingPage`) assert n.`uuid` is unique;
+create constraint on (n:`Language`) assert n.`uuid` is unique;
+create constraint on (n:`MediaManager`) assert n.`uuid` is unique;
+create constraint on (n:`Post`) assert n.`uuid` is unique;
+create constraint on (n:`SocialNetwork`) assert n.`uuid` is unique;
+create constraint on (n:`Tag`) assert n.`uuid` is unique;
+create constraint on (n:`Test`) assert n.`uuid` is unique;
+create constraint on (n:`Subject`) assert n.`uuid` is unique;
+create constraint on (n:`SubjectProfile`) assert n.`uuid` is unique;
+commit
+
+begin
+create (_0:`Subject` {`activated`:"true", `activation_digest`:"$2a$10$l48pLADz4vDP3IwVwuDNvuhUMzbQHh1T13Y1O/WUWpRRClCOUzzK2", `admin`:"true", `created_at`:1419806138, `email`:"pdipietro@joinple.com", `first_name`:"Paolo", `last_name`:"Di Pietro", `nickname`:"pdp", `password_digest`:"$2a$10$ZpQt6DbVOEUqgRnBoOzUquJWtfAps2XrP2yV/95hnQnOzBDtofyb6", `remember_digest`:"$2a$10$4u4Sn5yL2q6wpiUi67QmUO7rAOKTYNfISm/jjlK04C8n3Td4xDGXW", `updated_at`:1421128311, `uuid`:"ec122ca0-0ecc-4bae-af14-f1f781d88311",photo:""})
+create (_1:`Subject` {`activated`:"true", `activation_digest`:"$2a$10$dWB744udcM4eNbFnyMIvkeqCD6/pdbILNF0NI5wD1qOvJ.yurVOuS", `admin`:"true", `created_at`:1419806785, `email`:"abarone@joinple.com", `first_name`:"Annalisa", `last_name`:"Barone", `nickname`:"aba", `password_digest`:"$2a$10$DaAjGQUfSUXsSRhWHUnKm.LEO70uBaY3oIgI5CP318A51cvGcWa9q", `remember_digest`:"$2a$10$7GvsNg4jLrBgUBqCHzzxdu20eL8dxUI05IGNCyLhxKx3zE.4dk65C", `updated_at`:1420469243, `uuid`:"6f9670e1-52c5-4c91-9c7c-34dfb17bcdf4",photo:""})
+create (_2:`Subject` {`activated`:"true", `activation_digest`:"$2a$10$obJmqZHpZQarQN.BjnsitOlDS8WyEmjsZ.wYlwObHZdiBVy/24jPu", `admin`:false, `created_at`:1419806823, `email`:"dpannocchia@joinple.com", `first_name`:"Daniele", `last_name`:"Pannocchia", `nickname`:"dap", `password_digest`:"$2a$10$0g.H0loR2XGEzPA4N5.rHeg9/VoiUgO81BcjNvhF2rfoXK6kO6xDC", `updated_at`:1419806823, `uuid`:"bb8d5945-63b6-4b48-89eb-831268c8cae4",photo:""})
+create (_3:`Subject` {uuid:"6313ea55-73a7-4c88-b95f-39281553f55c",first_name:"Paolo",admin:false,activated:"true",email:"pfedi@iol.it",password_digest:"$2a$10$ktvbrIrZsGAlGO/i3W1aCuyoI1qRgu0JPrWyuHLVqCOfuOMxAI73e",last_name:"Fedi",activation_digest:"$2a$10$VmWmNIGfI4BBpr.oN9Lc0uGfYCqW69DWVGcsOvjXNeJBpri3schRC",created_at:1426582532,updated_at:1426582532,nickname:"pafedi",photo:""})
+create (_4:`Subject` {uuid:"6338b402-2ebd-4994-8c8b-95e709fe7b4f",first_name:"Davide",admin:"true",activated:"true",email:"dmancinelli@joinple.com",password_digest:"$2a$10$gBu/x.x6w7OgRBrkBZDCzuYFP5YFoqpjtKn4jbQX8RIebCcdvvpVq",last_name:"Mancinelli",activation_digest:"$2a$10$SJqyDq6W.LSydAyLPoE93uVlDxWzF2hT0kcEYUmgFdJIvaMHpLh5O",created_at:1424474174,updated_at:1424474174,nickname:"dvd",})
+
+create (_27:`Language` {`code`:"fr-fr", `created_at`:1420983722, `description`:"Français (france)", `updated_at`:1421690318, `uuid`:"bc3cb602-323e-4d3e-8827-7309417cdb21"})
+create (_28:`Language` {`code`:"it-it", `created_at`:1420460700, `description`:"Italiano (Italia)", `updated_at`:1420460700, `uuid`:"58eb0495-7533-4721-9ef2-20274645afab"})
+create (_29:`Language` {`code`:"en-us", `created_at`:1420463037, `description`:"English (united states)", `updated_at`:1421690340, `uuid`:"e5b2c85f-312d-4cb5-8b78-8c41836c21b8"})
+create (_30:`Language` {`code`:"es-es", `created_at`:1420465834, `description`:"Español (españa)", `updated_at`:1421657072, `uuid`:"550420dc-1d93-4049-9118-042815063781"})
+
+
+create (_31:`SubjectProfile` {`created_at`:1420983722, `updated_at`:1421690318, `uuid`:"bc3cb602-323e-4cae-9427-7309417cdb21", photo:""})
+create (_32:`SubjectProfile` {`created_at`:1420983722, `updated_at`:1421690318, `uuid`:"bc3cb602-323e-4cae-7249-7309417cdb21",photo:""})
+create (_33:`SubjectProfile` {`created_at`:1420983722photo:"", `updated_at`:1421690318, uuid`:"bc3cb602-323e-4cae-7429-7309417cdb21",photo:""})
+create (_34:`SubjectProfile` {`created_at`:1420983722, `updated_at`:1421690318, `uuid`:"bc3cb602-323e-4cae-9247-7309417cdb21",photo:"" })
+create (_35:`SubjectProfile` {`created_at`:1420983722, `updated_at`:1421690318, `uuid`:"bc3cb602-323e-4cae-9724-7309417cdb21",photo:"" })
+
+create (_0-[:`has_profile` {`created_at`:1422308305, `updated_at`:1422308305}]->_31)
+create (_1-[:`has_profile` {`created_at`:1422308305, `updated_at`:1422308305}]->_32)
+create (_2-[:`has_profile` {`created_at`:1422308305, `updated_at`:1422308305}]->_33)
+create (_3-[:`has_profile` {`created_at`:1422308305, `updated_at`:1422308305}]->_34)
+create (_4-[:`has_profile` {`created_at`:1422308305, `updated_at`:1422308305}]->_35)
+
+create (_0-[:`likes` {`created_at`:1421889296, `updated_at`:1421889296}]->_1)
+
+create (_0-[:`likes` {`created_at`:1421340602, `updated_at`:1421340602}]->_2)
+create (_0-[:`likes` {`created_at`:1421323454, `updated_at`:1421323454}]->_3)
+create (_0-[:`follows` {`created_at`:1421351644, `updated_at`:1421351644}]->_2)
+create (_0-[:`follows` {`created_at`:1421351616, `updated_at`:1421351616}]->_1)
+create (_0-[:`follows` {`created_at`:1421333446, `updated_at`:1421333446}]->_3)
+
+create (_19-[:`speaks` {`created_at`:1421477725, `updated_at`:1421477725}]->_29)
+
+;
+
+
+commit

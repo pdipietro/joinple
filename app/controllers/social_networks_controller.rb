@@ -86,7 +86,7 @@ class SocialNetworksController < ApplicationController
   def update
     respond_to do |format|
       if @social_network.update(social_network_params)
-        format.js   { render partial: "replace", object: @social_network, notice: 'Language was successfully updated.' }
+        format.js   { render partial: "replace", object: @social_network, notice: 'Social network was successfully updated.' }
         format.html { redirect_to @social_network, notice: 'Social network was successfully updated.' }
         format.json { render :show, status: :ok, location: @social_network }
       else
@@ -128,18 +128,6 @@ class SocialNetworksController < ApplicationController
     sn
   end
 
-=begin
-  # GET /posts/list/:filter(/:limit(/:subject))
-  def get_post_subset (actual_page, items_per_page, filter)
-    puts "INTO  - (postsController) get_subset"
-    query_string = prepare_post_query(filter)
-
-    #puts "post - get subset - query string: #{query_string}"
-    post = Post.as(:posts).query.match(query_string).proxy_as(Post, :posts).paginate(:page => actual_page, :per_page => items_per_page, return: :posts, order: "posts.created_at desc")
-    #puts "get_subset count: #{post.count} - class: #{post.class.name} - #{post}"
-    post
-  end
-=end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_social_network
@@ -148,7 +136,7 @@ class SocialNetworksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def social_network_params
-      params.require(:social_network).permit(:name, :description, :short_description, :mission, :slogan, :logo, :background_color, :text_color, :social_network_color, :logo_cache, :logo_social, :logo_social_cache)
+      params.require(:social_network).permit(:name, :description, :short_description, :mission, :slogan, :logo, :banner, :background_color, :text_color, :social_network_color)
     end
 
     def get_title(filter)

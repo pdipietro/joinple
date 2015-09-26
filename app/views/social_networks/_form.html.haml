@@ -1,4 +1,5 @@
 #social-network-form{ :class => social_network.errors.count == 0 ? 'collapse' : 'collapse in' }
+  - cloudinary_name = "dev" + "-joinple-com"
   .spacer
   .col-xs-15
   .col-xs-30
@@ -7,7 +8,7 @@
       = render partial: 'shared/common_panel_header', locals: { :style => "super", :data_target => "social_network-form", :title => title }
 
       -#.panel-heading{ :style => super_social_network_style }
-        %a.toggle{ :type => "toggle", "data-target" => "#social-network-form", "data-toggle" => "collapse"}
+        %a.toggle{ :type => "toggle", "data-target" => "#social-network-form", "data-toggle" => "collapse in"}
           .panel-title
             - if defined?(title)
               = title
@@ -30,21 +31,44 @@
           .nothing= f.color_field :text_color, :prepend => "title text color", :placeholder => "Select the title text color", :hide_label => :true, :class => "left-align" 
           .spacer
 
-          .nothing= f.text_field :logo, :prepend => "banner", :placeholder => "Select an external logo (400x300 px)", :hide_label => :true, :disabled => :true
-          .spacer
-          .nothing= f.file_field :logo, :prepend => "banner", :placeholder => "Select an external logo (400x300 px)", :hide_label => :true
-          .spacer
-          .nothing= image_tag social_network.logo.url(:logo) 
-          .spacer
-          .nothing= f.hidden_field :logo_cache
+          -#= render partial: "social_networks/photo_load", locals: { :social_network => f }
+          -#.spacer
+            - puts "DIO CAN ------------------------------------------------------------------------------------------------"
+            - puts "social_network.logo : #{social_network.logo}--#{social_network.logo.to_s.split('/').last.length}----------------------------------------------------------"
+            - puts "social_network.banner : #{social_network.banner}--#{social_network.banner.to_s.split('/').last.length}------------------------------------------------------"
+            - social_network.logo = "cazzo" if social_network.logo.to_s.split('/').last.length < 2
+            - social_network.banner = "ozzac" if social_network.banner.to_s.split('/').last.length < 2
+            - puts "social_network.logo : #{social_network.logo}------------------------------------------------------------"
+            - puts "social_network.banner : #{social_network.banner}--------------------------------------------------------"
+            - puts "cloudinary_name: #{cloudinary_name}"
+          -#.j
+            #upload_subject_photo "Upload subject photo"
+            - ratio_logo = 1.0
+            - button_caption = t("neo4j.errors.models.subject_profile.button_caption")
+            :javascript 
+              cloudinary.applyUploadWidget(document.getElementById('upload_subject_photo'), 
+              { cloud_name: "#{cloudinary_name}", upload_preset: 'subject-photo', field_name: 'subject_profile[photo]', cropping: 'server', multiple: 'false', cropping_aspect_ratio: "#{ratio_logo}", cropping_default_selection_ratio: "0.1", button_caption: "#{button_caption}" }, 
+                function(error, result) {console.log(error, result)});
 
-          .nothing= f.text_field :logo_social, :prepend => "logo", :placeholder => "Select an internal logo (166x166 px)", :hide_label => :true, :disabled => :true
-          .spacer
-          .nothing= f.file_field :logo_social, :prepend => "logo", :placeholder => "Select an internal logo (166x166 px)", :hide_label => :true
-          .spacer
-          .nothing= image_tag social_network.logo_social.url(:thumb) 
-          .spacer
-          .nothing= f.hidden_field :logo_social_cache
+          - cl_image_tag social_network.logo, :width => "30", :crop => :scale 
+          .ds
+            #upload_social_network_logo "Upload social network logo"
+            - ratio_logo = 1.0
+            - logo_button_caption = t("social_network..view.logo_button_caption")
+            :javascript 
+              cloudinary.applyUploadWidget(document.getElementById('upload_social_network_logo'), 
+              { cloud_name: "#{cloudinary_name}", upload_preset: 'social-logo', field_name: 'social_network[logo]', cropping: 'server', multiple: 'false', cropping_aspect_ratio: "#{ratio_logo}", cropping_default_selection_ratio: "0.1", button_caption: "#{logo_button_caption}", dpr: 'auto', min_image_width: "300", min_image_height: "300" }, 
+                function(error, result) {console.log(error, result)});
+
+          - cl_image_tag social_network.banner, :width => "30", :crop => :scale, :class => "responsive"
+          .es
+            #upload_social_network_banner "Upload social network banner"
+            - ratio_banner = 2
+            - banner_button_caption = t("social_network.view.banner_button_caption")
+            :javascript 
+              cloudinary.applyUploadWidget(document.getElementById('upload_social_network_banner'), 
+              { cloud_name: "#{cloudinary_name}", upload_preset: 'social-banner', field_name: 'social_network[banner]', cropping: 'server', multiple: 'false', cropping_aspect_ratio: "#{ratio_banner}", cropping_default_selection_ratio: "0.1", button_caption: "#{banner_button_caption}", dpr: 'auto' }, 
+                function(error, result) {console.log(error, result)});
 
           .spacer 
           .nothing= f.text_field :description, :prepend => :description, :placeholder => "Enter a short description of the social network", :hide_label => :true, :text => "Social network description"

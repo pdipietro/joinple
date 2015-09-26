@@ -1,0 +1,21 @@
+-#= render partial: "subject_profile/photo", locals: { :subject_profile => subject_profile}
+
+
+#upload_social_network_logo "Upload social network logo"
+- ratio_logo = 1.0
+- logo_button_caption = t("neo4j.models.social_network.logo.button_caption")
+:javascript 
+  cloudinary.applyUploadWidget(document.getElementById('upload_social_network_logo'), 
+  { cloud_name: 'dev-joinple-com', upload_preset: 'social-logo', field_name: 'social_network[logo]', cropping: 'server', multiple: 'false', cropping_aspect_ratio: "#{ratio_logo}", cropping_default_selection_ratio: "0.1", button_caption: "#{logo_button_caption}" }, 
+    function(error, result) {console.log(error, result)});
+
+
+#upload_social_network_banner "Upload social network banner"
+- ratio_banner = 0.75
+- banner_button_caption = t("neo4j.models.social_network.banner.button_caption")
+:javascript 
+  cloudinary.applyUploadWidget(document.getElementById('upload_social_network_banner'), 
+  { cloud_name: 'dev-joinple-com', upload_preset: 'social-banner', field_name: 'social_network[banner]', cropping: 'server', multiple: 'false', cropping_aspect_ratio: "#{ratio_logo}", cropping_default_selection_ratio: "0.1", button_caption: "#{banner_button_caption}" }, 
+    function(error, result) {console.log(error, result)});
+
+-## , public_id: "#{subject_profile.uuid}"

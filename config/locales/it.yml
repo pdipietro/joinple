@@ -66,6 +66,17 @@ it:
       footer:
         line: ["Chi siamo", "Cookie" , "Privacy" , "Condizioni"]
     recruit:
+  social_network:
+    model:
+    view:
+      banner_button_caption: "seleziona l'immagine del social network ..." 
+      logo_button_caption: "seleziona il logo del social network ..."
+    controller:
+  subject_profile:
+    model:
+    view:
+      photo_button_caption: "inserisci la tua foto ..."
+    controller:
         
 
   neo4j:

@@ -38,6 +38,10 @@ module SessionsHelper
      session[:windowHeight] = cookies[:windowHeight]
   end
 
+  def cloudinary_name?
+     ApplicationHelper::cloudinary_name
+  end
+
   def browser_geometry
      { :width => :session[:width], :dpr => :session[:pixelRatio], :height => session[:pixelRatio], :windowHeight =>  session[:windowWidth], :windowWidth => session[:windowWidth] }
   end
@@ -54,6 +58,10 @@ module SessionsHelper
   def window_height
      session[:windowHeight]
   end
+  def window_pixelRatio
+    browser_pixelRatio
+  end
+
   def browser_pixelRatio
      session[:pixelRatio]
   end

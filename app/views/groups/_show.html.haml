@@ -9,7 +9,7 @@
               .group-image-replacement{:style => "background-color: #{group.background_color}; " }
             - else  
               = image_tag group.header.url(:md_banner), :class => "responsive"
-            = image_tag csn.logo_social.url(:md_logo), :class => "responsive semi-transparent", :size => ("30x30")
+            = cl_image_tag csn.logo, :class => "responsive semi-transparent", :width => "30"
 
           .content
             .title= group.name

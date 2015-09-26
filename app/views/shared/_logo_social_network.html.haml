@@ -2,5 +2,5 @@
   - unless defined?(style)
     - csn = current_social_network
     - style = current_social_network_style
-  #social-network.logo-social-md{ :style => style }
-    = image_tag csn.logo_social.url(:md_logo), :name => "social_network#{csn.uuid}", :class => "social-network-logo"
+  #social-network{ :style => style }
+    = cl_image_tag csn.logo, :name => "social_network#{csn.uuid}", :class => "social-network-logo"

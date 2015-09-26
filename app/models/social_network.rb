@@ -16,8 +16,8 @@ class SocialNetwork
 
   property  :logo,              type: String
   mount_uploader :logo,         SocialNetworkLogoUploader 
-  property  :logo_social,       type: String
-  mount_uploader :logo_social,  SocialNetworkLogoSocialUploader 
+  property  :banner,            type: String
+  mount_uploader :lbanner,      SocialNetworkBannerUploader 
 
   has_many  :in,  :has_posts, model_class: Post, type: "post"                # Posts
   has_many  :in,  :has_tag, model_class: Tag, type: "has_tag"                   # Tags

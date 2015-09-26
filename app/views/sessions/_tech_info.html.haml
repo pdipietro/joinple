@@ -19,7 +19,7 @@
               .title= "Caller: #{view}"
             .border
         .ul.col-xs-60
-          .title= "JoinPle"
+          .title= "JoinPle - #{stage} - #{cloudinary_name}"
           .li
             .col-xs-20
               colors
@@ -35,9 +35,14 @@
               = "#{session} "
           .li
             .col-xs-20
-              client screen: width x height (pixel ratio)
+              window screen: width x height (pixel ratio)
             .col-xs-40
-              = "#{session[:width]}x#{session[:height]}, (#{session[:pixelRatio]}) "
+              = "#{window_width}x#{window_height} (#{window_pixelRatio}) "
+          .li
+            .col-xs-20
+              browser screen: width x height
+            .col-xs-40
+              = "#{browser_width}x#{browser_height}"
 
         .border
         .ul.col-xs-60

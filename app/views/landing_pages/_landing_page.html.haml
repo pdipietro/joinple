@@ -30,7 +30,7 @@
   #grid4.no-padding{ "data-columns" => "" }
     - social_networks.each do | sn |
       .social-network-item.hoverable{ :style => "background-color: #{sn.background_color}; color: #{sn.text_color};" } 
-        = image_tag sn.logo.url(:cover)
+        = cl_image_tag sn.banner, { :class => :responsive }
         -#{ :alt => "#{sn}"}
         .view-more
           -#%img.img-responsive{ :alt => "", :src => "http://cdn001.crowdupcafe.com/public/400x300.svg"}

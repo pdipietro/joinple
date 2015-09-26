@@ -3,6 +3,7 @@ module ApplicationHelper
   ALLOWED_DOMAIN_SERVER = ["joinple","estatetuttoanno"]
   STAGE_HUMANIZED = { "dev" => "development", "dev5" => "development", "test" => "test", "demo" => "demo", "" => "production" }
   STAGE_BACKGROUND = { "dev" => "background-color : #5C8D69;", "dev5" => "background-color : #5C8D69;", "test" => "background-color : #fde8ee;", "demo" => "background-color : yellow;", "" => "" }
+  ALLOWED_STAGES = { "dev" => "dev", "dev5" => "dev", "test" => "test", "demo" => "demo", "production" => "" }
 
 
   # Returns the full title on a per-page basis.
@@ -20,8 +21,6 @@ module ApplicationHelper
     SecureRandom.urlsafe_base64
   end
 
-
-
   # Check the current stage.
   def is_dev 
     ["dev","dev5"].include? @stage
@@ -36,12 +35,11 @@ module ApplicationHelper
     @stage == ""
   end
 
-
   def get_background
       STAGE_BACKGROUND[@stage]
   end
 
-    def calculate_full_path (sn)
+  def calculate_full_path (sn)
     #env = recode_env
     #"http://#{env}#{sn.name.downcase.gsub(/\s+/, "")}.#{request.domain}"
     if @stage == ""
@@ -63,6 +61,11 @@ module ApplicationHelper
       STAGE_HUMANIZE[@stage]
   end
 
+  def cloudinary_name
+      puts "Cloudinary_name in application_helper: #{@cloudinary_name}"
+      @cloudinary_name
+  end
+
   def check_machine_name_vs_request
     host_name = gethostname
 
@@ -80,14 +83,18 @@ puts ("sn: #{sn}")
        puts "Stages: #{stage}"
        if stage.count == 1
           @stage = stage[0]
+          @cloudinary_name = "#{ALLOWED_STAGES[@stage]}-joinple-com"
        else
          @stage = ""
+         @cloudinary_name = ""
          #raise  "515","Error on redirected server: doesn't contains a stage fragment"
        end
     else
        raise  "516","Error: domain server #{sn} is not allowed"
     end
-puts ("@stage: #{@stage}")
+    puts ("@stage: #{@stage}")
+    puts "Cloudinary_name creation: #{@cloudinary_name}"
+
   end
 
   def load_social_network_from_url
