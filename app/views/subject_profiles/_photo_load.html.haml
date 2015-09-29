@@ -1,12 +1,32 @@
--#= render partial: "subject_profile/photo", locals: { :subject_profile => subject_profile}
+- "Upload subject photo"
 
-#upload_subject_photo "Upload subject photo"
+#upload_subject_photo
+	= render partial: "subject_profiles/photo_show", locals: { :subject_profile => subject_profile, :size => :thumb }
+
 - ratio_logo = 1.0
-- button_caption = t("neo4j.errors.models.subject_profile.button_caption")
-:javascript 
-  cloudinary.applyUploadWidget(document.getElementById('upload_subject_photo'), 
-  { cloud_name: 'dev-joinple-com', upload_preset: 'subject-photo', field_name: 'subject_profile[photo]', cropping: 'server', multiple: 'false', cropping_aspect_ratio: "#{ratio_logo}", cropping_default_selection_ratio: "0.1", button_caption: "#{button_caption}" }, 
-    function(error, result) {console.log(error, result)});
+- button_caption = t("subject_profile.view.photo_button_caption")
+- photo_folder_name = build_image_path options = { - photo_folder_name = build_image_path options = { :landing => "v1.0", :logo => nil } 
+ } 
+
+#upload_subject_photo1
+	:javascript 
+		cloudinary.applyUploadWidget(document.getElementById('upload_subject_photo1'), 
+		{ cloud_name: 'dev-joinple-com', upload_preset: 'subject-photo', field_name: 'subject_profile[photo]', cropping: 'server', multiple: 'false', button_caption: "#{button_caption}",
+		folder: "#{photo_folder_name}", 
+		cropping_aspect_ratio: "#{ratio_logo}",
+		cropping_default_selection_ratio: "1", }, 
+			function(error, result) {console.log(error, result)});
 
 
--## , public_id: "#{subject_profile.uuid}"
+-#upload_widget_logo "Upload logo image"
+	- ratio_logo = 200.0/150.0
+	:javascript 
+		cloudinary.applyUploadWidget(document.getElementById('upload_widget_logo'), 
+		{ cloud_name: 'dev-joinple-com', upload_preset: 'landing-logo', field_name: 'landing_page[logo]', cropping: 'server', multiple: 'false', cropping_aspect_ratio: "#{ratio_logo}" }, 
+				function(error, result) {console.log(error, result)});
+
+	:javascript 
+		cloudinary.applyUploadWidget(document.getElementById('upload_subject_photo'), 
+		{ cloud_name: 'dev-joinple-com', upload_preset: 'subject-photo', field_name: 'subject_profile[photo]', cropping: 'server', multiple: 'false', cropping_aspect_ratio: "#{ratio_logo}", cropping_default_selection_ratio: "0.1", button_caption: "#{button_caption}", folder: "/subject/#{subject_profile.uuid}/photo/" }, 
+			function(error, result) {console.log(error, result)});
+

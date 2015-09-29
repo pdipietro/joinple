@@ -13,21 +13,23 @@ class SubjectProfilesController < ApplicationController
   # PATCH/PUT /subject_profiles/1
   # PATCH/PUT /subject_profiles/1.json
   def update
-    x = subject_profile_params
-    x.each do |n|
-      puts "n: #{n}"
+    if @subject_profile.update(subject_profile_params)
+       flash[:success] = "Profile updated"
+       redirect_to @subject_profile
+    else
+       render :edit, object: @subject_profile
     end
-    respond_to do |format|
-      if @subject_profile.update(subject_profile_params)
-        format.js { render :replace, object: @subject_profile, notice: 'Subject profile was successfully updated.' }
-        format.html { redirect_to @subject_profile, notice: 'Subject profile was successfully updated.' }
-        format.json { render :show, status: :ok, location: @subject_profile }
-      else
-        format.js { render :edit, object: @subject_profile }
-        format.html { render :edit }
-        format.json { render json: @subject_profile.errors, status: :unprocessable_entity }
-      end
-    end
+  #  respond_to do |format|
+  #    if @subject_profile.update(subject_profile_params)
+  #      format.js { render :replace, object: @subject_profile, notice: 'Subject profile was successfully updated.' }
+  #      format.html { redirect_to @subject_profile, notice: 'Subject profile was successfully updated.' }
+  #      format.json { render :show, status: :ok, location: @subject_profile }
+  #    else
+  #      format.js { render :edit, object: @subject_profile }
+  #      format.html { render :edit }
+  #      format.json { render json: @subject_profile.errors, status: :unprocessable_entity }
+  #    end
+  #  end
   end
 
   private
@@ -38,6 +40,7 @@ class SubjectProfilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def subject_profile_params
-      params[:subject_profile]
+      #params[:subject_profile]
+      params.require(:subject_profile).permit(:photo, :description, :background_color, :text_color) 
     end
 end

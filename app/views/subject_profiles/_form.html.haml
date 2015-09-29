@@ -1,14 +1,15 @@
-#subject-profile-form.collapse.in{ :class => subject_profile.errors.count == 0 ? 'collapse' : 'collapse in' }
-  .spacer
+#subject-profile-form{ :class => subject_profile.errors.count == 0 ? 'collapse in' : 'collapse in' }
   .col-xs-15
   .col-xs-30
     .panel.panel-default.nothing
-      .panel-heading{ :style => super_social_network_style }
-        %a.toggle{ :type => "toggle", "data-target" => "#subject_profile-form", "data-toggle" => "collapse"}
-          .panel-title
-            = "Manage your subject profile"
-            %span.caret.to-right
+      = render partial: 'shared/common_panel_header', locals: { :style => "current", :data_target => "#subject-profile-form", :title => title }
       .panel-body
+        -# .panel-heading{ :style => super_social_network_style }
+          %a.toggle{ :type => "toggle", "data-target" => "#subject_profile-form", "data-toggle" => "collapse"}
+            .panel-title
+              = "Manage your subject profile"
+              %span.caret.to-right
+          .panel-body
         = bootstrap_form_for(subject_profile, :remote => :true, :html => {:multipart => true} ) do |f|
           .nothing= f.text_area :description, :prepend => :description, :placeholder => "Enter the subject description", :hide_label => :true
           .spacer
@@ -21,12 +22,7 @@
           = render partial: "subject_profiles/photo_load", locals: { :subject_profile => subject_profile, :size => :profile }
           .spacer
 
-          %button.icon_only{ :type => "submit", :name => "commit", :hide_label => :true, :title => "Save the element" } 
-            %i.im-save-3
-            = "save"
-          %button.icon_only{ :type => "reset", :name => "reset", :hide_label => :true, :title => "cancel" } 
-            %i.im-cancel-circle
-            = "exit without saving"  
+          = render partial: 'shared/common_panel_footer'
 
           .spacer
 

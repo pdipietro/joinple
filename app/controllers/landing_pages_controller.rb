@@ -75,6 +75,7 @@ class LandingPagesController < ApplicationController
   # GET /landing_pages.json
   def index
     @landing_page = LandingPage.first
+    @landing_page = LandingPage.new unless #landing_page.nil?
     puts "SONO DENTRO LANDING_PAGE - INDEX"
     puts "@landing_page.uuid #{@landing_page}"
     render layout: "application", format: :js, locals: { landing_page: @landing_page }

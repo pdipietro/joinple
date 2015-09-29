@@ -38,8 +38,12 @@ module SessionsHelper
      session[:windowHeight] = cookies[:windowHeight]
   end
 
+  def cloudinary_name(name)
+     session[:cloudinary_name] = name
+  end
+
   def cloudinary_name?
-     ApplicationHelper::cloudinary_name
+     session[:cloudinary_name]
   end
 
   def browser_geometry
@@ -90,7 +94,8 @@ module SessionsHelper
         puts "current_social_network loaded: name= #{current_social_network_name?}"
       else
         puts "TRAGEDY !!!!"
-        raise "515", TRAGEDY
+        render(:file => File.join(Rails.root, 'public/404'), :formats => [:html], :status => 404, :layout => false)
+        #raise "500" TRAGEDY
       end
     end
     session[:social_network]
@@ -123,6 +128,12 @@ module SessionsHelper
      else
         session[:social_network][:name]
      end
+  end
+  # Returns the owner of the current social network.
+
+  def current_social_network_owner
+    session[:social_network].is_owned_by
+    #session[:social_network_owner]
   end
 
   def current_social_network_uuid?
@@ -220,6 +231,8 @@ module SessionsHelper
     session.delete(:subject_id)
     session.delete(:admin)
     session[:social_network] = nil
+    session[:social_network_owner] = nil
+    session[:cloudinary_name] = nil
     session.delete[:current_subject_profile] unless session[current_subject_profile].nil?
     session.delete(:group) unless session[:group].nil?
     session.delete(:discussion) unless session[:discussion].nil?
@@ -257,12 +270,12 @@ module SessionsHelper
 
   # check if the social network is changed
   def check_social_network
-    puts "!!!!!!!!!!!!!!!!!! WARNING: I'M into check_social_network!!! - #{session[:social_network].class.name} - session[:social_network].name"
     set_screen_geometry
     unless session[:social_network].class.name == "SocialNetwork" 
       load_social_network_from_url
       puts "session[:social_network]: #{session[:social_network]}, class: #{session[:social_network].class.name}"
       if session[:social_network].nil? 
+         puts "!!!!!!!!!!!!!!!!!! WARNING: I'M into check_social_network!!! - #{session[:social_network].class.name} - #{current_social_network_name?} - #{current_social_network_uuid?}}"
          redirect_to root_url
       end
     end
@@ -403,6 +416,32 @@ puts " ------------------------------------________> #{res}"
     request.env['HTTP_X_FORWARDED_FOR']
   end
   
+  def build_subject_image_path (options = {} )
+    path = "/subject/#{current_social_network_owner.uuid}"
+    options.each do |n,v|
+      path += "/#{n}/"
+      path += "#{v}" unless v.nil?
+    end
+    path
+  end
+
+  def build_landing_image_path ( version = Version::JOINPLE_VERSION, options = {} )
+    path = "/landing/#{version}"
+    options.each do |n,v|
+      path += "/#{n}/"
+      path += "#{v}" unless v.nil?
+    end
+    path
+  end
+
+  def full_version
+    session[:full_version]
+  end
+
+  def short_version(subst_dot = "_")
+    session[:short_version] 
+  end
+
   private
 
     def set_current_social_network (sn)
@@ -414,11 +453,11 @@ puts " ------------------------------------________> #{res}"
       else 
         session[:social_network_uuid] = sn.uuid
         session[:social_network] = sn
+        session[:full_version] = Version::JOINPLE_VERSION
+        v = Version::JOINPLE_VERSION[/v[0-9\.]*/]
+        session[:short_version] = v.gsub(".", "_")
       end
     end
-
-
-
 
 
 end

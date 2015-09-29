@@ -16,6 +16,9 @@ class SocialNetworksController < ApplicationController
     filter = params[:filter]
     first_page = params[:from_page].nil? ? 1 : params[:from_page]
 
+    puts "current_subject: #{current_subject} - current_subject.uuid: #{current_subject.uuid}"
+
+
     query_string =
       case filter
         when "iparticipate"

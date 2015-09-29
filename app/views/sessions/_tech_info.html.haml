@@ -19,7 +19,7 @@
               .title= "Caller: #{view}"
             .border
         .ul.col-xs-60
-          .title= "JoinPle - #{stage} - #{cloudinary_name}"
+          .title= "JoinPle - #{stage} - #{cloudinary_name?}"
           .li
             .col-xs-20
               colors
@@ -76,6 +76,12 @@
               uuid
             .col-xs-40
               = current_social_network_uuid?
+          .li
+            .col-xs-20
+              owner uuid
+            .col-xs-40
+              = current_social_network_owner
+              = current_social_network_owner.uuid
           .li
             .col-xs-20
               logo

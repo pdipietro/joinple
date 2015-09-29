@@ -61,7 +61,7 @@ module ApplicationHelper
       STAGE_HUMANIZE[@stage]
   end
 
-  def cloudinary_name
+  def cloudinary_name?
       puts "Cloudinary_name in application_helper: #{@cloudinary_name}"
       @cloudinary_name
   end
@@ -84,6 +84,7 @@ puts ("sn: #{sn}")
        if stage.count == 1
           @stage = stage[0]
           @cloudinary_name = "#{ALLOWED_STAGES[@stage]}-joinple-com"
+          cloudinary_name("#{ALLOWED_STAGES[@stage]}-joinple-com")
        else
          @stage = ""
          @cloudinary_name = ""
@@ -110,11 +111,12 @@ puts ("sn: #{sn}")
       end 
        sn = sn.start_with?("test.") ? sn.split(".")[1] : sn 
        sn = sn.start_with?("dev.")  ? sn.split(".")[1] : sn 
-       sn = sn.start_with?("dev5.")  ? sn.split(".")[1] : sn 
+       sn = sn.start_with?("dev5.") ? sn.split(".")[1] : sn 
        sn = sn.start_with?("demo.") ? sn.split(".")[1] : sn 
        sn = humanize_word(sn)
        csn = SocialNetwork.find_by( :iname => sn.downcase )
        csn = SocialNetwork.find_by( :name => sn ) if csn.nil?
+       csn = SocialNetwork.find_by( :iname => "www" ) if csn.nil?    # if no db is selected, default to www.joinple.com
        if csn.class.name == "SocialNetwork"
          set_current_social_network (csn)
          current_social_network

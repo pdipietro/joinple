@@ -66,6 +66,13 @@ it:
       footer:
         line: ["Chi siamo", "Cookie" , "Privacy" , "Condizioni"]
     recruit:
+  landing_page:
+    v1_0_0:
+      view:
+        description:
+          placeholder: "inserisci il testo che apparirà al centro della landing page ..."
+        header_button_caption: "seleziona l'immagine della landing page ..." 
+        logo_button_caption:  "seleziona il logo della landing page ..."
   social_network:
     model:
     view:
@@ -75,7 +82,7 @@ it:
   subject_profile:
     model:
     view:
-      photo_button_caption: "inserisci la tua foto ..."
+      photo_button_caption: "seleziona la tua nuova foto ..."
     controller:
         
 

@@ -3,32 +3,37 @@
   %div{ :id => landing_page.uuid }
     = bootstrap_form_for(landing_page, :remote => :true,  :html => {:multipart => true} ) do |f|
       .landing-page-description
-        = f.text_area :description, :prepend => :description, :placeholder => "Enter the group description", :hide_label => :true
-      -#.form-group
-        = f.text_field :logo, :prepend => "logo image", :placeholder => "Enter the logo image url", :hide_label => :true, :disabled => :true
-        = f.file_field :logo, :prepend => "logo image", :placeholder => "Enter the logo image url", :hide_label => :true
-        = image_tag landing_page.logo.url(:logo) 
-        = f.hidden_field :logo_cache
-      -#.form-group
-        = f.text_field :header, :prepend => "header image", :placeholder => "Enter the header image url", :hide_label => :true, :disabled => :true
-        = f.file_field :header, :prepend => "header image", :placeholder => "Enter the header image url", :hide_label => :true
-        = image_tag landing_page.header.url(:medium) 
-        = f.hidden_field :header_cache
+        = f.text_area :description, :prepend => :description, :placeholder => t("landing_page.#{short_version}.view.description.placeholder"), :hide_label => :true
+
       = cl_image_tag landing_page.logo, :height => (cookies[:height].to_i / 2), :class => "responsive"
-      #upload_widget_logo "Upload logo image"
+
+      #upload_widget_logo
       - ratio_logo = 200.0/150.0
+      - button_caption = t("landing_page.#{short_version}.view.logo_button_caption")
+      - logo_folder_name = build_landing_image_path options = { :logo => nil } 
       :javascript 
         cloudinary.applyUploadWidget(document.getElementById('upload_widget_logo'), 
-          { cloud_name: 'dev-joinple-com', upload_preset: 'landing-logo', field_name: 'landing_page[logo]', cropping: 'server', multiple: 'false', cropping_aspect_ratio: "#{ratio_logo}" }, 
-            function(error, result) {console.log(error, result)});
+        { cloud_name: "#{cloudinary_name?}", upload_preset: 'landing-logo', field_name: 'landing_page[logo]', cropping: 'server', multiple: 'false', button_caption: "#{button_caption}",
+        folder: "#{logo_folder_name}", 
+        cropping_aspect_ratio: "#{ratio_logo}",
+        cropping_default_selection_ratio: "1", }, 
+          function(error, result) {console.log(error, result)});
 
       = cl_image_tag landing_page.header, :height => (cookies[:height].to_i / 2), :class => "responsive"
-      #upload_widget_header "Upload header image"
+      #upload_widget_header
       - ratio_header = 2560.0/800.0
+      - button_caption = t("landing_page.#{short_version}.view.header_button_caption")
+      - header_folder_name = build_landing_image_path options = { :header => nil } 
       :javascript 
         cloudinary.applyUploadWidget(document.getElementById('upload_widget_header'), 
-          { cloud_name: 'dev-joinple-com', upload_preset: 'landing-header', field_name: 'landing_page[header]', cropping: 'server', multiple: 'false', cropping_aspect_ratio: "#{ratio_header}" }, 
-            function(error, result) {console.log(error, result)});
+        { cloud_name: "#{cloudinary_name?}", upload_preset: 'landing-header', field_name: 'landing_page[header]', cropping: 'server', multiple: 'false', button_caption: "#{button_caption}",
+        folder: "#{header_folder_name}", 
+        cropping_aspect_ratio: "#{ratio_header}",
+        cropping_default_selection_ratio: "1", }, 
+          function(error, result) {console.log(error, result)});
+
       .form-group     
         %button.icon_only{ :type => "submit", :remote => :true, :name => "commit", :hide_label => :true, :title => "Save the element"  } 
           %span.glyphicon.glyphicon-save
+
+

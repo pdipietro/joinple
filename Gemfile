@@ -42,7 +42,7 @@ gem 'sass_paths'
 group :development, :test do
   gem 'sass-rails-source-maps'
   gem 'byebug'
- # gem 'web-console', '~> 2.0'
+  gem 'web-console', '~> 2.2'
   gem 'spring'
 end
 
@@ -73,7 +73,7 @@ gem 'bootstrap-switch-rails', '~> 3.0.0'
 
 gem 'remotipart'
 gem 'carrierwave-neo4j', require: 'carrierwave/neo4j'
-gem 'carrierwave-ftp', :require => 'carrierwave/storage/ftp/all' # both FTP/SFTP
+#gem 'carrierwave-ftp', :require => 'carrierwave/storage/ftp/all' # both FTP/SFTP
 gem "rmagick"
 gem "inline_svg", '0.2.0'
 

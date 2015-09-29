@@ -41,20 +41,12 @@
             - puts "social_network.logo : #{social_network.logo}------------------------------------------------------------"
             - puts "social_network.banner : #{social_network.banner}--------------------------------------------------------"
             - puts "cloudinary_name: #{cloudinary_name}"
-          -#.j
-            #upload_subject_photo "Upload subject photo"
-            - ratio_logo = 1.0
-            - button_caption = t("neo4j.errors.models.subject_profile.button_caption")
-            :javascript 
-              cloudinary.applyUploadWidget(document.getElementById('upload_subject_photo'), 
-              { cloud_name: "#{cloudinary_name}", upload_preset: 'subject-photo', field_name: 'subject_profile[photo]', cropping: 'server', multiple: 'false', cropping_aspect_ratio: "#{ratio_logo}", cropping_default_selection_ratio: "0.1", button_caption: "#{button_caption}" }, 
-                function(error, result) {console.log(error, result)});
 
           - cl_image_tag social_network.logo, :width => "30", :crop => :scale 
           .ds
             #upload_social_network_logo "Upload social network logo"
             - ratio_logo = 1.0
-            - logo_button_caption = t("social_network..view.logo_button_caption")
+            - logo_button_caption = t("social_network.view.logo_button_caption")
             :javascript 
               cloudinary.applyUploadWidget(document.getElementById('upload_social_network_logo'), 
               { cloud_name: "#{cloudinary_name}", upload_preset: 'social-logo', field_name: 'social_network[logo]', cropping: 'server', multiple: 'false', cropping_aspect_ratio: "#{ratio_logo}", cropping_default_selection_ratio: "0.1", button_caption: "#{logo_button_caption}", dpr: 'auto', min_image_width: "300", min_image_height: "300" }, 

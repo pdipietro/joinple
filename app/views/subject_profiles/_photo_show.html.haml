@@ -1,13 +1,12 @@
-- shape = defined?(shape) ? shape : ""
-- size = :btn unless size.is_a? Symbol
 
 - sizes = Hash.new
 - sizes = { :basic => 18, :comment => 30, :header => 32, :btn => 36, :thumb => 84, :icon => 128, :profile => 250 }
 
+- size = :btn unless size.is_a? Symbol
+
 - dimension = sizes[size]
-- if dimension.nil? 
-  - puts "size parm value '#{size}' is not valid. Valid values are [#{sizes}]"
 
 - aShape = defined?(shape) ? shape : "" 
 
-= cl_image_tag subject_profile.photo, :width => dimension, :class => "#{aShape} " #responsive :height => dimension,
+= cl_image_tag subject_profile.photo, :width => dimension, :crop => :scale, :class => "#{aShape} responsive" 
+

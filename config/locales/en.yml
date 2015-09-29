@@ -64,16 +64,22 @@ en:
         line_4: "SEND YOUR CV AT RECRUITMENT (at) JOINPLE (dot) COM"        
       footer:
         line: ["About us", "Cookie" , "Privacy" , "Conditions"]
-  social_network:
+  landing_page:
+    v1_0_0:
+      view:
+        description:
+          placeholder: "insert the text that will appear on the landing page ..."
+        header_button_caption: "select the header image ..." 
+        logo_button_caption:  "select the logo image ..."
     model:
     view:
-      banner_button_caption: "select the banner image" 
-      logo_button_caption: "select the logo image"
+      banner_button_caption: "select the banner image ..." 
+      logo_button_caption: "select the logo image ..."
     controller:
   subject_profile:
     model:
     view:
-      photo_button_caption: "select your photo ..."
+      photo_button_caption: "select your new photo ..."
     controller:
   neo4j:
     errors:
