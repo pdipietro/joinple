@@ -1,7 +1,7 @@
 - unless defined?(local_current_subject)
   - className = object.class.name
   - query = Neo4j::Session.query("match (o:#{className} { uuid : '#{object[:uuid]}' })<-[rel:owns]-(u:Subject)-[p:has_profile]->(up:SubjectProfile) return u, up")
-  - subject = query.first[:u]
+  - subject = query.first[:u] 
   - subject_profile = query.first[:up]
 
 - title = defined?(title) ? title : "Edit"
@@ -25,7 +25,7 @@
   %div.solida.not-hoverable
     = link_to subject_profile_path(subject.has_profile.uuid), :remote => :true, :title => title, :shape => ("hoverable white") do
       -#= image_tag subject_profile.photo.url(:btn), :class => "circle padding-1", :size => size
-      = render partial: "subject_profile/photo_show", locals: { :subject_profile => subject_profile, :size => :photo, :shape => "circle padding-1" }
+      = render partial: "subject_profiles/photo_show", locals: { :subject_profile => subject_profile, :size => :photo, :shape => "circle padding-1" }
       = "#{subject.full_name} (@#{subject.nickname})"
     %span.to-right.vertical-middle
       = "created on #{object.created_at.to_formatted_s(:short)}"

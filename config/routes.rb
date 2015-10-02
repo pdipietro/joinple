@@ -12,12 +12,10 @@ Rails.application.routes.draw do
 
   get    'login'     =>    'sessions#new', defaults: { :format => "js"}, :remote => :true
   post   'login'     =>    'sessions#create', defaults: { :format => "js"}, :remote => :true
-  get    'signup'    =>    'users#new', defaults: { :format => "js"}, :remote => :true
+  get    'signup'    =>    'subjects#new', defaults: { :format => "js"}, :remote => :true
   delete 'logout'    =>    'sessions#destroy', defaults: { :format => "js"}, :remote => :true
 
   #get    'profile'   =>    'user_profiles#edit', defaults: { :format => "js"}, :remote => :true
-
-# unused?  post   'switch/:sn' =>   'sessions#switch', defaults: { :format => "js"}, :remote => :true, as: :session_switch
 
 #  get    'password_resets/new'
 #  get    'password_resets/edit.
@@ -27,15 +25,8 @@ Rails.application.routes.draw do
   resources :account_activations, only: [:edit], defaults: { :format => "js"}, :remote => :true
   resources :password_resets, only: [:new, :create, :edit, :update], defaults: { :format => "js"}, :remote => :true
 
-
-#  resources :users, :remote => :true do
-#    member do
-#      get :following, :followers, :likes, :preferes,  :follows, :is_followed_by #, :likes_to, :is_prefered_by
-#    end
-#  end
-
   resources :subjects,            constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true,  except: [:destroy, :show]
-  resources :subjects,                                             defaults: { :format => "js"}, :remote => :true,  only: [:show]
+  resources :subjects,                                             defaults: { :format => "js"}, :remote => :true,  only: [:show, :create]
 
 # administrative resources
 

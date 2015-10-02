@@ -31,35 +31,47 @@
           .nothing= f.color_field :text_color, :prepend => "title text color", :placeholder => "Select the title text color", :hide_label => :true, :class => "left-align" 
           .spacer
 
-          -#= render partial: "social_networks/photo_load", locals: { :social_network => f }
-          -#.spacer
-            - puts "DIO CAN ------------------------------------------------------------------------------------------------"
-            - puts "social_network.logo : #{social_network.logo}--#{social_network.logo.to_s.split('/').last.length}----------------------------------------------------------"
-            - puts "social_network.banner : #{social_network.banner}--#{social_network.banner.to_s.split('/').last.length}------------------------------------------------------"
-            - social_network.logo = "cazzo" if social_network.logo.to_s.split('/').last.length < 2
-            - social_network.banner = "ozzac" if social_network.banner.to_s.split('/').last.length < 2
-            - puts "social_network.logo : #{social_network.logo}------------------------------------------------------------"
-            - puts "social_network.banner : #{social_network.banner}--------------------------------------------------------"
-            - puts "cloudinary_name: #{cloudinary_name}"
-
-          - cl_image_tag social_network.logo, :width => "30", :crop => :scale 
+          = cl_image_tag social_network.logo, :height => 200, :crop => :scale, :quality => 50
           .ds
-            #upload_social_network_logo "Upload social network logo"
+            #upload_social_network_logo
             - ratio_logo = 1.0
             - logo_button_caption = t("social_network.view.logo_button_caption")
+            - logo_folder_name = build_object_image_path options = { :social => "#{social_network.uuid}", :logo => nil } 
             :javascript 
               cloudinary.applyUploadWidget(document.getElementById('upload_social_network_logo'), 
-              { cloud_name: "#{cloudinary_name}", upload_preset: 'social-logo', field_name: 'social_network[logo]', cropping: 'server', multiple: 'false', cropping_aspect_ratio: "#{ratio_logo}", cropping_default_selection_ratio: "0.1", button_caption: "#{logo_button_caption}", dpr: 'auto', min_image_width: "300", min_image_height: "300" }, 
-                function(error, result) {console.log(error, result)});
+              { cloud_name: "#{cloudinary_name?}",  
+              button_class: "joinple-button",
+              stylesheet: document.baseURI+'/assets/cloudinary.css', theme: "default",
+              cropping: 'server', multiple: 'false', 
+              cropping_aspect_ratio: "#{ratio_logo}", 
+              cropping_default_selection_ratio: "1",  
+              dpr: 'auto', 
+              button_caption: "#{logo_button_caption}",
+              upload_preset: 'subject-photo', 
+              field_name: 'social_network[logo]',
+              folder: "#{logo_folder_name}", 
+              min_image_width: "300", min_image_height: "300" });
 
-          - cl_image_tag social_network.banner, :width => "30", :crop => :scale, :class => "responsive"
+          = cl_image_tag social_network.banner, :height => 200, :crop => :scale, :quality => 50
           .es
-            #upload_social_network_banner "Upload social network banner"
-            - ratio_banner = 2
+            #upload_social_network_banner
+            - ratio_banner = 2.0
             - banner_button_caption = t("social_network.view.banner_button_caption")
+            - banner_folder_name = build_object_image_path options = { :social => "#{social_network.uuid}", :banner => nil } 
             :javascript 
               cloudinary.applyUploadWidget(document.getElementById('upload_social_network_banner'), 
-              { cloud_name: "#{cloudinary_name}", upload_preset: 'social-banner', field_name: 'social_network[banner]', cropping: 'server', multiple: 'false', cropping_aspect_ratio: "#{ratio_banner}", cropping_default_selection_ratio: "0.1", button_caption: "#{banner_button_caption}", dpr: 'auto' }, 
+              { cloud_name: "#{cloudinary_name}",  
+              button_class: "joinple-button",
+              stylesheet: document.baseURI+'/assets/cloudinary.css', theme: "default",
+              cropping: 'server', multiple: 'false', 
+              cropping_aspect_ratio: "#{ratio_banner}", 
+              cropping_default_selection_ratio: "1", 
+              dpr: 'auto', 
+              button_caption: "#{banner_button_caption}",
+              upload_preset: 'social-banner', 
+              field_name: 'social_network[banner]',
+              folder: "#{banner_folder_name}", 
+              min_image_width: "1280", min_image_height: "640" },
                 function(error, result) {console.log(error, result)});
 
           .spacer 
@@ -70,12 +82,7 @@
           .nothing= f.text_field :mission, :prepend => :mission, :placeholder => "Describe the mission of the social network", :hide_label => :true, :text => "Social network mission"
           .spacer
 
-          %button.icon_only{ :type => "submit", :name => "commit", :hide_label => :true, :title => "Save the element" } 
-            %i.im-check
-            = "save"
-          %button.icon_only{ :type => "reset", :name => "reset", :hide_label => :true, :title => "Clear the form" } 
-            %i.im-uncheck
-            = "clear"  
+          = render partial: 'shared/common_panel_footer'
 
   .col-xs-15
 

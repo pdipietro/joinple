@@ -67,12 +67,12 @@ it:
         line: ["Chi siamo", "Cookie" , "Privacy" , "Condizioni"]
     recruit:
   landing_page:
-    v1_0_0:
-      view:
-        description:
-          placeholder: "inserisci il testo che apparirà al centro della landing page ..."
-        header_button_caption: "seleziona l'immagine della landing page ..." 
-        logo_button_caption:  "seleziona il logo della landing page ..."
+    view:
+      description:
+        placeholder: "inserisci il testo che apparirà al centro della landing page ..."
+      page_header: "modifica il contenuto della landing page ..."
+      header_button_caption: "seleziona l'immagine della landing page ..." 
+      logo_button_caption:  "seleziona il logo della landing page ..."
   social_network:
     model:
     view:

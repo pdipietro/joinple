@@ -1,39 +1,44 @@
-- if landing_page.errors.count == 0
-  = puts "landing_page: #{landing_page[:logo]}"
-  %div{ :id => landing_page.uuid }
-    = bootstrap_form_for(landing_page, :remote => :true,  :html => {:multipart => true} ) do |f|
-      .landing-page-description
-        = f.text_area :description, :prepend => :description, :placeholder => t("landing_page.#{short_version}.view.description.placeholder"), :hide_label => :true
+#landing-page-form{ :class => landing_page.errors.count == 0 ? 'collapse in' : 'collapse in' }
+  .col-xs-15
+  .col-xs-30
+    .panel.panel-default.nothing
+      = render partial: 'shared/common_panel_header', locals: { :style => "current", :data_target => "#landing-page-form", :title => t(title) }
 
-      = cl_image_tag landing_page.logo, :height => (cookies[:height].to_i / 2), :class => "responsive"
+      .panel-body
+        -#%div{ :id => landing_page.uuid }
+        = bootstrap_form_for(landing_page, :remote => :true,  :html => {:multipart => true} ) do |f|
+          .landing-page-description
+            = f.text_area :description, :prepend => :description, :placeholder => t("landing_page.view.description.placeholder"), :hide_label => :true
 
-      #upload_widget_logo
-      - ratio_logo = 200.0/150.0
-      - button_caption = t("landing_page.#{short_version}.view.logo_button_caption")
-      - logo_folder_name = build_landing_image_path options = { :logo => nil } 
-      :javascript 
-        cloudinary.applyUploadWidget(document.getElementById('upload_widget_logo'), 
-        { cloud_name: "#{cloudinary_name?}", upload_preset: 'landing-logo', field_name: 'landing_page[logo]', cropping: 'server', multiple: 'false', button_caption: "#{button_caption}",
-        folder: "#{logo_folder_name}", 
-        cropping_aspect_ratio: "#{ratio_logo}",
-        cropping_default_selection_ratio: "1", }, 
-          function(error, result) {console.log(error, result)});
+          = cl_image_tag landing_page.logo, :height => (cookies[:height].to_i / 2), :class => "responsive"
 
-      = cl_image_tag landing_page.header, :height => (cookies[:height].to_i / 2), :class => "responsive"
-      #upload_widget_header
-      - ratio_header = 2560.0/800.0
-      - button_caption = t("landing_page.#{short_version}.view.header_button_caption")
-      - header_folder_name = build_landing_image_path options = { :header => nil } 
-      :javascript 
-        cloudinary.applyUploadWidget(document.getElementById('upload_widget_header'), 
-        { cloud_name: "#{cloudinary_name?}", upload_preset: 'landing-header', field_name: 'landing_page[header]', cropping: 'server', multiple: 'false', button_caption: "#{button_caption}",
-        folder: "#{header_folder_name}", 
-        cropping_aspect_ratio: "#{ratio_header}",
-        cropping_default_selection_ratio: "1", }, 
-          function(error, result) {console.log(error, result)});
+          #upload_widget_logo
+          - ratio_logo = 200.0/150.0
+          - button_caption = t("landing_page.view.logo_button_caption")
+          - logo_folder_name = build_landing_image_path options = { :logo => nil } 
+          :javascript 
+            cloudinary.applyUploadWidget(document.getElementById('upload_widget_logo'), 
+            { cloud_name: "#{cloudinary_name?}", upload_preset: 'landing-logo', field_name: 'landing_page[logo]', cropping: 'server', multiple: 'false', button_caption: "#{button_caption}",
+            folder: "#{logo_folder_name}", 
+            cropping_aspect_ratio: "#{ratio_logo}",
+            cropping_default_selection_ratio: "1", }, 
+              function(error, result) {console.log(error, result)});
 
-      .form-group     
-        %button.icon_only{ :type => "submit", :remote => :true, :name => "commit", :hide_label => :true, :title => "Save the element"  } 
-          %span.glyphicon.glyphicon-save
+          = cl_image_tag landing_page.header, :height => (cookies[:height].to_i / 2), :class => "responsive"
+          #upload_widget_header
+          - ratio_header = 2560.0/800.0
+          - button_caption = t("landing_page.view.header_button_caption")
+          - header_folder_name = build_landing_image_path options = { :header => nil } 
+          :javascript 
+            cloudinary.applyUploadWidget(document.getElementById('upload_widget_header'), 
+            { cloud_name: "#{cloudinary_name?}", upload_preset: 'landing-header', field_name: 'landing_page[header]', cropping: 'server', multiple: 'false', button_caption: "#{button_caption}",
+            folder: "#{header_folder_name}", 
+            cropping_aspect_ratio: "#{ratio_header}",
+            cropping_default_selection_ratio: "1", }, 
+              function(error, result) {console.log(error, result)});
+
+          = render partial: 'shared/common_panel_footer'
+
+  .col-xs-15
 
 

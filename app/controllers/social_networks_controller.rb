@@ -53,6 +53,7 @@ class SocialNetworksController < ApplicationController
   # GET /social_networks/1
   # GET /social_networks/1.json
   def show
+    @social_network = SocialNetwork.find
   end
 
   # GET /social_networks/new

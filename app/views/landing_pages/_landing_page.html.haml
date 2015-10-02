@@ -45,7 +45,7 @@
                 = "Go deeper"
         %a.toggle{ :type => "toggle", "data-target" => "div[name=cover-#{sn}]", "data-toggle" => "collapse"}
           .collapse.in{ :name => "cover-#{sn}", :style => "background-color: #{sn.background_color}; color: #{sn.text_color};" }
-            %img.img-responsive{  :name => "cover-#{sn}", :alt => "", :src => "http://cdn001.crowdupcafe.com/social/landing-page/#{sn}/cover-72dpi.jpg"}
+            - cl_image_tag "#{sn.logo}"
           .collapse{ :name => "cover-#{sn}"}
             .social-network-name
               = "#{sn}"

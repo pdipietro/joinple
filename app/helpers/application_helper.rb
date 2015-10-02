@@ -118,12 +118,33 @@ puts ("sn: #{sn}")
        csn = SocialNetwork.find_by( :name => sn ) if csn.nil?
        csn = SocialNetwork.find_by( :iname => "www" ) if csn.nil?    # if no db is selected, default to www.joinple.com
        if csn.class.name == "SocialNetwork"
+         #csn = remap_sn_owner (csn) 
          set_current_social_network (csn)
+         puts "current_social_network,class: #{current_social_network.class}"
          current_social_network
        else
          raise "515","Current social network loading error"
        end
   end
+
+#BEGIN
+  def SSSremap_sn_owner (sn)
+        puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> SOCIAL NETWORK VERIFY OWNER <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<" 
+        begin
+          sn.is_owned_by
+          puts "is_owned_by doesn't fail" 
+        rescue
+          puts "is_owned_by failed: rescue started" 
+          query = Neo4j::Session.query("match (o:SocialNetwork} { uuid : '#{sn[:uuid]}' })<-[rel:owns]-(u:Subject) delete rel return u")
+          subject = query.first[:u] 
+          puts "owner: #{subject}"
+          rel = Owns.create(from_node: subject, to_node: sn) 
+          puts "sn.isownedby: #{sn.is_owned_by}"
+        end  
+        csn = SocialNetwork.find( sn.uuid )
+  end
+#END
+
 
   # admin services are reserved to admin subjects only
   def check_admin_subject

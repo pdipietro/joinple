@@ -5,28 +5,22 @@
 
 - ratio_logo = 1.0
 - button_caption = t("subject_profile.view.photo_button_caption")
-- photo_folder_name = build_image_path options = { - photo_folder_name = build_image_path options = { :landing => "v1.0", :logo => nil } 
- } 
+- photo_folder_name = build_subject_image_path(subject_profile, { :photo => nil } )
 
 #upload_subject_photo1
 	:javascript 
 		cloudinary.applyUploadWidget(document.getElementById('upload_subject_photo1'), 
-		{ cloud_name: 'dev-joinple-com', upload_preset: 'subject-photo', field_name: 'subject_profile[photo]', cropping: 'server', multiple: 'false', button_caption: "#{button_caption}",
+		{ cloud_name: "#{cloudinary_name?}", 
+		button_class: "joinple-button",
+		stylesheet: document.baseURI+'/assets/cloudinary.css', theme: "default",
+		cropping: 'server', multiple: 'false', 
+		cropping_aspect_ratio: "#{ratio_logo}", 
+		cropping_default_selection_ratio: "1", 
+		dpr: 'auto',
+		button_caption: "#{button_caption}",
+		upload_preset: 'subject-photo', 
+		field_name: 'subject_profile[photo]', 
 		folder: "#{photo_folder_name}", 
-		cropping_aspect_ratio: "#{ratio_logo}",
-		cropping_default_selection_ratio: "1", }, 
-			function(error, result) {console.log(error, result)});
-
-
--#upload_widget_logo "Upload logo image"
-	- ratio_logo = 200.0/150.0
-	:javascript 
-		cloudinary.applyUploadWidget(document.getElementById('upload_widget_logo'), 
-		{ cloud_name: 'dev-joinple-com', upload_preset: 'landing-logo', field_name: 'landing_page[logo]', cropping: 'server', multiple: 'false', cropping_aspect_ratio: "#{ratio_logo}" }, 
-				function(error, result) {console.log(error, result)});
-
-	:javascript 
-		cloudinary.applyUploadWidget(document.getElementById('upload_subject_photo'), 
-		{ cloud_name: 'dev-joinple-com', upload_preset: 'subject-photo', field_name: 'subject_profile[photo]', cropping: 'server', multiple: 'false', cropping_aspect_ratio: "#{ratio_logo}", cropping_default_selection_ratio: "0.1", button_caption: "#{button_caption}", folder: "/subject/#{subject_profile.uuid}/photo/" }, 
+		min_image_width: "300", min_image_height: "300" },
 			function(error, result) {console.log(error, result)});
 

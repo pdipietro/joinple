@@ -36,10 +36,23 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.delivery_method = :test
-  host = 'localhost:3000' # was 'example.com'
+  config.action_mailer.delivery_method = :sendmail       # was :test
+  host = 'joinple.com' # was 'example.com'
   config.action_mailer.default_url_options = { host: host }
 
   #config.web_console.whitelisted_ips = '192.168.10.10'
+
+  config.log_formatter = ::Logger::Formatter.new
+
+  config.action_mailer.smtp_settings = {
+        address: 'smtp.joinple.com',
+        port: '587',
+        domain: 'webmail.joinple.com',
+        user_name: 'registration@joinple.com',
+        password: 'G*yk#JZ0',
+        authentication: :plain,
+        enable_starttls_auto: true,
+        openssl_verify_mode:  'none'
+    }
 
 end

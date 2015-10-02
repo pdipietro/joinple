@@ -1,6 +1,6 @@
 
 - sizes = Hash.new
-- sizes = { :basic => 18, :comment => 30, :header => 32, :btn => 36, :thumb => 84, :icon => 128, :profile => 250 }
+- sizes = { :basic => 18, :subject_list => 24, :comment => 30, :header => 32, :btn => 36, :thumb => 84, :icon => 128, :profile => 250 }
 
 - size = :btn unless size.is_a? Symbol
 
@@ -8,5 +8,5 @@
 
 - aShape = defined?(shape) ? shape : "" 
 
-= cl_image_tag subject_profile.photo, :width => dimension, :crop => :scale, :class => "#{aShape} responsive" 
+= cl_image_tag subject_profile.photo, :width => dimension, :crop => :scale, :quality => 20, :class => "#{aShape} responsive" 
 

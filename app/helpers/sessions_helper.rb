@@ -90,7 +90,8 @@ module SessionsHelper
   def current_social_network
     if session[:social_network].class.name != "SocialNetwork"
       unless session[:social_network_uuid].nil?
-        session[:social_network] = SocialNetwork.find(session[:social_network_uuid])
+        sn = SocialNetwork.find(session[:social_network_uuid])
+        session[:social_network] = sn
         puts "current_social_network loaded: name= #{current_social_network_name?}"
       else
         puts "TRAGEDY !!!!"
@@ -132,6 +133,10 @@ module SessionsHelper
   # Returns the owner of the current social network.
 
   def current_social_network_owner
+    puts "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
+    puts "session[:social_network].class: #{session[:social_network].class}"
+    puts "session[:social_network].is_owned_by.class: #{session[:social_network].is_owned_by.class}"
+
     session[:social_network].is_owned_by
     #session[:social_network_owner]
   end
@@ -416,7 +421,18 @@ puts " ------------------------------------________> #{res}"
     request.env['HTTP_X_FORWARDED_FOR']
   end
   
-  def build_subject_image_path (options = {} )
+  def build_subject_image_path (user_profile, options = {} )
+    query = Neo4j::Session.query("match (o:SubjectProfile { uuid : '#{user_profile[:uuid]}' })<-[rel:has_profile]-(u:Subject) return u")
+    query.first[:u].uuid
+    path = "/subject/#{query.first[:u].uuid}"
+    options.each do |n,v|
+      path += "/#{n}/"
+      path += "#{v}" unless v.nil?
+    end
+    path
+  end
+
+  def build_object_image_path (options = {} )
     path = "/subject/#{current_social_network_owner.uuid}"
     options.each do |n,v|
       path += "/#{n}/"
@@ -425,8 +441,8 @@ puts " ------------------------------------________> #{res}"
     path
   end
 
-  def build_landing_image_path ( version = Version::JOINPLE_VERSION, options = {} )
-    path = "/landing/#{version}"
+  def build_landing_image_path ( options = {} )
+    path = "/landing/#{short_version}"
     options.each do |n,v|
       path += "/#{n}/"
       path += "#{v}" unless v.nil?
@@ -438,7 +454,7 @@ puts " ------------------------------------________> #{res}"
     session[:full_version]
   end
 
-  def short_version(subst_dot = "_")
+  def short_version
     session[:short_version] 
   end
 
@@ -447,15 +463,17 @@ puts " ------------------------------------________> #{res}"
     def set_current_social_network (sn)
       # puts "caller: #{caller[0...5]}"
       puts "HERE INTO set_current_social_network: #{sn} !!!"
-      if sn.nil?
-        puts "sn is nil => logging out"
+      unless sn.class.name == "SocialNetwork"
+        puts "sn class is #{sn.class.name} => logging out"
         log_out
       else 
+
         session[:social_network_uuid] = sn.uuid
         session[:social_network] = sn
+        puts "session[:social_network].class is now #{session[:social_network].class.name} - SocialNetwork = #{current_social_network.name}"
+
         session[:full_version] = Version::JOINPLE_VERSION
-        v = Version::JOINPLE_VERSION[/v[0-9\.]*/]
-        session[:short_version] = v.gsub(".", "_")
+        session[:short_version] = Version::JOINPLE_VERSION[/v[0-9\.]*/]  # v.gsub(".", "_")
       end
     end
 

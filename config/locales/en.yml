@@ -65,16 +65,17 @@ en:
       footer:
         line: ["About us", "Cookie" , "Privacy" , "Conditions"]
   landing_page:
-    v1_0_0:
-      view:
-        description:
-          placeholder: "insert the text that will appear on the landing page ..."
-        header_button_caption: "select the header image ..." 
-        logo_button_caption:  "select the logo image ..."
-    model:
     view:
-      banner_button_caption: "select the banner image ..." 
-      logo_button_caption: "select the logo image ..."
+      description:
+        placeholder: "insert the text that will appear on the landing page ..."
+      page_header: "Edit the landing page content ...."
+      header_button_caption: "select the header image ..." 
+      logo_button_caption:  "select the logo image ..."
+    model:
+  social_network:
+    view:
+      banner_button_caption: "select the social network banner ..." 
+      logo_button_caption: "select the social network logo ..."
     controller:
   subject_profile:
     model:

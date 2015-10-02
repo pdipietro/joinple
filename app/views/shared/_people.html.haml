@@ -1,8 +1,9 @@
 #post-header-right.shadowing
-  - subjects = Subject.all
-  - (1..1).each do |a|
-    - subjects.each do |subject|
-      %span.subject-faces
-        = link_to subject_profile_path(subject.has_profile.uuid), :remote => :true, :title => "#{subject.first_name} #{subject.last_name} (@#{subject.nickname})" do
-          = image_tag subject.has_profile.photo.url(:btn), :class => "responsive"
+	- subjects = Subject.all
+	- (1..1).each do |a|
+		- subjects.each do |subject|
+			%span.subject-faces
+				= link_to subject_profile_path(subject.has_profile.uuid), :remote => :true, :title => "#{subject.first_name} #{subject.last_name} (@#{subject.nickname})" do
+					= render partial: "subject_profiles/photo_show", locals: { :subject_profile => subject.has_profile, :size => :subject_list }
+					-#= cl_image_tag subject.has_profile.photo, :class => "responsive", :height => 24, :crop => :scale
 
