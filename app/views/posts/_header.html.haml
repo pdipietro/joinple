@@ -7,8 +7,29 @@
 
       %ul.list-group{ :style => "sborder: 1px solid red; "}
         .command-line-m{ :style => "sborder: 1px dotted blue; "}
-          %button.btn-icon-only{ :type => "button", "data-target" => "#add-images", "data-toggle" => "collapse", :title => "Add images", :style => "sborder: 1px dashed orange; "}
-            %i.hoverable.im-camera{ :style => "sborder: 1px solid black; "}
+          - ratio_logo = 400.0 / 300.0
+          - button_caption = t("post.view.photo_button_caption")
+          - photo_folder_name = build_post_image_path
+
+          #upload_subject_photo1
+            :javascript 
+              cloudinary.applyUploadWidget(document.getElementById('upload_subject_photo1'), 
+              { cloud_name: "#{cloudinary_name?}", 
+              stylesheet: document.baseURI+'/assets/cloudinary.css', theme: "default",
+              button_class: 'joinple-button',
+              cropping: 'server', multiple: 'true', max-files: "5",
+              cropping_aspect_ratio: "#{ratio_logo}", 
+              cropping_default_selection_ratio: "1", 
+              dpr: 'auto',
+              button_caption: "#{button_caption}",
+              upload_preset: 'post-image', 
+              field_name: 'post[photo]', 
+              folder: "#{photo_folder_name}", 
+              min_image_width: "400", min_image_height: "300" },
+                function(error, result) {console.log(error, result)});
+              -#%button.btn-icon-only{ :type => "button", "data-target" => "#add-images", "data-toggle" => "collapse", :title => "Add images", :style => "sborder: 1px dashed orange; "}
+                %i.hoverable.im-camera{ :style => "sborder: 1px solid black; "}
+
           %button.btn-icon-only{ :type => "button", "data-target" => "#add-movies", "data-toggle" => "collapse", :title => "Add images", :class => "disabled" }
             %i.hoverable.im-film
           %button.btn-icon-only{ :type => "button", "data-target" => "#add-files", "data-toggle" => "collapse", :title => "Add images", :class => "disabled" }
@@ -20,7 +41,23 @@
           = f.submit :remote => :true, :title => "Send the post", :value => "Send the post" do
             %i.hoverable.im-send-post
 
-      %ul#add-images.list-group.collapse{ :style => "background-color:  white; sborder: 1px solid maroon;"}
+
+
+      -#%ul#add-images.list-group.collapse{ :style => "background-color:  white; sborder: 1px solid maroon; height: 150px;"}
+        .command-line
+          %div= "add your images ... "
+          - (0..4).each do |cnt|
+            %div.fileinput.fileinput-new{"data-provides" => "fileinput"}
+              %span.fileinput-preview.fileinput-exists.thumbnail{:style => "width: 36px; height: 36px;"}
+              %span.fileinput-exists  
+                %a.icon_only{"data-dismiss" => "fileinput", :href => "#"} 
+                  %i.hoverable.im-cancel-circle
+              %span.image-upload.fileinput-new
+                %label{:for => "image#{cnt}" }
+                  %i.hoverable.im-add-photo
+                %input{:id => "image#{cnt}", :name => "post[image#{cnt}]", :type => "file" }
+
+      -#%ul#add-images.list-group.collapse{ :style => "background-color:  white; sborder: 1px solid maroon;"}
         .command-line
           %div= "add your images ... "
           - (0..4).each do |cnt|
@@ -33,7 +70,6 @@
                 %label{ :for => "image#{cnt}" }
                   %i.hoverable.im-add-photo
                 %input{:id => "image#{cnt}", :name => "post[image#{cnt}]", :type => "file" }
-
 
       %ul#add-movies.list-group.collapse{ :style => "background-color:  white;"}
         .command-line-m

@@ -19,6 +19,7 @@
           :javascript 
             cloudinary.applyUploadWidget(document.getElementById('upload_widget_logo'), 
             { cloud_name: "#{cloudinary_name?}", upload_preset: 'landing-logo', field_name: 'landing_page[logo]', cropping: 'server', multiple: 'false', button_caption: "#{button_caption}",
+            button_class: 'joinple-button',
             folder: "#{logo_folder_name}", 
             cropping_aspect_ratio: "#{ratio_logo}",
             cropping_default_selection_ratio: "1", }, 
@@ -32,6 +33,7 @@
           :javascript 
             cloudinary.applyUploadWidget(document.getElementById('upload_widget_header'), 
             { cloud_name: "#{cloudinary_name?}", upload_preset: 'landing-header', field_name: 'landing_page[header]', cropping: 'server', multiple: 'false', button_caption: "#{button_caption}",
+            button_class: 'joinple-button',
             folder: "#{header_folder_name}", 
             cropping_aspect_ratio: "#{ratio_header}",
             cropping_default_selection_ratio: "1", }, 

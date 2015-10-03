@@ -1,5 +1,7 @@
 #social-network-form{ :class => social_network.errors.count == 0 ? 'collapse' : 'collapse in' }
-  - cloudinary_name = "dev" + "-joinple-com"
+  - puts "********************************************************************************************************************************"
+  - puts "session[:social_network].class is now #{session[:social_network].class.name} - SocialNetwork = #{current_social_network.name} - Owner is #{session[:social_network].is_owned_by}"
+
   .spacer
   .col-xs-15
   .col-xs-30
@@ -36,12 +38,13 @@
             #upload_social_network_logo
             - ratio_logo = 1.0
             - logo_button_caption = t("social_network.view.logo_button_caption")
+            -#debugger
             - logo_folder_name = build_object_image_path options = { :social => "#{social_network.uuid}", :logo => nil } 
             :javascript 
               cloudinary.applyUploadWidget(document.getElementById('upload_social_network_logo'), 
               { cloud_name: "#{cloudinary_name?}",  
-              button_class: "joinple-button",
               stylesheet: document.baseURI+'/assets/cloudinary.css', theme: "default",
+              button_class: 'joinple-button',
               cropping: 'server', multiple: 'false', 
               cropping_aspect_ratio: "#{ratio_logo}", 
               cropping_default_selection_ratio: "1",  
@@ -61,7 +64,6 @@
             :javascript 
               cloudinary.applyUploadWidget(document.getElementById('upload_social_network_banner'), 
               { cloud_name: "#{cloudinary_name}",  
-              button_class: "joinple-button",
               stylesheet: document.baseURI+'/assets/cloudinary.css', theme: "default",
               cropping: 'server', multiple: 'false', 
               cropping_aspect_ratio: "#{ratio_banner}", 

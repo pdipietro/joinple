@@ -139,7 +139,7 @@ puts "==========================================================================
  
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:content, :image0, :image1, :image2, :image3, :image4, :hidden_image0, :hidden_image1, :hidden_image2, :hidden_image3, :hidden_image4 )
+      params.require(:post).permit(:content, :image, :uuid )
     end
 
     def set_images (post)

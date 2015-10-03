@@ -64,7 +64,6 @@ en:
         line_4: "SEND YOUR CV AT RECRUITMENT (at) JOINPLE (dot) COM"        
       footer:
         line: ["About us", "Cookie" , "Privacy" , "Conditions"]
-  landing_page:
     view:
       description:
         placeholder: "insert the text that will appear on the landing page ..."
@@ -72,6 +71,11 @@ en:
       header_button_caption: "select the header image ..." 
       logo_button_caption:  "select the logo image ..."
     model:
+  post:
+    model:
+    view:
+      photo_button_caption: "add up to 5 images ..."
+    controller:
   social_network:
     view:
       banner_button_caption: "select the social network banner ..." 

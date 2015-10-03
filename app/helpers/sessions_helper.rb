@@ -402,7 +402,7 @@ module SessionsHelper
       end
     end
 
-    prefix = "ymdhms"
+    prefix = "ymdhms" 
     k = 0 
 
     res =
@@ -419,6 +419,10 @@ puts " ------------------------------------________> #{res}"
 
   def caller_ip
     request.env['HTTP_X_FORWARDED_FOR']
+  end
+
+  def build_post_image_path ()
+    path = "/subject/#{current_social_network_owner.uuid}/post"
   end
   
   def build_subject_image_path (user_profile, options = {} )
@@ -470,7 +474,7 @@ puts " ------------------------------------________> #{res}"
 
         session[:social_network_uuid] = sn.uuid
         session[:social_network] = sn
-        puts "session[:social_network].class is now #{session[:social_network].class.name} - SocialNetwork = #{current_social_network.name}"
+        puts "session[:social_network].class is now #{session[:social_network].class.name} - SocialNetwork = #{current_social_network.name} - Owner is #{session[:social_network].is_owned_by}"
 
         session[:full_version] = Version::JOINPLE_VERSION
         session[:short_version] = Version::JOINPLE_VERSION[/v[0-9\.]*/]  # v.gsub(".", "_")

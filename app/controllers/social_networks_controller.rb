@@ -18,7 +18,7 @@ class SocialNetworksController < ApplicationController
 
     puts "current_subject: #{current_subject} - current_subject.uuid: #{current_subject.uuid}"
 
-
+    #debugger
     query_string =
       case filter
         when "iparticipate"
@@ -63,6 +63,7 @@ class SocialNetworksController < ApplicationController
 
   # GET /social_networks/1/edit
   def edit
+    #debugger
   end
 
   # POST /social_networks
@@ -140,7 +141,7 @@ class SocialNetworksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def social_network_params
-      params.require(:social_network).permit(:name, :description, :short_description, :mission, :slogan, :logo, :banner, :background_color, :text_color, :social_network_color)
+      params.require(:social_network).permit(:uuid, :name, :description, :short_description, :mission, :slogan, :logo, :banner, :background_color, :text_color, :social_network_color)
     end
 
     def get_title(filter)
