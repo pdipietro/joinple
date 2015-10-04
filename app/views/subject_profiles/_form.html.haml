@@ -18,6 +18,8 @@
           .spacer
           .nothing= f.color_field :text_color, :prepend => "text color", :placeholder => "Enter the standard text color", :hide_label => :true, :class => "left-align"
           .spacer
+          .nothing= f.text_field :photo, :prepend => "photo", :placeholder => "Enter the photo path", :hide_label => :true
+          .spacer
 
           = render partial: "subject_profiles/photo_load", locals: { :subject_profile => subject_profile, :size => :profile }
           .spacer

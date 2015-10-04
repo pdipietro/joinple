@@ -63,7 +63,7 @@
             - banner_folder_name = build_object_image_path options = { :social => "#{social_network.uuid}", :banner => nil } 
             :javascript 
               cloudinary.applyUploadWidget(document.getElementById('upload_social_network_banner'), 
-              { cloud_name: "#{cloudinary_name}",  
+              { cloud_name: "#{cloudinary_name?}",  
               stylesheet: document.baseURI+'/assets/cloudinary.css', theme: "default",
               cropping: 'server', multiple: 'false', 
               cropping_aspect_ratio: "#{ratio_banner}", 
