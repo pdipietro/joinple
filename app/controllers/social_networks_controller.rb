@@ -89,8 +89,14 @@ class SocialNetworksController < ApplicationController
   # PATCH/PUT /social_networks/1
   # PATCH/PUT /social_networks/1.json
   def update
+   #debugger
+    parms = social_network_params
+    parms[:logo] = cloudinary_clean(parms[:logo]) unless parms[:logo].to_s.length == 0
+    parms[:banner] = cloudinary_clean(parms[:banner])unless parms[:banner].to_s.length == 0
+    puts "parms: #{parms}"
+
     respond_to do |format|
-      if @social_network.update(social_network_params)
+      if @social_network.update(parms)
         format.js   { render partial: "replace", object: @social_network, notice: 'Social network was successfully updated.' }
         format.html { redirect_to @social_network, notice: 'Social network was successfully updated.' }
         format.json { render :show, status: :ok, location: @social_network }

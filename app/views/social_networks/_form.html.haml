@@ -33,12 +33,11 @@
           .nothing= f.color_field :text_color, :prepend => "title text color", :placeholder => "Select the title text color", :hide_label => :true, :class => "left-align" 
           .spacer
 
-          = cl_image_tag social_network.logo, :height => 200, :crop => :scale, :quality => 50
+          = cl_image_tag social_network.logo, :height => 200, :crop => :scale, :quality => 50, :class => "responsive"
           .ds
             #upload_social_network_logo
             - ratio_logo = 1.0
             - logo_button_caption = t("social_network.view.logo_button_caption")
-            -#debugger
             - logo_folder_name = build_object_image_path options = { :social => "#{social_network.uuid}", :logo => nil } 
             :javascript 
               cloudinary.applyUploadWidget(document.getElementById('upload_social_network_logo'), 
@@ -50,12 +49,12 @@
               cropping_default_selection_ratio: "1",  
               dpr: 'auto', 
               button_caption: "#{logo_button_caption}",
-              upload_preset: 'subject-photo', 
+              upload_preset: 'social-logo', 
               field_name: 'social_network[logo]',
               folder: "#{logo_folder_name}", 
               min_image_width: "300", min_image_height: "300" });
 
-          = cl_image_tag social_network.banner, :height => 200, :crop => :scale, :quality => 50
+          = cl_image_tag social_network.banner, :height => 200, :crop => :scale, :quality => 50, :class => "responsive"
           .es
             #upload_social_network_banner
             - ratio_banner = 2.0
@@ -65,6 +64,7 @@
               cloudinary.applyUploadWidget(document.getElementById('upload_social_network_banner'), 
               { cloud_name: "#{cloudinary_name?}",  
               stylesheet: document.baseURI+'/assets/cloudinary.css', theme: "default",
+              button_class: 'joinple-button',
               cropping: 'server', multiple: 'false', 
               cropping_aspect_ratio: "#{ratio_banner}", 
               cropping_default_selection_ratio: "1", 

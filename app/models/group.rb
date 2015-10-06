@@ -13,9 +13,9 @@ class Group
   property  :type,         :type =>   String, default: "open"
 
   property  :logo,              type: String
-  mount_uploader :logo,         GroupLogoUploader 
+  #mount_uploader :logo,         GroupLogoUploader 
   property  :header,            type: String
-  mount_uploader :header,       GroupHeaderUploader 
+  #mount_uploader :header,       GroupHeaderUploader 
 
   has_many  :in,  :has_discussion, rel_class: TakesPlaceIn  # Post
   has_many  :in,  :has_member, rel_class: MemberOf       # Subject

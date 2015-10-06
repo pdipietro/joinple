@@ -31,7 +31,7 @@ gem 'neo4jrb_spatial', '~> 1.0.0'
 
 gem 'bcrypt',                  '3.1.7'
 gem 'faker',                   '1.4.2'
-gem 'carrierwave',             '0.10.0'
+#gem 'carrierwave',             '0.10.0'
 gem 'mini_magick',             '3.8.0'
 gem 'fog'
 gem 'will_paginate',           '3.0.7'
@@ -72,9 +72,9 @@ gem 'bootstrap_colorpicker_rails'
 gem 'bootstrap-switch-rails', '~> 3.0.0'
 
 gem 'remotipart'
-gem 'carrierwave-neo4j', require: 'carrierwave/neo4j'
+#gem 'carrierwave-neo4j', require: 'carrierwave/neo4j'
 #gem 'carrierwave-ftp', :require => 'carrierwave/storage/ftp/all' # both FTP/SFTP
-gem "rmagick"
+#gem "rmagick"
 gem "inline_svg", '0.2.0'
 
 gem 'google-webfonts-rails'

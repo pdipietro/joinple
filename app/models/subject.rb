@@ -4,7 +4,6 @@
 
 class Subject
   include Neo4j::ActiveNode
-#  include Neo4jrb::Paperclip
   include Uuid
   include CreatedAtUpdatedAt
   include SecurePassword
@@ -55,7 +54,6 @@ class Subject
   has_many  :out, :owns, rel_class: Owns                # :any
   has_many  :out, :is_member_of, rel_class: MemberOf    # Group
   has_one   :out, :has_profile, rel_class: HasSubjectProfile, model_class: SubjectProfile  # Profile
-  has_many  :out, :has_image, rel_class: HasImage       # Images
 
   # Remembers a subject in the database for use in persistent sessions.
   def remember

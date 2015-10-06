@@ -72,6 +72,41 @@ it:
       page_header: "modifica il contenuto della landing page ..."
       header_button_caption: "seleziona l'immagine della landing page ..." 
       logo_button_caption:  "seleziona il logo della landing page ..."
+  layout:
+    view:
+      header:
+        joinple_home: "Joinplee home"
+        login: "Accedi ..."
+        signup: "Iscriviti ..."
+        goto_joinple: "Vai a Joinple"
+        people: "Le persone"
+        social_networks: "I social network"
+        notifications: "Le notifiche"
+        messages: "I messaggi"
+        about: "Informazioni su Joinple"
+        privacy: "Privacy"
+        contacts: "Contatti"
+        terms_and_conditions: "Termini e condizioni di utilizzo"
+        help: "Aiuto"
+        faq: "Domande frequenti"
+        myself: "Io"
+        welcome: "Benvenuto "
+        my_profiles: "I miei profili ..."
+        settings: "Impostazioni ..."
+        my_books: "I miei libri [?????] ..."
+        my_preferites: "I miei preferiti ..."
+        log_out: "Esci da Joinple ..."
+        administration: "Amministrazione"
+        landing_page: "Landing page"
+        languages: "Lingue"
+        administrators: "Amministratori"
+        view_system_status: "Stato del sistema"
+      left:
+        home_posts: "I Post"
+        preferites: "I miei preferiti"
+        groups: "Gruppi"
+        discussions: "Discussioni"
+        blogs: "Blog"
   post:
     model:
     view:
@@ -82,6 +117,8 @@ it:
     view:
       banner_button_caption: "seleziona l'immagine del social network ..." 
       logo_button_caption: "seleziona il logo del social network ..."
+      header:
+
     controller:
   subject_profile:
     model:

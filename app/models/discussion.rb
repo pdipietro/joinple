@@ -15,7 +15,7 @@ class Discussion
   has_one   :in,  :is_owned_by, rel_class: Owns                # Subject
 
   property  :header,              type: String
-  mount_uploader :header,         DiscussionHeaderUploader 
+ # mount_uploader :header,         DiscussionHeaderUploader 
 
   has_one   :out, :belongs_to, model_class: Group,  type: "belongs_to"      # belongs to Group
   has_many  :out, :has_comment, model_class: DiscussionComment, type: "has_comment"     # :DiscussionComment

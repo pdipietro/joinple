@@ -71,6 +71,42 @@ en:
       header_button_caption: "select the header image ..." 
       logo_button_caption:  "select the logo image ..."
     model:
+  layout:
+    view:
+      header:
+        joinple_home: "Joinplee home"
+        login: "Log in ..."
+        signup: "Sign up ..."
+        goto_joinple: "Go to Joinple"
+        people: "People"
+        social_networks: "Social networks"
+        notifications: "Notifications"
+        messages: "Messages"
+        about: "About Joinple"
+        privacy: "Privacy"
+        contacts: "Contacts"
+        terms_and_conditions: "Terms and conditions"
+        help: "Help"
+        faq: "FAQ"
+        myself: "Myself"
+        welcome: "Welcome "
+        my_profiles: "My profiles"
+        settings: "Settings"
+        my_books: "My books [?????]"
+        my_preferites: "My preferites"
+        log_out: "Log out"
+        administration: "Administration"
+        landing_page: "Landing page"
+        languages: "Languages"
+        administrators: "Administrators"
+        view_system_status: "View system status"
+      left:
+        home_posts: "Home posts"
+        preferites: "My preferites"
+        groups: "Groups"
+        discussions: "Discussions"
+        blogs: "Blogs"
+
   post:
     model:
     view:

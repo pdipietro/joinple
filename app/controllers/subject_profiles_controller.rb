@@ -16,11 +16,9 @@ class SubjectProfilesController < ApplicationController
       parms = subject_profile_params
       parms[:photo] = cloudinary_clean(parms[:photo])
     if @subject_profile.update(parms)
-       puts ("E' andato bene: #{subject_profile_params}")
        flash[:success] = "Profile updated"
        redirect_to @subject_profile
     else
-       puts ("E' andato male: #{subject_profile_params}")
        render :edit, object: @subject_profile
     end
   #  respond_to do |format|

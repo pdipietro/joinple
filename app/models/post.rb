@@ -14,7 +14,7 @@ class Post
   has_many  :out, :has_comment, model_class: PostComment, type: "has_comment"     # :comment
 
   property  :image,              type: String                       
-  mount_uploader :image,         PostImageUploader 
+  #mount_uploader :image,         PostImageUploader 
 
   #property  :image0,             type: String                       
   #mount_uploader :image0,        PostImageUploader 

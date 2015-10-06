@@ -40,12 +40,11 @@ module ApplicationHelper
   end
 
   def calculate_full_path (sn)
-    #env = recode_env
-    #"http://#{env}#{sn.name.downcase.gsub(/\s+/, "")}.#{request.domain}"
+    nm = sn.name.casecmp("joinple") == 0 ? "www" : sn.name.downcase.gsub(/\s+/, "")
     if @stage == ""
-      "http://#{sn.name.downcase.gsub(/\s+/, "")}.#{request.domain}"
+      "http://#{nm}.#{request.domain}"
     else
-      "http://#{@stage}.#{sn.name.downcase.gsub(/\s+/, "")}.#{request.domain}"
+      "http://#{@stage}.#{nm}.#{request.domain}"
     end
   end
 
@@ -69,10 +68,10 @@ module ApplicationHelper
   def check_machine_name_vs_request
     host_name = gethostname
 
-puts ("host_name: #{host_name}")
+    puts ("host_name: #{host_name}")
 
     sn = request.domain.split(".").first.downcase
-puts ("sn: #{sn}")
+    puts ("sn: #{sn}")
 
     puts "ALLOWED_DOMAIN_SERVER.include? #{sn}: #{ALLOWED_DOMAIN_SERVER.include? sn}"
     if ALLOWED_DOMAIN_SERVER.include? sn
@@ -114,11 +113,11 @@ puts ("sn: #{sn}")
        sn = sn.start_with?("dev5.") ? sn.split(".")[1] : sn 
        sn = sn.start_with?("demo.") ? sn.split(".")[1] : sn 
        sn = humanize_word(sn)
+       sn = "joinple" if sn.downcase == "www" 
        csn = SocialNetwork.find_by( :iname => sn.downcase )
        csn = SocialNetwork.find_by( :name => sn ) if csn.nil?
        csn = SocialNetwork.find_by( :iname => "www" ) if csn.nil?    # if no db is selected, default to www.joinple.com
        if csn.class.name == "SocialNetwork"
-         #csn = remap_sn_owner (csn) 
          set_current_social_network (csn)
          puts "current_social_network,class: #{current_social_network.class}"
          current_social_network

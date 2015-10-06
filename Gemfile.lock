@@ -64,15 +64,6 @@ GEM
     bootstrap_form (2.3.0)
     builder (3.2.2)
     byebug (6.0.2)
-    carrierwave (0.10.0)
-      activemodel (>= 3.2.0)
-      activesupport (>= 3.2.0)
-      json (>= 1.7)
-      mime-types (>= 1.16)
-    carrierwave-neo4j (2.0.1)
-      activesupport (>= 3.0)
-      carrierwave (~> 0.5)
-      neo4j (>= 3.0.0)
     cloudinary (1.1.0)
       aws_cf_signer
       rest-client
@@ -371,7 +362,6 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
-    rmagick (2.15.4)
     ruby-progressbar (1.7.5)
     ruby_parser (3.7.1)
       sexp_processor (~> 4.1)
@@ -443,8 +433,6 @@ DEPENDENCIES
   bootstrap_colorpicker_rails
   bootstrap_form
   byebug
-  carrierwave (= 0.10.0)
-  carrierwave-neo4j
   cloudinary
   coffee-rails
   faker (= 1.4.2)
@@ -469,7 +457,6 @@ DEPENDENCIES
   rails_12factor (= 0.0.2)
   remotipart
   responders (~> 2.0)
-  rmagick
   sass-rails
   sass-rails-source-maps
   sass_paths

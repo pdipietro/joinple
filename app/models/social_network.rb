@@ -15,9 +15,9 @@ class SocialNetwork
   property  :iname,                    :type =>   String
 
   property  :logo,              type: String
-  mount_uploader :logo,         SocialNetworkLogoUploader 
+  #mount_uploader :logo,         SocialNetworkLogoUploader 
   property  :banner,            type: String
-  mount_uploader :lbanner,      SocialNetworkBannerUploader 
+  #mount_uploader :lbanner,      SocialNetworkBannerUploader 
 
   has_many  :in,  :has_posts, model_class: Post, type: "post"                # Posts
   has_many  :in,  :has_tag, model_class: Tag, type: "has_tag"                   # Tags
@@ -39,7 +39,7 @@ class SocialNetwork
     self.short_description = humanize_sentence(self.short_description) if self.short_description
     self.slogan = humanize_sentence(self.slogan) if self.slogan
     self.mission = humanize_word(self.mission) if self.mission
-    self.iname = name.gsub(/\s+/, "").downcase  
+    self.iname = name.gsub(/\s+/, "").downcase unless name.casecmp("joinple") == 0
   end
 
 end

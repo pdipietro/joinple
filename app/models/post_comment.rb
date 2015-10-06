@@ -14,6 +14,6 @@ class PostComment
   has_one   :in, :belongs_to, model_class: Post, type: "belongs_to"  # belongs to Post
 
   property  :image,            type: String
-  mount_uploader :image,       PostCommentImageUploader 
+  #mount_uploader :image,       PostCommentImageUploader 
 
 end

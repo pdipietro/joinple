@@ -15,7 +15,7 @@ class DiscussionComment
   has_many  :out, :has_comment, model_class: false, type: "has_comment"     # :DiscussionComment
 
   property  :images,            type: String
-  mount_uploader :images,       DiscussionCommentImageUploader 
+#  mount_uploader :images,       DiscussionCommentImageUploader 
 
 
   #has_many  :out, :photo, emoticon, attachment(link) 

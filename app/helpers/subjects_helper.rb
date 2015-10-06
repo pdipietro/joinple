@@ -1,13 +1,13 @@
 module SubjectsHelper
 
   # Returns the Gravatar for the given subject.
-  def gravatar_for(subject, options = { size: 80 })
-    gravatar_id = Digest::MD5::hexdigest(subject.email.downcase)
-    size = options[:size]
-    gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}?s=#{size}"
-    #gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}"
-    image_tag(gravatar_url, alt: subject.full_name, class: "gravatar img-responsive")
-  end
+ # def gravatar_for(subject, options = { size: 80 })
+ #   gravatar_id = Digest::MD5::hexdigest(subject.email.downcase)
+ #   size = options[:size]
+ #   gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}?s=#{size}"
+ #   #gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}"
+ #   image_tag(gravatar_url, alt: subject.full_name, class: "gravatar img-responsive")
+ # end
 
 #  def full_name(subject)
 #  def Subject.full_name

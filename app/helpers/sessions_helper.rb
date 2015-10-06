@@ -46,10 +46,8 @@ module SessionsHelper
      session[:cloudinary_name]
   end
 
-  def cloudinary_clean(name, prefix = "image/upload")
-    puts "name mangled: #{name[/#{prefix}*[^#]*/]}"
-    name[/cv[0-9]*[^#]*/]
-
+  def cloudinary_clean(name)
+    name[/v[0-9]*[^#]*/]
   end
 
   def browser_geometry
