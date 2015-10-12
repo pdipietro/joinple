@@ -9,4 +9,4 @@ module Uuid
 		SecureRandom::uuid
 	end
 
-end
+end 

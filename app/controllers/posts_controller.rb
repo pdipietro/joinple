@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   before_action :check_social_network
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_subject, only: [:index, :create, :destroy]
+  #before_action :set_images, only: [:create] 
 
   respond_to :js
 
@@ -53,6 +54,9 @@ puts "==========================================================================
 
   # GET /posts/new
   def new
+    # @post = Post.new
+    # @post.uuid = SecureRandom::uuid
+
   end
 
   # GET /posts/1/edit
@@ -62,7 +66,14 @@ puts "==========================================================================
   # POST /posts
   # POST /posts.json
   def create
+
     @post = Post.new(post_params)
+
+    @post.image0 = cloudinary_clean(@post.image0) unless @post.image0.nil?
+    @post.image1 = cloudinary_clean(@post.image1) unless @post.image1.nil?  
+    @post.image2 = cloudinary_clean(@post.image2) unless @post.image2.nil? 
+    @post.image3 = cloudinary_clean(@post.image3) unless @post.image3.nil?  
+    @post.image4 = cloudinary_clean(@post.image4) unless @post.image4.nil?  
 
     respond_to do |format|
       begin
@@ -139,10 +150,19 @@ puts "==========================================================================
  
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:content, :image, :uuid )
+      params.require(:post).permit(:content, :uuid, :image0, :image1, :image2, :image3, :image4 )
     end
 
-    def set_images (post)
+    def set_images 
+      t = @post.image
+      @post.image.clear
+      t.each do |arr|
+        @post.image << arr unless arr.nil?;
+      end
+    end
+
+=begin
+    def old_set_images (post)
       i = 0
       arrs = post.arrs
       post.image0 = post.image1 = post.image2 = post.image3 = post.image4 = ""
@@ -154,6 +174,7 @@ puts "==========================================================================
       end
       arrs = []
     end
+=end
 
     def get_title(filter)
         case filter

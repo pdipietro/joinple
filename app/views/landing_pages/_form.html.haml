@@ -22,7 +22,7 @@
             button_class: 'joinple-button',
             folder: "#{logo_folder_name}", 
             cropping_aspect_ratio: "#{ratio_logo}",
-            cropping_default_selection_ratio: "1", }, 
+            cropping_default_selection_ratio: "1" }, 
               function(error, result) {console.log(error, result)});
 
           = cl_image_tag landing_page.header, :height => (cookies[:height].to_i / 2), :class => "responsive"
@@ -36,7 +36,7 @@
             button_class: 'joinple-button',
             folder: "#{header_folder_name}", 
             cropping_aspect_ratio: "#{ratio_header}",
-            cropping_default_selection_ratio: "1", }, 
+            cropping_default_selection_ratio: "1" }, 
               function(error, result) {console.log(error, result)});
 
           = render partial: 'shared/common_panel_footer'

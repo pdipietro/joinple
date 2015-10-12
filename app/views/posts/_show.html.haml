@@ -2,12 +2,13 @@
 - if post.errors.count == 0
   - rels = count_relationships(post)
   %div
+    - sizes = { :full => ":height => 300, :width => 400", :sq => ":height => 150, :width => 200", :s => ":height => 75, :width => 200" }
     - arr = Array.new
-    - arr << post.image0 unless post.image0.length == 0  
-    - arr << post.image1 unless post.image1.length == 0  
-    - arr << post.image2 unless post.image2.length == 0  
-    - arr << post.image3 unless post.image3.length == 0  
-    - arr << post.image4 unless post.image4.length == 0  
+    - arr << post.image0 unless post.image0.nil?  
+    - arr << post.image1 unless post.image1.nil?  
+    - arr << post.image2 unless post.image2.nil?  
+    - arr << post.image3 unless post.image3.nil?  
+    - arr << post.image4 unless post.image4.nil?   
     - image_cnt = arr.length
 
     -# *********************************** POST IMAGES ****************************************** 
@@ -18,41 +19,40 @@
             .solida-background
           - when 1
             = link_to show_image_path( img: UrlSafeBase64.encode64(arr[0].to_s) ), :remote => :true, :method => :post do
-              = image_tag arr[0].url(:post), :class => "img-c0"
+              = cl_image_tag arr[0], :crop => :fill, :class => "img-c0"
           - when 2
             = link_to show_image_path( img: UrlSafeBase64.encode64(arr[0].to_s) ), :remote => :true, :method => :post do
-              = image_tag arr[0].url(:post_sq), :class => "img-c1"
+              = cl_image_tag arr[0], :crop => :fill, :class => "img-c1"
             = link_to show_image_path( img: UrlSafeBase64.encode64(arr[1].to_s) ), :remote => :true, :method => :post do
-              = image_tag arr[1].url(:post_sq), :class => "img-c1"
+              = cl_image_tag arr[1], :crop => :fill, :class => "img-c1"
           - when 3
             = link_to show_image_path( img: UrlSafeBase64.encode64(arr[0].to_s) ), :remote => :true, :method => :post do
-              = image_tag arr[0].url(:post_sq), :class => "img-c1"
+              = cl_image_tag arr[0], :crop => :fill, :class => "img-c1"
             = link_to show_image_path( img: UrlSafeBase64.encode64(arr[1].to_s) ), :remote => :true, :method => :post do
-              = image_tag arr[1].url(:post_s), :class => "img-c2"
+              = cl_image_tag arr[1], :crop => :fill, :class => "img-c2"
             = link_to show_image_path( img: UrlSafeBase64.encode64(arr[2].to_s) ), :remote => :true, :method => :post do
-              = image_tag arr[2].url(:post_s), :class => "img-c2"
+              = cl_image_tag arr[2], :crop => :fill, :class => "img-c2"
           - when 4
             = link_to show_image_path( img: UrlSafeBase64.encode64(arr[0].to_s) ), :remote => :true, :method => :post do
-              = image_tag arr[0].url(:post_s), :class => "img-c2"
+              = cl_image_tag arr[0], :crop => :fill, :class => "img-c2"
             = link_to show_image_path( img: UrlSafeBase64.encode64(arr[1].to_s) ), :remote => :true, :method => :post do
-              = image_tag arr[1].url(:post_s), :class => "img-c2"
+              = cl_image_tag arr[1], :crop => :fill, :class => "img-c2"
             = link_to show_image_path( img: UrlSafeBase64.encode64(arr[2].to_s) ), :remote => :true, :method => :post do
-              = image_tag arr[2].url(:post_s), :class => "img-c2"
+              = cl_image_tag arr[2], :crop => :fill, :class => "img-c2"
             = link_to show_image_path( img: UrlSafeBase64.encode64(arr[3].to_s) ), :remote => :true, :method => :post do
-              = image_tag arr[3].url(:post_s), :class => "img-c2"  
+              = cl_image_tag arr[3], :crop => :fill, :class => "img-c2"  
           - when 5
             = link_to show_image_path( img: UrlSafeBase64.encode64(arr[0].to_s) ), :remote => :true, :method => :post do
-              = image_tag arr[0].url(:post_sq), :class => "img-c1"
+              = cl_image_tag arr[0], :crop => :fill, :class => "img-c1"
             = link_to show_image_path( img: UrlSafeBase64.encode64(arr[1].to_s) ), :remote => :true, :method => :post do
-              = image_tag arr[1].url(:post_sq), :class => "img-c3"
+              = cl_image_tag arr[1], :crop => :fill, :class => "img-c3"
             = link_to show_image_path( img: UrlSafeBase64.encode64(arr[2].to_s) ), :remote => :true, :method => :post do
-              = image_tag arr[2].url(:post_sq), :class => "img-c3"
+              = cl_image_tag arr[2], :crop => :fill, :class => "img-c3"
             = link_to show_image_path( img: UrlSafeBase64.encode64(arr[3].to_s) ), :remote => :true, :method => :post do
-              = image_tag arr[3].url(:post_sq), :class => "img-c3"
+              = cl_image_tag arr[3], :crop => :fill, :class => "img-c3"
             = link_to show_image_path( img: UrlSafeBase64.encode64(arr[4].to_s) ), :remote => :true, :method => :post do
-              = image_tag arr[4].url(:post_sq), :class => "img-c3"
-        = render partial: 'subjects/owner', locals: { object: post, type: "owner", title: "owner details" }
-
+              = cl_image_tag arr[4], :crop => :fill, :class => "img-c3"
+        = render partial: 'subjects/owner', locals: { object: post, type: "owner", title: "owner details", :profile => :basic }
 
       -# *********************************** POST CONTENT ****************************************** 
       .border-1
@@ -100,4 +100,4 @@
         = render partial: "post_comments/show", locals: { post_comment: rel }
 
       .border-1
-      = render partial: "post_comments/form", locals: { post_comment: PostComment.new, post: post }
+      -#= render partial: "post_comments/form", locals: { post_comment: PostComment.new, post: post }

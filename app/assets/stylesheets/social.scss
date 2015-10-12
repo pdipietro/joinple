@@ -1194,7 +1194,7 @@ video.responsive {
 .img-c1 {
   max-width: 50% !important;
   display: block;
-  height: auto;
+  height: 50%;
   float: left;
   vertical-align: center;  
   padding: 2px;
@@ -1640,7 +1640,7 @@ ul#myposts a li {
 
 /********************************* Cloudinary button ******************************************/
 
-.joinple-button {
+.joinple-button-base {
   color: $joinple_text_color !important;
   text-decoration: none;
   border-radius: 4px;
@@ -1652,15 +1652,22 @@ ul#myposts a li {
   padding: 2px;
   margin: 2px;
   background-color: $joinple_page_background_color;
-  background-image: url("/asset/im-add-photo.png");
-  content: "\e60e";
-
-  sfont-size: 1em;
-  sline-height: 1em;
-  sfont-weight: normal;
-  sheight: 1em;
-  
-    &::before {
-    content: "\e60e";
-    }
   } 
+
+  .joinple-button {
+    @extend .joinple-button-base;
+
+    &::before {
+      font-family: 'icomoon';
+      content: "\e62e  ";
+    }
+}
+
+  .joinple-button-add-image {
+    @extend .joinple-button-base;
+
+    &::before {
+      font-family: 'icomoon';
+      content: "\e630  ";
+    }
+}

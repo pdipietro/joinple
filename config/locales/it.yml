@@ -102,7 +102,7 @@ it:
         administrators: "Amministratori"
         view_system_status: "Stato del sistema"
       left:
-        home_posts: "I Post"
+        home_posts: "Tutti i Post"
         preferites: "I miei preferiti"
         groups: "Gruppi"
         discussions: "Discussioni"
