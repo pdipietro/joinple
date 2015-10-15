@@ -1194,7 +1194,7 @@ video.responsive {
 .img-c1 {
   max-width: 50% !important;
   display: block;
-  height: 50%;
+  height: auto;
   float: left;
   vertical-align: center;  
   padding: 2px;
@@ -1211,6 +1211,7 @@ video.responsive {
   float: left;
   vertical-align: center;  
   max-width: 25% !important;
+  height: 100%;
   padding: 2px;
 }
 
@@ -1670,4 +1671,9 @@ ul#myposts a li {
       font-family: 'icomoon';
       content: "\e630  ";
     }
+}
+
+
+ol .joinple-button-add-image + div + ul.cloudinary-thumbnails li.cloudinary-thumbnail.active {
+  display: none;
 }

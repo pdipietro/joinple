@@ -10,9 +10,9 @@
 
 - size = :thumb unless defined?(size)
 
-= puts "subject_profile: #{subject_profile.photo}"
 = puts "subject: #{subject.first_name} #{subject.last_name}"
 = puts "size: #{size} -------"
+= puts "subject_profile: #{subject_profile.photo}"
 
 - if defined?(local_current_subject)
   = render partial: "subject_profiles/photo_show", locals: { :subject_profile => subject_profile, :size => :basic, :shape => "responsive circle" }
@@ -20,10 +20,10 @@
   = render partial: "subject_profiles/photo_show", locals: { :subject_profile => subject_profile, :header => :basic, :shape => "responsive circle padding-1" }
 - elsif defined?(type)
   %span{ :class => "semi-transparent-#{type}-bar", :style => "clear: both;" }
-  %div.solida.not-hoverable
+  %div.solida
     = link_to subject_profile_path(subject.has_profile.uuid), :remote => :true, :title => title, :shape => ("hoverable white") do
       = render partial: "subject_profiles/photo_show", locals: { :subject_profile => subject_profile, :size => size, :shape => "circle padding-1" }
-      = "#{subject.full_name} (@#{subject.nickname})"
+      %span.vertical-middle= "#{subject.full_name} (@#{subject.nickname})"
     %span.to-right.vertical-middle
       = "created on #{object.created_at.to_formatted_s(:short)}"
 - else
@@ -33,3 +33,4 @@
       = "#{subject.full_name} (@#{subject.nickname})"
 
 
+-# = render partial: 'subjects/owner', locals: { object: post, type: "owner", title: "owner details", :profile => :basic }

@@ -2,15 +2,9 @@
 - sizes = Hash.new
 - sizes = { :basic => 18, :subjectList => 24, :comment => 30, :header => 32, :btn => 36, :thumb => 84, :icon => 128, :standard => 200, :profile => 250 }
 
--# debugger
-
-- puts "size: #{size}"
 - size = :btn unless size.is_a? Symbol
-- puts "size: #{size} - sizes[size]: #{sizes[size]}"
 
-- puts "sizes[size]: #{sizes[size]}"
 - dimension = sizes[size]
-- puts "dimension: #{dimension} - #{dimension.class}"
 
 - aShape = defined?(shape) ? shape : "" 
 
@@ -20,5 +14,5 @@
 - if dimension < 200 
 	- quality = 20
 
-= cl_image_tag subject_profile.photo, :width => dimension, :crop => :scale, :quality => quality, :class => "#{aShape} responsive" 
+= cl_image_tag subject_profile.photo, :width => dimension, :crop => :scale, :quality => quality, :class => "#{aShape}" 
 

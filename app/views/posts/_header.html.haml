@@ -1,6 +1,6 @@
 - csn = current_social_network
 - if logged_in?
-  - post.content = "Vaffanculo"
+  - post.content = "Post content"
 
   #post-header-left
     = bootstrap_form_for(post, :remote => :true,  :html => {:multipart => true}) do |f|
@@ -9,7 +9,7 @@
 
       %ul.list-group{ :style => "border: 1px solid red; "}
         .command-line-m{ :style => "border: 1px dotted blue; "}
-          %button.btn-icon-only{ :type => "button", "data-target" => "#add-images", "data-toggle" => "collapse", :title => "Add images", :style => "border: 1px dashed orange; "}
+          %button.btn-icon-only{ :type => "button", "data-target" => "#add-images", "data-toggle" => "collapse", :title => "Add images", :style => "sborder: 1px dashed orange; "}
             %i.hoverable.im-camera{ :style => "sborder: 1px solid black; "}
           %button.btn-icon-only{ :type => "button", "data-target" => "#add-movies", "data-toggle" => "collapse", :title => "Add images", :class => "disabled" }
             %i.hoverable.im-film
@@ -22,29 +22,27 @@
           = f.submit :remote => :true, :title => "Send the post", :value => "Send the post" do
             %i.hoverable.im-send-post
 
-      %ul#add-images.list-group.collapse{ :style => "background-color:  white; border: 1px solid maroon; height: 150px;"}
+      %ul#add-images.list-group.collapse{ :style => "background-color:  white; sborder: 1px solid maroon; height: 150px;"}
         .command-line
-          - ratio_image = 400.0 / 300.0
+          - ratio_image = 600.0 / 300.0
           - button_caption = "+" #t("post.view.photo_button_caption")
           - post_folder_name = build_post_image_path
           - (0..4).each do |cnt|
-            %div{ :id => "upload_subject_photo#{cnt}"}
             :javascript 
               cloudinary.applyUploadWidget(document.getElementById("upload_subject_photo#{cnt}"), 
               { cloud_name: "#{cloudinary_name?}", 
-              stylesheet: document.baseURI+'/assets/cloudinary.css', theme: "none",
+              stylesheet: document.baseURI+'/assets/cloudinary.css',
               button_class: 'joinple-button-add-image',
               cropping: 'server', multiple: 'false',
               cropping_aspect_ratio: "#{ratio_image}", 
               cropping_default_selection_ratio: "1", 
-              dpr: 'auto',
               button_caption: "#{button_caption}",
               upload_preset: 'post-image', 
               field_name: "post[image#{cnt}]", 
               folder: "#{post_folder_name}", 
-              min_image_width: "400", min_image_height: "300" },
+              min_image_width: "600", min_image_height: "300" },
                 function(error, result) {console.log(error, result)});
-
+            %div{ :id => "upload_subject_photo#{cnt}"}
 
 
       -#%ul#add-images.list-group.collapse{ :style => "background-color:  white; sborder: 1px solid maroon;"}
