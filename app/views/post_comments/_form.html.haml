@@ -3,7 +3,7 @@
     = form_for(post_comment, :remote => :true) do |f|
       = hidden_field_tag :post_uuid, post.uuid
       .col-xs-6
-        .owner-image= render partial: 'subjects/owner', locals: { object: post_comment, type: "owner", local_current_subject: :true  }
+        .owner-image= render partial: 'subjects/owner', locals: { object: post_comment, type: "owner", use_current_subject: :true  }
       .col-xs-51
         .post-comment-text= f.text_area :content, :placeholder => "insert comment ..."
       .col-xs-3.nothing

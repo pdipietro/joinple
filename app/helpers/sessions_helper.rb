@@ -221,11 +221,11 @@ module SessionsHelper
 
 
   def set_current_subject_profile
-  #  session[:current_subject_profile] = SubjectProfile.find_by_subject session[:subject_id]
+    session[:current_subject_profile] = SubjectProfile.find_by_subject session[:subject_id]
   end
 
   # Return the current_subject profile
-  def current_subject_profile
+  def current_subject_profile?
     session[:current_subject_profile]
   end
  

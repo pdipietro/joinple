@@ -1,27 +1,26 @@
-- unless defined?(local_current_subject)
+- unless defined?(use_current_subject) or defined?(subject)
   - className = object.class.name
   - q = "match (o:#{className} { uuid : '#{object[:uuid]}' })<-[rel:owns]-(u:Subject)-[p:has_profile]->(up:SubjectProfile) return u, up"
   - puts "query: #{q}"
   - query = Neo4j::Session.query(q)
   - subject = query.first[:u] 
   - subject_profile = query.first[:up]
+  = puts "subject: #{subject.first_name} #{subject.last_name}"
+  = puts "subject_profile: #{subject_profile.photo}"
 
 - title = defined?(title) ? title : "Edit"
 
 - size = :thumb unless defined?(size)
-
-= puts "subject: #{subject.first_name} #{subject.last_name}"
 = puts "size: #{size} -------"
-= puts "subject_profile: #{subject_profile.photo}"
 
-- if defined?(local_current_subject)
-  = render partial: "subject_profiles/photo_show", locals: { :subject_profile => subject_profile, :size => :basic, :shape => "responsive circle" }
+- if defined?(use_current_subject)
+  = render partial: "subject_profiles/photo_show", locals: { :subject_profile => current_subject.has_profile, :size => :btn, :shape => "responsive circle" }
 - elsif defined?(show)
-  = render partial: "subject_profiles/photo_show", locals: { :subject_profile => subject_profile, :header => :basic, :shape => "responsive circle padding-1" }
+  = render partial: "subject_profiles/photo_show", locals: { :subject_profile => subject_profile, :size => size, :shape => "responsive circle padding-1" }
 - elsif defined?(type)
   %span{ :class => "semi-transparent-#{type}-bar", :style => "clear: both;" }
   %div.solida
-    = link_to subject_profile_path(subject.has_profile.uuid), :remote => :true, :title => title, :shape => ("hoverable white") do
+    = link_to subject_profile_path(subject_profile.uuid), :remote => :true, :title => title, :shape => ("hoverable white") do
       = render partial: "subject_profiles/photo_show", locals: { :subject_profile => subject_profile, :size => size, :shape => "circle padding-1" }
       %span.vertical-middle= "#{subject.full_name} (@#{subject.nickname})"
     %span.to-right.vertical-middle

@@ -9,9 +9,8 @@
   .border-1
   .content
     .col-xs-5
-      = link_to subject_profile_path(subject.has_profile.uuid), :remote => :true, :title => "show" do
-        -#.owner-image= cl_image_tag subject.has_profile.photo, :class => "circle padding-1", :size => 30
-        = render partial: 'subjects/owner', locals: { subject_profile: subject_profile, type: "owner", title: "owner details", :profile => :basic }
+      = link_to subject_profile_path(subject_profile.uuid), :remote => :true, :title => "show" do
+        = render partial: 'subjects/owner', locals: { object: post_comment, subject: subject, subject_profile: subject_profile, type: "owner", title: "owner details", :size => :comment, :show => :true }
     .col-xs-52
       - if post_comment.content.length > 300
         .first-part.collapse.in{ :name => "post_comment_content_full_#{post_comment.uuid}"}
@@ -24,13 +23,13 @@
             %span= " ... more"
         .full-part.collapse{ :name => "post_comment_content_full_#{post_comment.uuid}"}
           %span
-            = link_to subject_profile_path(subject.has_profile.uuid), :remote => :true, :title => "show", :class => ("hoverable") do
+            = link_to subject_profile_path(subject_profile.uuid), :remote => :true, :title => "show", :class => ("hoverable") do
               = "#{subject.full_name}"
           %a.toggle{ :type => "toggle", "data-target" => "*[name=post_comment_content_full_#{post_comment.uuid}]", "data-toggle" => "collapse"}
             %span= post_comment.content
       - else
         %span
-          = link_to subject_profile_path(subject.has_profile.uuid), :remote => :true, :title => "show", :class => ("hoverable") do
+          = link_to subject_profile_path(subject_profile.uuid), :remote => :true, :title => "show", :class => ("hoverable") do
             = "#{subject.full_name}"
         %span= post_comment.content[0...300]
 

@@ -73,7 +73,7 @@
 
       -# *********************************** COMMAND LINE ****************************************** 
 
-      .spacer
+      .spacer 
       %div
         .command-line-s
           = link_to onerel_path(post,'Post','likes'), :method => :post, :remote => :true, :title => "Smile", :class => ("hoverable") do
@@ -99,6 +99,7 @@
 
       = puts "-----------------------has_comment#: #{post.has_comment.count} #{post.has_comment}"
       - post.has_comment.each do |rel|
+        = puts "+++++++++++++ rel: #{rel}"
         = render partial: "post_comments/show", locals: { post_comment: rel }
 
       .border-1
