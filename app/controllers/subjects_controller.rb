@@ -89,7 +89,9 @@ class SubjectsController < ApplicationController
   # POST /subjects
   # POST /subjects.json
   def create
+    puts "create 1"
     @subject = Subject.new(subject_params)
+    puts "create 2: #{@subject}"
 
     respond_to do |format|
       if @subject.save

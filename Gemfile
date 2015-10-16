@@ -87,3 +87,5 @@ gem 'bootstrap-wysihtml5-rails'
 gem 'cloudinary'
 
 gem 'geocoder'
+
+gem 'http_accept_language'

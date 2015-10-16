@@ -2,25 +2,25 @@
 .col-xs-40
   .panel.panel-default
     .panel-heading{ :style => super_social_network_style }
-      Sign up
+      =t("subject.view.signup.title")
       .panel-title
     .panel-body
       = bootstrap_form_for(subject, :remote => :true, :html => {:multipart => true} ) do |f|
         -#= render 'shared/error_messages', object: f
-        .nothing= f.text_field :nickname, :prepend => :nickname, :placeholder => "Enter your nickname", :hide_label => :true
+        .nothing= f.text_field :nickname, :prepend => t("subject.model.attribute.nickname"), :placeholder => t("subject.view.signup.placeholder.nickname"), :hide_label => :true
         .spacer
-        .nothing= f.text_field :first_name, :prepend => :first_name, :placeholder => "Enter your first name", :hide_label => :true
+        .nothing= f.text_field :first_name, :prepend => t("subject.model.attribute.first_name"), :placeholder => t("subject.view.signup.placeholder.first_name"), :hide_label => :true
         .spacer
-        .nothing= f.text_field :last_name, :prepend => :last_name, :placeholder => "Enter your last name", :hide_label => :true
+        .nothing= f.text_field :last_name, :prepend => t("subject.model.attribute.last_name"), :placeholder => t("subject.view.signup.placeholder.last_name"), :hide_label => :true
         .spacer
-        .nothing= f.text_field :email, :prepend => :email, :placeholder => "Enter your email address", :hide_label => :true
+        .nothing= f.text_field :email, :prepend => t("attribute.email"), :placeholder => t("placeholder.email"), :hide_label => :true
         .spacer
-        .nothing= f.text_field :password, :prepend => :password, :placeholder => "Enter your password", :hide_label => :true
+        .nothing= f.text_field :password, :prepend => t("attribute.password"), :placeholder => t("placeholder.password"), :hide_label => :true
         .spacer
-        .nothing= f.text_field :password_confirmation, :prepend => :password_confirmation, :placeholder => "Confirm your password", :hide_label => :true
+        .nothing= f.text_field :password_confirmation, :prepend => t("subject.model.attribute.password_confirmation"), :placeholder => t("subject.view.signup.placeholder.password_confirmation"), :hide_label => :true
         .spacer
 
-        %button.btn.btn-default.btn-sm{ :type => "submit", :name => "commit", :hide_label => :true, :style => super_social_network_style }
+        %button.btn.btn-default.joinple-button-base{ :type => "submit", :name => "commit", :hide_label => :true, :style => super_social_network_style }
           %i.im-added
-          Create my account
+          =t("subject.view.signup.create_button")
 .col-xs-10

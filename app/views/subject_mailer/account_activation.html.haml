@@ -1,6 +1,10 @@
-%h1 JoinPle Social Network
+%h1=t("account_activation.mail_text.title")
 %p
-  Hi #{@subject.first_name},
+	= t("account_activation.mail_text.salutation") 
+	= "#{@subject.first_name},"
 %p
-  Welcome to the JoinPle Social Network! Click on the link below to activate your account:
-= link_to "Activate", edit_account_activation_url(@subject.activation_token, email: @subject.email)
+	= t("account_activation.mail_text.text1")
+	= link_to t("account_activation.mail_text.activation"), edit_account_activation_url(@subject.activation_token, email: @subject.email)
+	= t("account_activation.mail_text.text2")
+%p
+	= t("account_activation.mail_text.signature")

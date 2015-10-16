@@ -20,13 +20,26 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 it:
-  hello: "Ciao mondo!"
   date:
     formats:
       default: "%d-%m-%Y"
       short: "%b %d"
       long: "%B %d, %Y"
   send: "invia"
+  placeholder:
+    email: "Inserisci il tuo indirizzo email"
+    password: "Inserisci la tua password"
+  attribute:
+    email: "email"
+    password: "password"
+  account_activation:
+    mail_text:
+      title: "JoinPle Social Network"
+      salutation: "Ciao" 
+      text1: "Benvenuto nel social network di Joinple! "
+      activation: "Clicca qui "
+      text2: " per attivare il tuo account."
+      signature: "Il team Joinple."
   landing_page:
     email: 
       label: "email"
@@ -75,7 +88,7 @@ it:
   layout:
     view:
       header:
-        joinple_home: "Joinplee home"
+        joinple_home: "Joinple home"
         login: "Accedi ..."
         signup: "Iscriviti ..."
         goto_joinple: "Vai a Joinple"
@@ -112,21 +125,48 @@ it:
     view:
       photo_button_caption: "aggiungi fino a 5 immagini ..."
     controller:
+  session:
+    model:
+      remember_me: "Ricordam!"
+    view:
+      login:
+        title: "Accedi"
+        forgot_password: "Hai dimenticato la password?"
+        new_subject: "Sei un nuovo utente?"
+        signup_now: "Registrati ora!"
+        placeholder:
+          email_nickname: "Inserisci il tuo indirizzo email o il tuo soprannome"
+        label:
+          remember_me: "Ricordami!"
   social_network:
     model:
     view:
       banner_button_caption: "seleziona l'immagine del social network ..." 
       logo_button_caption: "seleziona il logo del social network ..."
       header:
-
     controller:
+  subject:
+    model:
+      attribute:
+        first_name: "nome"
+        last_name: "cognome"
+        nickname: "soprannome"
+        password_confirmation: "conferma password"
+    view:
+      signup:
+        title: "Registrazione"
+        create_button: "Crea il tuo account"
+        placeholder:
+          nickname: "Inserisci il tuo soprannome"
+          first_name: "Inserisci il tuo nome"
+          last_name: "Inserisci il tuo cognome"
+          password_confirmation: "Conferma la tua password"
   subject_profile:
     model:
     view:
       photo_button_caption: "seleziona la tua nuova foto ..."
     controller:
         
-
   neo4j:
     errors:
       models:

@@ -1,5 +1,5 @@
 class SubjectMailer < ActionMailer::Base
-  default from: "noreply@joinple.com"
+  default from: "registration@joinple.com"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:

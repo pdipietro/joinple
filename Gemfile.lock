@@ -225,6 +225,7 @@ GEM
       ruby_parser (~> 3.5)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
+    http_accept_language (2.0.5)
     httparty (0.13.5)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
@@ -441,6 +442,7 @@ DEPENDENCIES
   google-webfonts-rails
   guard-minitest (= 2.3.1)
   haml-rails
+  http_accept_language
   inline_svg (= 0.2.0)
   jbuilder (>= 2.2.3)
   jquery-rails

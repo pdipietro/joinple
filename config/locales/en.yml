@@ -20,13 +20,27 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
   date:
     formats:
       default: "%Y-%m-%d"
       short: "%b %d"
       long: "%B %d, %Y"
   send: "send"
+  placeholder:
+    email: "Enter your email address"
+    password: "Enter your password"
+  attribute:
+    email: "email"
+    password: "password"
+
+  account_activation:
+    mail_text:
+      title: "JoinPle Social Network"
+      salutation: "Hi" 
+      text1: "Welcome to the JoinPle Social Network! "
+      activation: "Click here"
+      text2: " to activate your account."
+      signature: "The Joinple team."
   landing_page:
     email: 
       label: "email"
@@ -74,7 +88,7 @@ en:
   layout:
     view:
       header:
-        joinple_home: "Joinplee home"
+        joinple_home: "Joinple home"
         login: "Log in ..."
         signup: "Sign up ..."
         goto_joinple: "Go to Joinple"
@@ -112,16 +126,48 @@ en:
     view:
       photo_button_caption: "add up to 5 images ..."
     controller:
+  session:
+    model:
+      remember_me: "remember me"
+    view:
+      login:
+        title: "Log in"
+        forgot_password: "Forgot password?"
+        new_subject: "New user?"
+        signup_now: "Sign up now!"
+        placeholder:
+          email_nickname: "Enter your email address or nickname"
+        label:
+          remember_me: "remember me"
+
+
   social_network:
     view:
       banner_button_caption: "select the social network banner ..." 
       logo_button_caption: "select the social network logo ..."
     controller:
+  subject:
+    model:
+      attribute:
+        first_name: "first name"
+        last_name: "last name"
+        nickname: "nickname"
+        password_confirmation: "confirm password"
+    view:
+      signup:
+        title: "Sign up"
+        create_button: "Create your account"
+        placeholder:
+          nickname: "Enter your nickname"
+          first_name: "Enter your first name"
+          last_name: "Enter your last name"
+          password_confirmation: "Confirm your password"
   subject_profile:
     model:
     view:
       photo_button_caption: "select your new photo ..."
     controller:
+
   neo4j:
     errors:
       models:

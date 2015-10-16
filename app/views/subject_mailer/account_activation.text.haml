@@ -1,8 +1,10 @@
-SubjectMailer#account_activation
+= t("account_activation.mail_text.title")
 
-=# @greeting + ", find me in app/views/subject_mailer/account_activation.text.haml"
-Hi #{@subject.first_name},
+= t("account_activation.mail_text.salutation") 
+= "#{@subject.first_name},"
 
-Welcome to the JoinPle Social Network! Click on the link below to activate your account:
+= t("account_activation.mail_text.text1")
+= link_to t("account_activation.mail_text.activation"), edit_account_activation_url(@subject.activation_token, email: @subject.email)
+= t("account_activation.mail_text.text2")
 
-\#{edit_account_activation_url(@subject.activation_token, email: @subject.email)}
+= t("account_activation.mail_text.signature")

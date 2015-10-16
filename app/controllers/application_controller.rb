@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   helper :all
   #protect_from_forgery with: :exception
   include SessionsHelper
+  include HttpAcceptLanguage::AutoLocale
 
   helper_method :load_social_network
 

@@ -13,6 +13,7 @@ $post_image_width:$common_header_right_width;
 $command_line_height:30px;
 $min_padding:3px;
 $standard_padding:4px;
+$standard-border-radius:4px;
 
 $people_box_height: 143px;
 
@@ -24,7 +25,7 @@ $joinple_page_background_color:#e5e5e5;   /* grey: 229, 229, 229 */
 $joinple_color:#333342;
  
 $joinple_background_color: #a02348;       /* fuxia: 160,35,72    */
-$joinple_text_color:#000000; 
+$joinple_text_color: #000000; 
 $milk:rgba(255, 255, 255, 0.4);
 
 $default_text_color: rgb(51,51,51);
@@ -378,7 +379,7 @@ button.btn-icon-only
 }
 
 ul.list-group {
-  border-radius: 4px;
+  border-radius: $standard-border-radius;
 }
 
 .list-group {
@@ -519,7 +520,7 @@ hr {
   padding: 4px;
   background-color: $joinple_background_color;
   border: 1px solid #dddddd;
-  border-radius: 4px;
+  border-radius: $standard-border-radius;
   -webkit-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
@@ -611,7 +612,7 @@ hr {
 }
 
 .rounded {
-  border-radius: 4px;
+  border-radius: $standard-border-radius;
 }
 
 .social-icon {
@@ -928,7 +929,7 @@ video.responsive {
   width: 100%;
   height: inherit;
   float: left;
-  border-radius: 4px;
+  border-radius: $standard-border-radius;
   background-color: #ffffff;
 }
 
@@ -940,7 +941,7 @@ video.responsive {
   width: auto;
   margin-left: $common_header_right_width + $left_column_width;
   margin-left: $common_header_left_width + 4;
-  border-radius: 4px;
+  border-radius: $standard-border-radius;
   min-height: $people_box_height;
   background-color: #ffffff;
 }
@@ -1007,7 +1008,7 @@ video.responsive {
   border-top-left-radius: 4px;
 
   margin-left: $standard_padding;
-  border-radius: 4px;
+  border-radius: $standard-border-radius;
   min-height: $people_box_height;
   background-color: #ffffff;
   overflow-y: hidden;
@@ -1026,7 +1027,7 @@ video.responsive {
 .post-width {
   min-width: $common_header_left_width; 
   max-width: $common_header_left_width; 
-  border-radius: 4px;
+  border-radius: $standard-border-radius;
 }
 */
 
@@ -1439,7 +1440,7 @@ img.disabled {
 .fileinput .thumbnail {
   background-color: transparent;
   border: 2px solid #9d9d9d;
-  border-radius: 4px;
+  border-radius: $standard-border-radius;
 
   overflow: hidden;
   margin-bottom: 5px;
@@ -1463,7 +1464,7 @@ ul#myposts a li {
   min-height: 38px;
   background-color: #ffffff;
   padding: 2px 0;
-  border-radius: 4px;
+  border-radius: $standard-border-radius;
 
   & .row > div:first-child {
     border-right: 1px solid #e7e7e7;
@@ -1643,21 +1644,22 @@ ul#myposts a li {
 /********************************* Cloudinary button ******************************************/
 
 .joinple-button-base {
-  color: $joinple_text_color !important;
+  color: $joinple_text_color;
   text-decoration: none;
-  border-radius: 4px;
+  border-radius: $standard-border-radius;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   border: 1px outset buttonface;
   text-decoration: none;
   display: inline-block;
-  padding: 2px;
-  margin: 2px;
+  padding: $standard-padding;
+  margin-top: $standard-padding;
   background-color: $joinple_page_background_color;
   } 
 
   .joinple-button {
     @extend .joinple-button-base;
+    color: $joinple_text_color !important;
 
     &::before {
       font-family: 'icomoon';
@@ -1667,6 +1669,7 @@ ul#myposts a li {
 
   .joinple-button-add-image {
     @extend .joinple-button-base;
+    color: $joinple_text_color !important;
 
     &::before {
       font-family: 'icomoon';

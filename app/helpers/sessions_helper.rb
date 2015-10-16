@@ -211,7 +211,7 @@ module SessionsHelper
   end
 
  def profile? subject
-    profile = subject.profile?
+    profile = subject.has_profile
 
     puts "subject profile: #{profile}"
     #subject_profile = Neo4j::Session.query("match (subject:Subject { uuid : '#{subject_id}' })-[has_profile:has_profile]->(profile:SubjectProfile) return profile").first[0]
@@ -221,7 +221,7 @@ module SessionsHelper
 
 
   def set_current_subject_profile
-    session[:current_subject_profile] = SubjectProfile.find_by_subject session[:subject_id]
+    session[:current_subject_profile] = current_subject.has_profile
   end
 
   # Return the current_subject profile
@@ -242,7 +242,7 @@ module SessionsHelper
     session[:social_network] = nil
     session[:social_network_owner] = nil
     session[:cloudinary_name] = nil
-    session.delete[:current_subject_profile] unless session[current_subject_profile].nil?
+    session[:current_subject_profile] = nil
     session.delete(:group) unless session[:group].nil?
     session.delete(:discussion) unless session[:discussion].nil?
 
