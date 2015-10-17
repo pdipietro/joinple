@@ -33,6 +33,7 @@ it:
     email: "email"
     password: "password"
   account_activation:
+    subject: "Attivazione dell'account Joinple"
     mail_text:
       title: "JoinPle Social Network"
       salutation: "Ciao" 

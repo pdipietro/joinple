@@ -34,6 +34,7 @@ en:
     password: "password"
 
   account_activation:
+    subject: "Joinple account activation"
     mail_text:
       title: "JoinPle Social Network"
       salutation: "Hi" 

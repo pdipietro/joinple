@@ -26,8 +26,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
-gem 'neo4j', '~> 5.0.0'
-gem 'neo4jrb_spatial', '~> 1.0.0'
+gem 'neo4j', '~> 6.0.0.alpha'
+gem 'neo4jrb_spatial'
 
 gem 'bcrypt',                  '3.1.7'
 gem 'faker',                   '1.4.2'

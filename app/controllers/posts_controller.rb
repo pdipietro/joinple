@@ -86,7 +86,7 @@ puts "==========================================================================
           rel = @post.create_rel("belongs_to", current_social_network)  
         rescue => e
           tx.failure
-          puts "--------- /post/create: transaction failure: #{@post.content}, #{@post.image}"
+          puts "--------- /post/create: transaction failure: #{@post.content}"
           format.js   { render :new, object: @post }
           format.html { render :new }
           format.json { render json: @post.errors, status: :unprocessable_entity }

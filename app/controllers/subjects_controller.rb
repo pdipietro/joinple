@@ -89,28 +89,26 @@ class SubjectsController < ApplicationController
   # POST /subjects
   # POST /subjects.json
   def create
-    puts "create 1"
     @subject = Subject.new(subject_params)
-    puts "create 2: #{@subject}"
 
     respond_to do |format|
-      if @subject.save
-         aProfile = SubjectProfile.new
-         aProfile.save           
-         rel = HasSubjectProfile.create(from_node: @subject, to_node: aProfile)
-         #@subject.save
-
-    #    log_in @subject
-    #    flash[:success] = "Welcome to the JoinPle Social Network!"
-    #    redirect_to @subject
-    #    format.json { render :show, status: :created, location: @subject }
-        @subject.send_activation_email
-        flash[:info] = "Please check your email to activate your account."
-        redirect_to root_url, format: :js
-      else
-       puts "-------------------------------- subject create error: #{@subject.errors}"
-       render :new, format: :js
-       # format.json { render json: @subject.errors, status: :unprocessable_entity }
+      begin
+        tx = Neo4j::Transaction.new
+          @subject.save
+          aProfile = SubjectProfile.new
+          aProfile.save           
+          rel = HasSubjectProfile.create(from_node: @subject, to_node: aProfile)
+          puts "da fare sendmail"
+          @subject.send_activation_email
+          puts "  fatta sendmail"
+        rescue => e
+          tx.failure
+          puts "--------- /subject/create: transaction failure: #{@subject.nickname} - event: #{e}"
+          render :new, format: :js
+        ensure
+          tx.close
+          flash[:info] = "Please check your email to activate your account."
+          redirect_to root_url, format: :html
       end
     end
   end
