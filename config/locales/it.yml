@@ -25,13 +25,24 @@ it:
       default: "%d-%m-%Y"
       short: "%b %d"
       long: "%B %d, %Y"
-  send: "invia"
+  button:
+    save: "save"
+    clear: "clear"
+    send: "invia"
+    hint: 
+      save: "salva il modulo"
+      clear: "reinizializza il modulo"
+      send: "invia il modulo"
   placeholder:
     email: "Inserisci il tuo indirizzo email"
     password: "Inserisci la tua password"
   attribute:
+    background_color: "colore dello sfondo"
+    description: "descrizione"
     email: "email"
+    name: "nome"
     password: "password"
+    text_color: "colore del testo"
   account_activation:
     subject: "Attivazione dell'account Joinple"
     mail_text:
@@ -41,6 +52,25 @@ it:
       activation: "Clicca qui "
       text2: " per attivare il tuo account."
       signature: "Il team Joinple."
+  discussion:
+    model:
+    view:
+      photo_button_caption: 
+    controller:
+  group:
+    model:
+    view:
+      button:
+        banner: "seleziona l'immagine del gruppo ..." 
+        logo: "seleziona il logo del gruppo ..."
+      open: "aperto"
+      closed: "chiuso"
+      secret: "segreto"
+      type: "<span style='margin-right: 4px; font-weight: normal;'>tipo di gruppo </span>"
+      placeholder: 
+        descriptio: "inserisci la descrizione del gruppo"
+        name: "inserisci il nome del gruppo"
+    controller:
   landing_page:
     email: 
       label: "email"
@@ -144,7 +174,9 @@ it:
     view:
       banner_button_caption: "seleziona l'immagine del social network ..." 
       logo_button_caption: "seleziona il logo del social network ..."
-      header:
+      create_title: "Crea un nuovo social network"
+      edit_title: "Modifica il social network "
+      name: ""
     controller:
   subject:
     model:
@@ -166,8 +198,12 @@ it:
     model:
     view:
       photo_button_caption: "seleziona la tua nuova foto ..."
+      description: "inserici una tua descrizione"
+      background_color: "personalizza il tuo colore di background"
+      text_color: "personalizza il tuo colore di testo"
+      title: "gestisci il tuo profilo"
     controller:
-        
+       
   neo4j:
     errors:
       models:

@@ -7,24 +7,24 @@
         -# .panel-heading{ :style => super_social_network_style }
           %a.toggle{ :type => "toggle", "data-target" => "#subject_profile-form", "data-toggle" => "collapse"}
             .panel-title
-              = "Manage your subject profile"
+              = t("subject_profile.view.title")
               %span.caret.to-right
           .panel-body
         = bootstrap_form_for(subject_profile, :remote => :true, :html => {:multipart => true} ) do |f|
-          .nothing= f.text_area :description, :prepend => :description, :placeholder => "Enter the subject description", :hide_label => :true
+          .nothing= f.text_area :description, :prepend => t("attribute.description"), :placeholder => t("subject_profile.view.description"), :hide_label => :true
           .spacer
 
-          .nothing= f.color_field :background_color, :prepend => "background color", :placeholder => "Enter the standard background color", :hide_label => :true, :class => "left-align" 
+          .nothing= f.color_field :background_color, :prepend => t("attribute.background_color"), :placeholder => t("subject_profile.view.background_color"), :hide_label => :true, :class => "left-align" 
           .spacer
-          .nothing= f.color_field :text_color, :prepend => "text color", :placeholder => "Enter the standard text color", :hide_label => :true, :class => "left-align"
+          .nothing= f.color_field :text_color, :prepend => t("attribute.text_color"), :placeholder => t("subject_profile.view.textd_color", :hide_label => :true, :class => "left-align"
           .spacer
 
           = render partial: "subject_profiles/photo_load", locals: { :subject_profile => subject_profile, :size => :profile }
-          .spacer
+          .spacer-
 
           = render partial: 'shared/common_panel_footer'
 
           .spacer
 
-.col-xs-15
+  .col-xs-15
 

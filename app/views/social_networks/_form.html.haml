@@ -14,9 +14,8 @@
           .panel-title
             - if defined?(title)
               = title
-              -#.button.close{:type => "button", "data-dismiss" => "alert", "aria-label" => "Close" }
             - else
-              = "Create a new social network"
+              = t("social_network.view.create_title")
             %span.to-right
               %i.im-uncheck
       .panel-body

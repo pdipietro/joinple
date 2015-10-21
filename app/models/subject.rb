@@ -98,6 +98,7 @@ class Subject
 
   # Sends activation email.
   def send_activation_email
+    
     SubjectMailer.account_activation(self).deliver_now
   end
 

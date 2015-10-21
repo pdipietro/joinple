@@ -466,6 +466,10 @@ puts " ------------------------------------________> #{res}"
     session[:short_version] 
   end
 
+  def request_full_path
+    request.original_url
+  end
+
   private
 
     def set_current_social_network (sn)

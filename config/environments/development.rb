@@ -34,7 +34,7 @@ Rails.application.configure do
 
   config.web_console.whitelisted_ips = '192.168.10.10'
   config.log_formatter = ::Logger::Formatter.new
-  config.log_level = :error       # :info, :warning, :error, :debug
+  config.log_level = :info       # :debug, :info, :warn, :error, :fatal
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
@@ -42,7 +42,7 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
   #config.action_mailer.delivery_method = :smtp       # was :test
   #host = 'joinple.com' # was 'example.com'
-  config.action_mailer.default_url_options = { host: "joinple.com" }
+  #  config.action_mailer.default_url_options = { host: "dev.www.joinple.com" }   # default generated automatically with the corrct stage
 
 
   config.action_mailer.smtp_settings = {

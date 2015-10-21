@@ -1,38 +1,27 @@
 #group-form{ :class => group.errors.count == 0 ? 'collapse' : 'collapse in' }
   .col-xs-15
   .col-xs-30
+    - uuid = SecureRandom::uuid
+    - logger.info ("uuid _form: #{group.uuid}")
+
     .panel.panel-default.nothing
       = render partial: 'shared/common_panel_header', locals: { :style => "current", :data_target => "#group-form", :title => title }
       .panel-body
         = bootstrap_form_for(group, :remote => :true, :html => {:multipart => true} ) do |f|
-          .nothing= f.text_field :name, :prepend => :name, :placeholder => "Enter the group name ", :hide_label => :true
+          = f.hidden_field :uuid, :value => uuid
+          .nothing= f.text_field :name, :prepend => t("attribute.name"), :placeholder => t("group.view.placeholder.name"), :hide_label => :true
           .spacer
-          .nothing= f.text_area :description, :prepend => :description, :placeholder => "Enter the group description", :hide_label => :true
+          .nothing= f.text_area :description, :prepend => t("attribute.description"), :placeholder => t("group.view.placeholder.description"), :hide_label => :true
 
-          = f.collection_radio_buttons :type, [['open'], ['closed'], ['secret']], :first, :first, :inline => true, :checked => group.type, :prepend => "group type", :label => "group type ", :class => "nothing", :item_wrapper_class => 'radio inline', :item_wrapper_tag => :label, :collection_wrapper_tag => :div, :collection_wrapper_class => "controls"
+          = f.collection_radio_buttons :type, [[t("group.view.open")], [t("group.view.closed")], [t("group.view.secret")]], :first, :first, :inline => true, :checked => group.type, :prepend => t("group.view.type").html_safe, :label => t("group.view.type").html_safe, :class => "nothing", :item_wrapper_class => 'radio inline', :item_wrapper_tag => :label, :collection_wrapper_tag => :div, :collection_wrapper_class => "controls"
 
-          .nothing= f.color_field :background_color, :prepend => "background color", :placeholder => "Enter the standard background color", :hide_label => :true, :class => "left-align" 
+          .nothing= f.color_field :background_color, :prepend => t("attribute.background_color"), :placeholder => "Enter the standard background color", :hide_label => :true, :class => "left-align" 
           .spacer
-          .nothing= f.color_field :text_color, :prepend => "text color", :placeholder => "Enter the standard text color", :hide_label => :true, :class => "left-align" 
+          .nothing= f.color_field :text_color, :prepend => t("attribute.text_color"), :placeholder => "Enter the standard text color", :hide_label => :true, :class => "left-align" 
           .spacer
 
-          .nothing= f.text_field :logo, :prepend => "logo image", :placeholder => "Select the group logo (200x200 px)", :hide_label => :true, :disabled => :true
+          = render partial: "groups/image_load", locals: { :group => group, :size => :profile, :uuid => uuid }
           .spacer
-          .nothing= f.file_field :logo, :prepend => "logo image", :placeholder => "Select the group logo (200x200 px)", :hide_label => :true
-          .spacer
-          .nothing= image_tag group.logo.url(:profile) 
-          .spacer
-          .nothing= f.hidden_field :logo_cache
-
-          .nothing= f.text_field :header, :prepend => "header image", :placeholder => "Select the header banner (916x315 px)", :hide_label => :true, :disabled => :true
-          .spacer
-          .nothing= f.file_field :header, :prepend => "header image", :placeholder => "Select the header banner (916x315 px)", :hide_label => :true
-          .spacer
-          .nothing= image_tag group.header.url(:profile) 
-          .spacer
-          .nothing= image_tag group.header.url(:sm_banner) 
-          .spacer
-          .nothing= f.hidden_field :header_cache
 
           = render partial: 'shared/common_panel_footer'
 

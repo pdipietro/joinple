@@ -1,10 +1,12 @@
+
+
 %h1=t("account_activation.mail_text.title")
 %p
 	= t("account_activation.mail_text.salutation") 
 	= "#{@subject.first_name},"
 %p
 	= t("account_activation.mail_text.text1")
-	= link_to t("account_activation.mail_text.activation"), edit_account_activation_url(@subject.activation_token, email: @subject.email)
+	= link_to t("account_activation.mail_text.activation"), edit_account_activation_url(@subject.activation_token, email: @subject.email, only_path: true, host: ApplicatonController::request_full_path)
 	= t("account_activation.mail_text.text2")
 %p
 	= t("account_activation.mail_text.signature")

@@ -42,10 +42,12 @@ module ApplicationHelper
   def calculate_full_path (sn)
     nm = sn.name.casecmp("joinple") == 0 ? "www" : sn.name.downcase.gsub(/\s+/, "")
     if @stage == ""
-      "http://#{nm}.#{request.domain}"
+      fp = "http://#{nm}.#{request.domain}"
     else
-      "http://#{@stage}.#{nm}.#{request.domain}"
+      fp = "http://#{@stage}.#{nm}.#{request.domain}"
     end
+
+    fp
   end
 
   def gethostname
@@ -61,25 +63,25 @@ module ApplicationHelper
   end
 
   def cloudinary_name?
-      puts "Cloudinary_name in application_helper: #{@cloudinary_name}"
+      logger.info "Cloudinary_name in application_helper: #{@cloudinary_name}"
       @cloudinary_name
   end
 
   def check_machine_name_vs_request
     host_name = gethostname
 
-    puts ("host_name: #{host_name}")
+    logger.info ("host_name: #{host_name}")
 
     sn = request.domain.split(".").first.downcase
-    puts ("sn: #{sn}")
+    logger.info ("sn: #{sn}")
 
-    puts "ALLOWED_DOMAIN_SERVER.include? #{sn}: #{ALLOWED_DOMAIN_SERVER.include? sn}"
+    logger.info "ALLOWED_DOMAIN_SERVER.include? #{sn}: #{ALLOWED_DOMAIN_SERVER.include? sn}"
     if ALLOWED_DOMAIN_SERVER.include? sn
        u = root_url.downcase
        u = u[u.rindex("//")+2..-1]
-       puts "root url: #{u} - #{host_name.split("-")}"
+       logger.info "root url: #{u} - #{host_name.split("-")}"
        stage = host_name.split("-") & u.split(".")
-       puts "Stages: #{stage}"
+       logger.info "Stages: #{stage}"
        if stage.count == 1
           @stage = stage[0]
           @cloudinary_name = "#{ALLOWED_STAGES[@stage]}-joinple-com"
@@ -92,8 +94,8 @@ module ApplicationHelper
     else
        raise  "516","Error: domain server #{sn} is not allowed"
     end
-    puts ("@stage: #{@stage}")
-    puts "Cloudinary_name creation: #{@cloudinary_name}"
+    logger.info ("@stage: #{@stage}")
+    logger.info "Cloudinary_name creation: #{@cloudinary_name}"
 
   end
 
@@ -103,7 +105,7 @@ module ApplicationHelper
 
       check_machine_name_vs_request
       sn = request.domain.split(".").first.downcase
-      puts "ALLOWED_DOMAIN_SERVER.include? sn: #{ALLOWED_DOMAIN_SERVER.include? sn}"
+      logger.info "ALLOWED_DOMAIN_SERVER.include? sn: #{ALLOWED_DOMAIN_SERVER.include? sn}"
       if ALLOWED_DOMAIN_SERVER.include? sn
         u = root_url.downcase
         sn = u[u.rindex("//")+2..-1].split(sn).first[0..-2]
@@ -119,31 +121,12 @@ module ApplicationHelper
        csn = SocialNetwork.find_by( :iname => "www" ) if csn.nil?    # if no db is selected, default to www.joinple.com
        if csn.class.name == "SocialNetwork"
          set_current_social_network (csn)
-         puts "current_social_network,class: #{current_social_network.class}"
+         logger.info "current_social_network,class: #{current_social_network.class}"
          current_social_network
        else
          raise "515","Current social network loading error"
        end
   end
-
-#BEGIN
-  def SSSremap_sn_owner (sn)
-        puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> SOCIAL NETWORK VERIFY OWNER <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<" 
-        begin
-          sn.is_owned_by
-          puts "is_owned_by doesn't fail" 
-        rescue
-          puts "is_owned_by failed: rescue started" 
-          query = Neo4j::Session.query("match (o:SocialNetwork} { uuid : '#{sn[:uuid]}' })<-[rel:owns]-(u:Subject) delete rel return u")
-          subject = query.first[:u] 
-          puts "owner: #{subject}"
-          rel = Owns.create(from_node: subject, to_node: sn) 
-          puts "sn.isownedby: #{sn.is_owned_by}"
-        end  
-        csn = SocialNetwork.find( sn.uuid )
-  end
-#END
-
 
   # admin services are reserved to admin subjects only
   def check_admin_subject
@@ -166,9 +149,9 @@ module ApplicationHelper
   end
 
   def set_locale
-    logger.debug "* Accept-Language: #{request.env['HTTP_ACCEPT_LANGUAGE']}"
+    logger.info "* Accept-Language: #{request.env['HTTP_ACCEPT_LANGUAGE']}"
     I18n.locale = extract_locale_from_accept_language_header
-    logger.debug "* Locale set to '#{I18n.locale}'"
+    logger.info "* Locale set to '#{I18n.locale}'"
   end
  
   private

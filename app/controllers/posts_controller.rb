@@ -8,7 +8,7 @@ class PostsController < ApplicationController
 
   # GET /post/list/:filter(/:limit(/:subject))
   def list
-    puts ("----- Post Controller: List --(#{params[:filter]})----------------------------------------")
+    logger.info ("----- Post Controller: List --(#{params[:filter]})----------------------------------------")
 
     filter = params[:filter]
     social_uuid = params[:social_uuid]
@@ -32,15 +32,15 @@ class PostsController < ApplicationController
 
     query_string = qstr << basic_query
 
-    puts "---------------- Query: #{query_string}"
+    logger.info "---------------- Query: #{query_string}"
 
     @posts = Post.as(:posts).query.match(query_string).proxy_as(Post, :posts).paginate(:page => first_page, :per_page => secondary_items_per_page, return: "posts", order: "posts.created_at desc")
 
-puts "=============================================================================================="
+    logger.info "=== @posts.each do |post|"
     @posts.each do |post|
-      puts post.content
+      logger.info post.content
     end
-puts "=============================================================================================="
+    logger.info "========================="
 
     render 'list', locals: { posts: @posts, subset: filter, title: get_title(filter)}
 
@@ -54,9 +54,6 @@ puts "==========================================================================
 
   # GET /posts/new
   def new
-    # @post = Post.new
-    # @post.uuid = SecureRandom::uuid
-
   end
 
   # GET /posts/1/edit
@@ -79,14 +76,14 @@ puts "==========================================================================
       begin
         tx = Neo4j::Transaction.new
           @post.save
-          puts "posts error: #{@post.errors}"
+          logger.info "posts error: #{@post.errors}"
           rel = Owns.create(from_node: current_subject, to_node: @post)
-          puts "Owns.create: #{rel.errors}"
+          logger.info "Owns.create: #{rel.errors}"
           #rel = BelongsTo.create(from_node: @post, to_node: current_social_network)
           rel = @post.create_rel("belongs_to", current_social_network)  
         rescue => e
           tx.failure
-          puts "--------- /post/create: transaction failure: #{@post.content}"
+          logger.info "--------- /post/create: transaction failure: #{@post.content}"
           format.js   { render :new, object: @post }
           format.html { render :new }
           format.json { render json: @post.errors, status: :unprocessable_entity }
@@ -133,12 +130,12 @@ puts "==========================================================================
 
   # GET /posts/list/:filter(/:limit(/:subject))
   def get_post_subset(actual_page, items_per_page, filter)
-    puts "INTO  - (postsController) get_subset"
+    logger.info "INTO  - (postsController) get_subset"
     query_string = prepare_query(filter)
 
-    puts "post - get subset - query string: #{query_string}"
+    logger.info "post - get subset - query string: #{query_string}"
     post = Post.as(:posts).query.match(query_string).proxy_as(Post, :posts).paginate(:page => actual_page, :per_page => items_per_page, return: :posts, order: "posts.created_at desc")
-    puts "get_subset count: #{post.count} - class: #{post.class.name} - #{post}"
+    logger.info "get_subset count: #{post.count} - class: #{post.class.name} - #{post}"
     post
   end
 
@@ -161,21 +158,6 @@ puts "==========================================================================
       end
     end
 
-=begin
-    def old_set_images (post)
-      i = 0
-      arrs = post.arrs
-      post.image0 = post.image1 = post.image2 = post.image3 = post.image4 = ""
-      arrs.each do |arr|
-        puts "Arr: #{arr}"
-        x = "post.image#{i}"
-        i = i + 1
-        eval (x)       
-      end
-      arrs = []
-    end
-=end
-
     def get_title(filter)
         case filter
           when "ifollow"
@@ -190,7 +172,6 @@ puts "==========================================================================
                "All posts"      
         end
     end
-
 
 end
 

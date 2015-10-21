@@ -98,9 +98,7 @@ class SubjectsController < ApplicationController
           aProfile = SubjectProfile.new
           aProfile.save           
           rel = HasSubjectProfile.create(from_node: @subject, to_node: aProfile)
-          puts "da fare sendmail"
           @subject.send_activation_email
-          puts "  fatta sendmail"
         rescue => e
           tx.failure
           puts "--------- /subject/create: transaction failure: #{@subject.nickname} - event: #{e}"
@@ -108,7 +106,7 @@ class SubjectsController < ApplicationController
         ensure
           tx.close
           flash[:info] = "Please check your email to activate your account."
-          redirect_to root_url, format: :html
+          redirect_to root_url, format: :js
       end
     end
   end
@@ -166,11 +164,9 @@ class SubjectsController < ApplicationController
       redirect_to(root_url) unless current_subject.admin?
     end
 
-  #  def check_default
-  #    @subject.check_default
-  #    puts "CheckDefault done! #{@subject.activation_token} - #{@subject.last_name} --------------------------------------------------------------"
-  #  end
-
+    def request_full_path
+      request.original_url
+    end
 
     def get_title(filter,class_name = "")
         case filter

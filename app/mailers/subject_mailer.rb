@@ -8,6 +8,7 @@ class SubjectMailer < ActionMailer::Base
   #
   def account_activation(subject)
     @subject = subject
+    :debugger
     @greeting = t("account_activation.mail_text.salutation") + " #{@subject.first_name},"
 
     mail to: @subject.email, subject: t("account_activation.subject")

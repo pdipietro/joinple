@@ -6,6 +6,14 @@ class Group
 
   include IsOwnedBy
 
+  after_initialize :init_uuid
+
+  def init_uuid 
+    puts "init_uuid called!"
+    @uuid = create_uuid if @uuid.nil?
+    puts "init_uuid is #{@uuid}"
+  end
+
   property  :name,         :type =>   String, presence: true
   property  :description,  :type =>   String
   property  :background_color, :type =>   String, default: "inherit"
@@ -13,9 +21,7 @@ class Group
   property  :type,         :type =>   String, default: "open"
 
   property  :logo,              type: String
-  #mount_uploader :logo,         GroupLogoUploader 
-  property  :header,            type: String
-  #mount_uploader :header,       GroupHeaderUploader 
+  property  :banner,            type: String
 
   has_many  :in,  :has_discussion, rel_class: TakesPlaceIn  # Post
   has_many  :in,  :has_member, rel_class: MemberOf       # Subject
@@ -47,6 +53,7 @@ class Group
   def style
     "background-color: #{self.background_color}; color: #{self.text_color};"
   end
+
 
 end
 

@@ -12,6 +12,10 @@ class ApplicationController < ActionController::Base
     request.env['HTTP_X_FORWARDED_FOR']
   end
 
+  def request_full_path
+    request.original_url
+  end
+
   private
 
     # Confirms a logged-in subject.
