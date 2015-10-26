@@ -422,7 +422,7 @@ puts " ------------------------------------________> #{res}"
   end
 
   def caller_ip
-    request.env['HTTP_X_FORWARDED_FOR']
+    request.env['HTTP_X_FORWARDED_FOR'] 
   end
 
   def build_post_image_path ()

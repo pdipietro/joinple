@@ -131,7 +131,6 @@ class GroupsController < ApplicationController
   def new
     puts ("----- Groups Controller: new -----------------------------------------------------------")
     @group = Group.new 
-    puts ("uuid after Group.new: #{@group.uuid}")
 
   end
 
@@ -206,8 +205,7 @@ class GroupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def group_params
-      params.require(:group).permit(:uuid, :name, :description, :type, :background_color, :text_color,
-        :logo, :header)
+      params.require(:group).permit(:name, :description, :type, :background_color, :text_color, :logo, :banner)
     end
 
     def remove_group

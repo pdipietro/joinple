@@ -4,7 +4,7 @@
 
 class Subject
   include Neo4j::ActiveNode
-  include Uuid
+ # include Uuid
   include CreatedAtUpdatedAt
   include SecurePassword
 
@@ -25,6 +25,9 @@ class Subject
   before_save :check_default
 #  before_save :set_last_name
   before_create :create_activation_digest
+ # debugger
+  after_initialize :create_uuid
+ # before_initialize :create_uuid
 
   property :nickname,    :type =>   String
   property :first_name,  :type =>   String
@@ -54,6 +57,10 @@ class Subject
   has_many  :out, :owns, rel_class: Owns                # :any
   has_many  :out, :is_member_of, rel_class: MemberOf    # Group
   has_one   :out, :has_profile, rel_class: HasSubjectProfile, model_class: SubjectProfile  # Profile
+
+
+  #debugger
+  #uuid = SecureRandom.uuid if new_record?
 
   # Remembers a subject in the database for use in persistent sessions.
   def remember
@@ -123,22 +130,12 @@ class Subject
     Subject.has_profile
   end
 
-=begin
-  def count_relationships 
-    rel = Neo4j::Session.query("match (item:#{self.class.name} {uuid : '#{self.uuid}'})-[rel]->(x) return 'out' as dir, type(rel) as rel, labels(x) as label,count(*) as count union match (item:#{self.class.name} {uuid : '#{self.uuid}'})<-[rel]-(x) return 'in' as dir, type(rel) as rel, labels(x) as label, count(*) as count ")
-    puts "rel: #{rel} - x2: #{rel.class.name} - x3: #{rel.count} "#- x4: #{x4} - x5: #{x5}, #{x5.class.name}"
-
-    hash = Hash.new
-    rel.each do |row|
-      hash ["#{row[0]}-#{row[1]}-#{row[2][0]}"] = row[3]
-    end
-
-    puts "hash: #{hash}"
-    hash
+  def create_uuid
+    puts "Entering create_uuid ___________________________________________________"
+    uuid = SecureRandom::uuid
   end
-=end
 
-  private
+private
 
      def create_activation_digest
         self.activation_token  = new_token

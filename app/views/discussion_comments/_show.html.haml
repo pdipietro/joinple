@@ -12,7 +12,7 @@
     .col-xs-5
       = link_to subject_profile_path(subject.has_profile.uuid), :remote => :true, :title => "show" do
         -#.owner-image= image_tag subject.has_profile.photo.url(:btn), :class => "circle padding-1", :size => "30x30"
-        =owner-image render partial: "subject_profiles/photo_show", locals: { :subject_profile => subject.has_profile, :size => :comment, :shape => "responsive circle padding-1" }
+        = render partial: "subject_profiles/photo_show", locals: { :subject_profile => subject.has_profile, :size => :comment, :shape => "responsive circle padding-1" }
     .col-xs-52
       - if discussion_comment.content.length > 300
         .first-part.collapse.in{ :name => "discussion_comment_content_full_#{discussion_comment.uuid}"}
@@ -61,10 +61,3 @@
 
   .insert-space{ :id => "#{discussion_comment.uuid}-add" }
 
-  -# comments = discussion_comment.has_comment.all.order(created_at:  :desc).limit(2)
-  -# comments = discussion_comment.has_comment.order(created_at:  :desc).limit(10)
-  
-  -# comments.each do |rel|
-    =# render partial: "discussion_comments/show", locals: { discussion_comment: rel, parent_class: "DiscussionComment", parent_uuid: discussion_comment.uuid }
-
-      

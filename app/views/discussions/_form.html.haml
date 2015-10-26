@@ -9,35 +9,32 @@
           .spacer
           .nothing= f.text_area :description, :prepend => :description, :placeholder => "Enter the discussion description", :hide_label => :true
           .spacer
-          -#.nothing= f.file_field :header, :prepend => :title, :append => (#upload_widget_opener "Upload one images") , :hide_label => :true
-          
-                    -#.nothing= f.text_field :header, :prepend => "cover image", :placeholder => "Select the discussion cover (1500x200 px)", :hide_label => :true, :disabled => :true
-                    -#.spacer
-                    -#.nothing= f.file_field :header, :prepend => "cover image", :placeholder => "Select the discussion cover (1500x200 px)", :hide_label => :true
-                    -#.spacer
-                    -#}.nothing f.field
-          #upload_widget_opener "Upload one images"
-          -#.nothing= image_tag discussion.header.url(:md_header) 
-          .spacer
-          -#.nothing= f.hidden_field :header_cache
 
-          - ratio = 400.0/300.0
-          - puts ("Ratio: #{ratio}")
+          #upload_discussion_banner
+            = cl_image_tag discussion.banner, :height => 200, :crop => :scale, :quality => 50, :fetch_format => :auto, :class => "responsive"
 
-          = javascript_include_tag '//widget.cloudinary.com/global/all.js', media: 'all', 'data-turbolinks-track' => true
+          - ratio_banner = 2
+          - button_banner_caption = t("discussion.view.button.banner")
+          - banner_folder_name = build_object_image_path( { :social => current_social_network_uuid?, :group => :discussion, :banner => nil } )
 
-          :javascript 
-            cloudinary.applyUploadWidget(document.getElementById('upload_widget_opener'), 
-              { cloud_name: 'dev-joinple-com', upload_preset: 'landing/header', field_name: 'discussion[header]', cropping: 'server', multiple: 'false', cropping_aspect_ratio: '"#{ratio}"', gravity: 'custom' }, 
+          #upload_discussion_banner1
+            :javascript 
+              cloudinary.applyUploadWidget(document.getElementById('upload_discussion_banner1'), 
+              { cloud_name: "#{cloudinary_name?}", 
+              stylesheet: document.baseURI+'/assets/cloudinary.css', theme: "default",
+              button_class: 'joinple-button',
+              cropping: 'server', multiple: 'false', 
+              cropping_aspect_ratio: "#{ratio_banner}", 
+              cropping_default_selection_ratio: "1", 
+              button_caption: "#{button_banner_caption}",
+              upload_preset: 'discussion-banner', 
+              field_name: 'discussion[banner]', 
+              folder: "#{banner_folder_name}", 
+              min_image_width: "2560", min_image_height: "1280" },
                 function(error, result) {console.log(error, result)});
+
+          .spacer
 
           = render partial: 'shared/common_panel_footer'
 
   .col-xs-15
-
--#= javascript_include_tag '//widget.cloudinary.com/global/all.js', media: 'all', 'data-turbolinks-track' => true
-          
--#:javascript 
-  cloudinary.applyUploadWidget(document.getElementById('upload_widget_opener'), 
-    { cloud_name: 'dev-joinple-com', upload_preset: 'uns-post', field_name: 'discussion[header]', cropping: 'server', multiple: 'false' }, 
-      function(error, result) {console.log(error, result)});

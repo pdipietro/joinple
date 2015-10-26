@@ -5,11 +5,12 @@
       .contour-3{:style => "border-color: #{group.background_color}; " }
         = link_to groups_show_path(group.uuid,"alldiscussions"), :remote => :true, :title => "View details", :class => ("hoverable") do
           .relative.nothing
-            - if group.header.length === 0 
+            - if group.banner.length === 0 
               .group-image-replacement{:style => "background-color: #{group.background_color}; " }
-            - else  
-              = image_tag group.header.url(:md_banner), :class => "responsive"
+            - else
+              = cl_image_tag group.banner, height: browser_height.to_i / 3, :crop => :fill, :fetch_format => :auto, :class => "responsive"
             = cl_image_tag csn.logo, :class => "responsive semi-transparent", :width => "30"
+            = cl_image_tag group.logo, :class => "responsive semi-transparent", :width => "30"
 
           .content
             .title= group.name

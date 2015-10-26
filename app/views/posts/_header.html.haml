@@ -26,7 +26,7 @@
         .command-line
           - ratio_image = 600.0 / 300.0
           - button_caption = "+" #t("post.view.button.image")
-          - post_folder_name = build_post_image_path
+          - post_folder_name = build_object_image_path( { :post => nil })
           - (0..4).each do |cnt|
             :javascript 
               cloudinary.applyUploadWidget(document.getElementById("upload_subject_photo#{cnt}"), 

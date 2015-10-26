@@ -6,7 +6,7 @@
 	= cl_image_tag group.logo, :height => 200, :crop => :scale, :quality => 50, :class => "responsive"
 - ratio_logo = 1.0
 - button_logo_caption = t("group.view.button.logo")
-- logo_folder_name = build_object_image_path( { :social => current_social_network_uuid?, :group => uuid, :logo => nil } )
+- logo_folder_name = build_object_image_path( { :social => current_social_network_uuid?, :group => :logo } )
 
 #upload_group_logo1
 	:javascript 
@@ -30,7 +30,7 @@
 
 - ratio_banner = 2
 - button_banner_caption = t("group.view.button.banner")
-- banner_folder_name = build_object_image_path( { :social => current_social_network_uuid?, :group => uuid, :banner=> nil } )
+- banner_folder_name = build_object_image_path( { :social => current_social_network_uuid?, :group => :banner } )
 
 #upload_group_banner1
 	:javascript 

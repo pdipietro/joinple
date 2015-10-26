@@ -27,7 +27,7 @@
             - if discussion.header.length == 0 
               .discussion-image-replacement{:style => "background-color: #{discussion.background_color}; " }
             - else  
-              = image_tag discussion.header.url(:xxs_header)
+              = cl_image_tag discussion.banner, :height => 200, :crop => :scale, :quality => 50, :fetch_format => :auto, :class => "responsive"
             .command-button.to-right
               - if false
                 = link_to dummy_path(discussion,'Discussion','likes'), :remote => :true, :title => "add to preferites" do

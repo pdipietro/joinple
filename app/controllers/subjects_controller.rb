@@ -79,6 +79,7 @@ class SubjectsController < ApplicationController
   def new
     puts "ready to call new.js.erb"
     @subject = Subject.new
+    puts "subject.uuid: #{@subject.uuid}"
     #render layout: "landing_page"
   end
 
@@ -90,6 +91,7 @@ class SubjectsController < ApplicationController
   # POST /subjects.json
   def create
     @subject = Subject.new(subject_params)
+    puts "--------- /subject uuid: #{@subject.uuid}"
 
     respond_to do |format|
       begin

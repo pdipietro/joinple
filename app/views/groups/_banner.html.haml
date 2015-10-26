@@ -4,9 +4,9 @@
 
   - groups.each do |response|
     - group = response[0]
-    - if group.header.length > 0
+    - if group.banner.length > 0
       %span.group-mini-banner
         = link_to groups_show_path(group.uuid,"alldiscussions"), :remote => :true, :title => group.name, :class => ("hoverable") do
-          = cl_image_tag group.header, :class => "responsive"
+          = cl_image_tag group.banner, :class => "responsive", :height => 80, :crop => :fill, :fetch_format => :auto 
 
 .spacer

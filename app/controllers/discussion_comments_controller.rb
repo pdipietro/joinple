@@ -101,12 +101,12 @@ class DiscussionCommentsController < ApplicationController
       respond_to do |format|
         unless success 
           puts "--------- /discussionComment/create: transaction failure: #{@discussion_comment.content}"
-          format.js   { render :new, object: @discussion_comment, locals: { :parent_class => parent_class, parent_uuid  => parent_uuid } }
+          format.js   { render :new, object: @discussion_comment, locals: { :parent_class => parent_class, :parent_uuid  => parent_uuid } }
           format.html { render :new }
           format.json { render json: @discussion_comment.errors, status: :unprocessable_entity }
         else
           puts "--------- /discussionComment/create: transaction succeeded: #{@discussion_comment.content}"
-          format.js   { render partial: "enqueue", object: @discussion_comment, locals: { :parent_class => parent_class, parent_uuid  => parent_uuid  }, notice: 'Post was successfully created.' }
+          format.js   { render partial: "enqueue", object: @discussion_comment, locals: { :parent_class => parent_class, :parent_uuid  => parent_uuid  }, notice: 'Post was successfully created.' }
           format.html { redirect_to(request.env["HTTP_REFERER"]) }
           format.json { render :show, status: :created, location: @discussion_comment, subject: @discussion_comment.is_owned_by }
         end
