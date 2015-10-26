@@ -425,20 +425,20 @@ puts " ------------------------------------________> #{res}"
     request.env['HTTP_X_FORWARDED_FOR'] 
   end
 
-  def build_post_image_path ()
-    path = "/subject/#{current_social_network_owner.uuid}/post"
-  end
+#  def build_post_image_path ()
+#    path = "/subject/#{current_social_network_owner.uuid}/post"
+#  end
   
-  def build_subject_image_path (user_profile, options = {} )
-    query = Neo4j::Session.query("match (o:SubjectProfile { uuid : '#{user_profile[:uuid]}' })<-[rel:has_profile]-(u:Subject) return u")
-    query.first[:u].uuid
-    path = "/subject/#{query.first[:u].uuid}"
-    options.each do |n,v|
-      path += "/#{n}/"
-      path += "#{v}" unless v.nil?
-    end
-    path
-  end
+#  def build_subject_image_path (user_profile, options = {} )
+#    query = Neo4j::Session.query("match (o:SubjectProfile { uuid : '#{user_profile[:uuid]}' })<-[rel:has_profile]-(u:Subject) return u")
+#    query.first[:u].uuid
+#    path = "/subject/#{query.first[:u].uuid}"
+#    options.each do |n,v|
+#      path += "/#{n}/"
+#      path += "#{v}" unless v.nil?
+#    end
+#    path
+#  end
 
   def build_object_image_path (options = {} )
     path = "/subject/#{current_social_network_owner.uuid}"

@@ -2,6 +2,7 @@ class MediaManager
   include Neo4j::ActiveNode
   include Uuid
   include CreatedAtUpdatedAt
+
 #  include MediaManagerItem
 #  include ImageSizes
 

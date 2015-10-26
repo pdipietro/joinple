@@ -1,18 +1,8 @@
 class Group 
   include Neo4j::ActiveNode
-
   include Uuid
   include CreatedAtUpdatedAt
-
   include IsOwnedBy
-
-  after_initialize :init_uuid
-
-  def init_uuid 
-    puts "init_uuid called!"
-    @uuid = create_uuid if @uuid.nil?
-    puts "init_uuid is #{@uuid}"
-  end
 
   property  :name,         :type =>   String, presence: true
   property  :description,  :type =>   String

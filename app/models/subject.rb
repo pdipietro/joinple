@@ -4,7 +4,7 @@
 
 class Subject
   include Neo4j::ActiveNode
- # include Uuid
+  include Uuid
   include CreatedAtUpdatedAt
   include SecurePassword
 
@@ -26,7 +26,6 @@ class Subject
 #  before_save :set_last_name
   before_create :create_activation_digest
  # debugger
-  after_initialize :create_uuid
  # before_initialize :create_uuid
 
   property :nickname,    :type =>   String
@@ -128,11 +127,6 @@ class Subject
 
  def profile? 
     Subject.has_profile
-  end
-
-  def create_uuid
-    puts "Entering create_uuid ___________________________________________________"
-    uuid = SecureRandom::uuid
   end
 
 private

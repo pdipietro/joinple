@@ -4,7 +4,7 @@ class SocialNetwork
   include CreatedAtUpdatedAt
   include IsOwnedBy
   include Name
-  include Description
+  include Description 
 
   property  :background_color,         :type =>   String, default: "#e5e5e5"
   property  :social_network_color,     :type =>   String, default: "#000000"
@@ -15,9 +15,7 @@ class SocialNetwork
   property  :iname,                    :type =>   String
 
   property  :logo,              type: String
-  #mount_uploader :logo,         SocialNetworkLogoUploader 
   property  :banner,            type: String
-  #mount_uploader :lbanner,      SocialNetworkBannerUploader 
 
   has_many  :in,  :has_posts, model_class: Post, type: "post"                # Posts
   has_many  :in,  :has_tag, model_class: Tag, type: "has_tag"                   # Tags

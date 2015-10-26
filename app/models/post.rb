@@ -4,8 +4,6 @@ class Post
   include CreatedAtUpdatedAt
   include Content
 
-  after_create :create_uuid
-
   has_many  :in,  :likes_to, rel_class: Likes                  # Subject
   has_many  :in,  :is_followed_by, rel_class: Follows          # Subject
   has_many  :in,  :is_preferred_by, rel_class: Preferes
@@ -16,22 +14,12 @@ class Post
   has_many  :out, :has_comment, model_class: PostComment, type: "has_comment"     # :comment
 
   #property  :image,              type: String, default: nil                       
-  #mount_uploader :image,         PostImageUploader 
 
   property  :image0,             type: String, default: nil                       
-  #mount_uploader :image0,        PostImageUploader 
-
   property  :image1,             type: String, default: nil                       
-  #mount_uploader :image1,        PostImageUploader 
-
   property  :image2,             type: String, default: nil                       
-  #mount_uploader :image2,        PostImageUploader 
-
   property  :image3,             type: String, default: nil                       
-  #mount_uploader :image3,        PostImageUploader 
-
   property  :image4,             type: String, default: nil                       
-  #mount_uploader :image4,        PostImageUploader 
 
   def self.find_by subject
       PostsController.find subject

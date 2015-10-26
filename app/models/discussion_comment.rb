@@ -1,12 +1,10 @@
 class DiscussionComment
   include Neo4j::ActiveNode
-#  include Uuid
+  include Uuid
   include CreatedAtUpdatedAt
   include Content
 
   include IsOwnedBy
-
-  after_initialize :create_uuid
 
   has_many  :in,  :likes_to, rel_class: Likes                  # Subject
   has_many  :in,  :is_followed_by, rel_class: Follows          # Subject
@@ -18,10 +16,6 @@ class DiscussionComment
   property  :images,            type: String
 
   #has_many  :out, :photo, emoticon, attachment(link) 
-
-  def create_uuid
-    uuid = SecureRandom::uuid
-  end
 
 end
 

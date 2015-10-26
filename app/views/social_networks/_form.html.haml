@@ -1,6 +1,7 @@
 #social-network-form{ :class => social_network.errors.count == 0 ? 'collapse' : 'collapse in' }
   - puts "********************************************************************************************************************************"
   - puts "session[:social_network].class is now #{session[:social_network].class.name} - SocialNetwork = #{current_social_network.name} - Owner is #{session[:social_network].is_owned_by}"
+  - puts "social_network_uuid: #{social_network.uuid?}"
 
   .spacer
   .col-xs-15
@@ -37,7 +38,8 @@
             #upload_social_network_logo
             - ratio_logo = 1.0
             - logo_button_caption = t("social_network.view.logo_button_caption")
-            - logo_folder_name = build_object_image_path options = { :social => "#{social_network.uuid}", :logo => nil } 
+            -# debugger
+            - logo_folder_name = build_object_image_path options = { :social => "#{social_network.uuid?}", :logo => nil } 
             :javascript 
               cloudinary.applyUploadWidget(document.getElementById('upload_social_network_logo'), 
               { cloud_name: "#{cloudinary_name?}",  
@@ -46,7 +48,6 @@
               cropping: 'server', multiple: 'false', 
               cropping_aspect_ratio: "#{ratio_logo}", 
               cropping_default_selection_ratio: "1",  
-              dpr: 'auto', 
               button_caption: "#{logo_button_caption}",
               upload_preset: 'social-logo', 
               field_name: 'social_network[logo]',
@@ -58,7 +59,8 @@
             #upload_social_network_banner
             - ratio_banner = 2.0
             - banner_button_caption = t("social_network.view.banner_button_caption")
-            - banner_folder_name = build_object_image_path options = { :social => "#{social_network.uuid}", :banner => nil } 
+            -# debugger
+            - banner_folder_name = build_object_image_path options = { :social => "#{social_network.uuid?}", :banner => nil } 
             :javascript 
               cloudinary.applyUploadWidget(document.getElementById('upload_social_network_banner'), 
               { cloud_name: "#{cloudinary_name?}",  
@@ -67,7 +69,6 @@
               cropping: 'server', multiple: 'false', 
               cropping_aspect_ratio: "#{ratio_banner}", 
               cropping_default_selection_ratio: "1", 
-              dpr: 'auto', 
               button_caption: "#{banner_button_caption}",
               upload_preset: 'social-banner', 
               field_name: 'social_network[banner]',

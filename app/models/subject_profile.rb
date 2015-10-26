@@ -4,7 +4,6 @@ class SubjectProfile
   include CreatedAtUpdatedAt
 
   property :photo,            type: String, default: ""
-  #mount_uploader :photo,      SubjectProfilePhotoUploader 
 
   property :background_color, type: String, default: "inherit"
   property :text_color,       type: String, default: "inherit"
