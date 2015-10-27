@@ -11,19 +11,19 @@ class DiscussionCommentsController < ApplicationController
     filter = params[:filter]
     actual_page = params[:from_page].nil? ? 1 : params[:from_page]
 
-    basic_query = "(discussions:Discussion)-[r:belongs_to]->(sn:SocialNetwork { uuid : '#{current_social_network.uuid}'} ) "
+    basic_query = "(discussions:Discussion)-[r:belongs_to]->(sn:SocialNetwork { uuid : '#{current_social_network.uuid?}'} ) "
     #with distinct ugroups as groups"
 
     qstr =
       case filter
         when "iparticipate"
-              "(subject:Subject { uuid : '#{current_subject.uuid}' })-[p:participates|owns|admins]->"
+              "(subject:Subject { uuid : '#{current_subject.uuid?}' })-[p:participates|owns|admins]->"
         when "iadminister"
-              "(subject:Subject { uuid : '#{current_subject.uuid}' })-[p:owns|admins]->"
+              "(subject:Subject { uuid : '#{current_subject.uuid?}' })-[p:owns|admins]->"
         when "mycontacts"
-              "(subject:Subject { uuid : '#{current_subject.uuid}' })-[f:is_friend_of*1..2]->(afriend:Subject)-[p:owns]->"
+              "(subject:Subject { uuid : '#{current_subject.uuid?}' })-[f:is_friend_of*1..2]->(afriend:Subject)-[p:owns]->"
         when "hot"
-              "(subject:Subject { uuid : '#{current_subject.uuid}' })-[p:owns]->"
+              "(subject:Subject { uuid : '#{current_subject.uuid?}' })-[p:owns]->"
         when "fresh"
               ""
         when "search"
@@ -77,13 +77,13 @@ class DiscussionCommentsController < ApplicationController
     parent = parent_class == "DiscussionComment" ? DiscussionComment.find(parent_uuid) : Discussion.find(parent_uuid);
 
     puts "parent: #{parent_class}:#{parent_uuid}"
-    puts "check parent: #{parent.class.name}:#{parent.uuid}"
+    puts "check parent: #{parent.class.name}:#{parent.uuid?}"
 
     begin
       tx = Neo4j::Transaction.new
 
       @discussion_comment.save
-      puts "Discussion_comment_uuid: #{@discussion_comment.uuid}"
+      puts "Discussion_comment_uuid: #{@discussion_comment.uuid?}"
 
       rel = Owns.create(from_node: current_subject, to_node: @discussion_comment)
       puts "rel: #{rel}"
