@@ -1,5 +1,5 @@
 
-cd $HOME/$USER
+cd $HOME/joinple
 
 sudo mkdir ./db/neo4j/development/data/log
 
