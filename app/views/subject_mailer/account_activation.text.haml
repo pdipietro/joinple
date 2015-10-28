@@ -4,7 +4,12 @@
 = "#{@subject.first_name},"
 
 = t("account_activation.mail_text.text1")
-= link_to t("account_activation.mail_text.activation"), edit_account_activation_url(@subject.activation_token, email: @subject.email)
+%a{ :href => "#{@url}account_activations/#{@subject.activation_token}/edit?email=#{@subject.email}" }
+	= t("account_activation.mail_text.activation")
+
 = t("account_activation.mail_text.text2")
 
 = t("account_activation.mail_text.signature")
+
+
+/account_activations/8XkKGnYHSg4LhZ9f2mBs1A/edit?email=pdipietro%40diviana.net"

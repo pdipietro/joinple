@@ -6,7 +6,9 @@
 	= "#{@subject.first_name},"
 %p
 	= t("account_activation.mail_text.text1")
-	= link_to t("account_activation.mail_text.activation"), edit_account_activation_url(@subject.activation_token, email: @subject.email, only_path: true, host: ApplicatonController::request_full_path)
+	%a{ :href => "#{@url}account_activations/#{@subject.activation_token}/edit?email=#{@subject.email}" }
+		= t("account_activation.mail_text.activation")
+
 	= t("account_activation.mail_text.text2")
 %p
 	= t("account_activation.mail_text.signature")

@@ -39,6 +39,14 @@ module ApplicationHelper
       STAGE_BACKGROUND[@stage]
   end
 
+  def application_full_path
+    if @stage == ""
+      "http://www.#{request.domain}"
+    else
+      "http://#{@stage}.www.#{request.domain}"
+    end
+  end
+
   def calculate_full_path (sn)
     nm = sn.name.casecmp("joinple") == 0 ? "www" : sn.name.downcase.gsub(/\s+/, "")
     if @stage == ""

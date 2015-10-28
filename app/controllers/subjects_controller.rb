@@ -91,7 +91,9 @@ class SubjectsController < ApplicationController
   # POST /subjects.json
   def create
     @subject = Subject.new(subject_params)
-    puts "--------- /subject uuid: #{@subject.uuid}"
+    puts "--------------------------------------------------------------------------------------------------------------------"
+    puts "--------- request_full_path: #{root_url}"
+
 
     respond_to do |format|
       begin
@@ -100,15 +102,15 @@ class SubjectsController < ApplicationController
           aProfile = SubjectProfile.new
           aProfile.save           
           rel = HasSubjectProfile.create(from_node: @subject, to_node: aProfile)
-          @subject.send_activation_email
+          @subject.send_activation_email root_url
         rescue => e
           tx.failure
           puts "--------- /subject/create: transaction failure: #{@subject.nickname} - event: #{e}"
-          render :new, format: :js
+          render :new, :format => :js and return
         ensure
           tx.close
           flash[:info] = "Please check your email to activate your account."
-          redirect_to root_url, format: :js
+          redirect_to root_url, format: :js and return
       end
     end
   end

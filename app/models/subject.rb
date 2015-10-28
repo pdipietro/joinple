@@ -103,9 +103,8 @@ class Subject
   end
 
   # Sends activation email.
-  def send_activation_email
-    
-    SubjectMailer.account_activation(self).deliver_now
+  def send_activation_email request_full_path
+    SubjectMailer.account_activation(self,request_full_path).deliver_now
   end
 
   # Sets the password reset attributes.
@@ -115,7 +114,7 @@ class Subject
     update_attribute(:reset_sent_at, Time.zone.now)
   end
 
-  # Sends password reset email.
+  # Sends password reset email
   def send_password_reset_email
     SubjectMailer.password_reset(self).deliver_now
   end

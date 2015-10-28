@@ -22,7 +22,8 @@ Rails.application.routes.draw do
 
   resources :mail_collectors,                                      defaults: { :format => "js"}, :remote => :true
 
-  resources :account_activations, only: [:edit], defaults: { :format => "js"}, :remote => :true
+#  resources :account_activations, only: [:edit], defaults: { :format => "js"}, :remote => :true
+  resources :account_activations, only: [:edit]
   resources :password_resets, only: [:new, :create, :edit, :update], defaults: { :format => "js"}, :remote => :true
 
   resources :subjects,            constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true,  except: [:destroy, :show]
