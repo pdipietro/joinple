@@ -21,7 +21,7 @@ commit
 begin
 create (_0:`Subject` {`activated`:"true", `activation_digest`:"$2a$10$l48pLADz4vDP3IwVwuDNvuhUMzbQHh1T13Y1O/WUWpRRClCOUzzK2", `admin`:"true", `created_at`:1419806138, `email`:"pdipietro@joinple.com", `first_name`:"Paolo", `last_name`:"Di Pietro", `nickname`:"pdp", `password_digest`:"$2a$10$ZpQt6DbVOEUqgRnBoOzUquJWtfAps2XrP2yV/95hnQnOzBDtofyb6", `remember_digest`:"$2a$10$4u4Sn5yL2q6wpiUi67QmUO7rAOKTYNfISm/jjlK04C8n3Td4xDGXW", `updated_at`:1421128311, `uuid`:"ec122ca0-0ecc-4bae-af14-f1f781d88311"})
 
-create (_1:`SubjectProfile` {`created_at`:1420983722, `updated_at`:1421690318, `uuid`:"bc3cb602-323e-4cae-9427-7309417cdb21", photo:"v1443377807/subject/bc3cb602-323e-4cae-9427-7309417cdb21/photo/wum3lydhtjwx0no5f5tt.jpg"})
+create (_1:`SubjectProfile` {`created_at`:1420983722, `updated_at`:1421690318, `uuid`:"bc3cb602-323e-4cae-9427-7309417cdb21", photo:"subject/ec122ca0-0ecc-4bae-af14-f1f781d88311/photo/m3hgx7fzh0vafvcmmmwo"})
 
 create (_27:`Language` {`code`:"fr-fr", `created_at`:1420983722, `description`:"Français (france)", `updated_at`:1421690318, `uuid`:"bc3cb602-323e-4d3e-8827-7309417cdb21"})
 create (_28:`Language` {`code`:"it-it", `created_at`:1420460700, `description`:"Italiano (Italia)", `updated_at`:1420460700, `uuid`:"58eb0495-7533-4721-9ef2-20274645afab"})

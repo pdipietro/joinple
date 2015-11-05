@@ -3,7 +3,8 @@
 - social_network = current_social_network
 .row.nothing.top-rounded{ :style => current_social_network_style }
   .col-xs-28.nothing
-    = render partial: 'subject_profiles/photo_show', locals: { subject_profile: subject_profile, size: :thumb, shape: "", :css => "subject-photo", :text => "subject_profile_#{subject_profile.uuid}"}
+    - debugger
+    = render partial: 'subject_profiles/photo_show', locals: { subject_profile: subject_profile, size: :thumb, shape: "subject-photo"}
   .col-xs-32.nothing
     .subject-info
       .name

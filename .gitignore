@@ -12,7 +12,6 @@ bower_components
 
 # Ignore the Neo4j database.
 /db/neo4j
-/db/neo4j-2*
 
 # Ignore all logfiles and tempfiles.
 
@@ -28,4 +27,3 @@ bower_components
 /bower_components-save
 
 # Ignore all tmp images
-/public/uploads/tmp

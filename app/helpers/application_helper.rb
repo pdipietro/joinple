@@ -5,7 +5,6 @@ module ApplicationHelper
   STAGE_BACKGROUND = { "dev" => "background-color : #5C8D69;", "dev5" => "background-color : #5C8D69;", "test" => "background-color : #fde8ee;", "demo" => "background-color : yellow;", "" => "" }
   ALLOWED_STAGES = { "dev" => "dev", "dev5" => "dev", "test" => "test", "demo" => "demo", "production" => "" }
 
-
   # Returns the full title on a per-page basis.
   def full_title(page_title = '')
     base_title = "a Generic Social Network"
@@ -127,6 +126,7 @@ module ApplicationHelper
        csn = SocialNetwork.find_by( :iname => sn.downcase )
        csn = SocialNetwork.find_by( :name => sn ) if csn.nil?
        csn = SocialNetwork.find_by( :iname => "www" ) if csn.nil?    # if no db is selected, default to www.joinple.com
+       logger.info ("SocialNetwork: #{csn.class.name}")
        if csn.class.name == "SocialNetwork"
          set_current_social_network (csn)
          logger.info "current_social_network,class: #{current_social_network.class}"
