@@ -33,7 +33,7 @@ Load language support for: it, en
 
 ~$ Sudo apt-get update
 
-### ------------------------  saved as  Ubuntu14.04 base  --------------------------
+###### -------------------  saved as  Ubuntu14.04 base  ---------------------
 
 ## Install Vmware tools 
 
@@ -72,14 +72,14 @@ Note: The -d switch assumes that you want to accept the defaults. If you do no
 
 sudo reboot
 
-### ------------------------  saved as Vmware tools installed  --------------------------
+###### -------------------  saved as Vmware tools installed  -------------------
 
 ## Remove all unuseful applications
 
 1 Andare su Ubuntu Software Center e rimuovere tutto quello che non serve [NON RIMUOVERE BLUETOOTH] (giochi, open office, etc.)
 2 Lasciare su Home solo Desktop e Downloads
 
-### ------------------------  saved as application removed  --------------------------
+###### -------------------  saved as application removed  ---------------------
 
 ## Install curl, rvm, Ruby, Rails, git
 
@@ -109,7 +109,7 @@ Installare git
 
 ~$ sudo apt-get install git
 
-### ------------------------  curl, rvm, Ruby, Rails, git installed  --------------------------
+###### -------------------  curl, rvm, Ruby, Rails, git installed  ---------------------
 
 ## Install java and Node.js
 
@@ -133,7 +133,10 @@ Installare git
 
 ~$ sudo apt-get install -y nodejs
 
-### ------------------------  saved as JAVA & NODE.js installed  --------------------------
+###### -------------------  saved as JAVA & NODE.js installed  ---------------------
+
+## Latest settings
+
 
 Setting 40.000 open file on Neo4j
 
