@@ -17,13 +17,10 @@ landing_pagesc_controller.rb:Line 24
 tlunedì 17 agosto 2015
 13:57
 
-* Joinple virtual machine installation
-
-After Vmware installation, 
+# Joinple virtual machine installation
 
 
-**
-** Install on Ubuntu 14.04 LTS - Desktop
+## Install on Ubuntu 14.04 LTS - Desktop
 
 Video: https://www.youtube.com/watch?v=hiPQynmnsiI
 
@@ -36,9 +33,9 @@ Load language support for: it, en
 
 ~$ Sudo apt-get update
 
-*** ------------------------  saved as  Ubuntu14.04 base  --------------------------
+### ------------------------  saved as  Ubuntu14.04 base  --------------------------
 
-** Install Vmware tools 
+## Install Vmware tools 
 
 Install Vmware tools
 	1. Go to Virtual Machine > Install VMware Tools (or VM > Install VMware Tools).
@@ -75,16 +72,16 @@ Note: The -d switch assumes that you want to accept the defaults. If you do no
 
 sudo reboot
 
-*** ------------------------  saved as Vmware tools installed  --------------------------
+### ------------------------  saved as Vmware tools installed  --------------------------
 
-** Remove allunuseful applications
+## Remove all unuseful applications
 
 1 Andare su Ubuntu Software Center e rimuovere tutto quello che non serve [NON RIMUOVERE BLUETOOTH] (giochi, open office, etc.)
 2 Lasciare su Home solo Desktop e Downloads
 
-*** ------------------------  saved as application removed  --------------------------
+### ------------------------  saved as application removed  --------------------------
 
-** Install curl, rvm, Ruby, Rails, git
+## Install curl, rvm, Ruby, Rails, git
 
 ~$ sudo apt-get  install curl
 ~$ sudo apt-get  autoremove
@@ -112,9 +109,9 @@ Installare git
 
 ~$ sudo apt-get install git
 
-*** ------------------------  curl, rvm, Ruby, Rails, git installed  --------------------------
+### ------------------------  curl, rvm, Ruby, Rails, git installed  --------------------------
 
-** Install java and Node.js
+## Install java and Node.js
 
 ~$ sudo mkdir /opt/java
 ~$ cd /opt/java
@@ -136,7 +133,7 @@ Installare git
 
 ~$ sudo apt-get install -y nodejs
 
-*** ------------------------  saved as JAVA & NODE.js installed  --------------------------
+### ------------------------  saved as JAVA & NODE.js installed  --------------------------
 
 Setting 40.000 open file on Neo4j
 
@@ -145,7 +142,6 @@ joinple   soft    nofile  40000
 joinple   hard    nofile  40000
 
 Download editor sublime text
-
 
 ~$ git clone https://github.com/pdipietro/joinple.git
 
