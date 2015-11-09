@@ -1,9 +1,8 @@
 module ApplicationHelper
 
   ALLOWED_DOMAIN_SERVER = ["joinple","estatetuttoanno"]
-  STAGE_HUMANIZED = { "dev" => "development", "dev5" => "development", "test" => "test", "demo" => "demo", "" => "production" }
-  STAGE_BACKGROUND = { "dev" => "background-color : #5C8D69;", "dev5" => "background-color : #5C8D69;", "test" => "background-color : #fde8ee;", "demo" => "background-color : yellow;", "" => "" }
-  ALLOWED_STAGES = { "dev" => "dev", "dev5" => "dev", "test" => "test", "demo" => "demo", "production" => "" }
+  STAGE_HUMANIZED = { "dev" => "development", "test" => "test", "demo" => "demo", "" => "production" }
+  STAGE_BACKGROUND = { "dev" => "background-color : #5C8D69;", "test" => "background-color : #fde8ee;", "demo" => "background-color : yellow;", "" => "" }
 
   # Returns the full title on a per-page basis.
   def full_title(page_title = '')
@@ -20,23 +19,43 @@ module ApplicationHelper
     SecureRandom.urlsafe_base64
   end
 
+  # normalize stage
+  def normalize_stage
+    ""     if @stage == "" 
+    "test" if @stage.starts_with?("test")
+    "demo" if @stage.starts_with?("demo")
+    "dev"  if @stage.starts_with?("dev")
+  end
+=begin
   # Check the current stage.
   def is_dev 
-    ["dev","dev5"].include? @stage
+    @stage.starts_with?("dev")
+    #["dev","dev5"].include? @stage
   end
+
   def is_test
-    @stage == "test"
+    @stage.starts_with?("test")
+    #@stage == "test"
   end
+  
   def is_demo
-    @stage == "demo"
+    @stage.starts_with?("demo")
+    #@stage == "demo"
   end
+  
   def is_deploy
     @stage == ""
   end
 
   def get_background
-      STAGE_BACKGROUND[@stage]
+      STAGE_BACKGROUND[@normalized_stage]
   end
+
+  def stage_humanize
+      STAGE_HUMANIZE[@stage]
+  end
+
+=end
 
   def application_full_path
     if @stage == ""
@@ -65,8 +84,8 @@ module ApplicationHelper
     @stage
   end
 
-  def stage_humanize
-      STAGE_HUMANIZE[@stage]
+  def humanized_stage
+    "#{STAGE_HUMANIZED[@normalized_stage]}"
   end
 
   def cloudinary_name?
@@ -88,20 +107,20 @@ module ApplicationHelper
        u = u[u.rindex("//")+2..-1]
        logger.info "root url: #{u} - #{host_name.split("-")}"
        stage = host_name.split("-") & u.split(".")
-       logger.info "Stages: #{stage}"
        if stage.count == 1
           @stage = stage[0]
-          @cloudinary_name = "#{ALLOWED_STAGES[@stage]}-joinple-com"
-          cloudinary_name("#{ALLOWED_STAGES[@stage]}-joinple-com")
+          @normalized_stage = normalize_stage
+          @cloudinary_name = "#{@humanize_stage}-joinple-com"
        else
-         @stage = ""
-         @cloudinary_name = ""
-         #raise  "515","Error on redirected server: doesn't contains a stage fragment"
+          @stage = ""
+          @normalized_stage = normalize_stage
+          @cloudinary_name = "#{@humanize_stage}-joinple-com"
        end
+       logger.info "Stage: #{@normalized_stage}"
     else
        raise  "516","Error: domain server #{sn} is not allowed"
     end
-    logger.info ("@stage: #{@stage}")
+    logger.info ("@normalized_stage: #{@normalized_stage}")
     logger.info "Cloudinary_name creation: #{@cloudinary_name}"
 
   end
