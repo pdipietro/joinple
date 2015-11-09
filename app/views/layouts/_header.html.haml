@@ -10,15 +10,11 @@
         %span.icon-bar
       .navbar-brand.logo
         = image_tag "joinple_logo.png"
-        -# unless ENV['RAILS_ENV'] == "production"
-        .stage
-          = stage.humanize 
+        - unless if_deploy 
+          %span.stage
+            = humanize_stage 
     #navbar.navbar-collapse.collapse
       %ul.nav.navbar-nav.navbar-right
-        -# unless ENV['RAILS_ENV'] == "production"
-          %li.stage
-            = stage.humanize 
-            -#= ENV['RAILS_ENV']
         - unless logged_in?
           %li
             = link_to root_path, :title => t("layout.view.header.joinple_home") do

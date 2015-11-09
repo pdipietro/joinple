@@ -26,26 +26,25 @@ module ApplicationHelper
     "demo" if @stage.starts_with?("demo")
     "dev"  if @stage.starts_with?("dev")
   end
-=begin
+
   # Check the current stage.
-  def is_dev 
-    @stage.starts_with?("dev")
-    #["dev","dev5"].include? @stage
+  def is_dev? 
+    @normalize_stage == "dev"
   end
 
-  def is_test
-    @stage.starts_with?("test")
-    #@stage == "test"
+  def is_test?
+    @normalize_stage == "test"
   end
   
-  def is_demo
-    @stage.starts_with?("demo")
-    #@stage == "demo"
+  def is_demo?
+    @normalize_stage == "demo"
   end
   
-  def is_deploy
-    @stage == ""
+  def is_deploy?
+    @normalize_stage == ""
   end
+
+=begin
 
   def get_background
       STAGE_BACKGROUND[@normalized_stage]
@@ -89,8 +88,8 @@ module ApplicationHelper
   end
 
   def cloudinary_name?
-      logger.info "Cloudinary_name in application_helper: #{@cloudinary_name}"
-      @cloudinary_name
+    logger.info "Cloudinary_name in application_helper: #{@cloudinary_name}"
+    @cloudinary_name
   end
 
   def check_machine_name_vs_request
