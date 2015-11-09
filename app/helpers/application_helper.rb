@@ -20,11 +20,11 @@ module ApplicationHelper
   end
 
   # normalize stage
-  def normalize_stage
-    ""     if @stage == "" 
-    "test" if @stage.starts_with?("test")
-    "demo" if @stage.starts_with?("demo")
-    "dev"  if @stage.starts_with?("dev")
+  def normalize_stage (stage)
+    ""     if stage == "" 
+    "test" if stage.starts_with?("test")
+    "demo" if stage.starts_with?("demo")
+    "dev"  if stage.starts_with?("dev")
   end
 
   # Check the current stage.
@@ -102,9 +102,9 @@ module ApplicationHelper
        u = root_url.downcase
        u = u[u.rindex("//")+2..-1]
        logger.info "root url: #{u} - #{host_name.split("-")} - #{host_name}"
-       stage = host_name.split("-") & u.split(".")
+       #stage = host_name.split("-") & u.split(".")
        stage = u.split(".")
-       logger.info ("----------------------------------")
+       logger.info ("------------- #{stage.count} ---------------------")
        stage.each_with_index do |n, index|
         logger.info (index.to_s +  " - " +  n.to_s)
        end
@@ -112,12 +112,12 @@ module ApplicationHelper
        #if stage.count == 1
        if stage.count > 3
           @stage = stage[0]
-          @normalized_stage = normalize_stage
-          @cloudinary_name = "#{@humanize_stage}-joinple-com"
+          @normalized_stage = normalize_stage (@stage)
+          @cloudinary_name = "#{humanize_stage}-joinple-com"
        else
           @stage = ""
-          @normalized_stage = normalize_stage
-          @cloudinary_name = "#{@humanize_stage}-joinple-com"
+          @normalized_stage = normalize_stage (@stage)
+          @cloudinary_name = "#{humanize_stage}-joinple-com"
        end
        logger.info "Stage: #{@normalized_stage}"
     else
