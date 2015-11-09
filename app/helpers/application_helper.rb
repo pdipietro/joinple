@@ -48,13 +48,10 @@ module ApplicationHelper
       STAGE_BACKGROUND[@normalized_stage]
   end
 
-=begin
-
-  def stage_humanize
-      STAGE_HUMANIZE[@stage]
+  def stage_special
+      @stage.include("special")
   end
 
-=end
 
   def application_full_path
     if @stage == ""
