@@ -105,8 +105,8 @@ module ApplicationHelper
        stage = host_name.split("-") & u.split(".")
        stage = u.split(".")
        logger.info ("----------------------------------")
-       stage.each do |n|
-        logger.info (n)
+       stage.each_with_index do |n, index|
+        logger.info (index, " - ", n)
        end
        logger.info ("----------------------------------")
        #if stage.count == 1
