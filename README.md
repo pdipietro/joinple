@@ -18,27 +18,27 @@
 
 #### Download the latest github version
 
-4. git pull
+1. git pull
+2. bundle install
 
 #### Reinitialize the DB, if needed 
 
-5. cd $HOME/joinple/db/neo4j/development/data con explora risorse
+1. cd $HOME/joinple/db/neo4j/development/data con explora risorse
 	* spostare nel cestino la directory graph.db
-6. Tornare su terminal
+2. Tornare su terminal
 	* rm $HOME/joinple/db/neo4j/development/data/log/*.log
   * cd $HOME/joinple 
   * sh ./joinple_load_initial.sh
 
 #### Run the machine
 
-7. bundle install
-8. rake neo4j:start
-9. rails s -b0.0.0.0
+1. rake neo4j:start
+2. rails s -b0.0.0.0
 
 ## Stop
 
-10. ctrl-c
-11. rake neo4j:stop
+1. ctrl-c
+2. rake neo4j:stop
 
 
 
