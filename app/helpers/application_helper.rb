@@ -101,9 +101,16 @@ module ApplicationHelper
     if ALLOWED_DOMAIN_SERVER.include? sn
        u = root_url.downcase
        u = u[u.rindex("//")+2..-1]
-       logger.info "root url: #{u} - #{host_name.split("-")}"
+       logger.info "root url: #{u} - #{host_name.split("-")} - #{host_name}"
        stage = host_name.split("-") & u.split(".")
-       if stage.count == 1
+       stage = u.split(".")
+       logger.debug ("----------------------------------")
+       stage.each do |n|
+        logger.debug (n)
+       end
+       logger.debug ("----------------------------------")
+       #if stage.count == 1
+       if stage.count > 3
           @stage = stage[0]
           @normalized_stage = normalize_stage
           @cloudinary_name = "#{@humanize_stage}-joinple-com"

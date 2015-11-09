@@ -190,6 +190,9 @@ bundle install
 1. in the ~/joinple/db/neo4j/development/conf/neo4j-server.properties
 	dbms.security.auth_enabled=false
 
+2. in the /etc/hostname change the host name as
+	JPL-<""|test|development|demo>
+
 ## Run
 
 1. login as joinple
