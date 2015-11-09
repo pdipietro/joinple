@@ -10,7 +10,7 @@
         %span.icon-bar
       .navbar-brand.logo
         = image_tag "joinple_logo.png"
-        - unless is_deploy 
+        - unless is_deploy?
           %span.stage
             = humanize_stage 
     #navbar.navbar-collapse.collapse
