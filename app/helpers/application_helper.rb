@@ -104,11 +104,11 @@ module ApplicationHelper
        logger.info "root url: #{u} - #{host_name.split("-")} - #{host_name}"
        stage = host_name.split("-") & u.split(".")
        stage = u.split(".")
-       logger.debug ("----------------------------------")
+       logger.info ("----------------------------------")
        stage.each do |n|
-        logger.debug (n)
+        logger.info (n)
        end
-       logger.debug ("----------------------------------")
+       logger.info ("----------------------------------")
        #if stage.count == 1
        if stage.count > 3
           @stage = stage[0]
