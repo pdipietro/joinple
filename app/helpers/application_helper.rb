@@ -49,7 +49,7 @@ module ApplicationHelper
   end
 
   def stage_special
-      @stage.include("special")
+      @stage.include? "special"
   end
 
 
