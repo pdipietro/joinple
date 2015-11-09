@@ -154,4 +154,27 @@ bundle install
 ~/joinple$ rake neo4j:install
 
 
+# Config and run
+
+## Initial config
+
+1 in the ~/joinple/db/neo4j/development/conf/neo4j-server.properties
+	dbms.security.auth_enabled=false
+
+## Run
+
+1 login as joinple
+2 open a terminal
+4 cd joinple
+4 rake neo4j:start
+5 rails s -b0.0.0.0
+
+## Stop
+
+1 ctrl-c
+2 rake neo4j:stop
+
+## 
+
+
 
