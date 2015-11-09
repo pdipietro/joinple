@@ -106,7 +106,7 @@ module ApplicationHelper
        stage = u.split(".")
        logger.info ("----------------------------------")
        stage.each_with_index do |n, index|
-        logger.info (index, " - ", n)
+        logger.info (index.to_s +  " - " +  n.to_s)
        end
        logger.info ("----------------------------------")
        #if stage.count == 1
