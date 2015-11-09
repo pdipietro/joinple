@@ -44,11 +44,11 @@ module ApplicationHelper
     @normalize_stage == ""
   end
 
-=begin
-
   def get_background
       STAGE_BACKGROUND[@normalized_stage]
   end
+
+=begin
 
   def stage_humanize
       STAGE_HUMANIZE[@stage]
