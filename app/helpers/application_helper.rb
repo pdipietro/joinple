@@ -113,11 +113,11 @@ module ApplicationHelper
        if stage.count > 3
           @stage = stage[0]
           @normalized_stage = normalize_stage (@stage)
-          @cloudinary_name = "#{humanize_stage}-joinple-com"
+          @cloudinary_name = "#{humanized_stage}-joinple-com"
        else
           @stage = ""
           @normalized_stage = normalize_stage (@stage)
-          @cloudinary_name = "#{humanize_stage}-joinple-com"
+          @cloudinary_name = "#{humanized_stage}-joinple-com"
        end
        logger.info "Stage: #{@normalized_stage}"
     else
