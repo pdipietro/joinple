@@ -7,15 +7,36 @@
 ------
 
 
-To enable 0,75 on dev5 change 
 
-landing_pagesc_controller.rb:Line 24
+# Run
 
-   if is_deploy  # or is_dev
+#### Start the machine
+
+1. login as joinple
+2. open a terminal
+3. cd joinple
+
+#### Download the latest github version
+
+4. git pull
+
+## Run the machine
+
+5. bundle install
+6. rake neo4j:start
+7. rails s -b0.0.0.0
+
+## Stop
+
+1. ctrl-c
+2. rake neo4j:stop
+
+## 
 
 
-tlunedì 17 agosto 2015
-13:57
+
+
+
 
 # Joinple virtual machine installation
 
@@ -158,23 +179,19 @@ bundle install
 
 ## Initial config
 
-1 in the ~/joinple/db/neo4j/development/conf/neo4j-server.properties
+1. in the ~/joinple/db/neo4j/development/conf/neo4j-server.properties
 	dbms.security.auth_enabled=false
 
 ## Run
 
-1 login as joinple
-2 open a terminal
-4 cd joinple
-4 rake neo4j:start
-5 rails s -b0.0.0.0
+1. login as joinple
+2. open a terminal
+3. cd joinple
+4. rake neo4j:start
+5. rails s -b0.0.0.0
 
 ## Stop
 
-1 ctrl-c
-2 rake neo4j:stop
-
-## 
-
-
+1. ctrl-c
+2. rake neo4j:stop
 
