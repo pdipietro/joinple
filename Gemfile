@@ -26,7 +26,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
-#gem 'neo4j', '~> 6.0.0.alpha'
+gem 'neo4j', '~> 6.0.0.alpha'
 #gem 'neo4j', '~> 5.0.15'
 #gem 'neo4j', github: 'neo4jrb/neo4j', ref: 'd6783e81ebedb542f188d721a6a4355d8e0071d8'
 gem 'neo4jrb_spatial'

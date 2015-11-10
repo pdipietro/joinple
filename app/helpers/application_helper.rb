@@ -21,7 +21,6 @@ module ApplicationHelper
 
   # normalize stage
   def normalize_stage (stage)
-    debug.info ("Ready to normalize #{stage}")
     ""     if stage == "" 
     "test" if stage.starts_with?("test")
     "demo" if stage.starts_with?("demo")
@@ -49,8 +48,8 @@ module ApplicationHelper
       STAGE_BACKGROUND[@normalized_stage]
   end
 
-  def stage_special
-      @stage.include? "special"
+  def stage_landing?
+      @stage.ends_with? "_landing"
   end
 
 
@@ -102,31 +101,20 @@ module ApplicationHelper
     if ALLOWED_DOMAIN_SERVER.include? sn
        u = root_url.downcase
        u = u[u.rindex("//")+2..-1]
-       logger.info "root url: #{u} - #{host_name.split("-")} - #{host_name}"
-       #stage = host_name.split("-") & u.split(".")
        stage = u.split(".")
-       logger.info ("------------- #{stage.count} ---------------------")
-       stage.each_with_index do |n, index|
-        logger.info (index.to_s +  " - " +  n.to_s)
-       end
-       logger.info ("----------------------------------")
-       #if stage.count == 1
        if stage.count > 3
-          logger.info ("Passo per > 3 - #{stage[0]} - #{stage[1]} - #{stage[2]} - #{stage[3]}")
           @stage = stage[0]
           @normalized_stage = normalize_stage (@stage)
-          @cloudinary_name = "#{humanized_stage}-joinple-com"
+          @cloudinary_name = "#{@normalized_stage}-joinple-com"
        else
           @stage = ""
           @normalized_stage = normalize_stage (@stage)
-          @cloudinary_name = "#{humanized_stage}-joinple-com"
+          @cloudinary_name = "#{@normalized_stage}-joinple-com"
        end
-       logger.info "Stage: #{@normalized_stage}"
     else
        raise  "516","Error: domain server #{sn} is not allowed"
     end
-    logger.info ("@normalized_stage: #{@normalized_stage}")
-    logger.info "Cloudinary_name creation: #{@cloudinary_name}"
+    logger.info ("status: stage: #{@stage} - normalized_stage: #{@normalized_stage} - humanized_stage: #{humanized_stage} - Cloudinary_name: #{@cloudinary_name}")
 
   end
 
@@ -143,7 +131,6 @@ module ApplicationHelper
       end 
        sn = sn.start_with?("test.") ? sn.split(".")[1] : sn 
        sn = sn.start_with?("dev.")  ? sn.split(".")[1] : sn 
-       sn = sn.start_with?("dev5.") ? sn.split(".")[1] : sn 
        sn = sn.start_with?("demo.") ? sn.split(".")[1] : sn 
        sn = humanize_word(sn)
        sn = "joinple" if sn.downcase == "www" 
