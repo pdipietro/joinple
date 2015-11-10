@@ -61,11 +61,7 @@ GEM
       railties (>= 3.0)
     bootstrap_form (2.3.0)
     builder (3.2.2)
-<<<<<<< HEAD
-    byebug (8.0.1)
-=======
     byebug (8.1.0)
->>>>>>> 92b184e5ff25ee554d217ef0f2360a226ce78079
     cloudinary (1.1.0)
       aws_cf_signer
       rest-client
