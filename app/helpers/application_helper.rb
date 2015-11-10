@@ -21,6 +21,7 @@ module ApplicationHelper
 
   # normalize stage
   def normalize_stage (stage)
+    debug.info ("Ready to normalize #{stage}")
     ""     if stage == "" 
     "test" if stage.starts_with?("test")
     "demo" if stage.starts_with?("demo")
@@ -111,6 +112,7 @@ module ApplicationHelper
        logger.info ("----------------------------------")
        #if stage.count == 1
        if stage.count > 3
+          logger.info ("Passo per > 3 - #{stage[0]} - #{stage[1]} - #{stage[2]} - #{stage[3]}")
           @stage = stage[0]
           @normalized_stage = normalize_stage (@stage)
           @cloudinary_name = "#{humanized_stage}-joinple-com"
