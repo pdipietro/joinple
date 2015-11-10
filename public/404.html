@@ -4,18 +4,33 @@
   <title>The page you were looking for doesn't exist (404)</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
-    img.responsive{
+    img.http-error{
       max-width:100% !important;
       height:auto;
       max-height:100% !important;
       width:auto;
       display:block;
+      top: 50%;
+      left: 50%;
+      position: fixed;
+      -webkit-transform: translate(-50%, -50%);
+      -moz-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      -o-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
     }
   </style>
+
+<script>
+  address = document.baseURI;
+</script>
+
 </head>
 
 <body>
   <!-- This file lives in public/404.html -->
-  <img src="404_joinple-01.jpg", class="responsive" />
+  <a href="<% =address %>">
+    <img src="http://res.cloudinary.com/dev-joinple-com/image/upload/f_auto/v1447155951/error/j404.jpg", class="http-error" />
+  </a>
 </body>
 </html>

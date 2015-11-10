@@ -31,7 +31,7 @@ gem 'neo4j', '~> 6.0.0.alpha'
 #gem 'neo4j', github: 'neo4jrb/neo4j', ref: 'd6783e81ebedb542f188d721a6a4355d8e0071d8'
 gem 'neo4jrb_spatial'
 
-gem 'bcrypt',                  '3.1.7'
+gem 'bcrypt' #,                  '3.1.7'
 gem 'faker',                   '1.4.2'
 #gem 'carrierwave',             '0.10.0'
 gem 'mini_magick',             '3.8.0'
@@ -63,7 +63,7 @@ gem "neo4j-will_paginate_redux"
 
 gem "haml-rails"
 
-gem 'bcrypt-ruby'
+#gem 'bcrypt-ruby'
 gem "pry-rails"
 
 gem 'jquery-turbolinks'

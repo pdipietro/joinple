@@ -21,7 +21,7 @@ class LandingPagesController < ApplicationController
 
   def home
     #debugger
-    if is_deploy? or stage_special
+    if is_deploy? or stage_landing?
       layout="mail_collector"
       page="home"
     else
@@ -76,8 +76,6 @@ class LandingPagesController < ApplicationController
   def index
     @landing_page = LandingPage.first
     @landing_page = LandingPage.new unless #landing_page.nil?
-    puts "SONO DENTRO LANDING_PAGE - INDEX"
-    puts "@landing_page.uuid #{@landing_page}"
     render layout: "application", format: :js, locals: { landing_page: @landing_page }
   end
 
@@ -93,7 +91,6 @@ class LandingPagesController < ApplicationController
   # POST /landing_pages
   # POST /landing_pages.json
   def create
-    puts "landing_page_params: #{landing_page_params}"
     @landing_page = LandingPage.new(landing_page_params)
 
     respond_to do |format|
@@ -134,13 +131,9 @@ class LandingPagesController < ApplicationController
 
     def get_request_cookie
       set_screen_geometry
-      puts "request cookies:"
       @width = cookies[:width]
       @height = cookies[:height]
       @pixelRatio = cookies[:pixelRatio]
-      puts "@width: #{@width}"
-      puts "@height: #{@height}"
-      puts "@pixelRatio: #{@pixelRatio}"
 
     end
 end
