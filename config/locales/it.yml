@@ -20,6 +20,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 it:
+  send: "invia"
   date:
     formats:
       default: "%d-%m-%Y"
@@ -77,7 +78,7 @@ it:
       placeholder: "inserisci il tuo indirizzo email ..."
     landing_075:
       page_1:
-        line_1: "Il tuo social network, i nostri utenti, le vostre passioni, insieme!"
+        line_1: "Un social network, per tutti."
         line_2_col_1: "<b>Il modo più semplice, veloce e gratuito per creare un social network</b> sulle tue passioni, interessi, cause, attività imprenditoriali e molto altro ancora.</br>Gli utenti di tutti i social network JoinPle ti aspettano e sono già pronti a seguirti."
         line_2_col_2: "Per la prima volta, <b>con un’unica e semplice iscrizione, trovi in un solo ambiente tanti social network</b> sui tuoi diversi interessi.</br>I tuoi amici si sono già prenotati, non aspettare oltre."
         line_3: "<b>Per essere avvisato quando JoinPle sarà online, puoi lasciarci la tua email.</br>Per ringraziarti riceverai un omaggio.</b>"
@@ -85,21 +86,20 @@ it:
         line_5: "Guarda il video di 1 minuto di JoinPle e visita il nostro canale YouTube"
         privacy_accepted: "Acconsento al trattamento dei miei dati personali."
         footer: "E' GRATIS!"
+        video_1: "landing/v0.7.5/video1-it.mp4"
       page_2:
         line_1:
-          col_1: "PARTECIPA AL NOSTRO CONCORSO E DIVENTA L'UTENTE N.&nbsp;1"
-        line_2:
-          col_1: "<span style='color: #A02348'>LASCIA LA TUA EMAIL</span> SUL SITO JOINPLE.COM</span>"
-          col_2: "SCARICA E STAMPA <span style='color: #A02348'>IL FOGLIO DEL CONCORSO</span> OPPURE SCRIVILO A MANO SU UN FOGLIO"
-          col_3: "SCATTA UNA <span style='color: #A02348'>FOTO DIVERTENTE</span> CON CHI VUOI E PUBBLICALA SU UNO DEI NOSTRI PROFILI SOCIAL ABILITATI AL CONCORSO"
-        line_3:
-          col_1: "OGNI POST DOVR&#192; CONTENERE l'HASHTAG <span style='color: #A02348'>#JOINPLEUSER1</span> E LA MENZIONE AL NOSTRO PROFILO"
-          col_2: "INVITA I TUOI AMICI A <span style='color: #A02348'>CLICCARE MI PIACE O CONDIVIDERE</span> LA TUA FOTO. PI&Ugrave; NE OTTIENI PI&Ugrave; POSSIBILIT&Agrave; AVRAI DI VINCERE"
-          col_3: "<span style='color: #A02348'>SCOPRI IL VINCITORE.</span> IL TEAM JOINPLE SELEZIONER&Agrave; IL VINCITORE TRA LE 10 FOTO PI&Ugrave; DIVERTENTI CHE AVRANNO RICEVUTO <span style='color: #A02348'>IL MAGGIOR NUMERO DI PREFERENZE IN TUTTI I NOSTRI PROFILI SOCIAL</span>"
-        line_4:
-          col_1: "SCARICA IL FOGLIO DEL CONCORSO"
-          col_2: "SCOPRI PERCH&Eacute; DIVENTARE L'UTENTE N.1"
-          col_3: "GUARDA IL VIDEO DEL CONCORSO</span>"
+          col_1: "<span style='font-weight: bold;'>PARTECIPA AL NOSTRO</br>FOTO CONCORSO</span></br>E DIVENTA L'UTENTE N.&nbsp;1"
+          col_2: "landing/v0.7.5/logo_contest_it"   
+        image_1: "landing/v0.7.5/header-1-it"
+        image_2: "landing/v0.7.5/header-2"
+
+        point_21: "<span style='color: #A02348'>Scatta una foto divertente</span> con l'hashtag ed il logo JoinPle in evidenza. Puoi scriverli dove vuoi"
+        point_22: "<span style='color: #A02348'>Inserisci la tua e-mail</span> e carica la foto"
+        point_23: "<span style='color: #A02348'>Inserisci il tua indirizzo e-mail</span> e carica la foto sadhkd jaskdj sadas hjhhj e dgajgh asjjsajasdj"
+        point_1: "Guarda la tua foto sulla nostra pagina Facebook all'interno del concorso <span style='color: #A02348'>#JOINPLEUSER1</span> e condividila invitando i tuoi amici a votarti"
+        point_2: "Scopri perché diventare l'utente N°&nbsp;1 di JoinPle e tutte le regole del concorso"
+        point_3: "Seguici ogni giorno e cerca le foto più votate. Ogni <span style='color: #A02348'>venerdì</span> pubblicheremo le più divertenti"
       page_3:
         line_1: "DIVENTA PARTE DEL TEAM DI JOINPLE"
         line_2: "STIAMO RICERCANDO QUESTI PROFILI"

@@ -105,16 +105,16 @@ module ApplicationHelper
        if stage.count > 3
           @stage = stage[0]
           @normalized_stage = normalize_stage (@stage)
-          @cloudinary_name = "#{@normalized_stage}-joinple-com"
+          cloudinary_name "#{@normalized_stage}-joinple-com"
        else
           @stage = ""
           @normalized_stage = normalize_stage (@stage)
-          @cloudinary_name = "#{@normalized_stage}-joinple-com"
+          cloudinary_name "#{@normalized_stage}-joinple-com"
        end
     else
        raise  "516","Error: domain server #{sn} is not allowed"
     end
-    logger.info ("status: stage: #{@stage} - normalized_stage: #{@normalized_stage} - humanized_stage: #{humanized_stage} - Cloudinary_name: #{@cloudinary_name}")
+    logger.info ("status: stage: #{@stage} - normalized_stage: #{@normalized_stage} - humanized_stage: #{humanized_stage} - Cloudinary_name: #{cloudinary_name?}")
 
   end
 

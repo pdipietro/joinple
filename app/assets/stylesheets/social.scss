@@ -1601,7 +1601,11 @@ ul#myposts a li {
   margin: 0;
   background-color: $joinple_color;
   width: 100%;
+}
 
+.page2 .row.points{
+  font-size: 1.5em;
+  font-variant: small-caps; 
 }
 
 .landing .page3 {
@@ -1610,36 +1614,27 @@ ul#myposts a li {
   width: 100%;
 }
 
-
-.page2 .line_1.col_1 {
-  font-size: 3em;
-  text-align: -webkit-center;
-  
-}
-.page2 .line_1.col_2.part_2 {
+.aaaat.point {
   font-size: 2em;
-  text-align: right;
-  font-weigth: bold;
-  font-style: italic;
-}
-
-.page2 .line_1,
-.page2 .line_2,
-.page2 .line_3,
-.page2 .line_4 {
-  font-size: 1.5em;
-  text-align: left;
-  font-weigth: bold;
+  text-align: -webkit-center;
+  font-variant: small-caps; 
 }
 
 .page1 .row * .t,
-.page2 .row .t {
+.page2 .row 
+.page3 .row
+ {
+  font-size: 2em;
   padding-right: 30px !important;
   padding-left: 30px !important;
 }
 
-.page3 .row {
-   font-size: 2em;
+.float-right{
+  float: right;
+}
+
+.float-left{
+  float: left;
 }
 
 /********************************* Cloudinary button ******************************************/
@@ -1682,3 +1677,5 @@ ul#myposts a li {
 ol .joinple-button-add-image + div + ul.cloudinary-thumbnails li.cloudinary-thumbnail.active {
   display: none;
 }
+
+
