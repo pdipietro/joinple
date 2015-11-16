@@ -88,7 +88,7 @@ it:
         footer: "E' GRATIS!"
         video_1: "landing/v0.7.5/video1-it.mp4"
       page_2:
-        title: "<span style='font-weight: bold;  font-size: 2em;'>PARTECIPA AL NOSTRO</br>FOTO CONCORSO</span></br></br>"
+        title: "<span style='font-weight: bold; font-size: 2em;'>PARTECIPA AL NOSTRO FOTO CONCORSO</span>"
         image_1: "landing/v0.7.5/header-1-it"
         image_2: "landing/v0.7.5/header-2"
 

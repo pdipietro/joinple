@@ -89,7 +89,7 @@ en:
         footer: "IT'S FREE"
         video_1: "landing/v0.7.5/video1-en.mp4"
       page_2:
-        title:   "<span style='font-weight: bold;  font-size: 2em;'>Enter the photo contest</span></br></br>"
+        title:   "<span style='font-weight: bold; font-size: 2em;'>Enter the photo contest</span>"
         image_1: "landing/v0.7.5/header-1-en"
         image_2: "landing/v0.7.5/header-2"
 
