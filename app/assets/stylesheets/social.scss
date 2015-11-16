@@ -445,6 +445,10 @@ li.list-group-item {
   @extend .spacer;
   height: $standard_padding * 4;
 }
+.spacer-6x {
+  @extend .spacer;
+  height: $standard_padding * 6;
+}
 .spacer-8x {
   @extend .spacer;
   height: $standard_padding * 8;
