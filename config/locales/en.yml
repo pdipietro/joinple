@@ -89,16 +89,16 @@ en:
         footer: "IT'S FREE"
         video_1: "landing/v0.7.5/video1-en.mp4"
       page_2:
-        line_1:
-          col_1: "<span style='font-weight: bold;'>Enter into photo contest</span> e become the N.&nbsp;1 user"
-          col_2: "landing/v0.7.5/logo_contest_en"   
+        title:   "<span style='font-weight: bold;  font-size: 2em;'>Enter the photo contest</span></br></br>"
         image_1: "landing/v0.7.5/header-1-en"
         image_2: "landing/v0.7.5/header-2"
 
         point_21: "<span style='color: #A02348'>Take a funny photo</span> with the hashtag and the logo in evidence. You can write wherever you want"
         point_22: "<span style='color: #A02348'>Insert your e-mail</span> and upload your photo <span style='color:transparent;'> _________________________________</span>"
         point_22: "<span style='color: #A02348'>Insert your e-mail</span> and upload your photo"
-        point_1: "See your photo on our facebook fan page inside the contest <span style='color: #A02348'>#JOINPLEUSER1</span> and share it inviting your friends to votr for you"
+        point_1_1: "See your photo on our facebook fan page inside the contest <span style='color: #A02348'>"
+        point_1_2: "#JOINPLEUSER1"
+        point_1_3: "</span> and share it inviting your friends to vote for you"
         point_2: "Find out why become the user N°&nbsp;1 and the complete rule sets"
         point_3: "Follow us everyday and find out the most voted photos. Each <span style='color: #A02348'>friday</span> we'll publish the funniest"
       page_3:
