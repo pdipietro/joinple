@@ -10,16 +10,15 @@
         google: ['Roboto Slab', 'Roboto'] |
       })                                  |
     = render 'layouts/shim'
-    :javascript
-      document.cookie='width='+screen.width;
-      document.cookie='height='+screen.height;
-      document.cookie='pixelRatio='+("devicePixelRatio" in window ? devicePixelRatio : "1.0");
-      document.cookie='windowHeight='+$(window).height();
-      document.cookie='windowWidth='+$(window).width();
-    %body{:style => "width: #{browser_width}px;"}
-      -#{:style => "width: #{browser_width}px;"}
-      .landing-075{:style => "max-width: #{browser_width}px;"}
-        - puts "browser_geometry: browser_width: #{browser_width}, dpr: #{browser_pixelRatio}, height: #{browser_height}, windowHeight: #{window_height}, windowWidth: #{window_width}"
+    %body
+      :javascript
+        document.cookie='width='+screen.width;
+        document.cookie='height='+screen.height;
+        document.cookie='pixelRatio='+("devicePixelRatio" in window ? devicePixelRatio : "1.0");
+        document.cookie='windowWidth='+$(window).width();
+        document.cookie='windowHeight='+$(window).height();
+      .landing-075{:style => "max-width: #{browser_width}px; width: #{browser_width}px;"}
+        - puts = "browser_geometry: #{browser_geometry}"
       
         - ip = request.env['HTTP_X_FORWARDED_FOR']
         - language = extract_locale_from_accept_language_header
@@ -29,6 +28,11 @@
 
           .landing
             #y.page1{:style => "max-width: #{browser_width}px;"}
+              .spacer-4x
+              .div{:style => "font-size: 1em;"}
+                = "browser_geometry: #{browser_geometry}"
+              .spacer-4x
+
               = cl_image_tag("logo_joinple.png", :width=>180, :crop=>:scale, :fetch_format=>:auto, :class => "responsive logo")
               .spacer-2x
               .row
@@ -55,7 +59,7 @@
                 .video
                   = cl_video_tag(t("landing_page.landing_075.page_1.video_1"), :quality=>30, :fetch_format=>:auto, :controls => :true, :width => "300", :height => "200")
 
-              .spacer-4x
+              -#.spacer-4x
 
             .background
               - x = 1 #+ rand(4)
@@ -63,11 +67,14 @@
               -#= cl_image_tag "#{src}", :class => "uresponsive", :style => "width: #{browser_width}px;", :crop => :fill, :dpr => :auto
               #x
               :javascript
-                var h = $("#y").height();
-                var k = $(window).width();
+                var h = String($("#y").height());
+                var w = String($(window).width());
                 var filename = "#{src}"
-                $.cloudinary.image(filename, {width: "auto", height: h, crop: "fill", cloud_name: "dev-joinple-com", responsive: true, dpr: 'auto', style: "height: 100%"}).appendTo('#x').cloudinary_update();
+                $.cloudinary.image(filename, {width: w, height: h, crop: "fill", cloud_name: "dev-joinple-com", responsive: false, dpr: 'auto'}).appendTo('#x').cloudinary_update();
                 $.cloudinary.responsive();
+
+              -#  $.cloudinary.image(filename, {width: "auto", height: h, crop: "fill", cloud_name: "dev-joinple-com", responsive: true, dpr: 'auto', style: "height: 100%"}).appendTo('#x').cloudinary_update();
+
 
             .page2.container
               .spacer-4x  
@@ -98,7 +105,7 @@
                         fjs.parentNode.insertBefore(js, fjs);
                       }(document, 'script', 'woobox-sdk'));
                     .woobox-offer{"data-offer" => "p8azi6", "woobox-lang" => "none"}
-  
+
                 .spacer-4x
 
               .row.points  

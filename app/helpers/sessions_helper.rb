@@ -51,7 +51,7 @@ module SessionsHelper
   end
 
   def browser_geometry
-     { :width => :session[:width], :dpr => :session[:pixelRatio], :height => session[:pixelRatio], :windowHeight =>  session[:windowWidth], :windowWidth => session[:windowWidth] }
+     ":width => #{session[:width]}, :height => #{session[:height]}, :dpr => #{session[:pixelRatio]}, :windowWidth =>  #{session[:windowWidth]}, :windowHeight => #{session[:windowHeight]} "
   end
 
   def browser_width
