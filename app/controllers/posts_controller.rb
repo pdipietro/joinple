@@ -8,7 +8,7 @@ class PostsController < ApplicationController
 
   # GET /post/list/:filter(/:limit(/:subject))
   def list
-    logger.info ("----- Post Controller: List --(#{params[:filter]})----------------------------------------")
+    logger.debug ("----- Post Controller: List --(#{params[:filter]})----------------------------------------")
 
     filter = params[:filter]
     social_uuid = params[:social_uuid]
@@ -32,15 +32,15 @@ class PostsController < ApplicationController
 
     query_string = qstr << basic_query
 
-    logger.info "---------------- Query: #{query_string}"
+    logger.debug "---------------- Query: #{query_string}"
 
     @posts = Post.as(:posts).query.match(query_string).proxy_as(Post, :posts).paginate(:page => first_page, :per_page => secondary_items_per_page, return: "posts", order: "posts.created_at desc")
 
-    logger.info "=== @posts.each do |post|"
+    logger.debug "=== @posts.each do |post|"
     @posts.each do |post|
-      logger.info post.content
+      logger.debug post.content
     end
-    logger.info "========================="
+    logger.debug "========================="
 
     render 'list', locals: { posts: @posts, subset: filter, title: get_title(filter)}
 
@@ -76,14 +76,14 @@ class PostsController < ApplicationController
       begin
         tx = Neo4j::Transaction.new
           @post.save
-          logger.info "posts error: #{@post.errors}"
+          logger.debug "posts error: #{@post.errors}"
           rel = Owns.create(from_node: current_subject, to_node: @post)
-          logger.info "Owns.create: #{rel.errors}"
+          logger.debug "Owns.create: #{rel.errors}"
           #rel = BelongsTo.create(from_node: @post, to_node: current_social_network)
           rel = @post.create_rel("belongs_to", current_social_network)  
         rescue => e
           tx.failure
-          logger.info "--------- /post/create: transaction failure: #{@post.content}"
+          logger.debug "--------- /post/create: transaction failure: #{@post.content}"
           format.js   { render :new, object: @post }
           format.html { render :new }
           format.json { render json: @post.errors, status: :unprocessable_entity }
@@ -130,12 +130,12 @@ class PostsController < ApplicationController
 
   # GET /posts/list/:filter(/:limit(/:subject))
   def get_post_subset(actual_page, items_per_page, filter)
-    logger.info "INTO  - (postsController) get_subset"
+    logger.debug "INTO  - (postsController) get_subset"
     query_string = prepare_query(filter)
 
-    logger.info "post - get subset - query string: #{query_string}"
+    logger.debug "post - get subset - query string: #{query_string}"
     post = Post.as(:posts).query.match(query_string).proxy_as(Post, :posts).paginate(:page => actual_page, :per_page => items_per_page, return: :posts, order: "posts.created_at desc")
-    logger.info "get_subset count: #{post.count} - class: #{post.class.name} - #{post}"
+    logger.debug "get_subset count: #{post.count} - class: #{post.class.name} - #{post}"
     post
   end
 

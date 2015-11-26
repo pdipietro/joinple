@@ -13,8 +13,10 @@
 //= require jquery2
 //= require jquery_ujs
 //= require jquery.remotipart
+//= require jquery.cookie
 //= require bootstrap-sprockets
 //= require bootstrap-switch
 //= require turbolinks
+//= require header
 //= require cloudinary
 //= require_tree .

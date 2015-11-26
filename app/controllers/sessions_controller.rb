@@ -16,9 +16,9 @@ class SessionsController < ApplicationController
   end
 
   def create
-    puts "param= #{params[:session][:email]}"
+    logger.debug "param= #{params[:session][:email]}"
     subject = Subject.find_by(email: params[:session][:email])       
-    puts "Subject-by-email: #{subject}"
+    logger.debug "Subject-by-email: #{subject}"
     if subject.nil? then
       subject = Subject.find_by(nickname: params[:session][:email])
     puts "Subject-email: #{subject}"
@@ -26,7 +26,6 @@ class SessionsController < ApplicationController
 
     if subject && subject.authenticate(params[:session][:password])
       puts "Subject is authenticated"
-      #puts "session_helper:create - Social network checked: it is #{current_social_network_name?}"
       if subject.activated?
          log_in subject
          params[:session][:remember_me] == '1' ? remember(subject) : forget(subject)

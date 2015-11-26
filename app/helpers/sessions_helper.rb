@@ -9,6 +9,28 @@ module SessionsHelper
 
   SECONDARY_ITEMS_PER_PAGE = 24
 
+  def set_accept_cookie
+    cookies.permanent[:cookie_accepted] = true
+  end
+
+  def set_refuse_cookie
+    cookies.permanent[:cookie_accepted] = false
+  end
+
+  def accepted_cookie?
+    cookies[:cookie_accepted] == "true" ? true : false 
+  end
+
+  def accepted_cookie
+    cookies[:cookie_accepted]
+  end
+
+  def accept_cookie?
+    true  if cookies[:cookie_accepted] == true
+    false if cookies[:cookie_accepted] == false
+    nil   if cookies[:cookie_accepted].nil?
+  end
+
   def super_social_network_background_color
     SUPER_SOCIAL_BACKGROUND_COLOR
   end

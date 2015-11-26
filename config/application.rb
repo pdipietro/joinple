@@ -17,7 +17,7 @@ require "rails/test_unit/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module Gsn
+module Joinple
   class Application < Rails::Application
 
     config.assets.paths << "#{Rails.root}/app/assets/fonts"

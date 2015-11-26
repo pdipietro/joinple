@@ -85,19 +85,19 @@ module ApplicationHelper
   end
 
   def cloudinary_name?
-    logger.info "Cloudinary_name in application_helper: #{@cloudinary_name}"
+    logger.debug "Cloudinary_name in application_helper: #{@cloudinary_name}"
     @cloudinary_name
   end
 
   def check_machine_name_vs_request
     host_name = gethostname
 
-    logger.info ("host_name: #{host_name}")
+    logger.debug ("host_name: #{host_name}")
 
     sn = request.domain.split(".").first.downcase
-    logger.info ("sn: #{sn}")
+    logger.debug ("sn: #{sn}")
 
-    logger.info "ALLOWED_DOMAIN_SERVER.include? #{sn}: #{ALLOWED_DOMAIN_SERVER.include? sn}"
+    logger.debug "ALLOWED_DOMAIN_SERVER.include? #{sn}: #{ALLOWED_DOMAIN_SERVER.include? sn}"
     if ALLOWED_DOMAIN_SERVER.include? sn
        u = root_url.downcase
        u = u[u.rindex("//")+2..-1]
@@ -114,7 +114,7 @@ module ApplicationHelper
     else
        raise  "516","Error: domain server #{sn} is not allowed"
     end
-    logger.info ("status: stage: #{@stage} - normalized_stage: #{@normalized_stage} - humanized_stage: #{humanized_stage} - Cloudinary_name: #{cloudinary_name?}")
+    logger.debug ("status: stage: #{@stage} - normalized_stage: #{@normalized_stage} - humanized_stage: #{humanized_stage} - Cloudinary_name: #{cloudinary_name?}")
 
   end
 
@@ -124,7 +124,7 @@ module ApplicationHelper
 
       check_machine_name_vs_request
       sn = request.domain.split(".").first.downcase
-      logger.info "ALLOWED_DOMAIN_SERVER.include? sn: #{ALLOWED_DOMAIN_SERVER.include? sn}"
+      logger.debug "ALLOWED_DOMAIN_SERVER.include? sn: #{ALLOWED_DOMAIN_SERVER.include? sn}"
       if ALLOWED_DOMAIN_SERVER.include? sn
         u = root_url.downcase
         sn = u[u.rindex("//")+2..-1].split(sn).first[0..-2]
@@ -137,10 +137,10 @@ module ApplicationHelper
        csn = SocialNetwork.find_by( :iname => sn.downcase )
        csn = SocialNetwork.find_by( :name => sn ) if csn.nil?
        csn = SocialNetwork.find_by( :iname => "www" ) if csn.nil?    # if no db is selected, default to www.joinple.com
-       logger.info ("SocialNetwork: #{csn.class.name}")
+       logger.debug ("SocialNetwork: #{csn.class.name}")
        if csn.class.name == "SocialNetwork"
          set_current_social_network (csn)
-         logger.info "current_social_network,class: #{current_social_network.class}"
+         logger.debug "current_social_network,class: #{current_social_network.class}"
          current_social_network
        else
          raise "515","Current social network loading error"
@@ -168,9 +168,9 @@ module ApplicationHelper
   end
 
   def set_locale
-    logger.info "* Accept-Language: #{request.env['HTTP_ACCEPT_LANGUAGE']}"
+    logger.debug "* Accept-Language: #{request.env['HTTP_ACCEPT_LANGUAGE']}"
     I18n.locale = extract_locale_from_accept_language_header
-    logger.info "* Locale set to '#{I18n.locale}'"
+    logger.debug "* Locale set to '#{I18n.locale}'"
   end
  
   private

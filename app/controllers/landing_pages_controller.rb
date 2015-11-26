@@ -20,30 +20,31 @@ class LandingPagesController < ApplicationController
   end
 
   def home
-    #debugger
-    if is_deploy? or stage_landing?
+
+    puts "---------------------------------------------------------------params: #{params}"
+    #screen_geometry= params
+    puts "Home-Logged in? : #{logged_in?}"
+
+    if load_social_network_from_url.nil?
+      render file: "#{Rails.root}/public/404.html", layout: false, status: 404
+      false
+    end
+
+    if session[:height].to_s.length < 2
+      layout='dummy'
+      page='home'
+    elsif logged_in?
+      layout="application"
+      page="home"
+    elsif is_deploy? or stage_landing?
       layout="mail_collector"
       page="home"
     else
-      puts params
-      screen_geometry= params
-      puts "Home-Logged in? : #{logged_in?}"
-      if load_social_network_from_url.nil?
-        render file: "#{Rails.root}/public/404.html", layout: false, status: 404
-        false
-      end
+      layout='landing_page'   
+      page='landing_page'
+    end 
 
-      if session[:height].to_s.length < 2
-        layout='dummy'
-        page='home'
-      elsif logged_in?
-        layout="application"
-        page="home"
-      else
-        layout='landing_page'   
-        page='landing_page'
-      end 
-    end
+    puts "---------------------------------------------------------------layout: #{layout}"
 
     respond_to do |format|
       format.html {render layout: layout }
@@ -129,7 +130,7 @@ class LandingPagesController < ApplicationController
       params.require(:landing_page).permit(:description, :logo, :header)
     end
 
-    def get_request_cookie
+    def pget_request_cookie
       set_screen_geometry
       @width = cookies[:width]
       @height = cookies[:height]

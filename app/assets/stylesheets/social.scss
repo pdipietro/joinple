@@ -302,7 +302,7 @@ header, #page {
 
 .navbar-brand.logo  {
   display: inline-flex;
-  padding: 0.7em 0;
+  padding: 9px 0;
   font-size: 1em;
 }
 
@@ -586,11 +586,15 @@ hr {
 ************************************************************************************************************************ */
 
 .stage {
-  padding-top: 6px !important;
-  padding-left: 60px !important;
+  /*padding-top: 6px !important;
+  padding-left: 60px !important;*/
   color: red;
   font-weight: bold;
   float: left;
+  padding-top: 1px !important;
+  padding-left: 20px !important;
+  line-height: normal;
+  max-width: 37%;
 }
 
 /* ************************************************************************************************************************
@@ -828,11 +832,34 @@ video.responsive {
   right: 0%;
 }
 
+.full-screen-layer-75 {
+  @extend .full-screen-layer;
+  opacity: 0.8;
+}
+
 .middle-layer {
   position: fixed;
   background-color: #6c6c6c;
   opacity: 1;
   z-index: 2005;
+  text-align: justified;
+
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.cookie-layer {
+  position: fixed;
+  color: #000000;
+  background-color: #ffffff;
+  opacity: 1;
+  z-index: 2005;
+  padding: 4px;
 
   top: 50%;
   left: 50%;
@@ -1244,6 +1271,23 @@ video.responsive {
 }
 
 /* ************************************************************************************************************************
+** em's
+************************************************************************************************************************ */
+
+.em07 {
+  font-size: 0.7em;
+}
+
+.em08 {
+  font-size: 0.8em;
+}
+.em09 {
+  font-size: 0.9em;
+}
+
+
+
+/* ************************************************************************************************************************
 ** Languages
 ************************************************************************************************************************ */
 
@@ -1512,14 +1556,16 @@ ul#myposts a li {
     text-align: center;
 
     .line1 {
-      text-shadow: 4px 3px 5px rgba(0, 0, 0, 1);
+      text-shadow: 2px 2px 5px rgba(51, 51, 66, 1);
       font-size: 3.35em;
     }
 
     &.milk {
-      background-color: $milk;
+      sbackground-color: $milk;
+      text-shadow: 1px 1px 5px rgba(51, 51, 66, 1);
+      color: #ffffff;
 
-      .line2 {
+      .xxxxxxxxxxxxxxline2 {
         color: $joinple_color;
       }
     }
@@ -1541,19 +1587,24 @@ ul#myposts a li {
       margin: 0 auto;
     }
 
-  .checkbox label {
-   font-size: 0.9em;
-   color: #ffffff;
-   text-shadow: 4px 3px 5px rgba(0, 0, 0, 1);
-  }
+    .checkbox label {
+     font-size: 0.9em;
+     color: #ffffff;
+     text-shadow: 2px 2px 5px rgba(51, 51, 66, 1);
+    }
 
 
   }
 
-  #landing-mail .checkbox %label {
+ /* #landing-mail .checkbox %label {
         font-size: 0.9em;
         color: pink;
       }
+*/
+  .line1 {
+    text-shadow: 1px 1px 5px rgba(51, 51, 66, 1);
+    font-size: 5em;
+  }
 
   .line2 {
     font-size: 1.6em;
@@ -1568,11 +1619,16 @@ ul#myposts a li {
 
   .line3 {
     font-size: 1.5em;
-    color: $joinple_background_color;
+    color: $joinple_color;
 
       &.milk {
         background-color: $milk;
       }
+
+  }
+
+  .line3 input {
+    font-size: 0.66em;
   }
 
   .line4 {
@@ -1580,7 +1636,7 @@ ul#myposts a li {
   }
 
   .line5 {
-    text-shadow: 4px 3px 5px rgba(0, 0, 0, 1);
+    text-shadow: 1px 1px 5px rgba(51, 51, 66, 1);
     font-size: 1.5em;
   }
 
@@ -1592,7 +1648,7 @@ ul#myposts a li {
   }
 
   .page1 .footer {
-    width: 100%;
+    swidth: 100%;
     font-size: 2em;
     background-color: $joinple_background_color;
     text-align: center;
@@ -1600,22 +1656,29 @@ ul#myposts a li {
 }
 
 .landing .page2,
-.landing .footer
+.landing .page4
  {
   margin: 0;
   background-color: $joinple_color;
-  width: 100%;
+  swidth: 100%;
 }
 
 .page2 .row.points{
   font-size: 1.5em;
   font-variant: small-caps; 
+  margin-left: 8px;
+  margin-right: 8px;
 }
 
 .landing .page3 {
   background-color: $joinple_background_color;
   font-size: 2em;
-  width: 100%;
+  swidth: 100%;
+}
+
+.landing .footer {
+  background-color: $joinple_background_color;
+  font-size: 0.8em;
 }
 
 .aaaat.point {
@@ -1623,7 +1686,7 @@ ul#myposts a li {
   text-align: -webkit-center;
   font-variant: small-caps; 
 }
-
+/*
 .page1 .row * .t,
 .page2 .row 
 .page3 .row
@@ -1632,7 +1695,7 @@ ul#myposts a li {
   padding-right: 30px !important;
   padding-left: 30px !important;
 }
-
+*/
 .float-right{
   float: right;
 }

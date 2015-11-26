@@ -1,6 +1,6 @@
 - "Upload group images"
 
-- logger.info ("uuid: #{group.uuid}")
+- logger.debug ("uuid: #{group.uuid}")
 
 #upload_group_logo
 	= cl_image_tag group.logo, :height => 200, :crop => :scale, :quality => 50, :class => "responsive"

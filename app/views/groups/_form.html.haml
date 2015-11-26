@@ -2,7 +2,7 @@
   .col-xs-15
   .col-xs-30
     - uuid = SecureRandom::uuid
-    - logger.info ("uuid _form: #{group.uuid}")
+    - logger.debug ("uuid _form: #{group.uuid}")
 
     .panel.panel-default.nothing
       = render partial: 'shared/common_panel_header', locals: { :style => "current", :data_target => "#group-form", :title => title }

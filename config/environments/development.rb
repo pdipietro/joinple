@@ -34,7 +34,7 @@ Rails.application.configure do
 
   config.web_console.whitelisted_ips = '192.168.10.10'
   config.log_formatter = ::Logger::Formatter.new
-  config.log_level = :info       # :debug, :info, :warn, :error, :fatal
+  config.log_level = :debug       # :debug, :info, :warn, :error, :fatal
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true

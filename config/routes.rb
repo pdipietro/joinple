@@ -20,7 +20,10 @@ Rails.application.routes.draw do
 #  get    'password_resets/new'
 #  get    'password_resets/edit.
 
-  resources :mail_collectors,                                      defaults: { :format => "js"}, :remote => :true
+  post    'accept'   =>      'cookielaws#accept', defaults: { :format => "js"}, :remote => :true
+  post    'refuse'   =>      'cookielaws#refuse', defaults: { :format => "js"}, :remote => :true
+  post    'privacy'  =>      'cookielaws#privacy', defaults: { :format => "js"}, :remote => :true
+  resources :mail_collectors,                    defaults: { :format => "js"}, :remote => :true
 
 #  resources :account_activations, only: [:edit], defaults: { :format => "js"}, :remote => :true
   resources :account_activations, only: [:edit]

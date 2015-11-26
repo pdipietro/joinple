@@ -11,6 +11,7 @@ Rails.application.config.assets.precompile += %w( ./../images/* )
 
 Rails.application.config.assets.precompile += %w( salvattore.js )
 Rails.application.config.assets.precompile += %w( salvattore.min.js )
+Rails.application.config.assets.precompile += %w( header.js )
 Rails.application.config.assets.precompile += %w( bootstrap.js )
 Rails.application.config.assets.precompile += %w( bootstrap.min.js )
 

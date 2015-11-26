@@ -1,0 +1,26 @@
+#full_screen_image
+	- unless accepted_cookie?
+		= link_to accept_path, :remote => :true, :method => :post, :title => t("cookies.accept") do
+			.full-screen-layer-75
+			.cookie-layer
+				.spacer-4x
+				= t("cookies.text1").html_safe
+				.spacer-2x
+
+				.icon_only.joinple-button-base
+					= link_to accept_path, :remote => :true, :method => :post, :title => t("cookies.accept") do
+						= t("cookies.accept").html_safe
+
+				-#= link_to about_path, :remote => :true, :title => t("layout.view.header.about") do
+					= t("cookies.refuse")
+
+				.icon_only.joinple-button-base
+					= link_to privacy_path, :remote => :true, :method => :post, :title => t("cookies.read") do
+						= t("cookies.read").html_safe
+
+				.spacer-2x
+
+
+-#%button.icon_only.joinple-button-base{ :type => "reset", :name => "reset", :hide_label => :true, :title => t("button.hint.clear") } 
+	%i.im-eraser
+	= t("button.clear")  

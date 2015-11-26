@@ -1,3 +1,5 @@
+- ip = request.env['HTTP_X_FORWARDED_FOR']
+- language = extract_locale_from_accept_language_header
 - background_color = get_background
 %nav.navbar-default.navbar-fixed-top{ :role => "navigation" }
   - subject_profile = logged_in? ? current_subject.has_profile : nil
@@ -9,10 +11,17 @@
         %span.icon-bar
         %span.icon-bar
       .navbar-brand.logo
-        = image_tag "joinple_logo.png"
-        - unless is_deploy?
-          %span.stage
-            = humanized_stage 
+        = cl_image_tag("logo_joinple.png", :width => 110, :crop=>:scale, :fetch_format=>:auto, :class => "logo")
+      - unless is_deploy?
+        %span.stage
+          = language
+          = " - "
+          = humanized_stage 
+          = " - "
+          = session[:full_version] 
+          = " - "
+          = t("browser-geometry").html_safe
+          = "#{browser_geometry}"
     #navbar.navbar-collapse.collapse
       %ul.nav.navbar-nav.navbar-right
         - unless logged_in?
@@ -130,31 +139,3 @@
                   %i.header-dropdown.im-about
                   = t("layout.view.header.view_config")
 
--#
-              %li
-                = link_to posts_path, :remote => :true do
-                  %i.header-dropdown.im-about
-                  My discussions
-              %li
-                = link_to groups_path, :remote => :true do
-                  %i.header-dropdown.im-about
-                  My workrooms
-              %li.divider
-              %li
-                = link_to groups_path, :remote => :true do
-                  %i.header-dropdown.im-about
-                  Setting
-              %li.divider
-              %li
-                = link_to edit_subject_profile_path(subject_profile.id), :remote => :true do
-                  %i.header-dropdown.im-profile-setting
-                  Change profile
-              %li
-                = link_to current_subject, :remote => :true do
-                  %i.header-dropdown.im-about
-                  Change password
-              %li.divider
-              %li
-                = link_to current_subject, :remote => :true do
-                  %i.header-dropdown.im-about
-                  Everythings
