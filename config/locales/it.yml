@@ -54,11 +54,6 @@ it:
       activation: "Clicca qui "
       text2: " per attivare il tuo account."
       signature: "Il team Joinple."
-  discussion:
-    model:
-    view:
-      photo_button_caption: 
-    controller:
   cookies:
     text_belisario: "Questo sito si avvale di cookie tecnici e di cookie analitici, anche di terze parti, necessari al funzionamento, alla condivisione sui social network e alla visualizzazione di media. Chiudendo questo banner, cliccando in un'area sottostante o accedendo ad un'altra pagina del sito, acconsenti all’uso dei cookie. Se vuoi saperne di più o negare il consenso a tutti o ad alcuni cookie, consulta la cookie policy."
     text1: "Questo sito si avvale di cookie tecnici e di cookie analitici, anche di terze parti, necessari al funzionamento, alla condivisione sui social network e alla visualizzazione di media.</br></br>Accettando espressamente o cliccando in un'area esterna a questo avviso, acconsenti all’uso dei cookie.</br></br>Se vuoi saperne di più o negare il consenso a tutti o ad alcuni cookie, leggi l'informativa sui cookie."
@@ -66,6 +61,15 @@ it:
     refuse: "rifiuto i cookie"
     read:   "informativa sui cookie"
     nocookie: "Ci dispiace, ma questo sito non può essere utilizzato senza attivare i cookie"
+  discussion:
+    model:
+    view:
+      photo_button_caption: 
+    controller:
+  document:
+    static:
+      privacy:
+        disclaimer: "/public/system/doc/landing/v0.7.5/context/regulation-it.html.haml"
   group:
     model:
     view:

@@ -1,6 +1,6 @@
 class LikesController < ApplicationController
-  before_action :check_social_network
-  before_action :logged_in_subject
+  before_action :check_social_network, except: [:show_image, :show_document, :hide]
+  before_action :logged_in_subject, except: [:show_image, :show_document, :hide]
 
   respond_to :js
 
@@ -44,6 +44,10 @@ class LikesController < ApplicationController
     @image = params[:img]
   end
 
+  def show_document
+    @doc = params[:doc]
+  end
+
   def show_content
     @subject = params[:subject]
     @rel = params[:rel]
@@ -59,6 +63,10 @@ class LikesController < ApplicationController
   end
 
   def hide
+    @id = params[:id]
+    respond_to do |format|
+        format.js { render 'hide', locals: { id: @id} }
+    end
   end
 
 end

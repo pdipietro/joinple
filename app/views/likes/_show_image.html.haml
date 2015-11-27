@@ -1,4 +1,5 @@
-= link_to hide_path, :remote => :true, :title => "Close" do
-  .full-screen-layer
-  = cl_image_tag UrlSafeBase64.decode64(image), :class => "middle-layer-transparent responsive"
-  = cl_image_tag UrlSafeBase64.decode64(image), :class => "middle-layer shadowing responsive"
+- uuid = "d" + SecureRandom.uuid
+= link_to hide_path("#{uuid}"), :remote => :true, :title => "Close" do
+  %div{ :id => "#{uuid}" }
+	  = cl_image_tag UrlSafeBase64.decode64(image), :class => "middle-layer-transparent responsive"
+  	= cl_image_tag UrlSafeBase64.decode64(image), :class => "middle-layer shadowing responsive"

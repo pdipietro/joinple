@@ -1,32 +1,17 @@
-.full-screen-layer
-  %nav.navbar-default.navbar-fixed-top{ :role => "navigation" }
-    .container-fluid.shadowing
-      .navbar-header
-        %button.navbar-toggle.collapsed{ :type => "button", "data-toggle" => "collapse",  "data-target" => "#navbar" }
-          %span.sr-only  Toggle navigation
-          %span.icon-bar
-          %span.icon-bar
-          %span.icon-bar
-        .navbar-brand.logo
-          = cl_image_tag("logo_joinple.png")
-          %span.stage
-            = language
-            = " - "
-            = humanized_stage 
-            = " - "
-            = session[:full_version] 
-            = " - "
-            = t("browser-geometry").html_safe
-            = "#{browser_geometry}"
-      #navbar.navbar-collapse.collapse
-        %ul.nav.navbar-nav.navbar-right
-					= link_to hide_path, :remote => :true, :title => "Close" do
-            - " | "
-  = UrlSafeBase64.decode64(image), :class => "middle-layer-transparent responsive"
-  = cl_image_tag UrlSafeBase64.decode64(image), :class => "middle-layer shadowing responsive"
-
-
--#= link_to hide_path, :remote => :true, :title => "Close" do
-  .full-screen-layer
-  =  UrlSafeBase64.decode64(image), :class => "middle-layer-transparent responsive"
-  = cl_image_tag UrlSafeBase64.decode64(image), :class => "middle-layer shadowing responsive"
+- uuid = "d" + SecureRandom.uuid
+.full-screen-doc{ :id => "#{uuid}", :style => ("z-index: #{DateTime.now.strftime('%m%d%H%M%S%L')}; ")}
+	%nav.navbar-default.navbar-fixed-top{ :role => "navigation" }
+		.container-fluid.shadowing
+			.navbar-brand.logo
+				= cl_image_tag("logo_joinple.png", :width => 110, :crop=>:scale, :fetch_format=>:auto, :class => "logo")
+			.navbar-collapse.collapse
+				%ul.nav.navbar-nav.navbar-right
+					%li
+						= link_to hide_path("#{uuid}"), :remote => :true, :title => "Close" do
+							Close
+	.row
+		.col-xs-2
+		.col-xs-56
+			.embed
+				= render file: UrlSafeBase64.decode64(doc)
+		.col-xs-2

@@ -55,7 +55,7 @@ en:
       text2: " to activate your account."
       signature: "The Joinple team."
   cookies:
-    text1: "This site uses technical and analytical cookies, including third parties, necessary for the operation, sharing on social networks and viewing of media. By closing this banner, clicking on an area below or by accessing any other page of the site, you consent to the use of cookies. To learn more or opt out of all or some cookies, see the cookie policy. "
+    text1: "This site uses technical and analytical cookies, including third parties, necessary for the operation, sharing on social networks and viewing of media.</br></br>By clicking on an area outside the banner, you consent to the use of cookies.</br></br>To learn more or opt out of all or some cookies, see the cookie policy."
     accept: "accept cookies"
     refuse: "refuse cookies"
     read:   "read info"
@@ -66,6 +66,10 @@ en:
       button:
         banner: "select the discussion banner ..." 
     controller:
+  document:
+    static:
+      privacy:
+        disclaimer: "/public/system/doc/landing/v0.7.5/context/regulation-en.html.haml"
   group:
     model:
     view:

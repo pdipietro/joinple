@@ -13,9 +13,10 @@
     %body
       - ip = request.env['HTTP_X_FORWARDED_FOR']
       - language = extract_locale_from_accept_language_header
-
       - background_color = get_background
+
       = render 'cookielaws/show'
+
       %nav.navbar-default.navbar-fixed-top{ :role => "navigation" }
         .container-fluid.shadowing
           .navbar-header
@@ -106,9 +107,9 @@
                   = t("landing_page.landing_075.page_2.title").html_safe
                   .spacer-6x
                 .col-xs-60.col-sm-30
-                  = cl_image_tag(t("landing_page.landing_075.page_2.image_1"), :crop=>:scale, :fetch_format=>:auto, :class => "centered responsive")
+                  = cl_image_tag(t("landing_page.landing_075.page_2.image_1"), :crop=>:scale, :fetch_format=>:auto, :dpr => 'auto', :class => "centered responsive")
                 .col-xs-60.col-sm-30
-                  = cl_image_tag(t("landing_page.landing_075.page_2.image_2"), :crop=>:scale, :fetch_format=>:auto, :class => "centered responsive")
+                  = cl_image_tag(t("landing_page.landing_075.page_2.image_2"), :crop=>:scale, :fetch_format=>:auto, :dpr => 'auto', :class => "centered responsive")
   
                 .spacer-4x
   
@@ -129,17 +130,17 @@
 
               .row.points  
                 .col-xs-60.col-sm-20.col-md-20
-                  = cl_image_tag("0", :radius=>30, :width=>56, :crop=>:scale, :fetch_format=>:auto, :class => "centered responsive")
+                  = cl_image_tag("0", :radius=>30, :width=>56, :crop=>:scale, :fetch_format=>:auto, :dpr => 'auto', :class => "centered responsive")
                   = t("landing_page.landing_075.page_2.point_1_1").html_safe
                   -#%a{ :href => "https://woobox.com/p8azi6/gallery?tab=1facebook.com/pages/JoinPle/1378825342446436?sk=app_451684954848385" }
                   %a{ :href => "https://woobox.com/p8azi6/gallery?tab=1" }
                     = t("landing_page.landing_075.page_2.point_1_2").html_safe
                   = t("landing_page.landing_075.page_2.point_1_3").html_safe
                 .col-xs-60.col-sm-20.col-md-20
-                  = cl_image_tag("round-question-mark", :radius=>30, :width=>56, :crop=>:scale, :fetch_format=>:auto, :class => "centered responsive")
+                  = cl_image_tag("round-question-mark", :radius=>30, :width=>56, :crop=>:scale, :fetch_format=>:auto, :dpr => 'auto', :class => "centered responsive")
                   = t("landing_page.landing_075.page_2.point_2").html_safe
                 .col-xs-60.col-sm-20.col-md-20
-                  = cl_image_tag("0", :radius=>30, :width=>56, :crop=>:scale, :fetch_format=>:auto, :class => "centered responsive")
+                  = cl_image_tag("0", :radius=>30, :width=>56, :crop=>:scale, :fetch_format=>:auto, :dpr => 'auto', :class => "centered responsive")
                   %a{ :href => "https://www.facebook.com/JoinPle-1378825342446436/?fref=ts" }
                     = t("landing_page.landing_075.page_2.point_3").html_safe
                   .spacer-8x
@@ -157,15 +158,15 @@
               .row
                 .col-xs-60.col-sm-20.col-md-20
                   .t.line_3_col_1
-                    = cl_image_tag("landing/v0.7.5/app-developer", :width=>180, :crop=>:scale, :fetch_format=>:auto, :class => "centered", :dpr => :auto)
+                    = cl_image_tag("landing/v0.7.5/app-developer", :width=>180, :crop=>:scale, :fetch_format=>:auto, :dpr => 'auto', :class => "centered", :dpr => :auto)
                     = t("landing_page.landing_075.page_3.line_3_col_1").html_safe
                 .col-xs-60.col-sm-20.col-md-20
                   .t.line_3_col_2
-                    = cl_image_tag("landing/v0.7.5/ux-expert", :width=>180, :crop=>:scale, :fetch_format=>:auto, :class => "centered", :dpr => :auto)
+                    = cl_image_tag("landing/v0.7.5/ux-expert", :width=>180, :crop=>:scale, :fetch_format=>:auto, :dpr => 'auto', :class => "centered", :dpr => :auto)
                     = t("landing_page.landing_075.page_3.line_3_col_2").html_safe
                 .col-xs-60.col-sm-20.col-md-20
                   .t.line_3_col_3
-                    = cl_image_tag("landing/v0.7.5/ruby-developer", :width=>180, :crop=>:scale, :fetch_format=>:auto, :class => "centered", :dpr => :auto)
+                    = cl_image_tag("landing/v0.7.5/ruby-developer", :width=>180, :crop=>:scale, :fetch_format=>:auto, :dpr => 'auto', :class => "centered", :dpr => :auto)
                     = t("landing_page.landing_075.page_3.line_3_col_3").html_safe
               .spacer-8x
 

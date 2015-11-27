@@ -81,9 +81,13 @@ Rails.application.routes.draw do
   post      'likes/:id/:class/:relationship' =>    'likes#edit',           :as => :onerel, defaults: { :format => "js"}, constraints: AuthConstraint.new, :remote => :true
   get       'likes'                          =>    'likes#dummy',          :as => :dummy, constraints: AuthConstraint.new
   get       'searches'                       =>    'likes#search',         :as => :searches, constraints: AuthConstraint.new
-  post      'show_image/:img'                =>    'likes#show_image',     :as => :show_image, defaults: { :format => "js"}, constraints: AuthConstraint.new, :remote => :true
-  post      'show_content/:img'              =>    'likes#show_content',   :as => :show_content, defaults: { :format => "js"}, constraints: AuthConstraint.new, :remote => :true
-  get       'hide'                           =>    'likes#hide',           :as => :hide, defaults: { :format => "js"}, constraints: AuthConstraint.new, :remote => :true
+#  post      'show_image/:img'                =>    'likes#show_image',     :as => :show_image, defaults: { :format => "js"}, constraints: AuthConstraint.new, :remote => :true
+#  post      'show_document/:doc'             =>    'likes#show_document',  :as => :show_document, defaults: { :format => "js"}, constraints: AuthConstraint.new, :remote => :true
+#  post      'show_content/:img'              =>    'likes#show_content',   :as => :show_content, defaults: { :format => "js"}, constraints: AuthConstraint.new, :remote => :true
+  post      'show_image/:img'                =>    'likes#show_image',     :as => :show_image, defaults: { :format => "js"}, :remote => :true
+  post      'show_document/:doc'             =>    'likes#show_document',  :as => :show_document, defaults: { :format => "js"}, :remote => :true
+  post      'show_content/:img'              =>    'likes#show_content',   :as => :show_content, defaults: { :format => "js"}, :remote => :true
+  get       'hide(/:id)'                     =>    'likes#hide',           :as => :hide, defaults: { :format => "js"}, :remote => :true
   get       '/media_managers/list/'          =>    'media_managers#list',  :as => :image_list #, defaults: { :format => "js"}, :remote => :true
  # get       'user_profiles'                 =>    'user_profiles#edit',    :as => :edit, constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
 
