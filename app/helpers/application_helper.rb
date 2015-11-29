@@ -105,11 +105,13 @@ module ApplicationHelper
        if stage.count > 3
           @stage = stage[0]
           @normalized_stage = normalize_stage (@stage)
+          logger.debug "@normalized_stage: [#{@normalized_stage}]"
           cloudinary_name "#{@normalized_stage}-joinple-com"
           logger.debug ("status [#{stage}]: stage: #{@stage} - normalized_stage: #{@normalized_stage} - humanized_stage: #{humanized_stage} - Cloudinary_name: #{cloudinary_name?}")
        else
           @stage = ""
           @normalized_stage = normalize_stage (@stage)
+          logger.debug "@normalized_stage: [#{@normalized_stage}]"
           cloudinary_name "#{humanized_stage}-joinple-com"
           logger.debug ("status [#{stage}]: stage: #{@stage} - normalized_stage: #{@normalized_stage} - humanized_stage: #{humanized_stage} - Cloudinary_name: #{cloudinary_name?}")
        end
