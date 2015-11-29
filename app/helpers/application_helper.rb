@@ -21,7 +21,7 @@ module ApplicationHelper
 
   # normalize stage
   def normalize_stage (stage)
-    "deploy"      if stage == "" 
+    "deploy"      if stage == "deploy" 
     "test"        if stage.starts_with?("test")
     "demo"        if stage.starts_with?("demo")
     "dev"         if stage.starts_with?("dev")
@@ -109,7 +109,7 @@ module ApplicationHelper
           cloudinary_name "#{@normalized_stage}-joinple-com"
           logger.debug ("status [#{stage}]: stage: #{@stage} - normalized_stage: #{@normalized_stage} - humanized_stage: #{humanized_stage} - Cloudinary_name: #{cloudinary_name?}")
        else
-          @stage = ""
+          @stage = "deploy"
           @normalized_stage = normalize_stage(@stage)
           logger.debug "@normalized_stage: (#{stage.count})[#{@normalized_stage}]"
           cloudinary_name "#{humanized_stage}-joinple-com"
