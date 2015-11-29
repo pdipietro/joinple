@@ -21,7 +21,7 @@ module ApplicationHelper
 
   # normalize stage
   def normalize_stage (stage)
-    "deploy"  if stage == "" 
+    "deploy"      if stage == "" 
     "test"        if stage.starts_with?("test")
     "demo"        if stage.starts_with?("demo")
     "dev"         if stage.starts_with?("dev")
@@ -106,10 +106,12 @@ module ApplicationHelper
           @stage = stage[0]
           @normalized_stage = normalize_stage (@stage)
           cloudinary_name "#{@normalized_stage}-joinple-com"
+          logger.debug ("status [#{stage}]: stage: #{@stage} - normalized_stage: #{@normalized_stage} - humanized_stage: #{humanized_stage} - Cloudinary_name: #{cloudinary_name?}")
        else
           @stage = ""
           @normalized_stage = normalize_stage (@stage)
           cloudinary_name "#{humanized_stage}-joinple-com"
+          logger.debug ("status [#{stage}]: stage: #{@stage} - normalized_stage: #{@normalized_stage} - humanized_stage: #{humanized_stage} - Cloudinary_name: #{cloudinary_name?}")
        end
     else
        raise  "516","Error: domain server #{sn} is not allowed"
