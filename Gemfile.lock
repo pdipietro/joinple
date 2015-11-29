@@ -49,9 +49,9 @@ GEM
     bcrypt (3.1.10)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bootstrap-sass (3.3.5.1)
-      autoprefixer-rails (>= 5.0.0.1)
-      sass (>= 3.3.0)
+    bootstrap-sass (3.3.6)
+      autoprefixer-rails (>= 5.2.1)
+      sass (>= 3.3.4)
     bootstrap-switch-rails (3.0.2)
     bootstrap-will_paginate (0.0.10)
       will_paginate
@@ -61,7 +61,7 @@ GEM
       railties (>= 3.0)
     bootstrap_form (2.3.0)
     builder (3.2.2)
-    byebug (8.2.0)
+    byebug (8.2.1)
     cloudinary (1.1.0)
       aws_cf_signer
       rest-client
@@ -135,11 +135,10 @@ GEM
       fog-core (~> 1.22)
       fog-json
       inflecto (~> 0.0.2)
-    fog-core (1.34.0)
+    fog-core (1.35.0)
       builder
       excon (~> 0.45)
       formatador (~> 0.2)
-      mime-types
     fog-dynect (0.0.2)
       fog-core
       fog-json
@@ -281,7 +280,7 @@ GEM
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     nenv (0.2.0)
-    neo4j (6.0.0)
+    neo4j (6.0.1)
       active_attr (~> 0.8)
       activemodel (~> 4)
       activesupport (~> 4)
@@ -398,7 +397,7 @@ GEM
     shellany (0.0.1)
     slop (3.6.0)
     spring (1.4.4)
-    sprockets (3.4.0)
+    sprockets (3.4.1)
       rack (> 1, < 3)
     sprockets-rails (2.3.3)
       actionpack (>= 3.0)

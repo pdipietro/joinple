@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   ALLOWED_DOMAIN_SERVER = ["joinple","estatetuttoanno"]
-  STAGE_HUMANIZED = { "dev" => "development", "test" => "test", "demo" => "demo", "" => "production" }
+  STAGE_HUMANIZED = { "dev" => "development", "test" => "test", "demo" => "demo", "deploy" => "deployment" }
   STAGE_BACKGROUND = { "dev" => "background-color : #5C8D69;", "test" => "background-color : #fde8ee;", "demo" => "background-color : yellow;", "" => "" }
 
   # Returns the full title on a per-page basis.
@@ -21,10 +21,10 @@ module ApplicationHelper
 
   # normalize stage
   def normalize_stage (stage)
-    ""     if stage == "" 
-    "test" if stage.starts_with?("test")
-    "demo" if stage.starts_with?("demo")
-    "dev"  if stage.starts_with?("dev")
+    "deploy"  if stage == "" 
+    "test"        if stage.starts_with?("test")
+    "demo"        if stage.starts_with?("demo")
+    "dev"         if stage.starts_with?("dev")
   end
 
   # Check the current stage.
@@ -41,7 +41,7 @@ module ApplicationHelper
   end
   
   def is_deploy?
-    @normalize_stage == ""
+    @normalize_stage == "deploy"
   end
 
   def get_background
@@ -54,7 +54,7 @@ module ApplicationHelper
 
 
   def application_full_path
-    if @stage == ""
+    if @stage == "deploy"
       "http://www.#{request.domain}"
     else
       "http://#{@stage}.www.#{request.domain}"
@@ -63,7 +63,7 @@ module ApplicationHelper
 
   def calculate_full_path (sn)
     nm = sn.name.casecmp("joinple") == 0 ? "www" : sn.name.downcase.gsub(/\s+/, "")
-    if @stage == ""
+    if @stage == "deploy"
       fp = "http://#{nm}.#{request.domain}"
     else
       fp = "http://#{@stage}.#{nm}.#{request.domain}"
@@ -109,7 +109,7 @@ module ApplicationHelper
        else
           @stage = ""
           @normalized_stage = normalize_stage (@stage)
-          cloudinary_name "#{@normalized_stage}-joinple-com"
+          cloudinary_name "#{humanized_stage}-joinple-com"
        end
     else
        raise  "516","Error: domain server #{sn} is not allowed"
