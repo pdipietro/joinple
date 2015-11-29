@@ -1,19 +1,17 @@
-#full_screen_image
-	- unless accepted_cookie?
-		= link_to accept_path, :remote => :true, :method => :post, :title => t("cookies.accept") do
-			.full-screen-layer-75
-			.cookie-layer
-				.spacer-4x
-				= t("cookies.text1").html_safe
-				.spacer-2x
+- unless accepted_cookie?
+	= link_to accept_path, :remote => :true, :method => :post, :title => t("cookies.accept") do
+		.full-screen-layer-75
+		.cookie-layer
+			.spacer-4x
+			= t("cookies.text1").html_safe
+			.spacer-2x
 
-				.icon_only.joinple-button-base
-					= link_to accept_path, :remote => :true, :method => :post, :title => t("cookies.accept") do
+			.icon_only.joinple-button-base
+				= link_to accept_path, :remote => :true, :method => :post, :title => t("cookies.accept") do
+					= t("cookies.accept").html_safe
 
-						= t("cookies.accept").html_safe
+			.icon_only.joinple-button-base
+				= link_to show_document_path( doc: UrlSafeBase64.encode64(t("document.static.privacy.disclaimer").html_safe) ), :remote => :true, :method => :post, :title => t("cookies.read") do
+					= t("cookies.read").html_safe
 
-				.icon_only.joinple-button-base
-					= link_to show_document_path( doc: UrlSafeBase64.encode64(t("document.static.privacy.disclaimer").html_safe) ), :remote => :true, :method => :post, :title => t("cookies.read") do
-						= t("cookies.read").html_safe
-
-				.spacer-2x
+			.spacer-2x

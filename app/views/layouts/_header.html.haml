@@ -12,16 +12,7 @@
         %span.icon-bar
       .navbar-brand.logo
         = cl_image_tag("logo_joinple.png", :width => 110, :crop=>:scale, :fetch_format=>:auto, :class => "logo")
-      - unless is_deploy?
-        %span.stage
-          = language
-          = " - "
-          = humanized_stage 
-          = " - "
-          = session[:full_version] 
-          = " - "
-          = t("browser-geometry").html_safe
-          = "#{browser_geometry}"
+      = render partial: 'layouts/stage'
     #navbar.navbar-collapse.collapse
       %ul.nav.navbar-nav.navbar-right
         - unless logged_in?

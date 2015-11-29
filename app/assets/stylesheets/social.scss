@@ -26,6 +26,7 @@ $joinple_color:#333342;
  
 $joinple_background_color: #a02348;       /* fuxia: 160,35,72    */
 $joinple_text_color: #000000; 
+$link_color:#337ab7;
 $milk:rgba(255, 255, 255, 0.4);
 
 $default_text_color: rgb(51,51,51);
@@ -40,6 +41,7 @@ $margin_standard: 0.5em;
 
 html { font-size: 16px; }
 
+/*
 @media screen and (min-width: 360px)  and (max-width: 720px) 
   { html {  font-size: 12px;   } } 
 
@@ -48,6 +50,8 @@ html { font-size: 16px; }
 
 @media screen and (max-device-width: 480px) 
   { html {  font-size: 12px;   } } 
+*/
+
 
 
 /* ************************************* END FONT-SIZE *************************************************** */
@@ -59,11 +63,6 @@ body {
   background-color: $joinple_page_background_color;
   color: $default_text_color;
   font-size: 0.75em;   /* base: 16px from bootstrap * 0.75 ==> 1.2px */
-}
-
-.embed {
-  -webkit-font-smoothing: antialiased;
-  margin-top: 56px;  
 }
 
 .dropdown-menu,
@@ -591,10 +590,9 @@ hr {
 ************************************************************************************************************************ */
 
 .stage {
-  /*padding-top: 6px !important;
-  padding-left: 60px !important;*/
   color: red;
-  font-weight: bold;
+  font-weight: normal;
+  font-size: 80%;
   float: left;
   padding-top: 1px !important;
   padding-left: 20px !important;
@@ -826,12 +824,6 @@ video.responsive {
   float: right;
 }
 
-.full-screen-doc {
-  position: fixed;
-  background-color: #ffffff;
-  opacity: 1;
-  text-align: justify;
-}
 
 .full-screen-layer {
   position: fixed;
@@ -1672,7 +1664,7 @@ ul#myposts a li {
  {
   margin: 0;
   background-color: $joinple_color;
-  swidth: 100%;
+  width: 100%;
 }
 
 .page2 .row.points{
@@ -1685,7 +1677,7 @@ ul#myposts a li {
 .landing .page3 {
   background-color: $joinple_background_color;
   font-size: 2em;
-  swidth: 100%;
+  width: 100%;
 }
 
 .landing .footer {
@@ -1757,4 +1749,54 @@ ol .joinple-button-add-image + div + ul.cloudinary-thumbnails li.cloudinary-thum
   display: none;
 }
 
+/* ************************************************************************************************************************
+** Document formatting
+************************************************************************************************************************ */
 
+.embed {
+  @extend .container;
+  -webkit-font-smoothing: antialiased;
+  margin-top: 56px; 
+  position: relative;
+  width: auto;
+
+  h1, .h1 {
+
+      font-size: 250%; 
+  }
+  h2, .h2 {
+      font-size: 225%; 
+  }
+  h3, .h3 {
+      font-size: 200%; 
+  }
+  h4, .h4 {
+      font-size: 175%; 
+  }
+  h5, .h5 {
+      font-size: 150%; 
+  }
+  h6, .h6 {
+      font-size: 125%; 
+  }
+
+  a {
+    color: $link_color;
+  }
+
+  a:hover {
+    color: $joinple_color;
+  }
+
+  table {
+    margin: 0 0 11px;
+  }
+}
+
+.full-screen-doc {
+  @extend html;
+  position: relative;
+  background-color: #ffffff;
+  opacity: 1;
+  text-align: justify;
+}

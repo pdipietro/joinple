@@ -1,6 +1,7 @@
 if(('#<%= escape_javascript(id) %>').length > 0) {
-	$('#<%= escape_javascript(id) %>').html("");
+	$('#<%= escape_javascript(id) %>').remove();
 }
 else {
 	$("#full_screen_image").html("");
 } 
+$("#wrapper").show()

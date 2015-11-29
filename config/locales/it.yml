@@ -68,8 +68,9 @@ it:
     controller:
   document:
     static:
+      test: "/public/system/doc/test_template.html.haml"
       privacy:
-        disclaimer: "/public/system/doc/landing/v0.7.5/context/regulation-it.html.haml"
+        disclaimer: "/public/system/doc/landing/v0.7.5/context/cookie-it.html.haml"
   group:
     model:
     view:
@@ -172,6 +173,10 @@ it:
     view:
       photo_button_caption: "aggiungi fino a 5 immagini ..."
     controller:
+  recruitment:
+    app_developer: "/public/system/doc/recruitment/app-developer-it.html.haml"
+    rails_angular_developer: "/public/system/doc/recruitment/rails-angular-developer-it.html.haml"
+    web_marketing_specialist: "/public/system/doc/recruitment/web-marketing-specialist-it.html.haml"
   session:
     model:
       remember_me: "Ricordam!"

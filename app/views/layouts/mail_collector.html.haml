@@ -1,6 +1,6 @@
 !!!
 %html
-  %head
+  %head 
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'salvattore', media: 'all', 'data-turbolinks-track' => true
@@ -12,208 +12,197 @@
     = render 'layouts/shim'
     %body
       - ip = request.env['HTTP_X_FORWARDED_FOR']
-      - language = extract_locale_from_accept_language_header
       - background_color = get_background
 
-      = render 'cookielaws/show'
+      #full_screen_image
+        = render 'cookielaws/show'
 
-      %nav.navbar-default.navbar-fixed-top{ :role => "navigation" }
-        .container-fluid.shadowing
-          .navbar-header
-            %button.navbar-toggle.collapsed{ :type => "button", "data-toggle" => "collapse",  "data-target" => "#navbar" }
-              %span.sr-only  Toggle navigation
-              %span.icon-bar
-              %span.icon-bar
-              %span.icon-bar
-            .navbar-brand.logo
-              = cl_image_tag("logo_joinple.png", :width => 110, :crop=>:scale, :fetch_format=>:auto, :class => "logo")
-            %span.stage
-              = language
-              = " - "
-              = humanized_stage 
-              = " - "
-              = session[:full_version] 
-              = " - "
-              = t("browser-geometry").html_safe
-              = "#{browser_geometry}"
-          #navbar.navbar-collapse.collapse
-            %ul.nav.navbar-nav.navbar-right
-              %li
-                %a.hoverable{ :href => "#page-1" }
-                  = t("landing_page.landing_075.page_1.menu").html_safe
-                - " | "
-              %li
-                %a.hoverable{ :href => "#page-2" }
-                  = t("landing_page.landing_075.page_2.menu").html_safe
-                - " | "
-              %li
-                %a.hoverable{ :href => "#page-3" }
-                  = t("landing_page.landing_075.page_3.menu").html_safe
- 
-      -#.landing-075{:style => "max-width: #{browser_width}px; width: #{window_width}px;"}
-      .landing-075
-      
-        - if ip.start_with?("192.168.10.") or ip == ("100.78.25.223") or ip == "66.249.65.4" or true # and false
+      #wrapper
+        %nav.navbar-default.navbar-fixed-top{ :role => "navigation" }
+          .container-fluid.shadowing
+            .navbar-header
+              %button.navbar-toggle.collapsed{ :type => "button", "data-toggle" => "collapse",  "data-target" => "#navbar" }
+                %span.sr-only  Toggle navigation
+                %span.icon-bar
+                %span.icon-bar
+                %span.icon-bar
+              .navbar-brand.logo
+                = cl_image_tag("logo_joinple.png", :width => 110, :crop=>:scale, :fetch_format=>:auto, :class => "logo")
+              = render partial: 'layouts/stage'
+            #navbar1.navbar-collapse.collapse
+              %ul.nav.navbar-nav.navbar-right
+                %li
+                  %a.hoverable{ :href => "#page-1" }
+                    = t("landing_page.landing_075.page_1.menu").html_safe
+                  - " | "
+                %li
+                  %a.hoverable{ :href => "#page-2" }
+                    = t("landing_page.landing_075.page_2.menu").html_safe
+                  - " | "
+                %li
+                  %a.hoverable{ :href => "#page-3" }
+                    = t("landing_page.landing_075.page_3.menu").html_safe
 
-          .landing
-            -##y.page1#page-1{:style => "max-width: #{window_width}px;"}
-            #page-1.page1
-              .spacer-4x
-              .div{:style => "font-size: 1em;"}
-                = "browser_geometry: #{browser_geometry}"
-              .spacer-4x
+        -#.landing-075{:style => "max-width: #{browser_width}px; width: #{window_width}px;"}
+        .landing-075
+        
+          - if ip.start_with?("192.168.10.") or ip == ("100.78.25.223") or ip == "66.249.65.4" or true # and false
 
-              .spacer-2x
-              .row
-                .col-xs-60
-                  .t.line1= t("landing_page.landing_075.page_1.line_1").html_safe
-              .spacer-4x
-              .row.milk
-                .col-xs-60.col-sm-30
-                  .t.line2= t("landing_page.landing_075.page_1.line_2_col_1").html_safe
-                .visible-xs.spacer-2x
-                .col-xs-60.col-sm-30
-                  .t.line2= t("landing_page.landing_075.page_1.line_2_col_2").html_safe
-              .spacer-2x
-              .row.footer
-                .col-xs-60
-                  = t("landing_page.landing_075.page_1.footer").html_safe
-              .spacer-2x
-
-              = render partial: "mail_collectors/form", object: MailCollector.new, locals: { line: "line_3" }
-
-
-              -#.spacer-4x
-
-            .background
-              - x = 1 #+ rand(4)
-              - src = "landing/v0.7.5/background"
-              -#= cl_image_tag "#{src}", :class => "uresponsive", :style => "width: #{browser_width}px;", :crop => :fill, :dpr => :auto
-              #x
-              :javascript
-                var h = String($("#page-1").height());
-                var w = String($(window).width());
-                var filename = "#{src}"
-                $.cloudinary.image(filename, {width: w, height: h, crop: "fill", cloud_name: "dev-joinple-com", responsive: false, dpr: 'auto'}).appendTo('#x').cloudinary_update();
-                $.cloudinary.responsive();
-
-              -#  $.cloudinary.image(filename, {width: "auto", height: h, crop: "fill", cloud_name: "dev-joinple-com", responsive: true, dpr: 'auto', style: "height: 100%"}).appendTo('#x').cloudinary_update();
-
-
-            .page2.container#page-2{:style => "max-width: #{window_width}px;"}
-              .spacer-4x  
-              .row
-                .col-xs-60
-                  = t("landing_page.landing_075.page_2.title").html_safe
-                  .spacer-6x
-                .col-xs-60.col-sm-30
-                  = cl_image_tag(t("landing_page.landing_075.page_2.image_1"), :crop=>:scale, :fetch_format=>:auto, :dpr => 'auto', :class => "centered responsive")
-                .col-xs-60.col-sm-30
-                  = cl_image_tag(t("landing_page.landing_075.page_2.image_2"), :crop=>:scale, :fetch_format=>:auto, :dpr => 'auto', :class => "centered responsive")
-  
+            .landing
+              -##y.page1#page-1{:style => "max-width: #{window_width}px;"}
+              #page-1.page1
                 .spacer-4x
-  
-                .col-xs-60
-                  .t.point
-                  #woobox-root
-                    :javascript
-                      (function(d, s, id) {
-                        var js, fjs = d.getElementsByTagName(s)[0];
-                        if (d.getElementById(id)) return;
-                        js = d.createElement(s); js.id = id;
-                        js.src = "//woobox.com/js/plugins/woo.js";
-                        fjs.parentNode.insertBefore(js, fjs);
-                      }(document, 'script', 'woobox-sdk'));
-                    .woobox-offer{"data-offer" => "p8azi6", "woobox-lang" => "none"}
-
+                .div{:style => "font-size: 1em;"}
+                  = "browser_geometry: #{browser_geometry}"
                 .spacer-4x
 
-              .row.points  
-                .col-xs-60.col-sm-20.col-md-20
-                  = cl_image_tag("0", :radius=>30, :width=>56, :crop=>:scale, :fetch_format=>:auto, :dpr => 'auto', :class => "centered responsive")
-                  = t("landing_page.landing_075.page_2.point_1_1").html_safe
-                  -#%a{ :href => "https://woobox.com/p8azi6/gallery?tab=1facebook.com/pages/JoinPle/1378825342446436?sk=app_451684954848385" }
-                  %a{ :href => "https://woobox.com/p8azi6/gallery?tab=1" }
-                    = t("landing_page.landing_075.page_2.point_1_2").html_safe
-                  = t("landing_page.landing_075.page_2.point_1_3").html_safe
-                .col-xs-60.col-sm-20.col-md-20
-                  = cl_image_tag("round-question-mark", :radius=>30, :width=>56, :crop=>:scale, :fetch_format=>:auto, :dpr => 'auto', :class => "centered responsive")
-                  = t("landing_page.landing_075.page_2.point_2").html_safe
-                .col-xs-60.col-sm-20.col-md-20
-                  = cl_image_tag("0", :radius=>30, :width=>56, :crop=>:scale, :fetch_format=>:auto, :dpr => 'auto', :class => "centered responsive")
-                  %a{ :href => "https://www.facebook.com/JoinPle-1378825342446436/?fref=ts" }
-                    = t("landing_page.landing_075.page_2.point_3").html_safe
-                  .spacer-8x
-              .spacer-8x
-              -#.spacer-8x
+                .spacer-2x
+                .row
+                  .col-xs-60
+                    .t.line1= t("landing_page.landing_075.page_1.line_1").html_safe
+                .spacer-4x
+                .row.milk
+                  .col-xs-60.col-sm-30
+                    .t.line2= t("landing_page.landing_075.page_1.line_2_col_1").html_safe
+                  .visible-xs.spacer-2x
+                  .col-xs-60.col-sm-30
+                    .t.line2= t("landing_page.landing_075.page_1.line_2_col_2").html_safe
+                .spacer-2x
+                .row.footer
+                  .col-xs-60
+                    = t("landing_page.landing_075.page_1.footer").html_safe
+                .spacer-2x
 
-            .page3.container#page-3{:style => "max-width: #{window_width}px;"}
-              .spacer-4x
-              .row
-                .line_1
-                  = t("landing_page.landing_075.page_3.line_1").html_safe
-                .line_2
-                  = t("landing_page.landing_075.page_3.line_2").html_safe
-              .spacer-8x
-              .row
-                .col-xs-60.col-sm-20.col-md-20
-                  .t.line_3_col_1
-                    = cl_image_tag("landing/v0.7.5/app-developer", :width=>180, :crop=>:scale, :fetch_format=>:auto, :dpr => 'auto', :class => "centered", :dpr => :auto)
-                    = t("landing_page.landing_075.page_3.line_3_col_1").html_safe
-                .col-xs-60.col-sm-20.col-md-20
-                  .t.line_3_col_2
-                    = cl_image_tag("landing/v0.7.5/ux-expert", :width=>180, :crop=>:scale, :fetch_format=>:auto, :dpr => 'auto', :class => "centered", :dpr => :auto)
-                    = t("landing_page.landing_075.page_3.line_3_col_2").html_safe
-                .col-xs-60.col-sm-20.col-md-20
-                  .t.line_3_col_3
-                    = cl_image_tag("landing/v0.7.5/ruby-developer", :width=>180, :crop=>:scale, :fetch_format=>:auto, :dpr => 'auto', :class => "centered", :dpr => :auto)
-                    = t("landing_page.landing_075.page_3.line_3_col_3").html_safe
-              .spacer-8x
+                = render partial: "mail_collectors/form", object: MailCollector.new, locals: { line: "line_3" }
 
-              .row               
-                .t.line_4 
-                = t("landing_page.landing_075.page_3.line_4").html_safe
-              .spacer-8x
+              .background
+                - x = 1 #+ rand(4)
+                - src = "landing/v0.7.5/background"
+                #x
+                :javascript
+                  var h = String($("#page-1").height());
+                  var w = String($(window).width());
+                  w = "#{browser_width}"
+                  var filename = "#{src}"
+                  $.cloudinary.image(filename, {width: w, height: h, crop: "fill", cloud_name: "dev-joinple-com", responsive: false, dpr: 'auto'}).appendTo('#x').cloudinary_update();
+                  $.cloudinary.responsive();
 
-            .page4.container#page-4{:style => "max-width: #{window_width}px;"}
-              .spacer-4x
-              .row
-                .col-xs-8
-                  %a{ :href => "https://www.facebook.com/JoinPle-1378825342446436/?fref=ts" }
-                    = cl_image_tag("square-facebook", :width=>32, :crop=>:scale, :fetch_format=>:auto, :class => "centered responsive", :dpr => :auto)
-                .col-xs-9
-                  %a{ :href => "https://twitter.com/JoinPle" }
-                    = cl_image_tag("twitter", :width=>32, :crop=>:scale, :fetch_format=>:auto, :class => "centered responsive", :dpr => :auto)
-                .col-xs-9
-                  %a{ :href => "https://plus.google.com/109854843918252342387/posts" }
-                    = cl_image_tag("round-google", :width=>32, :crop=>:scale, :fetch_format=>:auto, :class => "centered responsive", :dpr => :auto)
-                .col-xs-8
-                  %a{ :href => "https://www.instagram.com/joinple/" }
-                    = cl_image_tag("square-instagram", :width=>32, :crop=>:scale, :fetch_format=>:auto, :class => "centered responsive", :dpr => :auto)
-                .col-xs-9
-                  %a{ :href => "https://www.pinterest.com/joinple" }
-                    = cl_image_tag("round-pinterest", :width=>32, :crop=>:scale, :fetch_format=>:auto, :class => "centered responsive", :dpr => :auto)
-                .col-xs-9
-                  %a{ :href => "https://www.linkedin.com/company/9401767?trk=tyah&trkInfo=clickedVertical%3Acompany%2CclickedEntityId%3A9401767%2Cidx%3A1-1-1%2CtarId%3A1447402098123%2Ctas%3Ajoinple" }
-                    = cl_image_tag("square-linkedin", :width=>32, :crop=>:scale, :fetch_format=>:auto, :class => "centered responsive", :dpr => :auto)
-                .col-xs-8
-                  %a{ :href => "https://www.youtube.com/channel/UC7lsdOWNPfJQz2BTtUwR0ow" }
-                    = cl_image_tag("square-youtube", :width=>32, :crop=>:scale, :fetch_format=>:auto, :class => "centered responsive", :dpr => :auto)
-              .spacer-8x
+              .page2.container#page-2{:style => "max-width: #{browser_width}px;"}
+                .spacer-4x  
+                .row
+                  .col-xs-60
+                    = t("landing_page.landing_075.page_2.title").html_safe
+                    .spacer-6x
+                  .col-xs-60.col-sm-30
+                    = cl_image_tag(t("landing_page.landing_075.page_2.image_1"), :crop=>:scale, :fetch_format=>:auto, :dpr => 'auto', :class => "centered responsive")
+                  .col-xs-60.col-sm-30
+                    = cl_image_tag(t("landing_page.landing_075.page_2.image_2"), :crop=>:scale, :fetch_format=>:auto, :dpr => 'auto', :class => "centered responsive")
 
-            .footer{:style => "max-width: #{window_width}px;"}
-              .spacer-4x
-              .row
-                .col-xs-20
-                  = t("landing_page.landing_075.footer.privacy").html_safe
-                .col-xs-40
-                  = t("landing_page.landing_075.footer.disclaimer").html_safe
-              .spacer-4x
-            
+                  .spacer-4x
+
+                  .col-xs-60
+                    .t.point
+                    #woobox-root
+                      :javascript
+                        (function(d, s, id) {
+                          var js, fjs = d.getElementsByTagName(s)[0];
+                          if (d.getElementById(id)) return;
+                          js = d.createElement(s); js.id = id;
+                          js.src = "//woobox.com/js/plugins/woo.js";
+                          fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'woobox-sdk'));
+                      .woobox-offer{"data-offer" => "p8azi6", "woobox-lang" => "none"}
+
+                  .spacer-4x
+
+                .row.points  
+                  .col-xs-60.col-sm-20.col-md-20
+                    = cl_image_tag("0", :radius=>30, :width=>56, :crop=>:scale, :fetch_format=>:auto, :dpr => 'auto', :class => "centered responsive")
+                    = t("landing_page.landing_075.page_2.point_1_1").html_safe
+                    -#%a{ :href => "https://woobox.com/p8azi6/gallery?tab=1facebook.com/pages/JoinPle/1378825342446436?sk=app_451684954848385" }
+                    %a{ :href => "https://woobox.com/p8azi6/gallery?tab=1" }
+                      = t("landing_page.landing_075.page_2.point_1_2").html_safe
+                    = t("landing_page.landing_075.page_2.point_1_3").html_safe
+                  .col-xs-60.col-sm-20.col-md-20
+                    = cl_image_tag("round-question-mark", :radius=>30, :width=>56, :crop=>:scale, :fetch_format=>:auto, :dpr => 'auto', :class => "centered responsive")
+                    = t("landing_page.landing_075.page_2.point_2").html_safe
+                  .col-xs-60.col-sm-20.col-md-20
+                    = cl_image_tag("0", :radius=>30, :width=>56, :crop=>:scale, :fetch_format=>:auto, :dpr => 'auto', :class => "centered responsive")
+                    %a{ :href => "https://www.facebook.com/JoinPle-1378825342446436/?fref=ts" }
+                      = t("landing_page.landing_075.page_2.point_3").html_safe
+                    .spacer-8x
+                .spacer-8x
+                -#.spacer-8x
+
+              .page3.container#page-3{:style => "max-width: #{browser_width}px;"}
+                .spacer-4x
+                .row
+                  .line_1
+                    = t("landing_page.landing_075.page_3.line_1").html_safe
+                  .line_2
+                    = t("landing_page.landing_075.page_3.line_2").html_safe
+                .spacer-8x
+                .row
+                  .col-xs-60.col-sm-20.col-md-20
+                    .t.line_3_col_1
+                      = link_to show_document_path( doc: UrlSafeBase64.encode64(t("recruitment.app_developer").html_safe) ), :remote => :true, :method => :post, :title => t("cookies.read") do
+                        = cl_image_tag("landing/v0.7.5/app-developer", :width=>180, :crop=>:scale, :fetch_format=>:auto, :dpr => 'auto', :class => "centered", :dpr => :auto)
+                        = t("landing_page.landing_075.page_3.line_3_col_1").html_safe
+                  .col-xs-60.col-sm-20.col-md-20
+                    .t.line_3_col_2
+                      = link_to show_document_path( doc: UrlSafeBase64.encode64(t("recruitment.web_marketing_specialist").html_safe) ), :remote => :true, :method => :post, :title => t("cookies.read") do
+                        = cl_image_tag("landing/v0.7.5/ux-expert", :width=>180, :crop=>:scale, :fetch_format=>:auto, :dpr => 'auto', :class => "centered", :dpr => :auto)
+                        = t("landing_page.landing_075.page_3.line_3_col_2").html_safe
+                  .col-xs-60.col-sm-20.col-md-20
+                    .t.line_3_col_3
+                      = link_to show_document_path( doc: UrlSafeBase64.encode64(t("recruitment.rails_angular_developer").html_safe) ), :remote => :true, :method => :post, :title => t("cookies.read") do
+                        = cl_image_tag("landing/v0.7.5/ruby-developer", :width=>180, :crop=>:scale, :fetch_format=>:auto, :dpr => 'auto', :class => "centered", :dpr => :auto)
+                        = t("landing_page.landing_075.page_3.line_3_col_3").html_safe
+                .spacer-8x
+
+                .row               
+                  .t.line_4 
+                  = t("landing_page.landing_075.page_3.line_4").html_safe
+                .spacer-8x
+
+              .page4.container#page-4{:style => "max-width: #{browser_width}px;"}
+                .spacer-4x
+                .row
+                  .col-xs-8
+                    %a{ :href => "https://www.facebook.com/JoinPle-1378825342446436/?fref=ts" }
+                      = cl_image_tag("square-facebook", :width=>32, :crop=>:scale, :fetch_format=>:auto, :class => "centered responsive", :dpr => :auto)
+                  .col-xs-9
+                    %a{ :href => "https://twitter.com/JoinPle" }
+                      = cl_image_tag("twitter", :width=>32, :crop=>:scale, :fetch_format=>:auto, :class => "centered responsive", :dpr => :auto)
+                  .col-xs-9
+                    %a{ :href => "https://plus.google.com/109854843918252342387/posts" }
+                      = cl_image_tag("round-google", :width=>32, :crop=>:scale, :fetch_format=>:auto, :class => "centered responsive", :dpr => :auto)
+                  .col-xs-8
+                    %a{ :href => "https://www.instagram.com/joinple/" }
+                      = cl_image_tag("square-instagram", :width=>32, :crop=>:scale, :fetch_format=>:auto, :class => "centered responsive", :dpr => :auto)
+                  .col-xs-9
+                    %a{ :href => "https://www.pinterest.com/joinple" }
+                      = cl_image_tag("round-pinterest", :width=>32, :crop=>:scale, :fetch_format=>:auto, :class => "centered responsive", :dpr => :auto)
+                  .col-xs-9
+                    %a{ :href => "https://www.linkedin.com/company/9401767?trk=tyah&trkInfo=clickedVertical%3Acompany%2CclickedEntityId%3A9401767%2Cidx%3A1-1-1%2CtarId%3A1447402098123%2Ctas%3Ajoinple" }
+                      = cl_image_tag("square-linkedin", :width=>32, :crop=>:scale, :fetch_format=>:auto, :class => "centered responsive", :dpr => :auto)
+                  .col-xs-8
+                    %a{ :href => "https://www.youtube.com/channel/UC7lsdOWNPfJQz2BTtUwR0ow" }
+                      = cl_image_tag("square-youtube", :width=>32, :crop=>:scale, :fetch_format=>:auto, :class => "centered responsive", :dpr => :auto)
+                .spacer-8x
+
+              .footer{:style => "max-width: #{browser_width}px;"}
+                .spacer-4x
+                .row
+                  .col-xs-20
+                    = link_to show_document_path( doc: UrlSafeBase64.encode64(t("document.static.privacy.disclaimer").html_safe) ), :remote => :true, :method => :post, :title => t("cookies.read") do
+                      = t("landing_page.landing_075.footer.privacy").html_safe
+                  .col-xs-40
+                    = t("landing_page.landing_075.footer.disclaimer").html_safe
+                .spacer-4x
+              
 :javascript
   $.cloudinary.responsive()
-
-
 
 
 
