@@ -10,9 +10,6 @@ class SessionsController < ApplicationController
 
   def new
     puts "session_helper:new - Social network checked: it is #{current_social_network_name?.downcase}"
-#    respond_to do |format|
-#        format.js
-#    end
   end
 
   def create

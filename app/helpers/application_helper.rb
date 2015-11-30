@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   ALLOWED_DOMAIN_SERVER = ["joinple","estatetuttoanno"]
-  STAGE_HUMANIZED = { "dev" => "development", "test" => "test", "demo" => "demo", "deploy" => "deploy" }
+  STAGE_HUMANIZED = { "dev" => "development", "test" => "test", "demo" => "demo", "deploy" => "deployment" }
   STAGE_BACKGROUND = { "dev" => "background-color : #5C8D69;", "test" => "background-color : #fde8ee;", "demo" => "background-color : yellow;", "" => "" }
 
   # Returns the full title on a per-page basis.
@@ -19,13 +19,33 @@ module ApplicationHelper
     SecureRandom.urlsafe_base64
   end
 
-  # normalize stage
-  def normalize_stage #(stage)
-    puts "-------------------------- #{stage}"
-    "deploy"      if stage == "deploy" 
-    "test"        if stage.starts_with?("test")
-    "demo"        if stage.starts_with?("demo")
-    "dev"         if stage.starts_with?("dev")
+  def check_machine_name_vs_request
+    host_name = gethostname
+
+    logger.debug ("host_name: #{host_name}")
+
+    sn = request.domain.split(".").first.downcase
+    logger.debug ("sn: #{sn}")
+
+    logger.debug "ALLOWED_DOMAIN_SERVER.include? #{sn}: #{ALLOWED_DOMAIN_SERVER.include? sn}"
+    if ALLOWED_DOMAIN_SERVER.include? sn
+       u = root_url.downcase
+       u = u[u.rindex("//")+2..-1]
+       stage = u.split(".")
+       @stage = stage.count > 3 ? stage[0] : "deploy"
+       @normalized_stage = normalize_stage #(@stage)
+       logger.debug "normalized_stage: (#{stage.count})[#{@normalized_stage}]"
+       cloudinary_name ("#{humanized_stage}-joinple-com")
+       logger.debug ("status [#{stage}]: stage: #{@stage} - normalized_stage: #{@normalized_stage} - humanized_stage: #{humanized_stage} - Cloudinary_name: #{cloudinary_name?}")
+    else
+       raise  "516","Error: domain server #{sn} is not allowed"
+    end
+#    logger.debug ("status: stage: #{@stage} - normalized_stage: #{normalized_stage} - humanized_stage: #{humanized_stage} - Cloudinary_name: #{cloudinary_name?}")
+
+  end
+
+  def normalized_stage
+    @normalized_stage
   end
 
   # Check the current stage.
@@ -53,7 +73,6 @@ module ApplicationHelper
       @stage.ends_with? "_landing"
   end
 
-
   def application_full_path
     if @stage == "deploy"
       "http://www.#{request.domain}"
@@ -77,50 +96,9 @@ module ApplicationHelper
     Socket.gethostname
   end
 
-  def stage
-    @stage
-  end
-
-  def humanized_stage
-    "#{STAGE_HUMANIZED[normalized_stage]}"
-  end
-
   def cloudinary_name?
     logger.debug "Cloudinary_name in application_helper: #{cloudinary_name}"
     @cloudinary_name
-  end
-
-  def check_machine_name_vs_request
-    host_name = gethostname
-
-    logger.debug ("host_name: #{host_name}")
-
-    sn = request.domain.split(".").first.downcase
-    logger.debug ("sn: #{sn}")
-
-    logger.debug "ALLOWED_DOMAIN_SERVER.include? #{sn}: #{ALLOWED_DOMAIN_SERVER.include? sn}"
-    if ALLOWED_DOMAIN_SERVER.include? sn
-       u = root_url.downcase
-       u = u[u.rindex("//")+2..-1]
-       stage = u.split(".")
-       if stage.count > 3
-          @stage = stage[0]
-          normalized_stage = normalize_stage #(@stage)
-          logger.debug "normalized_stage: (#{stage.count})[#{normalized_stage}]"
-          cloudinary_name "#{normalized_stage}-joinple-com"
-          logger.debug ("status [#{stage}]: stage: #{@stage} - normalized_stage: #{normalized_stage} - humanized_stage: #{humanized_stage} - Cloudinary_name: #{cloudinary_name?}")
-       else
-          @stage = "deploy"
-          normalized_stage = normalize_stage #(@stage)
-          logger.debug "@normalized_stage: [#{normalized_stage}]"
-          cloudinary_name "#{humanized_stage}-joinple-com"
-          logger.debug ("status [#{stage}]: stage: #{@stage} - normalized_stage: #{normalized_stage} - humanized_stage: #{humanized_stage} - Cloudinary_name: #{cloudinary_name?}")
-       end
-    else
-       raise  "516","Error: domain server #{sn} is not allowed"
-    end
-    logger.debug ("status: stage: #{@stage} - normalized_stage: #{normalized_stage} - humanized_stage: #{humanized_stage} - Cloudinary_name: #{cloudinary_name?}")
-
   end
 
   def load_social_network_from_url
@@ -150,6 +128,14 @@ module ApplicationHelper
        else
          raise "515","Current social network loading error"
        end
+  end
+
+  def stage
+    @stage
+  end
+
+  def humanized_stage
+    "#{STAGE_HUMANIZED[normalized_stage()]}"
   end
 
   # admin services are reserved to admin subjects only
@@ -182,6 +168,14 @@ module ApplicationHelper
   
   def extract_locale_from_accept_language_header
     request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first
+  end
+
+  def normalize_stage #(stage)
+    puts "-------------------------- #{stage}"
+    "deploy"      if @stage == "deploy" 
+    "test"        if @stage.starts_with?("test")
+    "demo"        if @stage.starts_with?("demo")
+    "dev"         if @stage.starts_with?("dev")
   end
 
 end
