@@ -1791,6 +1791,16 @@ ol .joinple-button-add-image + div + ul.cloudinary-thumbnails li.cloudinary-thum
   table {
     margin: 0 0 11px;
   }
+
+  ul, ol {
+    ul, ol {
+      li:last-child {
+         margin-bottom: 11px;
+      }
+    }
+  }
+
+
 }
 
 .full-screen-doc {

@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @dog.name
+
+= link_to 'Edit', edit_dog_path(@dog)
+\|
+= link_to 'Back', dogs_path

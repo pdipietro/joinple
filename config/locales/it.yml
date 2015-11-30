@@ -71,6 +71,8 @@ it:
       test: "/public/system/doc/test_template.html.haml"
       privacy:
         disclaimer: "/public/system/doc/landing/v0.7.5/context/cookie-it.html.haml"
+      joinpleuser1: 
+        rules: "/public/system/doc/landing/v0.7.5/context/regulation-it.html.haml"
   group:
     model:
     view:
@@ -168,6 +170,8 @@ it:
         groups: "Gruppi"
         discussions: "Discussioni"
         blogs: "Blog"
+  mail_collector:
+
   post:
     model:
     view:
@@ -224,7 +228,11 @@ it:
       text_color: "personalizza il tuo colore di testo"
       title: "gestisci il tuo profilo"
     controller:
-       
+  mail_collector:
+    attributes:
+      privacy_accepted: "Dati personali"
+
+      
   neo4j:
     errors:
       models:
@@ -251,5 +259,8 @@ it:
         mail_collector:
           attributes:
             email:
+              invalid: "non corretta"
               taken: "email già in uso"
               placeholder: "inserisci il tuo indirizzo email ..."
+            privacy_accepted: 
+              blank: ": devi autorizzarne il trattamento"

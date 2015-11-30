@@ -71,6 +71,8 @@ en:
       test: "/public/system/doc/test_template.html.haml"
       privacy:
         disclaimer: "/public/system/doc/landing/v0.7.5/context/cookie-en.html.haml"
+      joinpleuser1: 
+        rules: "/public/system/doc/landing/v0.7.5/context/regulation-en.html.haml"
   group:
     model:
     view:
@@ -226,6 +228,10 @@ en:
       title: "manage your profile"
     controller:
 
+  mail_collector:
+    attributes:
+      privacy_accepted: "Dati personali"
+
   neo4j:
     errors:
       models:
@@ -252,6 +258,9 @@ en:
         mail_collector:
           attributes:
             email:
+              invalid: "invalid"
               taken: "email address already in use"
-              placeholder: "Insert your email address ..."
+              placeholder: "insert your email address ..."
+            privacy_accepted: 
+              blank: "must be checked"
 

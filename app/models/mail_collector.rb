@@ -26,11 +26,11 @@ class MailCollector
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
-  validates   :email, presence: true
+  #validates   :email, presence: true
   validates   :email, format: { with: VALID_EMAIL_REGEX }
   validates_uniqueness_of :email, case_sensitive:false
   validates   :privacy_accepted, presence: true
-  validates   :privacy_accepted, inclusion: { in: TRUE_VALUES }
+  #validates   :privacy_accepted, inclusion: { in: TRUE_VALUES }
 
   def check_default
     self.email = self.email.downcase    

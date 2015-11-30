@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :dogs
   root                     'landing_pages#home'#, defaults: { :format => "js"}, :remote => :true
   get    'home'      =>    'landing_pages#home', defaults: { :format => "js"}, :remote => :true
   get    'about'     =>    'static_pages#about', defaults: { :format => "js"}, :remote => :true

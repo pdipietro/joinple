@@ -168,14 +168,14 @@ module ApplicationHelper
 
   def normalize_stage (stage)
     @normalized_stage =
-      case stage
-        when "deploy"
+      case 
+        when stage == "deploy"
           "deploy"
-        when starts_with?("test")
+        when stage.starts_with?("test")
           "test"
-        when starts_with?("demo")
+        when stage.starts_with?("demo")
           "demo"
-        when starts_with?("dev")
+        when stage.starts_with?("dev")
           "dev"
         else
       end
