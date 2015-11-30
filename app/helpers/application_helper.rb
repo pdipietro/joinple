@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   ALLOWED_DOMAIN_SERVER = ["joinple","estatetuttoanno"]
-  STAGE_HUMANIZED = { "dev" => "development", "test" => "test", "demo" => "demo", "deploy" => "deployment" }
+  STAGE_HUMANIZED = { "dev" => "development", "test" => "test", "demo" => "demo", "deploy" => "deploy" }
   STAGE_BACKGROUND = { "dev" => "background-color : #5C8D69;", "test" => "background-color : #fde8ee;", "demo" => "background-color : yellow;", "" => "" }
 
   # Returns the full title on a per-page basis.
@@ -26,14 +26,14 @@ module ApplicationHelper
 
     sn = request.domain.split(".").first.downcase
     logger.debug ("sn: #{sn}")
-
+#debugger
     logger.debug "ALLOWED_DOMAIN_SERVER.include? #{sn}: #{ALLOWED_DOMAIN_SERVER.include? sn}"
     if ALLOWED_DOMAIN_SERVER.include? sn
        u = root_url.downcase
        u = u[u.rindex("//")+2..-1]
        stage = u.split(".")
        @stage = stage.count > 3 ? stage[0] : "deploy"
-       @normalized_stage = normalize_stage #(@stage)
+       normalize_stage (@stage)
        logger.debug "normalized_stage: (#{stage.count})[#{@normalized_stage}]"
        cloudinary_name ("#{humanized_stage}-joinple-com")
        logger.debug ("status [#{stage}]: stage: #{@stage} - normalized_stage: #{@normalized_stage} - humanized_stage: #{humanized_stage} - Cloudinary_name: #{cloudinary_name?}")
@@ -44,25 +44,21 @@ module ApplicationHelper
 
   end
 
-  def normalized_stage
-    @normalized_stage
-  end
-
   # Check the current stage.
   def is_dev? 
-    @normalize_stage == "dev"
+    @normalized_stage == "dev"
   end
 
   def is_test?
-    @normalize_stage == "test"
+    @normalized_stage == "test"
   end
   
   def is_demo?
-    @normalize_stage == "demo"
+    @normalized_stage == "demo"
   end
   
   def is_deploy?
-    @normalize_stage == "deploy"
+    @normalized_stage == "deploy"
   end
 
   def get_background
@@ -170,12 +166,23 @@ module ApplicationHelper
     request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first
   end
 
-  def normalize_stage #(stage)
-    puts "-------------------------- #{stage}"
-    "deploy"      if @stage == "deploy" 
-    "test"        if @stage.starts_with?("test")
-    "demo"        if @stage.starts_with?("demo")
-    "dev"         if @stage.starts_with?("dev")
+  def normalize_stage (stage)
+    @normalized_stage =
+      case stage
+        when "deploy"
+          "deploy"
+        when starts_with?("test")
+          "test"
+        when starts_with?("demo")
+          "demo"
+        when starts_with?("dev")
+          "dev"
+        else
+      end
+  end
+
+  def normalized_stage
+    @normalized_stage
   end
 
 end

@@ -21,16 +21,13 @@ class LandingPagesController < ApplicationController
 
   def home
 
-    puts "---------------------------------------------------------------params: #{params}"
-    #screen_geometry= params
-    puts "Home-Logged in? : #{logged_in?}"
 
     if load_social_network_from_url.nil?
       render file: "#{Rails.root}/public/404.html", layout: false, status: 404
       false
     end
 
-    if session[:height].to_s.length < 2
+    if browser_height.to_s.length < 2
       layout='dummy'
       page='home'
     elsif logged_in?
@@ -44,7 +41,7 @@ class LandingPagesController < ApplicationController
       page='landing_page'
     end 
 
-    puts "---------------------------------------------------------------layout: #{layout}"
+    logger.debug "-SessionHelper:home----------------------------- layout: #{layout}, page: #{page}, logged in?: #{logged_in?}, params: #{params}"
 
     respond_to do |format|
       format.html {render layout: layout }
@@ -130,12 +127,5 @@ class LandingPagesController < ApplicationController
       params.require(:landing_page).permit(:description, :logo, :header)
     end
 
-    def pget_request_cookie
-      set_screen_geometry
-      @width = cookies[:width]
-      @height = cookies[:height]
-      @pixelRatio = cookies[:pixelRatio]
-
-    end
 end
 
