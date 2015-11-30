@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   ALLOWED_DOMAIN_SERVER = ["joinple","estatetuttoanno"]
-  STAGE_HUMANIZED = { "dev" => "development", "test" => "test", "demo" => "demo", "deploy" => "deployment" }
+  STAGE_HUMANIZED = { "dev" => "development", "test" => "test", "demo" => "demo", "deploy" => "deploy" }
   STAGE_BACKGROUND = { "dev" => "background-color : #5C8D69;", "test" => "background-color : #fde8ee;", "demo" => "background-color : yellow;", "" => "" }
 
   # Returns the full title on a per-page basis.
@@ -20,7 +20,7 @@ module ApplicationHelper
   end
 
   # normalize stage
-  def normalize_stage (stage)
+  def normalize_stage #(stage)
     puts "-------------------------- #{stage}"
     "deploy"      if stage == "deploy" 
     "test"        if stage.starts_with?("test")
@@ -105,21 +105,21 @@ module ApplicationHelper
        stage = u.split(".")
        if stage.count > 3
           @stage = stage[0]
-          @normalized_stage = normalize_stage(@stage)
-          logger.debug "@normalized_stage: (#{stage.count})[#{@normalized_stage}]"
+          normalized_stage = normalize_stage #(@stage)
+          logger.debug "@normalized_stage: (#{stage.count})[#{normalized_stage}]"
           cloudinary_name "#{@normalized_stage}-joinple-com"
-          logger.debug ("status [#{stage}]: stage: #{@stage} - normalized_stage: #{@normalized_stage} - humanized_stage: #{humanized_stage} - Cloudinary_name: #{cloudinary_name?}")
+          logger.debug ("status [#{stage}]: stage: #{@stage} - normalized_stage: #{normalized_stage} - humanized_stage: #{humanized_stage} - Cloudinary_name: #{cloudinary_name?}")
        else
           @stage = "deploy"
-          @normalized_stage = normalize_stage(@stage)
-          logger.debug "@normalized_stage: (#{stage.count})[#{@normalized_stage}]"
+          normalized_stage = normalize_stage #(@stage)
+          logger.debug "@normalized_stage: (#{stage.count})[#{normalized_stage}]"
           cloudinary_name "#{humanized_stage}-joinple-com"
-          logger.debug ("status [#{stage}]: stage: #{@stage} - normalized_stage: #{@normalized_stage} - humanized_stage: #{humanized_stage} - Cloudinary_name: #{cloudinary_name?}")
+          logger.debug ("status [#{stage}]: stage: #{@stage} - normalized_stage: #{normalized_stage} - humanized_stage: #{humanized_stage} - Cloudinary_name: #{cloudinary_name?}")
        end
     else
        raise  "516","Error: domain server #{sn} is not allowed"
     end
-    logger.debug ("status: stage: #{@stage} - normalized_stage: #{@normalized_stage} - humanized_stage: #{humanized_stage} - Cloudinary_name: #{cloudinary_name?}")
+    logger.debug ("status: stage: #{@stage} - normalized_stage: #{normalized_stage} - humanized_stage: #{humanized_stage} - Cloudinary_name: #{cloudinary_name?}")
 
   end
 
