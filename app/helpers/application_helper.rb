@@ -21,6 +21,7 @@ module ApplicationHelper
 
   # normalize stage
   def normalize_stage (stage)
+    puts "-------------------------- #{stage}"
     "deploy"      if stage == "deploy" 
     "test"        if stage.starts_with?("test")
     "demo"        if stage.starts_with?("demo")
