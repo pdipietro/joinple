@@ -35,7 +35,7 @@ module ApplicationHelper
        @stage = stage.count > 3 ? stage[0] : "deploy"
        normalize_stage (@stage)
        logger.debug "normalized_stage: (#{stage.count})[#{@normalized_stage}]"
-       cloudinary_name ("#{humanized_stage}-joinple-com")
+       cloudinary_name ("#{normalized_stage}-joinple-com")
        logger.debug ("status [#{stage}]: stage: #{@stage} - normalized_stage: #{@normalized_stage} - humanized_stage: #{humanized_stage} - Cloudinary_name: #{cloudinary_name?}")
     else
        raise  "516","Error: domain server #{sn} is not allowed"

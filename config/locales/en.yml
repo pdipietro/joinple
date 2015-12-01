@@ -94,29 +94,24 @@ en:
     landing_075:
       page_1:
         menu: "TOP"
-        line_1: "A social network, for everyone."
+        line_1: "A social network, for everyone"
         line_2_col_1: "<b>The easiest way, fast and free to create a social network</b> on your passions, interests, causes, business and much more.<br />Users of all JoinPle's social networks are waiting for you and ready to follow you."
         line_2_col_2: "For the first time, <b>with just a single membership, you'll find, in a unique environment, many social networks</b> on your different passions.</br>Your friends are already booking, don't wait any longer!"
         line_3: "<b>To be notified when JoinPle will be online you can leave us your e-mail.<br>You will receive a gift as appreciation.</b>"
         line_4: "Thanks for your interest from the JoinPle's team.</br> We suggest you to see our funny video and follow us on ours social network profiles."
-        line_5: "Watch 1 minute video of JoinPle and <a class='hoverable' href='https://www.youtube.com/channel/UC7lsdOWNPfJQz2BTtUwR0ow'>visit our YouTube channel</a>."
+        line_5: "Watch 1 minute video of JoinPle and <a href='https://www.youtube.com/channel/UC7lsdOWNPfJQz2BTtUwR0ow'>visit our YouTube channel</a>"
         privacy_accepted: "I allow the treatment of my personal data."
         footer: "<span style='font-weight: bold;'>IT'S FREE</span>"
-        video_1: "landing/v0.7.5/video1-en.mp4"
+        video_1: "landing/v0.7.5/master-en.mp4"
       page_2:
         menu:    "ENTER THE CONTEST"
         title:   "<span style='font-weight: bold; font-size: 2.5em;'>ENTER THE PHOTO CONTEST</span>"
         image_1: "landing/v0.7.5/contest-001-en"
         image_2: "landing/v0.7.5/contest-02"
 
-        point_21: "<span style='color: #A02348'>Take a funny photo</span> with the hashtag and the logo in evidence. You can write wherever you want"
-        point_22: "<span style='color: #A02348'>Insert your e-mail</span> and upload your photo <span style='color:transparent;'> _________________________________</span>"
-        point_22: "<span style='color: #A02348'>Insert your e-mail</span> and upload your photo"
-        point_1_1: "See your photo on our facebook fan page inside the contest <span style='color: #A02348'>"
-        point_1_2: "#JOINPLEUSER1"
-        point_1_3: "</span> and share it inviting your friends to vote for you"
-        point_2: "Find out why become the user N°&nbsp;1 and the complete rule sets"
-        point_3: "Follow us everyday and find out the most voted photos. Each <span style='color: #A02348'>friday</span> we'll publish the funniest"
+        point_1: "See your photo on our facebook fan page inside the contest <span style='color: #A02348'>#JOINPLEUSER1</span> and share it inviting your friends to vote for you"
+        point_2: "Find out why become the <span style='color: #A02348'>#JOINPLEUSER1</span> and the complete rule sets"
+        point_3: "Follow us everyday and find out the most voted photos. Each <span style='color: #A02348'>FRIDAY</span> we'll publish the funniest"
       page_3:
         menu:   "WORK WITH US"
         line_1: "<span style='font-weight: bold; font-size: 1.25em;'>BE PART OF THE JOINPLE'S TEAM</span>"
@@ -126,7 +121,7 @@ en:
         line_3_col_3: "</br>RAILS w/ANGULAR.JS DEVELOPER"
         line_4: "<a href='mailto:recruitment@joinple.com'>SEND YOUR CV</A>"        
       footer:
-        privacy: "privacy"
+        privacy: "Privacy"
         disclaimer: "Copyright &copy; 2015 JoinPle. All rights reserved."
     view:
       description:
@@ -233,6 +228,11 @@ en:
       privacy_accepted: "Dati personali"
 
   neo4j:
+    models:
+      language:
+        attributes:
+          code: "o code mio!"
+
     errors:
       models:
         language:

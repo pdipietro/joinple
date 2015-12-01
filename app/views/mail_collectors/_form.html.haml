@@ -1,4 +1,4 @@
-#mailCollection.row
+.row
 	- set_locale
 	- if line == "line_3"
 		.line3.milk
@@ -8,9 +8,9 @@
 			- mailcollector = defined?(mail_collector) ? mail_collector : MailCollector.new
 			= bootstrap_form_for(mailcollector, :remote => :true) do |f|
 				#landing-mail
-					= f.alert_message "Please fix the errors below." 
-					.centered= f.text_field :email, prepend: t("landing_page.email.label").html_safe, :hide_label => :true,  placeholder: t("landing_page.email.placeholder").html_safe
+					= f.text_field :email, prepend: t("landing_page.email.label").html_safe, :hide_label => :true,  placeholder: t("landing_page.email.placeholder").html_safe
 					= f.check_box :privacy_accepted, label: t("landing_page.landing_075.page_1.privacy_accepted").html_safe
+					= f.errors_on :privacy_accepted, hide_attribute_name: true
 					%button.icon_only.joinple-button-base.em08{ :type => "submit", :name => "commit", :hide_label => :true, :title => t("button.send") } 
 						%i.im-send-post
 						= t("button.send")
@@ -21,8 +21,10 @@
 		.line5
 			= t("landing_page.landing_075.page_1.line_4").html_safe
 
+	.spacer-4x	
 	.video
-		= cl_video_tag(t("landing_page.landing_075.page_1.video_1"), :quality=>30, :fetch_format=>:auto, :controls => :true, :width => "300", :height => "200")
+		= cl_video_tag(t("landing_page.landing_075.page_1.video_1"), :quality=>30, :fetch_format=>:auto, :controls => :true, :width => "450", :crop => :fill )
+	.spacer-4x	
 
 
 

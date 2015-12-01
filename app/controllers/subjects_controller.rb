@@ -90,30 +90,60 @@ class SubjectsController < ApplicationController
   # POST /subjects
   # POST /subjects.json
   def create
-    @subject = Subject.new(subject_params)
     puts "--------------------------------------------------------------------------------------------------------------------"
-    puts "--------- request_full_path: #{root_url}"
+    success = true
 
+    begin
+      tx = Neo4j::Transaction.new
+        @subject = Subject.new(subject_params) 
+        @subject.save
+        aProfile = SubjectProfile.new
+        aProfile.save           
+        rel = HasSubjectProfile.create(from_node: @subject, to_node: aProfile)
+        @subject.send_activation_email root_url
+      rescue => e
+        tx.failure
+        success = false
+      ensure
+        tx.close
 
+      respond_to do |format|
+        unless success 
+          puts "--------- /subject/create: transaction failure: #{@subject.nickname} - event: #{e}"
+          format.js   { render :create, object: @subject }
+          format.html { render :new }
+          format.json { render json: @subject.errors, status: :unprocessable_entity }
+        else
+          puts "--------- /subject/create: transaction succeeded: #{@subject.nickname}"
+          flash[:info] = "Please check your email to activate your account."          #format.js   { render partial: "enqueue", object: @discussion_comment, locals: { :parent_class => parent_class, :parent_uuid  => parent_uuid  }, notice: 'Post was successfully created.' }
+          format.js   { redirect_to root_url }
+          format.html { redirect_to(request.env["HTTP_REFERER"]) }
+          format.json { render :show, status: :created, location: @discussion_comment, subject: @discussion_comment.is_owned_by }
+        end
+      end
+    end
+  end
+  
+=begin
     respond_to do |format|
-      begin
-        tx = Neo4j::Transaction.new
-          @subject.save
-          aProfile = SubjectProfile.new
-          aProfile.save           
-          rel = HasSubjectProfile.create(from_node: @subject, to_node: aProfile)
-          @subject.send_activation_email root_url
-        rescue => e
+
+
+       rescue => e
           tx.failure
           puts "--------- /subject/create: transaction failure: #{@subject.nickname} - event: #{e}"
-          render :new, :format => :js and return
+          @subject.errors.each do |x|
+            puts x
+          end
+          render  :create, object: @subject and return
         ensure
           tx.close
           flash[:info] = "Please check your email to activate your account."
           redirect_to root_url, format: :js and return
+           #render :new, :format => :js and return
       end
     end
   end
+=end
 
   # PATCH/PUT /subjects/1
   # PATCH/PUT /subjects/1.json

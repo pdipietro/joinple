@@ -94,29 +94,24 @@ it:
     landing_075:
       page_1:
         menu: "TOP"
-        line_1: "Un social network, per tutti."
+        line_1: "Un social network, per tutti"
         line_2_col_1: "<b>Il modo più semplice, veloce e gratuito per creare un social network</b> sulle tue passioni, interessi, cause, attività imprenditoriali e molto altro ancora.</br>Gli utenti di tutti i social network JoinPle ti aspettano e sono già pronti a seguirti."
-        line_2_col_2: "Per la prima volta, <b>con un’unica e semplice iscrizione, trovi in un solo ambiente tanti social network</b> sui tuoi diversi interessi.</br>I tuoi amici si sono già prenotati, non aspettare oltre."
+        line_2_col_2: "Per la prima volta, <b>con un’unica e semplice iscrizione, trovi in un solo ambiente tanti social network</b> sui tuoi diversi interessi.</br>I tuoi amici si sono già prenotati, non aspettare oltre!"
         line_3: "<b>Per essere avvisato quando JoinPle sarà online, puoi lasciarci la tua email.</br>Per ringraziarti riceverai un omaggio.</b>"
         line_4: "Il team JoinPle ti ringrazia per il tuo interesse. Ti invitiamo a vedere un nostro divertente video e a seguirci sui nostri canali social."
-        line_5: "Guarda il video di 1 minuto di JoinPle e <a class='hoverable' href='https://www.youtube.com/channel/UC7lsdOWNPfJQz2BTtUwR0ow'>visita il nostro canale YouTube</a>."
+        line_5: "Guarda il video di 1 minuto di JoinPle e <a href='https://www.youtube.com/channel/UC7lsdOWNPfJQz2BTtUwR0ow'>visita il nostro canale YouTube</a>"
         privacy_accepted: "Autorizzo il trattamento dei miei dati personali."
         footer: "<span style='font-weight: bold;'>E' GRATIS!"
-        video_1: "landing/v0.7.5/video1-it.mp4"
+        video_1: "landing/v0.7.5/master-it.mp4"
       page_2:
         menu:   "PARTECIPA AL CONCORSO"
         title: "<span style='font-weight: bold; font-size: 2.5em;'>PARTECIPA AL NOSTRO FOTO CONCORSO</span>"
         image_1: "landing/v0.7.5/contest-001-it"
         image_2: "landing/v0.7.5/contest-02"
 
-        point_21: "<span style='color: #A02348'>Scatta una foto divertente</span> con l'hashtag ed il logo JoinPle in evidenza. Puoi scriverli dove vuoi"
-        point_22: "<span style='color: #A02348'>Inserisci la tua e-mail</span> e carica la foto"
-        point_23: "<span style='color: #A02348'>Inserisci il tua indirizzo e-mail</span> e carica la foto sadhkd jaskdj sadas hjhhj e dgajgh asjjsajasdj"
-        point_1_1: "Guarda la tua foto sulla nostra pagina Facebook all'interno del concorso <span style='color: #A02348'>"
-        point_1_2: "#JOINPLEUSER1"
-        point_1_3: "</span> e condividila invitando i tuoi amici a votarti"
-        point_2: "Scopri perché diventare l'utente N°&nbsp;1 di JoinPle ed il regolamento del concorso"
-        point_3: "Seguici ogni giorno e scopri le foto più votate. Ogni <span style='color: #A02348'>venerdì</span> pubblicheremo le più divertenti"
+        point_1: "Guarda la tua foto sulla nostra pagina Facebook all'interno del concorso <span style='color: #A02348'>#JOINPLEUSER1</span> e condividila invitando i tuoi amici a votarti"
+        point_2: "Scopri perché diventare <span style='color: #A02348'>L'UTENTE N°&nbsp;1 DI JOINPLE</span> ed il regolamento del concorso"
+        point_3: "Seguici ogni giorno e scopri le foto più votate. Ogni <span style='color: #A02348'>VENERDI'</span> pubblicheremo le più divertenti"
       page_3:
         menu:   "LAVORA CON NOI"
         line_1: "<span style='font-weight: bold; font-size: 1.25em;'>ENTRA A FAR PARTE DEL TEAM DI JOINPLE</span>"
@@ -126,7 +121,7 @@ it:
         line_3_col_3: "</br>RAILS w/ANGULAR.JS DEVELOPER"
         line_4: "<a href='mailto:recruitment@joinple.com'>INVIA IL TUO CV</A>"        
       footer:
-        privacy: "privacy"
+        privacy: "Privacy"
         disclaimer: "Copyright &copy; 2015 JoinPle. Tutti i diritti riservati."
     recruit:
     view:
@@ -234,7 +229,15 @@ it:
 
       
   neo4j:
+    models:
+      language:
+        attributes:
+          code: "codice ISO"
     errors:
+      messages:
+        blank: "non può essere vuoto"
+        invalid: "non è valido"
+        too_short: "troppo corto"
       models:
         language:
           attributes:
@@ -242,10 +245,12 @@ it:
               taken: "il codice lingua è già esistente"
               placeholder: "inserisci il codice lingua nella forma 'xx' oppure 'xx-yy' ..."
             description:
-              taken: "questa descrizione è già stata utilizzata per un'altra lingua."
+              taken: "questa descrizione è già stata utilizzata per un'altra lingua"
               placeholder: "inserisci la edscrizione della lingua ..."
         subject:
           attributes:
+            semail:
+              invalid: "non è valido"
             nickname:
               label: "soprannome"
               taken: "il soprannome scelto è già stato utilizzato: deve essere univoco nel sistema"
@@ -253,6 +258,8 @@ it:
               label: "nome"
             last_name:
               label: "cognome"
+            password_confirmation:
+              confirmation: "le due password non coincidono"
         subject_profile:
           attributes:
           button_caption: "inserisci la tua foto ..."
@@ -263,4 +270,4 @@ it:
               taken: "email già in uso"
               placeholder: "inserisci il tuo indirizzo email ..."
             privacy_accepted: 
-              blank: ": devi autorizzarne il trattamento"
+              blank: "devi autorizzare il trattamento dei dati"

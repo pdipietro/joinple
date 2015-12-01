@@ -1631,9 +1631,12 @@ ul#myposts a li {
 
   }
 
-  .line3 input {
-    font-size: 0.66em;
+  .line3 .form-group.has-error span.help-block {
+      background-color: #f2dede;
+      border: 1px solid #ebccd1;
+      border-radius: $standard-border-radius;
   }
+
 
   .line4 {
     font-size: 1.5em;
@@ -1642,6 +1645,15 @@ ul#myposts a li {
   .line5 {
     text-shadow: 1px 1px 5px rgba(51, 51, 66, 1);
     font-size: 1.5em;
+
+
+    a {
+      color: $joinple_background_color;
+      font-weight: bolder;
+
+      :hover {
+      }
+    }
   }
 
   #landing-mail {
@@ -1649,10 +1661,18 @@ ul#myposts a li {
     max-width: 400px;
     margin-left: auto;
     margin-right: auto;
+
+    .alert {
+      padding: 0;
+    }
+
+    input {
+      font-size: 0.9em;
+    }
+
   }
 
   .page1 .footer {
-    swidth: 100%;
     font-size: 2em;
     background-color: $joinple_background_color;
     text-align: center;
@@ -1761,23 +1781,34 @@ ol .joinple-button-add-image + div + ul.cloudinary-thumbnails li.cloudinary-thum
   width: auto;
 
   h1, .h1 {
-
       font-size: 250%; 
+      text-align: left;
+      text-align: -webkit-left;
   }
   h2, .h2 {
       font-size: 225%; 
+      text-align: left;
+      text-align: -webkit-left;
   }
   h3, .h3 {
       font-size: 200%; 
+      text-align: left;
+      text-align: -webkit-left;
   }
   h4, .h4 {
       font-size: 175%; 
+      text-align: left;
+      text-align: -webkit-left;
   }
   h5, .h5 {
       font-size: 150%; 
+      text-align: left;
+      text-align: -webkit-left;
   }
   h6, .h6 {
       font-size: 125%; 
+      text-align: left;
+      text-align: -webkit-left;
   }
 
   a {

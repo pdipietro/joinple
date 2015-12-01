@@ -37,6 +37,7 @@ class MailCollectorsController < ApplicationController
       if @mail_collector.save
         format.js { render :new, object: MailCollector.new, locals: { line: "line_4" } }
       else
+        puts "--------- /subject/create: transaction failure: #{@mail_collector.email}"
         format.js { render :new, object: @mail_collector, locals: { line: "line_3" } }
       end
     end

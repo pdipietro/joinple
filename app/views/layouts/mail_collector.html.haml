@@ -43,17 +43,12 @@
                   %a.hoverable{ :href => "#page-3" }
                     = t("landing_page.landing_075.page_3.menu").html_safe
 
-        -#.landing-075{:style => "max-width: #{browser_width}px; width: #{window_width}px;"}
         .landing-075
         
           - if ip.start_with?("192.168.10.") or ip == ("100.78.25.223") or ip == "66.249.65.4" or true # and false
 
             .landing
-              -##y.page1#page-1{:style => "max-width: #{window_width}px;"}
               #page-1.page1
-                .spacer-4x
-                .div{:style => "font-size: 1em;"}
-                  = "browser_geometry: #{browser_geometry}"
                 .spacer-4x
 
                 .spacer-2x
@@ -73,7 +68,8 @@
                     = t("landing_page.landing_075.page_1.footer").html_safe
                 .spacer-2x
 
-                = render partial: "mail_collectors/form", object: MailCollector.new, locals: { line: "line_3" }
+                #mailCollection
+                  = render partial: "mail_collectors/form", object: MailCollector.new, locals: { line: "line_3" }
 
               .background
                 - x = 1 #+ rand(4)
@@ -118,19 +114,20 @@
                 .row.points  
                   .col-xs-60.col-sm-20.col-md-20
                     = cl_image_tag("0", :radius=>30, :width=>56, :crop=>:scale, :fetch_format=>:auto, :dpr => :auto, :class => "centered responsive")
-                    = t("landing_page.landing_075.page_2.point_1_1").html_safe
+                    .spacer-4x
                     %a{ :href => "https://woobox.com/p8azi6/gallery?tab=1" }
-                      = t("landing_page.landing_075.page_2.point_1_2").html_safe
-                    = t("landing_page.landing_075.page_2.point_1_3").html_safe
+                      = t("landing_page.landing_075.page_2.point_1").html_safe
                   .col-xs-60.col-sm-20.col-md-20
+                    = cl_image_tag("round-question-mark", :radius=>30, :width=>56, :crop=>:scale, :fetch_format=>:auto, :dpr => :auto, :class => "centered responsive")
+                    .spacer-4x
                     = link_to show_document_path( doc: UrlSafeBase64.encode64(t("document.static.joinpleuser1.rules").html_safe) ), :remote => :true, :method => :post, :title => t("cookies.read") do
-                      = cl_image_tag("round-question-mark", :radius=>30, :width=>56, :crop=>:scale, :fetch_format=>:auto, :dpr => :auto, :class => "centered responsive")
                       = t("landing_page.landing_075.page_2.point_2").html_safe
                   .col-xs-60.col-sm-20.col-md-20
                     = cl_image_tag("0", :radius=>30, :width=>56, :crop=>:scale, :fetch_format=>:auto, :dpr => :auto, :class => "centered responsive")
+                    .spacer-4x
                     %a{ :href => "https://www.facebook.com/JoinPle-1378825342446436/?fref=ts" }
                       = t("landing_page.landing_075.page_2.point_3").html_safe
-                    .spacer-8x
+
                 .spacer-8x
 
               .page3.container#page-3{:style => "max-width: #{browser_width}px;"}

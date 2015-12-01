@@ -16,11 +16,11 @@
 
           .nothing= f.color_field :background_color, :prepend => t("attribute.background_color"), :placeholder => t("subject_profile.view.background_color"), :hide_label => :true, :class => "left-align" 
           .spacer
-          .nothing= f.color_field :text_color, :prepend => t("attribute.text_color"), :placeholder => t("subject_profile.view.textd_color", :hide_label => :true, :class => "left-align"
+          .nothing= f.color_field :text_color, :prepend => t("attribute.text_color"), :placeholder => t("subject_profile.view.text_color"), :hide_label => :true, :class => "left-align"
           .spacer
 
           = render partial: "subject_profiles/photo_load", locals: { :subject_profile => subject_profile, :size => :profile }
-          .spacer-
+          .spacer-2x
 
           = render partial: 'shared/common_panel_footer'
 
