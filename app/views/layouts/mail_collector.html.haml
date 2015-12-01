@@ -7,7 +7,7 @@
     %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1"}    
     = csrf_meta_tags
     = google_webfonts_init({              |
-        google: ['Roboto Slab', 'Roboto'] |
+        google: ['Roboto Slab', 'Roboto'] | 
       })                                  |
     = render 'layouts/shim'
     %body
@@ -76,9 +76,9 @@
                 - src = "landing/v0.7.5/background"
                 #x
                 :javascript
-                  var h = String($("#page-1").height());
+                  var h = String($("#page-1").height() + 46);
                   var w = String($(window).width());
-                  w = "#{browser_width}"
+                  /*w = "#{browser_width}"*/
                   var filename = "#{src}"
                   $.cloudinary.image(filename, {width: w, height: h, crop: "fill", cloud_name: "dev-joinple-com", responsive: false, dpr: 'auto'}).appendTo('#x').cloudinary_update();
                   $.cloudinary.responsive();
