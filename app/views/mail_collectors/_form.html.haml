@@ -21,9 +21,10 @@
 		.line5
 			= t("landing_page.landing_075.page_1.line_4").html_safe
 
-	.spacer-4x	
+	.spacer-4x
 	.video
-		= cl_video_tag(t("landing_page.landing_075.page_1.video_1"), :quality=>80, :fetch_format=>:auto, :controls => :true, :width => "450", :crop => :fill )
+		%iframe{ :src => "#{t('landing_page.landing_075.page_1.video_youtube')}", :width => '450', :height => '253', :frameborder => "0", :allowfullscreen => "allowfullscreen" }
+		-#cl_video_tag(t("landing_page.landing_075.page_1.video_1"), :quality=>80, :fetch_format=>:auto, :controls => :true, :width => "450", :crop => :fill )
 	.spacer-4x	
 
 
