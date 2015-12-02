@@ -105,7 +105,7 @@ it:
         video_1: "landing/v0.7.5/master-it.mp4"
       page_2:
         menu:   "PARTECIPA AL CONCORSO"
-        title: "<span style='font-weight: bold; font-size: 2.5em;'>PARTECIPA CONCORSO FOTOGRAFICO</span>"
+        title: "<span style='font-weight: bold; font-size: 2.5em;'>PARTECIPA AL CONCORSO FOTOGRAFICO</span>"
         image_1: "landing/v0.7.5/contest-001-it"
         image_2: "landing/v0.7.5/contest-02"
 
