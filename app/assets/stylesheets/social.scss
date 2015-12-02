@@ -1601,12 +1601,7 @@ ul#myposts a li {
 
   }
 
- /* #landing-mail .checkbox %label {
-        font-size: 0.9em;
-        color: pink;
-      }
-*/
-  .line1 {
+ .line1 {
     text-shadow: 1px 1px 5px rgba(51, 51, 66, 1);
     font-size: 5em;
   }
@@ -1614,11 +1609,11 @@ ul#myposts a li {
   .line2 {
     font-size: 1.6em;
 
-    text-align: -auto;
-    text-align: -webkit-left;
-    text-align: -mox-left;
-    text-align: -ms-left;
-    text-align: -o-left;
+    text-align: center;
+    text-align: -webkit-center;
+    text-align: -mox-center;
+    text-align: -ms-center;
+    text-align: -o-center;
    } 
 
 
@@ -1647,8 +1642,8 @@ ul#myposts a li {
     text-shadow: 1px 1px 5px rgba(51, 51, 66, 1);
     font-size: 1.5em;
 
-
     a {
+      text-shadow: none;
       color: $joinple_background_color;
       font-weight: bolder;
 
