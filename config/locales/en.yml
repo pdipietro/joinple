@@ -103,7 +103,7 @@ en:
         privacy_accepted: "I allow the treatment of my personal data."
         footer: "<span style='font-weight: bold;'>IT'S FREE</span>"
         video_1: "landing/v0.7.5/master-en.mp4"
-        video_youtube: "https://www.youtube.com/embed/oH89lu6HuxA"
+        video_youtube: "https://www.youtube.com/embed/oH89lu6HuxA?rel=0"
       page_2:
         menu:    "ENTER THE CONTEST"
         title:   "<span style='font-weight: bold; font-size: 2.5em;'>ENTER THE PHOTO CONTEST</span>"
