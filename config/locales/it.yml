@@ -20,6 +20,9 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 it:
+  joinple:
+    slogan: "La nuova ed innovativa piattaforma per creare gratuitamente il tuo social network senza competenze e in 5 minuti."
+    slogan_2: "SLOGAN2"
   send: "invia"
   browser_geometry: "geometria dello schermo: "
   date:

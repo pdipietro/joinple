@@ -4,7 +4,10 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'salvattore', media: 'all', 'data-turbolinks-track' => true
-    %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1"}    
+    %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1.0"}    
+    %meta{ :charset => "utf-8"}
+    %meta{ :content => "http://dev_landing.www.joinple.com/joinple_logo.jpg", :property => "og:image"}
+    %link{ :rel => "image_src", :href => "http://dev_landing.www.joinple.com/joinple_logo.jpg" }  
     = csrf_meta_tags
     = google_webfonts_init({              |
         google: ['Roboto Slab', 'Roboto'] | 
@@ -80,10 +83,12 @@
                   var w = String($(window).width());
                   /*w = "#{browser_width}"*/
                   var filename = "#{src}"
-                  $.cloudinary.image(filename, {width: w, height: h, crop: "fill", cloud_name: "dev-joinple-com", responsive: false, dpr: 'auto'}).appendTo('#x').cloudinary_update();
-                  $.cloudinary.responsive();
+                  $.cloudinary.image(filename, {width: w, height: h, crop: "fill", cloud_name: "dev-joinple-com", responsive: true, dpr: 'auto'}).appendTo('#x').cloudinary_update();
+                  /*$.cloudinary.responsive();*/
 
-              .page2.container#page-2{:style => "max-width: #{browser_width}px;"}
+              -#
+              -#.page2.container#page-2{:style => "max-width: #{browser_width}px;"}
+              .page2.container#page-2
                 .spacer-4x  
                 .row
                   .col-xs-60
@@ -130,7 +135,7 @@
 
                 .spacer-8x
 
-              .page3.container#page-3{:style => "max-width: #{browser_width}px;"}
+              .page3.container#page-3
                 .spacer-4x
                 .row
                   .line_1
@@ -140,28 +145,31 @@
                 .spacer-8x
                 .row
                   .col-xs-60.col-sm-20.col-md-20
+                    .spacer-4x
                     .t.line_3_col_1
                       = link_to show_document_path( doc: UrlSafeBase64.encode64(t("recruitment.app_developer").html_safe) ), :remote => :true, :method => :post, :title => t("cookies.read") do
                         = cl_image_tag("landing/v0.7.5/app-developer", :width=>180, :crop=>:scale, :fetch_format=>:auto, :dpr => :auto, :class => "centered")
                         = t("landing_page.landing_075.page_3.line_3_col_1").html_safe
                   .col-xs-60.col-sm-20.col-md-20
+                    .spacer-4x
                     .t.line_3_col_2
                       = link_to show_document_path( doc: UrlSafeBase64.encode64(t("recruitment.web_marketing_specialist").html_safe) ), :remote => :true, :method => :post, :title => t("cookies.read") do
                         = cl_image_tag("landing/v0.7.5/ux-expert", :width=>180, :crop=>:scale, :fetch_format=>:auto, :dpr => :auto, :class => "centered")
                         = t("landing_page.landing_075.page_3.line_3_col_2").html_safe
                   .col-xs-60.col-sm-20.col-md-20
+                    .spacer-4x
                     .t.line_3_col_3
                       = link_to show_document_path( doc: UrlSafeBase64.encode64(t("recruitment.rails_angular_developer").html_safe) ), :remote => :true, :method => :post, :title => t("cookies.read") do
                         = cl_image_tag("landing/v0.7.5/ruby-developer", :width=>180, :crop=>:scale, :fetch_format=>:auto, :dpr => :auto, :class => "centered")
                         = t("landing_page.landing_075.page_3.line_3_col_3").html_safe
-                .spacer-8x
+                  .spacer-8x
 
                 .row               
                   .t.line_4 
                   = t("landing_page.landing_075.page_3.line_4").html_safe
                 .spacer-8x
 
-              .page4.container#page-4{:style => "max-width: #{browser_width}px;"}
+              .page4.container#page-4
                 .spacer-4x
                 .row
                   .col-xs-8
@@ -187,7 +195,7 @@
                       = cl_image_tag("square-youtube", :width=>32, :crop=>:scale, :fetch_format=>:auto, :class => "centered responsive", :dpr => :auto)
                 .spacer-8x
 
-              .footer{:style => "max-width: #{browser_width}px;"}
+              .footer
                 .spacer-4x
                 .row
                   .col-xs-20

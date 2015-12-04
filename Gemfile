@@ -44,7 +44,8 @@ gem 'sass_paths'
 group :development, :test do
   gem 'sass-rails-source-maps'
   gem 'byebug'
-  gem 'web-console', '~> 2.2'
+#  gem 'web-console', '~> 2.2'
+  gem 'web-console'
   gem 'spring'
 end
 
