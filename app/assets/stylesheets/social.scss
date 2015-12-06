@@ -28,6 +28,7 @@ $joinple_background_color: #a02348;       /* fuxia: 160,35,72    */
 $joinple_text_color: #000000; 
 $link_color:#337ab7;
 $milk:rgba(255, 255, 255, 0.4);
+$milk-rev:rgba(255, 255, 255, 0.65);
 
 $default_text_color: rgb(51,51,51);
 
@@ -642,6 +643,10 @@ hr {
   float:right;  
 }
 
+.float-left{
+  float: left;
+}
+
 /* ************************************************************************************************************************
 ** Images
 ************************************************************************************************************************ */
@@ -1144,7 +1149,7 @@ video.responsive {
 
   padding: 3px 2px 0px 1px;
   font-style: italic;
-
+ 
   font-size: 1em;
   min-height: 2em;
 
@@ -1690,6 +1695,23 @@ ul#myposts a li {
   margin-right: 8px;
 }
 
+.page2 .line2 {
+  font-size: 2.5em;
+  background-color: $milk-rev;
+  padding: $standard_padding;
+  max-width: 360px;
+  text-align: center;
+}
+
+
+.page2 a .line2 {
+  color: $joinple_background_color;
+}
+
+.page2 a:hover .line2 {
+  color: $joinple_color;
+}
+
 .landing .page3 {
   background-color: $joinple_background_color;
   font-size: 2em;
@@ -1700,29 +1722,6 @@ ul#myposts a li {
   background-color: $joinple_background_color;
   font-size: 0.9em;
   width: 100%;
-}
-
-.aaaat.point {
-  font-size: 2em;
-  text-align: -webkit-center;
-  font-variant: small-caps; 
-}
-/*
-.page1 .row * .t,
-.page2 .row 
-.page3 .row
- {
-  font-size: 2em;
-  padding-right: 30px !important;
-  padding-left: 30px !important;
-}
-*/
-.float-right{
-  float: right;
-}
-
-.float-left{
-  float: left;
 }
 
 /********************************* Cloudinary button ******************************************/
@@ -1818,6 +1817,17 @@ ol .joinple-button-add-image + div + ul.cloudinary-thumbnails li.cloudinary-thum
 
   table {
     margin: 0 0 11px;
+
+    > thead, > tbody {
+      > tr {
+        > th, > td {
+            vertical-align: top;
+        }      
+        > th:nth-child(3), > td:nth-child(3) {
+          word-break: break-all;
+        }
+      }
+    }
   }
 
   ul, ol {
@@ -1828,6 +1838,9 @@ ol .joinple-button-add-image + div + ul.cloudinary-thumbnails li.cloudinary-thum
     }
   }
 
+  ul {
+    padding-left: 1em;
+  }
 
 }
 

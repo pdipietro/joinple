@@ -1,1 +1,0 @@
-$('#<%= escape_javascript(@post.uuid) %>').html("<%= escape_javascript(render partial: 'form', locals: { post: @post, title: "Edit post", current_owner: current_owner, indent: :false  } ) %>" );

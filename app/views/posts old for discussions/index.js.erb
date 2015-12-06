@@ -1,3 +1,0 @@
-$("#main_header").html("<%= escape_javascript(render partial: 'header', locals: { posts: @posts} ) %>" );
-$("#main_add").html("<%= escape_javascript(render partial: 'form', locals: { post: Post.new, current_owner: current_owner, indent: :false } ) %>" );
-$("#main_content").html("<%= escape_javascript(render partial: 'index', locals: { posts: @posts} ) %>" );
