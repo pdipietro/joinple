@@ -34,10 +34,12 @@ en:
     save: "save"
     clear: "clear"
     send: "send"
+    exit: "exit"
     hint: 
       save: "save the form"
       clear: "reinitialize the form"
       send: "send the form"
+      exit: "exit the document"
   placeholder:
     email: "Enter your email address"
     password: "Enter your password"
@@ -110,8 +112,11 @@ en:
       page_2:
         menu:    "ENTER THE CONTEST"
         title:   "<span style='font-weight: bold; font-size: 2.5em;'>ENTER THE PHOTO CONTEST</span>"
-        image_1: "landing/v0.7.5/contest-001-en"
-        image_2: "landing/v0.7.5/contest-02"
+        image_1: "landing/v0.7.5/enter-03-en"
+        image_2: "landing/v0.7.5/vote-03-en"
+
+        line_1_col_1: "click here to enter"
+        line_1_col_2: "click here to vote"
 
         point_1: "See your photo on our facebook fan page inside the contest <span style='color: #A02348'>#JOINPLEUSER1</span> and share it inviting your friends to vote for you"
         point_2: "Find out why become the <span style='color: #A02348'>#JOINPLEUSER1</span> and the complete rule sets"
@@ -120,9 +125,9 @@ en:
         menu:   "WORK WITH US"
         line_1: "<span style='font-weight: bold; font-size: 1.25em;'>BE PART OF THE JOINPLE'S TEAM</span>"
         line_2: "WE ARE LOOKING FOR THESE PROFILES"
-        line_3_col_1: "</br>APP DEVELOPER"
-        line_3_col_2: "</br>WEB MARKETING SPECIALIST"
-        line_3_col_3: "</br>RAILS w/ANGULAR.JS DEVELOPER"
+        line_3_col_1: "APP DEVELOPER"
+        line_3_col_2: "WEB MARKETING SPECIALIST"
+        line_3_col_3: "RAILS w/ANGULAR.JS DEVELOPER"
         line_4: "<a href='mailto:recruitment@joinple.com'>SEND YOUR CV</A>"        
       footer:
         privacy: "Privacy"

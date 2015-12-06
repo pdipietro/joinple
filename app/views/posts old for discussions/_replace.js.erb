@@ -1,2 +1,0 @@
-$("#main_add").html("<%= escape_javascript(render partial: 'form', locals: { post: Post.new, current_owner: current_owner, indent: :false } ) %>" );
-$("#<%= escape_javascript(@post.uuid) %>").html("<%= escape_javascript(render partial: 'show', locals: { post: @post } ) %>" );
