@@ -1,0 +1,32 @@
+2015-12-10 19:06:16.289+0100 INFO  Successfully started database
+2015-12-10 19:06:16.333+0100 INFO  Starting HTTP on port 7474 (8 threads available)
+2015-12-10 19:06:16.625+0100 INFO  Enabling HTTPS on port 7473
+2015-12-10 19:06:16.750+0100 INFO  Mounting static content at /webadmin
+2015-12-10 19:06:16.841+0100 INFO  Mounting static content at /browser
+2015-12-10 19:06:18.724+0100 INFO  Remote interface ready and available at http://localhost:7474/
+2015-12-11 01:04:28.057+0100 INFO  Successfully started database
+2015-12-11 01:04:28.105+0100 INFO  Starting HTTP on port 7474 (8 threads available)
+2015-12-11 01:04:28.426+0100 INFO  Enabling HTTPS on port 7473
+2015-12-11 01:04:28.570+0100 INFO  Mounting static content at /webadmin
+2015-12-11 01:04:28.641+0100 INFO  Mounting static content at /browser
+2015-12-11 01:04:30.472+0100 INFO  Remote interface ready and available at http://localhost:7474/
+2015-12-11 01:26:33.670+0100 INFO  Neo4j Server shutdown initiated by request
+2015-12-11 01:26:33.738+0100 INFO  Successfully shutdown Neo4j Server
+2015-12-11 01:26:33.827+0100 INFO  Successfully stopped database
+2015-12-11 01:26:33.827+0100 INFO  Successfully shutdown database
+2015-12-11 01:27:22.067+0100 INFO  Successfully started database
+2015-12-11 01:27:22.116+0100 INFO  Starting HTTP on port 7474 (8 threads available)
+2015-12-11 01:27:22.399+0100 INFO  Enabling HTTPS on port 7473
+2015-12-11 01:27:22.521+0100 INFO  Mounting static content at /webadmin
+2015-12-11 01:27:22.603+0100 INFO  Mounting static content at /browser
+2015-12-11 01:27:24.389+0100 INFO  Remote interface ready and available at http://localhost:7474/
+2015-12-11 10:27:01.340+0100 INFO  Neo4j Server shutdown initiated by request
+2015-12-11 10:27:01.376+0100 INFO  Successfully shutdown Neo4j Server
+2015-12-11 10:27:01.473+0100 INFO  Successfully stopped database
+2015-12-11 10:27:01.473+0100 INFO  Successfully shutdown database
+2015-12-11 10:27:44.166+0100 INFO  Successfully started database
+2015-12-11 10:27:44.208+0100 INFO  Starting HTTP on port 7474 (8 threads available)
+2015-12-11 10:27:44.536+0100 INFO  Enabling HTTPS on port 7473
+2015-12-11 10:27:44.647+0100 INFO  Mounting static content at /webadmin
+2015-12-11 10:27:44.726+0100 INFO  Mounting static content at /browser
+2015-12-11 10:27:46.665+0100 INFO  Remote interface ready and available at http://localhost:7474/

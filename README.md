@@ -193,6 +193,9 @@ bundle install
 2. in the /etc/hostname change the host name as
 	JPL-<""|test|development|demo>
 
+3. in ~/joinple enable autologin
+	cp ~/joinple/50-myconfig.conf /etc/lightdm/lightdm.conf.d
+
 ## Run
 
 1. login as joinple
@@ -205,4 +208,56 @@ bundle install
 
 1. ctrl-c
 2. rake neo4j:stop
+
+
+
+
+# Autorun server config
+
+## Definitions
+
+### Stage Type
+
+Stage type can be one of the following: **(development|test|production)**
+
+### Server name (convention over configuration)
+
+All server must follow the following name convention, case insensitive:
+
+name = <JPL-><stagetype><number?><-production>
+where:
+**JPL-**      	: Joinple identification prefix, or the Joinple License Owner Code (TBD)
+**stagetype** 	: one of (development|test|production)
+**number**			: an optional number to allow several servers
+**-production**	: an optional stage to be tested
+
+#### Synonyms
+
+The following synonims are allowed:
+
+**development** : one of (dev|development)
+**production**	: one of (depl|deploy|deployment|prod|production|demo)
+
+### Main differences between stage types
+
+The main differences between stage types are the following:
+
+**Development**: in this stage the configuration is determined by the developer. No help is given by the system. The system (rails) runs in development mode, with debugging enabled and low performances.
+The config file: /joinple/config/environments/development.rb
+
+**test**: In this stage the database is deleted and rebuilt from the basic DB configuration. 
+All data inserted into the system will be lost every time the system is restarted or the automatic tests run. The system (rails) runs in test mode, medium performances
+The config file: /joinple/config/environments/test.rb
+
+**production**: The database is preserved and backuped. The system is public open and can be accessed from the internet without limitations. The system (rails) runs in production mode, no debug, system cache enabled and other optimizations.
+The config file: /joinple/config/environments/production.rb
+
+**test-production**: it a special configuration to allow testing a production environment. Everything is the same as development, but the system is not open to the internet.
+The config file: /joinple/config/environments/production.rb
+
+# Start and Stop the server
+
+The test and production servers will start and stop automatically at startup and shutdown.
+
+They can be manually started and stopped running the command in a shell opened in the $HOME/joinple directory: `bash ./autorun.sh (start|restart|stop)` 
 

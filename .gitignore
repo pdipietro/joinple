@@ -11,7 +11,7 @@ bower_components
 /.bundle
 
 # Ignore the Neo4j database.
-/db/neo4j
+/db/neo4j*/data/graph.db
 
 # Ignore all logfiles and tempfiles.
 
