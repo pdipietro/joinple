@@ -24,7 +24,7 @@ if [ ! -f /etc/lightdm/lightdm.conf.d/50-myconfig.conf ]; then
 fi
 
 # test command line parms
-
+ 
 case $1 in 
 	start) 		: ;;
 	restart) 	: ;;
