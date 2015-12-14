@@ -36,6 +36,25 @@ Rails.application.configure do
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
 
+  config.web_console.whitelisted_ips = '192.168.10.10'
+  config.log_formatter = ::Logger::Formatter.new
+  config.log_level = :debug       # :debug, :info, :warn, :error, :fatal
+
+
   # Raises error for missing translations
-  # config.action_view.raise_on_missing_translations = true
-end
+  config.action_view.raise_on_missing_translations = true
+  config.action_mailer.raise_delivery_errors = true
+
+  
+  config.action_mailer.smtp_settings = {
+        address: 'smtp.joinple.com',
+        port: '587',
+        domain: 'webmail.joinple.com',
+        user_name: 'registration@joinple.com',
+        password: 'G*yk#JZ0',
+        authentication: :plain,
+        enable_starttls_auto: true,
+        openssl_verify_mode: 'none'
+    }
+
+ end

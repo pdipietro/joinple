@@ -73,11 +73,17 @@ Rails.application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
-  config.neo4j.session_path = 'http://localhost:7494'
-
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.delivery_method = :test
-  host = 'localhost:3000' # was 'example.com'
-  config.action_mailer.default_url_options = { host: 'example.com' }
+
+  config.action_mailer.smtp_settings = {
+        address: 'smtp.joinple.com',
+        port: '587',
+        domain: 'webmail.joinple.com',
+        user_name: 'registration@joinple.com',
+        password: 'G*yk#JZ0',
+        authentication: :plain,
+        enable_starttls_auto: true,
+        openssl_verify_mode: 'none'
+    }
 
 end
