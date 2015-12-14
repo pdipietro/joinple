@@ -1,177 +1,19 @@
-NOTE: Local Neo4j graph database service at './db/neo4j-community-2.3.1/data/graph.db'
-Welcome to the Neo4j Shell! Enter 'help' for a list of commands
+ -host      Domain name or IP of host to connect to (default: localhost)
+ -port      Port of host to connect to (default: 1337)
+ -name      RMI name, i.e. rmi://<host>:<port>/<name> (default: shell)
+ -pid       Process ID to connect to
+ -c         Command line to execute. After executing it the shell exits
+ -file      File containing commands to execute, or '-' to read from stdin. After executing it the shell exits
+ -readonly  Connect in readonly mode (only for connecting with -path)
+ -path      Points to a neo4j db path so that a local server can be started there
+ -config    Points to a config file when starting a local server
 
-
-neo4j-sh (?)$ begin
-Transaction started
-neo4j-sh (?)$ 
-neo4j-sh (?)$ create constraint on (n:`SubjectProfile`) assert n.`uuid` is unique;
-+-------------------+
-| No data returned. |
-+-------------------+
-Unique constraints added: 1
-1987 ms
-neo4j-sh (?)$ create constraint on (n:`Subject`) assert n.`uuid` is unique;
-+-------------------+
-| No data returned. |
-+-------------------+
-Unique constraints added: 1
-37 ms
-neo4j-sh (?)$ create constraint on (n:`Language`) assert n.`code` is unique;
-+-------------------+
-| No data returned. |
-+-------------------+
-Unique constraints added: 1
-42 ms
-neo4j-sh (?)$ create constraint on (n:`SocialNetwork`) assert n.`uuid` is unique;
-+-------------------+
-| No data returned. |
-+-------------------+
-Unique constraints added: 1
-34 ms
-neo4j-sh (?)$ create constraint on (n:`SocialNetwork`) assert n.`iname` is unique; 
-+-------------------+
-| No data returned. |
-+-------------------+
-Unique constraints added: 1
-29 ms
-neo4j-sh (?)$ 
-neo4j-sh (?)$ create constraint on (n:`DiscussionComment`) assert n.`uuid` is unique;
-+-------------------+
-| No data returned. |
-+-------------------+
-Unique constraints added: 1
-29 ms
-neo4j-sh (?)$ create constraint on (n:`Discussion`) assert n.`uuid` is unique;
-+-------------------+
-| No data returned. |
-+-------------------+
-Unique constraints added: 1
-24 ms
-neo4j-sh (?)$ create constraint on (n:`Group`) assert n.`uuid` is unique;
-+-------------------+
-| No data returned. |
-+-------------------+
-Unique constraints added: 1
-34 ms
-neo4j-sh (?)$ create constraint on (n:`HasImage`) assert n.`uuid` is unique;
-+-------------------+
-| No data returned. |
-+-------------------+
-Unique constraints added: 1
-41 ms
-neo4j-sh (?)$ create constraint on (n:`Image`) assert n.`uuid` is unique;
-+-------------------+
-| No data returned. |
-+-------------------+
-Unique constraints added: 1
-29 ms
-neo4j-sh (?)$ create constraint on (n:`ImgLandingPageHeader`) assert n.`uuid` is unique;
-+-------------------+
-| No data returned. |
-+-------------------+
-Unique constraints added: 1
-22 ms
-neo4j-sh (?)$ create constraint on (n:`ImgLandingPageLogo`) assert n.`uuid` is unique;
-+-------------------+
-| No data returned. |
-+-------------------+
-Unique constraints added: 1
-26 ms
-neo4j-sh (?)$ create constraint on (n:`LandingPageHeader`) assert n.`uuid` is unique;
-+-------------------+
-| No data returned. |
-+-------------------+
-Unique constraints added: 1
-27 ms
-neo4j-sh (?)$ create constraint on (n:`LandingPage`) assert n.`uuid` is unique;
-+-------------------+
-| No data returned. |
-+-------------------+
-Unique constraints added: 1
-21 ms
-neo4j-sh (?)$ create constraint on (n:`MailCollector`) assert n.`uuid` is unique;
-+-------------------+
-| No data returned. |
-+-------------------+
-Unique constraints added: 1
-24 ms
-neo4j-sh (?)$ create constraint on (n:`MediaManager`) assert n.`uuid` is unique;
-+-------------------+
-| No data returned. |
-+-------------------+
-Unique constraints added: 1
-26 ms
-neo4j-sh (?)$ create constraint on (n:`PostComment`) assert n.`uuid` is unique;
-+-------------------+
-| No data returned. |
-+-------------------+
-Unique constraints added: 1
-22 ms
-neo4j-sh (?)$ create constraint on (n:`Post`) assert n.`uuid` is unique;
-+-------------------+
-| No data returned. |
-+-------------------+
-Unique constraints added: 1
-24 ms
-neo4j-sh (?)$ create constraint on (n:`Tag`) assert n.`uuid` is unique;
-+-------------------+
-| No data returned. |
-+-------------------+
-Unique constraints added: 1
-21 ms
-neo4j-sh (?)$ create constraint on (n:`Test`) assert n.`uuid` is unique;
-+-------------------+
-| No data returned. |
-+-------------------+
-Unique constraints added: 1
-20 ms
-neo4j-sh (?)$ 
-neo4j-sh (?)$ commit
-Transaction committed
-neo4j-sh (?)$ 
-neo4j-sh (?)$ begin
-Transaction started
-neo4j-sh (?)$ 
-neo4j-sh (?)$ create (_0:`Subject` {`activated`:"true", `activation_digest`:"$2a$10$l48pLADz4vDP3IwVwuDNvuhUMzbQHh1T13Y1O/WUWpRRClCOUzzK2", `admin`:"true", `creat ed_at`:1419806138, `email`:"pdipietro@joinple.com", `first_name`:"Paolo", `last_name`:"Di Pietro", `nickname`:"pdp", `password_digest`:"$2a$10$ZpQt6DbVOEUqgRnBoOz UquJWtfAps2XrP2yV/95hnQnOzBDtofyb6", `remember_digest`:"$2a$10$4u4Sn5yL2q6wpiUi67QmUO7rAOKTYNfISm/jjlK04C8n3Td4xDGXW", `updated_at`:1444294398, `uuid`:"ec122ca0-0 ecc-4bae-af14-f1f781d88311"})
-> 
-> create (_1:`SubjectProfile` {`background_color`:"#a02348", `created_at`:1420983722, `description`:"Joinple CTO - Principal designer", `photo`:"v1444070244/subje ct/ec122ca0-0ecc-4bae-af14-f1f781d88311/photo/m3hgx7fzh0vafvcmmmwo.jpg", `text_color`:"#ffffff", `updated_at`:1444070246, `uuid`:"bc3cb602-323e-4cae-9427-7309417c db21"})
-> 
-> 
-> 
-> 
-> create (_2:`Language` {`code`:"fr-fr", `created_at`:1420983722, `description`:"Français (france)", `updated_at`:1421690318, `uuid`:"bc3cb602-323e-4d3e-8827-7309 417cdb21"})
-> create (_3:`Language` {`code`:"it-it", `created_at`:1420460700, `description`:"Italiano (Italia)", `updated_at`:1420460700, `uuid`:"58eb0495-7533-4721-9ef2-2027 4645afab"})
-> create (_4:`Language` {`code`:"en-us", `created_at`:1420463037, `description`:"English (united states)", `updated_at`:1421690340, `uuid`:"e5b2c85f-312d-4cb5-8b7 8-8c41836c21b8"})
-> create (_5:`Language` {`code`:"es-es", `created_at`:1420465834, `description`:"Español (españa)", `updated_at`:1421657072, `uuid`:"550420dc-1d93-4049-9118-04281 5063781"})
-> 
-> 
-> 
-> 
-> create (_6:`SocialNetwork` {`background_color`:"#e5e5e5", `banner`:"v1444070339/subject/ec122ca0-0ecc-4bae-af14-f1f781d88311/social/7602926d-702a-4b30-9c05-125d 50212e79/banner/qoqlhnackzybffxqxfjz.jpg", `created_at`:1422308304, `description`:"Basic joinple social network.", `goal`:"Support job searching", `iname`:"www",  `logo`:"v1444070283/subject/ec122ca0-0ecc-4bae-af14-f1f781d88311/social/7602926d-702a-4b30-9c05-125d50212e79/logo/ygoofovrlkp6krlsi5p0.jpg", `mission`:"Missionnnn n", `name`:"Joinple", `short_description`:"Short description.", `slogan`:"Slogannnnn.", `social_network_color`:"#a02348", `text_color`:"#ffffff", `updated_at`:144 4071020, `uuid`:"7602926d-702a-4b30-9c05-125d50212e79"})
-> 
-> 
-> create (_7:`LandingPage` {`created_at`:1443561845, `description`:"", `updated_at`:1443561845, `uuid`:"09fc6b54-b581-41cc-81b7-e80f02867c5d"})
-> create (_8:`LandingPage` {`created_at`:1443570452, `description`:"", `header`:"v1443570452/landing/header/slider1-144dpi_xcwtem.jpg", `logo`:"v1443570425/landin g/logo/cover-144dpi.jpg", `updated_at`:1443570452, `uuid`:"a4bd511d-a6a6-4873-b03b-454d9c0c8a0e"})
-> create (_9:`LandingPage` {`created_at`:1443605413, `description`:"", `header`:"v1443605423/landing/header/slider1-144dpi_h2cgfd.jpg", `logo`:"v1443605401/landin g/logo/slider4-144dpi.jpg", `updated_at`:1443605413, `uuid`:"29ed9de5-71e3-4d6c-9a14-960c1c01d65a"})
-> create (_10:`LandingPage` {`created_at`:1443892227, `description`:"", `updated_at`:1443892227, `uuid`:"f1211dc5-35ae-46d1-b9e7-6fa3e3de8065"})
-> create (_11:`LandingPage` {`created_at`:1443892429, `description`:"", `header`:"v1443892425/landing/v0.7.7/header/j3wpxazrtgnjxjxojcbb.jpg", `logo`:"v1443892263 /landing/v0.7.7/logo/kabcufsydzd8yfmczfey.jpg", `updated_at`:1443892429, `uuid`:"46e2cbb9-2f72-4705-8abf-d4d294926f29"})
-> 
-> 
-> 
-> create _0-[:`has_profile` {`created_at`:1422308305, `updated_at`:1422308305}]->_1
-> create _0-[:`owns` {`created_at`:1422308305, `updated_at`:1422308305}]->_6
-> create _6-[:`speaks` {`created_at`:1421477725, `updated_at`:1421477725}]->_4
-> 
-> ;
-+-------------------+
-| No data returned. |
-+-------------------+
-Nodes created: 12
-Relationships created: 3
-Properties set: 86
-Labels added: 12
-790 ms
-neo4j-sh (?)$ commit
-Transaction committed
-neo4j-sh (?)$ 
+Example arguments for remote:
+	-port 1337
+	-host 192.168.1.234 -port 1337 -name shell
+	-host localhost -readonly
+	...or no arguments for default values
+Example arguments for local:
+	-path /path/to/db
+	-path /path/to/db -config /path/to/neo4j.config
+	-path /path/to/db -readonly

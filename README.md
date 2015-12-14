@@ -210,6 +210,10 @@ bundle install
 2. rake neo4j:stop
 
 
+# Bundle update
+
+1. Development: bundle update
+2. Test:				bundle update rails --group test
 
 
 # Autorun server config

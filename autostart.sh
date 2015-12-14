@@ -88,8 +88,8 @@ fi
 # positioning on joinple directory
 cd /home/joinple/joinple
 
-# railsPid=$(cat /home/joinple/joinple/config/pids/$stage.server.pid)
-railsPid=5498
+
+railsPidDir="/home/joinple/joinple/tmp/pids"
 
 neo4jVersion=$(cat /home/joinple/joinple/db/neo4j-version)
 
@@ -97,10 +97,10 @@ neo4jData="./db/$neo4jVersion/data/graph.db"
 neo4jLog="./db/$neo4jVersion/data/log"
 neo4jBin="./db/$neo4jVersion/bin"
 
-neo4jPid="/home/joinple/joinple/db/$neo4jVersion/pids"
+# neo4jPid="/home/joinple/joinple/db/$neo4jVersion/pids"
 
 
-if [[ ! -d $neo4jData/schema || ! -d $neo4jData ]]; then
+if [[ ! -d $neo4jData/schema  ||  ! -d $neo4jData ]]; then
 	echo "Create a new DB and initialize it."
 	if [[ ! -d $neo4jData ]]; then	mkdir $neo4jData; fi
 	chown -R $USER:$USER $neo4jLog $neo4jData $neo4jLog/db_load.log $neo4jLog/db_load_stderr.log
@@ -110,6 +110,17 @@ if [[ ! -d $neo4jData/schema || ! -d $neo4jData ]]; then
 fi
 
 neo4jPid="/home/joinple/joinple/db/$neo4jVersion/data/neo4j-service.pid"
+echo 	"echo 1)" $railsPidDir
+
+getRailsPid() {
+	if [[ -f $railsPidDir/server.pid ]]; then
+		railsPid=$(cat $railsPidDir/server.pid)
+		echo "2)" $railsPid
+	else
+		railsPid=eval "ps -C rails -o pid="
+		echo "1)" $railsPid
+	fi
+}
 
 echo "evaluate request" $1
 
@@ -125,36 +136,39 @@ startNeo4j() {
 }
 
 startRails() {
-	rails s -d -b0.0.0.0 -e$stage -P$railsPid & || { echo "Err starting Rails"; exit 2; }
+	{ rails s -b0.0.0.0 -e$stage; } || { echo "Err starting Rails"; exit 2; }
 }
 
 stopRails() {
-	kill -9 $railsPid  || { echo "Err stopping Rails"; exit 3; }
+	getRailsPid
+	if [ ! -z "${railsPid}" ]; then
+		kill -9 $railsPid || { echo "Err stopping Rails: continue"; return 3; }
+		rm -f $railsPidDir/server.pid
+	fi
 }
 
 stopNeo4j() {
-	$neo4jBin/neo4j stop || { echo "Err stopping Neo4j"; exit 4; }
+	$neo4jBin/neo4j stop || { echo "Err stopping Neo4j"; return 4; }
 }
-
 
 case $1 in
 
 	start)
-
 		startNeo4j 
 		startRails
-		exit 0;;
+		# exit 0
+		;;
 
 	rails)
-
 		startRails
-		exit 0;;
+		exit 0
+		;;
 
 	stop)
-
 		stopRails
 		stopNeo4j
-		exit 0;;
+		exit 0
+		;;
 
 	restart)
 		stopRails
@@ -162,14 +176,17 @@ case $1 in
 
 		startNeo4j
 		startRails
-		exit 0;;
+		# exit 0
+		;;
 
 	status)
 		echo "not yet implemented"
-		exit 1;;
+		exit 1
+		;;
 	*)
 		echo "usage: bash ./autorun.sh [start|rails|restart|stop)"
-		exit 1;;
+		exit 1
+		;;
 esac
 
 
