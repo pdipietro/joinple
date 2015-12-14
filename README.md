@@ -284,6 +284,8 @@ They can be manually started and stopped running the command in a shell opened i
 
 ## Ruby & Rails upgrade
 
+### DO NOT EXECUTE! IS A PAIN!
+
 Attention needed while upgrading from the ruby 2.2.1 to the ruby 2.2.2 
 
 1. migration
@@ -293,7 +295,45 @@ Attention needed while upgrading from the ruby 2.2.1 to the ruby 2.2.2
 	* bundle install
 3. sudo apt-get install libgmp-dev
 
+# Reinstall RVM and Ruby
 
+## Remove RVM
+
+$ rvm implode
+Are you SURE you wish for rvm to implode?
+This will recursively remove /home/user/.rvm and other rvm traces?
+(anything other than 'yes' will cancel)
+
+You will see the following output on the screen ..
+Removing rvm-shipped binaries (rvm-prompt, rvm, rvm-sudo rvm-shell and rvm-auto-ruby)
+Removing rvm wrappers in /home/user/.rvm/bin
+Hai! Removing /home/user/.rvm
+/home/user/.rvm has been removed.
+
+Note you may need to manually remove /etc/rvmrc and ~/.rvmrc if they exist still.
+Please check all .bashrc .bash_profile .profile and .zshrc for RVM source lines and delete or comment out if this was a Per-User installation.
+Also make sure to remove `rvm` group if this was a system installation.
+Finally it might help to relogin / restart if you want to have fresh environment (like for installing RVM again).
+
+## Reinstall RVM again
+
+Reinstall rvm again .. following command installs the stable version of RVM.
+
+$ \curl -sSL https://get.rvm.io | bash -s stable --ruby
+
+Then install required version of ruby ..
+
+$ rvm install 2.1.0
+
+$ rvm use 2.1.0
+
+You can set a version of Ruby to use as the default for new shells. Note that this overrides the ‘system’ ruby
+
+$ rvm use 2.1.0 --default
+
+
+ 
+Then follow instructions above
 
 #Post install messages
 
