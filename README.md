@@ -113,6 +113,7 @@ sudo reboot
 ## Install curl, rvm, Ruby, Rails, git
 
 ~$ sudo apt-get  install curl
+
 ~$ sudo apt-get  autoremove
 
 ~$ \curl -sSL https://get.rvm.io | bash -s stable
@@ -123,15 +124,23 @@ $ command curl -sSL https://rvm.io/mpapis.asc | gpg --import -
 Close the terminal and open a new one
 
 ~$ ~/.rvm/scripts/rvm
+
 ~$ rvm requirements
+
 ~$ rvm install ruby
+
 ~$ rvm use ruby --default
+
 ~$ rvm rubygems current
+
 ~$ gem install --no-rdoc --no-ri rails
 
 ~$ rails -v
+
 Rails 4.2.4
+
 ~$ ruby -v
+
 ruby 2.2.1p85 (2015-02-26 revision 49769) [x86_64-linux]
 
 Installare git
@@ -143,6 +152,7 @@ Installare git
 ## Install java and Node.js
 
 ~$ sudo mkdir /opt/java
+
 ~$ cd /opt/java
 
 ~$ sudo wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u45-b14/jdk-8u45-linux-x64.tar.gz"
@@ -150,14 +160,19 @@ Installare git
 ~$ sudo tar -zxvf jdk-8u45-linux-x64.tar.gz
 
 ~$ cd jdk1.8.0_45/
+
 ~$ sudo update-alternatives --install /usr/bin/java java /opt/java/jdk1.8.0_45/bin/java 100  
+
 ~$ sudo update-alternatives --config java
 
 ~$ sudo update-alternatives --install /usr/bin/jar jar /opt/java/jdk1.8.0_45/bin/jar 100
+
 ~$ sudo update-alternatives --config jar
 
 ~$ export JAVA_HOME=/opt/java/jdk1.8.0_45/	
+
 ~$ export JRE_HOME=/opt/java/jdk1.8.0._45/jre 	
+
 ~$ export PATH=$PATH:/opt/java/jdk1.8.0_45/bin:/opt/java/jdk1.8.0_45/jre/bin
 
 ~$ sudo apt-get install -y nodejs
@@ -167,21 +182,23 @@ Installare git
 ## Latest settings
 
 
-Setting 40.000 open file on Neo4j
+####Setting 40.000 open file on Neo4j
 
 You need to add the following entries into the /etc/security/limits.conf file
+
 joinple   soft    nofile  40000
+
 joinple   hard    nofile  40000
 
-Download editor sublime text
+####Download editor sublime text
 
 ~$ git clone https://github.com/pdipietro/joinple.git
 
 cd joinple
+
 bundle install
 
 ~/joinple$ rake neo4j:install
-
 
 # Config and run
 
@@ -265,3 +282,36 @@ The test and production servers will start and stop automatically at startup and
 
 They can be manually started and stopped running the command in a shell opened in the $HOME/joinple directory: `bash ./autorun.sh (start|restart|stop)` 
 
+## Ruby & Rails upgrade
+
+Attention needed while upgrading from the ruby 2.2.1 to the ruby 2.2.2 
+
+1. migration
+	* rvm migrate 2.2.1 2.2.2
+2. reinstall bundle
+	* gem install bundler
+	* bundle install
+3. sudo apt-get install libgmp-dev
+
+
+
+#Post install messages
+
+##Post-install message from haml:
+
+HEADS UP! Haml 4.0 has many improvements, but also has changes that may break
+your application:
+
+* Support for Ruby 1.8.6 dropped
+* Support for Rails 2 dropped
+* Sass filter now always outputs <style> tags
+* Data attributes are now hyphenated, not underscored
+* html2haml utility moved to the html2haml gem
+* Textile and Maruku filters moved to the haml-contrib gem
+
+For more info see:
+
+http://rubydoc.info/github/haml/haml/file/CHANGELOG.md
+
+##Post-install message from httparty:
+When you HTTParty, you must party hard!

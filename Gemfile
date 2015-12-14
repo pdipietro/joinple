@@ -16,9 +16,9 @@ gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '>= 2.2.3'
+gem 'jbuilder'#, '>= 2.2.3'
 # bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'sdoc', group: :doc
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
@@ -36,25 +36,6 @@ gem 'will_paginate',           '3.0.7'
 gem 'bootstrap-will_paginate'
 gem 'bootstrap-sass'
 gem 'sass_paths'
-
-group :development, :test do
-  gem 'sass-rails-source-maps'
-  gem 'byebug'
-  gem 'web-console'
-  gem 'spring'
-end
-
-group :test do
-  gem 'minitest-reporters', '1.0.5'
-  gem 'mini_backtrace',     '0.1.3'
-  gem 'guard-minitest',     '2.3.1'
-end
-
-group :production do
-  gem 'rails_12factor', '0.0.2'
-  gem 'unicorn',        '4.8.3'
-end
-
 gem "neo4j-will_paginate_redux"
 
 gem "haml-rails"
@@ -83,3 +64,24 @@ gem 'cloudinary'
 gem 'geocoder'
 
 gem 'http_accept_language'
+
+
+group :development do
+  gem 'sass-rails-source-maps'
+  gem 'coffee-rails-source-maps'
+end
+
+group :test do
+  gem 'minitest-reporters', '1.0.5'
+  gem 'mini_backtrace',     '0.1.3'
+  gem 'guard-minitest',     '2.3.1'
+  gem 'byebug'
+  gem 'web-console', '~> 2.2'
+  gem 'spring'
+end
+
+group :production do
+  gem 'rails_12factor', '0.0.2'
+  gem 'unicorn',        '4.8.3'
+end
+
