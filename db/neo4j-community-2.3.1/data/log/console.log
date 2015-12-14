@@ -176,3 +176,17 @@
 2015-12-14 13:30:48.577+0100 INFO  Mounting static content at /webadmin
 2015-12-14 13:30:48.649+0100 INFO  Mounting static content at /browser
 2015-12-14 13:30:50.205+0100 INFO  Remote interface ready and available at http://localhost:7474/
+2015-12-14 16:33:37.335+0100 INFO  Neo4j Server shutdown initiated by request
+2015-12-14 16:33:37.360+0100 INFO  Successfully shutdown Neo4j Server
+2015-12-14 16:33:37.449+0100 INFO  Successfully stopped database
+2015-12-14 16:33:37.449+0100 INFO  Successfully shutdown database
+2015-12-14 16:43:44.540+0100 INFO  Successfully started database
+2015-12-14 16:43:44.576+0100 INFO  Starting HTTP on port 7474 (8 threads available)
+2015-12-14 16:43:44.846+0100 INFO  Enabling HTTPS on port 7473
+2015-12-14 16:43:44.955+0100 INFO  Mounting static content at /webadmin
+2015-12-14 16:43:45.017+0100 INFO  Mounting static content at /browser
+2015-12-14 16:43:46.695+0100 INFO  Remote interface ready and available at http://localhost:7474/
+2015-12-14 16:44:51.958+0100 INFO  Neo4j Server shutdown initiated by request
+2015-12-14 16:44:51.983+0100 INFO  Successfully shutdown Neo4j Server
+2015-12-14 16:44:52.065+0100 INFO  Successfully stopped database
+2015-12-14 16:44:52.065+0100 INFO  Successfully shutdown database

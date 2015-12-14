@@ -5,13 +5,10 @@ ruby '2.2.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails'   #, '4.2.3'
 # Use SCSS for stylesheets
-#gem 'sass-rails', '~> 5.0'
 gem 'sass-rails'
 # Use Uglifier as compressor for JavaScript assets
-#gem 'uglifier', '>= 1.3.0'
 gem 'uglifier'
 # Use CoffeeScript for .coffee assets and views
-#gem 'coffee-rails', '~> 4.1.0'
 gem 'coffee-rails'
 
 # Use jquery as the JavaScript library
@@ -31,9 +28,8 @@ gem 'neo4j', '~> 6.0.1'
 #gem 'neo4j', github: 'neo4jrb/neo4j', ref: 'd6783e81ebedb542f188d721a6a4355d8e0071d8'
 gem 'neo4jrb_spatial'
 
-gem 'bcrypt' #,                  '3.1.7'
-gem 'faker'#,                   '1.4.2'
-#gem 'carrierwave',             '0.10.0'
+gem 'bcrypt'
+gem 'faker'
 gem 'mini_magick',             '3.8.0'
 gem 'fog'
 gem 'will_paginate',           '3.0.7'
@@ -44,7 +40,6 @@ gem 'sass_paths'
 group :development, :test do
   gem 'sass-rails-source-maps'
   gem 'byebug'
-#  gem 'web-console', '~> 2.2'
   gem 'web-console'
   gem 'spring'
 end
@@ -64,7 +59,6 @@ gem "neo4j-will_paginate_redux"
 
 gem "haml-rails"
 
-#gem 'bcrypt-ruby'
 gem "pry-rails"
 
 gem 'jquery-turbolinks'
@@ -75,9 +69,6 @@ gem 'bootstrap_colorpicker_rails'
 gem 'bootstrap-switch-rails', '~> 3.0.0'
 
 gem 'remotipart'
-#gem 'carrierwave-neo4j', require: 'carrierwave/neo4j'
-#gem 'carrierwave-ftp', :require => 'carrierwave/storage/ftp/all' # both FTP/SFTP
-#gem "rmagick"
 gem "inline_svg", '0.2.0'
 
 gem 'google-webfonts-rails'
