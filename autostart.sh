@@ -20,7 +20,6 @@ set -ex
 # test for autologin definition
 
 if [ ! -f /etc/lightdm/lightdm.conf.d/50-myconfig.conf ]; then
-		if [ ! -L /etc/lightdm/lightdm.conf.d ]; then mkdir /etc/lightdm/lightdm.conf.d fi
 		cp ~/joinple/50-myconfig.conf /etc/lightdm/lightdm.conf.d
 fi
 
