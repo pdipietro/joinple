@@ -27,33 +27,15 @@ Rails.application.configure do
   # number of complex assets.
   config.assets.debug = true
 
+  # Asset digests allow you to set far-future HTTP expiration dates on all assets,
+  # yet still be able to expire them through the digest params.
+  config.assets.digest = true
+
   # Adds additional error checking when serving assets at runtime.
   # Checks for improperly declared sprockets dependencies.
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
 
-  config.web_console.whitelisted_ips = '192.168.10.10'
-  config.log_formatter = ::Logger::Formatter.new
-  config.log_level = :debug       # :debug, :info, :warn, :error, :fatal
-
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-
-  config.action_mailer.raise_delivery_errors = true
-  #config.action_mailer.delivery_method = :smtp       # was :test
-  #host = 'joinple.com' # was 'example.com'
-  #  config.action_mailer.default_url_options = { host: "dev.www.joinple.com" }   # default generated automatically with the corrct stage
-
-
-  config.action_mailer.smtp_settings = {
-        address: 'smtp.joinple.com',
-        port: '587',
-        domain: 'webmail.joinple.com',
-        user_name: 'registration@joinple.com',
-        password: 'G*yk#JZ0',
-        authentication: :plain,
-        enable_starttls_auto: true,
-        openssl_verify_mode: 'none'
-    }
-
 end
