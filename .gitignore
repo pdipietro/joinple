@@ -12,7 +12,7 @@ bower_components
 
 # Ignore the Neo4j database.
 /db/neo4j*/data
-/db/sqlite3
+/db/sqlite3/*.sqlite3
 
 # Ignore all logfiles and tempfiles.
 
