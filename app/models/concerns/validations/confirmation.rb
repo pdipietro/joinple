@@ -1,5 +1,5 @@
   module Validations
-    class ConfirmationValidator < EachValidator # :nodoc:
+    class ConfirmationValidator < ActiveModel::EachValidator # :nodoc:
       def initialize(options)
         super
         setup!(options[:class])

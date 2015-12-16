@@ -1,5 +1,5 @@
   module Validations
-    class NumericalityValidator < EachValidator # :nodoc:
+    class NumericalityValidator < ActiveModel::EachValidator # :nodoc:
       CHECKS = { greater_than: :>, greater_than_or_equal_to: :>=,
                  equal_to: :==, less_than: :<, less_than_or_equal_to: :<=,
                  odd: :odd?, even: :even?, other_than: :!= }.freeze

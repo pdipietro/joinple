@@ -15,7 +15,7 @@
 shopt -s nocasematch
 set -ex
 
-
+cd $HOME/joinple
 
 # test for autologin definition
 
@@ -30,8 +30,9 @@ case $1 in
 	restart) 	: ;;
 	rails) 	  : ;;
 	stop) 		: ;;
+	stopNeo4j): ;;
 	status) 	: ;;
-	*) echo "usage: bash ./autorun.sh [start|rails|restart|stop|status)"; exit 9;;
+	*) echo "usage: bash ./autorun.sh [start|rails|restart|stop|stopNeo4j|status)"; exit 9;;
 esac
 
 # RE to check server name
@@ -48,7 +49,6 @@ else
 fi
 
 stage=""
-substage=""
 
 case ${BASH_REMATCH[1]} in	
 		dev)  				stage="development";;
@@ -74,28 +74,51 @@ if [[ $stage == "test" ]]; then
 		prod) 				stage="production";; 
 		production) 	stage="production";; 
 		demo) 				stage="demo";;
-
-		*) 						substage=""
 	esac
 fi
 
-#echo -n "This is the stage named" $stage;
-#if [ $substage ]; then
-#	echo -n " ["$substage"]";
-#fi
-#echo " ";
+# ############################## Settinh cloudinary keys
+
+case "$stage" in
+	"development")
+		CLOUDINARY=cloudinary://366838292492816:UeYoN5X7ErMed26Jo3YHkw7U84E@dev-joinple-com
+	;;
+  "demo")
+  	CLOUDINARY=cloudinary://217559122767512:_IsSa14mTzfbAk4ZXgU9WYUbpcA@demo-joimple-com
+	;;
+  "test")
+  	CLOUDINARY=cloudinary://122778178523376:dCiaL9DbB5WlsppOSkOFfsqDxek@test-joinple-com
+  ;;
+  "production")
+		CLOUDINARY=cloudinary://318235473349975:-ansQxvlvQ0AzwctsjGwdSeMQkA@www-joinple-com
+	;;
+	"*")
+  	CLOUDINARY=none
+  ;;
+esac
 
 # positioning on joinple directory
 cd /home/joinple/joinple
 
+neo4jVersion=$(cat /home/joinple/joinple/db/neo4j-version)
+
+if [[ ! -d ./db/neo4j ]]; then 
+	mkdir ./db/neo4j 
+fi
+
+if [[ -h ./db/neo4j/$stage ]] && [[ ! ./db/neo4j/$stage -ef ../$neo4jVersion ]]; then 
+	unlink ./db/neo4j/$stage
+fi
+if [[ ! -h ./db/neo4j/$stage ]]; then 
+	ln -s ../$neo4jVersion ./db/neo4j/$stage
+	echo "created "./db/neo4j/$stage" => "../$neo4jVersion
+fi
 
 railsPidDir="/home/joinple/joinple/tmp/pids"
 
-neo4jVersion=$(cat /home/joinple/joinple/db/neo4j-version)
-
-neo4jData="./db/$neo4jVersion/data/graph.db"
-neo4jLog="./db/$neo4jVersion/data/log"
-neo4jBin="./db/$neo4jVersion/bin"
+neo4jData="./db/neo4j/$stage/data/graph.db"
+neo4jLog="./db/neo4j/$stage/data/log"
+neo4jBin="./db/neo4j/$stage/bin"
 
 # neo4jPid="/home/joinple/joinple/db/$neo4jVersion/pids"
 
@@ -109,7 +132,7 @@ if [[ ! -d $neo4jData/schema  ||  ! -d $neo4jData ]]; then
 	chmod -R 777 $neo4jLog $neo4jData $neo4jLog/db_load.log $neo4jLog/db_load_stderr.log
 fi
 
-neo4jPid="/home/joinple/joinple/db/$neo4jVersion/data/neo4j-service.pid"
+neo4jPid="/home/joinple/joinple/db/neo4j/$stage/data/neo4j-service.pid"
 echo 	"echo 1)" $railsPidDir
 
 getRailsPid() {
@@ -166,6 +189,11 @@ case $1 in
 
 	stop)
 		stopRails
+		stopNeo4j
+		exit 0
+		;;
+
+	stopNeo4j)
 		stopNeo4j
 		exit 0
 		;;

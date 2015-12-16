@@ -237,6 +237,9 @@ bundle install
 
 ## Definitions
 
+### Base setting
+sudo ln -s  /home/joinple/joinple/autostart.js  /etc/init.d/joinple
+
 ### Stage Type
 
 Stage type can be one of the following: **(development|test|production)**

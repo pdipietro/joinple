@@ -3,9 +3,12 @@ class MediaManager
   include Uuid
   include CreatedAtUpdatedAt
 
+  property  :image,            type: String
+
+
 #  include MediaManagerItem
 #  include ImageSizes
-
+	
 
 #    ImageSizes::CLASSES.each.to_s do |class_name,v|
 #

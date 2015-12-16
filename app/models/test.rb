@@ -5,6 +5,6 @@ class Test
   include IsOwnedBy
   include Description
 
-  has_one   :out, :cover, rel_class: HasImage            # Icon
+  # has_one   :out, :cover, rel_class: HasImage            # Icon
 
 end

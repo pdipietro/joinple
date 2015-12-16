@@ -1,7 +1,5 @@
-require "clusivity"
-
   module Validations
-    class ExclusionValidator < EachValidator # :nodoc:
+    class ExclusionValidator < ActiveModel::EachValidator # :nodoc:
       include Clusivity
 
       def validate_each(record, attribute, value)

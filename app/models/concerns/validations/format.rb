@@ -1,5 +1,5 @@
   module Validations
-    class FormatValidator < EachValidator # :nodoc:
+    class FormatValidator < ActiveModel::EachValidator # :nodoc:
       def validate_each(record, attribute, value)
         if options[:with]
           regexp = option_call(record, :with)

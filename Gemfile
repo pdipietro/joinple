@@ -21,6 +21,7 @@ gem 'jbuilder'#, '>= 2.2.3'
 gem 'sdoc', group: :doc
 
 # Use sqlite3 as the database for Active Record
+gem 'activemodel'
 gem 'sqlite3'
 
 gem 'neo4j', '~> 6.0.1'
@@ -65,10 +66,16 @@ gem 'geocoder'
 
 gem 'http_accept_language'
 
+gem 'paperclip'
+
 
 group :development do
   gem 'sass-rails-source-maps'
   gem 'coffee-rails-source-maps'
+end
+
+group :development, :test do
+  gem 'web-console',        '~> 2.2'
 end
 
 group :test do
@@ -76,12 +83,11 @@ group :test do
   gem 'mini_backtrace',     '0.1.3'
   gem 'guard-minitest',     '2.3.1'
   gem 'byebug'
-  gem 'web-console', '~> 2.2'
   gem 'spring'
 end
 
 group :production do
-  gem 'rails_12factor', '0.0.2'
-  gem 'unicorn',        '4.8.3'
+  gem 'rails_12factor',     '0.0.2'
+  gem 'unicorn',            '4.8.3'
 end
 

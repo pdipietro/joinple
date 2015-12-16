@@ -1,6 +1,5 @@
-
   module Validations
-    class PresenceValidator < EachValidator # :nodoc:
+    class PresenceValidator < ActiveModel::EachValidator # :nodoc:
       def validate_each(record, attr_name, value)
         record.errors.add(attr_name, :blank, options) if value.blank?
       end
