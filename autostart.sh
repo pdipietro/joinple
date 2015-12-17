@@ -52,7 +52,7 @@ case ${BASH_REMATCH[1]} in
 		deployment) 	stage="production";; 
 		prod) 				stage="production";; 
 		production) 	stage="production";; 
-		demo) 				stage="production";; 
+		demo) 				stage="development";; 
 
 		test) 				stage="test";; 
 
