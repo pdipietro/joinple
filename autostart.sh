@@ -2,13 +2,13 @@
 # chkconfig: 2345 99 10
 # description: auto start joinple
 #
-# Starts/stops neo4j and rails on a specific server.
+# Starts/stops neo4j and rails on this specific server, depending on the server name.
 #
 # Authors:
 # 	Paolo Di Pietro <pdipietro@joinple.com>
 
-# shopt -s nocasematch
-# set -ex
+shopt -s nocasematch
+# 99set -ex
 
 cd $HOME/joinple
 
@@ -125,54 +125,74 @@ if [[ ! -d $neo4jData/schema  ||  ! -d $neo4jData ]]; then
 	chmod -R 777 $neo4jLog $neo4jData $neo4jLog/db_load.log $neo4jLog/db_load_stderr.log
 fi
 
-neo4jPid="/home/joinple/joinple/db/neo4j/$stage/data/neo4j-service.pid"
-# echo 	"echo 1)" $railsPidDir
 
 getRailsPid() {
-	if [[ -f $railsPidDir/server.pid ]]; then
-		railsPid=$(cat $railsPidDir/server.pid)
-	#	echo "2)" $railsPid
+	GRP=`ps -ef | grep '/home/joinple/.rvm/rubies'  | grep -v 'ps -ef' | grep -v 'grep' | awk '{print $2}'`
+	echo "GRP=${GRP}"
+}
+
+getNeo4jPid() {
+	GNP=`ps -ef | grep '/java -cp /home/joinple/joinple/db/neo4j/' | grep -v 'ps -ef' | grep -v 'grep' | awk '{print $2}'`
+	echo "GNP=${GNP}"
+}
+
+
+outStatus() {
+	getNeo4jPid
+
+	if [ "${GNP}" ]; then
+		echo "Neo4j is running with PID=[$GNP]"
 	else
-		railsPid=eval "ps -C rails -o pid="
-	#	echo "1)" $railsPid
+		echo "Neo4j is not running"
+	fi
+	
+	getRailsPid
+	if [ "${GRP}" ]; then
+		echo "Rails is running with PID=[$GRP]"
+	else
+		echo "Rails is not running"
 	fi
 }
 
-# echo "evaluate request" $1
+startNeo() {
+	getNeo4jPid
 
-startNeo4j() {
 	# start the db neo4j if not yet running
-	if [ -f $neo4jPid ]; then
-		pid=$(cat $neo4jPid)
-	#	echo "Neo4j already running with PID=" $pid". Run bash ./autorun.sh stop"
-	else
+	if [ ! "${GNP}" ]; then
 		echo Starting Neo4j...
-	#	$neo4jBin/neo4j start || { echo "Err starting Neo4j"; exit 1; }
 		$neo4jBin/neo4j start || { exit 1; }
 	fi
 }
 
 startRails() {
-	#	{ rails s -b0.0.0.0 -e$stage; } || { echo "Err starting Rails"; exit 2; }
-	{ rails s -b0.0.0.0 -e$stage; } || { exit 2; }
+	getRailsPid
+	if [ ! "${GRP}" ]; then
+		{ rails s -b0.0.0.0 -e$stage; } || { exit 1; }
+	fi
+	return 0;
+}
+
+stopNeo() {
+	getNeo4jPid
+	if [ "${GNP}" ]; then
+		$neo4jBin/neo4j stop || { return 0; }
+	fi
 }
 
 stopRails() {
 	getRailsPid
-	if [ ! -z "${railsPid}" ]; then
-		kill -9 $railsPid || { return 3; }
-		rm -f $railsPidDir/server.pid
+	if [ "${GRP}" ]; then
+		kill -9 $GRP 
+		if [[ -f $railsPidDir/server.pid ]]; then
+			rm -f $railsPidDir/server.pid
+		fi
 	fi
-}
-
-stopNeo4j() {
-	$neo4jBin/neo4j stop || { return 4; }
+	return 0;
 }
 
 case $1 in
-
 	start)
-		startNeo4j 
+		startNeo 
 		startRails
 		# exit 0
 		;;
@@ -184,27 +204,27 @@ case $1 in
 
 	stop)
 		stopRails
-		stopNeo4j
+		stopNeo
 		exit 0
 		;;
 
 	stopNeo4j)
-		stopNeo4j
+		stopNeo
 		exit 0
 		;;
 
 	restart)
 		stopRails
-		stopNeo4j
+		stopNeo
 
-		startNeo4j
+		startNeo
 		startRails
 		# exit 0
 		;;
 
 	status)
-		#echo "not yet implemented"
-		exit 1
+		outStatus
+		exit 0
 		;;
 	*)
 		#echo "usage: bash ./autorun.sh [start|rails|restart|stop)"
