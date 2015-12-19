@@ -168,12 +168,16 @@ it:
         languages: "Lingue"
         administrators: "Amministratori"
         view_system_status: "Stato del sistema"
+        view_config: "Configurazione View"
       left:
         home_posts: "Tutti i Post"
         preferites: "I miei preferiti"
         groups: "Gruppi"
         discussions: "Discussioni"
         blogs: "Blog"
+        social_networks: "Social networks"
+
+
   mail_collector:
 
   post:
@@ -248,6 +252,10 @@ it:
         invalid: "non è valido"
         too_short: "troppo corto"
       models:
+        group:
+          attribute:
+            type:
+              inclusion: ["open", "closed", "secret"]
         language:
           attributes:
             code:

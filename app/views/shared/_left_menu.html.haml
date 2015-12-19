@@ -5,8 +5,9 @@
   #subject_info.rounded= render partial: 'subjects/info', locals: { subject: subject, social_network: current_social_network }
   %ul#myposts.list-group= render partial: 'shared/menu_posts', locals: { subject: subject, social_network: current_social_network, right_menu_icons: right_menu_icons }
   %ul#myworkrooms.list-group= render partial: 'shared/menu_workrooms', locals: { subject: subject, social_network: current_social_network, right_menu_icons: right_menu_icons  }
+  %ul#mysocial_networks.list-group= render partial: 'shared/menu_social_networks', locals: { subject: subject, social_network: current_social_network, right_menu_icons: right_menu_icons  }
   %ul#mygroups.list-group= render partial: 'shared/menu_groups', locals: { subject: subject, social_network: current_social_network, right_menu_icons: right_menu_icons  }
   %ul#mydiscussions.list-group= render partial: 'shared/menu_discussions', locals: { subject: subject, social_network: current_social_network, right_menu_icons: right_menu_icons  }
   -#%ul#mypages.list-group= render partial: 'shared/menu_pages', locals: { subject: subject, social_network: current_social_network, right_menu_icons: right_menu_icons  }
-  %ul#mymedia.list-group= render partial: 'shared/menu_media_managers', locals: { subject: subject, social_network: current_social_network, right_menu_icons: right_menu_icons  }
+  -#%ul#mymedia.list-group= render partial: 'shared/menu_media_managers', locals: { subject: subject, social_network: current_social_network, right_menu_icons: right_menu_icons  }
   %ul#myblogs.list-group= render partial: 'shared/menu_blogs', locals: { subject: subject, social_network: current_social_network, right_menu_icons: right_menu_icons  }

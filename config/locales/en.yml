@@ -168,12 +168,16 @@ en:
         languages: "Languages"
         administrators: "Administrators"
         view_system_status: "View system status"
+        view_config: "View config"
       left:
         home_posts: "Home posts"
         preferites: "My preferites"
         groups: "Groups"
         discussions: "Discussions"
         blogs: "Blogs"
+        social_networks: "Social networks"
+
+
   post:
     model:
     view:
@@ -244,6 +248,10 @@ en:
 
     errors:
       models:
+        group:
+          attribute:
+            type:
+              inclusion: ["open", "closed", "secret"]
         language:
           attributes:
             code:
