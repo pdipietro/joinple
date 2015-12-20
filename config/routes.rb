@@ -35,7 +35,7 @@ Rails.application.routes.draw do
 # administrative resources
 
   resources :languages,           constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
-  resources :social_networks,     constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true,  except: [:destroy]
+  resources :social_networks,     constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true,  except: [:destroy, :show]
 
   resources :posts,               constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
   resources :groups,              constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true,  except: [:show]

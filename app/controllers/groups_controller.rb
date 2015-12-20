@@ -4,11 +4,10 @@ class GroupsController < ApplicationController
   before_action :check_social_network
   before_action :set_group, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_subject, only: [:create, :destroy]
-  before_action  :set_current_group_loc, only: [:show, :list_one]
-  before_action  :reset_current_group_loc, only: [:edit, :update, :destroy, :create]
+  before_action :set_current_group_loc, only: [:show, :list_one]
+  before_action :reset_current_group_loc, only: [:edit, :update, :destroy, :create]
 
   respond_to :js
-
 
   def list_one
 
@@ -45,7 +44,7 @@ class GroupsController < ApplicationController
             @result = Neo4j::Session.query.match(query).proxy_as(Event, :event).paginate(:page => @first_page, :per_page => secondary_items_per_page, return: "event distinct",order: "event.date asc")
       when "myevents"
             @subject = Event
-            query = "(subject:Subject { uuid : '#{current_subject_uuid?}' })-[p:participates|owns|admins]->(event:Event)-[b:belongs_to]->" << basic_query
+            query = "(subject:Subject { uuid : '#{current_subject_id?}' })-[p:participates|owns|admins]->(event:Event)-[b:belongs_to]->" << basic_query
             @result = Neo4j::Session.query.match(query).proxy_as(Event, :event).paginate(:page => @first_page, :per_page => secondary_items_per_page, return: "event distinct",order: "event.date asc")
       else 
            ""      
@@ -131,7 +130,6 @@ class GroupsController < ApplicationController
   def new
     puts ("----- Groups Controller: new -----------------------------------------------------------")
     @group = Group.new 
-
   end
 
   # GET /groups/1/edit
@@ -142,8 +140,11 @@ class GroupsController < ApplicationController
   # POST /groups
   # POST /groups.json
   def create
-    puts ("----- Groups Controller: Create -----------------------------------------------------------")
+    logger.debug ("----- Groups Controller: Create --")
+
     @group = Group.new(group_params)
+    @group.logo = cloudinary_clean(@group.logo)
+    @group.banner = cloudinary_clean(@group.banner)
 
     respond_to do |format|
       begin
@@ -162,14 +163,14 @@ class GroupsController < ApplicationController
           format.html { redirect_to(request.env["HTTP_REFERER"]) }
           format.json { render :show, status: :created, location: @group }
       end
-
     end
   end
 
   # PATCH/PUT /groups/1
   # PATCH/PUT /groups/1.json
   def update
-    puts ("----- Groups Controller: update -----------------------------------------------------------")
+    logger.debug ("----- Groups Controller: update --")
+    logger.debug ("group_params #{group_params}")
     respond_to do |format|
       if @group.update(group_params)
         format.js   { render partial: "replace", object: @group, notice: 'Group was successfully updated.' }

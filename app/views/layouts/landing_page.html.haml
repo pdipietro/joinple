@@ -3,9 +3,8 @@
   %head
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'salvattore', media: 'all', 'data-turbolinks-track' => true
-    = stylesheet_link_tag    'landing-page', media: 'all', 'data-turbolinks-track' => true
-    -#= stylesheet_link_tag    'salvattore', media: 'all', 'data-turbolinks-track' => true
+    -#= javascript_include_tag 'salvattore', media: 'all', 'data-turbolinks-track' => true
+    -#= stylesheet_link_tag    'landing-page', media: 'all', 'data-turbolinks-track' => true
 
     %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1"}    
     = csrf_meta_tags
@@ -13,34 +12,12 @@
         google: ['Roboto Slab', 'Roboto'] |
       })                                  |
     = render 'layouts/shim'
-    = puts "=================>>>> Here is 'landing_pages' layout"
+    = logger.debug "------------------ Here is 'landing_pages' layout --"
     %body{:sn => "#{current_social_network_name?}"}
-      = javascript_include_tag 'salvattore.min', media: 'all', 'data-turbolinks-track' => true
-      -#:javascript
-        check-browser-size();
+      -#= javascript_include_tag 'salvattore.min', media: 'all', 'data-turbolinks-track' => true
+        -#check-browser-size();
       #wrapper
         #header
           = render 'layouts/header'
         #page.container-fluid
-          = render 'landing_page'
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+          = image_tag "homePage.png", :class => "responsive"

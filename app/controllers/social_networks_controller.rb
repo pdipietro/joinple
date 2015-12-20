@@ -8,23 +8,26 @@ class SocialNetworksController < ApplicationController
   BASIC_ITEMS_PER_PAGE = 25
   SECONDARY_ITEMS_PER_PAGE = 25
 
+ # def list_one
+ #   logger.debug ("--- Social Network Controller: List_one --(#{params[:filter]})--")
+ # end
 
   # GET /social_network/list/:filter(/:limit(/:subject))
   def list
-    puts ("----- Social Network Controller: List --(#{params[:filter]})----------------------------------------")
+    logger.debug ("--- Social Network Controller: List --(#{params[:filter]})--")
 
     filter = params[:filter]
     first_page = params[:from_page].nil? ? 1 : params[:from_page]
 
-    puts "current_subject: #{current_subject} - current_subject.uuid: #{current_subject.uuid}"
+    x = current_subject_id?
+    logger.debug "current_subject: #{current_subject} - current_subject.uuid: #{current_subject_id?}"
 
-    #debugger
     query_string =
       case filter
         when "iparticipate"
-             "(subject:Subject { uuid : '#{current_subject.uuid}' })-[p:participates|owns]->(social_networks:SocialNetwork)"
+             "(subject:Subject { uuid : '#{current_subject_id?}' })-[p:participates|owns]->(social_networks:SocialNetwork)"
         when "iadminister"
-             "(subject:Subject { uuid : '#{current_subject.uuid}' })-[p:owns]->(social_networks:SocialNetwork)" 
+             "(subject:Subject { uuid : '#{current_subject_id?}' })-[p:owns]->(social_networks:SocialNetwork)" 
         when "all"
              "(social_networks:SocialNetwork)"
       end
@@ -53,7 +56,9 @@ class SocialNetworksController < ApplicationController
   # GET /social_networks/1
   # GET /social_networks/1.json
   def show
-    @social_network = SocialNetwork.find
+    logger.debug  ("----- Groups Controller: show --")
+    @show = true
+    list_one
   end
 
   # GET /social_networks/new
@@ -63,25 +68,41 @@ class SocialNetworksController < ApplicationController
 
   # GET /social_networks/1/edit
   def edit
-    #debugger
   end
 
   # POST /social_networks
   # POST /social_networks.json
   def create
-    @social_network = SocialNetwork.new(social_network_params)
+    logger.debug ("----- SocialNetworks Controller: Create --------------")
+    success = true
 
-    respond_to do |format|
-      if @social_network.save
+    begin
+      tx = Neo4j::Transaction.new
+        @social_network = SocialNetwork.new(social_network_params)
+        @social_network.logo = cloudinary_clean(@social_network.logo)
+        @social_network.banner = cloudinary_clean(@social_network.banner)
+        @social_network.save
         rel = Owns.create(from_node: current_subject, to_node: @social_network) 
 
-        format.js   { render partial: "enqueue", object: @social_network, notice: 'Social network was successfully created.' }
-        format.html { redirect_to @social_network, notice: 'Social network was successfully created.' }
-        format.json { render :show, status: :created, location: @social_network }
-      else
-        format.js   { render :new, object: @social_network }
-        format.html { render :new }
-        format.json { render json: @social_network.errors, status: :unprocessable_entity }
+
+      rescue => e
+        tx.failure
+        success = false
+      ensure
+        tx.close
+
+      respond_to do |format|
+        unless success 
+          logger.debug "--------- /SocialNetwork/create: transaction failure: #{@@social_network.name} - event: #{e}"
+          format.js   { render partial: "enqueue", object: @social_network, notice: 'Social network was successfully created.' }
+          format.html { redirect_to @social_network, notice: 'Social network was successfully created.' }
+          format.json { render :show, status: :created, location: @social_network }
+        else
+          logger.debug "--------- /SocialNetwork/create: transaction succeeded: #{@@social_network.name}"
+          format.js   { render :new, object: @social_network }
+          format.html { render :new }
+          format.json { render json: @social_network.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -93,7 +114,7 @@ class SocialNetworksController < ApplicationController
     parms = social_network_params
     parms[:logo] = cloudinary_clean(parms[:logo]) unless parms[:logo].to_s.length == 0
     parms[:banner] = cloudinary_clean(parms[:banner])unless parms[:banner].to_s.length == 0
-    puts "parms: #{parms}"
+    logger.debug  "parms: #{parms}"
 
     respond_to do |format|
       if @social_network.update(parms)
@@ -128,14 +149,13 @@ class SocialNetworksController < ApplicationController
 
   # GET /groups/list/:filter(/:limit(/:subject))
   def get_social_network_subset(actual_page, items_per_page, filter)
-    puts "INTO  - get_social_network_subset"
+    logger.debug  "INTO  - get_social_network_subset"
     query_string = prepare_query(filter)
-    puts "query_string: #{query_string}"
+    logger.debug  "query_string: #{query_string}"
     sn = SocialNetwork.as(:social_networks).query.match(query_string).proxy_as(SocialNetwork, :social_networks).paginate(:page => actual_page, :per_page => items_per_page, return: :social_networks, order: "social_networks.created_at desc")
-    #grp = Group.as(:groups).query.match(query_string).proxy_as(Group, :groups).paginate(:page => actual_page, :per_page => items_per_page, return: :groups, order: "groups.created_at desc")
-    puts "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-    puts "#{sn}"
-    puts "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    logger.debug  "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    logger.debug  "#{sn}"
+    logger.debug  "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
     sn
   end
 

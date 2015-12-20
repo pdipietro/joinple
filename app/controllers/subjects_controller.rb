@@ -90,7 +90,7 @@ class SubjectsController < ApplicationController
   # POST /subjects
   # POST /subjects.json
   def create
-    puts "--------------------------------------------------------------------------------------------------------------------"
+    logger.debug ("----- Subjects Controller: Create -----------------")
     success = true
 
     begin
@@ -109,12 +109,12 @@ class SubjectsController < ApplicationController
 
       respond_to do |format|
         unless success 
-          puts "--------- /subject/create: transaction failure: #{@subject.nickname} - event: #{e}"
+          logger.debug "--------- /Subject/create: transaction failure: #{@subject.nickname} - event: #{e}"
           format.js   { render :create, object: @subject }
           format.html { render :new }
           format.json { render json: @subject.errors, status: :unprocessable_entity }
         else
-          puts "--------- /subject/create: transaction succeeded: #{@subject.nickname}"
+          logger.debug "--------- /Subject/create: transaction succeeded: #{@subject.nickname}"
           flash[:info] = "Please check your email to activate your account."          #format.js   { render partial: "enqueue", object: @discussion_comment, locals: { :parent_class => parent_class, :parent_uuid  => parent_uuid  }, notice: 'Post was successfully created.' }
           format.js   { redirect_to root_url }
           format.html { redirect_to(request.env["HTTP_REFERER"]) }
