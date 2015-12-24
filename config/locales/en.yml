@@ -209,7 +209,21 @@ en:
       create_title: "Create a new social network"
       edit_title: "Edit the "
       name: " social network"
+      visibility: ["open", "closed", "private", "restricted"]
+      status: ["mainteinance", "active", "suspended", "locked", "banned"]
     controller:
+    options:
+      visibility:
+        open: "open"
+        closed: "closed"
+        private: "private"
+        restricted: "restricted"
+      status: 
+        mainteinance: "mainteinance"
+        active: "active"
+        suspended: "suspended"
+        locked: "locked"
+        banned: "banned"
   subject:
     model:
       attribute:

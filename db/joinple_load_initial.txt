@@ -41,20 +41,15 @@ create (_5:`Language` {`code`:"es-es", `created_at`:1420465834, `description`:"E
 
 
 
-create (_6:`SocialNetwork` {`background_color`:"#e5e5e5", `banner`:"v1444070339/subject/ec122ca0-0ecc-4bae-af14-f1f781d88311/social/7602926d-702a-4b30-9c05-125d50212e79/banner/qoqlhnackzybffxqxfjz.jpg", `created_at`:1422308304, `description`:"Basic joinple social network.", `goal`:"Support job searching", `iname`:"www", `logo`:"v1444070283/subject/ec122ca0-0ecc-4bae-af14-f1f781d88311/social/7602926d-702a-4b30-9c05-125d50212e79/logo/ygoofovrlkp6krlsi5p0.jpg", `mission`:"Missionnnnn", `name`:"Joinple", `short_description`:"Short description.", `slogan`:"Slogannnnn.", `social_network_color`:"#a02348", `text_color`:"#ffffff", `updated_at`:1444071020, `uuid`:"7602926d-702a-4b30-9c05-125d50212e79"})
+create (_6:`SocialNetwork` {`background_color`:"#e5e5e5", `banner`:"v1444070339/subject/ec122ca0-0ecc-4bae-af14-f1f781d88311/social/7602926d-702a-4b30-9c05-125d50212e79/banner/qoqlhnackzybffxqxfjz.jpg", `created_at`:1422308304, `description`:"Basic joinple social network.", `goal`:"Enable social network creation", `iname`:"www", `logo`:"v1444070283/subject/ec122ca0-0ecc-4bae-af14-f1f781d88311/social/7602926d-702a-4b30-9c05-125d50212e79/logo/ygoofovrlkp6krlsi5p0.jpg",`name`:"Joinple", `short_description`:"Short description.", `slogan`:"Want you own Social Network? Do it yourself!", `social_network_color`:"#a02348", `text_color`:"#ffffff", `updated_at`:1444071020, `uuid`:"7602926d-702a-4b30-9c05-125d50212e79", status:"active", visibility: "restricted"})
 
+create (_7:`SocialNetwork` {`background_color`:"#e5e5e5", `banner`:"v1450855899/subject/ec122ca0-0ecc-4bae-af14-f1f781d88311/social/82ce5b6c-cdb2-4a10-9b24-03f1a37306a8/banner/pnyo0zebuw4rhmms1qys.jpg", `created_at`:1450855901, `description`:"A social network for wellness is better than a social network for badness.", `goal`:"Let people learn to stey well", `iname`:"wellness", `logo`:"v1450855802/subject/ec122ca0-0ecc-4bae-af14-f1f781d88311/social/82ce5b6c-cdb2-4a10-9b24-03f1a37306a8/logo/ao4xjuyoagpqx2j0aczj.jpg", `name`:"Wellness", `short_description`:"A social network for wellness.", `slogan`:"Is better a welless today than a kick in the ass.", `social_network_color`:"#ffff00", `status`:"active", `text_color`:"#323342", `updated_at`:1450855901, `uuid`:"c4f9c65b-abb6-4d7d-ba38-7ee2d60919cb", `visibility`:"open"})
 
-create (_7:`LandingPage` {`created_at`:1443561845, `description`:"", `updated_at`:1443561845, `uuid`:"09fc6b54-b581-41cc-81b7-e80f02867c5d"})
-create (_8:`LandingPage` {`created_at`:1443570452, `description`:"", `header`:"v1443570452/landing/header/slider1-144dpi_xcwtem.jpg", `logo`:"v1443570425/landing/logo/cover-144dpi.jpg", `updated_at`:1443570452, `uuid`:"a4bd511d-a6a6-4873-b03b-454d9c0c8a0e"})
-create (_9:`LandingPage` {`created_at`:1443605413, `description`:"", `header`:"v1443605423/landing/header/slider1-144dpi_h2cgfd.jpg", `logo`:"v1443605401/landing/logo/slider4-144dpi.jpg", `updated_at`:1443605413, `uuid`:"29ed9de5-71e3-4d6c-9a14-960c1c01d65a"})
-create (_10:`LandingPage` {`created_at`:1443892227, `description`:"", `updated_at`:1443892227, `uuid`:"f1211dc5-35ae-46d1-b9e7-6fa3e3de8065"})
-create (_11:`LandingPage` {`created_at`:1443892429, `description`:"", `header`:"v1443892425/landing/v0.7.7/header/j3wpxazrtgnjxjxojcbb.jpg", `logo`:"v1443892263/landing/v0.7.7/logo/kabcufsydzd8yfmczfey.jpg", `updated_at`:1443892429, `uuid`:"46e2cbb9-2f72-4705-8abf-d4d294926f29"})
-
-
-
+create _0-[:`owns` {`created_at`:1450855901, `updated_at`:1450855901}]->_7
 create _0-[:`has_profile` {`created_at`:1422308305, `updated_at`:1422308305}]->_1
 create _0-[:`owns` {`created_at`:1422308305, `updated_at`:1422308305}]->_6
 create _6-[:`speaks` {`created_at`:1421477725, `updated_at`:1421477725}]->_4
+create _6-[:`speaks` {`created_at`:1421477725, `updated_at`:1421477725}]->_3
 
 ;
 commit

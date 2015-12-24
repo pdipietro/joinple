@@ -9,10 +9,12 @@ class SocialNetwork
   property  :background_color,         :type =>   String, default: "#e5e5e5"
   property  :social_network_color,     :type =>   String, default: "#000000"
   property  :text_color,               :type =>   String, default: "#323342"
-  property  :mission,                  :type =>   String
+  property  :goal,                     :type =>   String
   property  :slogan,                   :type =>   String
   property  :short_description,        :type =>   String
   property  :iname,                    :type =>   String
+  property  :visibility,               :type =>   String, default: "open"
+  property  :status,                   :type =>   String, default: "mainteinance"
 
   property  :logo,              type: String
   property  :banner,            type: String
@@ -25,8 +27,10 @@ class SocialNetwork
   validates_uniqueness_of :name, case_sensitive: false
   validates   :description, length: { minimum: 4 } #, allow_blank: true
   validates   :short_description, length: { minimum: 5, maximum: 40 } #, allow_blank: true
-  validates   :mission, length: { minimum: 4 } #, allow_blank: true
+  validates   :goal, length: { minimum: 4 } #, allow_blank: true
   validates   :slogan, :presence => true, length: { minimum: 2 }, allow_blank: false
+  validates   :visibility, inclusion: { in: ["open", "closed", "private", "restricted"] }
+  validates   :status, inclusion: { in: ["mainteinance", "active", "suspended", "locked", "banned"] }
 
   before_create :check_default
   before_save :check_default
@@ -36,7 +40,7 @@ class SocialNetwork
     self.description = humanize_sentence(self.description) if self.description
     self.short_description = humanize_sentence(self.short_description) if self.short_description
     self.slogan = humanize_sentence(self.slogan) if self.slogan
-    self.mission = humanize_word(self.mission) if self.mission
+    self.goal = humanize_word(self.goal) if self.goal
     self.iname = name.gsub(/\s+/, "").downcase unless name.casecmp("joinple") == 0
   end
 

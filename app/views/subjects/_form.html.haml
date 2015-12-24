@@ -6,7 +6,6 @@
       .panel-title
     .panel-body
       = bootstrap_form_for(subject, :remote => :true, :html => {:multipart => true} ) do |f|
-        -#= render 'shared/error_messages', object: f
         .nothing= f.text_field :nickname, :prepend => t("subject.model.attribute.nickname"), :placeholder => t("subject.view.signup.placeholder.nickname"), :hide_label => :true
         .spacer
         .nothing= f.text_field :first_name, :prepend => t("subject.model.attribute.first_name"), :placeholder => t("subject.view.signup.placeholder.first_name"), :hide_label => :true

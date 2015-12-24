@@ -68,6 +68,7 @@ class SocialNetworksController < ApplicationController
 
   # GET /social_networks/1/edit
   def edit
+    #debugger
   end
 
   # POST /social_networks
@@ -83,8 +84,6 @@ class SocialNetworksController < ApplicationController
         @social_network.banner = cloudinary_clean(@social_network.banner)
         @social_network.save
         rel = Owns.create(from_node: current_subject, to_node: @social_network) 
-
-
       rescue => e
         tx.failure
         success = false
@@ -93,12 +92,12 @@ class SocialNetworksController < ApplicationController
 
       respond_to do |format|
         unless success 
-          logger.debug "--------- /SocialNetwork/create: transaction failure: #{@@social_network.name} - event: #{e}"
+          logger.debug "--------- /SocialNetwork/create: transaction failure: #{@social_network.name} - event: #{e}"
           format.js   { render partial: "enqueue", object: @social_network, notice: 'Social network was successfully created.' }
           format.html { redirect_to @social_network, notice: 'Social network was successfully created.' }
           format.json { render :show, status: :created, location: @social_network }
         else
-          logger.debug "--------- /SocialNetwork/create: transaction succeeded: #{@@social_network.name}"
+          logger.debug "--------- /SocialNetwork/create: transaction succeeded: #{@social_network.name}"
           format.js   { render :new, object: @social_network }
           format.html { render :new }
           format.json { render json: @social_network.errors, status: :unprocessable_entity }
@@ -167,7 +166,7 @@ class SocialNetworksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def social_network_params
-      params.require(:social_network).permit(:uuid, :name, :description, :short_description, :mission, :slogan, :logo, :banner, :background_color, :text_color, :social_network_color)
+      params.require(:social_network).permit(:uuid, :name, :description, :short_description, :goal, :slogan, :logo, :banner, :status, :visibility, :background_color, :text_color, :social_network_color)
     end
 
     def get_title(filter)

@@ -20,5 +20,5 @@
                   %i.im-pencil{ :style => "color: #{social_network.text_color};" }
                 = link_to social_network, :method => :delete, :data => { :confirm => 'Are you sure?' }, :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Delete the element" do
                   %i.im-bin{ :style => "color: #{social_network.text_color};" }
-              %button.btn.btn-default.btn-sm-nothing{ :type => "submit", :name => "commit", :hide_label => :true, :style => super_social_network_style }
+              %button.btn.btn-default.btn-sm-nothing.joinple-button-base{ :type => "submit", :name => "commit", :hide_label => :true, :style => super_social_network_style }
                 = "Join"

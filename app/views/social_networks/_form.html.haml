@@ -1,31 +1,36 @@
-#social-network-form{ :class => social_network.errors.count == 0 ? 'collapse' : 'collapse in' }
-  - puts "********************************************************************************************************************************"
-  - puts "session[:social_network].class is now #{session[:social_network].class.name} - SocialNetwork = #{current_social_network.name} - Owner is #{session[:social_network].is_owned_by}"
-  - puts "social_network_uuid: #{social_network.uuid?}"
+#social-network-form
+  -#
+    { :class => social_network.errors.count == 0 ? 'collapse' : 'collapse in' }
+  - logger.debug "session[:social_network].class is now #{session[:social_network].class.name} - SocialNetwork = #{current_social_network.name} - Owner is #{session[:social_network].is_owned_by}"
+  - logger.debug "social_network_uuid: #{social_network.uuid?}"
 
   .spacer
-  .col-xs-15
-  .col-xs-30
+  .col-xs-10
+  .col-xs-40
     - social_network_2 = social_network
     .panel.panel-default.nothing
-      = render partial: 'shared/common_panel_header', locals: { :style => "super", :data_target => "social_network-form", :title => title }
+      - title = t("social_network.view.create_title") unless defined?(title) 
+      = render partial: 'shared/common_panel_header', locals: { :style => "super", :data_target => "#social-network-form", :title => title }
 
-      -#.panel-heading{ :style => super_social_network_style }
-        %a.toggle{ :type => "toggle", "data-target" => "#social-network-form", "data-toggle" => "collapse in"}
-          .panel-title
-            - if defined?(title)
-              = title
-            - else
-              = t("social_network.view.create_title")
-            %span.to-right
-              %i.im-uncheck
       .panel-body
         = bootstrap_form_for(social_network, :remote => :true, :html => {:multipart => true} ) do |f|
+          -#.nothing= f.text_field :nickname, :prepend => t("subject.model.attribute.nickname"), :placeholder => t("subject.view.signup.placeholder.nickname"), :hide_label => :true
+          = f.hidden_field :uuid, :value => :uuid
           .nothing= f.text_field :name, :prepend => :name, :placeholder => "Enter the name of the new social network", :hide_label => :true, :text => "Social network name"
           .spacer
           .nothing= f.text_field :short_description, :prepend => "short description", :placeholder => "Enter a short description of the social network", :hide_label => :true, :text => "Social network short description"
           .spacer
+          .nothing= f.text_field :description, :prepend => :description, :placeholder => "Enter a short description of the social network", :hide_label => :true, :text => "Social network description"
 
+
+          -#= f.collection_radio_buttons :visibility, [[t("social_network.options.visibility.value.open")],[t("social_network.options.visibility.value.closed")],[t("social_network.options.visibility.value.private")],[t("social_network.options.visibility.value.restricted")]], :first, :first, :inline => true, :checked => social_network.visibility, :prepend => t("social_network.view.visibility"), :label => t("social_network.model.visibility").html_safe, :class => "nothing", :item_wrapper_class => 'radio inline', :item_wrapper_tag => :label, :collection_wrapper_tag => :div, :collection_wrapper_class => "controls"
+
+          = f.collection_radio_buttons :status, [[t("social_network.options.status.value.mainteinance")], [t("social_network.options.status.value.active")], [t("social_network.options.status.value.suspended")], [t("social_network.options.status.value.locked")], [t("social_network.options.status.value.banned")]], :first, :first, :inline => true, :checked => :status, :prepend => :status, :label => t("social_network.model.status").html_safe, :class => "nothing", :item_wrapper_class => 'radio inline', :item_wrapper_tag => :label, :collection_wrapper_tag => :div, :collection_wrapper_class => "controls"
+
+          .nothing= f.text_field :slogan, :prepend => :slogan, :placeholder => "Describe the slogan of the social network", :hide_label => :true, :text => "Social network slogan"
+          .spacer
+          .nothing= f.text_field :goal, :prepend => :goal, :placeholder => "Describe the goal of the social network", :hide_label => :true, :text => "Social network goal"
+          .spacer 
           .nothing= f.color_field :background_color, :prepend => "background color", :placeholder => "Select the background color", :hide_label => :true, :class => "left-align" 
           .spacer
           .nothing= f.color_field :social_network_color, :prepend => "social network color", :placeholder => "Select the social network color", :hide_label => :true, :class => "left-align" 
@@ -38,7 +43,6 @@
             #upload_social_network_logo
             - ratio_logo = 1.0
             - logo_button_caption = t("social_network.view.logo_button_caption")
-            -# debugger
             - logo_folder_name = build_object_image_path options = { :social => "#{social_network.uuid?}", :logo => nil } 
             :javascript 
               cloudinary.applyUploadWidget(document.getElementById('upload_social_network_logo'), 
@@ -59,7 +63,6 @@
             #upload_social_network_banner
             - ratio_banner = 2.0
             - banner_button_caption = t("social_network.view.banner_button_caption")
-            -# debugger
             - banner_folder_name = build_object_image_path options = { :social => "#{social_network.uuid?}", :banner => nil } 
             :javascript 
               cloudinary.applyUploadWidget(document.getElementById('upload_social_network_banner'), 
@@ -76,15 +79,9 @@
               min_image_width: "1280", min_image_height: "640" },
                 function(error, result) {console.log(error, result)});
 
-          .spacer 
-          .nothing= f.text_field :description, :prepend => :description, :placeholder => "Enter a short description of the social network", :hide_label => :true, :text => "Social network description"
-          .spacer
-          .nothing= f.text_field :slogan, :prepend => :slogan, :placeholder => "Describe the slogan of the social network", :hide_label => :true, :text => "Social network slogan"
-          .spacer
-          .nothing= f.text_field :mission, :prepend => :mission, :placeholder => "Describe the mission of the social network", :hide_label => :true, :text => "Social network mission"
           .spacer
 
           = render partial: 'shared/common_panel_footer'
 
-  .col-xs-15
+  .col-xs-10
 

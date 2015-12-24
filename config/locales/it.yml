@@ -204,13 +204,43 @@ it:
           remember_me: "Ricordami!"
   social_network:
     model:
+      visibility: "<span style='margin-right: 32px; font-weight: normal;'>visibilità</span>"
+      status: "<span style='margin-right: 32px; font-weight: normal;'>stato</span>"
     view:
       banner_button_caption: "seleziona l'immagine del social network ..." 
       logo_button_caption: "seleziona il logo del social network ..."
       create_title: "Crea un nuovo social network"
       edit_title: "Modifica il social network "
       name: ""
+      #visibility: "<span style='margin-right: 12px; font-weight: normal;'>visibilità</span>"
+      #tatus: "<span style='margin-right: 4px; font-weight: normal;'>stato</span>"
     controller:
+    options:
+      visibility:
+        label: 
+          open: "aperto"
+          closed: "chiuso"
+          private: "privato"
+          restricted: "ristretto"
+        value:
+          open: "open"
+          closed: "closed"
+          private: "private"
+          restricted: "restricted"
+      status: 
+        label:
+          mainteinance: "manutenzione"
+          active: "attivo"
+          suspended: "sospeso"
+          locked: "bloccato"
+          banned: "vietato"
+        value:
+          mainteinance: "mainteinance"
+          active: "active"
+          suspended: "suspended"
+          locked: "locked"
+          banned: "banned"
+
   subject:
     model:
       attribute:
