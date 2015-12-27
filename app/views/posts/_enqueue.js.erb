@@ -1,2 +1,2 @@
-$("#main_content .grid-padding .column *:eq(0)").before("<%= escape_javascript(render partial: 'show', locals: { post: @post } ) %>" );
-$("#main_header").html("<%= escape_javascript(render partial: 'header', locals: { post: Post.new} ) %>" );
+$("#main-content .grid-padding .column *:eq(0)").before("<%= escape_javascript(render partial: 'show', locals: { post: @post } ) %>" );
+$("#main-header").html("<%= escape_javascript(render partial: 'header', locals: { post: Post.new} ) %>" );

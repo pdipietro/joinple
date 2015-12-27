@@ -1,7 +1,7 @@
-$("#main_header").html("<%= escape_javascript(render partial: 'single_header', locals: { group: @group } ) %>" );
-$("#main_add").html("" );
-$("#main_content").html("" );
-$("#tech_info").html("<%= escape_javascript(render partial: 'sessions/tech_info', locals: { view: 'show.js.erb' }) %>" );
-$("#main_content").html("<%= escape_javascript(render partial: 'discussions/index', locals: { discussions: result, subset: subset, title: title, show_group: show_group, show_social: show_social } ) %>" );
+$("#main-header").html("<%= escape_javascript(render partial: 'single_header', locals: { group: @group } ) %>" );
+$("#main-add").html("" );
+$("#main-content").html("" );
+$("#tech-info").html("<%= escape_javascript(render partial: 'sessions/tech_info', locals: { view: 'show.js.erb' }) %>" );
+$("#main-content").html("<%= escape_javascript(render partial: 'discussions/index', locals: { discussions: result, subset: subset, title: title, show_group: show_group, show_social: show_social } ) %>" );
 
 

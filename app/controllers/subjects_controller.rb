@@ -6,7 +6,12 @@ class SubjectsController < ApplicationController
   before_action :set_subject,       only: [:show, :edit, :update]
 #  before_action :check_default,  only: [:create, :update]
 
+  require 'neo4j-will_paginate_redux'
+
   respond_to :js
+
+  BASIC_ITEMS_PER_PAGE = 25
+  SECONDARY_ITEMS_PER_PAGE = 25
 
   #helper_method  :secondary_items_per_page, :get_group_subset, :get_posts_subset
  

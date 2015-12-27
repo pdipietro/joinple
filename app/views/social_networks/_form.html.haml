@@ -2,7 +2,11 @@
   -#
     { :class => social_network.errors.count == 0 ? 'collapse' : 'collapse in' }
   - logger.debug "session[:social_network].class is now #{session[:social_network].class.name} - SocialNetwork = #{current_social_network.name} - Owner is #{session[:social_network].is_owned_by}"
-  - logger.debug "social_network_uuid: #{social_network.uuid?}"
+  -# logger.debug "social_network_uuid: #{social_network.uuid?}"
+  - debugger
+  - social_network.uuid = SecureRandom.uuid if social_network.uuid.nil?
+  - debug.info "social_network_uuid=#{social_network_uuid}"
+  -debugger
 
   .spacer
   .col-xs-10

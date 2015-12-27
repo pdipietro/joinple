@@ -92,7 +92,7 @@ class SocialNetworksController < ApplicationController
 
       respond_to do |format|
         unless success 
-          logger.debug "--------- /SocialNetwork/create: transaction failure: #{@social_network.name} - event: #{e}"
+          logger.debug "--------- /SocialNetwork/create: transaction failure: #{@social_network.uuid} - event: #{e}"
           format.js   { render partial: "enqueue", object: @social_network, notice: 'Social network was successfully created.' }
           format.html { redirect_to @social_network, notice: 'Social network was successfully created.' }
           format.json { render :show, status: :created, location: @social_network }

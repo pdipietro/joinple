@@ -1,3 +1,3 @@
-$("#main_add").html("<%= escape_javascript(render partial: 'form', locals: { social_network: SocialNetwork.new, title: 'Create a new social network' } ) %>" );
-$("#social_network-form").removeClass('in');
+$("#main-add").html("<%= escape_javascript(render partial: 'form', locals: { social_network: SocialNetwork.new, title: 'Create a new social network' } ) %>" );
+$("#social-network-form").removeClass('in');
 $("#<%= escape_javascript(@social_network.uuid) %>").html("<%= escape_javascript(render partial: 'show', locals: { social_network: @social_network } ) %>" );

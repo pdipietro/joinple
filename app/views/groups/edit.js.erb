@@ -1,3 +1,3 @@
-$("#main_add").html("<%= escape_javascript(render partial: 'form', locals: { group: @group, title: "Edit the #{@group.name} group" } ) %>" );
+$("#main-add").html("<%= escape_javascript(render partial: 'form', locals: { group: @group, title: "Edit the #{@group.name} group" } ) %>" );
 $("#group-form").removeClass('in').addClass('in');
-$("#tech_info").html("<%= escape_javascript(render partial: 'sessions/tech_info', locals: { view: 'edit.js.erb' }) %>" );
+$("#tech-info").html("<%= escape_javascript(render partial: 'sessions/tech_info', locals: { view: 'edit.js.erb' }) %>" );

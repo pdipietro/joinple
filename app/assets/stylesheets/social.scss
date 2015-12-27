@@ -1,40 +1,40 @@
 /* ********************************** COMMON CONSTANTS *************************************************** */
 
-$min_screen_width:768px;
+$min-screen-width:768px;
 
-$left_column_width:178px;
-$right_column_width:178px;
-$common_header_margin:178px;
+$left-column-width:178px;
+$right-column-width:178px;
+$common-header-margin:178px;
 
-$common_header_right_width:384px;
-$common_header_left_width:$common_header_right_width; 
-$post_image_width:$common_header_right_width;
+$common-header-right-width:384px;
+$common-header-left-width:$common-header-right-width; 
+$post-image-width:$common-header-right-width;
 
-$command_line_height:30px;
-$min_padding:3px;
-$standard_padding:4px;
+$command-line-height:30px;
+$min-padding:3px;
+$standard-padding:4px;
 $standard-border-radius:4px;
 
-$people_box_height: 143px;
+$people-box-height: 143px;
 
-$logo_width:$people_box_height;
-$logo_height:$people_box_height;
+$logo-width:$people-box-height;
+$logo-height:$people-box-height;
 
-$joinple_banner_background_color:#f5f5f5;
-$joinple_page_background_color:#e5e5e5;   /* grey: 229, 229, 229 */
-$joinple_color:#333342;
+$joinple-banner-background-color:#f5f5f5;
+$joinple-page-background-color:#e5e5e5;   /* grey: 229, 229, 229 */
+$joinple-color:#333342;
  
-$joinple_background_color: #a02348;       /* fuxia: 160,35,72    */
-$joinple_text_color: #000000; 
-$link_color:#337ab7;
+$joinple-background-color: #a02348;       /* fuxia: 160,35,72    */
+$joinple-text-color: #000000; 
+$link-color:#337ab7;
 $milk:rgba(255, 255, 255, 0.4);
 $milk-rev:rgba(255, 255, 255, 0.65);
 
-$default_text_color: rgb(51,51,51);
+$default-text-color: rgb(51,51,51);
 
-$btn_height:36px;
+$btn-height:36px;
 
-$margin_standard: 0.5em;
+$margin-standard: 0.5em;
 
 /* ********************************** END COMMON CONSTANTS *********************************************** */
 
@@ -61,8 +61,8 @@ html { font-size: 16px; }
 
 body {
   -webkit-font-smoothing: antialiased;
-  background-color: $joinple_page_background_color;
-  color: $default_text_color;
+  background-color: $joinple-page-background-color;
+  color: $default-text-color;
   font-size: 0.75em;   /* base: 16px from bootstrap * 0.75 ==> 1.2px */
 }
 
@@ -123,7 +123,7 @@ si.header-dropdown {
 
 .navbar-collapse.in {
   overflow-y: auto;
-  background-color: $joinple_banner_background_color;
+  background-color: $joinple-banner-background-color;
 
   & .navbar-nav > li > a {
    padding-top: 0;
@@ -280,29 +280,29 @@ i.hoverable:visited {
 }
 
 i.hoverable:hover {
-  color: $joinple_color;
+  color: $joinple-color;
   text-decoration: none;
 }
 
 i.activable:hover,
 i.activable:active,
 i.activable:focus {
-  color: $joinple_background_color;
+  color: $joinple-background-color;
   text-decoration: none;
 }
 
 header, #page {
-  min-width: $min_screen_width;
+  min-width: $min-screen-width;
   margin: 0 auto;
 }
 
 #page {
   margin-top: 46px;
-  background-color: $joinple_page_background_color;
+  background-color: $joinple-page-background-color;
 }
 
 .container-fluid {
-  background-color: $joinple_banner_background_color;
+  background-color: $joinple-banner-background-color;
 }
 
 .navbar-brand.logo  {
@@ -374,7 +374,7 @@ button
   text-decoration: none;
   border: none !important;
   padding: none !important;
-  background-color: $joinple_page_background_color;
+  background-color: $joinple-page-background-color;
 
 }
 
@@ -390,7 +390,7 @@ ul.list-group {
 
 .list-group {
   margin-bottom: 0;
-  margin-bottom: $margin_standard;
+  margin-bottom: $margin-standard;
   background-color: #ffffff;
 }
 
@@ -436,7 +436,7 @@ li.list-group-item {
 }
 
 .spacer {
-  height: $standard_padding;
+  height: $standard-padding;
   background-color: inherit;
   color: inherit;
   clear: both;
@@ -444,19 +444,19 @@ li.list-group-item {
 
 .spacer-2x {
   @extend .spacer;
-  height: $standard_padding * 2;
+  height: $standard-padding * 2;
 }
 .spacer-4x {
   @extend .spacer;
-  height: $standard_padding * 4;
+  height: $standard-padding * 4;
 }
 .spacer-6x {
   @extend .spacer;
-  height: $standard_padding * 6;
+  height: $standard-padding * 6;
 }
 .spacer-8x {
   @extend .spacer;
-  height: $standard_padding * 8;
+  height: $standard-padding * 8;
 }
 
 .border-1 {
@@ -518,17 +518,17 @@ hr {
 
 .joinple-contour-2 {
     @extend .contour;
-    border: 2px solid $joinple_background_color;
+    border: 2px solid $joinple-background-color;
   }
 
 .joinple-contour-3 {
     @extend .contour;
-    border: 3px solid $joinple_background_color;
+    border: 3px solid $joinple-background-color;
 }
 
 .img-thumbnail {
   padding: 4px;
-  background-color: $joinple_background_color;
+  background-color: $joinple-background-color;
   border: 1px solid #dddddd;
   border-radius: $standard-border-radius;
   -webkit-transition: all 0.2s ease-in-out;
@@ -551,9 +551,9 @@ hr {
 
 .group-mini-header {
   width: 100%;
-  height: $btn_height + 4;
+  height: $btn-height + 4;
   padding: 2px 2px 0 2px;
-  background-color: $joinple_background_color;
+  background-color: $joinple-background-color;
 }
 
 .group-mini-banner {
@@ -581,7 +581,7 @@ hr {
 ** named elements
 ************************************************************************************************************************ */
 
-#subject_info {
+#subject-info {
   @extend .shadowing;
   margin-bottom: 0.7em;
 }
@@ -591,6 +591,9 @@ hr {
 ************************************************************************************************************************ */
 
 .stage {
+  position: absolute;
+  top: 3px;
+  left: 130px;
   color: red;
   font-weight: normal;
   font-size: 80%;
@@ -631,7 +634,7 @@ hr {
 .social-icon {
   position: absolute;
   top: 7px;
-  left: $left_column_width + $standard_padding * 2;
+  left: $left-column-width + $standard-padding * 2;
   padding: 0 !important;
 }
 
@@ -719,8 +722,8 @@ video.responsive {
   position: absolute;
   width: 100%;
   height: 100%;
-  padding-left: $standard_padding;
-  padding-right: $standard_padding;
+  padding-left: $standard-padding;
+  padding-right: $standard-padding;
   z-index: 1;
 }
 
@@ -735,7 +738,7 @@ video.responsive {
 }
 
 .padding-top {
-  padding-top: $standard_padding / 2; 
+  padding-top: $standard-padding / 2; 
 }
 
 .opaque-25 {
@@ -759,15 +762,15 @@ video.responsive {
   bottom: 0;
   left: 0;
   width: 100%;
-  min-height: $btn_height;
-  padding-left: $standard_padding;
-  padding-right: $standard_padding;
+  min-height: $btn-height;
+  padding-left: $standard-padding;
+  padding-right: $standard-padding;
   z-index: 10;
 }
 
 .semi-transparent-bar {
   @extend .bar-on-image-bottom;
-  padding-left: $standard_padding + 80;
+  padding-left: $standard-padding + 80;
   background-color: #6c6c6c;
   opacity: 0.70;
   z-index: 10;
@@ -803,9 +806,9 @@ video.responsive {
 
 .solida-background {
   position: relative;
-  height: $btn_height + 2;
+  height: $btn-height + 2;
   display: block;
-  min-width: $post_image_width;
+  min-width: $post-image-width;
   z-index: 10;
 }
 
@@ -890,35 +893,35 @@ video.responsive {
 ** Styles to format 3 columns: fixed-fluid-fixed
 ************************************************************************************************************************ */
 
-#main_left {
-  width: $left_column_width;
+#main-left {
+  width: $left-column-width;
   margin-left: 0;
   float: left;
-  padding: 0 $standard_padding;
+  padding: 0 $standard-padding;
 }
 
-#main_right {
-  width: $right_column_width;
-  margin-left: -$right_column_width;
+#main-right {
+  width: $right-column-width;
+  margin-left: -$right-column-width;
   float: right;
-  padding: 0 $standard_padding;
+  padding: 0 $standard-padding;
 }
 
-#main_center {
+#main-center {
   xmargin: 0 184px 0 184px;
-  margin: 0 $common_header_margin 0 $common_header_margin;
+  margin: 0 $common-header-margin 0 $common-header-margin;
   min-width: 386px;
   padding: 0;
 }
 
 .page-thumbnail {
-  padding: 3px $standard_padding;
+  padding: 3px $standard-padding;
 }
 
 /* ************************************************************************************************************************
 ***************************************************************************************************************************
 ** Common headers
-** These are the headers of the main central column (#main_center) 
+** These are the headers of the main central column (#main-center) 
 ***************************************************************************************************************************
 ************************************************************************************************************************ */
 
@@ -928,7 +931,7 @@ video.responsive {
 
 #common-header-left {
   width: 100%;
-  min-width: $common_header_left_width;
+  min-width: $common-header-left-width;
   height: auto; 
   margin: 0;
   padding: 0;
@@ -980,10 +983,10 @@ video.responsive {
 
 #common-header-right {
   width: auto;
-  margin-left: $common_header_right_width + $left_column_width;
-  margin-left: $common_header_left_width + 4;
+  margin-left: $common-header-right-width + $left-column-width;
+  margin-left: $common-header-left-width + 4;
   border-radius: $standard-border-radius;
-  min-height: $people_box_height;
+  min-height: $people-box-height;
   background-color: #ffffff;
 }
 
@@ -1033,8 +1036,8 @@ video.responsive {
 #post-header-left {
   @extend #common-header-left;
 
-  min-width: $common_header_left_width; 
-  max-width: $common_header_left_width;
+  min-width: $common-header-left-width; 
+  max-width: $common-header-left-width;
 
 }
 #post-header-left:after {
@@ -1048,9 +1051,9 @@ video.responsive {
   padding: 0;
   border-top-left-radius: 4px;
 
-  margin-left: $standard_padding;
+  margin-left: $standard-padding;
   border-radius: $standard-border-radius;
-  min-height: $people_box_height;
+  min-height: $people-box-height;
   background-color: #ffffff;
   overflow-y: hidden;
 }
@@ -1066,8 +1069,8 @@ video.responsive {
 
 /*
 .post-width {
-  min-width: $common_header_left_width; 
-  max-width: $common_header_left_width; 
+  min-width: $common-header-left-width; 
+  max-width: $common-header-left-width; 
   border-radius: $standard-border-radius;
 }
 */
@@ -1118,7 +1121,7 @@ video.responsive {
 #subject-profile-form, #subject-profile-page, .subject-profile
  {
   background-color: #ffffff;
-  margin-bottom: $margin_standard;
+  margin-bottom: $margin-standard;
   @extend .rounded;
   @extend .shadowing;
 }
@@ -1504,8 +1507,8 @@ img.disabled {
   margin-bottom: 5px;
   vertical-align: middle;
   text-align: center;
-  width: $btn_height; 
-  height: $btn_height;
+  width: $btn-height; 
+  height: $btn-height;
   padding: 0;
 }
 
@@ -1576,7 +1579,7 @@ ul#myposts a li {
       color: #ffffff;
 
       .xxxxxxxxxxxxxxline2 {
-        color: $joinple_color;
+        color: $joinple-color;
       }
     }
 
@@ -1624,7 +1627,7 @@ ul#myposts a li {
 
   .line3 {
     font-size: 1.5em;
-    color: $joinple_color;
+    color: $joinple-color;
 
       &.milk {
         background-color: $milk;
@@ -1649,7 +1652,7 @@ ul#myposts a li {
 
     a {
       text-shadow: none;
-      color: $joinple_background_color;
+      color: $joinple-background-color;
       font-weight: bolder;
 
       :hover {
@@ -1675,7 +1678,7 @@ ul#myposts a li {
 
   .page1 .footer {
     font-size: 2em;
-    background-color: $joinple_background_color;
+    background-color: $joinple-background-color;
     text-align: center;
   }
 }
@@ -1684,7 +1687,7 @@ ul#myposts a li {
 .landing .page4
  {
   margin: 0;
-  background-color: $joinple_color;
+  background-color: $joinple-color;
   width: 100%;
 }
 
@@ -1698,28 +1701,28 @@ ul#myposts a li {
 .page2 .line2 {
   font-size: 2.5em;
   background-color: $milk-rev;
-  padding: $standard_padding;
+  padding: $standard-padding;
   max-width: 360px;
   text-align: center;
 }
 
 
 .page2 a .line2 {
-  color: $joinple_background_color;
+  color: $joinple-background-color;
 }
 
 .page2 a:hover .line2 {
-  color: $joinple_color;
+  color: $joinple-color;
 }
 
 .landing .page3 {
-  background-color: $joinple_background_color;
+  background-color: $joinple-background-color;
   font-size: 2em;
   width: 100%;
 }
 
 .landing .footer {
-  background-color: $joinple_background_color;
+  background-color: $joinple-background-color;
   font-size: 0.9em;
   width: 100%;
 }
@@ -1727,7 +1730,7 @@ ul#myposts a li {
 /********************************* Cloudinary button ******************************************/
 
 .joinple-button-base {
-  color: $joinple_text_color;
+  color: $joinple-text-color;
   text-decoration: none;
   border-radius: $standard-border-radius;
   -moz-border-radius: 4px;
@@ -1737,12 +1740,12 @@ ul#myposts a li {
   display: inline-block;
   padding: $standard-padding;
   margin-top: $standard-padding;
-  background-color: $joinple_page_background_color;
+  background-color: $joinple-page-background-color;
   } 
 
   .joinple-button {
     @extend .joinple-button-base;
-    color: $joinple_text_color !important;
+    color: $joinple-text-color !important;
 
     &::before {
       font-family: 'icomoon';
@@ -1752,7 +1755,7 @@ ul#myposts a li {
 
   .joinple-button-add-image {
     @extend .joinple-button-base;
-    color: $joinple_text_color !important;
+    color: $joinple-text-color !important;
 
     &::before {
       font-family: 'icomoon';
@@ -1808,11 +1811,11 @@ ol .joinple-button-add-image + div + ul.cloudinary-thumbnails li.cloudinary-thum
   }
 
   a {
-    color: $link_color;
+    color: $link-color;
   }
 
   a:hover {
-    color: $joinple_color;
+    color: $joinple-color;
   }
 
   table {

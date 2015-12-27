@@ -1,3 +1,4 @@
-$("#main_add").html("<%= escape_javascript(render partial: 'form', locals: { social_network: SocialNetwork.new  } ) %>" );
-$("#main_content .padding .column *:eq(0)").after("<%= escape_javascript(render partial: 'show', locals: { social_network: @social_network } ) %>" );
-$("#social_network_list").html("<%= escape_javascript(render partial: 'layouts/social_networks' ) %>" );
+$("#main-header").html("<%= escape_javascript(render partial: 'social_networks/header', locals: { social_network: : SocialNetwork.new} ) %>" );
+$("#main-add").html("<%= escape_javascript(render partial: 'form', locals: { social_network: SocialNetwork.new  } ) %>" );
+$("#main-content .padding .column *:eq(0)").after("<%= escape_javascript(render partial: 'show', locals: { social_network: @social_network } ) %>" );
+$("#social-network-list").html("<%= escape_javascript(render partial: 'layouts/social_networks' ) %>" );

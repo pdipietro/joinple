@@ -1,8 +1,8 @@
 if($("#groups-page").length == 0) {
-  $("#tech_info").html("<%= escape_javascript(render partial: 'sessions/tech_info') %>" );
-  $("#main_header").html("<%= escape_javascript(render partial: 'header', locals: { group: Group.new} ) %>" );
-  $("#main_add").html("");
-  $("#main_content").html("<%= escape_javascript(render partial: 'index', locals: { groups: @groups, subset: subset, title: title } ) %>" );
+  $("#tech-info").html("<%= escape_javascript(render partial: 'sessions/tech_info') %>" );
+  $("#main-header").html("<%= escape_javascript(render partial: 'header', locals: { group: Group.new} ) %>" );
+  $("#main-add").html("");
+  $("#main-content").html("<%= escape_javascript(render partial: 'index', locals: { groups: @groups, subset: subset, title: title } ) %>" );
 }
 else
- $("#main_content").html("<%= escape_javascript(render partial: 'index', locals: { groups: @groups, subset: subset, title: title } ) %>" );
+ $("#main-content").html("<%= escape_javascript(render partial: 'index', locals: { groups: @groups, subset: subset, title: title } ) %>" );
