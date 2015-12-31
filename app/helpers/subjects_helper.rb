@@ -80,4 +80,17 @@ puts x.next
       end
    end
 
+
+  def is_subject_profile?(subject,profile)
+     unless profile.nil?
+       x = Neo4j::Session.query("match (subject:#{subject.class.name.singularize} { uuid : '#{subject.uuid}'})-[has_profile:has_profile]->(profile:SubjectProfile { uuid : '#{profile.uuid}'}) return count(profile) as c")
+puts x.next
+       z=x.first[:c]
+       z == 1
+     else
+       false
+     end
+   end
+
+
 end

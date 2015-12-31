@@ -1,6 +1,8 @@
 class SocialNetworksController < ApplicationController
   before_action :set_social_network, only: [:show, :edit, :update, :destroy]
   
+  include SocialNetworksHelper
+
   require 'neo4j-will_paginate_redux'
 
   respond_to :js
@@ -16,23 +18,18 @@ class SocialNetworksController < ApplicationController
   def list
     logger.debug ("--- Social Network Controller: List --(#{params[:filter]})--")
 
-    filter = params[:filter]
     first_page = params[:from_page].nil? ? 1 : params[:from_page]
 
-    x = current_subject_id?
-    logger.debug "current_subject: #{current_subject} - current_subject.uuid: #{current_subject_id?}"
-
-    query_string =
-      case filter
-        when "iparticipate"
-             "(subject:Subject { uuid : '#{current_subject_id?}' })-[p:participates|owns]->(social_networks:SocialNetwork)"
-        when "iadminister"
-             "(subject:Subject { uuid : '#{current_subject_id?}' })-[p:owns]->(social_networks:SocialNetwork)" 
-        when "all"
-             "(social_networks:SocialNetwork)"
-      end
+    filter = params[:filter]
+    query_string = build_filter(current_subject_id?,filter)
 
     @social_networks = SocialNetwork.as(:social_networks).query.match(query_string).proxy_as(SocialNetwork, :social_networks).paginate(:page => first_page, :per_page => SECONDARY_ITEMS_PER_PAGE, return: :social_networks, order: "social_networks.created_at desc")
+
+    # patch if user just signed, there is still no social he participate so view all  
+    if filter == "iparticipate" && @social_networks.count == 0
+      query_string = build_filter(current_subject_id?,"all")
+      @social_networks = SocialNetwork.as(:social_networks).query.match(query_string).proxy_as(SocialNetwork, :social_networks).paginate(:page => first_page, :per_page => SECONDARY_ITEMS_PER_PAGE, return: :social_networks, order: "social_networks.created_at desc")
+    end
 
     render 'list', locals: { social_networks: @social_networks, subset: filter, title: get_title(filter)}
   end
@@ -75,14 +72,18 @@ class SocialNetworksController < ApplicationController
   # POST /social_networks.json
   def create
     logger.debug ("----- SocialNetworks Controller: Create --------------")
+    @social_network = nil
     success = true
 
     begin
       tx = Neo4j::Transaction.new
+        debugger
         @social_network = SocialNetwork.new(social_network_params)
         @social_network.logo = cloudinary_clean(@social_network.logo)
         @social_network.banner = cloudinary_clean(@social_network.banner)
-        @social_network.save
+
+        x = @social_network.save
+       
         rel = Owns.create(from_node: current_subject, to_node: @social_network) 
       rescue => e
         tx.failure
@@ -92,14 +93,14 @@ class SocialNetworksController < ApplicationController
 
       respond_to do |format|
         unless success 
-          logger.debug "--------- /SocialNetwork/create: transaction failure: #{@social_network.uuid} - event: #{e}"
+          logger.debug "--------- /SocialNetwork/create: transaction failure: #{@social_network.uuid?} - event: #{e}"
           format.js   { render partial: "enqueue", object: @social_network, notice: 'Social network was successfully created.' }
           format.html { redirect_to @social_network, notice: 'Social network was successfully created.' }
           format.json { render :show, status: :created, location: @social_network }
         else
           logger.debug "--------- /SocialNetwork/create: transaction succeeded: #{@social_network.name}"
           format.js   { render :new, object: @social_network }
-          format.html { render :new }
+          format.html { render :new, object: @social_network }
           format.json { render json: @social_network.errors, status: :unprocessable_entity }
         end
       end
@@ -166,7 +167,7 @@ class SocialNetworksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def social_network_params
-      params.require(:social_network).permit(:uuid, :name, :description, :short_description, :goal, :slogan, :logo, :banner, :status, :visibility, :background_color, :text_color, :social_network_color)
+      params.require(:social_network).permit(:uuid, :name, :description, :short_description, :goal, :slogan, :logo, :banner, :status, :is_visible, :is_online, :background_color, :text_color, :social_network_color)
     end
 
     def get_title(filter)

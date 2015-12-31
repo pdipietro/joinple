@@ -177,7 +177,6 @@ en:
         blogs: "Blogs"
         social_networks: "Social networks"
 
-
   post:
     model:
     view:
@@ -202,28 +201,58 @@ en:
         label:
           remember_me: "remember me"
   social_network:
+    options:
+      is_online: [[false,"offline"],[true,"online"]]
+      is_visible: [["open","open"], ["private","private"], ["restricted","restricted"]]
+      status: [["run","running"],["suspended","suspended"],["locked","locked"],["banned","banned"]]
     model:
+      attribute:
+        is_visible: "visibility"
+        is_online: "pubblication"
+        status: "status"
     view:
       banner_button_caption: "select the social network banner ..." 
       logo_button_caption: "select the social network logo ..."
       create_title: "Create a new social network"
       edit_title: "Edit the "
       name: " social network"
-      visibility: ["open", "closed", "private", "restricted"]
-      status: ["mainteinance", "active", "suspended", "locked", "banned"]
+
+      iparticipate: "My social networks"
+      iadminister: "View social networks I administer"
+      all: "View all social networks"
+      hot: "View hottest social networks"
+      fresh: "View newest social networks"
+      ipreferes: "View my preferred social network"
+      pendinginvitation: "View pending invitation"
     controller:
     options:
-      visibility:
-        open: "open"
-        closed: "closed"
-        private: "private"
-        restricted: "restricted"
+      is_online:
+        label: 
+          true: "online"
+          false: "offline"
+        value:
+          true: true
+          false: false
+      is_visible:
+        label: 
+          open: "open"
+          private: "private"
+          restricted: "restricted"
+        value:
+          open: "open"
+          private: "private"
+          restricted: "restricted"
       status: 
-        mainteinance: "mainteinance"
-        active: "active"
-        suspended: "suspended"
-        locked: "locked"
-        banned: "banned"
+        label:
+          run: "run"
+          suspended: "suspended"
+          locked: "locked"
+          banned: "banned"
+        value:
+          run: "run"
+          suspended: "suspended"
+          locked: "locked"
+          banned: "banned"
   subject:
     model:
       attribute:

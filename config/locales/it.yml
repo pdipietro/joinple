@@ -203,44 +203,30 @@ it:
         label:
           remember_me: "Ricordami!"
   social_network:
+    options:
+      is_online: [[false,"offline"],[true,"online"]]
+      is_visible: [["open","aperto"], ["private","privato"], ["restricted","ristretto"]]
+      status: [["run","attivo"],["suspended","sospeso"],["locked","bloccato"],["banned","vietato"]]
     model:
-      visibility: "<span style='margin-right: 32px; font-weight: normal;'>visibilità</span>"
-      status: "<span style='margin-right: 32px; font-weight: normal;'>stato</span>"
+      attribute:
+        is_visible: "visibilità"
+        is_online: "pubblicazione"
+        status: "stato"
     view:
       banner_button_caption: "seleziona l'immagine del social network ..." 
       logo_button_caption: "seleziona il logo del social network ..."
       create_title: "Crea un nuovo social network"
       edit_title: "Modifica il social network "
-      name: ""
-      #visibility: "<span style='margin-right: 12px; font-weight: normal;'>visibilità</span>"
-      #tatus: "<span style='margin-right: 4px; font-weight: normal;'>stato</span>"
+      name: " social network"
+       
+      iparticipate: "I miei social networks"
+      iadminister: "I social networks che amministro"
+      all: "Tutti i social networks"
+      hot: "I social networks più caldi"
+      fresh: "I social networks più recenti"
+      ipreferes: "I miei social network preferiti"
+      pendinginvitation: "Gli inviti in attesa di risposta"
     controller:
-    options:
-      visibility:
-        label: 
-          open: "aperto"
-          closed: "chiuso"
-          private: "privato"
-          restricted: "ristretto"
-        value:
-          open: "open"
-          closed: "closed"
-          private: "private"
-          restricted: "restricted"
-      status: 
-        label:
-          mainteinance: "manutenzione"
-          active: "attivo"
-          suspended: "sospeso"
-          locked: "bloccato"
-          banned: "vietato"
-        value:
-          mainteinance: "mainteinance"
-          active: "active"
-          suspended: "suspended"
-          locked: "locked"
-          banned: "banned"
-
   subject:
     model:
       attribute:

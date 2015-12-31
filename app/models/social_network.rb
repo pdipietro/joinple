@@ -13,11 +13,12 @@ class SocialNetwork
   property  :slogan,                   :type =>   String
   property  :short_description,        :type =>   String
   property  :iname,                    :type =>   String
-  property  :visibility,               :type =>   String, default: "open"
-  property  :status,                   :type =>   String, default: "mainteinance"
+  property  :is_visible,               :type =>   String, default: "open"
+  property  :is_online,                :type =>   Boolean, default: false
+  property  :status,                   :type =>   String, default: "run"
 
-  property  :logo,              type: String
-  property  :banner,            type: String
+  property  :logo,                     type: String
+  property  :banner,                   type: String
 
   has_many  :in,  :has_posts, model_class: Post, type: "post"                # Posts
   has_many  :in,  :has_tag, model_class: Tag, type: "has_tag"                   # Tags
@@ -29,13 +30,17 @@ class SocialNetwork
   validates   :short_description, length: { minimum: 5, maximum: 40 } #, allow_blank: true
   validates   :goal, length: { minimum: 4 } #, allow_blank: true
   validates   :slogan, :presence => true, length: { minimum: 2 }, allow_blank: false
-  validates   :visibility, inclusion: { in: ["open", "closed", "private", "restricted"] }
-  validates   :status, inclusion: { in: ["mainteinance", "active", "suspended", "locked", "banned"] }
+  validates   :is_visible, inclusion: { in: ["open", "private", "restricted"] }
+  validates   :status, inclusion: { in: ["run", "suspended", "locked", "banned"] }
 
   before_create :check_default
   before_save :check_default
 
   def check_default
+    self.is_online = false if self.is_online
+    self.is_visible = "open" if self.is_visible 
+    self.status = "run" if self.status 
+
     self.name = humanize_word(self.name) if self.name 
     self.description = humanize_sentence(self.description) if self.description
     self.short_description = humanize_sentence(self.short_description) if self.short_description

@@ -3,6 +3,7 @@ dist
 tmp
 .tmp
 .sass-cache
+.byebug_history
 bower_components
 /vendor/fontastic
 /vendor/font-awesome-4.2.0

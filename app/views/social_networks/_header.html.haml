@@ -2,16 +2,18 @@
 	#social-networks-page
 		.command-line-container
 			.command-line-l
-				= link_to social_networks_list_path("iparticipate"), :remote => :true, :title => "View all social networks" do
-					%i.activable.im-all-posts.im-2x
-				= link_to social_networks_list_path("iadminister"), :remote => :true, :title => "View my social networks" do
-					%i.activable.im-my-posts.im-2x
-				= link_to social_networks_list_path("pendinginvitation"), :remote => :true, :title => "View my preferred social networks" do
-					%i.activable.im-bookmark.im-2x
+				= link_to social_networks_list_path("iparticipate"), :remote => :true, :title => t("social_network.view.iparticipate") do
+					%i.activable.im-my-groups.im-2x
+				= link_to social_networks_list_path("iadminister"), :remote => :true, :title => t("social_network.view.iadminister") do
+					%i.activable.im-admin-group.im-2x
+				= link_to social_networks_list_path("all"), :remote => :true, :title => t("social_network.view.all") do
+					%i.activable.im-all-groups.im-2x
+				= link_to social_networks_list_path("ipreferes"), :remote => :true, :title => t("social_network.view.ipreferes") do
+					%i.activable.im-admin-group.im-2x
 				= render partial: 'shared/search'
-				= link_to social_networks_list_path("all"), :remote => :true, :title => "View all groups" do
-					%i.activable.im-all-groups
-				= link_to social_networks_list_path("hot"), :remote => :true, :title => "View hot groups" do
+				= link_to social_networks_list_path("pendinginvitation"), :remote => :true, :title => t("social_network.view.pendinginvitation") do
+					%i.activable.im-pending-invitations.im-2x
+				= link_to social_networks_list_path("hot"), :remote => :true, :title => t("social_network.view.hot") do
 					%i.activable.im-hot
-				= link_to social_networks_list_path("fresh"), :remote => :true, :title => "View fresh groups" do
+				= link_to social_networks_list_path("fresh"), :remote => :true, :title => t("social_network.view.fresh") do
 					%i.activable.im-thermometer

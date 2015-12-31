@@ -1,12 +1,4 @@
 #social-network-form
-  -#
-    { :class => social_network.errors.count == 0 ? 'collapse' : 'collapse in' }
-  - logger.debug "session[:social_network].class is now #{session[:social_network].class.name} - SocialNetwork = #{current_social_network.name} - Owner is #{session[:social_network].is_owned_by}"
-  -# logger.debug "social_network_uuid: #{social_network.uuid?}"
-  - debugger
-  - social_network.uuid = SecureRandom.uuid if social_network.uuid.nil?
-  - debug.info "social_network_uuid=#{social_network_uuid}"
-  -debugger
 
   .spacer
   .col-xs-10
@@ -19,18 +11,14 @@
       .panel-body
         = bootstrap_form_for(social_network, :remote => :true, :html => {:multipart => true} ) do |f|
           -#.nothing= f.text_field :nickname, :prepend => t("subject.model.attribute.nickname"), :placeholder => t("subject.view.signup.placeholder.nickname"), :hide_label => :true
-          = f.hidden_field :uuid, :value => :uuid
+          -#= f.hidden_field :uuid, :value => social_network.uuid?
           .nothing= f.text_field :name, :prepend => :name, :placeholder => "Enter the name of the new social network", :hide_label => :true, :text => "Social network name"
           .spacer
           .nothing= f.text_field :short_description, :prepend => "short description", :placeholder => "Enter a short description of the social network", :hide_label => :true, :text => "Social network short description"
           .spacer
           .nothing= f.text_field :description, :prepend => :description, :placeholder => "Enter a short description of the social network", :hide_label => :true, :text => "Social network description"
 
-
-          -#= f.collection_radio_buttons :visibility, [[t("social_network.options.visibility.value.open")],[t("social_network.options.visibility.value.closed")],[t("social_network.options.visibility.value.private")],[t("social_network.options.visibility.value.restricted")]], :first, :first, :inline => true, :checked => social_network.visibility, :prepend => t("social_network.view.visibility"), :label => t("social_network.model.visibility").html_safe, :class => "nothing", :item_wrapper_class => 'radio inline', :item_wrapper_tag => :label, :collection_wrapper_tag => :div, :collection_wrapper_class => "controls"
-
-          = f.collection_radio_buttons :status, [[t("social_network.options.status.value.mainteinance")], [t("social_network.options.status.value.active")], [t("social_network.options.status.value.suspended")], [t("social_network.options.status.value.locked")], [t("social_network.options.status.value.banned")]], :first, :first, :inline => true, :checked => :status, :prepend => :status, :label => t("social_network.model.status").html_safe, :class => "nothing", :item_wrapper_class => 'radio inline', :item_wrapper_tag => :label, :collection_wrapper_tag => :div, :collection_wrapper_class => "controls"
-
+          .spacer
           .nothing= f.text_field :slogan, :prepend => :slogan, :placeholder => "Describe the slogan of the social network", :hide_label => :true, :text => "Social network slogan"
           .spacer
           .nothing= f.text_field :goal, :prepend => :goal, :placeholder => "Describe the goal of the social network", :hide_label => :true, :text => "Social network goal"
@@ -41,13 +29,27 @@
           .spacer
           .nothing= f.color_field :text_color, :prepend => "title text color", :placeholder => "Select the title text color", :hide_label => :true, :class => "left-align" 
           .spacer
+          .input-group
+            .input-group-addon= t("social_network.model.attribute.is_visible").html_safe
+            .form-control.left-align= f.collection_radio_buttons :is_visible, t("social_network.options.is_visible"), :first, :last, :inline => true, :checked => :is_visible, :class => "left-align", :item_wrapper_class => 'radio inline', :hide_label => :true
+
+          .spacer
+          .input-group
+            .input-group-addon= t("social_network.model.attribute.is_online").html_safe
+            .form-control.left-align= f.collection_radio_buttons :is_online, t("social_network.options.is_online"), :first, :last, :inline => true, :checked => :is_visible, :class => "left-align", :item_wrapper_class => 'radio inline', :hide_label => :true
+
+          .spacer
+          .input-group
+            .input-group-addon= t("social_network.model.attribute.status").html_safe
+            .form-control.left-align= f.collection_radio_buttons :status, t("social_network.options.status"), :first, :last, :inline => true, :checked => :is_visible, :class => "left-align", :item_wrapper_class => 'radio inline', :hide_label => :true
+
 
           = cl_image_tag social_network.logo, :height => 200, :crop => :scale, :quality => 50, :class => "responsive"
           .ds
             #upload_social_network_logo
             - ratio_logo = 1.0
             - logo_button_caption = t("social_network.view.logo_button_caption")
-            - logo_folder_name = build_object_image_path options = { :social => "#{social_network.uuid?}", :logo => nil } 
+            - logo_folder_name = build_object_image_path options = { :subject => "#{current_subject.uuid?}", :social => "#{social_network.uuid?}", :logo => nil } 
             :javascript 
               cloudinary.applyUploadWidget(document.getElementById('upload_social_network_logo'), 
               { cloud_name: "#{cloudinary_name?}",  
@@ -67,7 +69,7 @@
             #upload_social_network_banner
             - ratio_banner = 2.0
             - banner_button_caption = t("social_network.view.banner_button_caption")
-            - banner_folder_name = build_object_image_path options = { :social => "#{social_network.uuid?}", :banner => nil } 
+            - banner_folder_name = build_object_image_path options = { :subject => "#{current_subject.uuid?}", :social => "#{social_network.uuid?}", :banner => nil } 
             :javascript 
               cloudinary.applyUploadWidget(document.getElementById('upload_social_network_banner'), 
               { cloud_name: "#{cloudinary_name?}",  

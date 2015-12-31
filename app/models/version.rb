@@ -1,3 +1,3 @@
 class Version
-	JOINPLE_VERSION = "v0.7.5.beta.2"
+	JOINPLE_VERSION = "v0.8.0.alpha.2"
 end

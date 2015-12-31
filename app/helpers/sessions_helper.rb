@@ -333,6 +333,12 @@ module SessionsHelper
     !!session[:current_group_admin]
   end
 
+  def is_my_profile?
+    is_customer = Neo4j::Session.query("match (u:Subject { uuid : '#{current_subject.uuid}' })-[rel:has_profile]->(dest:SocialNetwork { uuid : '#{session[:social_network][:uuid]}' }) return rel")
+
+  end
+
+
  # def current_group_uuid?
  #   puts "CurrentGroup: #{current_group}"
  #   current_group.nil? ? nil : current_group.uuid
@@ -340,16 +346,19 @@ module SessionsHelper
 
   def can_modify?(object)
       if is_admin?
-          puts "Can Modify? #{object.class.name.singularize}-#{object.uuid} because IS SYS ADMIN!!!"
+          logger.debug "Can Modify? #{object.class.name.singularize}-#{object.uuid} because IS SYS ADMIN!!!"
           true
       elsif is_group_admin?
-          puts "Can Modify? #{object.class.name.singularize}-#{object.uuid} because IS GROUP ADMIN!!!"
+          logger.debug "Can Modify? #{object.class.name.singularize}-#{object.uuid} because IS GROUP ADMIN!!!"
           true
       elsif is_owner?(current_subject,object)
-          puts "Can Modify? #{object.class.name.singularize}-#{object.uuid} because IS OWNER!!!"
+          logger.debug "Can Modify? #{object.class.name.singularize}-#{object.uuid} because IS OWNER!!!"
           true
       elsif is_group_owner?(current_group,object)
-          puts "Can Modify? #{object.class.name.singularize}-#{object.uuid} because IS GROUP OWNER!!!"
+          logger.debug "Can Modify? #{object.class.name.singularize}-#{object.uuid} because IS GROUP OWNER!!!"
+          true
+      elsif is_subject_profile?(current_subject,object)
+          logger.debug "Can Modify? #{object.class.name.singularize}-#{object.uuid} because IS HIS PROFILE!!!"
           true
       else
           false
@@ -463,7 +472,9 @@ puts " ------------------------------------________> #{res}"
 #  end
 
   def build_object_image_path (options = {} )
-    path = "/subject/#{current_social_network_owner.uuid}"
+    logger.debug "options: #{options}"
+    path = ""
+    path = options[:subject] ? "" : "/subject/#{current_social_network_owner.uuid}" 
     options.each do |n,v|
       path += "/#{n}/"
       path += "#{v}" unless v.nil?
