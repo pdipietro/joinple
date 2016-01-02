@@ -173,7 +173,8 @@ module SessionsHelper
 
   def current_social_network_logo?
     #session[:social_network][:logo]
-    current_social_network.logo
+    #current_social_network.has_image.type[:logo]
+    Image.new
   end
 
   def current_group

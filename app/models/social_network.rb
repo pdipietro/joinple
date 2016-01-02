@@ -17,12 +17,13 @@ class SocialNetwork
   property  :is_online,                :type =>   Boolean, default: false
   property  :status,                   :type =>   String, default: "run"
 
-  property  :logo,                     type: String
-  property  :banner,                   type: String
+  #property  :logo,                     type: String
+  #property  :banner,                   type: String
 
   has_many  :in,  :has_posts, model_class: Post, type: "post"                # Posts
   has_many  :in,  :has_tag, model_class: Tag, type: "has_tag"                   # Tags
   has_many  :in,  :has_hashtag, model_class: HashTag, type: "has_hashtag"           # HashTags
+  has_many  :out, :has_image, rel_class: HasImage           # Image
 
   validates   :name, :presence => true, length: { minimum: 2 }, allow_blank: false
   validates_uniqueness_of :name, case_sensitive: false
@@ -37,6 +38,8 @@ class SocialNetwork
   before_save :check_default
 
   def check_default
+    debugger
+    self.uuid = @_uuid
     self.is_online = false if self.is_online
     self.is_visible = "open" if self.is_visible 
     self.status = "run" if self.status 

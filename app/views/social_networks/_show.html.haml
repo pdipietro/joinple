@@ -5,8 +5,8 @@
         .contour-3{:style => "border-color: #{social_network.social_network_color}; " }
           %a{ :href => "#{calculate_full_path(social_network)}" }
             .relative
-              = cl_image_tag social_network.banner, height: 250, :class => "responsive"
-              = cl_image_tag social_network.logo, :height => 48, :width => 48, :style => "position: absolute; bottom: 0px;"
+              -#= cl_image_tag social_network.banner, height: 250, :class => "responsive"
+              -#= cl_image_tag social_network.logo, :height => 48, :width => 48, :style => "position: absolute; bottom: 0px;"
             .title= social_network.name
             .short-description= social_network.short_description
           .border-1

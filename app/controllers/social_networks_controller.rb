@@ -79,12 +79,20 @@ class SocialNetworksController < ApplicationController
       tx = Neo4j::Transaction.new
         debugger
         @social_network = SocialNetwork.new(social_network_params)
-        @social_network.logo = cloudinary_clean(@social_network.logo)
-        @social_network.banner = cloudinary_clean(@social_network.banner)
+
+        #@social_network.logo = cloudinary_clean(@social_network.logo)
+        #@social_network.banner = cloudinary_clean(@social_network.banner)
 
         x = @social_network.save
        
         rel = Owns.create(from_node: current_subject, to_node: @social_network) 
+
+        logo = Image.new [{uuid: social_network_params[:logo], type: :logo}]
+        banner = Image.new [{uuid: social_network_params[:banner], type: :banner}]
+
+        rel_logo = HasImage.create(from_node: @social_network, to_node: logo)
+        rel_banner = HasImage.create(from_node: @social_network, to_node: image)
+
       rescue => e
         tx.failure
         success = false
