@@ -1,35 +1,44 @@
-- unless defined?(use_current_subject) or defined?(subject)
-  - className = object.class.name
-  - q = "match (o:#{className} { uuid : '#{object[:uuid]}' })<-[rel:owns]-(u:Subject)-[p:has_profile]->(up:SubjectProfile) return u, up"
-  - puts "query: #{q}"
-  - query = Neo4j::Session.query(q)
-  - subject = query.first[:u] 
-  - subject_profile = query.first[:up]
-  = puts "subject: #{subject.first_name} #{subject.last_name}"
-  = puts "subject_profile: #{subject_profile.photo}"
+- if defined?(object)
+  - subject = object.is_owned_by
+  - subject_profile = subject.has_profile
+- elsif not subject_profile.nil?
+  - subject = subject_profile.belongs_to
+- elsif not subject.nil?
+  - subject_profile = subject.has_profile
+- else
+  - object = nil
+  - raise "Input requires object or subject_profile or subject)"
+
+- image = subject_profile.has_image(:i, :r).where("r.type = {photo}").params(photo: "photo").first(:i)
+- if image.nil?
+  - image_uuid = "b2833539-1e64-49f9-be8a-1a74509dce6e"
+- else
+  - image_uuid = "subject/#{subject.uuid}/#{image.uuid}"
+- logger.debug "subject: #{subject.first_name} #{subject.last_name}"  
+- logger.debug "image: #{image_uuid}"
 
 - title = defined?(title) ? title : "Edit"
 
 - size = :thumb unless defined?(size)
-= puts "size: #{size} -------"
+- shape = "" if shape.nil?
 
-- if defined?(use_current_subject)
-  = render partial: "subject_profiles/photo_show", locals: { :subject_profile => current_subject.has_profile, :size => :btn, :shape => "responsive circle" }
+- if defined?(special)
+  = render partial: "subject_profiles/photo_show", locals: { :image_uuid => image_uuid, :size => size, :shape => shape }
+- elsif defined?(use_current_subject)
+  = render partial: "subject_profiles/photo_show", locals: { :image_uuid => image_uuid, :size => :btn, :shape => "responsive circle" }
 - elsif defined?(show)
-  = render partial: "subject_profiles/photo_show", locals: { :subject_profile => subject_profile, :size => size, :shape => "responsive circle padding-1" }
+  = render partial: "subject_profiles/photo_show", locals: { :image_uuid => image_uuid, :size => size, :shape => "responsive circle padding-1" }
 - elsif defined?(type)
   %span{ :class => "semi-transparent-#{type}-bar", :style => "clear: both;" }
   %div.solida
     = link_to subject_profile_path(subject_profile.uuid), :remote => :true, :title => title, :shape => ("hoverable white") do
-      = render partial: "subject_profiles/photo_show", locals: { :subject_profile => subject_profile, :size => size, :shape => "circle padding-1" }
+      = render partial: "subject_profiles/photo_show", locals: { :image_uuid => image_uuid, :size => size, :shape => "circle padding-1" }
       %span.vertical-middle= "#{subject.full_name} (@#{subject.nickname})"
     %span.to-right.vertical-middle
       = "created on #{object.created_at.to_formatted_s(:short)}"
 - else
   %span
-    = link_to subject_profile_path(subject.has_profile.uuid), :remote => :true, :title => title, :class => ("hoverable") do
-      = render partial: "subject_profiles/photo_show", locals: { :subject_profile => subject_profile, :size => :btn, :shape => "circle padding-1" }
+    = link_to subject_profile_path(subject_profile.uuid), :remote => :true, :title => title, :class => ("hoverable") do
+      = render partial: "subject_profiles/photo_show", locals: { :image_uuid => image_uuid, :size => :btn, :shape => "circle padding-1" }
       = "#{subject.full_name} (@#{subject.nickname})"
 
-
--# = render partial: 'subjects/owner', locals: { object: post, type: "owner", title: "owner details", :profile => :basic }

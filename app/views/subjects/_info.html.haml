@@ -1,9 +1,8 @@
 - rels = count_relationships(subject) 
-- subject_profile = subject.has_profile
 - social_network = current_social_network
 .row.nothing.top-rounded{ :style => current_social_network_style }
   .col-xs-28.nothing
-    = render partial: 'subject_profiles/photo_show', locals: { subject_profile: subject_profile, size: :thumb, shape: "subject-photo"}
+    = render partial: 'subjects/owner', locals: { subject: subject, size: :thumb, shape: "subject-photo", special: :true }
   .col-xs-32.nothing
     .subject-info
       .name

@@ -79,7 +79,7 @@
           %li.dropdown
             %a.dropdown-toggle.header-subject-photo{ :href => "#", :id => "dropdownSubject", "data-toggle" => "dropdown", :type => "button", :title => t("layout.view.header.myself"),  "aria-expanded" => "false"}
               -#%span
-              = render partial: 'subject_profiles/photo_show', locals: { subject_profile: subject_profile, size: :header, shape: "circle" }
+              = render partial: 'subjects/owner', locals: { subject_profile: subject_profile, size: :header, shape: "circle", special: :true }
               %span.welcome= t("layout.view.header.welcome") + "#{current_subject.first_name}"
               %span.caret
             %ul.subject.dropdown-menu{ :role => "menu" }

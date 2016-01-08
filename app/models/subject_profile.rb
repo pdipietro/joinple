@@ -10,6 +10,7 @@ class SubjectProfile
   property :description,      type: String
 
   has_one  :in,  :belongs_to, rel_class: HasSubjectProfile, model_class: Subject   # Subject
+  has_many :out, :has_image,  rel_class: HasImage           # Image
 
   after_create :set_default
 

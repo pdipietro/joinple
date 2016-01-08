@@ -4,6 +4,7 @@ class Hashtag
   include CreatedAtUpdatedAt
 
   property  :tag,         :type =>   String, presence: true
+  has_many  :in,   :is_used_by, rel_class: HasHashTag         # Tag
 
   VALID_TAG_REGEX = /\A[a-zA-Z0-9\-]+\z/i
 

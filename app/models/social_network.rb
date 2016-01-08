@@ -21,8 +21,8 @@ class SocialNetwork
   #property  :banner,                   type: String
 
   has_many  :in,  :has_posts, model_class: Post, type: "post"                # Posts
-  has_many  :in,  :has_tag, model_class: Tag, type: "has_tag"                   # Tags
-  has_many  :in,  :has_hashtag, model_class: HashTag, type: "has_hashtag"           # HashTags
+  has_many  :out, :has_tag, rel_class: HasTag                   # Tags
+  #has_many  :out, :has_hash_tag, rel_class: HasHashTag           # HashTags
   has_many  :out, :has_image, rel_class: HasImage           # Image
 
   validates   :name, :presence => true, length: { minimum: 2 }, allow_blank: false
