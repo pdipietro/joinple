@@ -115,16 +115,17 @@ neo4jBin="./db/neo4j/$stage/bin"
 
 # neo4jPid="/home/joinple/joinple/db/$neo4jVersion/pids"
 
-
-if [[ ! -d $neo4jData/schema  ||  ! -d $neo4jData ]]; then
-	# echo "Create a new DB and initialize it."
-	if [[ ! -d $neo4jData ]]; then	mkdir -p $neo4jData $neo4jLog; fi
-	chown -R $USER:$USER $neo4jLog $neo4jData 
-	cat ./db/joinple_load_initial.txt | $neo4jBin/neo4j-shell neo4j.properties -path $neo4jData > $neo4jLog/db_load.log   2>$neo4jLog/db_load_stderr.log
-	chown -R $USER:$USER $neo4jLog $neo4jData $neo4jLog/db_load.log $neo4jLog/db_load_stderr.log
-	chmod -R 777 $neo4jLog $neo4jData $neo4jLog/db_load.log $neo4jLog/db_load_stderr.log
-fi
-
+case $1 in 
+	start | restart)
+		if [[ ! -d $neo4jData/schema  ||  ! -d $neo4jData ]]; then
+			# echo "Create a new DB and initialize it."
+			if [[ ! -d $neo4jData ]]; then	mkdir -p $neo4jData $neo4jLog; fi
+			chown -R $USER:$USER $neo4jLog $neo4jData 
+			cat ./db/joinple_load_initial.txt | $neo4jBin/neo4j-shell neo4j.properties -path $neo4jData > $neo4jLog/db_load.log   2>$neo4jLog/db_load_stderr.log
+			chown -R $USER:$USER $neo4jLog $neo4jData $neo4jLog/db_load.log $neo4jLog/db_load_stderr.log
+			chmod -R 777 $neo4jLog $neo4jData $neo4jLog/db_load.log $neo4jLog/db_load_stderr.log
+		fi
+esac
 
 getRailsPid() {
 	GRP=`ps -ef | grep '/home/joinple/.rvm/rubies'  | grep -v 'ps -ef' | grep -v 'grep' | awk '{print $2}'`

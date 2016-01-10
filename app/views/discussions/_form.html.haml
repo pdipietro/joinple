@@ -5,33 +5,18 @@
       = render partial: 'shared/common_panel_header', locals: { :style => "current", :data_target => "#discussion-form", :title => title }
       .panel-body
         = bootstrap_form_for(discussion, :remote => :true, :html => {:multipart => true} ) do |f|
+          = hidden_field = image[0]
+
           .nothing= f.text_field :title, :prepend => :title, :placeholder => "Enter the discussion title name ", :hide_label => :true
           .spacer
           .nothing= f.text_area :description, :prepend => :description, :placeholder => "Enter the discussion description", :hide_label => :true
           .spacer
 
+          - preset = ImagesKind.find_by(preset_name = "discussion-banner")
           #upload_discussion_banner
             = cl_image_tag discussion.banner, :height => 200, :crop => :scale, :quality => 50, :fetch_format => :auto, :class => "responsive"
 
-          - ratio_banner = 2
-          - button_banner_caption = t("discussion.view.button.banner")
-          - banner_folder_name = build_object_image_path( { :social => current_social_network_uuid?, :group => :discussion, :banner => nil } )
-
-          #upload_discussion_banner1
-            :javascript 
-              cloudinary.applyUploadWidget(document.getElementById('upload_discussion_banner1'), 
-              { cloud_name: "#{cloudinary_name?}", 
-              stylesheet: document.baseURI+'/assets/cloudinary.css', theme: "default",
-              button_class: 'joinple-button',
-              cropping: 'server', multiple: 'false', 
-              cropping_aspect_ratio: "#{ratio_banner}", 
-              cropping_default_selection_ratio: "1", 
-              button_caption: "#{button_banner_caption}",
-              upload_preset: 'discussion-banner', 
-              field_name: 'discussion[banner]', 
-              folder: "#{banner_folder_name}", 
-              min_image_width: "2560", min_image_height: "1280" },
-                function(error, result) {console.log(error, result)});
+          = render partial: "images/view" = { :preset => preset, :destination => image[0] :button_banner_caption => t("discussion.view.button.banner"), :folder => current_social_network_owner.uuid + "/", :stylesheet => document.baseURI+'/assets/cloudinary.css',  }  
 
           .spacer
 

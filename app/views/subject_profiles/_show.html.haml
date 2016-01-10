@@ -2,7 +2,7 @@
 .page-thumbnail{ :style => "color: #{subject_profile.text_color}; background-color: #{subject_profile.background_color}; " }
   = "#{subject.full_name} (@#{subject.nickname})'s subject profile"
 .subject-profile{ :id => subject_profile.uuid }
-  = render partial: "subject_profiles/photo_show", locals: { :subject_profile => subject_profile, :size => :profile, special: :true }
+  = render partial: "subjects/owner", locals: { :subject_profile => subject_profile, :size => :profile, special: :true }
   = "#{subject.full_name} (@#{subject.nickname})"
   - unless subject_profile.description.nil?
     .border-1

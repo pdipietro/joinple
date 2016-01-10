@@ -3,7 +3,7 @@ class Image
   include Uuid
   include CreatedAtUpdatedAt
 
-  property  :type,             :type =>   String
-  
-  has_many  :in,  :is_image_of, rel_class: :any   
+  has_many  :in,  :is_image_of, rel_class: HasImage  
+
+  has_many  :out, :has_tag, rel_class: HasTag                   # Tags
 end

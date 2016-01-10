@@ -19,7 +19,11 @@
           .nothing= f.color_field :text_color, :prepend => t("attribute.text_color"), :placeholder => t("subject_profile.view.text_color"), :hide_label => :true, :class => "left-align"
           .spacer
 
-          = render partial: "subject_profiles/photo_load", locals: { :subject_profile => subject_profile, :size => :profile }
+          #upload_subject_photo
+            = render partial: "subjects/owner", locals: { :subject_profile => subject_profile, :size => :standard, :special => true }
+
+            = render partial: "images/form", locals: { :f => f, :preset => "subject-photo", :subject => "subject_profile", :field_name => :photo, :button_caption => t("subject_profile.view.photo_button_caption"), :folder => current_social_network_owner.uuid + "/" }  
+            -#= render partial: "subject_profiles/photo_load", locals: { :subject_profile => subject_profile, :size => :profile }
           .spacer-2x
 
           = render partial: 'shared/common_panel_footer'

@@ -3,7 +3,7 @@ class SubjectProfile
   include Uuid
   include CreatedAtUpdatedAt
 
-  property :photo,            type: String, default: ""
+  attr_accessor :photo
 
   property :background_color, type: String, default: "inherit"
   property :text_color,       type: String, default: "inherit"
@@ -17,7 +17,6 @@ class SubjectProfile
   private
 
     def set_default
-      self.photo = "" if photo.nil?
       self.background_color = "inherit"  if background_color.nil?
       self.text_color = "inherit"  if text_color.nil?
      end

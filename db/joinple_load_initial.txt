@@ -84,8 +84,6 @@ create (_15:`Subject` {`activated`:false, `activation_digest`:"$2a$10$cI5rrV6COx
 create (_16:`SubjectProfile` {`background_color`:"inherit", `created_at`:1451425637, `text_color`:"inherit", `updated_at`:1451425637, `uuid`:"75fc1d2b-76f3-4949-ae61-ad5399c21f48"})
 
 
-
-
 create _0-[:`owns` {`created_at`:1451682347, `updated_at`:1451682347}]->_8
 create _0-[:`owns` {`created_at`:1450855901, `updated_at`:1450855901}]->_7
 create _0-[:`owns` {`created_at`:1422308305, `updated_at`:1422308305}]->_6
