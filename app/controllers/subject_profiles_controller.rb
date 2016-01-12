@@ -6,10 +6,25 @@ class SubjectProfilesController < ApplicationController
 	def show
 
 	end
-
 	# GET /subject_profiles/1/edit
+
 	def edit
-		
+		logger.debug "----------------------------------------------------------------------"
+		logger.debug "params: #{params}"
+		params.each do |p,v|
+			logger.debug "#{p}: #{v}"
+		end
+		logger.debug "params[:uuid] = #{params[:uuid]} - #{params[:id]}"
+		@subject_profile = SubjectProfile.find_by(id: params[:id])
+
+		logger.debug "@subject_profile = #{@subject_profile.uuid}"
+
+		@photo = @subject_profile.has_image(:i, :r).where("r.type = {photo}").params(photo: "photo").first(:i)
+
+		logger.debug "@photo = #{@photo.uuid}"
+		logger.debug "----------------------------------------------------------------------"
+
+		render "edit", locals: { :subject_profile => @subject_profile, :photo => @photo}	
 	end
 
 	# PATCH/PUT /subject_profiles/1
@@ -35,21 +50,18 @@ class SubjectProfilesController < ApplicationController
 	#    end
 	#  end
 	end
+
 	def update
 		logger.debug ("----- SubjectProfile Controller: Update #{@subject_profile}--------------")
-		#@subject_profile = nil
-		debugger
 		success = true
 
 		begin
 			tx = Neo4j::Transaction.new
 				@subject_profile.update(subject_profile_params)
 
-				parms[:photo] = cloudinary_clean(parms[:photo])
-
-				@photo.update(subject_profile_params[:photo], type: "photo")
-			 
-				rel = HasImage.create(from_node: @subject_profile, to_node: @Image) 
+#				parms[:photo] = cloudinary_clean(parms[:photo])
+#				@photo.update(subject_profile_params[:photo], type: "photo")
+#				rel = HasImage.create(from_node: @subject_profile, to_node: @Image) 
 
 			rescue => e
 				tx.failure

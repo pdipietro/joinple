@@ -1,26 +1,7 @@
-- _preset = ImagesHelper::IMAGE_KIND[preset.gsub(/-/,"_").to_sym]
+= bootstrap_form_for(image, :remote => :true, :html => {:multipart => true} ) do |f|
+  #upload_subject_photo
+    = cl_image_tag image.uuid, :height => 200, :crop => :scale, :quality => 50, :fetch_format => :auto, :class => "responsive"
 
-- uuid = "I"+SecureRandom.uuid
+    -#= render partial: "images/form_cloudinary", locals: { :f => f, :preset => "subject-photo", :subject => "subject_profile", :field_name => :photo, :button_caption => t("subject_profile.view.photo_button_caption"), :folder => current_social_network_owner.uuid + "/" }  
 
-= f.hidden_field field_name.to_sym
-
-%div{ :id => "#{uuid}" }
-  :javascript 
-    cloudinary.applyUploadWidget(document.getElementById("#{uuid}"), 
-    { 
-      cloud_name: "#{cloudinary_name?}", 
-      stylesheet: document.baseURI+'/assets/cloudinary.css',
-      theme: "#{_preset[:theme]}",
-      button_class: "#{_preset[:button_class]}",
-      cropping: "#{_preset[:cropping]}", 
-      multiple: "#{_preset[:multiple]}", 
-      cropping_aspect_ratio: "#{_preset[:cropping_aspect_ratio]}", 
-      cropping_default_selection_ratio: "#{_preset[:cropping_default_selection_ratio]}", 
-      button_caption: "#{button_caption}",
-      upload_preset: "#{_preset[:preset_name]}", 
-      field_name: "#{subject}[#{field_name}]", 
-      folder: "#{folder}", 
-      min_image_width: "#{_preset[:min_image_width]}", 
-      min_image_height: "#{_preset[:min_image_height]}"
-    },
-      function(error, result) {console.log(error, result)});
+    .spacer-2x

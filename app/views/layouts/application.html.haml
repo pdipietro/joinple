@@ -28,6 +28,7 @@
       });
     = javascript_include_tag 'salvattore.min', media: 'all', 'data-turbolinks-track' => true
     %body{:sn => "#{csnn}"}
+      #full-screen-image
       #wrapper{ :bg => "#{current_social_network_background_color?}"}
         #header
           = render 'layouts/header'

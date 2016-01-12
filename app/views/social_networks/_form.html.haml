@@ -65,7 +65,7 @@
               folder: "#{logo_folder_name}", 
               min_image_width: "300", min_image_height: "300" });
 
-          = cl_image_tag social_network.s_haimage.type[:banner].uuid, :height => 200, :crop => :scale, :quality => 50, :class => "responsive"
+          = cl_image_tag social_network.has_image.type[:banner].uuid, :height => 200, :crop => :scale, :quality => 50, :class => "responsive"
           .es
             #upload_social_network_banner
             - ratio_banner = 2.0

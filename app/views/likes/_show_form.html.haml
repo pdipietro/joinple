@@ -1,0 +1,8 @@
+- uuid = "d" + SecureRandom.uuid
+.full-screen-layer-50{ :id => "#{uuid}", :style => ("z-index: #{DateTime.now.strftime('%m%d%H%M%S%L')}; ")}
+.cookie-layer{:style => ("z-index: #{DateTime.now.strftime('%m%d%H%M%S%L')} ; ")}
+	= render partial: 'shared/common_panel_header', locals: { :style => "current", :uuid => uuid, :title => title }
+	#U
+
+	= render partial: 'shared/common_panel_footer'
+

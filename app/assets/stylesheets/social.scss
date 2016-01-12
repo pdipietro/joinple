@@ -745,6 +745,10 @@ video.responsive {
   opacity: 0.25;
 }
 
+.opaque-50 {
+  opacity: 0.50;
+}
+
 .opaque-75 {
   opacity: 0.75;
 }
@@ -832,7 +836,6 @@ video.responsive {
   float: right;
 }
 
-
 .full-screen-layer {
   position: fixed;
   background-color: #6c6c6c;
@@ -842,6 +845,11 @@ video.responsive {
   left: 0%;
   bottom: 0%;
   right: 0%;
+}
+
+.full-screen-layer-50 {
+  @extend .full-screen-layer;
+  opacity: 0.5;
 }
 
 .full-screen-layer-75 {
@@ -864,6 +872,8 @@ video.responsive {
   -o-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
+
+
 
 .cookie-layer {
   position: fixed;

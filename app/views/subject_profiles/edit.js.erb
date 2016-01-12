@@ -1,5 +1,3 @@
-$("#tech-info").html("<%= escape_javascript(render partial: 'sessions/tech_info') %>" );
-$("#main-header").html("" );
-$("#main-add").html('<%= escape_javascript(render partial: "form", locals: { subject_profile: @subject_profile, title: "Edit the #{@subject_profile.uuid} subject profile"}) %>' );
-
-$("#right-context *").html("");
+$("#full-screen-image").append('<%= escape_javascript(render partial: "likes/show_form", locals: { title: "Edit the #{@subject_profile.uuid} subject profile"}) %>' ); 
+$("#U1").append('<%= escape_javascript(render partial: "subject_profiles/form", locals: { :subject_profile => subject_profile }) %>' );
+$("#U1").append('<%= escape_javascript(render partial: "images/form", locals: { :image => photo } )%>' );
