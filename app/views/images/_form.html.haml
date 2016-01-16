@@ -1,7 +1,0 @@
-= bootstrap_form_for(image, :remote => :true, :html => {:multipart => true} ) do |f|
-  #upload_subject_photo
-    = cl_image_tag image.uuid, :height => 200, :crop => :scale, :quality => 50, :fetch_format => :auto, :class => "responsive"
-
-    -#= render partial: "images/form_cloudinary", locals: { :f => f, :preset => "subject-photo", :subject => "subject_profile", :field_name => :photo, :button_caption => t("subject_profile.view.photo_button_caption"), :folder => current_social_network_owner.uuid + "/" }  
-
-    .spacer-2x

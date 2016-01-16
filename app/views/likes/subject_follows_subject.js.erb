@@ -1,3 +1,0 @@
-$("#<%= escape_javascript(@dest.uuid) %>").html("<%= escape_javascript(render partial: 'subjects/show', locals: { subject: @dest } ) %>" );
-$("#subject-info").html("<%= escape_javascript(render partial: 'shared/subject_info', locals: { subject: current_subject, social_network: current_social_network } ) %>" );
-

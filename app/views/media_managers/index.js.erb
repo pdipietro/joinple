@@ -1,3 +1,0 @@
-$("#main-header").html("<%= escape_javascript(render partial: 'header', locals: { media_managers: @media_managers} ) %>" );
-$("#main-add").html("<%= escape_javascript(render partial: 'form', locals: { media_manager: MediaManager.new } ) %>" );
-$("#main-content").html("<%= escape_javascript(render partial: 'index', locals: { media_managers: @media_managers} ) %>" );

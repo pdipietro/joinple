@@ -1,21 +1,7 @@
-2016-01-15 19:58:25.161+0100 INFO  No SSL certificate found, generating a self-signed certificate..
-2016-01-15 19:58:30.534+0100 INFO  Successfully started database
-2016-01-15 19:58:30.572+0100 INFO  Starting HTTP on port 7474 (8 threads available)
-2016-01-15 19:58:31.256+0100 INFO  Enabling HTTPS on port 7473
-2016-01-15 19:58:31.369+0100 INFO  Mounting static content at /webadmin
-2016-01-15 19:58:31.444+0100 INFO  Mounting static content at /browser
-2016-01-15 19:58:33.396+0100 INFO  Remote interface ready and available at http://localhost:7474/
-2016-01-16 10:00:24.734+0100 INFO  Neo4j Server shutdown initiated by request
-2016-01-16 10:00:24.762+0100 INFO  Successfully shutdown Neo4j Server
-2016-01-16 10:00:24.889+0100 INFO  Successfully stopped database
-2016-01-16 10:00:24.890+0100 INFO  Successfully shutdown database
-2016-01-16 10:00:59.732+0100 INFO  Successfully started database
-2016-01-16 10:00:59.775+0100 INFO  Starting HTTP on port 7474 (8 threads available)
-2016-01-16 10:01:00.226+0100 INFO  Enabling HTTPS on port 7473
-2016-01-16 10:01:00.372+0100 INFO  Mounting static content at /webadmin
-2016-01-16 10:01:00.454+0100 INFO  Mounting static content at /browser
-2016-01-16 10:01:02.392+0100 INFO  Remote interface ready and available at http://localhost:7474/
-2016-01-16 10:19:50.676+0100 INFO  Neo4j Server shutdown initiated by request
-2016-01-16 10:19:50.720+0100 INFO  Successfully shutdown Neo4j Server
-2016-01-16 10:19:50.872+0100 INFO  Successfully stopped database
-2016-01-16 10:19:50.872+0100 INFO  Successfully shutdown database
+2016-01-16 18:21:49.511+0100 INFO  No SSL certificate found, generating a self-signed certificate..
+2016-01-16 18:21:55.501+0100 INFO  Successfully started database
+2016-01-16 18:21:55.549+0100 INFO  Starting HTTP on port 7474 (8 threads available)
+2016-01-16 18:21:55.939+0100 INFO  Enabling HTTPS on port 7473
+2016-01-16 18:21:56.058+0100 INFO  Mounting static content at /webadmin
+2016-01-16 18:21:56.153+0100 INFO  Mounting static content at /browser
+2016-01-16 18:21:59.097+0100 INFO  Remote interface ready and available at http://localhost:7474/

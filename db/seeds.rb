@@ -1,48 +1,7 @@
-ENV['RAILS_ENV'] ||= 'test'
-
-# all users are already activated
-# first user is an administrator
-  name = Faker::Name.name.split
-  first_name = name[0]
-  last_name = name[1]
-  nickname = first_name[0,3] + last_name[0,3]
-  nickname.downcase!
-  admin = true
-  email = "example@railstutorial.org"
-  password = "password"
-  activated_at = Time.zone.now
-  u = User.create(admin: admin, activated: true, activated_at: activated_at, nickname:  nickname, first_name: first_name, last_name: last_name, email: email, password: password, password_confirmation: password)
-  u.save
-
-99.times do |n|
-  name = Faker::Name.name.split
-  first_name = name[0]
-  last_name = name[1]
-  nickname = first_name[0,3] + last_name[0,3]
-  nickname.downcase!
-  email = "example-#{n+1}@railstutorial.org"
-  password = "password"
-  activated_at = Time.zone.now
-  u = User.create(activated: true, activated_at: activated_at, nickname:  nickname, first_name: first_name, last_name: last_name, email: email, password: password, password_confirmation: password)
-  u.save
-end
-
-users = User.order(:created_at).take(6)
-5.times do
-  content = Faker::Lorem.sentence(25)
-  title = Faker::Lorem.words(4).join(" ")
-  users.each  do |user| 
-     p = Post.create!( 
-        title: Faker::Lorem.words(4).join(" "), 
-        content: Faker::Lorem.sentence(25), 
-        is_owned_by: user
-     ) 
-     puts "User: #{user}"
-     puts "Post: #{p}"
-  end
-end
-
-# define languages
-p = Language.create!( code: "it-it", description: "Italiano (Italia)" )
-p = Language.create!( code: "en-us", description: "English (United States)" )
-  
+# This file should contain all the record creation needed to seed the database with its default values.
+# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
+#
+# Examples:
+#
+#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
+#   Mayor.create(name: 'Emanuel', city: cities.first)

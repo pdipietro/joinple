@@ -1,6 +1,0 @@
-%div
-  %div{ :id => "ss#{subject.uuid}" }
-    .command_line_s.shadowing.rounded{ :style => "background-color: #ffffff;"}
-      = link_to subject_profile_path(subject.has_profile.uuid), :remote => :true, :title => "View profile", :class => "hoverable" do
-        = image_tag "#{subject.has_profile.photo.url(:btn)}", :name => "subject_profile_#{subject.has_profile.uuid}", :class => "subject-photo"
-        = subject.full_name

@@ -1,7 +1,0 @@
-- @social_networks = SocialNetwork.all.order(created_at: :desc)
-- @social_networks.each do |social_network| 
-	- if social_network.name != current_social_network_name?
-		%li
-			%a{ :href => "#{calculate_full_path(social_network)}" }
-				%i.header-dropdown.im-dot{ :style => "color: #{social_network.social_network_color};" }
-				= social_network.name
