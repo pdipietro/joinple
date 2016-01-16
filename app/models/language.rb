@@ -18,7 +18,7 @@ class Language
   before_create :check_default
   before_save :check_default
 
-  has_many  :out, :is_spoken_by, rel_class: Speaks
+  has_many  :out, :is_spoken_by, rel_class: :Speaks
 
   def check_default
     self.code = self.code.downcase    

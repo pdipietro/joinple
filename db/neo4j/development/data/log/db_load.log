@@ -1,0 +1,203 @@
+NOTE: Local Neo4j graph database service at './db/neo4j/development/data/graph.db'
+Welcome to the Neo4j Shell! Enter 'help' for a list of commands
+
+
+neo4j-sh (?)$ begin
+Transaction started
+neo4j-sh (?)$ 
+neo4j-sh (?)$ create constraint on (n:`DiscussionComment`) assert n.`uuid` is unique;
++-------------------+
+| No data returned. |
++-------------------+
+Unique constraints added: 1
+2232 ms
+neo4j-sh (?)$ create constraint on (n:`Discussion`) assert n.`uuid` is unique;
++-------------------+
+| No data returned. |
++-------------------+
+Unique constraints added: 1
+41 ms
+neo4j-sh (?)$ create constraint on (n:`Group`) assert n.`uuid` is unique;
++-------------------+
+| No data returned. |
++-------------------+
+Unique constraints added: 1
+43 ms
+neo4j-sh (?)$ create constraint on (n:`HasImage`) assert n.`uuid` is unique;
++-------------------+
+| No data returned. |
++-------------------+
+Unique constraints added: 1
+48 ms
+neo4j-sh (?)$ create constraint on (n:`Image`) assert n.`uuid` is unique;
++-------------------+
+| No data returned. |
++-------------------+
+Unique constraints added: 1
+44 ms
+neo4j-sh (?)$ create constraint on (n:`Language`) assert n.`code` is unique;
++-------------------+
+| No data returned. |
++-------------------+
+Unique constraints added: 1
+253 ms
+neo4j-sh (?)$ create constraint on (n:`Language`) assert n.`uuid` is unique;
++-------------------+
+| No data returned. |
++-------------------+
+Unique constraints added: 1
+39 ms
+neo4j-sh (?)$ create constraint on (n:`MailCollector`) assert n.`uuid` is unique;
++-------------------+
+| No data returned. |
++-------------------+
+Unique constraints added: 1
+44 ms
+neo4j-sh (?)$ create constraint on (n:`MediaManager`) assert n.`uuid` is unique;
++-------------------+
+| No data returned. |
++-------------------+
+Unique constraints added: 1
+38 ms
+neo4j-sh (?)$ create constraint on (n:`PostComment`) assert n.`uuid` is unique;
++-------------------+
+| No data returned. |
++-------------------+
+Unique constraints added: 1
+67 ms
+neo4j-sh (?)$ create constraint on (n:`Post`) assert n.`uuid` is unique;
++-------------------+
+| No data returned. |
++-------------------+
+Unique constraints added: 1
+44 ms
+neo4j-sh (?)$ create constraint on (n:`SocialNetwork`) assert n.`iname` is unique;
++-------------------+
+| No data returned. |
++-------------------+
+Unique constraints added: 1
+38 ms
+neo4j-sh (?)$ create constraint on (n:`SocialNetwork`) assert n.`uuid` is unique;
++-------------------+
+| No data returned. |
++-------------------+
+Unique constraints added: 1
+33 ms
+neo4j-sh (?)$ create constraint on (n:`SubjectProfile`) assert n.`uuid` is unique;
++-------------------+
+| No data returned. |
++-------------------+
+Unique constraints added: 1
+50 ms
+neo4j-sh (?)$ create constraint on (n:`Subject`) assert n.`uuid` is unique;
++-------------------+
+| No data returned. |
++-------------------+
+Unique constraints added: 1
+39 ms
+neo4j-sh (?)$ create constraint on (n:`Tag`) assert n.`uuid` is unique;
++-------------------+
+| No data returned. |
++-------------------+
+Unique constraints added: 1
+45 ms
+neo4j-sh (?)$ create constraint on (n:`Tag`) assert n.`tag` is unique;
++-------------------+
+| No data returned. |
++-------------------+
+Unique constraints added: 1
+46 ms
+neo4j-sh (?)$ create constraint on (n:`Test`) assert n.`uuid` is unique;
++-------------------+
+| No data returned. |
++-------------------+
+Unique constraints added: 1
+38 ms
+neo4j-sh (?)$ 
+neo4j-sh (?)$ commit
+Transaction committed
+neo4j-sh (?)$ 
+neo4j-sh (?)$ begin
+Transaction started
+neo4j-sh (?)$ 
+neo4j-sh (?)$ create (_0:`Subject` {`activated`:"true", `activation_digest`:"$2a$10$l48pLADz4vDP3IwVwuDNvuhUMzbQHh1T13Y1O/WUWpRRClCOUzzK2", `admin`:"true", `created_at`:141980 6138, `email`:"pdipietro@joinple.com", `first_name`:"Paolo", `last_name`:"Di Pietro", `nickname`:"pdp", `password_digest`:"$2a$10$ZpQt6DbVOEUqgRnBoOzUquJWtfAps2XrP2yV/95hnQnOz BDtofyb6", `remember_digest`:"$2a$10$4u4Sn5yL2q6wpiUi67QmUO7rAOKTYNfISm/jjlK04C8n3Td4xDGXW", `updated_at`:1444294398, `uuid`:"ec122ca0-0ecc-4bae-af14-f1f781d88311"})
+> 
+> create (_1:`SubjectProfile` {`background_color`:"#a02348", `created_at`:1420983722, `description`:"Joinple CTO - Principal designer", `text_color`:"#ffffff", `updated_at`:14 44070246, `uuid`:"bc3cb602-323e-4cae-9427-7309417cdb21"})
+> 
+> create (_17:`Image` {`created_at`:1451695507, `updated_at`:1451695507, `uuid`:"c578e6b0-8d19-4324-b64f-9a18d72b4f2f"})
+> create _1-[:`has_image` {`created_at`:1451695520, `updated_at`:1451695520, `type`:"photo"}]->_17
+> 
+> 
+> 
+> create (_2:`Language` {`code`:"fr-fr", `created_at`:1420983722, `description`:"Français (france)", `updated_at`:1421690318, `uuid`:"bc3cb602-323e-4d3e-8827-7309417cdb21"})
+> create (_3:`Language` {`code`:"it-it", `created_at`:1420460700, `description`:"Italiano (Italia)", `updated_at`:1420460700, `uuid`:"58eb0495-7533-4721-9ef2-20274645afab"})
+> create (_4:`Language` {`code`:"en-us", `created_at`:1420463037, `description`:"English (united states)", `updated_at`:1421690340, `uuid`:"e5b2c85f-312d-4cb5-8b78-8c41836c21b 8"})
+> create (_5:`Language` {`code`:"es-es", `created_at`:1420465834, `description`:"Español (españa)", `updated_at`:1421657072, `uuid`:"550420dc-1d93-4049-9118-042815063781"})
+> 
+> create (_6:`SocialNetwork` {`background_color`:"#e5e5e5", `created_at`:1422308304, `description`:"Basic joinple social network.", `goal`:"Support job searching", `iname`:"ww w", `name`:"Joinple", `short_description`:"Short description.", `slogan`:"Slogannnnn.", `social_network_color`:"#a02348", `status`:"active", `text_color`:"#ffffff", `updated_a t`:1444071020, `uuid`:"7602926d-702a-4b30-9c05-125d50212e79", `visibility`:"restricted"})
+> 
+> create (_18:`Image` {`created_at`:1451695507, `updated_at`:1451695507, `uuid`:"55fc719e-4eb2-44d7-aabc-234ac2ea015b"})
+> create _6-[:`has_image` {`created_at`:1451695520, `updated_at`:1451695520, `type`:"banner"}]->_18
+> create (_19:`Image` {`created_at`:1451695507, `updated_at`:1451695507, `uuid`:"ff2bbef2-c2f1-4b12-868f-a47d2d311bcd"})
+> create _6-[:`has_image` {`created_at`:1451695520, `updated_at`:1451695520, `type`:"logo"}]->_19
+> 
+> 
+> create (_7:`SocialNetwork` {`background_color`:"#e5e5e5", `created_at`:1450855901, `description`:"A social network for wellness is better than a social network for badness." , `goal`:"Let people learn to stay well", `iname`:"wellness", `name`:"Wellness", `short_description`:"A social network for wellness.", `slogan`:"Is better a welless today than  a kick in the ass.", `social_network_color`:"#ffff00", `status`:"active", `text_color`:"#323342", `updated_at`:1450943140, `uuid`:"c4f9c65b-abb6-4d7d-ba38-7ee2d60919cb", `vis ibility`:"open"})
+> 
+> create (_20:`Image` {`created_at`:1451695507, `updated_at`:1451695507, `uuid`:"3b19150c-007c-4a44-904a-d43b550a8100"})
+> create _7-[:`has_image` {`created_at`:1451695520, `updated_at`:1451695520, `type`:"banner"}]->_20
+> create (_21:`Image` {`created_at`:1451695507, `updated_at`:1451695507, `uuid`:"222bc58e-f72b-4d37-b5c6-b52e268ae36d"})
+> create _7-[:`has_image` {`created_at`:1451695520, `updated_at`:1451695520, `type`:"logo"}]->_21
+> 
+> create (_8:`SocialNetwork` {`background_color`:"#e5e5e5", `created_at`:1451682007, `description`:"Etqwuetqwtwqtewqtwueqyu.", `goal`:"99999999", `iname`:"sgdjfgjsdgsdjgsdjjhs ", `is_online`:false, `is_visible`:"open", `name`:"Sgdjfgjsdgsdjgsdjjhs", `short_description`:"Pqoèqpèqwpqwqqwowqpqq'q9'q'9''.", `slogan`:"Wwwwwwwwwwwwwwwwwwww.", `social_netw ork_color`:"#000000", `status`:"run", `text_color`:"#323342", `updated_at`:1451682007, `uuid`:"26c90722-7bb2-48e1-9e35-93edec446ebe"})
+> 
+> create (_22:`Image` {`created_at`:1451695507, `updated_at`:1451695507, `uuid`:"396f421d-2a71-4cb1-9011-c174152f466a"})
+> create _8-[:`has_image` {`created_at`:1451695520, `updated_at`:1451695520, `type`:"banner"}]->_22
+> 
+> create (_24:`Image` {`created_at`:1451695507, `updated_at`:1451695507, `uuid`:"b2833539-1e64-49f9-be8a-1a74509dce6e"})
+> create (_25:`Image` {`created_at`:1451695507, `updated_at`:1451695507, `uuid`:"ed0f5615-59d9-447f-9731-757fdffce2ad"})
+> 
+> create (_31:`Tag` {`created_at`:1451695507, `updated_at`:1451695507, `uuid`:"396f421d-2a71-76ca-9011-c174152f466a", `tag`:"avatar" })
+> create (_32:`Tag` {`created_at`:1451695507, `updated_at`:1451695507, `uuid`:"2bc5c58e-2a71-4cb1-384e-c174152f466a", `tag`:"female"})
+> create (_33:`Tag` {`created_at`:1451695507, `updated_at`:1451695507, `uuid`:"d0f5621d-2a71-4cb1-384e-c174152f466a", `tag`:"male"})
+> 
+> create _24-[:`has_tag` {`created_at`:1451695520, `updated_at`:1451695520}]->_31
+> create _24-[:`has_tag` {`created_at`:1451695520, `updated_at`:1451695520}]->_32
+> create _25-[:`has_tag` {`created_at`:1451695520, `updated_at`:1451695520}]->_31
+> create _25-[:`has_tag` {`created_at`:1451695520, `updated_at`:1451695520}]->_33
+> 
+> 
+> 
+> create (_9:`Subject` {`activated`:false, `activation_digest`:"$2a$10$QpjOHHGIphtx00qTV4y4SeZfgjLhGYJFl605sx3wKOSd74SVBxAF6", `admin`:false, `created_at`:1451425599, `email`: "dmancinelli@hotmail.it", `first_name`:"Davide", `last_name`:"Mancinelli", `nickname`:"dm", `password_digest`:"$2a$10$d.fO0mKQleksqwa9RTWfyOw4SUSR9kAbJryRfKD85EnO1.X.7j6tS", ` updated_at`:1451425599, `uuid`:"45ce62ca-2730-4751-8082-54fb498e6d72"})
+> 
+> create (_10:`Subject` {`activated`:true, `activated_at`:1451388355, `activation_digest`:"$2a$10$i5o80quATeBZsBnCjyGTt.qYMNmUTNCi3TC03/MIJd57K4PcvoY4a", `admin`:false, `creat ed_at`:1451388203, `email`:"pdipietro@diviana.net", `first_name`:"John", `last_name`:"Wayne", `nickname`:"duke", `password_digest`:"$2a$10$XSunzD7IcTYXhDAXA/qApOqhaFPJy/AGugxr 6txkYwx8EsyhUwTxK", `updated_at`:1451388355, `uuid`:"cdb269cf-2cfa-4e9b-9321-76a9c5881980"})
+> 
+> create (_11:`SubjectProfile` {`background_color`:"inherit", `created_at`:1451388203, `text_color`:"inherit", `updated_at`:1451388203, `uuid`:"cab3c913-1209-4a5a-b1d7-3f751a8 1cb41"})
+> 
+> create (_12:`SubjectProfile` {`background_color`:"inherit", `created_at`:1451425599, `photo`:"", `text_color`:"inherit", `updated_at`:1451425599, `uuid`:"25f6426c-81ad-4708- 9563-7fcec875a6ae"})
+> 
+> create (_15:`Subject` {`activated`:false, `activation_digest`:"$2a$10$cI5rrV6COxWMaAsmx0YRJuR069R6ARWNwvjrMS0jDSOeCbRJpdBuO", `admin`:false, `created_at`:1451425637, `email` :"davide.mancinelli@hotmail.com", `first_name`:"Davide", `last_name`:"Mancinelli", `nickname`:"dmdm", `password_digest`:"$2a$10$oA989SSQ1Dqdk66wg.YxtOOGNBcJsah9QxzkoMkHZVlYjT2 THAQxm", `updated_at`:1451425637, `uuid`:"18018af0-4d04-47b6-a650-4fe8cd3bf73e"})
+> 
+> create (_16:`SubjectProfile` {`background_color`:"inherit", `created_at`:1451425637, `text_color`:"inherit", `updated_at`:1451425637, `uuid`:"75fc1d2b-76f3-4949-ae61-ad5399c 21f48"})
+> 
+> 
+> create _0-[:`owns` {`created_at`:1451682347, `updated_at`:1451682347}]->_8
+> create _0-[:`owns` {`created_at`:1450855901, `updated_at`:1450855901}]->_7
+> create _0-[:`owns` {`created_at`:1422308305, `updated_at`:1422308305}]->_6
+> create _0-[:`has_profile` {`created_at`:1422308305, `updated_at`:1422308305}]->_1
+> create _6-[:`speaks` {`created_at`:1421477725, `updated_at`:1421477725}]->_4
+> create _9-[:`has_profile` {`created_at`:1451425599, `updated_at`:1451425599}]->_12
+> create _10-[:`has_profile` {`created_at`:1451388203, `updated_at`:1451388203}]->_11
+> create _15-[:`has_profile` {`created_at`:1451425637, `updated_at`:1451425637}]->_16
+> ;
++-------------------+
+| No data returned. |
++-------------------+
+Nodes created: 26
+Relationships created: 18
+Properties set: 209
+Labels added: 26
+1306 ms
+neo4j-sh (?)$ commit
+Transaction committed
+neo4j-sh (?)$ 

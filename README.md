@@ -112,9 +112,9 @@ sudo reboot
 
 ## Install curl, rvm, Ruby, Rails, git
 
-~$ sudo apt-get  install curl
+~$ sudo apt-get install curl
 
-~$ sudo apt-get  autoremove
+~$ sudo apt-get autoremove
 
 ~$ \curl -sSL https://get.rvm.io | bash -s stable
 

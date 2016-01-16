@@ -15,7 +15,6 @@
 //= require jquery.remotipart
 //= require jquery.cookie
 //= require bootstrap-sprockets
-//= require bootstrap-switch
 //= require turbolinks
 //= require header
 //= require cloudinary

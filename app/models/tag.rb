@@ -7,12 +7,12 @@ class Tag
   property  :description, :type =>   String
   property  :see_also,    :type =>   String
 
-  has_one   :out,  :language, rel_class: HasLanguage      # Language
-  has_many  :in,   :is_used_by, rel_class: HasTag         # Tag
+  has_one   :out,  :language, rel_class: :HasLanguage      # Language
+  has_many  :in,   :is_used_by, rel_class: :HasTag         # Tag
 
-  has_many  :both, :translate,     rel_class: Translate      # Translate
-  has_many  :both, :synonyms,      rel_class: TagConnection  # Tag synonims
-  has_many  :both, :antonyms,      rel_class: TagConnection  # Tag antonyms
+  has_many  :both, :translate,     rel_class: :Translate      # Translate
+  has_many  :both, :synonyms,      rel_class: :TagConnection  # Tag synonims
+  has_many  :both, :antonyms,      rel_class: :TagConnection  # Tag antonyms
 
   before_create :check_default
   before_save :check_default

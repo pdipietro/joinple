@@ -6,10 +6,10 @@ class DiscussionComment
 
   include IsOwnedBy
 
-  has_many  :in,  :likes_to, rel_class: Likes                  # Subject
-  has_many  :in,  :is_followed_by, rel_class: Follows          # Subject
-  has_many  :in,  :is_preferred_by, rel_class: Preferes
-  has_many  :out, :has_tag, rel_class: HasTag                  # :tag
+  has_many  :in,  :likes_to, rel_class: :Likes                  # Subject
+  has_many  :in,  :is_followed_by, rel_class: :Follows          # Subject
+  has_many  :in,  :is_preferred_by, rel_class: :Preferes
+  has_many  :out, :has_tag, rel_class: :HasTag                  # :tag
 
   has_many  :out, :has_comment, model_class: false, type: "has_comment"     # :DiscussionComment
 

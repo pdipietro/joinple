@@ -3,7 +3,7 @@ class Speaks
   include CreatedAtUpdatedAt
 
   from_class  :any
-  to_class    Language
+  to_class    :Language
   type 'speaks'
 
 end
