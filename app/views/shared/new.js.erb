@@ -1,0 +1,2 @@
+$('<%= escape_javascript( if is_admin? then "#main-add" else "#nil" end ) %>').html("<%= escape_javascript(render partial: '#{@item.class.downcase}/form', locals: { language: Language.new } ) %>" );
+$("#main-content *:eq(0)").after("<%= escape_javascript(render partial: 'show', locals: { language: @language } ) %>" );

@@ -1,4 +1,15 @@
 Rails.application.routes.draw do
+
+  root                     'landing_pages#home'#, defaults: { :format => "js"}, :remote => :true
+  get    'home'      =>    'landing_pages#home', defaults: { :format => "js"}, :remote => :true
+  get    'login'     =>    'sessions#new', defaults: { :format => "js"}, :remote => :true
+  post   'login'     =>    'sessions#create', defaults: { :format => "js"}, :remote => :true
+  get    'signup'    =>    'subjects#new', defaults: { :format => "js"}, :remote => :true
+  delete 'logout'    =>    'sessions#destroy', defaults: { :format => "js"}, :remote => :true
+
+
+
+end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -53,4 +64,4 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-end
+

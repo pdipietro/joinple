@@ -1,0 +1,22 @@
+= puts "landing_page #{landing_page}"
+%div{ :id => landing_page.uuid }
+  = form_for(landing_page, :remote => :true ) do |f|
+    .col-xs-2.col-sm-2.col-md-2
+      .thumbnail
+        .container-fluid.nopadding
+          .field
+            = f.label :header
+            = f.file  :header
+          .field
+            = f.label :logo
+            = f.file  :logo
+
+        - if can_modify?(language)
+          .command-button
+            = link_to edit_landing_page_path(landing_page), :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Modify the element" do
+              %span.glyphicon.icon-edit-modify-streamline
+    .col-xs-9.col-sm-9.col-md-9
+      .row
+        = image_tag f.header.url(:l)
+      .row
+        = image_tag f.logo.url(:xl)

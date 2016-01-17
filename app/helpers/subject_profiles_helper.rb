@@ -1,0 +1,2 @@
+module SubjectProfilesHelper
+end

@@ -1,0 +1,6 @@
+$("#tech-info").html("<%= escape_javascript(render partial: 'sessions/tech_info') %>" );
+$("#main-header").html("<%= escape_javascript(render partial: 'social_networks/header', locals: { social_network: [current_social_network]} ) %>" );
+$("#main-add").html("" );
+$("#main-content").html("<%= escape_javascript(render partial: 'index', locals: { social_networks: @social_networks} ) %>" );
+$("#right-context *").html("");
+

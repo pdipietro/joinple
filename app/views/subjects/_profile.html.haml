@@ -1,0 +1,41 @@
+#subject_profile-form{ :class => subject_profile.errors.count == 0 ? 'collapse' : 'collapse in' }
+  .spacer
+  .col-xs-15
+  .col-xs-30
+    .panel.panel-default.nothing
+      .panel-heading{ :style => super_social_network_style }
+        %a.toggle{ :type => "toggle", "data-target" => "#subject_profile-form", "data-toggle" => "collapse"}
+          .panel-title
+            = "Manage the subject profile of #{subject.full_name}"
+           %span.caret.to-right
+      .panel-body
+        = bootstrap_form_for(subject_progile, :remote => :true, :html => {:multipart => true} ) do |f|
+          .nothing= f.text_area :description, :prepend => :description, :placeholder => "Enter the subject description", :hide_label => :true
+          .spacer
+
+          .nothing= f.color_field :background_color, :prepend => "background color", :placeholder => "Enter the standard background color", :hide_label => :true, :class => "left-align" 
+          .spacer
+          .nothing= f.color_field :text_color, :prepend => "text color", :placeholder => "Enter the standard text color", :hide_label => :true, :class => "left-align"
+          .spacer
+
+          .nothing= f.text_field :photo, :prepend => "photo image", :placeholder => "Enter the image (200x200px at 300dpi)", :hide_label => :true, :disabled => :true
+          .spacer
+          .nothing= f.file_field :photo, :prepend => "photo image", :placeholder => "Enter the image (200x200px at 300dpi)", :hide_label => :true
+          .spacer
+            = image_tag subject_profile.photo.url(:icon) 
+            = image_tag subject_profile.photo.url(:thumb) 
+            = image_tag subject_profile.photo.url(:btn) 
+            = f.hidden_field :photo_cache
+          .spacer
+
+          %button.icon_only{ :type => "submit", :name => "commit", :hide_label => :true, :title => "Save the element" } 
+            %i.im-save-3
+            = "save"
+          %button.icon_only{ :type => "reset", :name => "reset", :hide_label => :true, :title => "cancel" } 
+            %i.im-cancel-circle
+            = "exit without saving"  
+
+          .spacer
+
+.col-xs-15
+

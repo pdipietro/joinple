@@ -1,0 +1,20 @@
+!!!
+%html
+  %head
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', media: 'all', 'data-turbolinks-track' => true
+
+    %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1"}    
+    = csrf_meta_tags
+    = google_webfonts_init({              |
+        google: ['Roboto Slab', 'Roboto'] |
+      })                                  |
+    = render 'layouts/shim'
+    = logger.debug "------------------ Here is 'landing_pages' layout --"
+    %body{:sn => "#{current_social_network_name?}"}
+      #full-screen-image
+      #wrapper
+        #header
+          = render 'layouts/header'
+        #page.container-fluid
+          = image_tag "homePage.png", :class => "responsive"

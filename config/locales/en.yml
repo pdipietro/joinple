@@ -20,4 +20,307 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  joinple:
+    slogan: "The new and innovative platform to create for free your own social network without skills and in 5 minutes."
+    slogan_2: "SLOGAN2"
+  send: "send"
+  browser_geometry: "browser geometry: "
+  date:
+    formats:
+      default: "%Y-%m-%d"
+      short: "%b %d"
+      long: "%B %d, %Y"
+  button:
+    save: "save"
+    clear: "clear"
+    send: "send"
+    exit: "exit"
+    hint: 
+      save: "save the form"
+      clear: "reinitialize the form"
+      send: "send the form"
+      exit: "exit the document"
+  placeholder:
+    email: "Enter your email address"
+    password: "Enter your password"
+  attribute:
+    background_color: "background color"
+    description: "description"
+    email: "email"
+    name: "name"
+    password: "password"
+    text_color: "text color"
+  account_activation:
+    subject: "Joinple account activation"
+    mail_text:
+      title: "JoinPle Social Network"
+      salutation: "Hi" 
+      text1: "Welcome to the JoinPle Social Network! " 
+      activation: "Click here"
+      text2: " to activate your account."
+      signature: "The Joinple team."
+  cookies:
+    text1: "This site uses technical and analytical cookies, including third parties, necessary for the operation, sharing on social networks and viewing of media.</br></br>By clicking on an area outside the banner, you consent to the use of cookies.</br></br>To learn more or opt out of all or some cookies, see the cookie policy."
+    accept: "accept cookies"
+    refuse: "refuse cookies"
+    read:   "read info"
+    nocookie: "We are sorry, but this site cannot be visited without enabling cookies!"
+  discussion:
+    model:
+    view:
+      button:
+        banner: "select the discussion banner ..." 
+    controller:
+  document:
+    static:
+      test: "/public/system/doc/test_template.html.haml"
+      privacy:
+        disclaimer: "/public/system/doc/landing/v0.7.5/context/cookie-en.html.haml"
+      joinpleuser1: 
+        rules: "/public/system/doc/landing/v0.7.5/context/regulation-en.html.haml"
+  group:
+    model:
+    view:
+      button:
+        banner: "select the group banner ..." 
+        logo: "select the group logo ..."
+      open: "open"
+      closed: "closed"
+      secret: "secret"
+      type: "<span style='margin-right: 4px; font-weight: normal;'>group type </span>"
+      placeholder:
+        description: "insert the group description ..."
+        name: "insert the group name ..."
+    controller:
+  landing_page:
+    email: 
+      label: "email"
+      placeholder: "Insert your email address ..."
+    landing_075:
+      page_1:
+        menu: "TOP"
+        line_1: "A social network, for everyone"
+        line_2_col_1: "<b>The easiest way, fast and free to create a social network</b> on your passions, interests, causes, business and much more.<br />Users of all JoinPle's social networks are waiting for you and ready to follow you."
+        line_2_col_2: "For the first time, <b>with just a single membership, you'll find, in a unique environment, many social networks</b> on your different passions.</br>Your friends are already booking, don't wait any longer!"
+        line_3: "<b>To be notified when JoinPle will be online you can leave us your e-mail.<br>You will receive a gift as appreciation.</b>"
+        line_4: "Thanks for your interest from the JoinPle's team.</br> We suggest you to see our funny video and follow us on ours social network profiles."
+        line_5: "Watch 1 minute video of JoinPle and <a href='https://www.youtube.com/channel/UC7lsdOWNPfJQz2BTtUwR0ow'>visit our YouTube channel</a>"
+        privacy_accepted: "I allow the treatment of my personal data."
+        footer: "<span style='font-weight: bold;'>IT'S FREE</span>"
+        video_1: "landing/v0.7.5/master-en.mp4"
+        video_youtube: "https://www.youtube.com/embed/oH89Iu6HuxA?rel=0"
+      page_2:
+        menu:    "ENTER THE CONTEST"
+        title:   "<span style='font-weight: bold; font-size: 2.5em;'>ENTER THE PHOTO CONTEST</span>"
+        image_1: "landing/v0.7.5/enter-03-en"
+        image_2: "landing/v0.7.5/vote-03-en"
+
+        line_1_col_1: "click here to enter"
+        line_1_col_2: "click here to vote"
+
+        point_1: "See your photo on our facebook fan page inside the contest <span style='color: #A02348'>#JOINPLEUSER1</span> and share it inviting your friends to vote for you"
+        point_2: "Find out why become the <span style='color: #A02348'>#JOINPLEUSER1</span> and the complete rule sets"
+        point_3: "Follow us everyday and find out the most voted photos. Each <span style='color: #A02348'>FRIDAY</span> we'll publish the funniest"
+      page_3:
+        menu:   "WORK WITH US"
+        line_1: "<span style='font-weight: bold; font-size: 1.25em;'>BE PART OF THE JOINPLE'S TEAM</span>"
+        line_2: "WE ARE LOOKING FOR THESE PROFILES"
+        line_3_col_1: "APP DEVELOPER"
+        line_3_col_2: "WEB MARKETING SPECIALIST"
+        line_3_col_3: "RAILS w/ANGULAR.JS DEVELOPER"
+        line_4: "<a href='mailto:recruitment@joinple.com'>SEND YOUR CV</A>"        
+      footer:
+        privacy: "Privacy"
+        disclaimer: "Copyright &copy; 2015 JoinPle. All rights reserved."
+    view:
+      description:
+        placeholder: "insert the text that will appear on the landing page ..."
+      page_header: "Edit the landing page content ...."
+      header_button_caption: "select the header image ..." 
+      logo_button_caption:  "select the logo image ..."
+    model:
+  layout:
+    view:
+      header:
+        joinple_home: "Joinple home"
+        login: "Log in ..."
+        signup: "Sign up ..."
+        goto_joinple: "Go to Joinple"
+        people: "People"
+        social_networks: "Social networks"
+        notifications: "Notifications"
+        messages: "Messages"
+        about: "About Joinple"
+        privacy: "Privacy"
+        contacts: "Contacts"
+        terms_and_conditions: "Terms and conditions"
+        help: "Help"
+        faq: "FAQ"
+        myself: "Myself"
+        welcome: "Welcome "
+        my_profiles: "My profiles"
+        settings: "Settings"
+        my_books: "My books [?????]"
+        my_preferites: "My preferites"
+        log_out: "Log out"
+        administration: "Administration"
+        landing_page: "Landing page"
+        languages: "Languages"
+        administrators: "Administrators"
+        view_system_status: "View system status"
+        view_config: "View config"
+      left:
+        home_posts: "Home posts"
+        preferites: "My preferites"
+        groups: "Groups"
+        discussions: "Discussions"
+        blogs: "Blogs"
+        social_networks: "Social networks"
+
+  post:
+    model:
+    view:
+      button:
+        image: "add up to 5 images ..."
+    controller:
+  recruitment:
+    app_developer: "/public/system/doc/recruitment/app-developer-en.html.haml"
+    rails_angular_developer: "/public/system/doc/recruitment/rails-angular-developer-en.html.haml"
+    web_marketing_specialist: "/public/system/doc/recruitment/web-marketing-specialist-en.html.haml"
+  session:
+    model:
+      remember_me: "remember me"
+    view:
+      login:
+        title: "Log in"
+        forgot_password: "Forgot password?"
+        new_subject: "New user?"
+        signup_now: "Sign up now!"
+        placeholder:
+          email_nickname: "Enter your email address or nickname"
+        label:
+          remember_me: "remember me"
+  social_network:
+    options:
+      is_online: [[false,"offline"],[true,"online"]]
+      is_visible: [["open","open"], ["private","private"], ["restricted","restricted"]]
+      status: [["run","running"],["suspended","suspended"],["locked","locked"],["banned","banned"]]
+    model:
+      attribute:
+        is_visible: "visibility"
+        is_online: "pubblication"
+        status: "status"
+    view:
+      banner_button_caption: "select the social network banner ..." 
+      logo_button_caption: "select the social network logo ..."
+      create_title: "Create a new social network"
+      edit_title: "Edit the "
+      name: " social network"
+
+      iparticipate: "My social networks"
+      iadminister: "View social networks I administer"
+      all: "View all social networks"
+      hot: "View hottest social networks"
+      fresh: "View newest social networks"
+      ipreferes: "View my preferred social network"
+      pendinginvitation: "View pending invitation"
+    controller:
+    options:
+      is_online:
+        label: 
+          true: "online"
+          false: "offline"
+        value:
+          true: true
+          false: false
+      is_visible:
+        label: 
+          open: "open"
+          private: "private"
+          restricted: "restricted"
+        value:
+          open: "open"
+          private: "private"
+          restricted: "restricted"
+      status: 
+        label:
+          run: "run"
+          suspended: "suspended"
+          locked: "locked"
+          banned: "banned"
+        value:
+          run: "run"
+          suspended: "suspended"
+          locked: "locked"
+          banned: "banned"
+  subject:
+    model:
+      attribute:
+        first_name: "first name"
+        last_name: "last name"
+        nickname: "nickname"
+        password_confirmation: "confirm password"
+    view:
+      signup:
+        title: "Sign up"
+        create_button: "Create your account"
+        placeholder:
+          nickname: "Enter your nickname"
+          first_name: "Enter your first name"
+          last_name: "Enter your last name"
+          password_confirmation: "Confirm your password"
+  subject_profile:
+    model:
+    view:
+      photo_button_caption: "select your new photo ..."
+      description: "enter your description"
+      background_color: "customize your background color"
+      text_color: "pcustomize your text color"
+      title: "manage your profile"
+    controller:
+
+  mail_collector:
+    attributes:
+      privacy_accepted: "Dati personali"
+
+  neo4j:
+    models:
+      language:
+        attributes:
+          code: "o code mio!"
+
+    errors:
+      models:
+        group:
+          attribute:
+            type:
+              inclusion: ["open", "closed", "secret"]
+        language:
+          attributes:
+            code:
+              taken: "Language code already used"
+              placeholder: "Enter the language code in the form 'xx' or 'xx-yy'"
+            description:
+              taken: "Language description already used"
+              placeholder: "Enter the language description"
+        subject:
+          attributes:
+            nickname:
+              label: "nickname"
+              taken: "Nickname not available: it must be unique in the system"
+            first_name:
+              label: "first name"
+            last_name:
+              label: "last name"
+        subject_profile:
+          attributes:
+          button_caption: "insert your photo ..."
+        mail_collector:
+          attributes:
+            email:
+              invalid: "invalid"
+              taken: "email address already in use"
+              placeholder: "insert your email address ..."
+            privacy_accepted: 
+              blank: "must be checked"
+

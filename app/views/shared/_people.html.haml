@@ -1,0 +1,7 @@
+#post-header-right.shadowing
+	- subjects = Subject.all
+	- (1..1).each do |a|
+		- subjects.each do |subject|
+			%span.subject-faces
+				= link_to subject_profile_path(subject.has_profile.uuid), :remote => :true, :title => "#{subject.first_name} #{subject.last_name} (@#{subject.nickname})" do
+					= render partial: 'subjects/owner', locals: { subject: subject, size: :basic, special: :true }

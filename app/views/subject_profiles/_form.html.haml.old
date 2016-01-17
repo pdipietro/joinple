@@ -1,0 +1,34 @@
+#subject-profile-form{ :class => subject_profile.errors.count == 0 ? 'collapse in' : 'collapse in' }
+  .col-xs-15
+  .col-xs-30
+    .panel.panel-default.nothing
+      = render partial: 'shared/common_panel_header', locals: { :style => "current", :data_target => "#subject-profile-form", :title => title }
+      .panel-body
+        -# .panel-heading{ :style => super_social_network_style }
+          %a.toggle{ :type => "toggle", "data-target" => "#subject_profile-form", "data-toggle" => "collapse"}
+            .panel-title
+              = t("subject_profile.view.title")
+              %span.caret.to-right
+          .panel-body
+        = bootstrap_form_for(subject_profile, :remote => :true, :html => {:multipart => true} ) do |f|
+          .nothing= f.text_area :description, :prepend => t("attribute.description"), :placeholder => t("subject_profile.view.description"), :hide_label => :true
+          .spacer
+
+          .nothing= f.color_field :background_color, :prepend => t("attribute.background_color"), :placeholder => t("subject_profile.view.background_color"), :hide_label => :true, :class => "left-align" 
+          .spacer
+          .nothing= f.color_field :text_color, :prepend => t("attribute.text_color"), :placeholder => t("subject_profile.view.text_color"), :hide_label => :true, :class => "left-align"
+          .spacer
+
+          #upload_subject_photo
+            = render partial: "subjects/owner", locals: { :subject_profile => subject_profile, :size => :standard, :special => true }
+
+            = render partial: "images/form", locals: { :f => f, :preset => "subject-photo", :subject => "subject_profile", :field_name => :photo, :button_caption => t("subject_profile.view.photo_button_caption"), :folder => current_social_network_owner.uuid + "/" }  
+            -#= render partial: "subject_profiles/photo_load", locals: { :subject_profile => subject_profile, :size => :profile }
+          .spacer-2x
+
+          = render partial: 'shared/common_panel_footer'
+
+          .spacer
+
+  .col-xs-15
+

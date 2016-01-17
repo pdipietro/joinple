@@ -1,0 +1,15 @@
+= link_to social_networks_list_path("iparticipate"), :remote => :true do
+  %li.left.list-group-item.no-padding{ :style => current_social_network_style }
+    = t("layout.view.left.social_networks")
+= link_to dummy_path, :remote => :true do
+  %li.left.list-group-item.no-padding
+    %i.im-dot
+    Social 1
+= link_to dummy_path, :remote => :true do
+  %li.left.list-group-item.no-padding
+    %i.im-dot
+    Social 2
+= link_to dummy_path, :remote => :true do
+  %li.left.list-group-item.no-padding
+    %i.im-dot
+    Social 3

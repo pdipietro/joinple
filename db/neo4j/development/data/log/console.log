@@ -5,3 +5,29 @@
 2016-01-16 18:21:56.058+0100 INFO  Mounting static content at /webadmin
 2016-01-16 18:21:56.153+0100 INFO  Mounting static content at /browser
 2016-01-16 18:21:59.097+0100 INFO  Remote interface ready and available at http://localhost:7474/
+2016-01-16 19:06:02.885+0100 INFO  Successfully started database
+2016-01-16 19:06:03.014+0100 INFO  Starting HTTP on port 7474 (8 threads available)
+2016-01-16 19:06:03.333+0100 INFO  Enabling HTTPS on port 7473
+2016-01-16 19:06:03.462+0100 INFO  Mounting static content at /webadmin
+2016-01-16 19:06:03.538+0100 INFO  Mounting static content at /browser
+2016-01-16 19:06:05.405+0100 INFO  Remote interface ready and available at http://localhost:7474/
+2016-01-17 06:42:13.475+0100 INFO  Neo4j Server shutdown initiated by request
+2016-01-17 06:42:13.511+0100 INFO  Successfully shutdown Neo4j Server
+2016-01-17 06:42:13.690+0100 INFO  Successfully stopped database
+2016-01-17 06:42:13.690+0100 INFO  Successfully shutdown database
+2016-01-17 06:43:06.554+0100 INFO  Successfully started database
+2016-01-17 06:43:06.595+0100 INFO  Starting HTTP on port 7474 (8 threads available)
+2016-01-17 06:43:06.852+0100 INFO  Enabling HTTPS on port 7473
+2016-01-17 06:43:06.968+0100 INFO  Mounting static content at /webadmin
+2016-01-17 06:43:07.040+0100 INFO  Mounting static content at /browser
+2016-01-17 06:43:08.954+0100 INFO  Remote interface ready and available at http://localhost:7474/
+2016-01-17 07:19:00.262+0100 INFO  Neo4j Server shutdown initiated by request
+2016-01-17 07:19:00.373+0100 INFO  Successfully shutdown Neo4j Server
+2016-01-17 07:19:00.503+0100 INFO  Successfully stopped database
+2016-01-17 07:19:00.503+0100 INFO  Successfully shutdown database
+2016-01-17 07:19:10.231+0100 INFO  Successfully started database
+2016-01-17 07:19:10.265+0100 INFO  Starting HTTP on port 7474 (8 threads available)
+2016-01-17 07:19:10.699+0100 INFO  Enabling HTTPS on port 7473
+2016-01-17 07:19:10.836+0100 INFO  Mounting static content at /webadmin
+2016-01-17 07:19:10.917+0100 INFO  Mounting static content at /browser
+2016-01-17 07:19:12.629+0100 INFO  Remote interface ready and available at http://localhost:7474/

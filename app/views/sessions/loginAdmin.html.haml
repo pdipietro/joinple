@@ -1,0 +1,16 @@
+.col-xs-10
+.col-xs-40
+  .panel-body
+    = bootstrap_form_for(:session, :remote => :true ) do |f|
+      .nothing= f.text_field :email, :prepend => :email, :placeholder => "Enter your email address or nickname", :hide_label => :true
+      .spacer
+      .nothing= f.text_field :password, :prepend => :password, :placeholder => "Enter your password", :hide_label => :true
+      .spacer
+      .nothing= f.check_box :remember_me 
+      .spacer
+
+      .col-xs-40.nothing
+        %button.btn.btn-default.btn-sm-nothing{ :type => "submit", :name => "commit", :hide_label => :true} #, :style => super_social_network_style }
+          %i.im-log-in
+          Log in
+.col-xs-10

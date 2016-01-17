@@ -1,0 +1,5 @@
+$("#tech-info").html("<%= escape_javascript(render partial: 'sessions/tech_info') %>" );
+$("#main-header").html("" );
+$("#main-add").html("" );
+$("#main-content").html("<%= escape_javascript(render partial: 'show', locals: { subject_profile: @subject_profile} )%>" );
+$("#main-right").html("" );

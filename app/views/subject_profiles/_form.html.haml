@@ -1,0 +1,11 @@
+= bootstrap_form_for(subject_profile, :remote => :true, :html => {:multipart => true} ) do |f|
+
+  .nothing= f.text_area :description, :prepend => t("attribute.description"), :placeholder => t("subject_profile.view.description"), :hide_label => :true
+  .spacer
+
+  .nothing= f.color_field :background_color, :prepend => t("attribute.background_color"), :placeholder => t("subject_profile.view.background_color"), :hide_label => :true, :class => "left-align" 
+  .spacer
+
+  .nothing= f.color_field :text_color, :prepend => t("attribute.text_color"), :placeholder => t("subject_profile.view.text_color"), :hide_label => :true, :class => "left-align"
+  .spacer
+

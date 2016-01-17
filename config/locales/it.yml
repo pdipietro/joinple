@@ -1,0 +1,306 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+it:
+  joinple:
+    slogan: "La nuova ed innovativa piattaforma per creare gratuitamente il tuo social network senza competenze e in 5 minuti."
+    slogan_2: "SLOGAN2"
+  send: "invia"
+  browser_geometry: "geometria dello schermo: "
+  date:
+    formats:
+      default: "%d-%m-%Y"
+      short: "%b %d"
+      long: "%B %d, %Y"
+  button:
+    save: "save"
+    clear: "clear"
+    send: "invia"
+    exit: "esci"
+    hint: 
+      save: "salva il modulo"
+      clear: "reinizializza il modulo"
+      send: "invia il modulo"
+      exit: "esci"
+  placeholder:
+    email: "Inserisci il tuo indirizzo email"
+    password: "Inserisci la tua password"
+  attribute:
+    background_color: "colore dello sfondo"
+    description: "descrizione"
+    email: "email"
+    name: "nome"
+    password: "password"
+    text_color: "colore del testo"
+  account_activation:
+    subject: "Attivazione dell'account Joinple"
+    mail_text:
+      title: "JoinPle Social Network"
+      salutation: "Ciao" 
+      text1: "Benvenuto nel social network di Joinple! "
+      activation: "Clicca qui "
+      text2: " per attivare il tuo account."
+      signature: "Il team Joinple."
+  cookies:
+    text_belisario: "Questo sito si avvale di cookie tecnici e di cookie analitici, anche di terze parti, necessari al funzionamento, alla condivisione sui social network e alla visualizzazione di media. Chiudendo questo banner, cliccando in un'area sottostante o accedendo ad un'altra pagina del sito, acconsenti all’uso dei cookie. Se vuoi saperne di più o negare il consenso a tutti o ad alcuni cookie, consulta la cookie policy."
+    text1: "Questo sito si avvale di cookie tecnici e di cookie analitici, anche di terze parti, necessari al funzionamento, alla condivisione sui social network e alla visualizzazione di media.</br></br>Accettando espressamente o cliccando in un'area esterna a questo avviso, acconsenti all’uso dei cookie.</br></br>Se vuoi saperne di più o negare il consenso a tutti o ad alcuni cookie, leggi l'informativa sui cookie."
+    accept: "accetto i cookie"
+    refuse: "rifiuto i cookie"
+    read:   "informativa sui cookie"
+    nocookie: "Ci dispiace, ma questo sito non può essere utilizzato senza attivare i cookie"
+  discussion:
+    model:
+    view:
+      photo_button_caption: 
+    controller:
+  document:
+    static:
+      test: "/public/system/doc/test_template.html.haml"
+      privacy:
+        disclaimer: "/public/system/doc/landing/v0.7.5/context/cookie-it.html.haml"
+      joinpleuser1: 
+        rules: "/public/system/doc/landing/v0.7.5/context/regulation-it.html.haml"
+  group:
+    model:
+    view:
+      button:
+        banner: "seleziona l'immagine del gruppo ..." 
+        logo: "seleziona il logo del gruppo ..."
+      open: "aperto"
+      closed: "chiuso"
+      secret: "segreto"
+      type: "<span style='margin-right: 4px; font-weight: normal;'>tipo di gruppo </span>"
+      placeholder: 
+        description: "inserisci la descrizione del gruppo"
+        name: "inserisci il nome del gruppo"
+    controller:
+  landing_page:
+    email: 
+      label: "email"
+      placeholder: "inserisci il tuo indirizzo email ..."
+    landing_075:
+      page_1:
+        menu: "TOP"
+        line_1: "Un social network, per tutti"
+        line_2_col_1: "<b>Il modo più semplice, veloce e gratuito per creare un social network</b> sulle tue passioni, interessi, cause, attività imprenditoriali e molto altro ancora.</br>Gli utenti di tutti i social network JoinPle ti aspettano e sono già pronti a seguirti."
+        line_2_col_2: "Per la prima volta, <b>con un’unica e semplice iscrizione, trovi in un solo ambiente tanti social network</b> sui tuoi diversi interessi.</br>I tuoi amici si sono già prenotati, non aspettare oltre!"
+        line_3: "<b>Per essere avvisato quando JoinPle sarà online, puoi lasciarci la tua email.</br>Per ringraziarti riceverai un omaggio.</b>"
+        line_4: "Il team JoinPle ti ringrazia per il tuo interesse. Ti invitiamo a vedere un nostro divertente video e a seguirci sui nostri canali social."
+        line_5: "Guarda il video di 1 minuto di JoinPle e <a href='https://www.youtube.com/channel/UC7lsdOWNPfJQz2BTtUwR0ow'>visita il nostro canale YouTube</a>"
+        privacy_accepted: "Autorizzo il trattamento dei miei dati personali."
+        footer: "<span style='font-weight: bold;'>E' GRATIS!"
+        video_1: "landing/v0.7.5/master-it.mp4"
+        video_youtube: "https://www.youtube.com/embed/-mge7DRskp4?rel=0"
+      page_2:
+        menu:   "PARTECIPA AL CONCORSO"
+        title: "<span style='font-weight: bold; font-size: 2.5em;'>PARTECIPA AL CONCORSO FOTOGRAFICO</span>"
+        image_1: "landing/v0.7.5/enter-03-it"
+        image_2: "landing/v0.7.5/vote-03-it"
+
+        line_1_col_1: "clicca qui per partecipare"
+        line_1_col_2: "clicca qui per votare"
+
+        point_1: "Guarda la tua foto sulla nostra pagina Facebook all'interno del concorso <span style='color: #A02348'>#JOINPLEUSER1</span> e condividila invitando i tuoi amici a votarti"
+        point_2: "Scopri perché diventare <span style='color: #A02348'>L'UTENTE N°&nbsp;1 DI JOINPLE</span> ed il regolamento del concorso"
+        point_3: "Seguici ogni giorno e scopri le foto più votate. Ogni <span style='color: #A02348'>VENERDI'</span> pubblicheremo le più divertenti"
+      page_3:
+        menu:   "LAVORA CON NOI"
+        line_1: "<span style='font-weight: bold; font-size: 1.25em;'>ENTRA A FAR PARTE DEL TEAM DI JOINPLE</span>"
+        line_2: "STIAMO RICERCANDO QUESTI PROFILI"
+        line_3_col_1: "APP DEVELOPER"
+        line_3_col_2: "WEB MARKETING SPECIALIST"
+        line_3_col_3: "RAILS w/ANGULAR.JS DEVELOPER"
+        line_4: "<a href='mailto:recruitment@joinple.com'>INVIA IL TUO CV</A>"        
+      footer:
+        privacy: "Privacy"
+        disclaimer: "Copyright &copy; 2015 JoinPle. Tutti i diritti riservati."
+    recruit:
+    view:
+      description:
+        placeholder: "inserisci il testo che apparirà al centro della landing page ..."
+      page_header: "modifica il contenuto della landing page ..."
+      header_button_caption: "seleziona l'immagine della landing page ..." 
+      logo_button_caption:  "seleziona il logo della landing page ..."
+  layout:
+    view:
+      header:
+        joinple_home: "Joinple home"
+        login: "Accedi ..."
+        signup: "Iscriviti ..."
+        goto_joinple: "Vai a Joinple"
+        people: "Le persone"
+        social_networks: "I social network"
+        notifications: "Le notifiche"
+        messages: "I messaggi"
+        about: "Informazioni su Joinple"
+        privacy: "Privacy"
+        contacts: "Contatti"
+        terms_and_conditions: "Termini e condizioni di utilizzo"
+        help: "Aiuto"
+        faq: "Domande frequenti"
+        myself: "Io"
+        welcome: "Benvenuto "
+        my_profiles: "I miei profili ..."
+        settings: "Impostazioni ..."
+        my_books: "I miei libri [?????] ..."
+        my_preferites: "I miei preferiti ..."
+        log_out: "Esci da Joinple ..."
+        administration: "Amministrazione"
+        landing_page: "Landing page"
+        languages: "Lingue"
+        administrators: "Amministratori"
+        view_system_status: "Stato del sistema"
+        view_config: "Configurazione View"
+      left:
+        home_posts: "Tutti i Post"
+        preferites: "I miei preferiti"
+        groups: "Gruppi"
+        discussions: "Discussioni"
+        blogs: "Blog"
+        social_networks: "Social networks"
+
+
+  mail_collector:
+
+  post:
+    model:
+    view:
+      photo_button_caption: "aggiungi fino a 5 immagini ..."
+    controller:
+  recruitment:
+    app_developer: "/public/system/doc/recruitment/app-developer-it.html.haml"
+    rails_angular_developer: "/public/system/doc/recruitment/rails-angular-developer-it.html.haml"
+    web_marketing_specialist: "/public/system/doc/recruitment/web-marketing-specialist-it.html.haml"
+  session:
+    model:
+      remember_me: "Ricordam!"
+    view:
+      login:
+        title: "Accedi"
+        forgot_password: "Hai dimenticato la password?"
+        new_subject: "Sei un nuovo utente?"
+        signup_now: "Registrati ora!"
+        placeholder:
+          email_nickname: "Inserisci il tuo indirizzo email o il tuo soprannome"
+        label:
+          remember_me: "Ricordami!"
+  social_network:
+    options:
+      is_online: [[false,"offline"],[true,"online"]]
+      is_visible: [["open","aperto"], ["private","privato"], ["restricted","ristretto"]]
+      status: [["run","attivo"],["suspended","sospeso"],["locked","bloccato"],["banned","vietato"]]
+    model:
+      attribute:
+        is_visible: "visibilità"
+        is_online: "pubblicazione"
+        status: "stato"
+    view:
+      banner_button_caption: "seleziona l'immagine del social network ..." 
+      logo_button_caption: "seleziona il logo del social network ..."
+      create_title: "Crea un nuovo social network"
+      edit_title: "Modifica il social network "
+      name: " social network"
+       
+      iparticipate: "I miei social networks"
+      iadminister: "I social networks che amministro"
+      all: "Tutti i social networks"
+      hot: "I social networks più caldi"
+      fresh: "I social networks più recenti"
+      ipreferes: "I miei social network preferiti"
+      pendinginvitation: "Gli inviti in attesa di risposta"
+    controller:
+  subject:
+    model:
+      attribute:
+        first_name: "nome"
+        last_name: "cognome"
+        nickname: "soprannome"
+        password_confirmation: "conferma password"
+    view:
+      signup:
+        title: "Registrazione"
+        create_button: "Crea il tuo account"
+        placeholder:
+          nickname: "Inserisci il tuo soprannome"
+          first_name: "Inserisci il tuo nome"
+          last_name: "Inserisci il tuo cognome"
+          password_confirmation: "Conferma la tua password"
+  subject_profile:
+    model:
+    view:
+      photo_button_caption: "seleziona la tua nuova foto ..."
+      description: "inserici una tua descrizione"
+      background_color: "personalizza il tuo colore di background"
+      text_color: "personalizza il tuo colore di testo"
+      title: "gestisci il tuo profilo"
+    controller:
+  mail_collector:
+    attributes:
+      privacy_accepted: "Dati personali"
+
+      
+  neo4j:
+    models:
+      language:
+        attributes:
+          code: "codice ISO"
+    errors:
+      messages:
+        blank: "non può essere vuoto"
+        invalid: "non è valido"
+        too_short: "troppo corto"
+      models:
+        group:
+          attribute:
+            type:
+              inclusion: ["open", "closed", "secret"]
+        language:
+          attributes:
+            code:
+              taken: "il codice lingua è già esistente"
+              placeholder: "inserisci il codice lingua nella forma 'xx' oppure 'xx-yy' ..."
+            description:
+              taken: "questa descrizione è già stata utilizzata per un'altra lingua"
+              placeholder: "inserisci la edscrizione della lingua ..."
+        subject:
+          attributes:
+            semail:
+              invalid: "non è valido"
+            nickname:
+              label: "soprannome"
+              taken: "il soprannome scelto è già stato utilizzato: deve essere univoco nel sistema"
+            first_name:
+              label: "nome"
+            last_name:
+              label: "cognome"
+            password_confirmation:
+              confirmation: "le due password non coincidono"
+        subject_profile:
+          attributes:
+          button_caption: "inserisci la tua foto ..."
+        mail_collector:
+          attributes:
+            email:
+              invalid: "non corretta"
+              taken: "email già in uso"
+              placeholder: "inserisci il tuo indirizzo email ..."
+            privacy_accepted: 
+              blank: "devi autorizzare il trattamento dei dati"

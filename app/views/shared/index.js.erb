@@ -1,0 +1,3 @@
+$("#main-header").html("<%= escape_javascript(render partial: "'#{class_name.downcase}/header'", locals: { "'#{class_name.downcase.pluralize}'": '@"#{class_name.downcase.pluralize}"''} ) %>" );
+$("#main-add").html("<%= escape_javascript(render partial: 'form', locals: { language: Language.new } ) %>" );
+$("#main-content").html("<%= escape_javascript(render partial: 'index', locals: { languages: @languages} ) %>" );
