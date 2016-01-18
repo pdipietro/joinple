@@ -2,7 +2,7 @@ class BelongsTo
   include Neo4j::ActiveRel
   include CreatedAtUpdatedAt
 
-  from_class  Group
+  from_class  :Group
   to_class    :SocialNetwork
   type 'belongs_to'
 

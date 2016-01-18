@@ -2,20 +2,10 @@ Rails.application.routes.draw do
 
   root                     'landing_pages#home'#, defaults: { :format => "js"}, :remote => :true
   get    'home'      =>    'landing_pages#home', defaults: { :format => "js"}, :remote => :true
-  get    'about'     =>    'static_pages#about', defaults: { :format => "js"}, :remote => :true
-  get    'contacts'  =>    'static_pages#contacts', defaults: { :format => "js"}, :remote => :true
-  get    'help'      =>    'static_pages#help', defaults: { :format => "js"}, :remote => :true
-  get    'privacy'   =>    'static_pages#privacy', defaults: { :format => "js"}, :remote => :true
-  get    'terms'     =>    'static_pages#terms', defaults: { :format => "js"}, :remote => :true
-
-  get    'admin'     =>    'sessions#loginAdmin'
-
   get    'login'     =>    'sessions#new', defaults: { :format => "js"}, :remote => :true
   post   'login'     =>    'sessions#create', defaults: { :format => "js"}, :remote => :true
   get    'signup'    =>    'subjects#new', defaults: { :format => "js"}, :remote => :true
   delete 'logout'    =>    'sessions#destroy', defaults: { :format => "js"}, :remote => :true
-
-  #get    'profile'   =>    'user_profiles#edit', defaults: { :format => "js"}, :remote => :true
 
 #  get    'password_resets/new'
 #  get    'password_resets/edit.
@@ -91,4 +81,60 @@ Rails.application.routes.draw do
   get       '/media_managers/list/'          =>    'media_managers#list',  :as => :image_list #, defaults: { :format => "js"}, :remote => :true
  # get       'user_profiles'                 =>    'user_profiles#edit',    :as => :edit, constraints: AuthConstraint.new, defaults: { :format => "js"}, :remote => :true
 
+
 end
+  # The priority is based upon order of creation: first created -> highest priority.
+  # See how all your routes lay out with "rake routes".
+
+  # You can have the root of your site routed with "root"
+  # root 'welcome#index'
+
+  # Example of regular route:
+  #   get 'products/:id' => 'catalog#view'
+
+  # Example of named route that can be invoked with purchase_url(id: product.id)
+  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+
+  # Example resource route (maps HTTP verbs to controller actions automatically):
+  #   resources :products
+
+  # Example resource route with options:
+  #   resources :products do
+  #     member do
+  #       get 'short'
+  #       post 'toggle'
+  #     end
+  #
+  #     collection do
+  #       get 'sold'
+  #     end
+  #   end
+
+  # Example resource route with sub-resources:
+  #   resources :products do
+  #     resources :comments, :sales
+  #     resource :seller
+  #   end
+
+  # Example resource route with more complex sub-resources:
+  #   resources :products do
+  #     resources :comments
+  #     resources :sales do
+  #       get 'recent', on: :collection
+  #     end
+  #   end
+
+  # Example resource route with concerns:
+  #   concern :toggleable do
+  #     post 'toggle'
+  #   end
+  #   resources :posts, concerns: :toggleable
+  #   resources :photos, concerns: :toggleable
+
+  # Example resource route within a namespace:
+  #   namespace :admin do
+  #     # Directs /admin/products/* to Admin::ProductsController
+  #     # (app/controllers/admin/products_controller.rb)
+  #     resources :products
+  #   end
+

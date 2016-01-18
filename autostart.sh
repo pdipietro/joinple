@@ -10,22 +10,24 @@
 shopt -s nocasematch
 # 99set -ex
 
-cd $HOME/joinple
+DIR="${PWD##*/}"
+
+cd $HOME/$DIR
 
 # test for autologin definition
 
-if [ ! -f /etc/lightdm/lightdm.conf.d/50-myconfig.conf ]; then
-		cp ~/joinple/50-myconfig.conf /etc/lightdm/lightdm.conf.d
-fi
+#if [ ! -f /etc/lightdm/lightdm.conf.d/50-myconfig.conf ]; then
+#		cp ~/$DIR/50-myconfig.conf /etc/lightdm/lightdm.conf.d
+#fi
 
 # test command line parms
  
 case $1 in 
 	start) 		: ;;
 	restart) 	: ;;
-	rails) 	  : ;;
+	rails) 	  	: ;;
 	stop) 		: ;;
-	stopNeo4j): ;;
+	stopNeo4j)	: ;;
 	status) 	: ;;
 	*) echo "usage: bash ./autorun.sh [start|rails|restart|stop|stopNeo4j|status)"; exit 9;;
 esac
@@ -45,27 +47,27 @@ stage=""
 
 case ${BASH_REMATCH[1]} in	
 		dev)  				stage="development";;
-		development)  stage="development";;
+		development)  		stage="development";;
 
 		depl) 				stage="production";; 
 		deploy) 			stage="production";; 
-		deployment) 	stage="production";; 
+		deployment) 		stage="production";; 
 		prod) 				stage="production";; 
-		production) 	stage="production";; 
+		production) 		stage="production";; 
 		demo) 				stage="development";; 
 
 		test) 				stage="test";; 
 
-		*)						stage="" 
+		*)					stage="" 
 esac
 
 if [[ $stage == "test" ]]; then
 	case ${BASH_REMATCH[2]} in
 		depl) 				stage="production";; 
 		deploy) 			stage="production";; 
-		deployment) 	stage="production";; 
+		deployment) 		stage="production";; 
 		prod) 				stage="production";; 
-		production) 	stage="production";; 
+		production) 		stage="production";; 
 		demo) 				stage="demo";;
 	esac
 fi
@@ -74,46 +76,45 @@ fi
 
 case "$stage" in
 	"development")
-		CLOUDINARY=cloudinary://366838292492816:UeYoN5X7ErMed26Jo3YHkw7U84E@dev-joinple-com
-	;;
+		CLOUDINARY=cloudinary://366838292492816:UeYoN5X7ErMed26Jo3YHkw7U84E@dev-joinple-com	;;
   "demo")
-  	CLOUDINARY=cloudinary://217559122767512:_IsSa14mTzfbAk4ZXgU9WYUbpcA@demo-joimple-com
-	;;
+  	CLOUDINARY=cloudinary://217559122767512:_IsSa14mTzfbAk4ZXgU9WYUbpcA@demo-joinple-com	;;
   "test")
-  	CLOUDINARY=cloudinary://122778178523376:dCiaL9DbB5WlsppOSkOFfsqDxek@test-joinple-com
-  ;;
+  	CLOUDINARY=cloudinary://122778178523376:dCiaL9DbB5WlsppOSkOFfsqDxek@test-joinple-com  ;;
   "production")
-		CLOUDINARY=cloudinary://318235473349975:-ansQxvlvQ0AzwctsjGwdSeMQkA@www-joinple-com
-	;;
-	"*")
-  	CLOUDINARY=none
-  ;;
+		CLOUDINARY=cloudinary://318235473349975:-ansQxvlvQ0AzwctsjGwdSeMQkA@www-joinple-com	;;
+	"*")  	CLOUDINARY=none  ;;
 esac
 
-# positioning on joinple directory
-cd /home/joinple/joinple
+# positioning on current directory
+#cd $HOME/$DIR
 
-neo4jVersion=$(cat /home/joinple/joinple/db/neo4j-version)
+if [ ! -f ./db/neo4j-version ]; then
+	echo "file $HOME/$DIR/db/neo4j-version missing."
+	exit 1
+fi
+
+neo4jVersion=$(cat $HOME/$DIR/db/neo4j-version)
 
 if [[ ! -d ./db/neo4j ]]; then 
 	mkdir ./db/neo4j 
 fi
 
-if [[ -h ./db/neo4j/$stage ]] && [[ ! ./db/neo4j/$stage -ef ../$neo4jVersion ]]; then 
+if [[ -L ./db/neo4j/$stage ]] && [[ ! ./db/neo4j/$stage -ef ../$neo4jVersion ]]; then 
 	unlink ./db/neo4j/$stage
 fi
-if [[ ! -h ./db/neo4j/$stage ]]; then 
-	ln -s ../$neo4jVersion ./db/neo4j/$stage
+if [[ ! -L ./db/neo4j/$stage ]]; then 
+	ln -s $HOME/$DIR/db/$neo4jVersion ./db/neo4j/$stage
 	# echo "created "./db/neo4j/$stage" => "../$neo4jVersion
 fi
 
-railsPidDir="/home/joinple/joinple/tmp/pids"
+railsPidDir="/home/joinple/$DIR/tmp/pids"
 
 neo4jData="./db/neo4j/$stage/data/graph.db"
 neo4jLog="./db/neo4j/$stage/data/log"
 neo4jBin="./db/neo4j/$stage/bin"
 
-# neo4jPid="/home/joinple/joinple/db/$neo4jVersion/pids"
+# neo4jPid="/home/joinple/$DIR/db/$neo4jVersion/pids"
 
 case $1 in 
 	start | restart)
@@ -121,20 +122,31 @@ case $1 in
 			# echo "Create a new DB and initialize it."
 			if [[ ! -d $neo4jData ]]; then	mkdir -p $neo4jData $neo4jLog; fi
 			chown -R $USER:$USER $neo4jLog $neo4jData 
-			cat ./db/joinple_load_initial.txt | $neo4jBin/neo4j-shell neo4j.properties -path $neo4jData > $neo4jLog/db_load.log   2>$neo4jLog/db_load_stderr.log
+			cat ./db/neo4j_initialize.txt | $neo4jBin/neo4j-shell neo4j.properties -path $neo4jData > $neo4jLog/db_load.log   2>$neo4jLog/db_load_stderr.log
 			chown -R $USER:$USER $neo4jLog $neo4jData $neo4jLog/db_load.log $neo4jLog/db_load_stderr.log
 			chmod -R 777 $neo4jLog $neo4jData $neo4jLog/db_load.log $neo4jLog/db_load_stderr.log
 		fi
 esac
 
 getRailsPid() {
+	A1=`ps -ef | grep '/home/joinple/.rvm/rubies' | grep -v 'ps -ef' | grep -v 'grep' | awk '{print $2}'`
+	echo "${A1}"
+	echo "$A1"
+
 	GRP=`ps -ef | grep '/home/joinple/.rvm/rubies'  | grep -v 'ps -ef' | grep -v 'grep' | awk '{print $2}'`
 	echo "GRP=${GRP}"
+	echo ${GRP}
+	echo $GRP
+	echo "${GRP}"
 }
 
 getNeo4jPid() {
-	GNP=`ps -ef | grep '/java -cp /home/joinple/joinple/db/neo4j/' | grep -v 'ps -ef' | grep -v 'grep' | awk '{print $2}'`
+
+	GNP=`ps -ef | grep '/java -cp /home/joinple/$DIR/db/neo4j/' | grep -v 'ps -ef' | grep -v 'grep' | awk '{print $2}'`
 	echo "GNP=${GNP}"
+	echo ${GNP}
+	echo $GNP
+	echo "${GNP}"
 }
 
 
@@ -156,6 +168,7 @@ outStatus() {
 }
 
 startNeo() {
+#	rake neo4j:start[$stage]
 	getNeo4jPid
 
 	# start the db neo4j if not yet running
@@ -174,7 +187,9 @@ startRails() {
 }
 
 stopNeo() {
+#	rake neo4j:stop[$stage]
 	getNeo4jPid
+	echo "dentro stopneo $GNP"
 	if [ "${GNP}" ]; then
 		$neo4jBin/neo4j stop || { return 0; }
 	fi

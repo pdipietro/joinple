@@ -1,9 +1,7 @@
-
 require File.expand_path('../boot', __FILE__)
 
-
+require "rails"
 # Pick the frameworks you want:
-
 require "active_model/railtie"
 require "active_job/railtie"
 require "active_record/railtie"
@@ -13,26 +11,19 @@ require "action_view/railtie"
 require "sprockets/railtie"
 require 'neo4j/railtie'
 require "rails/test_unit/railtie"
-#require "carrierwave"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module Joinple
+module Myapp
   class Application < Rails::Application
 
     config.assets.paths << "#{Rails.root}/app/assets/fonts"
     config.assets.paths << "#{Rails.root}/app/assets/images"
- #   config.cache_store  = :dalli_store
     
     config.generators do |g|
       g.orm             :neo4j
- #     g.test_framework  :test_unit, fixture: true
- #     g.template_engine :haml
-      g.stylesheets      false
-      g.javascripts      false
- 
     end
 
     # Configure where the embedded neo4j database should exist
@@ -51,7 +42,6 @@ module Joinple
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
-
 
     config.middleware.insert_before 0, "Rack::Cors", :debug => true, :logger => (-> { Rails.logger }) do
       allow do

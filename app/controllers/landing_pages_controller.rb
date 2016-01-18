@@ -1,59 +1,38 @@
 class LandingPagesController < ApplicationController
  
   before_action :check_social_network
-  before_action :logged_in_subject, only: [:create, :destroy]
-  after_action  :set_screen_geometry, only: [:index, :landing_page, :home]
-  before_action :set_landing_page, only: [:show, :edit, :update, :destroy]
+#  before_action :logged_in_subject, only: [:create, :destroy]
+#  after_action  :set_screen_geometry, only: [:index, :landing_page, :home]
+#  before_action :set_landing_page, only: [:show, :edit, :update, :destroy]
 
-  respond_to :js #, except: [:home]
+#  respond_to :js #, except: [:home]
 
   include SessionsHelper
   helper_method :get_screen_geometry
 
-  def about
-  end
-
-  def contacts
-  end
-
-  def help
-  end
-
   def home
-
-
     if load_social_network_from_url.nil?
-      render file: "#{Rails.root}/public/404.html", layout: false, status: 404
-      false
+      render file: "#{Rails.root}/public/404.html", layout: false, status: 404 and return
     end
 
     if browser_height.to_s.length < 2
       layout='dummy'
-      page='home'
     elsif logged_in?
-      layout="application"
-      page="home"
+      layout='application'
     elsif is_deploy? or stage_landing?
       layout="mail_collector"
-      page="home"
     else
       layout='landing_page'   
-      page='landing_page'
     end 
 
-    logger.debug "-SessionHelper:home----------------------------- layout: #{layout}, page: #{page}, logged in?: #{logged_in?}, params: #{params}"
+    logger.debug "-SessionHelper:home-------------- layout: #{layout}, logged in?: #{logged_in?}, params: #{params}"
 
     respond_to do |format|
       format.html {render layout: layout }
       format.js {render layout: layout }
     end
   end
-
-  def privacy
-  end
-
-  def terms
-  end
+=begin
 
   # POST /landing_page
   def landing_page
@@ -114,18 +93,18 @@ class LandingPagesController < ApplicationController
       end
     end
   end
-
+=end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_landing_page
       @landing_page = LandingPage.find(params[:id])
     end
-
+=begin
     # Never trust parameters from the scary internet, only allow the white list through.
     def landing_page_params
       params.require(:landing_page).permit(:description, :logo, :header)
     end
-
+=end
 end
 

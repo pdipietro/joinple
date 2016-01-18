@@ -42,7 +42,7 @@ GEM
       tzinfo (~> 1.1)
     ansi (1.5.0)
     arel (6.0.3)
-    autoprefixer-rails (6.1.2)
+    autoprefixer-rails (6.3.1)
       execjs
       json
     aws_cf_signer (0.1.3)
@@ -62,19 +62,13 @@ GEM
     bootstrap_form (2.3.0)
     builder (3.2.2)
     byebug (8.2.1)
-    climate_control (0.0.3)
-      activesupport (>= 3.0)
-    cloudinary (1.1.1)
+    cloudinary (1.1.2)
       aws_cf_signer
       rest-client
-    cocaine (0.5.8)
-      climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.0)
-    coffee-rails (4.1.0)
+    coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
-      railties (>= 4.0.0, < 5.0)
-    coffee-rails-source-maps (1.4.0)
-      coffee-script-source (>= 1.6.1)
+      railties (>= 4.0.0, < 5.1.x)
     coffee-script (2.4.1)
       coffee-script-source
       execjs
@@ -99,7 +93,7 @@ GEM
     ffi (1.9.10)
     fission (0.5.0)
       CFPropertyList (~> 2.2)
-    fog (1.36.0)
+    fog (1.37.0)
       fog-aliyun (>= 0.1.0)
       fog-atmos
       fog-aws (>= 0.6.0)
@@ -121,10 +115,10 @@ GEM
       fog-terremark
       fog-vmfusion
       fog-voxel
+      fog-vsphere (>= 0.4.0)
       fog-xenserver
       fog-xml (~> 0.1.1)
       ipaddress (~> 0.5)
-      nokogiri (~> 1.5, >= 1.5.11)
     fog-aliyun (0.1.0)
       fog-core (~> 1.27)
       fog-json (~> 1.0)
@@ -133,7 +127,7 @@ GEM
     fog-atmos (0.1.0)
       fog-core
       fog-xml
-    fog-aws (0.7.6)
+    fog-aws (0.8.1)
       fog-core (~> 1.27)
       fog-json (~> 1.0)
       fog-xml (~> 0.1)
@@ -170,7 +164,7 @@ GEM
       fog-core
       fog-xml
       nokogiri
-    fog-radosgw (0.0.4)
+    fog-radosgw (0.0.5)
       fog-core (>= 1.21.0)
       fog-json
       fog-xml (>= 0.0.1)
@@ -178,13 +172,13 @@ GEM
       fog-core
       fog-json
       fog-xml
-    fog-sakuracloud (1.5.0)
+    fog-sakuracloud (1.7.5)
       fog-core
       fog-json
     fog-serverlove (0.1.2)
       fog-core
       fog-json
-    fog-softlayer (1.0.2)
+    fog-softlayer (1.0.3)
       fog-core
       fog-json
     fog-storm_on_demand (0.1.1)
@@ -199,14 +193,17 @@ GEM
     fog-voxel (0.1.0)
       fog-core
       fog-xml
-    fog-xenserver (0.2.2)
+    fog-vsphere (0.4.0)
+      fog-core
+      rbvmomi (~> 1.8)
+    fog-xenserver (0.2.3)
       fog-core
       fog-xml
     fog-xml (0.1.2)
       fog-core
       nokogiri (~> 1.5, >= 1.5.11)
     formatador (0.2.5)
-    geocoder (1.2.12)
+    geocoder (1.2.14)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     google-webfonts-rails (0.0.4)
@@ -242,17 +239,17 @@ GEM
     httparty (0.13.7)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
-    httpclient (2.7.0.1)
+    httpclient (2.7.1)
     i18n (0.7.0)
     inflecto (0.0.2)
     inline_svg (0.2.0)
       loofah (>= 2.0)
       nokogiri (~> 1.6)
-    ipaddress (0.8.0)
-    jbuilder (2.3.2)
-      activesupport (>= 3.0.0, < 5)
+    ipaddress (0.8.2)
+    jbuilder (2.4.0)
+      activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
-    jquery-rails (4.0.5)
+    jquery-rails (4.1.0)
       rails-dom-testing (~> 1.0)
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
@@ -266,12 +263,11 @@ GEM
       rb-inotify (>= 0.9)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
-    lumberjack (1.0.9)
+    lumberjack (1.0.10)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     method_source (0.8.2)
     mime-types (2.99)
-    mimemagic (0.3.0)
     mini_backtrace (0.1.3)
       minitest (> 1.2.0)
       rails (>= 2.3.3)
@@ -288,13 +284,13 @@ GEM
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     nenv (0.2.0)
-    neo4j (6.0.1)
+    neo4j (6.1.0)
       active_attr (~> 0.8)
       activemodel (~> 4)
       activesupport (~> 4)
       neo4j-core (~> 6.0.0.rc.1)
       orm_adapter (~> 0.5.0)
-    neo4j-core (6.0.1)
+    neo4j-core (6.0.6)
       activesupport
       faraday (~> 0.9.0)
       faraday_middleware (~> 0.9.1)
@@ -303,9 +299,9 @@ GEM
       httpclient
       json
       multi_json
-      neo4j-rake_tasks (~> 0.3.0)
+      neo4j-rake_tasks (>= 0.3.0)
       net-http-persistent
-    neo4j-rake_tasks (0.3.0)
+    neo4j-rake_tasks (0.4.0)
       colored
       httparty
       os
@@ -321,19 +317,13 @@ GEM
       neo4j-rake_tasks (~> 0.3)
     net-http-persistent (2.9.4)
     netrc (0.11.0)
-    nokogiri (1.6.7)
+    nokogiri (1.6.7.1)
       mini_portile2 (~> 2.0.0.rc2)
     notiffany (0.0.8)
       nenv (~> 0.1)
       shellany (~> 0.0)
     orm_adapter (0.5.0)
     os (0.9.6)
-    paperclip (4.3.2)
-      activemodel (>= 3.2.0)
-      activesupport (>= 3.2.0)
-      cocaine (~> 0.5.5)
-      mime-types
-      mimemagic (= 0.3.0)
     pry (0.10.3)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -374,14 +364,19 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     raindrops (0.15.0)
-    rake (10.4.2)
-    rb-fsevent (0.9.6)
+    rake (10.5.0)
+    rb-fsevent (0.9.7)
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
-    rdoc (4.2.0)
+    rbvmomi (1.8.2)
+      builder
+      nokogiri (>= 1.4.1)
+      trollop
+    rdoc (4.2.1)
+      json (~> 1.4)
     remotipart (1.2.1)
-    responders (2.1.0)
-      railties (>= 4.2.0, < 5)
+    responders (2.1.1)
+      railties (>= 4.2.0, < 5.1)
     rest-client (1.8.0)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 3.0)
@@ -390,7 +385,7 @@ GEM
     ruby_parser (3.7.2)
       sexp_processor (~> 4.1)
     rubyzip (1.1.7)
-    sass (3.4.20)
+    sass (3.4.21)
     sass-rails (5.0.4)
       railties (>= 4.0.0, < 5.0)
       sass (~> 3.1)
@@ -410,19 +405,20 @@ GEM
     sexp_processor (4.6.0)
     shellany (0.0.1)
     slop (3.6.0)
-    spring (1.6.0)
+    spring (1.6.2)
     sprockets (3.5.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
-    sprockets-rails (2.3.3)
-      actionpack (>= 3.0)
-      activesupport (>= 3.0)
-      sprockets (>= 2.8, < 4.0)
+    sprockets-rails (3.0.0)
+      actionpack (>= 4.0)
+      activesupport (>= 4.0)
+      sprockets (>= 3.0.0)
     sqlite3 (1.3.11)
     subexec (0.2.3)
     thor (0.19.1)
     thread_safe (0.3.5)
-    tilt (2.0.1)
+    tilt (2.0.2)
+    trollop (2.1.2)
     turbolinks (2.5.3)
       coffee-rails
     tzinfo (1.2.2)
@@ -450,7 +446,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activemodel
   bcrypt
   bootstrap-sass
   bootstrap-switch-rails (~> 3.0.0)
@@ -461,7 +456,6 @@ DEPENDENCIES
   byebug
   cloudinary
   coffee-rails
-  coffee-rails-source-maps
   faker
   fog
   geocoder
@@ -470,26 +464,25 @@ DEPENDENCIES
   haml-rails
   http_accept_language
   inline_svg (= 0.2.0)
-  jbuilder
+  jbuilder (>= 2.2.3)
   jquery-rails
   jquery-turbolinks
   mini_backtrace (= 0.1.3)
   mini_magick (= 3.8.0)
   minitest-reporters (= 1.0.5)
-  neo4j (~> 6.0.1)
+  neo4j (= 6.1.0)
   neo4j-will_paginate_redux
   neo4jrb_spatial
-  paperclip
   pry-rails
   rack-cors
-  rails
+  rails (= 4.2.5)
   rails_12factor (= 0.0.2)
   remotipart
   responders (~> 2.0)
   sass-rails
   sass-rails-source-maps
   sass_paths
-  sdoc
+  sdoc (~> 0.4.0)
   spring
   sprockets-rails
   sqlite3

@@ -4,14 +4,14 @@ class Post
   include CreatedAtUpdatedAt
   include Content
 
-  has_many  :in,  :likes_to, rel_class: Likes                  # Subject
-  has_many  :in,  :is_followed_by, rel_class: Follows          # Subject
-  has_many  :in,  :is_preferred_by, rel_class: Preferes
-  has_many  :out, :has_tag, rel_class: HasTag                  # :tag
-  has_one   :in,  :is_owned_by, rel_class: Owns                # Subject
+  has_many  :in,  :likes_to, rel_class: :Likes                  # Subject
+  has_many  :in,  :is_followed_by, rel_class: :Follows          # Subject
+  has_many  :in,  :is_preferred_by, rel_class: :Preferes
+  has_many  :out, :has_tag, rel_class: :HasTag                  # :tag
+  has_one   :in,  :is_owned_by, rel_class: :Owns                # Subject
 
-  has_one   :out, :belongs_to, model_class: SocialNetwork , type: "belongs_to"      # belongs to SocialNetwork
-  has_many  :out, :has_comment, model_class: PostComment, type: "has_comment"     # :comment
+  has_one   :out, :belongs_to, model_class: :SocialNetwork , type: "belongs_to"      # belongs to SocialNetwork
+  has_many  :out, :has_comment, model_class: :PostComment, type: "has_comment"     # :comment
 
   #property  :image,              type: String, default: nil                       
 

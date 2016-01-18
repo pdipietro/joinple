@@ -122,7 +122,7 @@ module ApplicationHelper
          logger.debug "current_social_network,class: #{current_social_network.class}"
          current_social_network
        else
-         raise "515","Current social network loading error"
+         nil
        end
   end
 

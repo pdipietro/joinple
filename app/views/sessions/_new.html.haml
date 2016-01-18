@@ -6,8 +6,6 @@
       .panel-title
     .panel-body
       = bootstrap_form_for(:session, :remote => :true ) do |f|
-        -# puts "------------ #{f.class.errors}"
-        -# render 'shared/error_messages', object: f.object, locals: { @obj => f.object } 
         .nothing= f.text_field :email, :prepend => :email, :placeholder => t("session.view.login.placeholder.email_nickname"), :hide_label => :true
         .spacer
         .nothing= f.text_field :password, :prepend => :password, :placeholder => t("placeholder.password"), :hide_label => :true

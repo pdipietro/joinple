@@ -3,7 +3,7 @@ class HasHashTag
   include CreatedAtUpdatedAt
 
   from_class  :any
-  to_class    HashTag
+  to_class    :HashTag
   type 'has_hash_tag'
 
 end

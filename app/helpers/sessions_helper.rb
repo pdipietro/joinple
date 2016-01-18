@@ -1,6 +1,7 @@
 module SessionsHelper
   include ActionView::Helpers::DateHelper
   include ApplicationHelper
+  include VersionHelper
 
   SUPER_SOCIAL_NETWORK_NAME = ["joinple","estatetuttoanno"]
   SUPER_SOCIAL_BACKGROUND_COLOR = "#a02348"
@@ -518,8 +519,8 @@ puts " ------------------------------------________> #{res}"
         session[:social_network] = sn
         puts "session[:social_network].class is now #{session[:social_network].class.name} - SocialNetwork = #{current_social_network.name} - Owner is #{session[:social_network].is_owned_by}"
 
-        session[:full_version] = Version::JOINPLE_VERSION
-        session[:short_version] = Version::JOINPLE_VERSION[/v[0-9\.]*/]  # v.gsub(".", "_")
+        session[:full_version] = VersionHelper::JOINPLE_VERSION
+        session[:short_version] = VersionHelper::JOINPLE_VERSION[/v[0-9\.]*/]  # v.gsub(".", "_")
       end
     end
 

@@ -13,13 +13,13 @@ class Group
   property  :logo,              type: String
   property  :banner,            type: String
 
-  has_many  :in,  :has_discussion, rel_class: TakesPlaceIn  # Post
-  has_many  :in,  :has_member, rel_class: MemberOf       # Subject
-  has_many  :in,  :is_administered_by, model_class: Subject, origin: :is_admin
-  has_many  :in,  :is_followed_by, rel_class: Follows    # Subject
-  has_many  :in,  :likes_to, rel_class: Likes            # :any
-  has_many  :out, :has_tag, rel_class: HasTag            # :tag
-  has_one   :out, :belongs_to, rel_class: BelongsTo      # belongs to SocialNetwork
+  has_many  :in,  :has_discussion, rel_class: :TakesPlaceIn  # Post
+  has_many  :in,  :has_member, rel_class: :MemberOf       # Subject
+  has_many  :in,  :is_administered_by, model_class: :Subject, origin: :is_admin
+  has_many  :in,  :is_followed_by, rel_class: :Follows    # Subject
+  has_many  :in,  :likes_to, rel_class: :Likes            # :any
+  has_many  :out, :has_tag, rel_class: :HasTag            # :tag
+  has_one   :out, :belongs_to, rel_class: :BelongsTo      # belongs to SocialNetwork
 
 
   VALID_RGBA_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
