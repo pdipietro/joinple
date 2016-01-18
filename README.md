@@ -60,7 +60,9 @@ Open a terminal
 Install the keyboard !!!!!
 Load language support for: it, en
 
-~$ Sudo apt-get update
+~$ sudo apt-get upgrade
+
+~$ sudo apt-get update
 
 ###### -------------------  saved as  Ubuntu14.04 base  ---------------------
 
@@ -110,16 +112,19 @@ sudo reboot
 
 ###### -------------------  saved as application removed  ---------------------
 
+To check ubuntu version
+
+~$ lsb_release -a
+
 ## Install curl, rvm, Ruby, Rails, git
 
 ~$ sudo apt-get install curl
 
 ~$ sudo apt-get autoremove
 
-~$ \curl -sSL https://get.rvm.io | bash -s stable
-
-If above in error then use 
 $ command curl -sSL https://rvm.io/mpapis.asc | gpg --import -
+
+~$ \curl -sSL https://get.rvm.io | bash -s stable
 
 Close the terminal and open a new one
 
@@ -127,17 +132,17 @@ Close the terminal and open a new one
 
 ~$ rvm requirements
 
-~$ rvm install ruby
+~$ rvm install ruby 2.2.1
 
 ~$ rvm use ruby --default
 
 ~$ rvm rubygems current
 
-~$ gem install --no-rdoc --no-ri rails
+~$ gem install --no-rdoc --no-ri rails 
 
 ~$ rails -v
 
-Rails 4.2.4
+Rails 4.2.5
 
 ~$ ruby -v
 
@@ -191,6 +196,14 @@ joinple   soft    nofile  40000
 joinple   hard    nofile  40000
 
 ####Download editor sublime text
+
+~$ sudo add-apt-repository ppa:webupd8team/sublime-text-3
+
+~$ sudo apt-get update
+
+~$ sudo apt-get install sublime-text-installer
+
+####Download joinple from github
 
 ~$ git clone https://github.com/pdipietro/joinple.git
 
