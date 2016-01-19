@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
   end
 
   def new
-    puts "session_helper:new - Social network checked: it is #{current_social_network_name?.downcase}"
+    logger.debug "session_controller:new - Social network checked: it is #{current_social_network_name?.downcase}"
   end
 
   def create

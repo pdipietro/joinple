@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+ruby '2.2.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
@@ -28,7 +29,6 @@ gem 'neo4jrb_spatial'
 
 gem 'bcrypt' #,                  '3.1.7'
 gem 'faker'#,                   '1.4.2'
-#gem 'carrierwave',             '0.10.0'
 gem 'mini_magick',             '3.8.0'
 gem 'fog'
 gem 'will_paginate',           '3.0.7'
@@ -40,7 +40,6 @@ group :development, :test do
   gem 'sass-rails-source-maps'
   gem 'byebug'
   gem 'web-console', '~> 2.2'
-#  gem 'web-console'
   gem 'spring'
 end
 
@@ -55,12 +54,12 @@ group :production do
   gem 'unicorn',        '4.8.3'
 end
 
-gem "neo4j-will_paginate_redux"
+gem 'neo4j-will_paginate_redux'
 
-gem "haml-rails"
+gem 'haml-rails'
 
 #gem 'bcrypt-ruby'
-gem "pry-rails"
+gem 'pry-rails'
 
 gem 'jquery-turbolinks'
 gem 'responders', '~> 2.0'
@@ -72,8 +71,8 @@ gem 'bootstrap-switch-rails', '~> 3.0.0'
 gem 'remotipart'
 #gem 'carrierwave-neo4j', require: 'carrierwave/neo4j'
 #gem 'carrierwave-ftp', :require => 'carrierwave/storage/ftp/all' # both FTP/SFTP
-#gem "rmagick"
-gem "inline_svg", '0.2.0'
+#gem 'rmagick'
+gem 'inline_svg'
 
 gem 'google-webfonts-rails'
 

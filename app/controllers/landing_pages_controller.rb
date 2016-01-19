@@ -32,6 +32,22 @@ class LandingPagesController < ApplicationController
       format.js {render layout: layout }
     end
   end
+
+  def about
+  end
+
+  def contacts
+  end
+
+  def help
+  end
+
+  def privacy
+  end
+
+  def terms
+  end
+
 =begin
 
   # POST /landing_page

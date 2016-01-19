@@ -7,6 +7,12 @@ Rails.application.routes.draw do
   get    'signup'    =>    'subjects#new', defaults: { :format => "js"}, :remote => :true
   delete 'logout'    =>    'sessions#destroy', defaults: { :format => "js"}, :remote => :true
 
+  get    'about'     =>    'static_pages#about', defaults: { :format => "js"}, :remote => :true
+  get    'contacts'  =>    'static_pages#contacts', defaults: { :format => "js"}, :remote => :true
+  get    'help'      =>    'static_pages#help', defaults: { :format => "js"}, :remote => :true
+  get    'privacy'   =>    'static_pages#privacy', defaults: { :format => "js"}, :remote => :true
+  get    'terms'     =>    'static_pages#terms', defaults: { :format => "js"}, :remote => :true
+
 #  get    'password_resets/new'
 #  get    'password_resets/edit.
 
