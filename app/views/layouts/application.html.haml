@@ -1,14 +1,35 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Myapp</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+!!!
+%html
+  %head
+    - csnn = current_social_network_name?.nil? ? 'JoinPle' : current_social_network_name?
+    = logger.debug ' ******************************************* #{current_social_network_name?}'
+    = logger.debug ' ******************************************* #{gethostname}'
+    %title= csnn.capitalize
 
-<%= yield %>
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    #= javascript_include_tag 'salvattore', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag '//widget.cloudinary.com/global/all.js', media: 'all', 'data-turbolinks-track' => true
 
-</body>
-</html>
+    %meta{ :name => 'viewport', :content => 'width=device-width, initial-scale=1'}    
+    = csrf_meta_tags
+    = google_webfonts_init({              |
+        google: ['Roboto Slab', 'Roboto'] |
+      })                                  |
+    = render 'layouts/shim'
+    = logger.debug '=================>>>> HERE IS APPLICATION LAYOUT'
+    
+    :javascript
+      $(function() {
+        $('input:checkbox').bootstrapSwitch();
+      });
+      $(document).on('page:load', function(){
+        window['rangy'].initialized = false
+      });
+    #= javascript_include_tag 'salvattore.min', media: 'all', 'data-turbolinks-track' => true
+    %body{:sn => "#{csnn}"}
+      #wrapper{ :bg => "#{current_social_network_background_color?}"}
+        #header
+          = render 'layouts/header'
+        #page.container-fluid
+          = render partial: 'layouts/c3_9_0'

@@ -15,7 +15,7 @@
     = render 'layouts/shim'
     %body
       - ip = request.env['HTTP_X_FORWARDED_FOR']
-      - background_color = get_background
+      - background_color = background
       - src = "landing/v0.7.5/background"
 
       #full_screen_image

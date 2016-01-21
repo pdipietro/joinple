@@ -1,6 +1,6 @@
 - ip = request.env['HTTP_X_FORWARDED_FOR']
 - language = extract_locale_from_accept_language_header
-- background_color = get_background
+- background_color = background
 %nav.navbar-default.navbar-fixed-top{ :role => "navigation" }
   - subject_profile = logged_in? ? current_subject.has_profile : nil
   .container-fluid.shadowing

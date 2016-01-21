@@ -86,3 +86,5 @@ gem 'cloudinary'
 gem 'geocoder'
 
 gem 'http_accept_language'
+
+gem 'rubocop'

@@ -1,35 +1,38 @@
 class LandingPagesController < ApplicationController
- 
   before_action :check_social_network
-#  before_action :logged_in_subject, only: [:create, :destroy]
-#  after_action  :set_screen_geometry, only: [:index, :landing_page, :home]
-#  before_action :set_landing_page, only: [:show, :edit, :update, :destroy]
+  #  before_action :logged_in_subject, only: [:create, :destroy]
+  #  after_action  :set_screen_geometry, only: [:index, :landing_page, :home]
+  #  before_action :set_landing_page, only: [:show, :edit, :update, :destroy]
 
-#  respond_to :js #, except: [:home]
+  respond_to :js # except: [:home]
 
   include SessionsHelper
   helper_method :get_screen_geometry
 
   def home
     if load_social_network_from_url.nil?
-      render file: "#{Rails.root}/public/404.html", layout: false, status: 404 and return
+      render file: "#{Rails.root}/public/404.html", layout: false, status: 404 && return
     end
 
-    if browser_height.to_s.length < 2
-      layout='dummy'
-    elsif logged_in?
-      layout='application'
-    elsif is_deploy? or stage_landing?
-      layout="mail_collector"
-    else
-      layout='landing_page'   
-    end 
+    page = 'home'
+
+    layout =
+      if browser_height.to_s.length < 2
+        'dummy'
+      elsif logged_in?
+        'application'
+      elsif deploy? || stage_landing?
+        'mail_collector'
+      else
+        page = 'landing_page'
+        'landing_page'
+      end
 
     logger.debug "-SessionHelper:home-------------- layout: #{layout}, logged in?: #{logged_in?}, params: #{params}"
 
     respond_to do |format|
-      format.html {render layout: layout }
-      format.js {render layout: layout }
+      format.html { render page, layout: layout }
+      format.js { render page, layout: layout }
     end
   end
 
@@ -111,11 +114,13 @@ class LandingPagesController < ApplicationController
   end
 =end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_landing_page
-      @landing_page = LandingPage.find(params[:id])
-    end
+ # private
+
+  # Use callbacks to share common setup or constraints between actions.
+  # def set_landing_page
+    # @landing_page = LandingPage.find(params[:id])
+  # end
+
 =begin
     # Never trust parameters from the scary internet, only allow the white list through.
     def landing_page_params
@@ -123,4 +128,3 @@ class LandingPagesController < ApplicationController
     end
 =end
 end
-

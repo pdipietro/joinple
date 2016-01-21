@@ -1,0 +1,108 @@
+inherit_from: .rubocop_todo.yml
+
+
+
+#---------------------------
+# Style configuration
+#---------------------------
+
+AllCops:
+  DisplayCopNames: true
+  DisplayStyleGuide: true
+  TargetRubyVersion: 2.2
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+Style/HashSyntax:
+  Enabled: true
+  EnforcedStyle: ruby19_no_mixed_keys
+
+# Too short methods lead to extraction of single-use methods, which can make
+# the code easier to read (by naming things), but can also clutter the class
+Metrics/MethodLength: 
+  Max: 20
+
+# We do not need to support Ruby 1.9, so this is good to use.
+Style/SymbolArray:
+  Enabled: true
+
+# Most readable form.
+Style/AlignHash:
+  EnforcedHashRocketStyle: table
+  EnforcedColonStyle: table
+
+# has_key? and has_value? are far more readable than key? and value?
+Style/DeprecatedHashMethods:
+  Enabled: true
+
+# String#% is by far the least verbose and only object oriented variant.
+Style/FormatString:
+  EnforcedStyle: percent
+
+Style/CollectionMethods:
+  Enabled: true
+  PreferredMethods:
+    # inject seems more common in the community.
+    reduce: "inject"
+
+
+
+# Cop supports --auto-correct.
+Style/SpaceInsideHashLiteralBraces:
+  Enabled: true
+  EnforcedStyle: no_space
+
+# I think this one is broken...
+Style/FileName:
+  Enabled: false
+
+#---------------------------
+# Don't intend to fix these:
+#---------------------------
+
+# Cop supports --auto-correct.
+# Reason: Double spaces can be useful for grouping code
+Style/EmptyLines:
+  Enabled: false
+
+# Cop supports --auto-correct.
+# Reason: I have very big opinions on this one.  See:
+#   https://github.com/bbatsov/ruby-style-guide/issues/329
+#   https://github.com/bbatsov/ruby-style-guide/pull/325
+Style/NegatedIf:
+  Enabled: false
+
+# Cop supports --auto-correct.
+# Reason: I'm fine either way on this, but could maybe be convinced that this should be enforced
+Style/Not:
+  Enabled: false
+
+# Cop supports --auto-correct.
+# Reason: I'm fine with this
+Style/PerlBackrefs:
+  Enabled: false
+
+# Configuration parameters: Methods.
+# Reason: We should be able to specify full variable names, even if it's only one line
+Style/SingleLineBlockParams:
+  Enabled: false
+
+# Reason: Switched `extend self` to `module_function` in id_property.rb but that caused errors
+Style/ModuleFunction:
+  Enabled: false
+
+# Configuration parameters: AllowSafeAssignment.
+# Reason: I'm a proud user of assignment in conditionals.
+Lint/AssignmentInCondition:
+  Enabled: false
+
+# Reason: Fine with any sort of lambda syntax
+Style/Lambda:
+  Enabled: false
+
+# Reason: I'm proud to be part of the double negative Ruby tradition
+Style/DoubleNegation:
+  Enabled: false
+  
+Metrics/LineLength:
+  Max: 200

@@ -3,10 +3,10 @@ module SessionsHelper
   include ApplicationHelper
   include VersionHelper
 
-  SUPER_SOCIAL_NETWORK_NAME = ["joinple","estatetuttoanno"]
-  SUPER_SOCIAL_BACKGROUND_COLOR = "#a02348"
-  SUPER_SOCIAL_BACKGROUND_COLOR_REVERSE = "#323342"
-  SUPER_SOCIAL_COLOR = "#ffffff"  # was #333342 but white is a better solution
+  SUPER_SOCIAL_NETWORK_NAME = %w(joinple, estatetuttoanno).freeze
+  SUPER_SOCIAL_BACKGROUND_COLOR = '#a02348'.freeze
+  SUPER_SOCIAL_BACKGROUND_COLOR_REVERSE = '#323342'.freeze
+  SUPER_SOCIAL_COLOR = '#ffffff'.freeze # was #333342 but white is a better solution
 
   SECONDARY_ITEMS_PER_PAGE = 24
 
@@ -19,7 +19,7 @@ module SessionsHelper
   end
 
   def accepted_cookie?
-    cookies[:cookie_accepted] == "true" ? true : false 
+    cookies[:cookie_accepted] == 'true' ? true : false
   end
 
   def accepted_cookie
@@ -41,32 +41,32 @@ module SessionsHelper
   end
 
   def super_social_network_style
-      "background-color: #{SUPER_SOCIAL_BACKGROUND_COLOR}; color: #{SUPER_SOCIAL_COLOR};"
+    "background-color: #{SUPER_SOCIAL_BACKGROUND_COLOR}; color: #{SUPER_SOCIAL_COLOR};"
   end
 
   def super_social_network_style_reverse
-      "background-color: #{SUPER_SOCIAL_BACKGROUND_COLOR_REVERSE}; color: #ffffff;"
+    "background-color: #{SUPER_SOCIAL_BACKGROUND_COLOR_REVERSE}; color: #ffffff;"
   end
 
   def super_social_border_color
-      "border-color: #{SUPER_SOCIAL_BACKGROUND_COLOR};"
+    "border-color: #{SUPER_SOCIAL_BACKGROUND_COLOR};"
   end
 
- # get screen geometry from cookies
+  # get screen geometry from cookies
   def set_screen_geometry
-     session[:width] = cookies[:width]
-     session[:height] = cookies[:height]
-     session[:pixelRatio] = cookies[:pixelRatio].to_f
-     session[:windowWidth] = cookies[:windowWidth]
-     session[:windowHeight] = cookies[:windowHeight]
+    session[:width] = cookies[:width]
+    session[:height] = cookies[:height]
+    session[:pixelRatio] = cookies[:pixelRatio].to_f
+    session[:windowWidth] = cookies[:windowWidth]
+    session[:windowHeight] = cookies[:windowHeight]
   end
 
   def cloudinary_name(name)
-     session[:cloudinary_name] = name
+    session[:cloudinary_name] = name
   end
 
   def cloudinary_name?
-     session[:cloudinary_name]
+    session[:cloudinary_name]
   end
 
   def cloudinary_clean(name)
@@ -74,36 +74,41 @@ module SessionsHelper
   end
 
   def browser_geometry
-     ":width => #{session[:width]}, :height => #{session[:height]}, :dpr => #{session[:pixelRatio]}, :windowWidth =>  #{session[:windowWidth]}, :windowHeight => #{session[:windowHeight]} "
+    ":width => #{session[:width]}, :height => #{session[:height]}, :dpr => #{session[:pixelRatio]}, :windowWidth =>  #{session[:windowWidth]}, :windowHeight => #{session[:windowHeight]} "
   end
 
   def browser_width
-     session[:width]
+    session[:width]
   end
+
   def browser_height
-     session[:height]
+    session[:height]
   end
+  
   def window_width
-     session[:windowWidth]
+    session[:windowWidth]
   end
+  
   def window_height
-     session[:windowHeight]
+    session[:windowHeight]
   end
+  
   def window_pixelRatio
     browser_pixelRatio
   end
 
   def browser_pixelRatio
-     session[:pixelRatio]
+    session[:pixelRatio]
   end
- # Logs in the given subject.
+ 
+  # Logs in the given subject.
   def log_in(subject)
-     puts "++++++++++++ Logging in ++++++++++++++++++++"
-     set_screen_geometry
-     session[:subject_id] = subject.id
-     session[:admin] = subject.admin
-     set_current_subject_profile
-     check_social_network
+    logger.debug '++++++++++++ Logging in ++++++++++++++++++++'
+    set_screen_geometry
+    session[:subject_id] = subject.id
+    session[:admin] = subject.admin
+    set_current_subject_profile
+    check_social_network
   end
 
   # Remembers a subject in a persistent session.
@@ -115,57 +120,54 @@ module SessionsHelper
 
   # Return the current Social Network
   def current_social_network
-    if session[:social_network].class.name != "SocialNetwork"
-      unless session[:social_network_uuid].nil?
-        sn = SocialNetwork.find(session[:social_network_uuid])
-        session[:social_network] = sn
-        puts "current_social_network loaded: name= #{current_social_network_name?}"
-      else
-        puts "TRAGEDY !!!!"
-        render(:file => File.join(Rails.root, 'public/404'), :formats => [:html], :status => 404, :layout => false)
-        #raise "500" TRAGEDY
-      end
+    if session[:social_network].class.name != 'SocialNetwork'
+      (
+        logger.debug 'TRAGEDY !!!!'
+        render(file: File.join(Rails.root, 'public/404'), formats: [:html], status: 404, layout: false)
+      ) if session[:social_network_uuid].nil?
+      sn = SocialNetwork.find(session[:social_network_uuid])
+      session[:social_network] = sn
+      puts "current_social_network loaded: name= #{current_social_network_name?}"
     end
     session[:social_network]
   end
 
   def current_social_network_style
-      "background-color: #{session[:social_network][:social_network_color]}; color: #{session[:social_network][:text_color]};"
+    "background-color: #{session[:social_network][:social_network_color]}; color: #{session[:social_network][:text_color]};"
   end
 
   def current_social_network_social_network_color?
-      session[:social_network].social_network_color
+    session[:social_network].social_network_color
   end
 
   def current_social_network_background_color?
-      session[:social_network].background_color
+    session[:social_network].background_color
   end
 
   def current_social_network_background_color_style
-      "background-color: #{session[:social_network][:background_color]}"
+    "background-color: #{session[:social_network][:background_color]}"
   end
 
   def current_social_network_text_color?
-      session[:social_network].text_color
+    session[:social_network].text_color
   end
 
   def current_social_network_name?
-     if session[:social_network].nil? 
-        puts "session[:social_network][:name] mancante!!!!!!!!!!!!!!"
-        puts caller[0..10]
-     else
-        session[:social_network][:name]
-     end
+    if session[:social_network].nil? 
+      logger.debug "#{session[:social_network][:name]} mancante!"
+      logger.debug caller[0..10]
+    else
+      session[:social_network][:name]
+    end
   end
   # Returns the owner of the current social network.
 
   def current_social_network_owner
-    puts "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
-    puts "session[:social_network].class: #{session[:social_network].class}"
-    puts "session[:social_network].is_owned_by.class: #{session[:social_network].is_owned_by.class}"
+    logger.debug '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'
+    logger.debug 'session[:social_network].class: #{session[:social_network].class}'
+    logger.debug "session[:social_network].is_owned_by.class: #{session[:social_network].is_owned_by.class}"
 
     session[:social_network].is_owned_by
-    #session[:social_network_owner]
   end
 
   def current_social_network_uuid?
@@ -173,33 +175,30 @@ module SessionsHelper
   end
 
   def current_social_network_logo?
-    #session[:social_network][:logo]
-    #current_social_network.has_image.type[:logo]
+    # session[:social_network][:logo]
+    # current_social_network.has_image.type[:logo]
     Image.new
   end
 
   def current_group
-    #puts "session::current_group: #{session[:group_uuid]}"
     @current_group = session[:group_uuid].nil? ? nil : Group.find(session[:group_uuid])
-    #puts "group: #{@current_group}, admin: #{session[:group_admin]}"
-    #@current_group
   end
 
   def reset_current_group
-    #puts "************************** RESET CURRENT GROUP ***********************************"
-    #puts caller[0..10]
+    # logger.debug '************************** RESET CURRENT GROUP ***********************************'
+    # logger.debug caller[0..10]
     session[:group_uuid] = nil
     session[:group_admin] = nil
-    #puts "************************** RESET CURRENT GROUP ***********************************"
+    # logger.debug '*************************END RESET CURRENT GROUP ***********************************'
   end
 
   def set_current_group(uuid)
-    #puts "*************************** SET CURRENT GROUP ************************************"
-    #puts caller[0..10]
+    # logger.debug '*************************** SET CURRENT GROUP ************************************'
+    # logger.debug caller[0..10]
     session[:group_uuid] = uuid
     x = Neo4j::Session.query("match(Subject { uuid : '#{current_subject_id?}' })-[r:owns|admins]->(g:Group { uuid : '#{uuid}' }) return count(g) as g")
     session[:group_admin] = (x.next[:g] > 0) ? true : false;
-    #puts "*************************** SET CURRENT GROUP ************************************"
+    # logger.debug '**************************END SET CURRENT GROUP ************************************''
   end
 
   def current_discussion
@@ -234,12 +233,12 @@ module SessionsHelper
     session[:subject_id]
   end
 
- def profile? subject
+  def profile? (subject)
     profile = subject.has_profile
 
     puts "subject profile: #{profile}"
-    #subject_profile = Neo4j::Session.query("match (subject:Subject { uuid : '#{subject_id}' })-[has_profile:has_profile]->(profile:SubjectProfile) return profile").first[0]
-    #puts "self.find_by_subject after: #{subject_profile.class.name} - #{subject_profile}"
+    # subject_profile = Neo4j::Session.query("match (subject:Subject { uuid : '#{subject_id}' })-[has_profile:has_profile]->(profile:SubjectProfile) return profile").first[0]
+    # logger.debug "self.find_by_subject after: #{subject_profile.class.name} - #{subject_profile}"
     profile
   end
 
@@ -304,21 +303,20 @@ module SessionsHelper
   # check if the social network is changed
   def check_social_network
     set_screen_geometry
-    unless session[:social_network].class.name == "SocialNetwork" 
+    unless session[:social_network].class.name == 'SocialNetwork'
       load_social_network_from_url
       puts "session[:social_network]: #{session[:social_network]}, class: #{session[:social_network].class.name}"
       if session[:social_network].nil? 
-         puts "!!!!!!!!!!!!!!!!!! WARNING: I'M into check_social_network!!! - #{session[:social_network].class.name} - #{current_social_network_name?} - #{current_social_network_uuid?}}"
+         logger.debug "!!!!!!!!!!!!!!!!!! WARNING: I'M into check_social_network!!! - #{session[:social_network].class.name} - #{current_social_network_name?} - #{current_social_network_uuid?}}"
          redirect_to root_url
       end
     end
 
-    #puts "caller: #{caller[0...5]}"
-    !session[:social_network].nil? 
+    !session[:social_network].nil?
   end
 
   def is_super_social_network?
-    puts """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""#{session[:social_network].name}"
+    logger.debug "#{session[:social_network].name}"
     SUPER_SOCIAL_NETWORK_NAME.include? session[:social_network].name
   end
 
@@ -337,7 +335,6 @@ module SessionsHelper
 
   def is_my_profile?
     is_customer = Neo4j::Session.query("match (u:Subject { uuid : '#{current_subject.uuid}' })-[rel:has_profile]->(dest:SocialNetwork { uuid : '#{session[:social_network][:uuid]}' }) return rel")
-
   end
 
 
@@ -347,72 +344,72 @@ module SessionsHelper
  # end
 
   def can_modify?(object)
-      if is_admin?
-          logger.debug "Can Modify? #{object.class.name.singularize}-#{object.uuid} because IS SYS ADMIN!!!"
-          true
-      elsif is_group_admin?
-          logger.debug "Can Modify? #{object.class.name.singularize}-#{object.uuid} because IS GROUP ADMIN!!!"
-          true
-      elsif is_owner?(current_subject,object)
-          logger.debug "Can Modify? #{object.class.name.singularize}-#{object.uuid} because IS OWNER!!!"
-          true
-      elsif is_group_owner?(current_group,object)
-          logger.debug "Can Modify? #{object.class.name.singularize}-#{object.uuid} because IS GROUP OWNER!!!"
-          true
-      elsif is_subject_profile?(current_subject,object)
-          logger.debug "Can Modify? #{object.class.name.singularize}-#{object.uuid} because IS HIS PROFILE!!!"
-          true
-      else
-          false
-      end
+    if is_admin?
+      logger.debug "Can Modify? #{object.class.name.singularize}-#{object.uuid} because IS SYS ADMIN!!!"
+      true
+    elsif is_group_admin?
+      logger.debug "Can Modify? #{object.class.name.singularize}-#{object.uuid} because IS GROUP ADMIN!!!"
+      true
+    elsif is_owner?(current_subject, object)
+      logger.debug "Can Modify? #{object.class.name.singularize}-#{object.uuid} because IS OWNER!!!"
+      true
+    elsif is_group_owner?(current_group, object)
+      logger.debug "Can Modify? #{object.class.name.singularize}-#{object.uuid} because IS GROUP OWNER!!!"
+      true
+    elsif is_subject_profile?(current_subject, object)
+      logger.debug "Can Modify? #{object.class.name.singularize}-#{object.uuid} because IS HIS PROFILE!!!"
+      true
+    else
+      false
+    end
   end
 
-  def count_relationships (obj)
-    qs = "match (item:#{obj.class.name} {uuid : '#{obj.uuid}'})-[rel]->(x) return 'out' as dir, type(rel) as rel, labels(x) as label,count(*) as count      \                          
-      union                                                                                                                                                 \
+  def count_relationships(obj)
+    qs = "match (item:#{obj.class.name} {uuid : '#{obj.uuid}'})-[rel]->(x) return 'out' as dir, type(rel) as rel, labels(x) as label,count(*) as count      \
+        union                                                                                                                                               \
           match (item:#{obj.class.name} {uuid : '#{obj.uuid}'})<-[rel]-(x) return 'in' as dir, type(rel) as rel, labels(x) as label, count(*) as count      \
-      union                                                                                                                                                 \
+        union                                                                                                                                               \
           match (item:#{obj.class.name} {uuid : '#{obj.uuid}'})-[rel]-(me:Subject {uuid : '#{current_subject_id?}'}) return 'in' as dir, type(rel) as rel, ['me'] as label, count(*) as count "
 
-#    puts "qs: #{qs}"
-    rel = Neo4j::Session.query(qs) 
+    # puts "qs: #{qs}"
+    rel = Neo4j::Session.query(qs)
 
-    #puts "rel: #{rel} - x2: #{rel.class.name} - x3: #{rel.count} "#- x4: #{x4} - x5: #{x5}, #{x5.class.name}"
+    # puts "rel: #{rel} - x2: #{rel.class.name} - x3: #{rel.count} "#- x4: #{x4} - x5: #{x5}, #{x5.class.name}"
 
- #   puts " - - - - - - - - - - - - item:#{obj.class.name} has the following relatonships:"
-    hash = Hash.new
+    # puts " - - - - - - - - - - - - item:#{obj.class.name} has the following relatonships:"
+    hash = {}
     rel.each do |row|
- #     puts "#{row[2]} - #{row[2][0]}"
+      # puts "#{row[2]} - #{row[2][0]}"
       hash ["#{row[0]}-#{row[1]}-#{row[2][0]}"] = row[3]
     end
 
-  #  hash.each do |h|
-  #    puts "hash: #{h}"
-  #  end
-  #  puts "---------------- END ---------------------"
+    # hash.each do |h|
+    #   puts "hash: #{h}"
+    # end
+    # logger.debug '---------------- END ---------------------''
     hash
   end
 
-  def stars value
-    res = Array.new
-    #puts "value: #{value}"
-    [1.0,2.0,3.0,4.0,5.0].each do |ind|
-      if ind <= value #or ind == value
-       # puts "#{ind} <= #{value}  ==> full"
-        res << "full"
+  def stars(value)
+    res = []
+    # logger.debug "value: #{value}"
+    [1.0, 2.0, 3.0, 4.0, 5.0].each do |ind|
+      if ind <= value # or ind == value
+        # logger.debug "#{ind} <= #{value} ==> full"
+        res << 'full'
       elsif ind - 0.5 <= value
-       # puts "#{ind - 0.5} <= #{value}  ==> half"
-        res << "half"
+        # puts "#{ind - 0.5} <= #{value} ==> half"
+        res << 'half'
       else
-       # puts "#{ind} <=> #{value}  ==> empty"
-        res << "empty"
+        # puts "#{ind} <=> #{value} ==> empty"
+        res << 'empty'
       end
     end
     res 
   end
 
   def right_menu_icons_number 
-    icon_number = Hash.new
+    icon_number = {}
     icon_number[:groups] = 4
     icon_number[:posts] = 4
     icon_number[:discussions] = 4
@@ -422,7 +419,7 @@ module SessionsHelper
   end
 
   def set_checked parm,value
-    (parm == value) ? %w":checked => 'checked'" : %w":x => '1'"
+    (parm == value) ? %w(checked: 'checked') : %w(x: 1)
   end
 
   def secondary_items_per_page
@@ -439,23 +436,19 @@ module SessionsHelper
       end
     end
 
-    prefix = "ymdhms" 
-    k = 0 
-
     res =
-      %w[years months days hours minutes seconds].each do |step|
+      %w(years months days hours minutes seconds).each do |step|
         seconds = 1.send(step)
         (delta / seconds).to_i.tap do
           delta %= seconds
         end
       end
 
-puts " ------------------------------------________> #{res}"
-
+    logger.debug "friendly diff date of [#{time}] is: #{res}"
   end
 
-  def caller_ip 
-    request.env['HTTP_X_FORWARDED_FOR'] 
+  def caller_ip
+    request.env['HTTP_X_FORWARDED_FOR']
   end
 
 #  def build_post_image_path ()
@@ -473,22 +466,22 @@ puts " ------------------------------------________> #{res}"
 #    path
 #  end
 
-  def build_object_image_path (options = {} )
+  def build_object_image_path(options = {})
     logger.debug "options: #{options}"
-    path = ""
-    path = options[:subject] ? "" : "/subject/#{current_social_network_owner.uuid}" 
-    options.each do |n,v|
+    path = ''
+    path = options[:subject] ? '' : "/subject/#{current_social_network_owner.uuid}"
+    options.each do |n, v|
       path += "/#{n}/"
-      path += "#{v}" unless v.nil?
+      path += v.to_s unless v.nil?
     end
     path
   end
 
-  def build_landing_image_path ( options = {} )
+  def build_landing_image_path(options = {})
     path = "/landing/#{short_version}"
-    options.each do |n,v|
+    options.each do |n, v|
       path += "/#{n}/"
-      path += "#{v}" unless v.nil?
+      path += v.to_s unless v.nil?
     end
     path
   end
@@ -498,7 +491,7 @@ puts " ------------------------------------________> #{res}"
   end
 
   def short_version
-    session[:short_version] 
+    session[:short_version]
   end
 
   def request_full_path
@@ -507,22 +500,21 @@ puts " ------------------------------------________> #{res}"
 
   private
 
-    def set_current_social_network (sn)
-      # puts "caller: #{caller[0...5]}"
-      puts "HERE INTO set_current_social_network: #{sn} !!!"
-      unless sn.class.name == "SocialNetwork"
-        puts "sn class is #{sn.class.name} => logging out"
-        log_out
-      else 
+  def set_current_social_network(sn)
+    logger.debug "HERE INTO set_current_social_network: #{sn.name} !!!"
+    if sn.class.name == 'SocialNetwork'
+      session[:social_network_uuid] = sn.uuid
+      session[:social_network] = sn
+      logger.debug "session[:social_network].class is now #{session[:social_network].class.name}"
+      logger.debug "socialNetwork = #{current_social_network.name}"
+      logger.debug "owner is #{sn.is_owned_by.first_name} #{sn.is_owned_by.last_name}"
 
-        session[:social_network_uuid] = sn.uuid
-        session[:social_network] = sn
-        puts "session[:social_network].class is now #{session[:social_network].class.name} - SocialNetwork = #{current_social_network.name} - Owner is #{session[:social_network].is_owned_by}"
-
-        session[:full_version] = VersionHelper::JOINPLE_VERSION
-        session[:short_version] = VersionHelper::JOINPLE_VERSION[/v[0-9\.]*/]  # v.gsub(".", "_")
-      end
+      session[:full_version] = VersionHelper::JOINPLE_VERSION
+      session[:short_version] = VersionHelper::JOINPLE_VERSION[/v[0-9\.]*/] # v.gsub(".", "_")
+    else
+      logger.debug "sn class is #{sn.class.name} => logging out"
+      log_out
     end
-
+  end
 
 end
