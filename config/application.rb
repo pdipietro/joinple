@@ -8,7 +8,7 @@ require 'active_record/railtie'
 require 'action_controller/railtie'
 require 'action_mailer/railtie'
 require 'action_view/railtie'
-require 'sprockets/railtie'
+#require 'sprockets/railtie'
 require 'neo4j/railtie'
 require 'rails/test_unit/railtie'
 
@@ -16,7 +16,7 @@ require 'rails/test_unit/railtie'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module Myapp
+module Joinple
   class Application < Rails::Application
 
     config.assets.paths << "#{Rails.root}/app/assets/fonts"

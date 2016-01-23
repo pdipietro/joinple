@@ -25,7 +25,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'sqlite3'
 
 gem 'neo4j', '6.1.0'
-gem 'neo4jrb_spatial'
+#gem 'neo4jrb_spatial'
+gem 'neo4jrb_spatial', github: 'neo4jrb/neo4j_spatial', branch: 'module-definition_part2'
 
 gem 'bcrypt' #,                  '3.1.7'
 gem 'faker'#,                   '1.4.2'
