@@ -67,7 +67,7 @@ module ApplicationHelper
   end
 
   def humanized_stage
-    @humanized
+    @humanized_stage
   end
 
   # admin services are reserved to admin subjects only

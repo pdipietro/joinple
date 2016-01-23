@@ -2,13 +2,12 @@
 %html
   %head
     - csnn = current_social_network_name?.nil? ? 'JoinPle' : current_social_network_name?
-    = logger.debug ' ******************************************* #{current_social_network_name?}'
-    = logger.debug ' ******************************************* #{gethostname}'
+    = logger.debug "current_social_network_name: #{current_social_network_name?}"
+    = logger.debug "host name: #{gethostname}"
     %title= csnn.capitalize
 
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', media: 'all', 'data-turbolinks-track' => true
-    #= javascript_include_tag 'salvattore', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag '//widget.cloudinary.com/global/all.js', media: 'all', 'data-turbolinks-track' => true
 
     %meta{ :name => 'viewport', :content => 'width=device-width, initial-scale=1'}    
@@ -17,7 +16,6 @@
         google: ['Roboto Slab', 'Roboto'] |
       })                                  |
     = render 'layouts/shim'
-    = logger.debug '=================>>>> HERE IS APPLICATION LAYOUT'
     
     :javascript
       $(function() {
@@ -26,7 +24,6 @@
       $(document).on('page:load', function(){
         window['rangy'].initialized = false
       });
-    #= javascript_include_tag 'salvattore.min', media: 'all', 'data-turbolinks-track' => true
     %body{:sn => "#{csnn}"}
       #wrapper{ :bg => "#{current_social_network_background_color?}"}
         #header
