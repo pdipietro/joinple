@@ -131,7 +131,7 @@ en:
         line_4: "<a href='mailto:recruitment@joinple.com'>SEND YOUR CV</A>"        
       footer:
         privacy: "Privacy"
-        disclaimer: "Copyright &copy; 2015 JoinPle. All rights reserved."
+        disclaimer: "Copyright &copy; 2015-2016 JoinPle. All rights reserved."
     view:
       description:
         placeholder: "insert the text that will appear on the landing page ..."
