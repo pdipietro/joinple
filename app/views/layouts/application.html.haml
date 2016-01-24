@@ -16,14 +16,11 @@
         google: ['Roboto Slab', 'Roboto'] |
       })                                  |
     = render 'layouts/shim'
-    
     :javascript
-      $(function() {
-        $('input:checkbox').bootstrapSwitch();
-      });
       $(document).on('page:load', function(){
         window['rangy'].initialized = false
       });
+      var x = salvattore.init();
     %body{:sn => "#{csnn}"}
       #wrapper{ :bg => "#{current_social_network_background_color?}"}
         #header

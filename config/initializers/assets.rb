@@ -16,6 +16,7 @@ Rails.application.config.assets.precompile += %w( salvattore.css )
 
 Rails.application.config.assets.precompile += %w( icomoon.css )
 
+
 =begin
 Rails.application.config.assets.precompile += %w( ./../images/* )
 
