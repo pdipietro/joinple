@@ -19,7 +19,7 @@ gem 'coffee-rails'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-# gem 'turbolinks'
+gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.0'
 gem 'jbuilder', '>= 2.2.3'
@@ -45,7 +45,7 @@ gem 'sass_paths'
 
 gem 'haml-rails'
 gem 'pry-rails'
-## gem 'jquery-turbolinks'
+gem 'jquery-turbolinks'
 gem 'responders' # , '~> 2.0'
 gem 'bootstrap_form'
 gem 'rack-cors', require: 'rack/cors'
@@ -60,7 +60,14 @@ gem 'bootstrap-wysihtml5-rails'
 gem 'cloudinary'
 gem 'geocoder'
 gem 'http_accept_language'
-gem 'rubocop'
+
+group :development do
+  gem 'rubocop'
+  # gem 'haml-lint'
+  gem 'haml_lint', require: false, github: 'brigade/haml-lint'
+  gem 'parser'
+  # gem 'astrolabe'
+end
 
 group :development, :test do
   gem 'sass-rails-source-maps'

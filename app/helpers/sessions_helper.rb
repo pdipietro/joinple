@@ -153,7 +153,7 @@ module SessionsHelper
   end
 
   def current_social_network_name?
-    if session[:social_network].nil? 
+    if session[:social_network].nil?
       logger.debug "#{session[:social_network][:name]} mancante!"
       logger.debug caller[0..10]
     else
@@ -163,10 +163,6 @@ module SessionsHelper
   # Returns the owner of the current social network.
 
   def current_social_network_owner
-    logger.debug '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'
-    logger.debug 'session[:social_network].class: #{session[:social_network].class}'
-    logger.debug "session[:social_network].is_owned_by.class: #{session[:social_network].is_owned_by.class}"
-
     session[:social_network].is_owned_by
   end
 
