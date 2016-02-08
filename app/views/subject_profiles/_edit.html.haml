@@ -1,0 +1,35 @@
+- splat(params, params[:action])
+
+- subject_profile = object
+- subject = subject_profile.belongs_to
+
+-# ##################################### MAIN SUBJECT ################################################
+
+.upload_subject
+  = render partial: 'forms/header', locals: { style: 'current', f_uuid: f_uuid, title: translate('subject_profile.view.header', operation: t('operation.edit'), full_name: subject.full_name) }
+  
+  = bootstrap_form_for(object, :remote => :true, :html => {:multipart => true} ) do |f|
+
+    .nothing= f.text_area :description, prepend: t('attribute.description'), placeholder: t('subject_profile.view.description'), hide_label: :true
+    .spacer
+
+    .nothing= f.color_field :background_color, prepend: t('attribute.background_color'), placeholder: t('subject_profile.view.background_color'), hide_label: :true, class: 'left-align' 
+    .spacer
+
+    .nothing= f.color_field :text_color, prepend: t('attribute.text_color'), placeholder: t('subject_profile.view.text_color'), hide_label: :true, class: 'left-align'
+    .spacer
+
+    = render partial: 'forms/footer', locals: { style: 'current', f_uuid: f_uuid }
+
+-# ##################################### SUBJECT PHOTO ################################################
+
+- @photo = subject_profile.has_image(:i, :r).where('r.type = {photo}').params(photo: 'photo').pluck(:i, :r).first
+
+#upload_subject_photo
+  - folder = build_object_image_path( { :subject => "#{subject.uuid}" } )
+  - para_header = translate('subject_profile.view.photo.header', operation: t('operation.edit'), full_name: subject.full_name)
+  - para_button = t('subject_profile.view.photo.button')
+
+  - jpl_image_parms = { preset: 'subject-photo', field_name: 'photo', button_caption: para_button, folder: folder, subject: :true, header_caption: para_header, rel: { name: 'has_image', from: subject_profile, type: 'photo' } }
+  
+  = render partial: 'images/edit', locals: { object: @photo[0], jpl_parms: jpl_image_parms, f_uuid: f_uuid }

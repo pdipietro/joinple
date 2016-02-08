@@ -3,6 +3,8 @@ module ApplicationHelper
   STAGE_HUMANIZED = {'dev' => 'development', 'test' => 'test', 'demo' => 'demo', 'deploy' => 'deploy'}.freeze
   STAGE_BACKGROUND = {'dev' => 'background-color : #5C8D69;', 'test' => 'background-color : #fde8ee;', 'demo' => 'background-color : yellow;', '' => ''}
 
+  # @cloudinary_name = ''
+
   # Returns the full title on a per-page basis.
   def full_title(page_title = '')
     base_title = 'a Generic Social Network'
@@ -62,6 +64,14 @@ module ApplicationHelper
     @cloudinary_name
   end
 
+  def cloudinary_name
+    @cloudinary_name
+  end
+
+  def cloudinary_clean(name)
+    name[/v[0-9]*[^#]*/]
+  end
+
   def stage
     @stage
   end
@@ -118,10 +128,11 @@ module ApplicationHelper
   end
 
   def load_social_network_from_url
+    trace_call caller[0], __method__
     set_locale
     check_machine_name_vs_request
     sn = request.domain.split('.').first.downcase
-    logger.debug "ALLOWED_DOMAIN_SERVER.include? sn: #{ALLOWED_DOMAIN_SERVER.include? sn}"
+    logger.debug "ALLOWED_DOMAIN_SERVER includes '#{sn}': #{ALLOWED_DOMAIN_SERVER.include? sn}"
     if ALLOWED_DOMAIN_SERVER.include? sn
       u = root_url.downcase
       sn = u[u.rindex('//') + 2..-1].split(sn).first[0..-2]
@@ -132,14 +143,17 @@ module ApplicationHelper
     sn = humanize_word(sn)
     sn = 'joinple' if sn.casecmp 'www'
     csn = SocialNetwork.find_by iname: sn.downcase
+    logger.info "csn= #{csn.class.name} - #{csn}"
     csn = SocialNetwork.find_by name: sn if csn.nil?
+    logger.info "csn= #{csn.class.name} - #{csn}"
     # if no db is selected, default to www.joinple.com
     csn = SocialNetwork.find_by iname: 'www' if csn.nil?
+    logger.info "csn= #{csn.class.name} - #{csn}"
     if csn.class.name == 'SocialNetwork'
       set_current_social_network csn
       current_social_network
     else
-      logger.debug "Wromg social network class name: #{csn.class.name}"
+      logger.debug "Wrong social network class name: #{csn.class.name}"
       nil
     end
   end
@@ -147,6 +161,7 @@ module ApplicationHelper
   private
 
   def check_machine_name_vs_request
+    trace_call caller[0], __method__
     host_name = gethostname
     logger.debug "host_name: #{host_name}"
 
@@ -156,9 +171,7 @@ module ApplicationHelper
 
     u = root_url.downcase
     stage = u[u.rindex('//') + 2..-1].split('.')
-    # stage = u.split('.')
     @stage = stage.count > 3 ? stage[0] : 'deploy'
-
     @normalized_stage = normalize_stage @stage
     @humanized_stage = STAGE_HUMANIZED[@normalized_stage].to_s
     @cloudinary_name = "#{@normalized_stage}-joinple-com"
@@ -168,5 +181,4 @@ module ApplicationHelper
     logger.debug "humanized_stage: #{@humanized_stage}"
     logger.debug "cloudinary_name: #{@cloudinary_name}"
   end
-
 end

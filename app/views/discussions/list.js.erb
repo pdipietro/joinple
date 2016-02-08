@@ -8,3 +8,4 @@ else {
  $("#main-content").html("<%= escape_javascript(render partial: 'discussions/index', locals: { discussions: @result, subset: subset, title: title, show_group: show_group, show_social: show_social} ) %>" );
  $("#tech-info").html("<%= escape_javascript(render partial: 'sessions/tech_info', locals: { view: 'discussion::list.js.erb (2)' }) %>" );
 }
+$("#main-debug").html("<%= escape_javascript(render partial: 'sessions/debug') %>");

@@ -16,6 +16,9 @@ Rails.application.config.assets.precompile += %w( salvattore.css )
 
 Rails.application.config.assets.precompile += %w( icomoon.css )
 
+Rails.application.config.assets.precompile += %w( cloudinary.css )
+Rails.application.config.assets.precompile += %w( cloudinary.min.reviewed.js )
+
 
 =begin
 Rails.application.config.assets.precompile += %w( ./../images/* )

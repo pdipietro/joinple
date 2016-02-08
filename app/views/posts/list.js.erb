@@ -2,4 +2,5 @@ $("#main-header").html("<%= escape_javascript(render partial: 'header', locals: 
 $("#tech-info").html("<%= escape_javascript(render partial: 'sessions/tech_info') %>" ); 
 $("#main-add").html("");
 $("#main-content").html("<%= escape_javascript(render partial: 'index', locals: { posts: @posts, title: title} ) %>" );
+$("#main-debug").html("<%= escape_javascript(render partial: 'sessions/debug') %>");
 

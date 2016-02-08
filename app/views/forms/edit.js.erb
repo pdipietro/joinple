@@ -1,0 +1,14 @@
+/*
+ * this is a generic on top form manager
+ *
+ * Params:
+ *
+ * form_to_embed
+ * 'object' to pass
+ * header: true/false
+ * footer: true/false
+ * forms: { forms }
+*/
+
+$('<%= escape_javascript(tag) %>').html(
+		'<%= escape_javascript( render partial: "forms/edit", locals: { form: form, object: object } ) %>' );

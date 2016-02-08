@@ -1,0 +1,19 @@
+%h1 Listing jdebugs
+
+%table
+  %thead
+    %tr
+      %th
+      %th
+      %th
+
+  %tbody
+    - @jdebugs.each do |jdebug|
+      %tr
+        %td= link_to 'Show', jdebug
+        %td= link_to 'Edit', edit_jdebug_path(jdebug)
+        %td= link_to 'Destroy', jdebug, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Jdebug', new_jdebug_path

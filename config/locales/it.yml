@@ -20,6 +20,8 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 it:
+  error:
+      form_title_missed: "Titlo mancante nel form %{form_name}"
   joinple:
     slogan: "La nuova ed innovativa piattaforma per creare gratuitamente il tuo social network senza competenze e in 5 minuti."
     slogan_2: "SLOGAN2"
@@ -40,6 +42,10 @@ it:
       clear: "reinizializza il modulo"
       send: "invia il modulo"
       exit: "esci"
+  operation:
+    edit: "Modifica"
+    add: "Inserisci"
+    show: "Mostra"
   placeholder:
     email: "Inserisci il tuo indirizzo email"
     password: "Inserisci la tua password"
@@ -246,8 +252,11 @@ it:
   subject_profile:
     model:
     view:
-      photo_button_caption: "seleziona la tua nuova foto ..."
-      description: "inserici una tua descrizione"
+      photo:
+        button: "seleziona la tua nuova foto ..."
+        header: "%{operation} la foto di %{full_name}"
+      header: "Profilo di %{full_name}"
+      description: "inserisci una tua descrizione"
       background_color: "personalizza il tuo colore di background"
       text_color: "personalizza il tuo colore di testo"
       title: "gestisci il tuo profilo"

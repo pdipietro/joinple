@@ -1,16 +1,21 @@
+- subject_profile = object
+- logger.debug 'subject_profiles/_show.html.haml'
 - subject = subject_profile.belongs_to
-.page-thumbnail{ :style => "color: #{subject_profile.text_color}; background-color: #{subject_profile.background_color}; " }
-  = "#{subject.full_name} (@#{subject.nickname})'s subject profile"
-.subject-profile{ :id => subject_profile.uuid }
-  = render partial: "subjects/owner", locals: { :subject_profile => subject_profile, :size => :profile, special: :true }
+= render partial: 'forms/header', locals: { style: 'current', f_uuid: f_uuid, title: translate('subject_profile.view.header', operation: '', full_name: subject.full_name) }
+-#.page-thumbnail{ style: "color: #{subject_profile.text_color}; background-color: #{subject_profile.background_color}; " }
+  = translate('subject_profile.view.header', operation: '', full_name: subject.full_name)
+.subject-profile{ id: subject_profile.uuid }
+  = render partial: 'subjects/owner', locals: { subject_profile: subject_profile, size: :thumb, special: :true }
   = "#{subject.full_name} (@#{subject.nickname})"
   - unless subject_profile.description.nil?
     .border-1
       = "#{subject_profile.description}"
+  = render partial: 'forms/modify', locals: { object: subject_profile }
+-#
   .border-1
   - if can_modify?(subject_profile)
     .command-line-m
-      = link_to edit_subject_profile_path(subject_profile), :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Modify the element" do
+      = link_to edit_subject_profile_path(subject_profile), remote: :true, hide_label: :true, 'data-placement': :top, title: 'Modify the element' do
         %i.im-pencil
-      = link_to subject_profile, :method => :delete, :data => { :confirm => 'Are you sure?' }, :remote => :true, :hide_label => :true, "data-placement" => :top, :title => "Delete the element" do
+      = link_to subject_profile, method: :delete, data: { confirm: 'Are you sure?' }, remote: :true, hide_label: :true, 'data-placement': :top, title: 'Delete the element' do
         %i.im-bin

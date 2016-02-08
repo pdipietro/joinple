@@ -14,6 +14,8 @@ module SubjectsHelper
 #    "#{subject.first_name} #{subject.last_name}"
 #  end
 
+  
+
   def Subject.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                   BCrypt::Engine.cost

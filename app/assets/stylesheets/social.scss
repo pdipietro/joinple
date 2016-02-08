@@ -107,9 +107,10 @@ input, button, select, textarea
  }
 
 .panel-title,
-.panel-header {
+.spanel-header {
   font-size: 1.1em;
   color: #ffffff;
+  padding: 3px $standard-padding;
 }
 
 nav i {
@@ -890,6 +891,11 @@ video.responsive {
   -ms-transform: translate(-50%, -50%);
   -o-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+}
+
+.form-layer {
+  @extend .cookie-layer;
+  border-radius: 4px;
 }
 
 .middle-layer-transparent {

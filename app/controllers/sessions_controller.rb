@@ -9,11 +9,13 @@ class SessionsController < ApplicationController
   end
 
   def new
+    # debugger
     logger.debug 'session_controller: new'
     logger.debug "Social network has been checked: #{current_social_network_name?.downcase}"
   end
 
   def create
+    # debugger
     logger.debug "param= #{params[:session][:email]}"
     subject = Subject.find_by(email: params[:session][:email])
     logger.debug "Subject-by-email: #{subject}"

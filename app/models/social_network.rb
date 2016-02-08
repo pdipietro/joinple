@@ -18,9 +18,6 @@ class SocialNetwork
   property  :is_online,                :type =>   Boolean, default: false
   property  :status,                   :type =>   String, default: "run"
 
-  #property  :logo,                     type: String
-  #property  :banner,                   type: String
-
   has_many  :in,  :has_posts, model_class: :Post, type: "post"                # Posts
   has_many  :out, :has_tag, rel_class: :HasTag                   # Tags
   #has_many  :out, :has_hash_tag, rel_class: HasHashTag           # HashTags
@@ -39,7 +36,7 @@ class SocialNetwork
   before_save :check_default
 
   def check_default
-    debugger
+    # debugger
     self.uuid = @_uuid
     self.is_online = false if self.is_online
     self.is_visible = "open" if self.is_visible 

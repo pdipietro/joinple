@@ -3,3 +3,4 @@ $("#main-header").html("<%= escape_javascript(render 'header', locals: { subject
 $("#main-add").html("" );
 $("#main-content").html("<%= escape_javascript(render partial: 'index', locals: { subjects: @subjects,  title: "Subjects"} ) %>" );
 $("#right-context *").html("");
+$("#main-debug").html("<%= escape_javascript(render partial: 'sessions/debug') %>");

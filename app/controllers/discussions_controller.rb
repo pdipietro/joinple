@@ -2,8 +2,8 @@ class DiscussionsController < ApplicationController
 
   include DiscussionsHelper
 
-  before_action :set_discussion, only: [:show, :edit, :update, :destroy, :list_one]
   before_action :check_social_network
+  before_action :set_discussion, only: [:show, :edit, :update, :destroy, :list_one]
   before_action :logged_in_subject, only: [:create, :destroy]
 
   respond_to :js

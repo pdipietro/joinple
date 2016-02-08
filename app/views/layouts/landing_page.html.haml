@@ -10,6 +10,7 @@
         google: ['Roboto Slab', 'Roboto'] |
       })                                  |
     = render 'layouts/shim'
+    -# %body{:sn => "#{current_social_network_name?}"}
     %body{:sn => "#{current_social_network_name?}"}
       #full-screen-image
       #wrapper
@@ -17,4 +18,9 @@
           = render 'layouts/header'
         #page.container-fluid
           = image_tag "homePage.png", :class => "responsive"
+      -#  
+        - 100.times do |i|
+          = "       " + i.to_s + " => "
+          = SecureRandom.uuid
+          <br/>
 

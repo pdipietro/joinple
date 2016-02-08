@@ -8,6 +8,7 @@
     = render partial: 'shared/left_menu'
 
 #main-center
+  #main-debug.col-xs-60
   - if is_admin?
     .shadowing= render partial: 'sessions/tech_info'
   #main-header.col-xs-60

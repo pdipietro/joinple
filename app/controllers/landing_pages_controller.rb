@@ -1,4 +1,5 @@
 class LandingPagesController < ApplicationController
+  # debugger
   before_action :check_social_network
   #  before_action :logged_in_subject, only: [:create, :destroy]
   #  after_action  :set_screen_geometry, only: [:index, :landing_page, :home]
@@ -10,8 +11,9 @@ class LandingPagesController < ApplicationController
   helper_method :get_screen_geometry
 
   def home
+
     if load_social_network_from_url.nil?
-      render file: "#{Rails.root}/public/404.html", layout: false, status: 404 && return
+      render file: "#{Rails.root}/public/404.html", layout: false, status: 404 and return
     end
 
     page = 'home'
@@ -24,11 +26,13 @@ class LandingPagesController < ApplicationController
       elsif deploy? || stage_landing?
         'mail_collector'
       else
+        session.destroy
         page = 'landing_page'
         'landing_page'
       end
 
-    logger.debug "-SessionHelper:home-------------- layout: #{layout}, logged in?: #{logged_in?}, params: #{params}"
+    logger.debug 'LandingPagesController:home - '
+    logger.debug "layout: #{layout}, page: #{page}, logged in?: #{logged_in?}, params: #{params}"
 
     respond_to do |format|
       format.html { render page, layout: layout }

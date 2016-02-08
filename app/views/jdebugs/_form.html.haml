@@ -1,0 +1,10 @@
+= form_for @jdebug do |f|
+  - if @jdebug.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@jdebug.errors.count, "error")} prohibited this jdebug from being saved:"
+      %ul
+        - @jdebug.errors.full_messages.each do |msg|
+          %li= msg
+
+  .actions
+    = f.submit 'Save'

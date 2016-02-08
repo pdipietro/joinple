@@ -7,3 +7,5 @@ if($("social-networks-page").length == 0) {
 }
 else
  $("#main-content").html("<%= escape_javascript(render partial: 'index', locals: { social_networks: @social_networks, subset: subset, title: title } ) %>" );
+
+$("#main-debug").html("<%= escape_javascript(render partial: 'sessions/debug') %>");

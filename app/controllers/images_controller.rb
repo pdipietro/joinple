@@ -1,5 +1,5 @@
 class ImagesController < ApplicationController
-  before_action :set_image, only: [:show, :edit, :update, :destroy]
+  before_action :set_image, only: %i(show edit update destroy)
 
   # GET /images
   # GET /images.json
@@ -40,6 +40,22 @@ class ImagesController < ApplicationController
   # PATCH/PUT /images/1
   # PATCH/PUT /images/1.json
   def update
+    logger.debug '===================================================================================='
+    logger.debug "------- ImagesController:#{params[:action]}"
+    logger.debug current_social_network.to_s
+
+    params[:uuid] = cloudinary_clean(params[:uuid])
+    
+    params.each do |p, v|
+      logger.debug "#{p}: #{v}"
+    end
+
+
+
+    debugger   
+
+
+    
     respond_to do |format|
       if @image.update(image_params)
         format.html { redirect_to @image, notice: 'Image was successfully updated.' }

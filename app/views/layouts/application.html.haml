@@ -7,7 +7,6 @@
     %title= csnn.capitalize
 
     = javascript_include_tag 'application', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag '//widget.cloudinary.com/global/all.js', media: 'all', 'data-turbolinks-track' => true
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
 
     %meta{ :name => 'viewport', :content => 'width=device-width, initial-scale=1'}    
@@ -20,10 +19,11 @@
       $(document).on('page:load', function(){
         window['rangy'].initialized = false
       });
-      var x = salvattore.init();
-    %body{:sn => "#{csnn}"}
-      #wrapper{ :bg => "#{current_social_network_background_color?}"}
-        #header
-          = render 'layouts/header'
-        #page.container-fluid
-          = render partial: 'layouts/c3_9_0'
+  %body{:sn => "#{csnn}"}
+    #full-screen-image
+    #wrapper{ :bg => "#{current_social_network_background_color?}"}
+      #header
+        = render 'layouts/header'
+      #page.container-fluid
+        = render partial: 'layouts/c3_9_0'
+

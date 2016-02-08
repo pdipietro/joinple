@@ -3,7 +3,6 @@
 - social_network = current_social_network
 .row.nothing.top-rounded{ :style => current_social_network_style }
   .col-xs-28.nothing
-  debugger
     = render partial: 'subject_profiles/photo_show', locals: { subject_profile: subject_profile, size: :thumb, :shape => "subject-photo"}
   .col-xs-32.nothing
     .subject-info
@@ -21,25 +20,25 @@
   .col-xs-12.nothing
     %i.activable.im-following
     %br
-    - followings_number = rels["out-follows-Subject"]
+    - followings_number = rels['out-follows-Subject']
     = followings_number
   .col-xs-12.nothing
     %i.activable.im-followers
     %br
-    - followers_number = rels["in-follows-Subject"]
+    - followers_number = rels['in-follows-Subject']
     = followers_number
   .col-xs-12.nothing
     %i.activable.im-discussions
     %br
-    - discu_number = rels["in-follows-Discussion"]
+    - discu_number = rels['in-follows-Discussion']
     = discu_number
   .col-xs-12.nothing
     %i.activable.im-groups
     %br
-    - groups_number = rels["out-owns-Group"]
+    - groups_number = rels['out-owns-Group']
     = groups_number
   .col-xs-12.nothing
     %i.activable.im-blog2
     %br
-    - blog_number = rels["in-follows-Blog"]
+    - blog_number = rels['in-follows-Blog']
     = blog_number

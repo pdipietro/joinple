@@ -1,11 +1,4 @@
 Rails.application.routes.draw do
-  #oot 'landing_pages#home' # , defaults: { format: 'js'}, remote: :true
-  #et home: 'landing_pages#home', defaults: { format: 'js'}, remote: :true
-  #et login: 'sessions#new', defaults: { format: 'js'}, remote: :true
-  #ost login: 'sessions#create', defaults: { format: 'js'}, remote: :true
-  #et signup: 'subjects#new', defaults: { format: 'js'}, remote: :true
-  #elete logout: 'sessions#destroy', defaults: { format: 'js'}, remote: :true
-
   root                     'landing_pages#home'#, defaults: { :format => "js"}, :remote => :true
   get    'home'      =>    'landing_pages#home', defaults: { :format => "js"}, :remote => :true
   get    'login'     =>    'sessions#new', defaults: { :format => "js"}, :remote => :true
@@ -26,6 +19,7 @@ Rails.application.routes.draw do
   post    'refuse'   =>      'cookielaws#refuse', defaults: { format: 'js'}, remote: :true
   post    'privacy'  =>      'cookielaws#privacy', defaults: { format: 'js'}, remote: :true
   resources :mail_collectors,                    defaults: { format: 'js'}, remote: :true
+  resources :jdebugs
 
 #  resources :account_activations, only: [:edit], defaults: { format: 'js'}, remote: :true
   resources :account_activations, only: [:edit]
@@ -36,6 +30,7 @@ Rails.application.routes.draw do
 
 # administrative resources
 
+  resources :forms,               constraints: AuthConstraint.new, defaults: { format: 'js'}, remote: :true
   resources :languages,           constraints: AuthConstraint.new, defaults: { format: 'js'}, remote: :true
   resources :social_networks,     constraints: AuthConstraint.new, defaults: { format: 'js'}, remote: :true,  except: [:destroy, :show]
 

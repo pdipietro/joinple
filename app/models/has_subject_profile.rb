@@ -5,5 +5,4 @@ class HasSubjectProfile
   from_class  :Subject
   to_class    :SubjectProfile
   type 'has_profile'
-
 end

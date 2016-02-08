@@ -57,16 +57,14 @@ class LikesController < ApplicationController
     subject_list = Neo4j::Session.query("match (u:Subject { uuid : '#{@subject}' })-[rel:#{@rel}]->(obj:#{@class} { uuid : '#{@class_uuid}' }) return unique subject order by first_name, last_name")
 
     respond_to do |format|
-         format.js { render partial: show_content, object: subject_list }
+      format.js { render partial: show_content, object: subject_list }
     end
-
   end
 
   def hide
     @id = params[:id]
     respond_to do |format|
-        format.js { render 'hide', locals: { id: @id} }
+      format.js { render 'hide', locals: { id: @id} }
     end
   end
-
 end

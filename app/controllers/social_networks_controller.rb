@@ -77,7 +77,7 @@ class SocialNetworksController < ApplicationController
 
     begin
       tx = Neo4j::Transaction.new
-        debugger
+        # debugger
         @social_network = SocialNetwork.new(social_network_params)
 
         #@social_network.logo = cloudinary_clean(@social_network.logo)
