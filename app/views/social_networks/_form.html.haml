@@ -11,8 +11,8 @@
       .panel-body
         = bootstrap_form_for(social_network, :remote => :true, :html => {:multipart => true} ) do |f|
           -#.nothing= f.text_field :nickname, :prepend => t("subject.model.attribute.nickname"), :placeholder => t("subject.view.signup.placeholder.nickname"), :hide_label => :true
-          -#= f.hidden_field :uuid, :value => social_network.uuid?
-          .nothing= f.text_field :name, :prepend => :name, :placeholder => "Enter the name of the new social network", :hide_label => :true, :text => "Social network name"
+          = f.hidden_field :uuid, value: social_network.uuid
+          .nothing= f.text_field :name, prepend: :name, placeholder: "Enter the name of the new social network", :hide_label => :true, :text 'Social network name'
           .spacer
           .nothing= f.text_field :short_description, :prepend => "short description", :placeholder => "Enter a short description of the social network", :hide_label => :true, :text => "Social network short description"
           .spacer

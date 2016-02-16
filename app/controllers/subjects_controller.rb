@@ -85,8 +85,6 @@ class SubjectsController < ApplicationController
   def new
     logger.debug 'ready to call new.js.erb'
     @subject = Subject.new
-    logger.debug "subject.uuid: #{@subject.uuid}"
-    # render layout: "landing_page"
   end
 
   # GET /subjects/1/edit

@@ -92,5 +92,10 @@ create _6-[:`speaks` {`created_at`:1421477725, `updated_at`:1421477725}]->_4
 create _9-[:`has_profile` {`created_at`:1451425599, `updated_at`:1451425599}]->_12
 create _10-[:`has_profile` {`created_at`:1451388203, `updated_at`:1451388203}]->_11
 create _15-[:`has_profile` {`created_at`:1451425637, `updated_at`:1451425637}]->_16
+
+create _11-[:`has_image` {`created_at`:1451695520, `updated_at`:1451695520, `type`:"photo"}]->_25
+create _12-[:`has_image` {`created_at`:1451695520, `updated_at`:1451695520, `type`:"photo"}]->_25
+create _16-[:`has_image` {`created_at`:1451695520, `updated_at`:1451695520, `type`:"photo"}]->_25
+
 ;
 commit

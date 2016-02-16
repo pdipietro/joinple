@@ -2,8 +2,6 @@
   .command-line-m
   - cmd = "edit_#{object.class.name.tableize.singularize}_path('#{object.uuid}')"
   = link_to eval(cmd), remote: :true, hide_label: :true, 'data-placement': :top, title: 'Modify the element' do
-    -#= link_to eval('edit', object), remote: :true, hide_label: :true, 'data-placement': :top, title: 'Modify the element' do
-    -#= link_to edit_subject_profile_path(subject_profile), remote: :true, hide_label: :true, 'data-placement': :top, title: 'Modify the element' do
     %i.im-pencil
     = link_to object, method: :delete, data: { confirm: 'Are you sure?' }, remote: :true, hide_label: :true, 'data-placement': :top, title: 'Delete the element' do
       %i.im-bin

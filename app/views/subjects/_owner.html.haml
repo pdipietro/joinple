@@ -1,3 +1,4 @@
+-# debugger
 - if defined?(object)
   - logger.debug object.class.name
   - if object.class.name == 'SubjectProfile'
@@ -13,10 +14,17 @@
 - else
   - object = nil
   - raise "Input requires object or subject_profile or subject)"
-
-- image_uuid = subject_profile.photo subject
-- logger.debug "subject: #{subject.first_name} #{subject.last_name}"  
-- logger.debug "image: #{image_uuid}"
+-# image = subject_profile.has_image(:i, :r).where('r.type = {photo}').params(photo: 'photo').first(:i)
+- image = subject_profile.has_image
+  - if image.nil?
+- image_uuid = "h" if image.nil?
+-#
+  - if image.nil?
+    - image_uuid = "b2833539-1e64-49f9-be8a-1a74509dce6e"
+  - else
+    - image_uuid = "subject/#{subject.uuid}/#{image.uuid}"
+  - logger.debug "subject: #{subject.first_name} #{subject.last_name}"  
+  - logger.debug "image: #{image.uuid?}"
 
 - title = defined?(title) ? title : "Edit"
 

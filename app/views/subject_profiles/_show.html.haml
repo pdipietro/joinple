@@ -1,6 +1,6 @@
-- subject_profile = object
-- logger.debug 'subject_profiles/_show.html.haml'
-- subject = subject_profile.belongs_to
+-# subject_profile = object
+-# logger.debug 'subject_profiles/_show.html.haml'
+-# subject = subject_profile.belongs_to
 = render partial: 'forms/header', locals: { style: 'current', f_uuid: f_uuid, title: translate('subject_profile.view.header', operation: '', full_name: subject.full_name) }
 -#.page-thumbnail{ style: "color: #{subject_profile.text_color}; background-color: #{subject_profile.background_color}; " }
   = translate('subject_profile.view.header', operation: '', full_name: subject.full_name)

@@ -37,6 +37,8 @@ en:
     clear: "clear"
     send: "send"
     exit: "exit"
+    image:
+      change: "change image"
     hint: 
       save: "save the form"
       clear: "reinitialize the form"

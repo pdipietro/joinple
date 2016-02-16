@@ -50,8 +50,6 @@ class ImagesController < ApplicationController
       logger.debug "#{p}: #{v}"
     end
 
-
-
     debugger   
 
 

@@ -1,8 +1,4 @@
-if(('#<%= escape_javascript(id) %>').length > 0) {
-	$('#<%= escape_javascript(id) %>').remove();
-}
-else {
-	$("#full-screen-image").html("");
-} 
-$("#wrapper").show()
-$("#p8azi6_0_offer").width("100%")
+$("#<%= escape_javascript(id)%>").html("")
+
+$('#wrapper').show()
+$('#p8azi6_0_offer').width('100%')

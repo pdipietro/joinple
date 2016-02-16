@@ -79,18 +79,17 @@ module ImagesHelper
         min_image_width: 300,
         min_image_height: 300 
       },
-    social_logo: 
-                 {
-                   preset_name: 'social-logo',
-                   theme: 'default',
-                   button_class: 'joinple-button',
-                   cropping: 'server',
-                   multiple: 'false',
-                   cropping_aspect_ratio: 1.0,
-                   cropping_default_selection_ratio: 1,
-                   min_image_width: 300,
-                   min_image_height: 300 
-                 },
+    social_logo: {
+       preset_name: 'social-logo',
+       theme: 'default',
+       button_class: 'joinple-button',
+       cropping: 'server',
+       multiple: 'false',
+       cropping_aspect_ratio: 1.0,
+       cropping_default_selection_ratio: 1,
+       min_image_width: 300,
+       min_image_height: 300 
+     },
     subject_photo: {
         preset_name: 'subject-photo',
         theme: 'default',

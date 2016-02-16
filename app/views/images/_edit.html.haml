@@ -1,52 +1,48 @@
-- image = object
-- _uuid = 'd' + SecureRandom.uuid
-%div{ id: "#{_uuid}" }
+- image.set_uuid! if image.uuid.nil?
+- _uuid = image.uuid?
+%div{ id: "edit-#{_uuid}" }
+  - preset = ImagesHelper::IMAGE_KIND[cloudinary[:preset].gsub(/-/,"_").to_sym]
 
-- preset = ImagesHelper::IMAGE_KIND[jpl_parms[:preset].gsub(/-/,"_").to_sym]
+  = render partial: 'forms/header', locals: { style: 'current', title: cloudinary[:page_header] }
 
-- h = params.merge jpl_parms.merge preset
-- splat(h, params[:action])
+  = bootstrap_form_for(image, remote: :true, html: { multipart: :true} ) do |g| 
 
-= render partial: 'forms/header', locals: { style: 'current', f_uuid: f_uuid, title: jpl_parms[:header_caption] }
+    - image_full_uuid = cloudinary[:folder] + '/' + image.uuid?
 
-= bootstrap_form_for(image, remote: :true, html: { multipart: :true}, rel: jpl_parms[:rel] ) do |g| 
+    = g.hidden_field :uuid?
 
-  - image_full_uuid = jpl_parms[:folder][1...999] + '/' + image.uuid
+    %div{ :id => "#{_uuid}-0" }
 
-  = g.hidden_field :uuid
+      - _height = defined?(height) ? height : 150
 
-  %div{ :id => "#{_uuid}-0" }
+      = cl_image_tag image_full_uuid, height: _height, crop: :scale, quality: 50, class: 'responsive', default_image: 'default_avatar.png'
 
-    - _height = defined?(height) ? height : 150
+      - clo = cloudinary_name
+      - cloudinary_name = 'dev-joinple-com'
+    %div{ :id => "#{_uuid}-1" }
+      :javascript 
+        $("#{_uuid}-1").bind('cloudinarywidgetdeleted', function(result) {
+        console.log('deleted!');
+        console.log(result);
+        });
+        cloudinary.applyUploadWidget(document.getElementById("#{_uuid}-1"), 
+        { 
+          cloud_name: "#{cloudinary_name}", 
+          stylesheet: document.baseURI+'/assets/cloudinary.css',
+          theme: "#{preset[:theme]}",
+          button_class: "#{preset[:button_class]}",
+          cropping: "#{preset[:cropping]}", 
+          multiple: "#{preset[:multiple]}", 
+          cropping_aspect_ratio: "#{preset[:cropping_aspect_ratio]}", 
+          cropping_default_selection_ratio: "#{preset[:cropping_default_selection_ratio]}", 
+          min_image_width: "#{preset[:min_image_width]}", 
+          min_image_height: "#{preset[:min_image_height]}",
 
-    = cl_image_tag image_full_uuid, height: _height, crop: :scale, quality: 50, class: 'responsive'
+          upload_preset: "#{cloudinary[:preset]}", 
+          button_caption: "#{t('button.image.change')}",
+          public_id: "#{image.uuid?}",
+          folder: "#{cloudinary[:folder]}"
+        },
+          function(error, result) {console.log(error, result)});
 
-    - clo = cloudinary_name
-    - cloudinary_name = 'dev-joinple-com'
-  %div{ :id => "#{_uuid}-1" }
-    :javascript 
-      $("#{_uuid}-1").bind('cloudinarywidgetdeleted', function(result) {
-      console.log('deleted!');
-      console.log(result);
-      });
-      cloudinary.applyUploadWidget(document.getElementById("#{_uuid}-1"), 
-      { 
-        cloud_name: "#{cloudinary_name}", 
-        stylesheet: document.baseURI+'/assets/cloudinary.css',
-        theme: "#{preset[:theme]}",
-        button_class: "#{preset[:button_class]}",
-        cropping: "#{preset[:cropping]}", 
-        multiple: "#{preset[:multiple]}", 
-        cropping_aspect_ratio: "#{preset[:cropping_aspect_ratio]}", 
-        cropping_default_selection_ratio: "#{preset[:cropping_default_selection_ratio]}", 
-        min_image_width: "#{preset[:min_image_width]}", 
-        min_image_height: "#{preset[:min_image_height]}",
-
-        upload_preset: "#{jpl_parms[:preset]}", 
-        button_caption: "#{jpl_parms[:button_caption]}",
-        field_name: "#{object.uuid}",
-        folder: "#{jpl_parms[:folder]}"
-      },
-        function(error, result) {console.log(error, result)});
-
-  = render partial: 'forms/footer', locals: { style: 'current', f_uuid: f_uuid }
+    = render partial: 'forms/footer', locals: { style: 'current' }

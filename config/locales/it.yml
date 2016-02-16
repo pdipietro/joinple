@@ -21,7 +21,7 @@
 
 it:
   error:
-      form_title_missed: "Titlo mancante nel form %{form_name}"
+      form_title_missed: "Titolo mancante nel form %{form_name}"
   joinple:
     slogan: "La nuova ed innovativa piattaforma per creare gratuitamente il tuo social network senza competenze e in 5 minuti."
     slogan_2: "SLOGAN2"
@@ -42,6 +42,8 @@ it:
       clear: "reinizializza il modulo"
       send: "invia il modulo"
       exit: "esci"
+    image:
+      change: "cambia immagine"
   operation:
     edit: "Modifica"
     add: "Inserisci"

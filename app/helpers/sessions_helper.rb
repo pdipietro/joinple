@@ -466,12 +466,71 @@ module SessionsHelper
     # puts "*** ERRORE!!! - #{session[:social_network]}" unless session[:social_network].class.name == session[:old_session].class.name
   end
 
-  def splat(hash, title = '')
-    if hash.is_a?(::Hash) && hash != {}
+  def splatta(hash, title = '')
+    if (hash.is_a?(::Hash) || hash.is_a?(::Array)) && hash != {}
+      indent = 0
       logger.debug "------------------------ #{title} Hash splatting --------------------"
+      case hash.is_a?(::Hash)
+      when true
+        hash.each do |p, v|
+          if v.is_a?(::Hash)
+            logger.debug "#{' ' * indent}#{p}:"
+            indent += 4
+            v.each do |p1, v1|
+              logger.debug "#{' ' * indent}#{p1}: #{v1}"
+            end
+            indent -= 4
+          end
+        end
+      when false
+        hash.each do |v|
+          if v.is_a?(::Hash)
+            logger.debug "#{' ' * indent}#{p}:"
+            indent += 4
+            v.each do |p1, v1|
+              logger.debug "#{' ' * indent}#{p1}: #{v1}"
+            end
+            indent -= 4
+          end
+        end
+      end
+    end
+    logger.debug "-----------------------------------------------------------------------"
+  end
+
+  def splat(collection, title = '')
+    if (collection.is_a?(::Hash) || collection.is_a?(::Array)) && collection != {}
+      logger.info "------------------------ #{title} Collection splatting --------------------"
+      splat1(collection, 0, '')
+      logger.info '-----------------------------------------------------------------------'
+    end
+  end
+
+  def splat1(item, indent, line)
+    if item.is_a?(::Hash)
+      item.each do |p, val|
+        if val.is_a?(::Hash)
+          splat1("#{p}:", indent, '')
+          splat1(val, indent + 4, '')
+        else
+          logger.info "#{' ' * indent}#{p}: #{val}"
+        end
+      end
+    elsif item.is_a?(::Array)
+      item.each do |val|
+        logger.info "#{' ' * indent}#{p}:"
+        splat1(val, indent + 4, '')
+      end
+    else
+      logger.info "#{' ' * indent}#{item}"
+    end
+  end
+
+=begin      
+      end
       indent = 0
       hash.each do |p, v|
-        if v.is_a?(::Hash)
+        if v.is_a?(::Hash) || v.is_a?(::Array)
           logger.debug "#{' ' * indent}#{p}:"
           indent += 4
           v.each do |p1, v1|
@@ -483,8 +542,8 @@ module SessionsHelper
         end
       end
       logger.debug "-----------------------------------------------------------------------"
-    end
   end
+=end
 
   private
 

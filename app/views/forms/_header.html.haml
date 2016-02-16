@@ -1,5 +1,5 @@
 -#****************************************************************************************************************
-  - sample: render partial: 'header', locals: { style: 'your style', form_name: 'form_name', title: 'your title', f_uuid: f_uuid}
+  - sample: render partial: 'header', locals: { style: 'your style', form_name: 'form_name', title: 'your title', exit: exit}
   - Needs three params:
     - style: a String usually one of
       - "current" for current_social_network_style
@@ -8,7 +8,7 @@
     - data-target: the toggler to be used 
       - example: "#group-form"
     - title
-    - f_uuid: uuid to close at exit
+    - exitpoint: # id to close at exit
   ****************************************************************************************************************
 - decoded_style = case style                              |
     when "current"  then current_social_network_style     | 
@@ -20,11 +20,14 @@
 .panel-header{ style: decoded_style }
   .panel-title
     = defined?(title) ? title : ''
+    - exit2 = 'full-screen-image'
+    - exit2 = "#{exitpoint}" if defined?(exitpoint) 
+
     .float-right
-      = link_to hide_path("#{f_uuid}"), remote: :true, title: t('button.exit') do
+      = link_to hide_path(id: exit2), remote: :true, title: t('button.exit') do
         %i.im-uncheck.to-right{ :style => "color: #ffffff;"}
 .spacer
 -#
-  = render partial: 'forms/header', locals: { style: 'current', f_uuid: f_uuid }
+  = render partial: 'forms/header', locals: { style: 'current', exit: exitpoint }
   .page-thumbnail{ style: "color: #{subject_profile.text_color}; background-color: #{subject_profile.background_color}; " }
     = translate('subject_profile.view.header', operation: t('operation.edit'), full_name: subject.full_name)

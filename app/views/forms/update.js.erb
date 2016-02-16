@@ -1,0 +1,13 @@
+/*
+ * this is a generic on top form manager
+ *
+ * Params:
+ *
+ * form_to_embed
+ * 'object' to pass
+ * header: true/false
+ * footer: true/false
+ * forms: { forms }
+*/
+
+$('#edit-<%= escape_javascript(parms[:id])%>').replaceWith("<%= escape_javascript( render partial: 'forms/update', locals: { jpl_parms: jpl_parms, parms: parms } ) %>" );

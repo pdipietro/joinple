@@ -1,6 +1,6 @@
 
 - sizes = Hash.new
-- sizes = { :basic => 18, :small => 24, :comment => 30, :header => 32, :btn => 36, :thumb => 84, :icon => 128, :standard => 200, :profile => 250 }
+- sizes = { basic: 18, small: 24, comment: 30, header: 32, btn: 36, thumb: 84, icon: 128, standard: 200, profile: 250 }
 
 - size = :btn unless size.is_a? Symbol
 
@@ -8,11 +8,8 @@
 
 - aShape = defined?(shape) ? shape : "" 
 
-- logger.debug "dimension: #{dimension} - #{dimension.class}"
-
 - quality = 50
 - if dimension < 200  
 	- quality = 20
 
-= cl_image_tag image_uuid, :width => dimension, :crop => :scale, :quality => quality, :class => "#{aShape}" 
-
+= cl_image_tag image_uuid, width: dimension, crop: :scale, quality: quality, class: "#{aShape}", default_image: 'default_avatar.png'

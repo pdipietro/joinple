@@ -1,8 +1,8 @@
-- f_uuid = 'd' + SecureRandom.uuid
-%div{ id: "#{f_uuid}" }
-  .full-screen-layer-50
-  .form-layer{ style: "z-index: #{DateTime.now.strftime('%m%d%H%M%S%L')}; min-width: 50%;" }
-    - main_form_name = object.class.name.tableize + '/' + form
-    = render partial: main_form_name, locals: { object: object, f_uuid: f_uuid }
-- if form == 'show'
-  #full-screen-image-edit
+.full-screen-layer-50
+.form-layer{ style: "z-index: #{DateTime.now.strftime('%m%d%H%M%S%L')}; min-width: 50%;" }
+  - jpl_parms.each do |k|
+    - instances = create_form(k[1], parms)
+    - name = parms[:action] == 'show' ? 'show' : 'edit'
+    - instances[:form_name] = k[0].to_s.tableize + '/' + name
+    - splat(instances, instances[:form_name])
+    = render partial: instances[:form_name], locals: instances

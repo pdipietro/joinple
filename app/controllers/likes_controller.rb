@@ -62,9 +62,9 @@ class LikesController < ApplicationController
   end
 
   def hide
-    @id = params[:id]
+    @id = params[:id] 
     respond_to do |format|
-      format.js { render 'hide', locals: { id: @id} }
+      format.js { render 'hide', locals: { id: @id }}
     end
   end
 end

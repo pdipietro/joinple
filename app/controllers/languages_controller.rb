@@ -33,11 +33,11 @@ class LanguagesController < ApplicationController
     
     respond_to do |format|
       if @language.save
-         rel = Owns.create(from_node: current_subject, to_node: @language)  
+        rel = Owns.create(from_node: current_subject, to_node: @language)  
 
-         format.js   { render partial: "enqueue", object: @language, notice: 'Language was successfully created.' }
-         format.html { redirect_to @language, notice: 'Language was successfully created.' }
-         format.json { render :show, status: :created, location: @language }
+        format.js   { render partial: "enqueue", object: @language, notice: 'Language was successfully created.' }
+        format.html { redirect_to @language, notice: 'Language was successfully created.' }
+        format.json { render :show, status: :created, location: @language }
       else
         format.js   { render :new, object: @language }
         format.html { render :new }
@@ -49,6 +49,8 @@ class LanguagesController < ApplicationController
   # PATCH/PUT /languages/1
   # PATCH/PUT /languages/1.json
   def update
+    splat(params, '')
+    debugger
     respond_to do |format|
       if @language.update(language_params)
         format.js   { render partial: "replace", object: @language, notice: 'Language was successfully updated.' }

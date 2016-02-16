@@ -1,12 +1,19 @@
 class SessionsController < ApplicationController
-  before_action :check_social_network, only: [:new] # :create]
-
+  before_action :check_social_network, only: [:new, :extnew] # :create]
 
   def admin
     respond_to do |format|
       format.html { render :newAdmin, object: :session }
     end
   end
+
+  def extnew
+    # debugger
+    logger.debug 'session_controller: extnew'
+    logger.debug "Social network has been checked: #{current_social_network_name?.downcase}"
+    render 'extnew', layout: 'application'
+  end
+
 
   def new
     # debugger
@@ -39,7 +46,10 @@ class SessionsController < ApplicationController
       end
     else
       flash.now[:danger] = 'Invalid email/password combination'
-      render 'new'
+      respond_to do |format|
+        format.html {render partial: 'new'}
+        format.js {render 'new'}
+      end
     end
   end
 

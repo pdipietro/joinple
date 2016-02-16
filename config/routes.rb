@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   get    'home'      =>    'landing_pages#home', defaults: { :format => "js"}, :remote => :true
   get    'login'     =>    'sessions#new', defaults: { :format => "js"}, :remote => :true
   post   'login'     =>    'sessions#create', defaults: { :format => "js"}, :remote => :true
+  get    'extlogin'  =>    'landing_pages#home', :extlogin => :true
+  post   'extlogin'  =>    'sessions#create', defaults: { :format => "js"}, :remote => :true
   get    'signup'    =>    'subjects#new', defaults: { :format => "js"}, :remote => :true
+  get    'extsignup' =>    'landing_pages#home', :extsignup => :true
   delete 'logout'    =>    'sessions#destroy', defaults: { :format => "js"}, :remote => :true
 
   get    'about'     =>    'static_pages#about', defaults: { format: 'js'}, remote: :true

@@ -16,6 +16,7 @@ class LandingPagesController < ApplicationController
       render file: "#{Rails.root}/public/404.html", layout: false, status: 404 and return
     end
 
+    splat(params, 'landing_pages:home')
     page = 'home'
 
     layout =
@@ -23,6 +24,14 @@ class LandingPagesController < ApplicationController
         'dummy'
       elsif logged_in?
         'application'
+      elsif params[:extlogin]
+        session.destroy
+        page = 'sessions/new'
+        'extlogin'
+      elsif params[:extsignup]
+        session.destroy
+        page = 'subjects/new'
+        'extsignup'
       elsif deploy? || stage_landing?
         'mail_collector'
       else
