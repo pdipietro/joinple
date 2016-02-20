@@ -1,31 +1,36 @@
-- image.set_uuid! if image.uuid.nil?
-- _uuid = image.uuid?
+-# debugger
+- _uuid = SecureRandom.uuid
+-# splat(instances, 'Image: instances')
+- splat(cloudinary, 'Image: cloudinary')
+-# splat(jpl_params, 'Image: jpl_params')
 %div{ id: "edit-#{_uuid}" }
   - preset = ImagesHelper::IMAGE_KIND[cloudinary[:preset].gsub(/-/,"_").to_sym]
 
   = render partial: 'forms/header', locals: { style: 'current', title: cloudinary[:page_header] }
 
-  = bootstrap_form_for(image, remote: :true, html: { multipart: :true} ) do |g| 
+  - _height = defined?(height) ? height : 150
 
-    - image_full_uuid = cloudinary[:folder] + '/' + image.uuid?
+  - clo = cloudinary_name
+  - cloudinary_name = 'dev-joinple-com'
 
-    = g.hidden_field :uuid?
+  - image_full_uuid = cloudinary[:folder] + '/' + image.cloudinary_id
 
-    %div{ :id => "#{_uuid}-0" }
+  = cl_image_tag image_full_uuid, height: _height, crop: :scale, quality: 50, class: 'responsive', default_image: 'default_avatar.png'
 
-      - _height = defined?(height) ? height : 150
+  - new_image = Image.new()
 
-      = cl_image_tag image_full_uuid, height: _height, crop: :scale, quality: 50, class: 'responsive', default_image: 'default_avatar.png'
+  = bootstrap_form_for(new_image, remote: :true, html: { multipart: :true}, cloudinary: cloudinary, connections: connections ) do |g| 
 
-      - clo = cloudinary_name
-      - cloudinary_name = 'dev-joinple-com'
-    %div{ :id => "#{_uuid}-1" }
+    = g.hidden_field :cloudinary_id
+    - set_form({connections: connections, cloudinary: cloudinary})
+
+    %div{ :id => "#{_uuid}-new" }
       :javascript 
         $("#{_uuid}-1").bind('cloudinarywidgetdeleted', function(result) {
         console.log('deleted!');
         console.log(result);
         });
-        cloudinary.applyUploadWidget(document.getElementById("#{_uuid}-1"), 
+        cloudinary.applyUploadWidget(document.getElementById("#{_uuid}-new"), 
         { 
           cloud_name: "#{cloudinary_name}", 
           stylesheet: document.baseURI+'/assets/cloudinary.css',
@@ -37,10 +42,11 @@
           cropping_default_selection_ratio: "#{preset[:cropping_default_selection_ratio]}", 
           min_image_width: "#{preset[:min_image_width]}", 
           min_image_height: "#{preset[:min_image_height]}",
+          upload_preset: "#{preset[:preset_name]}", 
 
-          upload_preset: "#{cloudinary[:preset]}", 
+          field_name: 'cloudinary_id',
           button_caption: "#{t('button.image.change')}",
-          public_id: "#{image.uuid?}",
+          public_id: "#{_uuid}",
           folder: "#{cloudinary[:folder]}"
         },
           function(error, result) {console.log(error, result)});

@@ -25,7 +25,7 @@ gem 'turbolinks'
 gem 'jbuilder', '>= 2.2.3'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
-
+gem 'json'
 # -------
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'

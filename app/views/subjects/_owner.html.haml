@@ -16,8 +16,7 @@
   - raise "Input requires object or subject_profile or subject)"
 -# image = subject_profile.has_image(:i, :r).where('r.type = {photo}').params(photo: 'photo').first(:i)
 - image = subject_profile.has_image
-  - if image.nil?
-- image_uuid = "h" if image.nil?
+- image_uuid = image.nil? ? 'h' : "subject/#{subject.uuid}/#{image.uuid}"
 -#
   - if image.nil?
     - image_uuid = "b2833539-1e64-49f9-be8a-1a74509dce6e"

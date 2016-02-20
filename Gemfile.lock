@@ -455,6 +455,7 @@ DEPENDENCIES
   jbuilder (>= 2.2.3)
   jquery-rails
   jquery-turbolinks
+  json
   mini_backtrace
   mini_magick
   minitest-reporters

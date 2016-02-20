@@ -29,22 +29,18 @@ module SubjectProfilesHelper
         :image => photo,
         :subject_profile => subject_profile,
         :cloudinary => {
-          :preset => 'subject-photo',
+          :preset => "subject_photo",
           :page_header => I18n.translate('subject_profile.view.photo.header', operation: I18n.t('operation.edit'), full_name: subject.full_name ), 
           :folder => "subject/#{subject.uuid}"
         },
-        :connections => {
+        :connections => [{
           :from => subject_profile,
-          :rel => {
-            :name => :has_image,
-            :revname => :belongs_to,
-            :attrs => {
-              :name => :type,
-              :value => :photo
-            }
-          },
-          :to => :photo
-        }
+          :rel_name => :has_image,
+          :rel_revname => :is_image_of,
+          :rel_type => :photo,
+          :to => :self,
+          :history => :true
+        }]
       }
     } 
 

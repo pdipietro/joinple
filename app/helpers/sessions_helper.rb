@@ -10,6 +10,14 @@ module SessionsHelper
 
   SECONDARY_ITEMS_PER_PAGE = 24
 
+  def set_form(hash)
+    session[:form] = hash
+  end
+
+  def form_data
+    return session[:form]["connections"], session[:form]["cloudinary"]
+  end
+
   def set_accept_cookie
     cookies.permanent[:cookie_accepted] = true
   end

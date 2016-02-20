@@ -23,6 +23,10 @@ module Uuid
     @_uuid = an_uuid
   end
 
+  def uuid! (an_uuid)
+    @_uuid = an_uuid
+  end
+
   def initialize (args = {})
     @_uuid = SecureRandom.uuid
     if args.class == Hash 

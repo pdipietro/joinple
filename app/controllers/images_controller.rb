@@ -1,5 +1,6 @@
 class ImagesController < ApplicationController
-  before_action :set_image, only: %i(show edit update destroy)
+  before_action :set_image, only: [:show, :edit, :update, :destroy]
+  #before_action :get_form_data, only: [:create]
 
   # GET /images
   # GET /images.json
@@ -21,53 +22,47 @@ class ImagesController < ApplicationController
   def edit
   end
 
-  # POST /images
-  # POST /images.json
   def create
-    @image = Image.new(image_params)
+    debugger
+    connections, cloudinary = form_data
+    splat(image_params, 'images_controller:create')
+    splat(connections, 'images_controller:create')
+    splat(cloudinary, 'images_controller:create')
+    begin
+      tx = Neo4j::Transaction.new
+      image_params[:cloudinary_id] = cloudinary_clean(image_params[:cloudinary_id])
+      @image = Image.new(image_params)
 
-    respond_to do |format|
-      if @image.save
-        format.html { redirect_to @image, notice: 'Image was successfully created.' }
-        format.json { render :show, status: :created, location: @image }
-      else
-        format.html { render :new }
-        format.json { render json: @image.errors, status: :unprocessable_entity }
+      @image.cloudinary_id = cloudinary_clean(@image.cloudinary_id)
+
+      @image.save
+      # manage image history, if any
+      if image_params[:rel][:history]
+        unless @image.previous.nil?
+  #        old_image = @image.previous
+  #        rel = HasImage.create(from_node: image_params[:from_node], to_node: @image, properties: { type: image_params[:type]}) 
+  #        new_rel = 
+        end
       end
+
+    rescue => e
+      tx.failure
+    ensure
+      tx.close
     end
+
+    jpl_parms = ImagesHelper.update(@image,params[:cloudinary],params[:connections])
+    render 'forms/update', format: :js, locals: {jpl_parms: jpl_parms, parms: params} and return
   end
 
-  # PATCH/PUT /images/1
-  # PATCH/PUT /images/1.json
   def update
-    logger.debug '===================================================================================='
-    logger.debug "------- ImagesController:#{params[:action]}"
-    logger.debug current_social_network.to_s
-
-    params[:uuid] = cloudinary_clean(params[:uuid])
-    
-    params.each do |p, v|
-      logger.debug "#{p}: #{v}"
-    end
-
-    debugger   
-
-
-    
-    respond_to do |format|
-      if @image.update(image_params)
-        format.html { redirect_to @image, notice: 'Image was successfully updated.' }
-        format.json { render :show, status: :ok, location: @image }
-      else
-        format.html { render :edit }
-        format.json { render json: @image.errors, status: :unprocessable_entity }
-      end
-    end
+    splat(image_params, 'images_controller:update')
   end
 
   # DELETE /images/1
   # DELETE /images/1.json
   def destroy
+  debugger
     @image.destroy
     respond_to do |format|
       format.html { redirect_to images_url, notice: 'Image was successfully destroyed.' }
@@ -87,6 +82,18 @@ class ImagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def image_params
-      params[:image]
+      params.require(:image).permit(:uuid, :cloudinary_id)
+    end
+
+    def get_form_data
+      form_parms = form_data
+    end
+
+    def sclean_params
+      debugger
+      p = image_params
+      @image = p[:image]
+      @cloudinary = p[:image][:cloudinary]
+      @params = p[:image][:params]
     end
 end
