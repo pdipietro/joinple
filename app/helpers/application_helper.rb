@@ -69,7 +69,8 @@ module ApplicationHelper
   end
 
   def cloudinary_clean(name)
-    name[/v[0-9]*[^#]*/]
+    #name[/v[0-9]*[^#]*/]
+    (name[/v[0-9]*[^#]*/]).gsub(/v[0-9]*(.)/, '').rpartition('.')[0]
   end
 
   def stage

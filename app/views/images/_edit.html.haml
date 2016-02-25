@@ -12,16 +12,26 @@
 
   - clo = cloudinary_name
   - cloudinary_name = 'dev-joinple-com'
+  - debugger
 
-  - image_full_uuid = cloudinary[:folder] + '/' + image.cloudinary_id
+  - if image.nil? || image.uuid.nil?
+    - image_id = '_'
+  - elsif image.cloudinary_id.nil?
+    - image_id = image.uuid
+  - else
+    - image_id = image.cloudinary_id
+
+  -# image_id = image.nil? ? "_" : (image.cloudinary_id.nil? image.uuid : image.cloudinary_uuid
+
+  - image_full_uuid = cloudinary[:folder] + '/' + image_id
 
   = cl_image_tag image_full_uuid, height: _height, crop: :scale, quality: 50, class: 'responsive', default_image: 'default_avatar.png'
 
   - new_image = Image.new()
 
-  = bootstrap_form_for(new_image, remote: :true, html: { multipart: :true}, cloudinary: cloudinary, connections: connections ) do |g| 
+  = bootstrap_form_for(new_image, remote: :true, html: { multipart: :true} ) do |g| 
 
-    = g.hidden_field :cloudinary_id
+    = g.hidden_field :cloudinary_id, value: _uuid
     - set_form({connections: connections, cloudinary: cloudinary})
 
     %div{ :id => "#{_uuid}-new" }
@@ -44,7 +54,7 @@
           min_image_height: "#{preset[:min_image_height]}",
           upload_preset: "#{preset[:preset_name]}", 
 
-          field_name: 'cloudinary_id',
+          field_name: 'full_cloudinary_id',
           button_caption: "#{t('button.image.change')}",
           public_id: "#{_uuid}",
           folder: "#{cloudinary[:folder]}"

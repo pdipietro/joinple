@@ -2,7 +2,7 @@ module ImagesHelper
 
   def self.update(image, cloudinary, connections) 
     owner = image.is_image_of
-
+    debugger
     h = {
       :image => {
           :image => image,

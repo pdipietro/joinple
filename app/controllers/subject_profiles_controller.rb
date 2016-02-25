@@ -39,6 +39,7 @@ class SubjectProfilesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_subject_profile
+    debugger
     @subject_profile = SubjectProfile.find(params[:id])
   end
 

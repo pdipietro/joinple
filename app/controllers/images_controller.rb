@@ -1,6 +1,5 @@
 class ImagesController < ApplicationController
   before_action :set_image, only: [:show, :edit, :update, :destroy]
-  #before_action :get_form_data, only: [:create]
 
   # GET /images
   # GET /images.json
@@ -23,35 +22,88 @@ class ImagesController < ApplicationController
   end
 
   def create
-    debugger
     connections, cloudinary = form_data
     splat(image_params, 'images_controller:create')
-    splat(connections, 'images_controller:create')
-    splat(cloudinary, 'images_controller:create')
-    begin
-      tx = Neo4j::Transaction.new
-      image_params[:cloudinary_id] = cloudinary_clean(image_params[:cloudinary_id])
-      @image = Image.new(image_params)
+    
+    self_direction = nil 
+    parent = nil
+    name = nil
 
-      @image.cloudinary_id = cloudinary_clean(@image.cloudinary_id)
+    owner_name = nil
+    owner_id = nil
 
-      @image.save
-      # manage image history, if any
-      if image_params[:rel][:history]
-        unless @image.previous.nil?
-  #        old_image = @image.previous
-  #        rel = HasImage.create(from_node: image_params[:from_node], to_node: @image, properties: { type: image_params[:type]}) 
-  #        new_rel = 
-        end
+    k = {'from'=>{'subject_profile'=>{'id'=>'cab3c913-1209-4a5a-b1d7-3f751a81cb41'}}, 
+        'rel_name'=>'has_image', 
+        'rel_revname'=>'is_image_of', 
+        'rel_type'=>'photo', 
+        'to'=>'self', 
+        'history'=>'true'
+      }
+
+    connections.each do |conn|
+      if conn['from'] == :self
+        self_direction = :out
+        parent = conn['to']
+        name = conn['rel_revname']
+      else
+        self_direction = :in
+        parent = conn['from']
+        name = conn['rel_name']
+      end
+      history = conn['history']
+      type = conn['reltype']
+
+      k['from'].each do |key, val|
+        owner_name = key
+        owner_id = val['id']
       end
 
-    rescue => e
-      tx.failure
-    ensure
-      tx.close
+      splat(connections, 'images_controller:create - connections')
+      splat(cloudinary, 'images_controller:create - cloudinary')
+
+      debugger
+      sp = Object.const_set(owner_name.classify,Class.new)
+      #query_string = "(oldImg:Image)<-[old_rel:has_image]-(owner:#{owner_name.classify} { uuid : '#{owner_id}'})"
+      query_string = "-[old_rel:has_image]->(oldImg:Image)"
+      @sp = sp.as(:owners).query.match(query_string).proxy_as(Owner, :owners).return(:owners)
+      
+      x = @sp.has_image.nil?
+
+      sp = Neo4j::Session.query.match("(owner:#{owner_name.classify} { uuid : '#{owner_id}'})").return(:owner).first           
+      query_string = "(owner:#{owner_name.classify} { uuid : '#{owner_id}'})-[old_rel:has_image]->(oldImg:Image)"
+      dest = nil
+
+      #old_rel = HasImage.new
+      old_rel = Neo4j::Session.query.match(query_string).return(:old_rel).first
+      debugger
+      #begin
+        #tx = Neo4j::Transaction.new
+        @image = Image.new
+        @image.cloudinary_id = cloudinary_clean(params[:full_cloudinary_id])
+        @image.save
+
+        if old_rel.nil?
+          newRel = HasImage.create(owner, @image, type: type) 
+        else
+          owner = old_rel.from
+          oldImage = old_rel.to
+          old_rel.delete
+          newRel = HasImage.create(owner, @image, type: type) 
+          if history
+            newHistory = HasHistory.create(@image, oldImage)                   
+          end
+        end
+
+      #rescue => e
+      #  logger.debug "Transaction failed: #{e}"
+      #  tx.failure
+        jpl_parms = ImagesHelper.update(@image,cloudinary,connections)  
+      #ensure
+      #  tx.close
+      #  jpl_parms = ImagesHelper.update(@image,cloudinary,connections)  
+      #end
     end
 
-    jpl_parms = ImagesHelper.update(@image,params[:cloudinary],params[:connections])
     render 'forms/update', format: :js, locals: {jpl_parms: jpl_parms, parms: params} and return
   end
 
@@ -75,25 +127,16 @@ class ImagesController < ApplicationController
   end 
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_image
-      @image = Image.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_image
+    @image = Image.find(params[:id])
+ end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def image_params
-      params.require(:image).permit(:uuid, :cloudinary_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def image_params
+    params.require(:image).permit(:uuid, :full_cloudinary_id)
+  end
 
-    def get_form_data
-      form_parms = form_data
-    end
-
-    def sclean_params
-      debugger
-      p = image_params
-      @image = p[:image]
-      @cloudinary = p[:image][:cloudinary]
-      @params = p[:image][:params]
-    end
+  def storify(cloudinary,connections)
+  end
 end
