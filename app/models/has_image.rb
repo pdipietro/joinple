@@ -6,5 +6,5 @@ class HasImage
   to_class :Image
   type 'has_image'
 
-  property :type, type: String
+  property :object, type: String
 end

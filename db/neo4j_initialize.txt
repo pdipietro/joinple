@@ -29,7 +29,7 @@ create (_0:`Subject` {`activated`:"true", `activation_digest`:"$2a$10$l48pLADz4v
 create (_1:`SubjectProfile` {`background_color`:"#a02348", `created_at`:1420983722, `description`:"Joinple CTO - Principal designer", `text_color`:"#ffffff", `updated_at`:1444070246, `uuid`:"bc3cb602-323e-4cae-9427-7309417cdb21"})
 
 create (_17:`Image` {`created_at`:1451695507, `updated_at`:1451695507, `uuid`:"c578e6b0-8d19-4324-b64f-9a18d72b4f2f", `cloudinary_id`:"c578e6b0-8d19-4324-b64f-9a18d72b4f2f"})
-create _1-[:`has_image` {`created_at`:1451695520, `updated_at`:1451695520, `type`:"photo"}]->_17
+create _1-[:`has_image` {`created_at`:1451695520, `updated_at`:1451695520, `object`:"photo"}]->_17
 
 
 
@@ -41,22 +41,22 @@ create (_5:`Language` {`code`:"es-es", `created_at`:1420465834, `description`:"E
 create (_6:`SocialNetwork` {`background_color`:"#e5e5e5", `created_at`:1422308304, `description`:"Basic joinple social network.", `goal`:"Support job searching", `iname`:"www", `name`:"Joinple", `short_description`:"Short description.", `slogan`:"Slogannnnn.", `social_network_color`:"#a02348", `status`:"active", `text_color`:"#ffffff", `updated_at`:1444071020, `uuid`:"7602926d-702a-4b30-9c05-125d50212e79", `visibility`:"restricted"})
 
 create (_18:`Image` {`created_at`:1451695507, `updated_at`:1451695507, `uuid`:"55fc719e-4eb2-44d7-aabc-234ac2ea015b", `cloudinary_id`:"55fc719e-4eb2-44d7-aabc-234ac2ea015b"})
-create _6-[:`has_image` {`created_at`:1451695520, `updated_at`:1451695520, `type`:"banner"}]->_18
+create _6-[:`has_image` {`created_at`:1451695520, `updated_at`:1451695520, `object`:"banner"}]->_18
 create (_19:`Image` {`created_at`:1451695507, `updated_at`:1451695507, `uuid`:"ff2bbef2-c2f1-4b12-868f-a47d2d311bcd", `cloudinary_id`:"ff2bbef2-c2f1-4b12-868f-a47d2d311bcd"})
-create _6-[:`has_image` {`created_at`:1451695520, `updated_at`:1451695520, `type`:"logo"}]->_19
+create _6-[:`has_image` {`created_at`:1451695520, `updated_at`:1451695520, `object`:"logo"}]->_19
 
 
 create (_7:`SocialNetwork` {`background_color`:"#e5e5e5", `created_at`:1450855901, `description`:"A social network for wellness is better than a social network for badness.", `goal`:"Let people learn to stay well", `iname`:"wellness", `name`:"Wellness", `short_description`:"A social network for wellness.", `slogan`:"Is better a welless today than a kick in the ass.", `social_network_color`:"#ffff00", `status`:"active", `text_color`:"#323342", `updated_at`:1450943140, `uuid`:"c4f9c65b-abb6-4d7d-ba38-7ee2d60919cb", `visibility`:"open"})
 
 create (_20:`Image` {`created_at`:1451695507, `updated_at`:1451695507, `uuid`:"3b19150c-007c-4a44-904a-d43b550a8100", `cloudinary-id`:"3b19150c-007c-4a44-904a-d43b550a8100"})
-create _7-[:`has_image` {`created_at`:1451695520, `updated_at`:1451695520, `type`:"banner"}]->_20
+create _7-[:`has_image` {`created_at`:1451695520, `updated_at`:1451695520, `object`:"banner"}]->_20
 create (_21:`Image` {`created_at`:1451695507, `updated_at`:1451695507, `uuid`:"222bc58e-f72b-4d37-b5c6-b52e268ae36d", `cloudinary-id`:"222bc58e-f72b-4d37-b5c6-b52e268ae36d"})
-create _7-[:`has_image` {`created_at`:1451695520, `updated_at`:1451695520, `type`:"logo"}]->_21
+create _7-[:`has_image` {`created_at`:1451695520, `updated_at`:1451695520, `object`:"logo"}]->_21
 
 create (_8:`SocialNetwork` {`background_color`:"#e5e5e5", `created_at`:1451682007, `description`:"Etqwuetqwtwqtewqtwueqyu.", `goal`:"99999999", `iname`:"sgdjfgjsdgsdjgsdjjhs", `is_online`:false, `is_visible`:"open", `name`:"Sgdjfgjsdgsdjgsdjjhs", `short_description`:"Pqoèqpèqwpqwqqwowqpqq'q9'q'9''.", `slogan`:"Wwwwwwwwwwwwwwwwwwww.", `social_network_color`:"#000000", `status`:"run", `text_color`:"#323342", `updated_at`:1451682007, `uuid`:"26c90722-7bb2-48e1-9e35-93edec446ebe"})
 
 create (_22:`Image` {`created_at`:1451695507, `updated_at`:1451695507, `uuid`:"396f421d-2a71-4cb1-9011-c174152f466a", `cloudinary_id`:"396f421d-2a71-4cb1-9011-c174152f466a"})
-create _8-[:`has_image` {`created_at`:1451695520, `updated_at`:1451695520, `type`:"banner"}]->_22
+create _8-[:`has_image` {`created_at`:1451695520, `updated_at`:1451695520, `object`:"banner"}]->_22
 
 create (_24:`Image` {`created_at`:1451695507, `updated_at`:1451695507, `uuid`:"396f421d-2a71-4cb1-1190-c174152f466a", `cloudinary_id`:"396f421d-2a71-4cb1-1190-c174152f466a"})
 create (_25:`Image` {`created_at`:1451695507, `updated_at`:1451695507, `uuid`:"ed0f5615-59d9-447f-9731-757fdffce2ad", `cloudinary_id`:"ed0f5615-59d9-447f-9731-757fdffce2ad"})

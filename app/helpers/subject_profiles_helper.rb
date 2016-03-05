@@ -37,7 +37,7 @@ module SubjectProfilesHelper
           :from => subject_profile,
           :rel_name => :has_image,
           :rel_revname => :is_image_of,
-          :rel_type => :photo,
+          :rel_object => :photo,
           :to => :self,
           :history => :true
         }]

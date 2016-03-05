@@ -51,7 +51,7 @@ class Subject
   has_many  :in,  :use_language, rel_class: :Speaks      # Language
   has_many  :out, :owns, rel_class: :Owns                # :any
   has_many  :out, :is_member_of, rel_class: :MemberOf    # Group
-  has_one   :out, :has_profile, rel_class: :HasSubjectProfile, model_class: :SubjectProfile # Profile
+  has_one   :out, :has_profile, rel_class: :HasSubjectProfile # Profile
 
 
   # debugger

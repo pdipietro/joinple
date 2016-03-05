@@ -115,7 +115,9 @@ module SessionsHelper
     set_screen_geometry
     session[:subject_id] = subject.id
     session[:admin] = subject.admin
-    set_current_subject_profile
+    # set_current_subject_profile
+    debugger
+    session[:current_subject_profile] = subject.has_profile
     # !!!!!!! check_social_network
   end
 

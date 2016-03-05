@@ -32,14 +32,6 @@ class ImagesController < ApplicationController
     owner_name = nil
     owner_id = nil
 
-    k = {'from'=>{'subject_profile'=>{'id'=>'cab3c913-1209-4a5a-b1d7-3f751a81cb41'}}, 
-        'rel_name'=>'has_image', 
-        'rel_revname'=>'is_image_of', 
-        'rel_type'=>'photo', 
-        'to'=>'self', 
-        'history'=>'true'
-      }
-
     connections.each do |conn|
       if conn['from'] == :self
         self_direction = :out
@@ -51,9 +43,9 @@ class ImagesController < ApplicationController
         name = conn['rel_name']
       end
       history = conn['history']
-      type = conn['reltype']
+      object = conn['rel_object']
 
-      k['from'].each do |key, val|
+      conn['from'].each do |key, val|
         owner_name = key
         owner_id = val['id']
       end
@@ -61,49 +53,51 @@ class ImagesController < ApplicationController
       splat(connections, 'images_controller:create - connections')
       splat(cloudinary, 'images_controller:create - cloudinary')
 
-      debugger
-      sp = Object.const_set(owner_name.classify,Class.new)
-      #query_string = "(oldImg:Image)<-[old_rel:has_image]-(owner:#{owner_name.classify} { uuid : '#{owner_id}'})"
-      query_string = "-[old_rel:has_image]->(oldImg:Image)"
-      @sp = sp.as(:owners).query.match(query_string).proxy_as(Owner, :owners).return(:owners)
-      
-      x = @sp.has_image.nil?
+      failed = :false
 
-      sp = Neo4j::Session.query.match("(owner:#{owner_name.classify} { uuid : '#{owner_id}'})").return(:owner).first           
-      query_string = "(owner:#{owner_name.classify} { uuid : '#{owner_id}'})-[old_rel:has_image]->(oldImg:Image)"
-      dest = nil
+      begin
+        tx = Neo4j::Transaction.new
 
-      #old_rel = HasImage.new
-      old_rel = Neo4j::Session.query.match(query_string).return(:old_rel).first
-      debugger
-      #begin
-        #tx = Neo4j::Transaction.new
+        debugger
+        old_rel_base = owner_name.classify.constantize.as(:o).where(uuid: owner_id).has_image(:i, :r).where("r.object = ?",object).pluck(:o,:r,:i)
+
+        debugger
         @image = Image.new
         @image.cloudinary_id = cloudinary_clean(params[:full_cloudinary_id])
         @image.save
 
+
+        old_rel = old_rel_base[0]
         if old_rel.nil?
-          newRel = HasImage.create(owner, @image, type: type) 
+          newRel = HasImage.create(owner, @image, object: object) 
         else
-          owner = old_rel.from
-          oldImage = old_rel.to
-          old_rel.delete
-          newRel = HasImage.create(owner, @image, type: type) 
+          owner = old_rel.from_node
+          oldImage = old_rel.to_node
+          # queryDelete = Neo4j::Session.query("MATCH (o:`#{owner_name.classify.constantize}` { uuid : '#{owner_id}' })-[r:`has_image` { object : '#{object}' }]->(i:`Image`) delete r;")
+          # old_rel.delete
+          newRel = HasImage.create(owner, @image, object: object) 
           if history
             newHistory = HasHistory.create(@image, oldImage)                   
           end
+          del = old_rel_base.delete
+          queryDelete = Neo4j::Session.query("MATCH (o:`#{owner_name.classify.constantize}` { uuid : '#{owner_id}' })-[r:`has_image` { object : '#{object}' }]->(i:`Image`) delete r;")
         end
 
-      #rescue => e
-      #  logger.debug "Transaction failed: #{e}"
-      #  tx.failure
-        jpl_parms = ImagesHelper.update(@image,cloudinary,connections)  
-      #ensure
-      #  tx.close
-      #  jpl_parms = ImagesHelper.update(@image,cloudinary,connections)  
-      #end
+      rescue => e
+        logger.debug "Transaction failed: #{e}"
+        puts e.backtrace
+        puts "Error during processing: #{$!}"
+        puts "Backtrace:\n\t#{e.backtrace.join("\n\t")}"
+        failed = :true
+        tx.failure
+        raise
+      ensure
+        tx.close
+      end
     end
+    debugger
 
+    jpl_parms = ImagesHelper.update(@image,cloudinary,connections)  
     render 'forms/update', format: :js, locals: {jpl_parms: jpl_parms, parms: params} and return
   end
 
