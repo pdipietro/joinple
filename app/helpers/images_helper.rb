@@ -2,7 +2,6 @@ module ImagesHelper
 
   def self.update(image, cloudinary, connections) 
     owner = image.is_image_of
-    debugger
     h = {
       :image => {
           :image => image,
@@ -113,7 +112,8 @@ module ImagesHelper
         cropping_aspect_ratio: 1.0,
         cropping_default_selection_ratio: 1,
         min_image_width: 300,
-        min_image_height: 300 
+        min_image_height: 300,
+        default_image: 'default_avatar.png'
       }
   }.freeze
 

@@ -109,6 +109,7 @@ if [[ ! -L ./db/neo4j/$stage ]]; then
 fi
 
 railsPidDir="/home/joinple/$DIR/tmp/pids"
+neo4jPidDir="./db/neo4j/$stage/data/neo4j-service.pid"
 
 neo4jData="./db/neo4j/$stage/data/graph.db"
 neo4jLog="./db/neo4j/$stage/data/log"
@@ -189,9 +190,13 @@ startRails() {
 stopNeo() {
 #	rake neo4j:stop[$stage]
 	getNeo4jPid
+
 	echo "dentro stopneo $GNP"
 	if [ "${GNP}" ]; then
 		$neo4jBin/neo4j stop || { return 0; }
+	fi
+  if [[ -f $neo4jData ]]; then
+	  rm -f $neo4jData
 	fi
 }
 

@@ -1,6 +1,6 @@
 class Discussion 
   include Neo4j::ActiveNode
-  include Uuid
+  #include Uuid
   include CreatedAtUpdatedAt
 
   property  :title,           type: String

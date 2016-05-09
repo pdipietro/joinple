@@ -1,6 +1,6 @@
 class Hashtag 
   include Neo4j::ActiveNode
-  include Uuid
+ # include Uuid
   include CreatedAtUpdatedAt
 
   property  :tag,         :type =>   String, presence: true

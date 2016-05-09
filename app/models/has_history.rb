@@ -1,4 +1,4 @@
-class History
+class HasHistory
   include Neo4j::ActiveRel
   include CreatedAtUpdatedAt
 

@@ -4,7 +4,6 @@ class SubjectMailerPreview < ActionMailer::Preview
   # Preview this email at http://localhost:3000/rails/mailers/subject_mailer/account_activation
   def account_activation
     subject = Subject.first
-    debugger
     subject.activation_token = Subject.new_token
     SubjectMailer.account_activation(subject)
   end

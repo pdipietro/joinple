@@ -116,7 +116,7 @@ module SessionsHelper
     session[:subject_id] = subject.id
     session[:admin] = subject.admin
     # set_current_subject_profile
-    debugger
+    #debugger
     session[:current_subject_profile] = subject.has_profile
     # !!!!!!! check_social_network
   end
@@ -509,10 +509,12 @@ module SessionsHelper
   end
 
   def splat(collection, title = '')
-    if (collection.is_a?(::Hash) || collection.is_a?(::Array)) && collection != {}
+    if (collection.is_a?(::Hash) || collection.is_a?(::Array) || collection.itself.class.name != "Object") && collection != {}
       logger.info "------------------------ #{title} Collection splatting --------------------"
       splat1(collection, 0, '')
       logger.info '-----------------------------------------------------------------------'
+    else
+      logger.info "splat refused: collection.class is #{collection.class}"
     end
   end
 
@@ -531,6 +533,8 @@ module SessionsHelper
         logger.info "#{' ' * indent}#{p}:"
         splat1(val, indent + 4, '')
       end
+    elsif item.itself.class
+        logger.info "#{' ' * indent}#{item.itself.class}:"
     else
       logger.info "#{' ' * indent}#{item}"
     end
@@ -581,27 +585,6 @@ module SessionsHelper
     end
     @current_social_network 
   end
-=begin
-    if session[:social_network].class.name != 'SocialNetwork'
-      logger.debug "PRE: session[:social_network]: #{session[:social_network]}"
-      # debugger
-      (
-        logger.debug 'TRAGEDY !!!!'
-        render(file: File.join(Rails.root, 'public/404'), formats: [:html], status: 404, layout: false)
-      ) unless session[:social_network].uuid.nil?
-      logger.debug "session[:social_network]: #{session[:social_network]}"
-      if session[:social_network].class.name == 'cccccccccccccHash'
-        session[:social_network] = session[:social_network]['social_network']
-      else
-        sn = SocialNetwork.find_by(uuid: session[:social_network].uuid)
-        debugger if sn.class.name != 'SocialNetwork'
-        session[:social_network] = sn
-      end
-      session[:old_session] = session[:social_network]
-      logger.debug "current_social_network loaded: name= #{current_social_network_name?}"
-    end
-    session[:social_network]
-=end
 
 end
 

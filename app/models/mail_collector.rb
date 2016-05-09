@@ -2,7 +2,7 @@ class MailCollector
   include Neo4j::ActiveNode
   include Neo4j::ActiveNode::Spatial
   
-  include Uuid
+#  include Uuid
   include CreatedAtUpdatedAt
 
   #spatial_index 'mailcollectors'

@@ -1,8 +1,0 @@
-#upload_subject_photo
-  - if subject_profile.class.name == 'subject_proflie'
-    = render partial: "subjects/owner", locals: { subject_profile: subject_profile, size: :thumb, special: true }
-
-  = render partial: "images/form", locals: { preset: 'subject-photo', subject: 'subject_profile', field_name: :photo, button_caption: t('subject_profile.view.photo_button_caption'), folder: current_social_network_owner.uuid + '/' }  
-  -# = render partial: "subject_profiles/photo_load", locals: { :subject_profile => subject_profile, :size => :profile }
-.spacer-2x
-

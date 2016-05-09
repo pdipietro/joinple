@@ -6,14 +6,14 @@ class SubjectProfilesController < ApplicationController
 
   # GET /subject_profiles/1/show
   def show
-    # @subject_profile = SubjectProfile.find_by(id: params[:id])
+    splat(@subject_profile, 'subject_profiles_controller:show')
     jpl_parms = SubjectProfilesHelper.show(@subject_profile)
     render 'forms/show', format: :js, locals: {jpl_parms: jpl_parms, parms: params}
   end
 
   # GET /subject_profiles/1/edit
   def edit
-    # @subject_profile = SubjectProfile.find_by(id: params[:id])
+    splat(@subject_profile, 'subject_profiles_controller:edit')
     jpl_parms = SubjectProfilesHelper.edit_s_sp_i(@subject_profile)
     render 'forms/edit', format: :js, locals: {jpl_parms: jpl_parms, parms: params}
   end
@@ -39,7 +39,6 @@ class SubjectProfilesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_subject_profile
-    debugger
     @subject_profile = SubjectProfile.find(params[:id])
   end
 

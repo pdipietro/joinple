@@ -50,7 +50,6 @@ class LanguagesController < ApplicationController
   # PATCH/PUT /languages/1.json
   def update
     splat(params, '')
-    debugger
     respond_to do |format|
       if @language.update(language_params)
         format.js   { render partial: "replace", object: @language, notice: 'Language was successfully updated.' }

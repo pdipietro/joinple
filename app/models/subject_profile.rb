@@ -1,6 +1,6 @@
 class SubjectProfile 
   include Neo4j::ActiveNode
-  include Uuid
+#  include Uuid
   include CreatedAtUpdatedAt
 
   property :background_color, type: String, default: 'inherit'

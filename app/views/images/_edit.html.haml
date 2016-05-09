@@ -1,8 +1,6 @@
--# debugger
+- debugger
 - _uuid = SecureRandom.uuid
--# splat(instances, 'Image: instances')
-- splat(cloudinary, 'Image: cloudinary')
--# splat(jpl_params, 'Image: jpl_params')
+- splat(image, 'Image: cloudinary')
 %div{ id: "edit-#{_uuid}" }
   - preset = ImagesHelper::IMAGE_KIND[cloudinary[:preset].gsub(/-/,"_").to_sym]
 
@@ -12,26 +10,12 @@
 
   - clo = cloudinary_name
   - cloudinary_name = 'dev-joinple-com'
-  - debugger
 
-  - if image.nil? || image.uuid.nil?
-    - image_id = '_'
-  - elsif image.cloudinary_id.nil?
-    - image_id = image.uuid
-  - else
-    - image_id = image.cloudinary_id
+  = cl_image_tag image.cloudinary_id, height: _height, crop: :scale, quality: 50, class: 'responsive', default_image: cloudinary[:default_image]
 
-  -# image_id = image.nil? ? "_" : (image.cloudinary_id.nil? image.uuid : image.cloudinary_uuid
+  = bootstrap_form_for(image, remote: :true, html: { multipart: :true} ) do |g| 
 
-  - image_full_uuid = cloudinary[:folder] + '/' + image_id
-
-  = cl_image_tag image_full_uuid, height: _height, crop: :scale, quality: 50, class: 'responsive', default_image: 'default_avatar.png'
-
-  - new_image = Image.new()
-
-  = bootstrap_form_for(new_image, remote: :true, html: { multipart: :true} ) do |g| 
-
-    = g.hidden_field :cloudinary_id, value: _uuid
+    = g.hidden_field :cloudinary_id, value: cloudinary[:folder] + '/' + _uuid
     - set_form({connections: connections, cloudinary: cloudinary})
 
     %div{ :id => "#{_uuid}-new" }
@@ -54,7 +38,7 @@
           min_image_height: "#{preset[:min_image_height]}",
           upload_preset: "#{preset[:preset_name]}", 
 
-          field_name: 'full_cloudinary_id',
+          field_name: 'cloudinary_id',
           button_caption: "#{t('button.image.change')}",
           public_id: "#{_uuid}",
           folder: "#{cloudinary[:folder]}"

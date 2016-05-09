@@ -1,6 +1,6 @@
 class SocialNetwork 
   include Neo4j::ActiveNode
-  include Uuid
+ # include Uuid
   include CreatedAtUpdatedAt
   include IsOwnedBy
  # include Name
