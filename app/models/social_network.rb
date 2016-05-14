@@ -37,7 +37,7 @@ class SocialNetwork
 
   def check_default
     # debugger
-    self.uuid = @_uuid
+    #self.uuid = @_uuid
     self.is_online = false if self.is_online
     self.is_visible = "open" if self.is_visible 
     self.status = "run" if self.status 

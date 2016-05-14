@@ -1,4 +1,3 @@
-- debugger
 - _uuid = SecureRandom.uuid
 - splat(image, 'Image: cloudinary')
 %div{ id: "edit-#{_uuid}" }
@@ -13,9 +12,11 @@
 
   = cl_image_tag image.cloudinary_id, height: _height, crop: :scale, quality: 50, class: 'responsive', default_image: cloudinary[:default_image]
 
+  -# public_id = cloudinary[:folder] + '/' + _uuid
+
   = bootstrap_form_for(image, remote: :true, html: { multipart: :true} ) do |g| 
 
-    = g.hidden_field :cloudinary_id, value: cloudinary[:folder] + '/' + _uuid
+    = g.hidden_field :cloudinary_id
     - set_form({connections: connections, cloudinary: cloudinary})
 
     %div{ :id => "#{_uuid}-new" }
@@ -38,7 +39,7 @@
           min_image_height: "#{preset[:min_image_height]}",
           upload_preset: "#{preset[:preset_name]}", 
 
-          field_name: 'cloudinary_id',
+          field_name: 'image[cloudinary_id]',
           button_caption: "#{t('button.image.change')}",
           public_id: "#{_uuid}",
           folder: "#{cloudinary[:folder]}"

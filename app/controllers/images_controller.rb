@@ -1,5 +1,5 @@
 class ImagesController < ApplicationController
-  before_action :set_image, only: [:show, :edit, :update, :destroy]
+  before_action :set_image, only: [:show, :edit, :destroy]
 
   # GET /images
   # GET /images.json
@@ -22,6 +22,7 @@ class ImagesController < ApplicationController
   end
 
   def create
+    debugger
     connections, cloudinary = form_data
     @image = Image.new(image_params)
     splat(@image, 'images_controller:create')
@@ -94,7 +95,8 @@ class ImagesController < ApplicationController
   end
 
   def update
-    splat(image_params, 'images_controller:update')
+    debugger
+    create
   end
 
   # DELETE /images/1

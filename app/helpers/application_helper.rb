@@ -50,7 +50,8 @@ module ApplicationHelper
   end
 
   def calculate_full_path(sn)
-    nm = sn.name.casecmp 'joinple' == 0 ? 'www' : sn.name.downcase.gsub(/\s+/, '')
+    x = sn.name.downcase
+    nm = x.eql?('joinple') ? 'www' : x.gsub(/\s+/, '')
 
     @stage == 'deploy' ? "http://#{nm}.#{request.domain}" : "http://#{@stage}.#{nm}.#{request.domain}"
   end
@@ -142,6 +143,7 @@ module ApplicationHelper
     sn = sn.start_with?('dev.')  ? sn.split('.')[1] : sn
     sn = sn.start_with?('demo.') ? sn.split('.')[1] : sn
     sn = humanize_word(sn)
+    debugger
     sn = 'joinple' if sn.casecmp 'www'
     csn = SocialNetwork.find_by iname: sn.downcase
     logger.info "csn= #{csn.class.name} - #{csn}"
