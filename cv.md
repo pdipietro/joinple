@@ -26,7 +26,7 @@
 -	Agile Project Management
 -	Technology Investment Analysis
 
-###TECHNICAL EXPERTISE##### (mastered in italic)
+###TECHNICAL EXPERTISE (mastered in italic)
  
 - **GraphDB**: *Neo4j, Neo4jrb, Cypher*
 - **Languages**: *C, C++*, C#, Java 
