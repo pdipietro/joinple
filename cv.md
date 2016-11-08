@@ -26,31 +26,31 @@
 -	Agile Project Management
 -	Technology Investment Analysis
 
-###TECHNICAL EXPERTISE (mastered in italic)###
+###TECHNICAL EXPERTISE### (mastered in italic)
  
-**GraphDB**: *Neo4j, Neo4jrb, Cypher*
-**Languages**: *C, C++*, C#, Java
-**Contemporary**: Scala, *Ruby*, Clojure, Python
-**Full XML stack**: *XQuery, XPath, XSD, OWL, RDF, SVG, XSL, XSLT*
-**Modelling**: *UML, process modelling, knowledge modelling*
-**Object Orientation**: *OOA, OOD, OOP*
-**Front-end**: *Bootstrap*, Angular, CSS3, SASS
-**Framework**: *.Net*, Spring, Hadoop, Betterform, ExistDB
-**OS**: *Linux, Unix, Windows, Mac-OS, z/OS*
-**SDLC**:  *Waterfall, Iterative-incremental, Fountain, Agile, XP*
-**Openess**: *Open Standard, metadata, data, source*
-**Integration**: *SOA, microservices*
-**Development environment**: *Ruby on Rails*, Eclipse, Visual Studio
-**Architectural stack**: *3-tiers MVC, 4-tiers MVVM*
-**Deployment**: AWS, Heroku, Digital Ocean
-**Virtualisation**: *VMWare*, Hyper-V
-**Semantic**: *OWL, RDF* 
-**Other**: Basic, Visual Basic, Algol-W, Pascal, ADA, Fortran, Lisp
-**Legacy**: Cobol, z/ASM, Fortran
-**SQL**: MySQL, T-SQL, Oracle, UDB
-**Software packages**: Protégé, Altova XML Suite, IBM/Rational Dev. Env., Open Office, Microsoft Office, CorelDraw, Adobe CC Suite, Joomla, Scrum Kunagj
+- **GraphDB**: *Neo4j, Neo4jrb, Cypher*
+- **Languages**: *C, C++*, C#, Java 
+- **Contemporary**: Scala, *Ruby*, Clojure, Python 
+- **Full XML stack**: *XQuery, XPath, XSD, OWL, RDF, SVG, XSL, XSLT* 
+- **Modelling**: *UML, process modelling, knowledge modelling* 
+- **Object Orientation**: *OOA, OOD, OOP* 
+- **Front-end**: *Bootstrap*, Angular, CSS3, SASS 
+- **Framework**: *.Net*, Spring, Hadoop, Betterform, ExistDB 
+- **OS**: *Linux, Unix, Windows, Mac-OS, z/OS* 
+- **SDLC**:  *Waterfall, Iterative-incremental, Fountain, Agile, XP*
+- **Openess**: *Open Standard, metadata, data, source*
+- **Integration**: *SOA, microservices*
+- **Development environment**: *Ruby on Rails*, Eclipse, Visual Studio
+- **Architectural stack**: *3-tiers MVC, 4-tiers MVVM*
+- **Deployment**: AWS, Heroku, Digital Ocean
+- **Virtualisation**: *VMWare*, Hyper-V
+- **Semantic**: *OWL, RDF* 
+- **Other**: Basic, Visual Basic, Algol-W, Pascal, ADA, Fortran, Lisp
+- **Legacy**: Cobol, z/ASM, Fortran
+- **SQL**: MySQL, T-SQL, Oracle, UDB
+- **Software packages**: Protégé, Altova XML Suite, IBM/Rational Dev. Env., Open Office, Microsoft Office, CorelDraw, Adobe CC Suite, Joomla, Scrum Kunagj
 
-###WORK EXPERIENCE### 
+###WORK EXPERIENCE###
 
 **Consultant (Independent)	Oct 2016-today**
 **Actively looking for a new challenge**
