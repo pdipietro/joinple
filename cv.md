@@ -2,12 +2,12 @@
 ##EU citizen##
 
 ###SUMMARY###
-•	Technology pioneer with over 20 years of experience designing, developing and implementing cutting-edge organizational technology infrastructure.
-•	Expert in data architecture, software architecture, Object Oriented Software Engineering, Enterprise Application Integration Architectures, big data, data integration, system, data and knowledge modelling, SDLC. 
-•	Proven technology strategist with demonstrated success forecasting and guiding long-term technology roadmaps, and analysing technology investment trade-offs to align with strategic goals.
-•	Successful team manager, with long term experience in motivating and coaching team members.
-•	Effective project manager with strong skills in managing IT budgets, hiring vendors, negotiating contracts and ensuring deliverables. 
-•	Polished communicator with a strong record of building and managing relationships with business and government leaders. Excellent communication skills in Italian (native) and English (business-level fluency).
+-	Technology pioneer with over 20 years of experience designing, developing and implementing cutting-edge organizational technology infrastructure.
+-	Expert in data architecture, software architecture, Object Oriented Software Engineering, Enterprise Application Integration Architectures, big data, data integration, system, data and knowledge modelling, SDLC. 
+-	Proven technology strategist with demonstrated success forecasting and guiding long-term technology roadmaps, and analysing technology investment trade-offs to align with strategic goals.
+-	Successful team manager, with long term experience in motivating and coaching team members.
+-	Effective project manager with strong skills in managing IT budgets, hiring vendors, negotiating contracts and ensuring deliverables. 
+-	Polished communicator with a strong record of building and managing relationships with business and government leaders. Excellent communication skills in Italian (native) and English (business-level fluency).
 
 ###KEY COMPETENCIES###
  
@@ -52,12 +52,13 @@
 
 ###WORK EXPERIENCE### 
 
-**Consultant (Independent)	Oct 2016-today
-Actively looking for a new challenge**
+**Consultant (Independent)	Oct 2016-today**
+**Actively looking for a new challenge**
 
 ####Chief Technology Officer	2014-Sep 2016####
 ####Joinple (startup)	Rome, Tallinn####
 **Defining the overall architecture for building a worldwide cloud application.**
+
 Requirements:
 -	Hundreds Million of user, Millions concurrent users, TBs loaded hourly, Millions Images per minute, Image quality management, Image and video quality resizable on the flight, Worldwide CDN delivery, Very fast responsiveness, User Devices independency, A priori unknown the relationships between knowledge nodes, User defined extensions, Absolutely guaranteed customer privacy, Select the technological platform (development, Test, deployment),-Select the basic development approach (TBB, BDD and relative support products)
 -	Tools for agile PM (Scrum + Kanban)
